@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+OpenIDE-Module: org.puzzle.puzzlemap2d
+OpenIDE-Module-Layer: org/puzzle/puzzlemap2d/layer.xml
+OpenIDE-Module-Localizing-Bundle: org/puzzle/puzzlemap2d/Bundle.properties
+OpenIDE-Module-Specification-Version: 1.0
+
