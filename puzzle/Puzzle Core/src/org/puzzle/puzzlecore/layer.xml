@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE filesystem PUBLIC "-//NetBeans//DTD Filesystem 1.1//EN" "http://www.netbeans.org/dtds/filesystem-1_1.dtd">
+<filesystem>
+    <folder name="Actions">
+        <folder name="Puzzle">
+            <file name="org-puzzle-puzzlecore-actions-addlayer-AddLayerAction.instance"/>
+            <file name="org-puzzle-puzzlecore-actions-newcontext-NewContextAction.instance"/>
+        </folder>
+    </folder>
+    <folder name="Toolbars">
+        <folder name="Context">
+            <attr name="org-puzzle-puzzlecore-actions-newcontext-NewContextAction.shadow/org-puzzle-puzzlecore-actions-addlayer-AddLayerAction.shadow" boolvalue="true"/>
+            <file name="org-puzzle-puzzlecore-actions-addlayer-AddLayerAction.shadow">
+                <attr name="originalFile" stringvalue="Actions/Puzzle/org-puzzle-puzzlecore-actions-addlayer-AddLayerAction.instance"/>
+            </file>
+            <file name="org-puzzle-puzzlecore-actions-newcontext-NewContextAction.shadow">
+                <attr name="originalFile" stringvalue="Actions/Puzzle/org-puzzle-puzzlecore-actions-newcontext-NewContextAction.instance"/>
+            </file>
+        </folder>
+    </folder>
+</filesystem>
