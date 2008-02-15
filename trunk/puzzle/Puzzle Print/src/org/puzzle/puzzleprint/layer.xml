@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE filesystem PUBLIC "-//NetBeans//DTD Filesystem 1.1//EN" "http://www.netbeans.org/dtds/filesystem-1_1.dtd">
+<filesystem>
+    <folder name="Actions">
+        <folder name="Puzzle">
+            <file name="org-puzzle-puzzleprint-actions-ImageExportAction.instance"/>
+        </folder>
+    </folder>
+    <folder name="Toolbars">
+        <folder name="Map printing">
+            <file name="org-puzzle-puzzleprint-actions-ImageExportAction.shadow">
+                <attr name="originalFile" stringvalue="Actions/Puzzle/org-puzzle-puzzleprint-actions-ImageExportAction.instance"/>
+            </file>
+        </folder>
+    </folder>
+</filesystem>
