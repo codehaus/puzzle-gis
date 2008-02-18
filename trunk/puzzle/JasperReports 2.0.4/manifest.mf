@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+OpenIDE-Module: net.sf.jasperreports
+OpenIDE-Module-Localizing-Bundle: net/sf/jasperreports/Bundle.properties
+OpenIDE-Module-Specification-Version: 1.0
+
