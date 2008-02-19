@@ -21,9 +21,14 @@
 
 package org.puzzle.puzzleprint.jasper;
 
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
 import javax.swing.table.AbstractTableModel;
 import net.sf.jasperreports.engine.JRField;
 import net.sf.jasperreports.engine.JasperReport;
+import org.puzzle.puzzlemap2d.struct.Map2DManager;
 
 /**
  *
@@ -79,7 +84,21 @@ public class JRFieldTableModel extends AbstractTableModel{
         if(columnIndex == 0){
             return parameters[rowIndex].getName();
         }else{
-            return values[rowIndex];
+//            if(parameters[rowIndex].getValueClass().equals(Image.class)){
+            
+            
+            
+            BufferedImage image = Map2DManager.getInstance().getMap2D().getRenderingStrategy().getBufferImage();
+            
+            BufferedImage bgImage = new BufferedImage(image.getWidth(), image.getHeight(),BufferedImage.TYPE_INT_RGB);
+            Graphics g = bgImage.getGraphics();
+//            g.fillRect(0, 0, bgImage.getWidth(), bgImage.getHeight());
+            g.drawImage(image, 0, 0, Color.WHITE, null);
+            
+                return bgImage;
+//            }
+            
+//            return values[rowIndex];
         }
     }
 

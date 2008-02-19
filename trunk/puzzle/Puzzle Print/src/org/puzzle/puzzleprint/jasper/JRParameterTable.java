@@ -53,7 +53,7 @@ public class JRParameterTable extends JComponent{
         this.report = report;
         model = new JRParameterTableModel(report);
         table.setModel(model);
-        revalidate();
+        table.revalidate();
         
     }
     
