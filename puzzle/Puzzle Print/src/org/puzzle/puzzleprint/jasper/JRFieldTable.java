@@ -56,7 +56,7 @@ public class JRFieldTable extends JComponent {
         this.report = report;
         model = new JRFieldTableModel(report);
         table.setModel(model);
-        revalidate();
+        table.revalidate();
 
     }
 

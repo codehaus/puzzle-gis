@@ -5,16 +5,17 @@
         <folder name="Puzzle">
             <file name="org-puzzle-puzzleprint-actions-ImageExportAction.instance"/>
             <file name="org-puzzle-puzzleprint-actions-jasper-JasperAction.instance"/>
-        </folder>
+            </folder>
     </folder>
     <folder name="Toolbars">
         <folder name="Map printing">
+            <attr name="org-puzzle-puzzleprint-actions-jasper-JasperAction.shadow/org-puzzle-puzzleprint-actions-oo-OOAction.shadow" boolvalue="true"/>
             <file name="org-puzzle-puzzleprint-actions-ImageExportAction.shadow">
                 <attr name="originalFile" stringvalue="Actions/Puzzle/org-puzzle-puzzleprint-actions-ImageExportAction.instance"/>
             </file>
             <file name="org-puzzle-puzzleprint-actions-jasper-JasperAction.shadow">
                 <attr name="originalFile" stringvalue="Actions/Puzzle/org-puzzle-puzzleprint-actions-jasper-JasperAction.instance"/>
             </file>
-        </folder>
+            </folder>
     </folder>
 </filesystem>
