@@ -35,7 +35,7 @@ public class ToolNavigationAction extends AbstractAction {
 
     public ToolNavigationAction() {
         super(NbBundle.getMessage(ToolNavigationAction.class, "CTL_ToolNavigationAction"));
-//        putValue(SMALL_ICON, new ImageIcon(Utilities.loadImage(ToolNavigationTopComponent.ICON_PATH, true)));
+        putValue(SMALL_ICON, new ImageIcon(Utilities.loadImage(ToolNavigationTopComponent.ICON_PATH, true)));
     }
 
     public void actionPerformed(ActionEvent evt) {
