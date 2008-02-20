@@ -18,7 +18,7 @@
             <file name="ToolNavigationTopComponent.settings" url="ToolNavigationTopComponentSettings.xml"/>
         </folder>
         <folder name="Modes">
-            <folder name="explorer">
+            <folder name="rightSlidingSide">
                 <file name="ToolNavigationTopComponent.wstcref" url="ToolNavigationTopComponentWstcref.xml"/>
             </folder>
         </folder>
