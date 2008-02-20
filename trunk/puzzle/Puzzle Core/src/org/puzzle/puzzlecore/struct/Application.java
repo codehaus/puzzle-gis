@@ -18,19 +18,20 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package org.puzzle.puzzlecore.struct;
 
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.event.EventListenerList;
+import org.geotools.map.DefaultMapContext;
 import org.geotools.map.MapContext;
+import org.geotools.referencing.crs.DefaultGeographicCRS;
 
 /**
  * @author johann sorel
  */
 public final class Application {
-    
+
     private final MapContext[] EMPTY_CONTEXT_ARRAY = new MapContext[0];
     private final EventListenerList listeners = new EventListenerList();
     private final List<MapContext> contexts = new ArrayList<MapContext>();
@@ -38,7 +39,10 @@ public final class Application {
     private static Application instance = null;
 
     private Application() {
-        
+        MapContext context = new DefaultMapContext(DefaultGeographicCRS.WGS84);
+        context.setTitle("Context");
+        contexts.add(context);
+        activeContext = context;
     }
 
     public static Application getInstance() {
@@ -66,17 +70,22 @@ public final class Application {
      * @param context the mapcontext to active
      */
     public void setActiveContext(MapContext context) {
-        if (contexts.contains(context)  || context == null) {                  
-            
-            if(context != activeContext){
+
+        if (context == null) {
+            throw new NullPointerException();
+        }
+
+        if (contexts.contains(context)) {
+
+            if (context != activeContext) {
                 activeContext = context;
                 fireContextActivated(context, contexts.indexOf(context));
-                }
+            }
         } else {
             throw new IllegalArgumentException();
         }
-        
-        
+
+
     }
 
     /**
@@ -84,8 +93,8 @@ public final class Application {
      * @param context the context to add
      */
     public void addContext(MapContext context) {
-        
-        if(!contexts.contains(context)){
+
+        if (!contexts.contains(context)) {
             contexts.add(context);
             fireContextAdded(context, contexts.indexOf(context));
         }
@@ -96,13 +105,29 @@ public final class Application {
      * @param context target mapcontext to remove
      */
     public void removeContext(MapContext context) {
-                
-        if(contexts.contains(context)){
+
+        if (context == activeContext) {
+            if (getContextCount() == 1) {
+                MapContext ctx = new DefaultMapContext(DefaultGeographicCRS.WGS84);
+                ctx.setTitle("Context");
+                addContext(ctx);
+                setActiveContext(ctx);
+            }else{
+                int n = getContextIndex(context);
+                if(n==0){
+                    setActiveContext(getContext(1));
+                }else{
+                    setActiveContext(getContext(0));
+                }
+            }
+        }
+
+        if (contexts.contains(context)) {
             int position = contexts.indexOf(context);
             contexts.remove(context);
             fireContextRemoved(context, position);
         }
-        
+
     }
 
     /**
