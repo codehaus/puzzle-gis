@@ -26,8 +26,11 @@ import org.geotools.gui.swing.contexttree.column.SelectionTreeTableColumn;
 import org.geotools.gui.swing.contexttree.popup.LayerZoomItem;
 import org.geotools.gui.swing.map.map2d.JDefaultEditableMap2D;
 import org.geotools.gui.swing.map.map2d.control.JMap2DInfoBar;
+import org.geotools.gui.swing.map.map2d.minimap.JMiniMap;
 import org.geotools.gui.swing.map.map2d.strategy.MergeBufferedImageStrategy;
+import org.geotools.map.DefaultMapContext;
 import org.geotools.map.MapContext;
+import org.geotools.referencing.crs.DefaultGeographicCRS;
 import org.puzzle.puzzlecontexttree.struct.ContextTreeManager;
 import org.puzzle.puzzlecore.struct.Application;
 
@@ -40,6 +43,7 @@ public final class Map2DManager {
     private static Map2DManager instance;
     private JDefaultEditableMap2D map2d = null;
     private JMap2DInfoBar infoBar = null;
+    private JMiniMap miniMap = null;
 
     private Map2DManager() {
 
@@ -66,6 +70,14 @@ public final class Map2DManager {
         }
 
         MapContext context = Application.getInstance().getActiveContext();
+        
+        if(context == null){
+            context = new DefaultMapContext(DefaultGeographicCRS.WGS84);
+            context.setTitle("Context");
+        }
+        
+        Application.getInstance().addContext(context);
+        Application.getInstance().setActiveContext(context);
         map2d.getRenderingStrategy().setContext(context);
 
         return map2d;
@@ -83,6 +95,14 @@ public final class Map2DManager {
         return infoBar;
     }
 
+    public JMiniMap getMiniMap(){
+        miniMap = new JMiniMap();
+        miniMap.setRelatedMap2D(getMap2D());
+        
+        return miniMap;
+    }
+    
+    
     public static Map2DManager getInstance() {
         if (instance == null) {
             instance = new Map2DManager();

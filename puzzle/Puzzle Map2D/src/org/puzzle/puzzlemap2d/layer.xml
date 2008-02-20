@@ -19,12 +19,16 @@
             </folder>
         <folder name="Window">
             <file name="org-puzzle-puzzlemap2d-topcomponents-Map2DAction.instance"/>
+            <file name="org-puzzle-puzzlemap2d-topcomponents-MiniMapAction.instance"/>
         </folder>
     </folder>
     <folder name="Menu">
         <folder name="Window">
             <file name="Map2DAction.shadow">
                 <attr name="originalFile" stringvalue="Actions/Window/org-puzzle-puzzlemap2d-topcomponents-Map2DAction.instance"/>
+            </file>
+            <file name="MiniMapAction.shadow">
+                <attr name="originalFile" stringvalue="Actions/Window/org-puzzle-puzzlemap2d-topcomponents-MiniMapAction.instance"/>
             </file>
         </folder>
     </folder>
@@ -82,11 +86,17 @@
     <folder name="Windows2">
         <folder name="Components">
             <file name="Map2DTopComponent.settings" url="Map2DTopComponentSettings.xml"/>
+            <file name="MiniMapTopComponent.settings" url="MiniMapTopComponentSettings.xml"/>
         </folder>
         <folder name="Modes">
+            <folder name="anonymousMode_1">
+                <file name="MiniMapTopComponent.wstcref" url="MiniMapTopComponentWstcref_1.xml"/>
+            </folder>
+            <file name="anonymousMode_1.wsmode" url="anonymousMode_1Wsmode.xml"/>
             <folder name="editor">
                 <file name="Map2DTopComponent.wstcref" url="Map2DTopComponentWstcref.xml"/>
             </folder>
+            <folder name="explorer"/>
         </folder>
     </folder>
 </filesystem>
