@@ -93,7 +93,14 @@ public class ContextTreeManager {
         }
 
         public void contextActivated(TreeContextEvent event) {
-            Application.getInstance().setActiveContext(event.getContext());
+            MapContext context = event.getContext();
+            
+            if(context != null){
+                Application.getInstance().setActiveContext(event.getContext());                
+            }else{
+                contextTree.setActiveContext(Application.getInstance().getActiveContext());
+            }
+            
         }
 
         public void contextMoved(TreeContextEvent event) {
