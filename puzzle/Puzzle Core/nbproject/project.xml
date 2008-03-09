@@ -24,6 +24,7 @@
                 </dependency>
             </module-dependencies>
             <public-packages>
+                <package>org.puzzle.puzzlecore.gtextend.widget.sldeditor</package>
                 <package>org.puzzle.puzzlecore.struct</package>
             </public-packages>
         </data>
