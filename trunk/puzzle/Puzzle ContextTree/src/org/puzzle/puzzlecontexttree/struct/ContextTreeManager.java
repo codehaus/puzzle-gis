@@ -20,6 +20,8 @@
  */
 package org.puzzle.puzzlecontexttree.struct;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.prefs.PreferenceChangeEvent;
 import java.util.prefs.PreferenceChangeListener;
 import java.util.prefs.Preferences;
@@ -48,10 +50,19 @@ import org.geotools.gui.swing.contexttree.popup.RuleMaxScaleItem;
 import org.geotools.gui.swing.contexttree.popup.RuleMinScaleItem;
 import org.geotools.gui.swing.contexttree.popup.SeparatorItem;
 import org.geotools.gui.swing.contexttree.popup.TreePopupItem;
+import org.geotools.gui.swing.propertyedit.LayerCRSPropertyPanel;
+import org.geotools.gui.swing.propertyedit.LayerFilterPropertyPanel;
+import org.geotools.gui.swing.propertyedit.LayerGeneralPanel;
+import org.geotools.gui.swing.propertyedit.LayerStylePropertyPanel;
+import org.geotools.gui.swing.propertyedit.PropertyPanel;
+import org.geotools.gui.swing.propertyedit.filterproperty.JCQLPropertyPanel;
+import org.geotools.gui.swing.propertyedit.styleproperty.JSimpleStylePanel;
+import org.geotools.gui.swing.propertyedit.styleproperty.JXMLStylePanel;
 import org.geotools.map.MapContext;
 import org.openide.util.Exceptions;
 import org.openide.util.NbPreferences;
 import org.puzzle.puzzlecontexttree.options.ContextTreePanel;
+import org.puzzle.puzzlecore.gtextend.widget.sldeditor.JAdvancedStylePanel;
 import org.puzzle.puzzlecore.struct.Application;
 import org.puzzle.puzzlecore.struct.ApplicationContextEvent;
 import org.puzzle.puzzlecore.struct.ApplicationContextListener;
@@ -138,8 +149,7 @@ public class ContextTreeManager {
             if (preferences.getBoolean(ContextTreePanel.PREF_NOD_SOURCE, false)) {
                 contextTree.addSubNodeGroup(new SourceGroup());
             }
-            if (preferences.getBoolean(ContextTreePanel.PREF_NOD_STYLE, true)) {
-                preferences.putBoolean(ContextTreePanel.PREF_NOD_STYLE, true);
+            if (preferences.getBoolean(ContextTreePanel.PREF_NOD_STYLE, false)) {
                 contextTree.addSubNodeGroup(new StyleGroup());
             }
 
@@ -196,7 +206,23 @@ public class ContextTreeManager {
             }
             if (preferences.getBoolean(ContextTreePanel.PREF_POP_LAYER_PROPERTY, true)) {
                 preferences.putBoolean(ContextTreePanel.PREF_POP_LAYER_PROPERTY, true);
-                popupMenu.addItem(new LayerPropertyItem());
+                LayerPropertyItem property = new LayerPropertyItem();
+                List<PropertyPanel> lstproperty = new ArrayList<PropertyPanel>();
+                lstproperty.add(new LayerGeneralPanel());
+                lstproperty.add(new LayerCRSPropertyPanel());
+                
+                LayerFilterPropertyPanel filters = new LayerFilterPropertyPanel();                
+                filters.addPropertyPanel(new JCQLPropertyPanel());                
+                lstproperty.add(filters);
+                
+                LayerStylePropertyPanel styles = new LayerStylePropertyPanel();
+                styles.addPropertyPanel(new JSimpleStylePanel());
+                styles.addPropertyPanel(new JAdvancedStylePanel());
+                styles.addPropertyPanel(new JXMLStylePanel());
+                lstproperty.add(styles);
+                
+                property.setPropertyPanels(lstproperty);
+                popupMenu.addItem(property);
             }
             if (preferences.getBoolean(ContextTreePanel.PREF_POP_CONTEXT_PROPERTY, true)) {
                 preferences.putBoolean(ContextTreePanel.PREF_POP_CONTEXT_PROPERTY, true);
