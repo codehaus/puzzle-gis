@@ -25,7 +25,6 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import org.geotools.gui.swing.datachooser.DataPanel;
 import org.geotools.gui.swing.datachooser.JDataChooser;
-import org.geotools.gui.swing.datachooser.JDatabaseDataPanel;
 import org.geotools.gui.swing.datachooser.JFileDataPanel;
 import org.geotools.map.MapContext;
 import org.geotools.map.MapLayer;
@@ -37,21 +36,20 @@ import org.puzzle.puzzlecore.struct.Application;
 /**
  * @author johann sorel
  */ 
-public final class AddLayerAction extends CallableSystemAction {
+public final class AddFileLayerAction extends CallableSystemAction {
 
     public void performAction() {
     
         if (Application.getInstance().getActiveContext() != null) {
             List<DataPanel> lst = new ArrayList<DataPanel>();
             lst.add(new JFileDataPanel());
-            lst.add(new JDatabaseDataPanel());
-
+            
             JDataChooser jdc = new JDataChooser(null, lst);
 
             JDataChooser.ACTION ret = jdc.showDialog();
 
             if (ret == JDataChooser.ACTION.APPROVE) {
-                List<MapLayer> layers = jdc.getLayers();
+                MapLayer[] layers = jdc.getLayers();
 
                 MapContext context = Application.getInstance().getActiveContext();
                 for (MapLayer layer : layers) {
@@ -65,12 +63,12 @@ public final class AddLayerAction extends CallableSystemAction {
     }
 
     public String getName() {
-        return NbBundle.getMessage(AddLayerAction.class, "CTL_AddLayerAction");
+        return NbBundle.getMessage(AddFileLayerAction.class, "CTL_AddLayerAction");
     }
 
     @Override
     protected String iconResource() {
-        return "org/puzzle/puzzlecore/actions/addlayer/newlayer.png";
+        return "org/puzzle/puzzlecore/actions/addlayer/file_add.png";
     }
 
     public HelpCtx getHelpCtx() {
