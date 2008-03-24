@@ -31,6 +31,7 @@ import org.geotools.gui.swing.toolbox.widgettool.clipping.ClippingTTDescriptor;
 import org.geotools.gui.swing.toolbox.widgettool.shapecreation.ShapeCreationTTDescriptor;
 import org.geotools.gui.swing.toolbox.widgettool.svg2mif.SVG2MIFTTDescriptor;
 import org.geotools.gui.swing.toolbox.widgettool.vdem2csv.VDem2CSVTTDescriptor;
+import org.puzzle.puzzlecore.gtextend.widget.sldeditor.SLDEditorDescriptor;
 
 /**
  *
@@ -54,6 +55,7 @@ public final class ToolBoxManager {
             tree.addTool(new ShapeCreationTTDescriptor());
             tree.addTool(new VDem2CSVTTDescriptor());
             tree.addTool(new ClippingTTDescriptor());
+            tree.addTool(new SLDEditorDescriptor());
             
             toolTreeListener = new ToolTreeListener() {
 
