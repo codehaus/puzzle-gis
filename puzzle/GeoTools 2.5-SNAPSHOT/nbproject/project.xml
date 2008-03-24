@@ -508,7 +508,14 @@
                 <package>com.esri.sde.sdk.client</package>
                 <package>com.esri.sde.sdk.pe</package>
                 <package>com.mysql.jdbc</package>
+                <package>com.mysql.jdbc.exceptions</package>
+                <package>com.mysql.jdbc.exceptions.jdbc4</package>
+                <package>com.mysql.jdbc.integration.c3p0</package>
+                <package>com.mysql.jdbc.integration.jboss</package>
+                <package>com.mysql.jdbc.interceptors</package>
                 <package>com.mysql.jdbc.jdbc2.optional</package>
+                <package>com.mysql.jdbc.log</package>
+                <package>com.mysql.jdbc.profiler</package>
                 <package>com.mysql.jdbc.util</package>
                 <package>com.sun.media.imageio.plugins.bmp</package>
                 <package>com.sun.media.imageio.plugins.jpeg2000</package>
@@ -661,9 +668,6 @@
                 <package>javax.media.jai.tilecodec</package>
                 <package>javax.media.jai.util</package>
                 <package>javax.media.jai.widget</package>
-                <package>javax.sql</package>
-                <package>javax.transaction</package>
-                <package>javax.transaction.xa</package>
                 <package>javax.units</package>
                 <package>javax.vecmath</package>
                 <package>javax.xml</package>
@@ -714,6 +718,8 @@
                 <package>junit.runner</package>
                 <package>junit.swingui</package>
                 <package>junit.textui</package>
+                <package>net.opengis.ows</package>
+                <package>net.opengis.ows.impl</package>
                 <package>net.opengis.ows.v1_1_0</package>
                 <package>net.opengis.ows.v1_1_0.impl</package>
                 <package>net.opengis.ows.v1_1_0.util</package>
@@ -798,6 +804,7 @@
                 <package>org.apache.batik.util.io</package>
                 <package>org.apache.batik.util.resources</package>
                 <package>org.apache.batik.xml</package>
+                <package>org.apache.commons.collections</package>
                 <package>org.apache.html.dom</package>
                 <package>org.apache.log</package>
                 <package>org.apache.log.filter</package>
@@ -1012,6 +1019,7 @@
                 <package>org.geotools.data.shapefile</package>
                 <package>org.geotools.data.shapefile.dbf</package>
                 <package>org.geotools.data.shapefile.indexed</package>
+                <package>org.geotools.data.shapefile.indexed.attribute</package>
                 <package>org.geotools.data.shapefile.prj</package>
                 <package>org.geotools.data.shapefile.shp</package>
                 <package>org.geotools.data.shapefile.shp.xml</package>
@@ -1147,9 +1155,9 @@
                 <package>org.geotools.gui.swing.event</package>
                 <package>org.geotools.gui.swing.extended</package>
                 <package>org.geotools.gui.swing.extended.event</package>
+                <package>org.geotools.gui.swing.filter</package>
                 <package>org.geotools.gui.swing.icon</package>
                 <package>org.geotools.gui.swing.image</package>
-                <package>org.geotools.gui.swing.map</package>
                 <package>org.geotools.gui.swing.map.map2d</package>
                 <package>org.geotools.gui.swing.map.map2d.control</package>
                 <package>org.geotools.gui.swing.map.map2d.decoration</package>
@@ -1160,12 +1168,7 @@
                 <package>org.geotools.gui.swing.map.map2d.strategy</package>
                 <package>org.geotools.gui.swing.misc</package>
                 <package>org.geotools.gui.swing.misc.Render</package>
-                <package>org.geotools.gui.swing.misc.filtre</package>
-                <package>org.geotools.gui.swing.misc.filtre.db</package>
-                <package>org.geotools.gui.swing.misc.filtre.mnt</package>
-                <package>org.geotools.gui.swing.misc.filtre.raster</package>
-                <package>org.geotools.gui.swing.misc.filtre.txt</package>
-                <package>org.geotools.gui.swing.misc.filtre.vecteur</package>
+                <package>org.geotools.gui.swing.misc.filter</package>
                 <package>org.geotools.gui.swing.propertyedit</package>
                 <package>org.geotools.gui.swing.propertyedit.filterproperty</package>
                 <package>org.geotools.gui.swing.propertyedit.model</package>
