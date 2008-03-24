@@ -54,7 +54,7 @@ import org.geotools.gui.swing.propertyedit.LayerCRSPropertyPanel;
 import org.geotools.gui.swing.propertyedit.LayerFilterPropertyPanel;
 import org.geotools.gui.swing.propertyedit.LayerGeneralPanel;
 import org.geotools.gui.swing.propertyedit.LayerStylePropertyPanel;
-import org.geotools.gui.swing.propertyedit.PropertyPanel;
+import org.geotools.gui.swing.propertyedit.PropertyPane;
 import org.geotools.gui.swing.propertyedit.filterproperty.JCQLPropertyPanel;
 import org.geotools.gui.swing.propertyedit.styleproperty.JSimpleStylePanel;
 import org.geotools.gui.swing.propertyedit.styleproperty.JXMLStylePanel;
@@ -207,7 +207,7 @@ public class ContextTreeManager {
             if (preferences.getBoolean(ContextTreePanel.PREF_POP_LAYER_PROPERTY, true)) {
                 preferences.putBoolean(ContextTreePanel.PREF_POP_LAYER_PROPERTY, true);
                 LayerPropertyItem property = new LayerPropertyItem();
-                List<PropertyPanel> lstproperty = new ArrayList<PropertyPanel>();
+                List<PropertyPane> lstproperty = new ArrayList<PropertyPane>();
                 lstproperty.add(new LayerGeneralPanel());
                 lstproperty.add(new LayerCRSPropertyPanel());
                 
