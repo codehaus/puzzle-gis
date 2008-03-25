@@ -9,11 +9,16 @@ import java.awt.BorderLayout;
 import java.io.Serializable;
 import java.util.logging.Logger;
 import javax.swing.JScrollPane;
+import org.geotools.gui.swing.map.map2d.JDefaultEditableMap2D;
+import org.geotools.map.MapContext;
 import org.openide.util.NbBundle;
 import org.openide.windows.TopComponent;
 import org.openide.windows.WindowManager;
 //import org.openide.util.Utilities;
 import org.puzzle.puzzlecore.gtextend.widget.viewtree.JViewTree;
+import org.puzzle.puzzlecore.struct.CORE;
+import org.puzzle.puzzlecore.struct.MapGroup;
+import org.puzzle.puzzlecore.struct.MapView;
 
 /**
  * Top component which displays something.
@@ -46,9 +51,66 @@ final class ViewTreeTopComponent extends TopComponent {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jToolBar1 = new javax.swing.JToolBar();
+        guiNewGroup = new javax.swing.JButton();
+        guiNewView = new javax.swing.JButton();
+
         setLayout(new java.awt.BorderLayout());
+
+        jToolBar1.setFloatable(false);
+        jToolBar1.setRollover(true);
+
+        guiNewGroup.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/puzzle/puzzlecore/gtextend/widget/iconset/group_add.png"))); // NOI18N
+        guiNewGroup.setFocusable(false);
+        guiNewGroup.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        guiNewGroup.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        guiNewGroup.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                guiNewGroupActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(guiNewGroup);
+
+        guiNewView.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/puzzle/puzzlecore/actions/views/view_add.png"))); // NOI18N
+        guiNewView.setFocusable(false);
+        guiNewView.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        guiNewView.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        guiNewView.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                guiNewViewActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(guiNewView);
+
+        add(jToolBar1, java.awt.BorderLayout.PAGE_START);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void guiNewViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guiNewViewActionPerformed
+        MapView view = new MapView(new JDefaultEditableMap2D());
+        view.setName("2D view");
+
+        CORE app = CORE.getInstance();
+        MapContext context = app.getActiveContext();
+        view.getMap().getRenderingStrategy().setContext(context);
+
+        CORE.getViewManager().addView(view);
+
+        view.open();
+        view.requestActive();
+    }//GEN-LAST:event_guiNewViewActionPerformed
+
+    private void guiNewGroupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guiNewGroupActionPerformed
+        MapGroup group = new MapGroup();
+        group.setTitle("2D view");
+
+        CORE.getViewManager().addGroup(group);
+
+    }//GEN-LAST:event_guiNewGroupActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton guiNewGroup;
+    private javax.swing.JButton guiNewView;
+    private javax.swing.JToolBar jToolBar1;
     // End of variables declaration//GEN-END:variables
     /**
      * Gets default instance. Do not use directly: reserved for *.settings files only,

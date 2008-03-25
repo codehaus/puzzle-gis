@@ -31,15 +31,16 @@ import org.openide.windows.TopComponent;
  */
 public class MapView extends TopComponent {
 
-    protected Map2D map = new JDefaultEditableMap2D();
+    protected Map2D map;
     protected MapGroup group = null;
 
     private boolean scaleLink = false;
     private boolean rotationLink = false;
     private boolean translationLink = false;
     
-    public MapView(){
+    public MapView(Map2D map){
         super();
+        this.map = map;
         setLayout(new BorderLayout());
         add(BorderLayout.CENTER,map.getComponent());
         revalidate();
@@ -49,23 +50,11 @@ public class MapView extends TopComponent {
         return map;
     }
 
-    public void setMap(Map2D map) {
-
-        if (map == null) {
-            throw new NullPointerException();
-        }
-        this.map = map;
-        
-        removeAll();
-        add(BorderLayout.CENTER,map.getComponent());
-        revalidate();
-    }
-
     public MapGroup getGroup() {
         return group;
     }
 
-    public void setGroup(MapGroup group) {
+    void setGroup(MapGroup group) {
         this.group = group;
     }
 

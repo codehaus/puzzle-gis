@@ -22,15 +22,17 @@ package org.puzzle.puzzlecore.struct;
 
 import java.awt.Color;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import javax.swing.event.EventListenerList;
 import org.geotools.gui.swing.contexttree.JContextTree;
 import org.geotools.gui.swing.contexttree.column.SelectionTreeTableColumn;
 import org.geotools.gui.swing.contexttree.popup.LayerZoomItem;
 import org.geotools.gui.swing.map.map2d.JDefaultEditableMap2D;
 import org.geotools.gui.swing.map.map2d.control.JMap2DInfoBar;
+import org.geotools.gui.swing.map.map2d.event.Map2DEvent;
+import org.geotools.gui.swing.map.map2d.event.RenderingStrategyEvent;
+import org.geotools.gui.swing.map.map2d.listener.Map2DListener;
+import org.geotools.gui.swing.map.map2d.listener.StrategyListener;
 import org.geotools.gui.swing.map.map2d.minimap.JMiniMap;
 import org.geotools.gui.swing.map.map2d.strategy.MergeBufferedImageStrategy;
 import org.geotools.map.DefaultMapContext;
@@ -45,16 +47,15 @@ import org.puzzle.puzzlecore.struct.MapView;
  */
 public final class ViewManager {
 
-    
     private final EventListenerList listeners = new EventListenerList();
-    
+    private final MapView[] EMPTY_VIEW_ARRAY = new MapView[0];
+    private final MapGroup[] EMPTY_GROUP_ARRAY = new MapGroup[0];
     private static ViewManager instance;
     private JDefaultEditableMap2D map2d = null;
     private JMap2DInfoBar infoBar = null;
     private JMiniMap miniMap = null;
-    private final MapView[] EMPTY_VIEW_ARRAY = new MapView[0];
     private final List<MapView> views = new ArrayList<MapView>();
-    private final Map<MapGroup, List<MapView>> viewGroups = new HashMap<MapGroup, List<MapView>>();
+    private final List<MapGroup> groups = new ArrayList<MapGroup>();
     private MapView activeView = null;
 
     private ViewManager() {
@@ -71,15 +72,14 @@ public final class ViewManager {
         tree.getPopupMenu().addItem(0, zoomLayerItem);
 
     }
-    
-    
+
     static ViewManager getInstance() {
         if (instance == null) {
             instance = new ViewManager();
         }
         return instance;
     }
-    
+
     /**
      * 
      * @return
@@ -152,6 +152,18 @@ public final class ViewManager {
 
         if (!views.contains(view)) {
             views.add(view);
+
+            view.getMap().addMap2DListener(new Map2DListener() {
+
+                public void mapStrategyChanged(Map2DEvent arg0) {
+                }
+
+                public void mapActionStateChanged(Map2DEvent arg0) {
+                }
+            });
+
+            new ViewFallow(view);
+
             fireViewAdded(view);
         }
     }
@@ -164,12 +176,12 @@ public final class ViewManager {
 
         if (views.contains(view)) {
             views.remove(view);
+            view.getMap().dispose();
             fireViewRemoved(view);
         }
 
     }
-    
-    
+
     /**
      * get the active view
      * @return return the active MapView, if none return null
@@ -191,9 +203,9 @@ public final class ViewManager {
         if (views.contains(view)) {
 
             if (view != activeView) {
-                MapView oldView =  activeView;
+                MapView oldView = activeView;
                 activeView = view;
-                fireViewActivated(oldView,view);
+                fireViewActivated(oldView, view);
             }
         } else {
             throw new IllegalArgumentException();
@@ -236,12 +248,106 @@ public final class ViewManager {
         return views.toArray(EMPTY_VIEW_ARRAY);
     }
 
+    /**
+     * add a new group
+     * @param group the mapgroup to add
+     */
+    public void addGroup(MapGroup group) {
 
-    
+        if (!groups.contains(group)) {
+            groups.add(group);
+            fireGroupAdded(group);
+        }
+    }
+
+    /**
+     * remove Group
+     * @param group target mapGroup to remove
+     */
+    public void removeGroup(MapGroup group) {
+
+        if (groups.contains(group)) {
+            groups.remove(group);
+            fireGroupRemoved(group);
+        }
+
+    }
+
+    /**
+     * set the mapgroup of a view
+     * @param view
+     * @param group
+     */
+    public void setViewGroup(MapView view, MapGroup group) {
+
+        if (views.contains(view) && groups.contains(group)) {
+
+            MapGroup oldgroup = view.getGroup();
+
+            if (view.getGroup() != group) {
+                view.setGroup(group);
+                fireGroupChanged(group);
+            }
+
+            if (oldgroup != null && oldgroup != group) {
+                fireGroupChanged(oldgroup);
+            }
+
+        } else {
+            throw new IllegalArgumentException("group or view are not registered in the viewmanager");
+        }
+
+    }
+
+    public MapView[] getViewInGroup(MapGroup group) {
+        List<MapView> vs = new ArrayList<MapView>();
+
+        for (MapView view : views) {
+            if (view.getGroup() == group) {
+                vs.add(view);
+            }
+        }
+
+        return vs.toArray(EMPTY_VIEW_ARRAY);
+    }
+
+    /**
+     * count MapGroups
+     * @return number of mapGroups in the tree
+     */
+    public int getGroupCount() {
+        return groups.size();
+    }
+
+    /**
+     * return Group at index i
+     * @param i position of the mapGroup
+     * @return the mapGroup a position i
+     */
+    public MapGroup getGroup(int i) {
+        return groups.get(i);
+    }
+
+    /**
+     * get the index of a mapGroup
+     * @param group the mapGroup to find
+     * @return index of context
+     */
+    public int getGroupIndex(MapGroup group) {
+        return groups.indexOf(group);
+    }
+
+    /**
+     * MapGroup Array
+     * @return empty Array if no mapGroups
+     */
+    public MapGroup[] getGroups() {
+        return groups.toArray(EMPTY_GROUP_ARRAY);
+    }
+
 ////////////////////////////////////////////////////////////////////////////////
 // FIREEVENT AND LISTENERS /////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
-    
     private void fireViewAdded(MapView view) {
         ViewEvent kevent = new ViewEvent(this, view, view);
 
@@ -252,7 +358,7 @@ public final class ViewManager {
     }
 
     private void fireViewRemoved(MapView view) {
-        ViewEvent event = new ViewEvent(this, view,view);
+        ViewEvent event = new ViewEvent(this, view, view);
 
         ViewListener[] list = getViewListeners();
         for (int i = 0; i < list.length; i++) {
@@ -269,6 +375,33 @@ public final class ViewManager {
         }
     }
 
+    private void fireGroupAdded(MapGroup group) {
+        GroupEvent kevent = new GroupEvent(this, group);
+
+        ViewListener[] list = getViewListeners();
+        for (int i = 0; i < list.length; i++) {
+            list[i].groupAdded(kevent);
+        }
+    }
+
+    private void fireGroupRemoved(MapGroup group) {
+        GroupEvent kevent = new GroupEvent(this, group);
+
+        ViewListener[] list = getViewListeners();
+        for (int i = 0; i < list.length; i++) {
+            list[i].groupRemoved(kevent);
+        }
+    }
+
+    private void fireGroupChanged(MapGroup group) {
+        GroupEvent kevent = new GroupEvent(this, group);
+
+        ViewListener[] list = getViewListeners();
+        for (int i = 0; i < list.length; i++) {
+            list[i].groupChanged(kevent);
+        }
+    }
+
     public void addViewListener(ViewListener ker) {
         listeners.add(ViewListener.class, ker);
     }
@@ -280,6 +413,49 @@ public final class ViewManager {
     public ViewListener[] getViewListeners() {
         return listeners.getListeners(ViewListener.class);
     }
-    
-    
+}
+
+class ViewFallow implements Map2DListener, StrategyListener {
+
+    private final MapView view;
+    private boolean isWorking = false;
+
+    ViewFallow(MapView view) {
+        this.view = view;
+
+        view.getMap().addMap2DListener(this);
+        view.getMap().getRenderingStrategy().addStrategyListener(this);
+    }
+
+    public void mapStrategyChanged(Map2DEvent event) {
+        event.getPreviousStrategy().removeStrategyListener(this);
+        event.getStrategy().addStrategyListener(this);
+    }
+
+    public void mapActionStateChanged(Map2DEvent event) {
+    }
+
+    public void setRendering(boolean event) {
+    }
+
+    public void mapAreaChanged(RenderingStrategyEvent event) {
+
+        if (!isWorking) {
+            isWorking = true;
+            MapGroup group = view.getGroup();
+
+            if (group != null) {
+                MapView[] views = CORE.getViewManager().getViewInGroup(group);
+                for (MapView view : views) {
+                    if (view != this.view && view.isTranslationLink()) {
+                        view.getMap().getRenderingStrategy().setMapArea(event.getMapArea());
+                    }
+                }
+            }
+            isWorking = false;
+        }
+    }
+
+    public void mapContextChanged(RenderingStrategyEvent arg0) {
+    }
 }
