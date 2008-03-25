@@ -16,13 +16,13 @@ import org.geotools.map.MapLayer;
 import org.openide.util.HelpCtx;
 import org.openide.util.NbBundle;
 import org.openide.util.actions.CallableSystemAction;
-import org.puzzle.puzzlecore.struct.Application;
+import org.puzzle.puzzlecore.struct.CORE;
 
 public final class AddDBLayerAction extends CallableSystemAction {
 
     public void performAction() {
     
-        if (Application.getInstance().getActiveContext() != null) {
+        if (CORE.getInstance().getActiveContext() != null) {
             List<DataPanel> lst = new ArrayList<DataPanel>();
             lst.add(new JPostGISDataPanel());
             lst.add(new JOracleDataPanel());
@@ -34,7 +34,7 @@ public final class AddDBLayerAction extends CallableSystemAction {
             if (ret == JDataChooser.ACTION.APPROVE) {
                 MapLayer[] layers = jdc.getLayers();
 
-                MapContext context = Application.getInstance().getActiveContext();
+                MapContext context = CORE.getInstance().getActiveContext();
                 for (MapLayer layer : layers) {
                     context.addLayer(layer);
                 }
