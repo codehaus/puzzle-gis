@@ -22,6 +22,8 @@ package org.puzzle.puzzlecore.gtextend.widget.viewtree;
 
 import java.awt.Component;
 import java.awt.Point;
+import java.awt.datatransfer.StringSelection;
+import java.awt.datatransfer.Transferable;
 import java.awt.dnd.DnDConstants;
 import java.awt.dnd.DragGestureEvent;
 import java.awt.dnd.DragGestureListener;
@@ -39,18 +41,25 @@ import java.awt.dnd.DropTargetListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.InputEvent;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionListener;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 import javax.swing.JTree;
+import javax.swing.table.TableCellEditor;
 import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.TreePath;
 import javax.swing.tree.TreeSelectionModel;
+import org.geotools.gui.swing.contexttree.renderer.DefaultCellEditor;
 import org.geotools.gui.swing.contexttree.renderer.DefaultCellRenderer;
+import org.geotools.gui.swing.contexttree.renderer.DefaultContextTreeHeaderRenderer;
+import org.geotools.gui.swing.contexttree.renderer.HeaderInfo;
 import org.geotools.gui.swing.misc.Render.RandomStyleFactory;
 import org.jdesktop.swingx.JXTreeTable;
+import org.jdesktop.swingx.table.TableColumnExt;
 import org.jdesktop.swingx.treetable.DefaultMutableTreeTableNode;
 import org.puzzle.puzzlecore.struct.MapGroup;
 import org.puzzle.puzzlecore.struct.MapView;
@@ -64,7 +73,9 @@ public class JViewTree extends JXTreeTable implements DragGestureListener, DragS
     private static final RandomStyleFactory RANDOM_STYLE_FACTORY = new RandomStyleFactory();
     private static final Icon ICON_VIEW = new ImageIcon(JViewTree.class.getResource("/org/puzzle/puzzlecore/gtextend/widget/iconset/view.png"));
     private static final Icon ICON_GROUP = new ImageIcon(JViewTree.class.getResource("/org/puzzle/puzzlecore/gtextend/widget/iconset/group.png"));
-    
+    private static final Icon ICON_SCALE = new ImageIcon(JViewTree.class.getResource("/org/puzzle/puzzlecore/gtextend/widget/iconset/scale.png"));
+    private static final Icon ICON_ROTATION = new ImageIcon(JViewTree.class.getResource("/org/puzzle/puzzlecore/gtextend/widget/iconset/rotation.png"));
+    private static final Icon ICON_TRANSLATION = new ImageIcon(JViewTree.class.getResource("/org/puzzle/puzzlecore/gtextend/widget/iconset/translation.png"));
     private ViewTreeModel treemodel = new ViewTreeModel();
     /** Variables needed for DnD */
     private DragSource dragSource = null;
@@ -80,15 +91,21 @@ public class JViewTree extends JXTreeTable implements DragGestureListener, DragS
 
         ViewCellRenderer renderer = new ViewCellRenderer();
         setTreeCellRenderer(renderer);
-        getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
-
+        getTreeSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
+        getTableHeader().setDefaultRenderer(new DefaultContextTreeHeaderRenderer());
+        
         for (int i = 1; i < 4; i++) {
             getColumnModel().getColumn(i).setCellRenderer(new DefaultCellRenderer(new ViewComponent()));
+            getColumnModel().getColumn(i).setCellEditor(new DefaultCellEditor(new ViewComponent()));
             getColumnModel().getColumn(i).setPreferredWidth(25);
             getColumnModel().getColumn(i).setMaxWidth(25);
-            getColumnModel().getColumn(i).setMinWidth(25);
+            getColumnModel().getColumn(i).setMinWidth(25);            
+            ((TableColumnExt) getColumnModel().getColumn(i)).setEditable(true);
         }
 
+        getColumnModel().getColumn(1).setHeaderValue( new HeaderInfo("",null,ICON_TRANSLATION ));
+        getColumnModel().getColumn(2).setHeaderValue( new HeaderInfo("",null,ICON_SCALE ));
+        getColumnModel().getColumn(3).setHeaderValue( new HeaderInfo("",null,ICON_ROTATION ));
         setComponentPopupMenu(new StylePopup(this));
 
 
@@ -99,20 +116,53 @@ public class JViewTree extends JXTreeTable implements DragGestureListener, DragS
         dgr.setSourceActions(dgr.getSourceActions() & ~InputEvent.BUTTON3_MASK);
         DropTarget dropTarget = new DropTarget(this, this);
 
+        initCellEditAcceleration();
     }
 
+    /**
+     * add mouse listener to set cell in edit mode when mouseover
+     */
+    private void initCellEditAcceleration() {
+        //listener to set cell in edit mode on mouse over
+        this.addMouseMotionListener(new MouseMotionListener() {
+
+            public void mouseDragged(MouseEvent e) {
+            }
+
+            public void mouseMoved(MouseEvent e) {
+                Point p = e.getPoint();
+                if (p != null) {
+                    int row = rowAtPoint(p);
+                    int col = columnAtPoint(p);
+
+                    if (row != editingRow || col != editingColumn) {
+
+                        if (isEditing()) {
+                            TableCellEditor editor = cellEditor;
+                            if (!editor.stopCellEditing()) {
+                                editor.cancelCellEditing();
+                            }
+                        }
+
+                        if (!isEditing() && col > 0 && row >= 0) {
+                            editCellAt(row, col);
+                        }
+                    }
+                }
+            }
+        });
+    }
 
     //-------------Drag & drop -------------------------------------------------
     public void dragGestureRecognized(DragGestureEvent e) {
 
-//        TreePath path = getSelectionModel().getSelectionPath();
-//        DefaultMutableTreeTableNode dragNode = (DefaultMutableTreeTableNode) path.getLastPathComponent();
-//
-//        if (dragNode != null) {
-//            Transferable transferable = new StringSelection("");
-//
-//            e.startDrag(null, transferable);
-//        }
+        TreePath path = getTreeSelectionModel().getSelectionPath();
+        DefaultMutableTreeTableNode dragNode = (DefaultMutableTreeTableNode) path.getLastPathComponent();
+
+        if (dragNode != null) {
+            Transferable transferable = new StringSelection("");
+            e.startDrag(null, transferable);
+        }
     }
 
     //--------------------drag events-------------------------------------------
@@ -185,7 +235,7 @@ public class JViewTree extends JXTreeTable implements DragGestureListener, DragS
                     MapGroup group = (MapGroup) val;
                     lbl.setText(group.getTitle());
                     lbl.setIcon(ICON_GROUP);
-                }else{
+                } else {
                     lbl.setIcon(ICON_GROUP);
                 }
 
@@ -261,4 +311,10 @@ public class JViewTree extends JXTreeTable implements DragGestureListener, DragS
             });
         }
     }
+}
+
+
+class ViewColumn extends TableColumnExt{
+    
+    
 }

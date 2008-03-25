@@ -4,6 +4,7 @@
  */
 package org.puzzle.puzzlecore.actions.views;
 
+import org.geotools.gui.swing.map.map2d.JDefaultEditableMap2D;
 import org.geotools.map.MapContext;
 import org.openide.util.HelpCtx;
 import org.openide.util.NbBundle;
@@ -14,7 +15,7 @@ import org.puzzle.puzzlecore.struct.MapView;
 public final class NewView extends CallableSystemAction {
 
     public void performAction() {
-        MapView view = new MapView();
+        MapView view = new MapView(new JDefaultEditableMap2D());
         view.setName("2D view");
 
         CORE app = CORE.getInstance();

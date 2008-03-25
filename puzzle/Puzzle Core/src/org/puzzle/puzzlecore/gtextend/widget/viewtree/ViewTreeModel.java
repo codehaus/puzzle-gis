@@ -24,11 +24,14 @@ import java.util.HashMap;
 import java.util.Map;
 import org.jdesktop.swingx.treetable.DefaultMutableTreeTableNode;
 import org.jdesktop.swingx.treetable.DefaultTreeTableModel;
+import org.jdesktop.swingx.treetable.TreeTableNode;
+import org.puzzle.puzzlecore.struct.AbstractViewListener;
 import org.puzzle.puzzlecore.struct.CORE;
+import org.puzzle.puzzlecore.struct.GroupEvent;
 import org.puzzle.puzzlecore.struct.ViewEvent;
-import org.puzzle.puzzlecore.struct.ViewListener;
 import org.puzzle.puzzlecore.struct.MapGroup;
 import org.puzzle.puzzlecore.struct.MapView;
+import org.puzzle.puzzlecore.struct.ViewListener;
 
 /**
  *
@@ -36,9 +39,9 @@ import org.puzzle.puzzlecore.struct.MapView;
  */
 public class ViewTreeModel extends DefaultTreeTableModel {
 
-    private Map<MapView,DefaultMutableTreeTableNode> map = new HashMap<MapView,DefaultMutableTreeTableNode>();
-    
-    
+    private Map<MapView, DefaultMutableTreeTableNode> mapViews = new HashMap<MapView, DefaultMutableTreeTableNode>();
+    private Map<MapGroup, DefaultMutableTreeTableNode> mapGroups = new HashMap<MapGroup, DefaultMutableTreeTableNode>();
+
     /**
      * create a StyleTreeModel
      * @param style , can't be null
@@ -46,30 +49,92 @@ public class ViewTreeModel extends DefaultTreeTableModel {
     public ViewTreeModel() {
         super(new DefaultMutableTreeTableNode());
 
-        MapView[] views = CORE.getViewManager().getViews();
-        
-        for(MapView view : views){
-            DefaultMutableTreeTableNode node = new DefaultMutableTreeTableNode(view);
-            map.put(view, node);
-            insertNodeInto(node,(DefaultMutableTreeTableNode)getRoot(), 0);
-        }
+        parse();
 
         CORE.getViewManager().addViewListener(new ViewListener() {
 
             public void viewAdded(ViewEvent event) {
                 DefaultMutableTreeTableNode node = new DefaultMutableTreeTableNode(event.getView());
-                map.put(event.getView(), node);
-                insertNodeInto(node,(DefaultMutableTreeTableNode)getRoot(), 0);
+                mapViews.put(event.getView(), node);
+                insertNodeInto(node, (DefaultMutableTreeTableNode) getRoot(), 0);
             }
 
             public void viewRemoved(ViewEvent event) {
-                removeNodeFromParent(map.get(event.getView()));
-                map.remove(event.getView());
+                removeNodeFromParent(mapViews.get(event.getView()));
+                mapViews.remove(event.getView());
+            }
+
+            @Override
+            public void groupAdded(GroupEvent event) {
+                DefaultMutableTreeTableNode node = new DefaultMutableTreeTableNode(event.getGroup());
+                mapGroups.put(event.getGroup(), node);
+                insertNodeInto(node, (DefaultMutableTreeTableNode) getRoot(), getRoot().getChildCount());
             }
 
             public void viewActivated(ViewEvent event) {
             }
+
+            public void groupRemoved(GroupEvent event) {
+                removeNodeFromParent(mapGroups.get(event.getGroup()));
+                mapGroups.remove(event.getGroup());
+            }
+
+            public void groupChanged(GroupEvent event) {
+                parse();
+//                MapView[] views = CORE.getViewManager().getViewInGroup(event.getGroup());
+//                
+//                DefaultMutableTreeTableNode parent = new DefaultMutableTreeTableNode(event.getGroup());
+//                
+//                //we clean the group node
+//                for(int i=0,n=parent.getChildCount(); i<n; i++){
+//                    DefaultMutableTreeTableNode node = (DefaultMutableTreeTableNode) parent.getChildAt(i);
+//                    mapViews.remove(node.getUserObject());
+//                    removeNodeFromParent(node);
+//                }
+//                
+//                //we refill the group node
+//                for(MapView view : views){
+//                    DefaultMutableTreeTableNode node = new DefaultMutableTreeTableNode(view);
+//                    mapViews.put(view,node);
+//                    insertNodeInto(node, parent, 0);
+//                }
+            }
         });
+    }
+
+    private void parse() {
+        mapGroups.clear();
+        mapViews.clear();
+
+        TreeTableNode root = getRoot();
+
+        for (int i = root.getChildCount()-1 ; i >= 0; i--) {
+            DefaultMutableTreeTableNode node = (DefaultMutableTreeTableNode) root.getChildAt(i);
+            removeNodeFromParent(node);
+        }
+
+        MapView[] views = CORE.getViewManager().getViews();
+        MapGroup[] groups = CORE.getViewManager().getGroups();
+
+        for (MapGroup group : groups) {
+            DefaultMutableTreeTableNode node = new DefaultMutableTreeTableNode(group);
+            mapGroups.put(group, node);
+            insertNodeInto(node, (DefaultMutableTreeTableNode) getRoot(), 0);
+        }
+
+        for (MapView view : views) {
+            DefaultMutableTreeTableNode node = new DefaultMutableTreeTableNode(view);
+            mapViews.put(view, node);
+
+            if (view.getGroup() != null) {
+                DefaultMutableTreeTableNode parent = mapGroups.get(view.getGroup());
+                insertNodeInto(node, parent, 0);
+            } else {
+                insertNodeInto(node, (DefaultMutableTreeTableNode) getRoot(), 0);
+            }
+
+
+        }
     }
 
     @Override
@@ -109,6 +174,55 @@ public class ViewTreeModel extends DefaultTreeTableModel {
     }
 
     @Override
+    public void setValueAt(Object value, Object target, int index) {
+        DefaultMutableTreeTableNode node = (DefaultMutableTreeTableNode) target;
+        Object obj = node.getUserObject();
+
+
+        if (obj instanceof MapView) {
+            switch (index) {
+                case 0:
+                    ((MapView) obj).setName((String) value);
+                    break;
+                case 1:
+                    ((MapView) obj).setTranslationLink((Boolean) value);
+                    break;
+                case 2:
+                    ((MapView) obj).setScaleLink((Boolean) value);
+                    break;
+                case 3:
+                    ((MapView) obj).setRotationLink((Boolean) value);
+                    break;
+            }
+        } else if (obj instanceof MapGroup) {
+            switch (index) {
+                case 0:
+                    ((MapGroup) obj).setTitle((String) value);
+                    break;
+            }
+        }
+    }
+
+    @Override
+    public boolean isCellEditable(Object target, int index) {
+        DefaultMutableTreeTableNode node = (DefaultMutableTreeTableNode) target;
+        Object obj = node.getUserObject();
+
+        if (obj instanceof MapView) {
+            return true;
+        } else if (obj instanceof MapGroup) {
+            switch (index) {
+                case 0:
+                    return true;
+                default:
+                    return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    @Override
     public String getColumnName(
             int arg0) {
         return "";
@@ -122,14 +236,34 @@ public class ViewTreeModel extends DefaultTreeTableModel {
      * @return DefaultMutableTreeNode or null if node could not be moved
      */
     public void moveNode(DefaultMutableTreeTableNode movedNode, DefaultMutableTreeTableNode targetNode) {
+
+
+
         Object movedObj = movedNode.getUserObject();
-        DefaultMutableTreeTableNode parentMovedNode = (DefaultMutableTreeTableNode) movedNode.getParent();
-        Object parentMovedObj = parentMovedNode.getUserObject();
+//        DefaultMutableTreeTableNode parentMovedNode = (DefaultMutableTreeTableNode) movedNode.getParent();
+//        Object parentMovedObj = parentMovedNode.getUserObject();
 
         Object targetObj = targetNode.getUserObject();
 
+        if (targetObj instanceof MapGroup) {
+            MapGroup group = (MapGroup) targetObj;
+            if (movedObj instanceof MapView) {
+                MapView view = (MapView) movedObj;
+                if (view.getGroup() != group) {
+                    CORE.getViewManager().setViewGroup(view, group);
+                }
+            }
+        } else if (targetObj instanceof MapView) {
+            MapGroup group = ((MapView) targetObj).getGroup();
+            if (movedObj instanceof MapView && group != null) {
+                MapView view = (MapView) movedObj;
+                if (view.getGroup() != group) {
+                    CORE.getViewManager().setViewGroup(view, group);
+                }
+            }
+        }
 
-        DefaultMutableTreeTableNode copy = null;
+//        DefaultMutableTreeTableNode copy = null;
 
 //        
 //

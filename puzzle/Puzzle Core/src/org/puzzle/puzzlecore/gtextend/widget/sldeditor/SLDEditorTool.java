@@ -28,6 +28,7 @@ import org.geotools.styling.SLDTransformer;
 import org.geotools.styling.Style;
 import org.geotools.styling.StyleBuilder;
 import org.geotools.styling.StyledLayerDescriptor;
+import org.geotools.styling.StyledLayerDescriptorImpl;
 import org.geotools.xml.Configuration;
 import org.geotools.xml.Parser;
 import org.openide.util.Exceptions;
@@ -100,6 +101,7 @@ public class SLDEditorTool extends javax.swing.JPanel implements WidgetTool {
             SLDTransformer st = new SLDTransformer();
 
             try {
+                
                 String xml = st.transform(style);
                 ArrayList<String> str = new ArrayList<String>();
                 str.add(xml);

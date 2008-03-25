@@ -26,6 +26,7 @@ import org.openide.util.HelpCtx;
 import org.openide.util.NbBundle;
 import org.openide.util.actions.CallableSystemAction;
 import org.puzzle.puzzlecore.struct.CORE;
+import org.puzzle.puzzlecore.struct.GroupEvent;
 import org.puzzle.puzzlecore.struct.ViewEvent;
 import org.puzzle.puzzlecore.struct.ViewListener;
 import org.puzzle.puzzlecore.struct.ViewManager;
@@ -80,12 +81,6 @@ public final class NavZoomInAction extends CallableSystemAction implements ViewL
     }
     
     
-    public void viewAdded(ViewEvent event) {
-    }
-
-    public void viewRemoved(ViewEvent event) {
-    }
-
     public void viewActivated(ViewEvent event) {
         if(event.getView() != null){
             action.setMap(event.getView().getMap());
@@ -94,6 +89,12 @@ public final class NavZoomInAction extends CallableSystemAction implements ViewL
         }
         
     }
+
+    public void viewAdded(ViewEvent event) {}
+    public void viewRemoved(ViewEvent event) {}
+    public void groupAdded(GroupEvent event) {}
+    public void groupRemoved(GroupEvent event) {}
+    public void groupChanged(GroupEvent event) {}
     
     
 }
