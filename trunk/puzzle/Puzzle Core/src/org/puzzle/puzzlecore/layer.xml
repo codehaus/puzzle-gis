@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE filesystem PUBLIC "-//NetBeans//DTD Filesystem 1.1//EN" "http://www.netbeans.org/dtds/filesystem-1_1.dtd">
+<filesystem>
+    <folder name="Actions">
+        <folder name="Puzzle">
+            <file name="org-puzzle-puzzlecore-actions-newcontext-NewContextAction.instance"/>
+            <file name="org-puzzle-puzzlecore-actions-addlayer-AddDBLayerAction.instance"/>
+            <file name="org-puzzle-puzzlecore-actions-addlayer-AddFileLayerAction.instance"/>
+            <file name="org-puzzle-puzzlecore-actions-addlayer-AddWebLayerAction.instance"/>
+            <file name="org-puzzle-puzzlecore-actions-views-NavRefreshAction.instance"/>
+            <file name="org-puzzle-puzzlecore-actions-views-NavPreviousAreaAction.instance"/>
+            <file name="org-puzzle-puzzlecore-actions-views-NavNextAreaAction.instance"/>
+            <file name="org-puzzle-puzzlecore-actions-views-NavZoomAllAction.instance"/>
+            <file name="org-puzzle-puzzlecore-actions-views-NavZoomInAction.instance"/>
+            <file name="org-puzzle-puzzlecore-actions-views-NavZoomOutAction.instance"/>
+            <file name="org-puzzle-puzzlecore-actions-views-NavPanAction.instance"/>
+            <file name="org-puzzle-puzzlecore-actions-views-NewView.instance"/>
+            <file name="org-puzzle-puzzlecore-actions-views-SelectAction.instance"/>
+            <file name="org-puzzle-puzzlecore-actions-views-SelectFilterChooserAction.instance"/>
+            <file name="org-puzzle-puzzlecore-actions-views-SelectHandlerChooserAction.instance"/>
+            <file name="org-puzzle-puzzlecore-actions-views-EditAction.instance"/>
+            <file name="org-puzzle-puzzlecore-actions-views-EditLayerChooserAction.instance"/>
+            <file name="org-puzzle-puzzlecore-actions-views-EditHandlerChooserAction.instance"/>
+        </folder>
+        <folder name="Window">
+            <file name="org-puzzle-puzzlecore-gui-contexttree-ContextTreeAction.instance"/>
+            <file name="org-puzzle-puzzlecore-gui-minimap-MiniMapAction.instance"/>
+            <file name="org-puzzle-puzzlecore-gui-toolbox-ToolTreeAction.instance"/>
+            <file name="org-puzzle-puzzlecore-gui-views-ViewTreeAction.instance"/>
+        </folder>
+    </folder>
+    <folder name="Toolbars">
+        <folder name="Context">
+            <attr name="position" intvalue="400"/>
+            <file name="org-puzzle-puzzlecore-actions-newcontext-NewContextAction.instance">
+                <attr name="position" intvalue="100"/>
+            </file>
+            <file name="org-puzzle-puzzlecore-actions-addlayer-AddFileLayerAction.instance">
+                <attr name="position" intvalue="200"/>
+            </file>
+            <file name="org-puzzle-puzzlecore-actions-addlayer-AddDBLayerAction.instance">
+                <attr name="position" intvalue="300"/>
+            </file>
+            <file name="org-puzzle-puzzlecore-actions-addlayer-AddWebLayerAction.instance">
+                <attr name="position" intvalue="400"/>
+            </file>            
+        </folder>
+        <file name="Edit_hidden"/>
+        <file name="File_hidden"/>
+        <folder name="Map2DNavigation">            
+            <attr name="position" intvalue="500"/>
+            <file name="org-puzzle-puzzlecore-actions-views-NavRefreshAction.instance">
+                <attr name="position" intvalue="100"/>
+            </file>
+            <file name="org-puzzle-puzzlecore-actions-views-NavPreviousAreaAction.instance">
+                <attr name="position" intvalue="200"/>
+            </file>
+            <file name="org-puzzle-puzzlecore-actions-views-NavNextAreaAction.instance">
+                <attr name="position" intvalue="300"/>
+            </file>
+            <file name="org-puzzle-puzzlecore-actions-views-NavZoomAllAction.instance">
+                <attr name="position" intvalue="400"/>
+            </file>
+            <file name="org-puzzle-puzzlecore-actions-views-NavZoomInAction.instance">
+                <attr name="position" intvalue="500"/>
+            </file>
+            <file name="org-puzzle-puzzlecore-actions-views-NavZoomOutAction.instance">
+                <attr name="position" intvalue="600"/>
+            </file>
+            <file name="org-puzzle-puzzlecore-actions-views-NavPanAction.instance">
+                <attr name="position" intvalue="700"/>
+            </file>
+            <file name="org-puzzle-puzzlecore-actions-views-NewView.shadow">
+                <attr name="originalFile" stringvalue="Actions/Puzzle/org-puzzle-puzzlecore-actions-views-NewView.instance"/>
+                <attr name="position" intvalue="0"/>
+            </file>
+        </folder>
+        <folder name="Map2DSelection">
+            <attr name="position" intvalue="600"/>            
+            <file name="org-puzzle-puzzlecore-actions-views-SelectAction.instance">
+                <attr name="position" intvalue="100"/>
+            </file>
+            <file name="org-puzzle-puzzlecore-actions-views-SelectFilterChooserAction.instance">
+                <attr name="position" intvalue="200"/>
+            </file>
+            <file name="org-puzzle-puzzlecore-actions-views-SelectHandlerChooserAction.instance">
+                <attr name="position" intvalue="300"/>
+            </file>
+        </folder>
+        <folder name="Map2DEdition">                       
+            <attr name="position" intvalue="700"/>
+            <file name="org-puzzle-puzzlecore-actions-views-EditAction.instance">
+                <attr name="position" intvalue="100"/>
+            </file>
+            <file name="org-puzzle-puzzlecore-actions-views-EditLayerChooserAction.instance">
+                <attr name="position" intvalue="200"/>
+            </file>
+            <file name="org-puzzle-puzzlecore-actions-views-EditHandlerChooserAction.instance">
+                <attr name="position" intvalue="300"/>
+            </file>
+        </folder>
+    </folder>
+    <folder name="Menu">
+        <folder name="Window">
+            <file name="ContextTreeAction.shadow">
+                <attr name="originalFile" stringvalue="Actions/Window/org-puzzle-puzzlecore-gui-contexttree-ContextTreeAction.instance"/>
+            </file>
+            <file name="MiniMapAction.shadow">
+                <attr name="originalFile" stringvalue="Actions/Window/org-puzzle-puzzlecore-gui-minimap-MiniMapAction.instance"/>
+            </file>
+            <file name="ToolTreeAction.shadow">
+                <attr name="originalFile" stringvalue="Actions/Window/org-puzzle-puzzlecore-gui-toolbox-ToolTreeAction.instance"/>
+            </file>
+            <file name="ViewTreeAction.shadow">
+                <attr name="originalFile" stringvalue="Actions/Window/org-puzzle-puzzlecore-gui-views-ViewTreeAction.instance"/>
+            </file>
+        </folder>
+    </folder>
+    <folder name="Windows2">
+        <folder name="Components">
+            <file name="ContextTreeTopComponent.settings" url="ContextTreeTopComponentSettings.xml"/>
+            <file name="MiniMapTopComponent.settings" url="MiniMapTopComponentSettings.xml"/>
+            <file name="ToolTreeTopComponent.settings" url="ToolTreeTopComponentSettings.xml"/>
+            <file name="ViewTreeTopComponent.settings" url="ViewTreeTopComponentSettings.xml"/>
+        </folder>
+        <folder name="Modes">
+            <folder name="navigator">
+                <file name="MiniMapTopComponent.wstcref" url="MiniMapTopComponentWstcref.xml"/>
+            </folder>
+            <file name="navigator.wsmode" url="navigator.xml"/>
+            <folder name="explorer">
+                <file name="ContextTreeTopComponent.wstcref" url="ContextTreeTopComponentWstcref.xml"/>
+                <file name="ViewTreeTopComponent.wstcref" url="ViewTreeTopComponentWstcref.xml"/>
+            </folder>
+            <folder name="rightSlidingSide">
+                <file name="ToolTreeTopComponent.wstcref" url="ToolTreeTopComponentWstcref.xml"/>
+            </folder>
+        </folder>
+    </folder>
+</filesystem>
