@@ -1,7 +1,7 @@
 /*
  *  Puzzle-GIS - OpenSource mapping program
  *  http://docs.codehaus.org/display/PUZZLEGIS
- *  Copyright (C) 2007 Puzzle-GIS
+ *  Copyright (C) 2007-2008 Puzzle-GIS
  *  
  *  GPLv3 + Classpath exception
  *  
@@ -30,30 +30,43 @@ import org.geotools.referencing.crs.DefaultGeographicCRS;
 /**
  * @author johann sorel
  */
-public final class Application {
+public final class CORE {
 
+    private static CORE INSTANCE = null;
     private final MapContext[] EMPTY_CONTEXT_ARRAY = new MapContext[0];
     private final EventListenerList listeners = new EventListenerList();
-    private final List<MapContext> contexts = new ArrayList<MapContext>();
     private MapContext activeContext = null;
-    private static Application instance = null;
+    private final List<MapContext> contexts = new ArrayList<MapContext>();
 
-    private Application() {
+    private CORE() {
         MapContext context = new DefaultMapContext(DefaultGeographicCRS.WGS84);
         context.setTitle("Context");
         contexts.add(context);
         activeContext = context;
     }
 
-    public static Application getInstance() {
+    public static CORE getInstance() {
 
-        if (instance == null) {
-            instance = new Application();
+        if (INSTANCE == null) {
+            INSTANCE = new CORE();
         }
 
-        return instance;
+        return INSTANCE;
     }
 
+    public static ViewManager getViewManager(){
+        return ViewManager.getInstance();
+    }
+    
+    public static ContextManager getContextManager(){
+        return ContextManager.getInstance();
+    }
+    
+    public static ToolManager getToolManager(){
+        return ToolManager.getInstance();
+    }
+    
+    
 ////////////////////////////////////////////////////////////////////////////////
 // MAPCONTEXT MANAGEMENT ///////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
@@ -112,11 +125,11 @@ public final class Application {
                 ctx.setTitle("Context");
                 addContext(ctx);
                 setActiveContext(ctx);
-            }else{
+            } else {
                 int n = getContextIndex(context);
-                if(n==0){
+                if (n == 0) {
                     setActiveContext(getContext(1));
-                }else{
+                } else {
                     setActiveContext(getContext(0));
                 }
             }
@@ -167,7 +180,7 @@ public final class Application {
     /**
      * move a mapcontext in the list
      * @param context the context to move, must be in the list
-     * @param new index of mapcontext
+     * @param newplace new index of mapcontext
      */
     public void moveContext(MapContext context, int newplace) {
         if (contexts.contains(context) && newplace < contexts.size()) {
@@ -183,6 +196,7 @@ public final class Application {
             throw new IllegalArgumentException();
         }
     }
+
 
 ////////////////////////////////////////////////////////////////////////////////
 // FIREEVENT AND LISTENERS /////////////////////////////////////////////////////
@@ -267,4 +281,5 @@ public final class Application {
     public ApplicationContextListener[] getApplicationContextListeners() {
         return listeners.getListeners(ApplicationContextListener.class);
     }
+
 }
