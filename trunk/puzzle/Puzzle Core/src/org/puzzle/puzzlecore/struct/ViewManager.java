@@ -38,8 +38,6 @@ import org.geotools.gui.swing.map.map2d.strategy.MergeBufferedImageStrategy;
 import org.geotools.map.DefaultMapContext;
 import org.geotools.map.MapContext;
 import org.geotools.referencing.crs.DefaultGeographicCRS;
-import org.puzzle.puzzlecore.struct.MapGroup;
-import org.puzzle.puzzlecore.struct.MapView;
 
 /**
  *
@@ -62,11 +60,11 @@ public final class ViewManager {
 
         JContextTree tree = ContextManager.getInstance().getContextTree();
 
-        SelectionTreeTableColumn selectionColumn = new SelectionTreeTableColumn(getMap2D());
-        LayerZoomItem zoomLayerItem = new LayerZoomItem(getMap2D());
+        SelectionTreeTableColumn selectionColumn = new SelectionTreeTableColumn(null);
+        LayerZoomItem zoomLayerItem = new LayerZoomItem(null);
 
-        selectionColumn.setMap(getMap2D());
-        zoomLayerItem.setMap(getMap2D());
+        selectionColumn.setMap(null);
+        zoomLayerItem.setMap(null);
 
         tree.addColumn(selectionColumn);
         tree.getPopupMenu().addItem(0, zoomLayerItem);
@@ -79,67 +77,6 @@ public final class ViewManager {
         }
         return instance;
     }
-
-    /**
-     * 
-     * @return
-     * @deprecated
-     */
-    @Deprecated
-    public JDefaultEditableMap2D getMap2D() {
-
-        if (map2d == null) {
-            map2d = new JDefaultEditableMap2D();
-            map2d.setRenderingStrategy(new MergeBufferedImageStrategy());
-            map2d.setBackground(Color.WHITE);
-            map2d.setOpaque(true);
-        }
-
-        MapContext context = CORE.getInstance().getActiveContext();
-
-        if (context == null) {
-            context = new DefaultMapContext(DefaultGeographicCRS.WGS84);
-            context.setTitle("Context");
-        }
-
-        CORE.getInstance().addContext(context);
-        CORE.getInstance().setActiveContext(context);
-        map2d.getRenderingStrategy().setContext(context);
-
-        return map2d;
-    }
-
-    /**
-     * 
-     * @return
-     * @deprecated
-     */
-    @Deprecated
-    public JMap2DInfoBar getMapInfoBar() {
-
-        if (infoBar == null) {
-            infoBar = new JMap2DInfoBar();
-            infoBar.setFloatable(false);
-            infoBar.setMap(getMap2D());
-        }
-
-
-        return infoBar;
-    }
-
-    /**
-     * 
-     * @return
-     * @deprecated
-     */
-    @Deprecated
-    public JMiniMap getMiniMap() {
-        miniMap = new JMiniMap();
-        miniMap.setRelatedMap2D(getMap2D());
-
-        return miniMap;
-    }
-
 
 ////////////////////////////////////////////////////////////////////////////////
 // MAPVIEW MANAGEMENT //////////////////////////////////////////////////////////

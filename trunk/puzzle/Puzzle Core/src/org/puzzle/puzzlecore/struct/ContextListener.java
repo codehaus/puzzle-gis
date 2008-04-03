@@ -1,7 +1,7 @@
 /*
  *  Puzzle-GIS - OpenSource mapping program
  *  http://docs.codehaus.org/display/PUZZLEGIS
- *  Copyright (C) 2007-2008 Puzzle-GIS
+ *  Copyright (C) 2007 Puzzle-GIS
  *  
  *  GPLv3 + Classpath exception
  *  
@@ -18,39 +18,44 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 package org.puzzle.puzzlecore.struct;
 
-import java.util.ArrayList;
-import java.util.List;
-import javax.swing.event.EventListenerList;
-import org.geotools.map.DefaultMapContext;
-import org.geotools.map.MapContext;
-import org.geotools.referencing.crs.DefaultGeographicCRS;
+import java.util.EventListener;
 
 /**
+ * Listener for Application
+ * 
  * @author johann sorel
  */
-public final class CORE {
-
-
-    private CORE() {
+public interface ContextListener extends EventListener{
         
-    }
-
-
-    public static ViewManager getViewManager(){
-        return ViewManager.getInstance();
-    }
-    
-    public static ContextManager getContextManager(){
-        return ContextManager.getInstance();
-    }
-    
-    public static ToolManager getToolManager(){
-        return ToolManager.getInstance();
-    }
-    
-    
-
-
+    /**
+     * When a Context is added
+     * 
+     * @param event the event
+     */
+    public void contextAdded(ContextEvent event) ;
+      
+    /**
+     * When a Context is removed
+     * 
+     * @param event the event
+     */
+    public void contextRemoved(ContextEvent event);
+      
+    /**
+     * When a Context is activated
+     * 
+     * @param event the event
+     */
+    public void contextActivated(ContextEvent event);
+      
+    /**
+     * When a Context moved
+     * 
+     * @param event the event
+     */
+    public void contextMoved(ContextEvent event);
+        
 }

@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE filesystem PUBLIC "-//NetBeans//DTD Filesystem 1.1//EN" "http://www.netbeans.org/dtds/filesystem-1_1.dtd">
 <filesystem>
+    <attr name="Menu\Window\CloseAllButThisAction.shadow\position" intvalue="1400"/>
+    <attr name="Menu\Window\CloseAllDocumentsAction.shadow\position" intvalue="1300"/>
+    <attr name="Menu\Window\CloseWindowAction.shadow\position" intvalue="900"/>
+    <attr name="Menu\Window\DocumentsAction.shadow\position" intvalue="1500"/>
+    <attr name="Menu\Window\MaximizeWindowAction.shadow\position" intvalue="1000"/>
+    <attr name="Menu\Window\ProgressListAction.shadow\position" intvalue="700"/>
+    <attr name="Menu\Window\Separator3.instance\position" intvalue="450"/>
+    <attr name="Menu\Window\Separator4.instance\position" intvalue="1200"/>
+    <attr name="Menu\Window\Separator5.instance\position" intvalue="1600"/>
+    <attr name="Menu\Window\SwitchToRecentDocumentAction.shadow\position" intvalue="600"/>
+    <attr name="Menu\Window\ViewFavoritesTabAction.shadow\position" intvalue="500"/>
+    <attr name="Menu\Window\org-netbeans-core-windows-actions-ResetWindowsAction.instance\position" intvalue="1700"/>
+    <attr name="Menu\Window\org-netbeans-core-windows-actions-UndockAction.shadow\position" intvalue="1100"/>
     <folder name="Actions">
         <folder name="Puzzle">
             <file name="org-puzzle-puzzlecore-actions-newcontext-NewContextAction.instance"/>
@@ -101,19 +114,50 @@
         </folder>
     </folder>
     <folder name="Menu">
+        <file name="Edit_hidden"/>
+        <folder name="File">
+            <file name="Separator2.instance_hidden"/>
+            <file name="Separator3.instance_hidden"/>
+            <file name="org-openide-actions-PageSetupAction.instance_hidden"/>
+            <file name="org-openide-actions-PrintAction.instance_hidden"/>
+            <file name="org-openide-actions-SaveAction.instance_hidden"/>
+            <file name="org-openide-actions-SaveAllAction.instance_hidden"/>
+            <file name="org-openide-actions-SaveAsAction.shadow_hidden"/>
+        </folder>
+        <folder name="GoTo">
+            <file name="SeparatorBeforeGoToLine.instance_hidden"/>
+            <file name="core-windows-SeparatorAfterRecentList.instance_hidden"/>
+            <file name="org-netbeans-modules-favorites-SelectInFavorites.shadow_hidden"/>
+            <file name="org-openide-actions-GotoAction.shadow_hidden"/>
+        </folder>
+        <folder name="Tools">
+            <file name="Separator1.instance_hidden"/>
+            <file name="Separator2.instance_hidden"/>
+            <file name="org-netbeans-modules-favorites-templates-TemplatesAction.instance_hidden"/>
+            <file name="org-openide-actions-ToolsAction.instance_hidden"/>
+        </folder>
         <folder name="Window">
+            <file name="CloneDocumentAction.shadow_hidden"/>
             <file name="ContextTreeAction.shadow">
                 <attr name="originalFile" stringvalue="Actions/Window/org-puzzle-puzzlecore-gui-contexttree-ContextTreeAction.instance"/>
+                <attr name="position" intvalue="100"/>
             </file>
             <file name="MiniMapAction.shadow">
                 <attr name="originalFile" stringvalue="Actions/Window/org-puzzle-puzzlecore-gui-minimap-MiniMapAction.instance"/>
+                <attr name="position" intvalue="200"/>
             </file>
+            <file name="Output_hidden"/>
+            <file name="SwitchToRecentDocumentAction.shadow_hidden"/>
             <file name="ToolTreeAction.shadow">
                 <attr name="originalFile" stringvalue="Actions/Window/org-puzzle-puzzlecore-gui-toolbox-ToolTreeAction.instance"/>
+                <attr name="position" intvalue="300"/>
             </file>
+            <file name="ViewRuntimeTabAction.shadow_hidden"/>
             <file name="ViewTreeAction.shadow">
                 <attr name="originalFile" stringvalue="Actions/Window/org-puzzle-puzzlecore-gui-views-ViewTreeAction.instance"/>
+                <attr name="position" intvalue="400"/>
             </file>
+            <file name="org-netbeans-core-actions-GlobalPropertiesAction.shadow_hidden"/>
         </folder>
     </folder>
     <folder name="Windows2">
@@ -126,12 +170,12 @@
         <folder name="Modes">
             <folder name="navigator">
                 <file name="MiniMapTopComponent.wstcref" url="MiniMapTopComponentWstcref.xml"/>
+                <file name="ViewTreeTopComponent.wstcref" url="ViewTreeTopComponentWstcref.xml"/>
             </folder>
             <file name="navigator.wsmode" url="navigator.xml"/>
             <folder name="explorer">
                 <file name="ContextTreeTopComponent.wstcref" url="ContextTreeTopComponentWstcref.xml"/>
-                <file name="ViewTreeTopComponent.wstcref" url="ViewTreeTopComponentWstcref.xml"/>
-            </folder>
+                </folder>
             <folder name="rightSlidingSide">
                 <file name="ToolTreeTopComponent.wstcref" url="ToolTreeTopComponentWstcref.xml"/>
             </folder>
