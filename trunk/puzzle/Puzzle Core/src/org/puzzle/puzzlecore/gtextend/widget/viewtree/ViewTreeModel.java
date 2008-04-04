@@ -64,7 +64,6 @@ public class ViewTreeModel extends DefaultTreeTableModel {
                 mapViews.remove(event.getView());
             }
 
-            @Override
             public void groupAdded(GroupEvent event) {
                 DefaultMutableTreeTableNode node = new DefaultMutableTreeTableNode(event.getGroup());
                 mapGroups.put(event.getGroup(), node);

@@ -21,7 +21,7 @@ public final class AddWebLayerAction extends CallableSystemAction {
 
     public void performAction() {
     
-        if (CORE.getInstance().getActiveContext() != null) {
+        if (CORE.getContextManager().getActiveContext() != null) {
             List<DataPanel> lst = new ArrayList<DataPanel>();
             lst.add(new JWFSDataPanel());
             
@@ -32,7 +32,7 @@ public final class AddWebLayerAction extends CallableSystemAction {
             if (ret == JDataChooser.ACTION.APPROVE) {
                 MapLayer[] layers = jdc.getLayers();
 
-                MapContext context = CORE.getInstance().getActiveContext();
+                MapContext context = CORE.getContextManager().getActiveContext();
                 for (MapLayer layer : layers) {
                     context.addLayer(layer);
                 }

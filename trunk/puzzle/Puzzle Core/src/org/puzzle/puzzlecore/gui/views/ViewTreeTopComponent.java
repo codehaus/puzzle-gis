@@ -89,8 +89,7 @@ final class ViewTreeTopComponent extends TopComponent {
         MapView view = new MapView(new JDefaultEditableMap2D());
         view.setName("2D view");
 
-        CORE app = CORE.getInstance();
-        MapContext context = app.getActiveContext();
+        MapContext context = CORE.getContextManager().getActiveContext();
         view.getMap().getRenderingStrategy().setContext(context);
 
         CORE.getViewManager().addView(view);
