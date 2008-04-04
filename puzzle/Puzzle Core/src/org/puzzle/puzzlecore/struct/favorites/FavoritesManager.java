@@ -67,18 +67,18 @@ public class FavoritesManager {
     }
         
     public void addFavorite(FavoriteType type, Object favorite){
-        favoritesMap.get(type).add(favorite);
+//        favoritesMap.get(type).add(favorite);
     }
   
     public Component getManagerPanel(){
         JTabbedPane pane = new JTabbedPane();
                 
-        Set<FavoriteType> keys = favoritesMap.keySet();
-        
-        for(FavoriteType ft : keys){
-            Component c = ft.getManagingPanel( favoritesMap.get(ft) );
-            pane.addTab(ft.getTitle(), ft.getIcon(), c);
-        }
+//        Set<FavoriteType> keys = favoritesMap.keySet();
+//        
+//        for(FavoriteType ft : keys){
+//            Component c = ft.getManagingPanel( favoritesMap.get(ft) );
+//            pane.addTab(ft.getTitle(), ft.getIcon(), c);
+//        }
         
         return pane;
     }

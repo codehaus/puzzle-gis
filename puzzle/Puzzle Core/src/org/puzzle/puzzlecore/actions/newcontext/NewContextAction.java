@@ -37,7 +37,7 @@ public final class NewContextAction extends CallableSystemAction {
     public void performAction() {
         MapContext context = new DefaultMapContext(DefaultGeographicCRS.WGS84);
         context.setTitle("Context");        
-        CORE.getInstance().addContext(context);
+        CORE.getContextManager().addContext(context);
     }
 
     public String getName() {

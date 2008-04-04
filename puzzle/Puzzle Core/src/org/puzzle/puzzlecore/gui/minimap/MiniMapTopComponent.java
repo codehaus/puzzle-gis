@@ -14,6 +14,9 @@ import org.openide.windows.TopComponent;
 import org.openide.windows.WindowManager;
 //import org.openide.util.Utilities;
 import org.puzzle.puzzlecore.struct.CORE;
+import org.puzzle.puzzlecore.struct.GroupEvent;
+import org.puzzle.puzzlecore.struct.ViewEvent;
+import org.puzzle.puzzlecore.struct.ViewListener;
 import org.puzzle.puzzlecore.struct.ViewManager;
 
 /**
@@ -22,6 +25,8 @@ import org.puzzle.puzzlecore.struct.ViewManager;
 final class MiniMapTopComponent extends TopComponent {
 
     private JMiniMap map = null;
+    
+    private ViewListener listener = null;
     
     private static MiniMapTopComponent instance;
     /** path to the icon used by the component and its open action */
@@ -88,7 +93,31 @@ final class MiniMapTopComponent extends TopComponent {
     public void componentOpened() {
         removeAll();
         if(map == null){
-            map = CORE.getViewManager().getMiniMap();
+            map = new JMiniMap();
+            listener = new ViewListener() {
+
+                public void viewAdded(ViewEvent event) {
+                }
+
+                public void viewRemoved(ViewEvent event) {
+                }
+
+                public void viewActivated(ViewEvent event) {
+                    map.setRelatedMap2D(event.getView().getMap());
+                }
+
+                public void groupAdded(GroupEvent event) {
+                }
+
+                public void groupRemoved(GroupEvent event) {
+                }
+
+                public void groupChanged(GroupEvent event) {
+                }
+            };
+            
+            CORE.getViewManager().addViewListener(listener);
+            
         }
         
         add(BorderLayout.CENTER,map);
@@ -98,6 +127,8 @@ final class MiniMapTopComponent extends TopComponent {
     public void componentClosed() {
         removeAll();
         map = null;
+        
+        CORE.getViewManager().removeViewListener(listener);
     }
 
     /** replaces this in object stream */
