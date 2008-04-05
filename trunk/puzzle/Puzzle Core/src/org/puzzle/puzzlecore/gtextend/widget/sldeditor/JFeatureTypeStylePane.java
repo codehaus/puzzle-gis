@@ -42,11 +42,12 @@ public class JFeatureTypeStylePane extends javax.swing.JPanel implements StyleEl
     
     private void parse(){
         if(fts != null){
-            fts.getAbstract();
-            fts.getFeatureTypeName();
+            guiAbstract.setText(fts.getAbstract());
+            guiftn.setText(fts.getFeatureTypeName());
+            guiName.setText(fts.getName());
+            guiTitle.setText( fts.getTitle() );
+                        
             fts.getSemanticTypeIdentifiers();
-            fts.getName();
-            jtf_title.setText( fts.getTitle() );
         }
     }
     
@@ -61,7 +62,10 @@ public class JFeatureTypeStylePane extends javax.swing.JPanel implements StyleEl
     }
     
     public void apply() {
-        fts.setTitle(jtf_title.getText());
+        fts.setTitle(guiTitle.getText());
+        fts.setAbstract(guiAbstract.getText());
+        fts.setFeatureTypeName(guiftn.getText());
+        fts.setName(guiName.getText());
     }
     
     /** This method is called from within the constructor to
@@ -73,15 +77,32 @@ public class JFeatureTypeStylePane extends javax.swing.JPanel implements StyleEl
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jtf_title = new javax.swing.JTextField();
+        guiTitle = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        guiName = new javax.swing.JTextField();
+        guiAbstract = new javax.swing.JTextField();
+        guiftn = new javax.swing.JTextField();
 
-        jLabel1.setText("Title");
+        jLabel1.setFont(jLabel1.getFont().deriveFont(jLabel1.getFont().getStyle() | java.awt.Font.BOLD));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel1.setText(org.openide.util.NbBundle.getMessage(JFeatureTypeStylePane.class, "title")); // NOI18N
 
-        jtf_title.addActionListener(new java.awt.event.ActionListener() {
+        guiTitle.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtf_titleActionPerformed(evt);
+                guiTitleActionPerformed(evt);
             }
         });
+
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel2.setText(org.openide.util.NbBundle.getMessage(JFeatureTypeStylePane.class, "name")); // NOI18N
+
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel3.setText(org.openide.util.NbBundle.getMessage(JFeatureTypeStylePane.class, "abstract")); // NOI18N
+
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel4.setText(org.openide.util.NbBundle.getMessage(JFeatureTypeStylePane.class, "featuretypename")); // NOI18N
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
@@ -89,30 +110,65 @@ public class JFeatureTypeStylePane extends javax.swing.JPanel implements StyleEl
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
                 .addContainerGap()
-                .add(jLabel1)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jtf_title, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 341, Short.MAX_VALUE)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(layout.createSequentialGroup()
+                        .add(jLabel1)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(guiTitle, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE))
+                    .add(layout.createSequentialGroup()
+                        .add(jLabel2)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(guiName, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE))
+                    .add(layout.createSequentialGroup()
+                        .add(jLabel3)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(guiAbstract, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE))
+                    .add(layout.createSequentialGroup()
+                        .add(jLabel4)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(guiftn, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)))
                 .addContainerGap())
         );
+
+        layout.linkSize(new java.awt.Component[] {jLabel1, jLabel2, jLabel3, jLabel4}, org.jdesktop.layout.GroupLayout.HORIZONTAL);
+
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
                 .addContainerGap()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel1)
-                    .add(jtf_title, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(270, Short.MAX_VALUE))
+                    .add(guiTitle, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(jLabel2)
+                    .add(guiName, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(jLabel3)
+                    .add(guiAbstract, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(jLabel4)
+                    .add(guiftn, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jtf_titleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtf_titleActionPerformed
-        fts.setTitle(jtf_title.getText());
-    }//GEN-LAST:event_jtf_titleActionPerformed
+    private void guiTitleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guiTitleActionPerformed
+        fts.setTitle(guiTitle.getText());
+}//GEN-LAST:event_guiTitleActionPerformed
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField guiAbstract;
+    private javax.swing.JTextField guiName;
+    private javax.swing.JTextField guiTitle;
+    private javax.swing.JTextField guiftn;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField jtf_title;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     // End of variables declaration//GEN-END:variables
 
     public void setLayer(MapLayer layer) {

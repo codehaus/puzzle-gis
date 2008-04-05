@@ -17,27 +17,16 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="jLabel2" linkSize="1" max="32767" attributes="1"/>
+                  <Component id="jLabel3" linkSize="1" alignment="0" max="32767" attributes="1"/>
+                  <Component id="jLabel1" linkSize="1" alignment="0" max="32767" attributes="1"/>
+              </Group>
+              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="jLabel1" linkSize="1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="guiTitle" pref="121" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="jLabel2" linkSize="1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="guiName" pref="121" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="jLabel3" linkSize="1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="guiAbstract" pref="121" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="jLabel4" linkSize="1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="guiftn" pref="121" max="32767" attributes="0"/>
-                  </Group>
+                  <Component id="jtf_title" alignment="0" pref="101" max="32767" attributes="0"/>
+                  <Component id="jtf_name" alignment="1" pref="101" max="32767" attributes="0"/>
+                  <Component id="jtf_abstract" alignment="0" pref="101" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -48,23 +37,18 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jtf_title" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="guiTitle" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jtf_name" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="guiName" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="guiAbstract" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="guiftn" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jtf_abstract" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -85,10 +69,7 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="guiTitle">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="guiTitleActionPerformed"/>
-      </Events>
+    <Component class="javax.swing.JTextField" name="jtf_title">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
@@ -106,19 +87,9 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel4">
-      <Properties>
-        <Property name="horizontalAlignment" type="int" value="4"/>
-        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-          <ResourceString bundle="org/puzzle/puzzlecore/gtextend/widget/sldeditor/Bundle.properties" key="featuretypename" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-        </Property>
-      </Properties>
+    <Component class="javax.swing.JTextField" name="jtf_name">
     </Component>
-    <Component class="javax.swing.JTextField" name="guiName">
-    </Component>
-    <Component class="javax.swing.JTextField" name="guiAbstract">
-    </Component>
-    <Component class="javax.swing.JTextField" name="guiftn">
+    <Component class="javax.swing.JTextField" name="jtf_abstract">
     </Component>
   </SubComponents>
 </Form>

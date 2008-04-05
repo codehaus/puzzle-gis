@@ -103,6 +103,8 @@ public class JRulePane extends javax.swing.JPanel implements StyleElementEditor<
         jtp_filter = new javax.swing.JTextPane();
         but_edit = new javax.swing.JButton();
 
+        jLabel1.setFont(jLabel1.getFont().deriveFont(jLabel1.getFont().getStyle() | java.awt.Font.BOLD));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel1.setText(org.openide.util.NbBundle.getMessage(JRulePane.class, "title")); // NOI18N
 
         jtf_title.addActionListener(new java.awt.event.ActionListener() {
@@ -111,16 +113,20 @@ public class JRulePane extends javax.swing.JPanel implements StyleElementEditor<
             }
         });
 
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel2.setText(org.openide.util.NbBundle.getMessage(JRulePane.class, "name")); // NOI18N
 
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel3.setText(org.openide.util.NbBundle.getMessage(JRulePane.class, "minscale")); // NOI18N
 
         jsp_minscale.setModel(new javax.swing.SpinnerNumberModel(Double.valueOf(0.0d), Double.valueOf(0.0d), null, Double.valueOf(1000.0d)));
 
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel4.setText(org.openide.util.NbBundle.getMessage(JRulePane.class, "maxscale")); // NOI18N
 
         jsp_maxscale.setModel(new javax.swing.SpinnerNumberModel(Double.valueOf(0.0d), Double.valueOf(0.0d), null, Double.valueOf(1000.0d)));
 
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel5.setText(org.openide.util.NbBundle.getMessage(JRulePane.class, "filter")); // NOI18N
 
         jtp_filter.setEditable(false);
@@ -140,15 +146,14 @@ public class JRulePane extends javax.swing.JPanel implements StyleElementEditor<
             .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 366, Short.MAX_VALUE)
                     .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
                         .add(jLabel1)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jtf_title, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE))
+                        .add(jtf_title, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE))
                     .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
                         .add(jLabel2)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jtf_name, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE))
+                        .add(jtf_name, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE))
                     .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
                         .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
                             .add(jLabel4)
@@ -161,9 +166,14 @@ public class JRulePane extends javax.swing.JPanel implements StyleElementEditor<
                     .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
                         .add(jLabel5)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(but_edit)))
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(org.jdesktop.layout.GroupLayout.TRAILING, jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
+                            .add(but_edit))))
                 .addContainerGap())
         );
+
+        layout.linkSize(new java.awt.Component[] {jLabel1, jLabel2, jLabel3, jLabel4, jLabel5}, org.jdesktop.layout.GroupLayout.HORIZONTAL);
+
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
@@ -189,7 +199,7 @@ public class JRulePane extends javax.swing.JPanel implements StyleElementEditor<
                     .add(but_edit))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 50, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(83, Short.MAX_VALUE))
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
     private void jtf_titleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtf_titleActionPerformed
