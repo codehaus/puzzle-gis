@@ -25,43 +25,44 @@ import java.awt.Component;
 import org.geotools.gui.swing.style.StyleElementEditor;
 import org.geotools.map.MapLayer;
 import org.geotools.styling.Style;
+import org.geotools.styling.StyledLayerDescriptor;
 
 /**
  *
  * @author johann sorel
  */
-public class JStylePane extends javax.swing.JPanel implements StyleElementEditor<Style>{
+public class JSLDPane extends javax.swing.JPanel implements StyleElementEditor<StyledLayerDescriptor>{
     
     private MapLayer layer = null;
-    private Style style = null;
+    private StyledLayerDescriptor sld = null;
     
     /** Creates new form JRulePanel */
-    public JStylePane() {
+    public JSLDPane() {
         initComponents();
     }
     
     private void parse(){
-        if(style != null){
-            jtf_abstract.setText(style.getAbstract());
-            jtf_name.setText(style.getName());
-            jtf_title.setText( style.getTitle() );
+        if(sld != null){
+            jtf_abstract.setText(sld.getAbstract());
+            jtf_name.setText(sld.getName());
+            jtf_title.setText( sld.getTitle() );
         }
     }
     
-    public void setEdited(Style style){
-        this.style = style;
+    public void setEdited(StyledLayerDescriptor style){
+        this.sld = style;
         parse();
     }
     
-    public Style getEdited(){
+    public StyledLayerDescriptor getEdited(){
         apply();
-        return style;
+        return sld;
     }
     
     public void apply() {
-        style.setTitle( jtf_title.getText() );
-        style.setAbstract(jtf_abstract.getText());
-        style.setName(jtf_name.getText());
+        sld.setTitle( jtf_title.getText() );
+        sld.setAbstract(jtf_abstract.getText());
+        sld.setName(jtf_name.getText());
     }
     
     /** This method is called from within the constructor to
@@ -72,28 +73,27 @@ public class JStylePane extends javax.swing.JPanel implements StyleElementEditor
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jtf_title = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         jtf_name = new javax.swing.JTextField();
         jtf_abstract = new javax.swing.JTextField();
 
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel2.setText(org.openide.util.NbBundle.getMessage(JStylePane.class, "name")); // NOI18N
-
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel3.setText(org.openide.util.NbBundle.getMessage(JStylePane.class, "abstract")); // NOI18N
-
         jLabel1.setFont(jLabel1.getFont().deriveFont(jLabel1.getFont().getStyle() | java.awt.Font.BOLD));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel1.setText(org.openide.util.NbBundle.getMessage(JStylePane.class, "title")); // NOI18N
+        jLabel1.setText(org.openide.util.NbBundle.getMessage(JSLDPane.class, "title")); // NOI18N
+
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel2.setText(org.openide.util.NbBundle.getMessage(JSLDPane.class, "name")); // NOI18N
+
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel3.setText(org.openide.util.NbBundle.getMessage(JSLDPane.class, "abstract")); // NOI18N
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 202, Short.MAX_VALUE)
             .add(layout.createSequentialGroup()
                 .addContainerGap()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
@@ -102,14 +102,16 @@ public class JStylePane extends javax.swing.JPanel implements StyleElementEditor
                     .add(jLabel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .add(12, 12, 12)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jtf_title, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, jtf_name, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
-                    .add(jtf_abstract, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE))
+                    .add(jtf_title, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, jtf_name, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
+                    .add(jtf_abstract, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE))
                 .addContainerGap())
         );
+
+        layout.linkSize(new java.awt.Component[] {jLabel1, jLabel2, jLabel3}, org.jdesktop.layout.GroupLayout.HORIZONTAL);
+
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 90, Short.MAX_VALUE)
             .add(layout.createSequentialGroup()
                 .addContainerGap()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)

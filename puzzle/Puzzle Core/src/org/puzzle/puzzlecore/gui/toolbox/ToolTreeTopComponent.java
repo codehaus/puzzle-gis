@@ -93,6 +93,7 @@ final class ToolTreeTopComponent extends TopComponent {
         }
         
         add(BorderLayout.CENTER,tree);
+        revalidate();
     }
 
     @Override

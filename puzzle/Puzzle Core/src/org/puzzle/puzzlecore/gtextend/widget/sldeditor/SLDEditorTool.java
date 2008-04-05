@@ -19,20 +19,21 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.event.EventListenerList;
 import javax.swing.filechooser.FileFilter;
+import org.geotools.factory.CommonFactoryFinder;
+import org.geotools.factory.GeoTools;
 import org.geotools.gui.swing.misc.filter.FileFilterFactory;
 import org.geotools.gui.swing.toolbox.widgettool.WidgetTool;
 import org.geotools.gui.swing.toolbox.widgettool.WidgetToolListener;
 import org.geotools.sld.SLDConfiguration;
-import org.geotools.styling.SLD;
+import org.geotools.styling.FeatureTypeConstraint;
 import org.geotools.styling.SLDTransformer;
-import org.geotools.styling.Style;
 import org.geotools.styling.StyleBuilder;
+import org.geotools.styling.StyleFactory;
 import org.geotools.styling.StyledLayerDescriptor;
-import org.geotools.styling.StyledLayerDescriptorImpl;
+import org.geotools.styling.UserLayer;
 import org.geotools.xml.Configuration;
 import org.geotools.xml.Parser;
 import org.openide.util.Exceptions;
-import org.puzzle.puzzlecore.gtextend.widget.sldeditor.JAdvancedStylePanel;
 
 /**
  *
@@ -42,7 +43,7 @@ public class SLDEditorTool extends javax.swing.JPanel implements WidgetTool {
 
     private File openFile = null;
     private EventListenerList listeners = new EventListenerList();
-    private JAdvancedStylePanel guiEditor = new JAdvancedStylePanel();
+    private JAdvancedSLDPanel guiEditor = new JAdvancedSLDPanel();
 
     /** Creates new form SLDEditorTool */
     public SLDEditorTool() {
@@ -51,13 +52,6 @@ public class SLDEditorTool extends javax.swing.JPanel implements WidgetTool {
         pan_style.setLayout(new GridLayout(1, 1));
         pan_style.add(guiEditor);
         
-//        try {
-//            ClassLoader l = Thread.currentThread().getContextClassLoader();
-//            l.loadClass("org.geotools.xml.Parser");
-//            l.loadClass("org.geotools.styling.StyledLayerDescriptor");
-//        } catch (ClassNotFoundException ex) {
-//            Exceptions.printStackTrace(ex);
-//        }
     }
 
     private void open(File sldFile) {
@@ -65,19 +59,13 @@ public class SLDEditorTool extends javax.swing.JPanel implements WidgetTool {
         if (sldFile != null && sldFile.exists()) {
             InputStream xml = null;
             try {
-
                 Configuration configuration = new SLDConfiguration();
                 Parser parser = new Parser(configuration);
 
                 xml = new FileInputStream(sldFile);
                 StyledLayerDescriptor sld = (StyledLayerDescriptor) parser.parse(xml);
 
-                Style[] styles = SLD.styles(sld);
-
-                if (styles.length > 0) {
-                    guiEditor.setEdited(styles[0]);
-                }
-
+                guiEditor.setEdited(sld);
                 openFile = sldFile;
 
             } catch (Exception ex) {
@@ -96,13 +84,18 @@ public class SLDEditorTool extends javax.swing.JPanel implements WidgetTool {
 
         if (sldFile != null) {
 
-            Style style = new StyleBuilder().createStyle();
-
-            SLDTransformer st = new SLDTransformer();
-
             try {
-                
-                String xml = st.transform(style);
+                StyledLayerDescriptor sld = CommonFactoryFinder.getStyleFactory(GeoTools.getDefaultHints()).createStyledLayerDescriptor();
+
+                StyleFactory stylefactory = CommonFactoryFinder.getStyleFactory(GeoTools.getDefaultHints());
+                UserLayer layer = stylefactory.createUserLayer();
+                layer.setLayerFeatureConstraints(new FeatureTypeConstraint[]{null});
+                sld.addStyledLayer(layer);
+                layer.addUserStyle(new StyleBuilder().createStyle());
+
+                SLDTransformer styleTransform = new SLDTransformer();
+                String xml = styleTransform.transform(sld);
+
                 ArrayList<String> str = new ArrayList<String>();
                 str.add(xml);
                 write(sldFile.getPath(), str);
@@ -126,6 +119,7 @@ public class SLDEditorTool extends javax.swing.JPanel implements WidgetTool {
                 ArrayList<String> str = new ArrayList<String>();
                 str.add(xml);
                 write(openFile.getPath(), str);
+                JOptionPane.showMessageDialog(this, "file saved");
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
@@ -151,6 +145,7 @@ public class SLDEditorTool extends javax.swing.JPanel implements WidgetTool {
                     ArrayList<String> str = new ArrayList<String>();
                     str.add(xml);
                     write(jfc.getSelectedFile().getPath(), str);
+                    JOptionPane.showMessageDialog(this, "file saved");
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
@@ -201,11 +196,11 @@ public class SLDEditorTool extends javax.swing.JPanel implements WidgetTool {
         pan_style.setLayout(pan_styleLayout);
         pan_styleLayout.setHorizontalGroup(
             pan_styleLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 563, Short.MAX_VALUE)
+            .add(0, 641, Short.MAX_VALUE)
         );
         pan_styleLayout.setVerticalGroup(
             pan_styleLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 377, Short.MAX_VALUE)
+            .add(0, 439, Short.MAX_VALUE)
         );
 
         add(pan_style, java.awt.BorderLayout.CENTER);
@@ -214,11 +209,12 @@ public class SLDEditorTool extends javax.swing.JPanel implements WidgetTool {
         jToolBar1.setRollover(true);
 
         guiNew.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/puzzle/puzzlecore/gtextend/widget/sldeditor/filenew.png"))); // NOI18N
+        guiNew.setText(org.openide.util.NbBundle.getMessage(SLDEditorTool.class, "new_file")); // NOI18N
         guiNew.setToolTipText(org.openide.util.NbBundle.getMessage(SLDEditorTool.class, "new")); // NOI18N
         guiNew.setBorderPainted(false);
         guiNew.setContentAreaFilled(false);
         guiNew.setFocusable(false);
-        guiNew.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        guiNew.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         guiNew.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         guiNew.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -228,6 +224,7 @@ public class SLDEditorTool extends javax.swing.JPanel implements WidgetTool {
         jToolBar1.add(guiNew);
 
         guiOpen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/puzzle/puzzlecore/gtextend/widget/sldeditor/fileopen.png"))); // NOI18N
+        guiOpen.setText(org.openide.util.NbBundle.getMessage(SLDEditorTool.class, "open_file")); // NOI18N
         guiOpen.setToolTipText(org.openide.util.NbBundle.getMessage(SLDEditorTool.class, "open")); // NOI18N
         guiOpen.setBorderPainted(false);
         guiOpen.setContentAreaFilled(false);
@@ -239,6 +236,7 @@ public class SLDEditorTool extends javax.swing.JPanel implements WidgetTool {
         jToolBar1.add(guiOpen);
 
         guiSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/puzzle/puzzlecore/gtextend/widget/sldeditor/filesave.png"))); // NOI18N
+        guiSave.setText(org.openide.util.NbBundle.getMessage(SLDEditorTool.class, "save_file")); // NOI18N
         guiSave.setToolTipText(org.openide.util.NbBundle.getMessage(SLDEditorTool.class, "save")); // NOI18N
         guiSave.setBorderPainted(false);
         guiSave.setContentAreaFilled(false);
@@ -250,6 +248,7 @@ public class SLDEditorTool extends javax.swing.JPanel implements WidgetTool {
         jToolBar1.add(guiSave);
 
         guiSaveAs.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/puzzle/puzzlecore/gtextend/widget/sldeditor/filesaveas.png"))); // NOI18N
+        guiSaveAs.setText(org.openide.util.NbBundle.getMessage(SLDEditorTool.class, "saveas_file")); // NOI18N
         guiSaveAs.setToolTipText(org.openide.util.NbBundle.getMessage(SLDEditorTool.class, "saveas")); // NOI18N
         guiSaveAs.setBorderPainted(false);
         guiSaveAs.setContentAreaFilled(false);
@@ -285,14 +284,9 @@ public class SLDEditorTool extends javax.swing.JPanel implements WidgetTool {
         if (openFile == null) {
             newSLDProcedure();
         } else {
-            int ret = JOptionPane.showConfirmDialog(this, "A style is open, do you want to save it?", "", JOptionPane.YES_NO_CANCEL_OPTION);
-            if (ret == JOptionPane.YES_OPTION) {
-                save();
+            int ret = JOptionPane.showConfirmDialog(this, "A style is open, do you want close it?", "", JOptionPane.OK_CANCEL_OPTION);
+            if (ret == JOptionPane.OK_OPTION) {
                 newSLDProcedure();
-            } else if (ret == JOptionPane.NO_OPTION) {
-                newSLDProcedure();
-            } else if (ret == JOptionPane.CANCEL_OPTION) {
-
             }
         }
         

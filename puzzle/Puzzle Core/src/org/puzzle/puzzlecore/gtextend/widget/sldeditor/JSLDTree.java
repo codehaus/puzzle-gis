@@ -21,7 +21,6 @@
 package org.puzzle.puzzlecore.gtextend.widget.sldeditor;
 
 import java.awt.Component;
-import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.Transferable;
@@ -59,6 +58,7 @@ import org.geotools.gui.swing.misc.Render.RandomStyleFactory;
 import org.geotools.styling.FeatureTypeStyle;
 import org.geotools.styling.Rule;
 import org.geotools.styling.Style;
+import org.geotools.styling.StyledLayerDescriptor;
 import org.geotools.styling.Symbolizer;
 import org.jdesktop.swingx.JXTree;
 
@@ -66,7 +66,7 @@ import org.jdesktop.swingx.JXTree;
  *
  * @author johann sorel
  */
-public class JStyleTree extends JXTree implements DragGestureListener, DragSourceListener, DropTargetListener {
+public class JSLDTree extends JXTree implements DragGestureListener, DragSourceListener, DropTargetListener {
 
     private static final RandomStyleFactory RANDOM_STYLE_FACTORY = new RandomStyleFactory();
     private static final Icon ICON_STYLE = IconBundle.getResource().getIcon("16_style");
@@ -76,18 +76,20 @@ public class JStyleTree extends JXTree implements DragGestureListener, DragSourc
     private static final Icon ICON_DUPLICATE = IconBundle.getResource().getIcon("16_duplicate");
     private static final Icon ICON_DELETE = IconBundle.getResource().getIcon("16_delete");
     
-    private Style style = null;
-    private StyleTreeModel treemodel = null;
+    private StyledLayerDescriptor style = null;
+    private SLDTreeModel treemodel = null;
     /** Variables needed for DnD */
     private DragSource dragSource = null;
 
-    public JStyleTree() {
+    public JSLDTree() {
         super();
         
         putClientProperty("JTree.lineStyle", "Angled");
         
         setModel(treemodel);
+
         setEditable(false);
+//        setPreferredSize(new Dimension(200, 100));
 
         StyleCellRenderer renderer = new StyleCellRenderer();
         setCellRenderer(renderer);
@@ -105,22 +107,22 @@ public class JStyleTree extends JXTree implements DragGestureListener, DragSourc
 
     }
 
-    private void parseStyle() {
+    private void parseSLD() {
         if (style != null) {
-            treemodel = new StyleTreeModel(style);
+            treemodel = new SLDTreeModel(style);
             setModel(treemodel);
             revalidate();
         }
         expandAll();
     }
 
-    public Style getStyle() {
-        return style;
+    public StyledLayerDescriptor getSLD() {
+        return treemodel.getSLD();
     }
 
-    public void setStyle(Style style) {
+    public void setSLD(StyledLayerDescriptor style) {
         this.style = style;
-        parseStyle();
+        parseSLD();
     }
 
     //-------------Drag & drop -------------------------------------------------
@@ -240,7 +242,6 @@ public class JStyleTree extends JXTree implements DragGestureListener, DragSourc
     //-------------private classes----------------------------------------------
     class StyleCellRenderer extends DefaultTreeCellRenderer {
 
-        
         @Override
         public Component getTreeCellRendererComponent(JTree tree, Object value, boolean selected, boolean expanded, boolean leaf, int row, boolean hasFocus) {
 
@@ -251,7 +252,11 @@ public class JStyleTree extends JXTree implements DragGestureListener, DragSourc
                 DefaultMutableTreeNode node = (DefaultMutableTreeNode) value;
                 Object val = node.getUserObject();
 
-                if (val instanceof Style) {
+                if (val instanceof StyledLayerDescriptor) {
+                    StyledLayerDescriptor style = (StyledLayerDescriptor) val;
+                    lbl.setText(style.getTitle());
+                    lbl.setIcon(ICON_STYLE);
+                } else if (val instanceof Style) {
                     Style style = (Style) val;
                     lbl.setText(style.getTitle());
                     lbl.setIcon(ICON_STYLE);
@@ -295,13 +300,17 @@ public class JStyleTree extends JXTree implements DragGestureListener, DragSourc
             if (path != null && b == true) {
                 removeAll();
 
-
                 DefaultMutableTreeNode node = (DefaultMutableTreeNode) path.getLastPathComponent();
                 Object val = node.getUserObject();
 
-                if (val instanceof Style) {
+                if (val instanceof StyledLayerDescriptor) {
+                    StyledLayerDescriptor sld = (StyledLayerDescriptor) val;
+                    add(new NewStyleItem(node));
+                } else if (val instanceof Style) {
                     Style style = (Style) val;
-                    add(new NewFTSItem());
+                    add(new NewFTSItem(node));
+                    add(new JSeparator(SwingConstants.HORIZONTAL));
+                    add(new DuplicateItem(node));
                 } else if (val instanceof FeatureTypeStyle) {
                     FeatureTypeStyle fts = (FeatureTypeStyle) val;
                     add(new NewRuleItem(node));
@@ -333,15 +342,36 @@ public class JStyleTree extends JXTree implements DragGestureListener, DragSourc
         }
     }
 
+    
+    class NewStyleItem extends JMenuItem {
+
+        private final DefaultMutableTreeNode NODE;
+        
+        NewStyleItem(DefaultMutableTreeNode node) {
+            this.NODE = node;
+            setText("new Style");
+            setIcon(ICON_NEW);
+            addActionListener(new ActionListener() {
+
+                public void actionPerformed(ActionEvent e) {
+                    treemodel.newStyle(NODE);
+                }
+            });
+        }
+    }
+    
     class NewFTSItem extends JMenuItem {
 
-        NewFTSItem() {
+        private final DefaultMutableTreeNode NODE;
+        
+        NewFTSItem(DefaultMutableTreeNode node) {
+            this.NODE = node;
             setText("new FTS");
             setIcon(ICON_NEW);
             addActionListener(new ActionListener() {
 
                 public void actionPerformed(ActionEvent e) {
-                    treemodel.newFeatureTypeStyle();
+                    treemodel.newFeatureTypeStyle(NODE);
                 }
             });
         }
