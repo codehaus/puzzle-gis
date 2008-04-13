@@ -1,6 +1,22 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ *  Puzzle-GIS - OpenSource mapping program
+ *  http://docs.codehaus.org/display/PUZZLEGIS
+ *  Copyright (C) 2007-2008 Puzzle-GIS
+ *  
+ *  GPLv3 + Classpath exception
+ *  
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *  
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *  
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 package org.puzzle.puzzlecore.gui.minimap;
@@ -8,6 +24,7 @@ package org.puzzle.puzzlecore.gui.minimap;
 import java.awt.BorderLayout;
 import java.io.Serializable;
 import java.util.logging.Logger;
+import org.geotools.gui.swing.map.map2d.Map2D;
 import org.geotools.gui.swing.map.map2d.minimap.JMiniMap;
 import org.openide.util.NbBundle;
 import org.openide.windows.TopComponent;
@@ -21,10 +38,12 @@ import org.puzzle.puzzlecore.struct.ViewManager;
 
 /**
  * Top component which displays something.
+ * @author : johann sorel
  */
 final class MiniMapTopComponent extends TopComponent {
 
     private JMiniMap map = null;
+    private Map2D related = null;
     
     private ViewListener listener = null;
     
@@ -86,7 +105,7 @@ final class MiniMapTopComponent extends TopComponent {
 
     @Override
     public int getPersistenceType() {
-        return TopComponent.PERSISTENCE_ALWAYS;
+        return TopComponent.PERSISTENCE_NEVER;
     }
 
     @Override
@@ -94,16 +113,22 @@ final class MiniMapTopComponent extends TopComponent {
         removeAll();
         if(map == null){
             map = new JMiniMap();
+            
             listener = new ViewListener() {
 
                 public void viewAdded(ViewEvent event) {
                 }
 
                 public void viewRemoved(ViewEvent event) {
+                    if(event.getView().getMap() == related){
+                        related = null;
+                        map.setRelatedMap2D(null);
+                    }
                 }
 
                 public void viewActivated(ViewEvent event) {
-                    map.setRelatedMap2D(event.getView().getMap());
+                    related = event.getView().getMap();
+                    map.setRelatedMap2D(related);
                 }
 
                 public void groupAdded(GroupEvent event) {
@@ -117,7 +142,6 @@ final class MiniMapTopComponent extends TopComponent {
             };
             
             CORE.getViewManager().addViewListener(listener);
-            
         }
         
         add(BorderLayout.CENTER,map);
@@ -125,6 +149,9 @@ final class MiniMapTopComponent extends TopComponent {
 
     @Override
     public void componentClosed() {
+        CORE.getViewManager().removeViewListener(listener);
+        listener = null;
+        
         removeAll();
         map = null;
         

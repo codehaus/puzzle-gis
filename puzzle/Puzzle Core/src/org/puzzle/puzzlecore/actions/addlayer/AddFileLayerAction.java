@@ -1,7 +1,7 @@
 /*
  *  Puzzle-GIS - OpenSource mapping program
  *  http://docs.codehaus.org/display/PUZZLEGIS
- *  Copyright (C) 2007 Puzzle-GIS
+ *  Copyright (C) 2007-2008 Puzzle-GIS
  *  
  *  GPLv3 + Classpath exception
  *  
@@ -35,33 +35,34 @@ import org.puzzle.puzzlecore.struct.CORE;
 
 /**
  * @author johann sorel
- */ 
+ */
 public final class AddFileLayerAction extends CallableSystemAction {
 
     public void performAction() {
-    
+
         if (CORE.getContextManager().getActiveContext() != null) {
             List<DataPanel> lst = new ArrayList<DataPanel>();
             lst.add(new JFileDataPanel());
-            
+
             JDataChooser jdc = new JDataChooser(null, lst);
 
             JDataChooser.ACTION ret = jdc.showDialog();
 
             if (ret == JDataChooser.ACTION.APPROVE) {
-                MapLayer[] layers = jdc.getLayers();
+                        
+                final MapLayer[] layers = jdc.getLayers();
 
                 MapContext context = CORE.getContextManager().getActiveContext();
                 for (MapLayer layer : layers) {
                     context.addLayer(layer);
                 }
+            } else {
+                JOptionPane.showMessageDialog(null, "No active Context");
             }
-        }else{
-            JOptionPane.showMessageDialog(null, "No active Context");
-        }
-        
-    }
 
+        }
+    }
+    
     public String getName() {
         return NbBundle.getMessage(AddFileLayerAction.class, "CTL_AddLayerAction");
     }
