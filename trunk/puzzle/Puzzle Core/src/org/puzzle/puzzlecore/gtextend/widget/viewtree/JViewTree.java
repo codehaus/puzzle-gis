@@ -49,6 +49,8 @@ import javax.swing.JLabel;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 import javax.swing.JTree;
+import javax.swing.event.TreeModelEvent;
+import javax.swing.event.TreeModelListener;
 import javax.swing.table.TableCellEditor;
 import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.TreePath;
@@ -57,10 +59,12 @@ import org.geotools.gui.swing.contexttree.renderer.DefaultCellEditor;
 import org.geotools.gui.swing.contexttree.renderer.DefaultCellRenderer;
 import org.geotools.gui.swing.contexttree.renderer.DefaultContextTreeHeaderRenderer;
 import org.geotools.gui.swing.contexttree.renderer.HeaderInfo;
+import org.geotools.gui.swing.icon.IconBundle;
 import org.geotools.gui.swing.misc.Render.RandomStyleFactory;
 import org.jdesktop.swingx.JXTreeTable;
 import org.jdesktop.swingx.table.TableColumnExt;
 import org.jdesktop.swingx.treetable.DefaultMutableTreeTableNode;
+import org.jdesktop.swingx.treetable.TreeTableNode;
 import org.puzzle.puzzlecore.struct.MapGroup;
 import org.puzzle.puzzlecore.struct.MapView;
 
@@ -76,7 +80,7 @@ public class JViewTree extends JXTreeTable implements DragGestureListener, DragS
     private static final Icon ICON_SCALE = new ImageIcon(JViewTree.class.getResource("/org/puzzle/puzzlecore/gtextend/widget/iconset/scale.png"));
     private static final Icon ICON_ROTATION = new ImageIcon(JViewTree.class.getResource("/org/puzzle/puzzlecore/gtextend/widget/iconset/rotation.png"));
     private static final Icon ICON_TRANSLATION = new ImageIcon(JViewTree.class.getResource("/org/puzzle/puzzlecore/gtextend/widget/iconset/translation.png"));
-    private ViewTreeModel treemodel = new ViewTreeModel();
+    private final ViewTreeModel treemodel = new ViewTreeModel();
     /** Variables needed for DnD */
     private DragSource dragSource = null;
 
@@ -88,24 +92,68 @@ public class JViewTree extends JXTreeTable implements DragGestureListener, DragS
         setTreeTableModel(treemodel);
         setRootVisible(true);
         setEditable(true);
+        
+//        setShowsRootHandles(false);
+                       
 
+        treemodel.addTreeModelListener(new TreeModelListener() {
+
+            public void treeNodesChanged(TreeModelEvent e) {
+            }
+
+            public void treeNodesInserted(TreeModelEvent e) {
+                
+//                expandPath( new TreePath(treemodel.getRoot()));
+                
+                for(int i=0,n=treemodel.getRoot().getChildCount();i<n;i++) {
+                    TreeTableNode node = treemodel.getRoot().getChildAt(i);
+                    
+                    if(!node.isLeaf()){
+                        for(int j=0,m=node.getChildCount();j<m;j++) {
+                            expandPath( new TreePath (node.getChildAt(j)));
+                        }
+                    }else{
+                        expandPath( new TreePath (node));
+                    }
+                }               
+                    
+//                System.out.println("ajout-------------------------");
+//                expandAll();
+            }
+
+            public void treeNodesRemoved(TreeModelEvent e) {
+            }
+
+            public void treeStructureChanged(TreeModelEvent e) {
+            }
+        });
+        
         ViewCellRenderer renderer = new ViewCellRenderer();
         setTreeCellRenderer(renderer);
         getTreeSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
         getTableHeader().setDefaultRenderer(new DefaultContextTreeHeaderRenderer());
-        
+
         for (int i = 1; i < 4; i++) {
             getColumnModel().getColumn(i).setCellRenderer(new DefaultCellRenderer(new ViewComponent()));
             getColumnModel().getColumn(i).setCellEditor(new DefaultCellEditor(new ViewComponent()));
             getColumnModel().getColumn(i).setPreferredWidth(25);
             getColumnModel().getColumn(i).setMaxWidth(25);
-            getColumnModel().getColumn(i).setMinWidth(25);            
+            getColumnModel().getColumn(i).setMinWidth(25);
             ((TableColumnExt) getColumnModel().getColumn(i)).setEditable(true);
         }
 
-        getColumnModel().getColumn(1).setHeaderValue( new HeaderInfo("",null,ICON_TRANSLATION ));
-        getColumnModel().getColumn(2).setHeaderValue( new HeaderInfo("",null,ICON_SCALE ));
-        getColumnModel().getColumn(3).setHeaderValue( new HeaderInfo("",null,ICON_ROTATION ));
+        getColumnModel().getColumn(4).setCellRenderer(new DefaultCellRenderer(new ContextComponent()));
+        getColumnModel().getColumn(4).setCellEditor(new DefaultCellEditor(new ContextComponent()));
+        getColumnModel().getColumn(4).setPreferredWidth(100);
+        getColumnModel().getColumn(4).setMaxWidth(200);
+        ((TableColumnExt) getColumnModel().getColumn(4)).setEditable(true);
+
+
+
+        getColumnModel().getColumn(1).setHeaderValue(new HeaderInfo("", null, ICON_TRANSLATION));
+        getColumnModel().getColumn(2).setHeaderValue(new HeaderInfo("", null, ICON_SCALE));
+        getColumnModel().getColumn(3).setHeaderValue(new HeaderInfo("", null, ICON_ROTATION));
+        getColumnModel().getColumn(4).setHeaderValue(new HeaderInfo("", "Context",null));
         setComponentPopupMenu(new StylePopup(this));
 
 
@@ -206,7 +254,6 @@ public class JViewTree extends JXTreeTable implements DragGestureListener, DragS
             DefaultMutableTreeTableNode targetNode = (DefaultMutableTreeTableNode) targetPath.getLastPathComponent();
 
             treemodel.moveNode(dragNode, targetNode);
-            expandAll();
         }
 
     }
@@ -236,7 +283,8 @@ public class JViewTree extends JXTreeTable implements DragGestureListener, DragS
                     lbl.setText(group.getTitle());
                     lbl.setIcon(ICON_GROUP);
                 } else {
-                    lbl.setIcon(ICON_GROUP);
+                    lbl.setText("Views");
+                    lbl.setIcon(IconBundle.EMPTY_ICON);
                 }
 
             }
@@ -313,8 +361,3 @@ public class JViewTree extends JXTreeTable implements DragGestureListener, DragS
     }
 }
 
-
-class ViewColumn extends TableColumnExt{
-    
-    
-}

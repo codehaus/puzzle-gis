@@ -1,7 +1,7 @@
 /*
  *  Puzzle-GIS - OpenSource mapping program
  *  http://docs.codehaus.org/display/PUZZLEGIS
- *  Copyright (C) 2007 Puzzle-GIS
+ *  Copyright (C) 2007-2008 Puzzle-GIS
  *  
  *  GPLv3 + Classpath exception
  *  

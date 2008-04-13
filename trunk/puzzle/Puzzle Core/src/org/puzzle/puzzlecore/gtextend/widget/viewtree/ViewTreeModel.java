@@ -22,6 +22,7 @@ package org.puzzle.puzzlecore.gtextend.widget.viewtree;
 
 import java.util.HashMap;
 import java.util.Map;
+import org.geotools.map.MapContext;
 import org.jdesktop.swingx.treetable.DefaultMutableTreeTableNode;
 import org.jdesktop.swingx.treetable.DefaultTreeTableModel;
 import org.jdesktop.swingx.treetable.TreeTableNode;
@@ -51,6 +52,7 @@ public class ViewTreeModel extends DefaultTreeTableModel {
 
         parse();
 
+        
         CORE.getViewManager().addViewListener(new ViewListener() {
 
             public void viewAdded(ViewEvent event) {
@@ -107,10 +109,13 @@ public class ViewTreeModel extends DefaultTreeTableModel {
 
         TreeTableNode root = getRoot();
 
-        for (int i = root.getChildCount()-1 ; i >= 0; i--) {
-            DefaultMutableTreeTableNode node = (DefaultMutableTreeTableNode) root.getChildAt(i);
-            removeNodeFromParent(node);
+        while(root.getChildCount() >0){
+            removeNodeFromParent( (DefaultMutableTreeTableNode)root.getChildAt(0));
         }
+//        for (int i = root.getChildCount()-1 ; i >= 0; i--) {
+//            DefaultMutableTreeTableNode node = (DefaultMutableTreeTableNode) root.getChildAt(i);
+//            removeNodeFromParent(node);
+//        }
 
         MapView[] views = CORE.getViewManager().getViews();
         MapGroup[] groups = CORE.getViewManager().getGroups();
@@ -138,7 +143,7 @@ public class ViewTreeModel extends DefaultTreeTableModel {
 
     @Override
     public int getColumnCount() {
-        return 4;
+        return 5;
     }
 
     @Override
@@ -156,6 +161,8 @@ public class ViewTreeModel extends DefaultTreeTableModel {
                     return ((MapView) obj).isScaleLink();
                 case 3:
                     return ((MapView) obj).isRotationLink();
+                case 4:
+                    return ((MapView) obj).getMap().getRenderingStrategy().getContext();
                 default:
                     return null;
             }
@@ -191,6 +198,9 @@ public class ViewTreeModel extends DefaultTreeTableModel {
                     break;
                 case 3:
                     ((MapView) obj).setRotationLink((Boolean) value);
+                    break;
+                case 4:
+                    ((MapView) obj).getMap().getRenderingStrategy().setContext( (MapContext)value);
                     break;
             }
         } else if (obj instanceof MapGroup) {
