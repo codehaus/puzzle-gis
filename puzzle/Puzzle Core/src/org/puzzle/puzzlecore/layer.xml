@@ -15,9 +15,6 @@
     <attr name="Menu\Window\org-netbeans-core-windows-actions-ResetWindowsAction.instance\position" intvalue="1700"/>
     <attr name="Menu\Window\org-netbeans-core-windows-actions-UndockAction.shadow\position" intvalue="1100"/>
     <folder name="Actions">
-        <folder name="Edit">
-            <file name="org-puzzle-puzzlecore-view-action-XXXAction.instance"/>
-        </folder>
         <folder name="Puzzle">
             <file name="org-puzzle-puzzlecore-actions-newcontext-NewContextAction.instance"/>
             <file name="org-puzzle-puzzlecore-actions-addlayer-AddDBLayerAction.instance"/>
@@ -90,11 +87,7 @@
                 <attr name="originalFile" stringvalue="Actions/Puzzle/org-puzzle-puzzlecore-view-action-NewView.instance"/>
                 <attr name="position" intvalue="0"/>
             </file>
-            <file name="org-puzzle-puzzlecore-view-action-XXXAction.shadow">
-                <attr name="originalFile" stringvalue="Actions/Edit/org-puzzle-puzzlecore-view-action-XXXAction.instance"/>
-                <attr name="position" intvalue="-100"/>
-            </file>
-        </folder>
+            </folder>
         <folder name="Map2DSelection">
             <attr name="position" intvalue="600"/>            
             <file name="org-puzzle-puzzlecore-view-action-SelectAction.instance">
