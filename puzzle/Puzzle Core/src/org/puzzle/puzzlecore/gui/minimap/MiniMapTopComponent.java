@@ -34,7 +34,7 @@ import org.puzzle.puzzlecore.struct.CORE;
 import org.puzzle.puzzlecore.struct.GroupEvent;
 import org.puzzle.puzzlecore.struct.ViewEvent;
 import org.puzzle.puzzlecore.struct.ViewListener;
-import org.puzzle.puzzlecore.struct.ViewManager;
+import org.puzzle.puzzlecore.view.DefaultViewService;
 
 /**
  * Top component which displays something.
@@ -141,7 +141,7 @@ final class MiniMapTopComponent extends TopComponent {
                 }
             };
             
-            CORE.getViewManager().addViewListener(listener);
+//            CORE.getViewManager().addViewListener(listener);
         }
         
         add(BorderLayout.CENTER,map);
@@ -149,13 +149,13 @@ final class MiniMapTopComponent extends TopComponent {
 
     @Override
     public void componentClosed() {
-        CORE.getViewManager().removeViewListener(listener);
+//        CORE.getViewManager().removeViewListener(listener);
         listener = null;
         
         removeAll();
         map = null;
         
-        CORE.getViewManager().removeViewListener(listener);
+//        CORE.getViewManager().removeViewListener(listener);
     }
 
     /** replaces this in object stream */
