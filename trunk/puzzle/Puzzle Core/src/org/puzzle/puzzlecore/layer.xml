@@ -15,31 +15,34 @@
     <attr name="Menu\Window\org-netbeans-core-windows-actions-ResetWindowsAction.instance\position" intvalue="1700"/>
     <attr name="Menu\Window\org-netbeans-core-windows-actions-UndockAction.shadow\position" intvalue="1100"/>
     <folder name="Actions">
+        <folder name="Edit">
+            <file name="org-puzzle-puzzlecore-view-action-XXXAction.instance"/>
+        </folder>
         <folder name="Puzzle">
             <file name="org-puzzle-puzzlecore-actions-newcontext-NewContextAction.instance"/>
             <file name="org-puzzle-puzzlecore-actions-addlayer-AddDBLayerAction.instance"/>
             <file name="org-puzzle-puzzlecore-actions-addlayer-AddFileLayerAction.instance"/>
             <file name="org-puzzle-puzzlecore-actions-addlayer-AddWebLayerAction.instance"/>
-            <file name="org-puzzle-puzzlecore-actions-views-NavRefreshAction.instance"/>
-            <file name="org-puzzle-puzzlecore-actions-views-NavPreviousAreaAction.instance"/>
-            <file name="org-puzzle-puzzlecore-actions-views-NavNextAreaAction.instance"/>
-            <file name="org-puzzle-puzzlecore-actions-views-NavZoomAllAction.instance"/>
-            <file name="org-puzzle-puzzlecore-actions-views-NavZoomInAction.instance"/>
-            <file name="org-puzzle-puzzlecore-actions-views-NavZoomOutAction.instance"/>
-            <file name="org-puzzle-puzzlecore-actions-views-NavPanAction.instance"/>
-            <file name="org-puzzle-puzzlecore-actions-views-NewView.instance"/>
-            <file name="org-puzzle-puzzlecore-actions-views-SelectAction.instance"/>
-            <file name="org-puzzle-puzzlecore-actions-views-SelectFilterChooserAction.instance"/>
-            <file name="org-puzzle-puzzlecore-actions-views-SelectHandlerChooserAction.instance"/>
-            <file name="org-puzzle-puzzlecore-actions-views-EditAction.instance"/>
-            <file name="org-puzzle-puzzlecore-actions-views-EditLayerChooserAction.instance"/>
-            <file name="org-puzzle-puzzlecore-actions-views-EditHandlerChooserAction.instance"/>
+            <file name="org-puzzle-puzzlecore-view-action-NavRefreshAction.instance"/>
+            <file name="org-puzzle-puzzlecore-view-action-NavPreviousAreaAction.instance"/>
+            <file name="org-puzzle-puzzlecore-view-action-NavNextAreaAction.instance"/>
+            <file name="org-puzzle-puzzlecore-view-action-NavZoomAllAction.instance"/>
+            <file name="org-puzzle-puzzlecore-view-action-NavZoomInAction.instance"/>
+            <file name="org-puzzle-puzzlecore-view-action-NavZoomOutAction.instance"/>
+            <file name="org-puzzle-puzzlecore-view-action-NavPanAction.instance"/>
+            <file name="org-puzzle-puzzlecore-view-action-NewView.instance"/>
+            <file name="org-puzzle-puzzlecore-view-action-SelectAction.instance"/>
+            <file name="org-puzzle-puzzlecore-view-action-SelectFilterChooserAction.instance"/>
+            <file name="org-puzzle-puzzlecore-view-action-SelectHandlerChooserAction.instance"/>
+            <file name="org-puzzle-puzzlecore-view-action-EditAction.instance"/>
+            <file name="org-puzzle-puzzlecore-view-action-EditLayerChooserAction.instance"/>
+            <file name="org-puzzle-puzzlecore-view-action-EditHandlerChooserAction.instance"/>
         </folder>
         <folder name="Window">
             <file name="org-puzzle-puzzlecore-gui-contexttree-ContextTreeAction.instance"/>
             <file name="org-puzzle-puzzlecore-gui-minimap-MiniMapAction.instance"/>
             <file name="org-puzzle-puzzlecore-gui-toolbox-ToolTreeAction.instance"/>
-            <file name="org-puzzle-puzzlecore-gui-views-ViewTreeAction.instance"/>
+            <file name="org-puzzle-puzzlecore-view-gui-ViewTreeAction.instance"/>
         </folder>
     </folder>
     <folder name="Toolbars">
@@ -62,53 +65,57 @@
         <file name="File_hidden"/>
         <folder name="Map2DNavigation">            
             <attr name="position" intvalue="500"/>
-            <file name="org-puzzle-puzzlecore-actions-views-NavRefreshAction.instance">
+            <file name="org-puzzle-puzzlecore-view-action-NavRefreshAction.instance">
                 <attr name="position" intvalue="100"/>
             </file>
-            <file name="org-puzzle-puzzlecore-actions-views-NavPreviousAreaAction.instance">
+            <file name="org-puzzle-puzzlecore-view-action-NavPreviousAreaAction.instance">
                 <attr name="position" intvalue="200"/>
             </file>
-            <file name="org-puzzle-puzzlecore-actions-views-NavNextAreaAction.instance">
+            <file name="org-puzzle-puzzlecore-view-action-NavNextAreaAction.instance">
                 <attr name="position" intvalue="300"/>
             </file>
-            <file name="org-puzzle-puzzlecore-actions-views-NavZoomAllAction.instance">
+            <file name="org-puzzle-puzzlecore-view-action-NavZoomAllAction.instance">
                 <attr name="position" intvalue="400"/>
             </file>
-            <file name="org-puzzle-puzzlecore-actions-views-NavZoomInAction.instance">
+            <file name="org-puzzle-puzzlecore-view-action-NavZoomInAction.instance">
                 <attr name="position" intvalue="500"/>
             </file>
-            <file name="org-puzzle-puzzlecore-actions-views-NavZoomOutAction.instance">
+            <file name="org-puzzle-puzzlecore-view-action-NavZoomOutAction.instance">
                 <attr name="position" intvalue="600"/>
             </file>
-            <file name="org-puzzle-puzzlecore-actions-views-NavPanAction.instance">
+            <file name="org-puzzle-puzzlecore-view-action-NavPanAction.instance">
                 <attr name="position" intvalue="700"/>
             </file>
-            <file name="org-puzzle-puzzlecore-actions-views-NewView.shadow">
-                <attr name="originalFile" stringvalue="Actions/Puzzle/org-puzzle-puzzlecore-actions-views-NewView.instance"/>
+            <file name="org-puzzle-puzzlecore-view-action-NewView.shadow">
+                <attr name="originalFile" stringvalue="Actions/Puzzle/org-puzzle-puzzlecore-view-action-NewView.instance"/>
                 <attr name="position" intvalue="0"/>
+            </file>
+            <file name="org-puzzle-puzzlecore-view-action-XXXAction.shadow">
+                <attr name="originalFile" stringvalue="Actions/Edit/org-puzzle-puzzlecore-view-action-XXXAction.instance"/>
+                <attr name="position" intvalue="-100"/>
             </file>
         </folder>
         <folder name="Map2DSelection">
             <attr name="position" intvalue="600"/>            
-            <file name="org-puzzle-puzzlecore-actions-views-SelectAction.instance">
+            <file name="org-puzzle-puzzlecore-view-action-SelectAction.instance">
                 <attr name="position" intvalue="100"/>
             </file>
-            <file name="org-puzzle-puzzlecore-actions-views-SelectFilterChooserAction.instance">
+            <file name="org-puzzle-puzzlecore-view-action-SelectFilterChooserAction.instance">
                 <attr name="position" intvalue="200"/>
             </file>
-            <file name="org-puzzle-puzzlecore-actions-views-SelectHandlerChooserAction.instance">
+            <file name="org-puzzle-puzzlecore-view-action-SelectHandlerChooserAction.instance">
                 <attr name="position" intvalue="300"/>
             </file>
         </folder>
         <folder name="Map2DEdition">                       
             <attr name="position" intvalue="700"/>
-            <file name="org-puzzle-puzzlecore-actions-views-EditAction.instance">
+            <file name="org-puzzle-puzzlecore-view-action-EditAction.instance">
                 <attr name="position" intvalue="100"/>
             </file>
-            <file name="org-puzzle-puzzlecore-actions-views-EditLayerChooserAction.instance">
+            <file name="org-puzzle-puzzlecore-view-action-EditLayerChooserAction.instance">
                 <attr name="position" intvalue="200"/>
             </file>
-            <file name="org-puzzle-puzzlecore-actions-views-EditHandlerChooserAction.instance">
+            <file name="org-puzzle-puzzlecore-view-action-EditHandlerChooserAction.instance">
                 <attr name="position" intvalue="300"/>
             </file>
         </folder>
@@ -154,7 +161,7 @@
             </file>
             <file name="ViewRuntimeTabAction.shadow_hidden"/>
             <file name="ViewTreeAction.shadow">
-                <attr name="originalFile" stringvalue="Actions/Window/org-puzzle-puzzlecore-gui-views-ViewTreeAction.instance"/>
+                <attr name="originalFile" stringvalue="Actions/Window/org-puzzle-puzzlecore-view-gui-ViewTreeAction.instance"/>
                 <attr name="position" intvalue="400"/>
             </file>
             <file name="org-netbeans-core-actions-GlobalPropertiesAction.shadow_hidden"/>

@@ -65,8 +65,8 @@ import org.jdesktop.swingx.JXTreeTable;
 import org.jdesktop.swingx.table.TableColumnExt;
 import org.jdesktop.swingx.treetable.DefaultMutableTreeTableNode;
 import org.jdesktop.swingx.treetable.TreeTableNode;
-import org.puzzle.puzzlecore.struct.MapGroup;
-import org.puzzle.puzzlecore.struct.MapView;
+import org.puzzle.puzzlecore.view.MapGroup;
+import org.puzzle.puzzlecore.view.MapView;
 
 /**
  *

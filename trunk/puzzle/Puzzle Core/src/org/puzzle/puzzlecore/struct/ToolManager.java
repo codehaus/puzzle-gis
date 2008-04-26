@@ -31,6 +31,7 @@ import org.geotools.gui.swing.toolbox.widgettool.clipping.ClippingTTDescriptor;
 import org.geotools.gui.swing.toolbox.widgettool.shapecreation.ShapeCreationTTDescriptor;
 import org.geotools.gui.swing.toolbox.widgettool.svg2mif.SVG2MIFTTDescriptor;
 import org.geotools.gui.swing.toolbox.widgettool.vdem2csv.VDem2CSVTTDescriptor;
+import org.openide.util.Lookup;
 import org.puzzle.puzzlecore.gtextend.widget.sldeditor.SLDEditorDescriptor;
 
 /**
@@ -43,7 +44,7 @@ public final class ToolManager {
     private JToolTree tree = null;
     private ToolTreeListener toolTreeListener = null;
 
-    private ToolManager() {
+    private ToolManager() {        
     }
 
     public JToolTree getToolTree() {

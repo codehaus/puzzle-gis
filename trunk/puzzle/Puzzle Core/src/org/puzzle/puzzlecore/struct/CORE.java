@@ -20,13 +20,6 @@
  */
 package org.puzzle.puzzlecore.struct;
 
-import java.util.ArrayList;
-import java.util.List;
-import javax.swing.event.EventListenerList;
-import org.geotools.map.DefaultMapContext;
-import org.geotools.map.MapContext;
-import org.geotools.referencing.crs.DefaultGeographicCRS;
-
 /**
  * @author johann sorel
  */
@@ -37,11 +30,6 @@ public final class CORE {
         
     }
 
-
-    public static ViewManager getViewManager(){
-        return ViewManager.getInstance();
-    }
-    
     public static ContextManager getContextManager(){
         return ContextManager.getInstance();
     }
