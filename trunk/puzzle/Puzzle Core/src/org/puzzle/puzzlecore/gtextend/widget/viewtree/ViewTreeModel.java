@@ -25,14 +25,8 @@ import java.util.Map;
 import org.geotools.map.MapContext;
 import org.jdesktop.swingx.treetable.DefaultMutableTreeTableNode;
 import org.jdesktop.swingx.treetable.DefaultTreeTableModel;
-import org.jdesktop.swingx.treetable.TreeTableNode;
-import org.puzzle.puzzlecore.struct.AbstractViewListener;
-import org.puzzle.puzzlecore.struct.CORE;
-import org.puzzle.puzzlecore.struct.GroupEvent;
-import org.puzzle.puzzlecore.struct.ViewEvent;
 import org.puzzle.puzzlecore.view.MapGroup;
 import org.puzzle.puzzlecore.view.MapView;
-import org.puzzle.puzzlecore.struct.ViewListener;
 
 /**
  *

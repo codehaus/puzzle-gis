@@ -21,47 +21,29 @@
 
 package org.puzzle.puzzlecore.gtextend.widget.sldeditor;
 
-import java.util.Map;
-import org.geotools.gui.swing.toolbox.Parameter;
-import org.geotools.gui.swing.toolbox.tooltree.ToolTreeConstants;
-import org.geotools.gui.swing.toolbox.tooltree.ToolTreePath;
-import org.geotools.gui.swing.toolbox.widgettool.WidgetTool;
-import org.geotools.gui.swing.toolbox.widgettool.WidgetToolDescriptor;
+import java.awt.Component;
+import org.puzzle.puzzlecore.swing.toolbox.tooltree.ToolTreeConstants;
+import org.puzzle.puzzlecore.tool.AbstractToolDescriptor;
 
 /**
  *
  * @author johann sorel
  */
-public class SLDEditorDescriptor implements WidgetToolDescriptor{
+public class SLDEditorDescriptor extends AbstractToolDescriptor{
 
     private final String[] path = ToolTreeConstants.getInstance().FILE.getPath();
     
     public String getTitle() {
         return "SLDEditor";
     }
-
-    public String getDescription() {
-        return "";
-    }
-
+    
+    @Override
     public String[] getPath() {
         return path;
     }
 
-    public String[] getKeyWords() {
-        return EMPTY_STRING_ARRAY;
-    }
-
-    public String[] getCategories() {
-        return EMPTY_STRING_ARRAY;
-    }
-
-    public WidgetTool createTool(Map arg0) {
-        return  new SLDEditorTool();
-    }
-
-    public Parameter[] getParametersInfo() {
-        return EMPTY_PARAMETER_ARRAY;
+    public Component getComponent() {
+        return new SLDEditorTool().getComponent();
     }
 
 }

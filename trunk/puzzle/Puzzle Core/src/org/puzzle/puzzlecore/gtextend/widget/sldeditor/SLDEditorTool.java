@@ -22,8 +22,6 @@ import javax.swing.filechooser.FileFilter;
 import org.geotools.factory.CommonFactoryFinder;
 import org.geotools.factory.GeoTools;
 import org.geotools.gui.swing.misc.filter.FileFilterFactory;
-import org.geotools.gui.swing.toolbox.widgettool.WidgetTool;
-import org.geotools.gui.swing.toolbox.widgettool.WidgetToolListener;
 import org.geotools.sld.SLDConfiguration;
 import org.geotools.styling.FeatureTypeConstraint;
 import org.geotools.styling.SLDTransformer;
@@ -34,6 +32,8 @@ import org.geotools.styling.UserLayer;
 import org.geotools.xml.Configuration;
 import org.geotools.xml.Parser;
 import org.openide.util.Exceptions;
+import org.puzzle.puzzlecore.swing.toolbox.widgettool.WidgetTool;
+import org.puzzle.puzzlecore.swing.toolbox.widgettool.WidgetToolListener;
 
 /**
  *

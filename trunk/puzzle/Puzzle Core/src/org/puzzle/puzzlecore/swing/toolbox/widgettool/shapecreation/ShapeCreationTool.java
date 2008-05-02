@@ -36,10 +36,10 @@ import org.geotools.data.shapefile.ShapefileDataStore;
 import org.geotools.data.shapefile.indexed.IndexedShapefileDataStoreFactory;
 import org.geotools.feature.SchemaException;
 import org.geotools.gui.swing.crschooser.JCRSChooser;
-import org.geotools.gui.swing.toolbox.widgettool.AbstractWidgetTool;
 import org.geotools.referencing.crs.DefaultGeographicCRS;
 import org.opengis.feature.simple.SimpleFeatureType;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
+import org.puzzle.puzzlecore.swing.toolbox.widgettool.AbstractWidgetTool;
 
 
 /**
@@ -157,55 +157,54 @@ public class ShapeCreationTool extends AbstractWidgetTool {
         jLabel2 = new javax.swing.JLabel();
         gui_jtf_crs = new javax.swing.JTextField();
 
-        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("org/geotools/gui/swing/toolbox/tools/shapecreation/Bundle"); // NOI18N
-        jLabel1.setText(bundle.getString("file")); // NOI18N
+        jLabel1.setText(org.openide.util.NbBundle.getMessage(ShapeCreationTool.class, "file")); // NOI18N
 
-        jXTitledSeparator1.setTitle(bundle.getString("shapefile_creation")); // NOI18N
+        jXTitledSeparator1.setTitle(org.openide.util.NbBundle.getMessage(ShapeCreationTool.class, "shapefile_creation")); // NOI18N
 
         gui_jtf_name.setEditable(false);
-        gui_jtf_name.setText(bundle.getString("default")); // NOI18N
+        gui_jtf_name.setText(org.openide.util.NbBundle.getMessage(ShapeCreationTool.class, "default")); // NOI18N
 
-        gui_but_create.setText(bundle.getString("create")); // NOI18N
+        gui_but_create.setText(org.openide.util.NbBundle.getMessage(ShapeCreationTool.class, "create")); // NOI18N
         gui_but_create.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 gui_but_createActionPerformed(evt);
             }
         });
 
-        gui_but_file.setText(bundle.getString("...")); // NOI18N
+        gui_but_file.setText(org.openide.util.NbBundle.getMessage(ShapeCreationTool.class, "...")); // NOI18N
         gui_but_file.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 gui_but_fileActionPerformed(evt);
             }
         });
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("attributs"))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(ShapeCreationTool.class, "attributs"))); // NOI18N
 
         gui_tab.setModel(model);
         jScrollPane1.setViewportView(gui_tab);
 
-        gui_but_add.setText(bundle.getString("add")); // NOI18N
+        gui_but_add.setText(org.openide.util.NbBundle.getMessage(ShapeCreationTool.class, "add")); // NOI18N
         gui_but_add.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 gui_but_addActionPerformed(evt);
             }
         });
 
-        gui_but_up.setText(bundle.getString("up")); // NOI18N
+        gui_but_up.setText(org.openide.util.NbBundle.getMessage(ShapeCreationTool.class, "up")); // NOI18N
         gui_but_up.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 gui_but_upActionPerformed(evt);
             }
         });
 
-        gui_but_down.setText(bundle.getString("down")); // NOI18N
+        gui_but_down.setText(org.openide.util.NbBundle.getMessage(ShapeCreationTool.class, "down")); // NOI18N
         gui_but_down.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 gui_but_downActionPerformed(evt);
             }
         });
 
-        gui_but_delete.setText(bundle.getString("delete")); // NOI18N
+        gui_but_delete.setText(org.openide.util.NbBundle.getMessage(ShapeCreationTool.class, "delete")); // NOI18N
         gui_but_delete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 gui_but_deleteActionPerformed(evt);
@@ -217,7 +216,7 @@ public class ShapeCreationTool extends AbstractWidgetTool {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel2Layout.createSequentialGroup()
-                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
+                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(gui_but_add)
@@ -239,15 +238,15 @@ public class ShapeCreationTool extends AbstractWidgetTool {
                 .add(gui_but_up)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(gui_but_down)
-                .addContainerGap(52, Short.MAX_VALUE))
-            .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
+                .addContainerGap(75, Short.MAX_VALUE))
+            .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
         );
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("geometry"))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(ShapeCreationTool.class, "geometry"))); // NOI18N
 
         grp_geom.add(gui_jrb_point);
         gui_jrb_point.setSelected(true);
-        gui_jrb_point.setText(bundle.getString("point")); // NOI18N
+        gui_jrb_point.setText(org.openide.util.NbBundle.getMessage(ShapeCreationTool.class, "point")); // NOI18N
         gui_jrb_point.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 gui_jrb_pointActionPerformed(evt);
@@ -255,7 +254,7 @@ public class ShapeCreationTool extends AbstractWidgetTool {
         });
 
         grp_geom.add(gui_jrb_multipoint);
-        gui_jrb_multipoint.setText(bundle.getString("multipoint")); // NOI18N
+        gui_jrb_multipoint.setText(org.openide.util.NbBundle.getMessage(ShapeCreationTool.class, "multipoint")); // NOI18N
         gui_jrb_multipoint.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 gui_jrb_multipointActionPerformed(evt);
@@ -263,7 +262,7 @@ public class ShapeCreationTool extends AbstractWidgetTool {
         });
 
         grp_geom.add(gui_jrb_multiline);
-        gui_jrb_multiline.setText(bundle.getString("multiline")); // NOI18N
+        gui_jrb_multiline.setText(org.openide.util.NbBundle.getMessage(ShapeCreationTool.class, "multiline")); // NOI18N
         gui_jrb_multiline.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 gui_jrb_multilineActionPerformed(evt);
@@ -271,7 +270,7 @@ public class ShapeCreationTool extends AbstractWidgetTool {
         });
 
         grp_geom.add(gui_jrb_multipolygon);
-        gui_jrb_multipolygon.setText(bundle.getString("multipolygon")); // NOI18N
+        gui_jrb_multipolygon.setText(org.openide.util.NbBundle.getMessage(ShapeCreationTool.class, "multipolygon")); // NOI18N
         gui_jrb_multipolygon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 gui_jrb_multipolygonActionPerformed(evt);
@@ -304,14 +303,14 @@ public class ShapeCreationTool extends AbstractWidgetTool {
                 .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        gui_but_crs.setText(bundle.getString("list")); // NOI18N
+        gui_but_crs.setText(org.openide.util.NbBundle.getMessage(ShapeCreationTool.class, "list")); // NOI18N
         gui_but_crs.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 gui_but_crsActionPerformed(evt);
             }
         });
 
-        jLabel2.setText(bundle.getString("crs")); // NOI18N
+        jLabel2.setText(org.openide.util.NbBundle.getMessage(ShapeCreationTool.class, "crs")); // NOI18N
 
         gui_jtf_crs.setEditable(false);
         gui_jtf_crs.setText("EPSG:4326");
@@ -323,11 +322,11 @@ public class ShapeCreationTool extends AbstractWidgetTool {
             .add(layout.createSequentialGroup()
                 .addContainerGap()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jXTitledSeparator1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 433, Short.MAX_VALUE)
+                    .add(jXTitledSeparator1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 479, Short.MAX_VALUE)
                     .add(layout.createSequentialGroup()
                         .add(jLabel1)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(gui_jtf_name, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 355, Short.MAX_VALUE)
+                        .add(gui_jtf_name, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 401, Short.MAX_VALUE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(gui_but_file))
                     .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
@@ -339,7 +338,7 @@ public class ShapeCreationTool extends AbstractWidgetTool {
                     .add(layout.createSequentialGroup()
                         .add(jLabel2)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(gui_jtf_crs, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 347, Short.MAX_VALUE)
+                        .add(gui_jtf_crs, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 393, Short.MAX_VALUE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(gui_but_crs)))
                 .addContainerGap())
@@ -363,7 +362,7 @@ public class ShapeCreationTool extends AbstractWidgetTool {
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
                     .add(layout.createSequentialGroup()
                         .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 90, Short.MAX_VALUE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 113, Short.MAX_VALUE)
                         .add(gui_but_create))
                     .add(jPanel2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())

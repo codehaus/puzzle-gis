@@ -21,40 +21,37 @@
 
 package org.puzzle.puzzlecore.swing.toolbox.widgettool.clipping;
 
-import java.util.Map;
-import java.util.ResourceBundle;
+import java.awt.Component;
+import java.util.HashMap;
+import org.openide.util.NbBundle;
+import org.puzzle.puzzlecore.swing.toolbox.tooltree.ToolTreeConstants;
+import org.puzzle.puzzlecore.tool.AbstractToolDescriptor;
 
-import org.geotools.gui.swing.toolbox.Parameter;
-import org.geotools.gui.swing.toolbox.tooltree.ToolTreeConstants;
-import org.geotools.gui.swing.toolbox.widgettool.AbstractWidgetToolDescriptor;
-import org.geotools.gui.swing.toolbox.widgettool.WidgetTool;
 
 /**
  *
  * @author johann sorel
  */
-public class ClippingTTDescriptor extends AbstractWidgetToolDescriptor{
+public class ClippingTTDescriptor extends AbstractToolDescriptor{
 
    
     private final String[] path = ToolTreeConstants.getInstance().ANALYSE_GEOMETRIE.getPath();
     
-    private String title = ResourceBundle.getBundle("org/geotools/gui/swing/toolbox/tools/clipping/Bundle").getString("clip");
+    private String title =  NbBundle.getMessage(ClippingTTDescriptor.class, "clip");
        
     
     public String getTitle() {
         return title;
     }
 
+    @Override
     public String[] getPath() {
         return path;
     }
 
-    public WidgetTool createTool(Map parameters) {
-        return new ClippingTool(parameters);
+    public Component getComponent() {
+        return new ClippingTool(new HashMap()).getComponent();
     }
 
-    public Parameter[] getParametersInfo() {
-        return EMPTY_PARAMETER_ARRAY;
-    }
 
 }

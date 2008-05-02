@@ -30,7 +30,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.ResourceBundle;
 
 import javax.swing.JFileChooser;
 
@@ -43,12 +42,6 @@ import org.geotools.data.shapefile.ShapefileDataStore;
 import org.geotools.data.shapefile.indexed.IndexedShapefileDataStoreFactory;
 import org.geotools.feature.FeatureCollection;
 import org.geotools.feature.SchemaException;
-import org.geotools.gui.swing.datachooser.DataPanel;
-import org.geotools.gui.swing.datachooser.JDataChooser;
-import org.geotools.gui.swing.datachooser.JFileDataPanel;
-import org.geotools.gui.swing.misc.Render.LayerListRenderer;
-import org.geotools.gui.swing.toolbox.process.ClipProcess;
-import org.geotools.gui.swing.toolbox.widgettool.AbstractWidgetTool;
 import org.geotools.map.MapLayer;
 import org.opengis.feature.simple.SimpleFeature;
 import org.opengis.feature.simple.SimpleFeatureType;
@@ -61,10 +54,15 @@ import com.vividsolutions.jts.geom.MultiPoint;
 import com.vividsolutions.jts.geom.MultiPolygon;
 import com.vividsolutions.jts.geom.Point;
 import com.vividsolutions.jts.geom.Polygon;
+import org.geotools.gui.swing.datachooser.DataPanel;
+import org.geotools.gui.swing.datachooser.JDataChooser;
+import org.geotools.gui.swing.datachooser.JFileDataPanel;
 import org.geotools.gui.swing.datachooser.JOracleDataPanel;
 import org.geotools.gui.swing.datachooser.JPostGISDataPanel;
-import org.geotools.gui.swing.toolbox.process.ProcessMonitor;
-import org.opengis.util.ProgressListener;
+import org.geotools.gui.swing.misc.Render.LayerListRenderer;
+import org.openide.util.NbBundle;
+import org.puzzle.puzzlecore.swing.toolbox.process.ClipProcess;
+import org.puzzle.puzzlecore.swing.toolbox.widgettool.AbstractWidgetTool;
 
 /**
  *
@@ -80,7 +78,7 @@ public class ClippingTool extends AbstractWidgetTool {
     private MapLayer clipLayer = null;
     private MapLayer clipExternLayer = null;
     private Map<String, String> attlink = null;
-    private String error = ResourceBundle.getBundle("org/geotools/gui/swing/toolbox/tools/clipping/Bundle").getString("error");
+    private String error = NbBundle.getMessage(ClippingTool.class, "error");
 
     /** 
      * Creates new form ClippingTool 
@@ -267,43 +265,42 @@ public class ClippingTool extends AbstractWidgetTool {
         gui_jtf_clipexternal = new javax.swing.JTextField();
         gui_progress = new javax.swing.JProgressBar();
 
-        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("org/geotools/gui/swing/toolbox/tools/clipping/Bundle"); // NOI18N
-        jXTitledSeparator1.setTitle(bundle.getString("clip")); // NOI18N
+        jXTitledSeparator1.setTitle(org.openide.util.NbBundle.getMessage(ClippingTool.class, "clip")); // NOI18N
 
-        jLabel1.setText(bundle.getString("input_layer")); // NOI18N
+        jLabel1.setText(org.openide.util.NbBundle.getMessage(ClippingTool.class, "input_layer")); // NOI18N
 
         gui_jcb_inlayer.setModel(inModel);
 
-        gui_but_infile.setText(bundle.getString("...")); // NOI18N
+        gui_but_infile.setText(org.openide.util.NbBundle.getMessage(ClippingTool.class, "...")); // NOI18N
         gui_but_infile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 gui_but_infileActionPerformed(evt);
             }
         });
 
-        jLabel2.setText(bundle.getString("clip_geom")); // NOI18N
+        jLabel2.setText(org.openide.util.NbBundle.getMessage(ClippingTool.class, "clip_geom")); // NOI18N
 
         gui_jcb_cliplayer.setModel(clipModel);
 
-        gui_but_clipfile.setText(bundle.getString("...")); // NOI18N
+        gui_but_clipfile.setText(org.openide.util.NbBundle.getMessage(ClippingTool.class, "...")); // NOI18N
         gui_but_clipfile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 gui_but_clipfileActionPerformed(evt);
             }
         });
 
-        jLabel3.setText(bundle.getString("output_layer")); // NOI18N
+        jLabel3.setText(org.openide.util.NbBundle.getMessage(ClippingTool.class, "output_layer")); // NOI18N
 
         gui_jtf_outfile.setEditable(false);
 
-        gui_but_outfile.setText(bundle.getString("...")); // NOI18N
+        gui_but_outfile.setText(org.openide.util.NbBundle.getMessage(ClippingTool.class, "...")); // NOI18N
         gui_but_outfile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 gui_but_outfileActionPerformed(evt);
             }
         });
 
-        gui_ok.setText(bundle.getString("ok")); // NOI18N
+        gui_ok.setText(org.openide.util.NbBundle.getMessage(ClippingTool.class, "ok")); // NOI18N
         gui_ok.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 gui_okActionPerformed(evt);
@@ -324,30 +321,30 @@ public class ClippingTool extends AbstractWidgetTool {
             .add(layout.createSequentialGroup()
                 .addContainerGap()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jXTitledSeparator1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 372, Short.MAX_VALUE)
+                    .add(jXTitledSeparator1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 436, Short.MAX_VALUE)
                     .add(layout.createSequentialGroup()
                         .add(jLabel1)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(gui_jcb_inlayer, 0, 308, Short.MAX_VALUE))
+                        .add(gui_jcb_inlayer, 0, 372, Short.MAX_VALUE))
                     .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                        .add(gui_progress, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)
+                        .add(gui_progress, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 383, Short.MAX_VALUE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(gui_ok))
                     .add(layout.createSequentialGroup()
-                        .add(gui_jtf_inexternal, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 321, Short.MAX_VALUE)
+                        .add(gui_jtf_inexternal, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(gui_but_infile))
                     .add(layout.createSequentialGroup()
                         .add(jLabel2)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(gui_jcb_cliplayer, 0, 268, Short.MAX_VALUE))
+                        .add(gui_jcb_cliplayer, 0, 332, Short.MAX_VALUE))
                     .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                        .add(gui_jtf_clipexternal, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 321, Short.MAX_VALUE)
+                        .add(gui_jtf_clipexternal, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(gui_but_clipfile))
                     .add(jLabel3)
                     .add(layout.createSequentialGroup()
-                        .add(gui_jtf_outfile, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 321, Short.MAX_VALUE)
+                        .add(gui_jtf_outfile, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(gui_but_outfile)))
                 .addContainerGap())
@@ -379,9 +376,9 @@ public class ClippingTool extends AbstractWidgetTool {
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(gui_but_outfile)
                     .add(gui_jtf_outfile, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 47, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 43, Short.MAX_VALUE)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(gui_progress, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+                    .add(gui_progress, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
                     .add(org.jdesktop.layout.GroupLayout.TRAILING, gui_ok))
                 .addContainerGap())
         );

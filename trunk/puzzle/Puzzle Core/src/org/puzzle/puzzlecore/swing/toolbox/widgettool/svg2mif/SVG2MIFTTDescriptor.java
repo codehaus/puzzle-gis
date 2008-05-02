@@ -21,22 +21,20 @@
 
 package org.puzzle.puzzlecore.swing.toolbox.widgettool.svg2mif;
 
-import java.util.Map;
-import java.util.ResourceBundle;
+import java.awt.Component;
+import org.openide.util.NbBundle;
+import org.puzzle.puzzlecore.swing.toolbox.tooltree.ToolTreeConstants;
+import org.puzzle.puzzlecore.tool.AbstractToolDescriptor;
 
-import org.geotools.gui.swing.toolbox.Parameter;
-import org.geotools.gui.swing.toolbox.tooltree.ToolTreeConstants;
-import org.geotools.gui.swing.toolbox.widgettool.AbstractWidgetToolDescriptor;
-import org.geotools.gui.swing.toolbox.widgettool.WidgetTool;
 
 /**
  *
  * @author Laurent Jegou
  */
-public class SVG2MIFTTDescriptor extends AbstractWidgetToolDescriptor{
+public class SVG2MIFTTDescriptor extends AbstractToolDescriptor{
 
     private final String[] path = ToolTreeConstants.getInstance().FILE_CONVERT.getPath();    
-    String title = ResourceBundle.getBundle("org/geotools/gui/swing/toolbox/tools/svg2mif/Bundle").getString("title");
+    String title = NbBundle.getMessage(SVG2MIFTTDescriptor.class,"title");
     
     public String getTitle(){
         return "SVG > MIF";
@@ -47,13 +45,8 @@ public class SVG2MIFTTDescriptor extends AbstractWidgetToolDescriptor{
         return path;
     }
 
-    public WidgetTool createTool(Map parameters) {
-        return new SVG2MIFTool();
-    }
-
-    @Override
-    public Parameter[] getParametersInfo() {
-        return EMPTY_PARAMETER_ARRAY;
+    public Component getComponent() {
+        return new SVG2MIFTool().getComponent();
     }
 
 }

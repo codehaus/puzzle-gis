@@ -27,8 +27,8 @@ import java.awt.ComponentOrientation;
 import javax.swing.JComponent;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
+import org.puzzle.puzzlecore.tool.ToolDescriptor;
 
-import org.geotools.gui.swing.toolbox.widgettool.WidgetToolDescriptor;
 
 /**
  * 
@@ -48,22 +48,20 @@ public class JToolTree extends JComponent{
         pane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         pane.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
         
-        
         setLayout(new BorderLayout());
         add(BorderLayout.CENTER,pane);    
         
-        
     }
     
-    public void addTool(WidgetToolDescriptor tool){
+    public void addTool(ToolDescriptor tool){
         treetable.addTool(tool);
     }
     
-    public void removeTool(WidgetToolDescriptor tool){
+    public void removeTool(ToolDescriptor tool){
         treetable.removeTool(tool);
     }
     
-    public WidgetToolDescriptor[] getTreeToolDescriptors(){
+    public ToolDescriptor[] getTreeToolDescriptors(){
         return treetable.getTreeToolDescriptors();
     }
     

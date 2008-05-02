@@ -30,18 +30,18 @@ import java.util.regex.Pattern;
 import javax.swing.JFileChooser;
 
 import org.geotools.gui.swing.misc.filter.FileFilterFactory;
-import org.geotools.gui.swing.toolbox.widgettool.AbstractWidgetTool;
-import org.geotools.gui.swing.toolbox.widgettool.svg2mif.element.DCircle;
-import org.geotools.gui.swing.toolbox.widgettool.svg2mif.element.DLine;
-import org.geotools.gui.swing.toolbox.widgettool.svg2mif.element.DPoint;
-import org.geotools.gui.swing.toolbox.widgettool.svg2mif.element.DPolygon;
-import org.geotools.gui.swing.toolbox.widgettool.svg2mif.element.DRect;
-import org.geotools.gui.swing.toolbox.widgettool.svg2mif.element.FenetreAide;
-import org.geotools.gui.swing.toolbox.widgettool.svg2mif.element.mifmidLayer;
-import org.geotools.gui.swing.toolbox.widgettool.svg2mif.element.polyline;
-import org.geotools.gui.swing.toolbox.widgettool.svg2mif.element.polylineSection;
-import org.geotools.gui.swing.toolbox.widgettool.svg2mif.element.xml.Element;
-import org.geotools.gui.swing.toolbox.widgettool.svg2mif.element.xml.Parser;
+import org.puzzle.puzzlecore.swing.toolbox.widgettool.AbstractWidgetTool;
+import org.puzzle.puzzlecore.swing.toolbox.widgettool.svg2mif.element.DCircle;
+import org.puzzle.puzzlecore.swing.toolbox.widgettool.svg2mif.element.DLine;
+import org.puzzle.puzzlecore.swing.toolbox.widgettool.svg2mif.element.DPoint;
+import org.puzzle.puzzlecore.swing.toolbox.widgettool.svg2mif.element.DPolygon;
+import org.puzzle.puzzlecore.swing.toolbox.widgettool.svg2mif.element.DRect;
+import org.puzzle.puzzlecore.swing.toolbox.widgettool.svg2mif.element.FenetreAide;
+import org.puzzle.puzzlecore.swing.toolbox.widgettool.svg2mif.element.mifmidLayer;
+import org.puzzle.puzzlecore.swing.toolbox.widgettool.svg2mif.element.polyline;
+import org.puzzle.puzzlecore.swing.toolbox.widgettool.svg2mif.element.polylineSection;
+import org.puzzle.puzzlecore.swing.toolbox.widgettool.svg2mif.element.xml.Element;
+import org.puzzle.puzzlecore.swing.toolbox.widgettool.svg2mif.element.xml.Parser;
 
 /**
  *
@@ -84,10 +84,9 @@ public class SVG2MIFTool extends AbstractWidgetTool {
         jButton1 = new javax.swing.JButton();
         jXTitledSeparator1 = new org.jdesktop.swingx.JXTitledSeparator();
 
-        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("org/geotools/gui/swing/toolbox/tools/svg2mif/Bundle"); // NOI18N
-        jPl_fichier_RasterConvUnFichier.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("file"))); // NOI18N
+        jPl_fichier_RasterConvUnFichier.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(SVG2MIFTool.class, "file"))); // NOI18N
 
-        jLabel1.setText(bundle.getString("input_file")); // NOI18N
+        jLabel1.setText(org.openide.util.NbBundle.getMessage(SVG2MIFTool.class, "input_file")); // NOI18N
 
         jBn_fichier_a_conv.setText("...");
         jBn_fichier_a_conv.setPreferredSize(new java.awt.Dimension(45, 20));
@@ -103,7 +102,7 @@ public class SVG2MIFTool extends AbstractWidgetTool {
             }
         });
 
-        jLabel5.setText(bundle.getString("output_file")); // NOI18N
+        jLabel5.setText(org.openide.util.NbBundle.getBundle(SVG2MIFTool.class).getString("output_file")); // NOI18N
 
         jTF_fichier_en_sortie.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -131,12 +130,12 @@ public class SVG2MIFTool extends AbstractWidgetTool {
             .add(jPl_fichier_RasterConvUnFichierLayout.createSequentialGroup()
                 .addContainerGap()
                 .add(jPl_fichier_RasterConvUnFichierLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jLabel5, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
-                    .add(jLabel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
+                    .add(jLabel5, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
+                    .add(jLabel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
                     .add(org.jdesktop.layout.GroupLayout.TRAILING, jPl_fichier_RasterConvUnFichierLayout.createSequentialGroup()
                         .add(jPl_fichier_RasterConvUnFichierLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                            .add(jTF_fichier_en_sortie, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
-                            .add(Jtf_Fichier_a_convertir, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE))
+                            .add(jTF_fichier_en_sortie, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)
+                            .add(Jtf_Fichier_a_convertir, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE))
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(jPl_fichier_RasterConvUnFichierLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(org.jdesktop.layout.GroupLayout.TRAILING, jBn_fichier_a_conv, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
@@ -160,7 +159,7 @@ public class SVG2MIFTool extends AbstractWidgetTool {
                 .addContainerGap())
         );
 
-        jPl_Processus_RasterUnFichier.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("process"))); // NOI18N
+        jPl_Processus_RasterUnFichier.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(SVG2MIFTool.class, "process"))); // NOI18N
 
         jtaOperations.setColumns(20);
         jtaOperations.setRows(5);
@@ -170,33 +169,30 @@ public class SVG2MIFTool extends AbstractWidgetTool {
         jPl_Processus_RasterUnFichier.setLayout(jPl_Processus_RasterUnFichierLayout);
         jPl_Processus_RasterUnFichierLayout.setHorizontalGroup(
             jPl_Processus_RasterUnFichierLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
+            .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
         );
         jPl_Processus_RasterUnFichierLayout.setVerticalGroup(
             jPl_Processus_RasterUnFichierLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(jScrollPane1)
         );
 
-        but_demarrer.setText(bundle.getString("convert")); // NOI18N
+        but_demarrer.setText(org.openide.util.NbBundle.getMessage(SVG2MIFTool.class, "convert")); // NOI18N
         but_demarrer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 but_demarreractionDemarrer(evt);
             }
         });
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(bundle.getString("config"))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(SVG2MIFTool.class, "config"))); // NOI18N
 
         jcbTCPoly.setText("Tout en polygone"); // NOI18N
         jcbTCPoly.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
-        jcbTCPoly.setMargin(new java.awt.Insets(0, 0, 0, 0));
 
         jcbSPoly.setText("Que les polygones"); // NOI18N
         jcbSPoly.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
-        jcbSPoly.setMargin(new java.awt.Insets(0, 0, 0, 0));
 
         jcbInversion.setText("Inversion coordonnées verticales");
         jcbInversion.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
-        jcbInversion.setMargin(new java.awt.Insets(0, 0, 0, 0));
 
         org.jdesktop.layout.GroupLayout jPanel2Layout = new org.jdesktop.layout.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -208,7 +204,7 @@ public class SVG2MIFTool extends AbstractWidgetTool {
                     .add(jcbTCPoly)
                     .add(jcbSPoly)
                     .add(jcbInversion))
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addContainerGap(103, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -221,14 +217,14 @@ public class SVG2MIFTool extends AbstractWidgetTool {
                 .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jButton1.setText(bundle.getString("help")); // NOI18N
+        jButton1.setText(org.openide.util.NbBundle.getMessage(SVG2MIFTool.class, "help")); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 afficherAide(evt);
             }
         });
 
-        jXTitledSeparator1.setTitle(bundle.getString("title")); // NOI18N
+        jXTitledSeparator1.setTitle(org.openide.util.NbBundle.getMessage(SVG2MIFTool.class, "title")); // NOI18N
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
@@ -242,7 +238,7 @@ public class SVG2MIFTool extends AbstractWidgetTool {
                         .add(jButton1)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(but_demarrer))
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, jXTitledSeparator1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, jXTitledSeparator1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE)
                     .add(org.jdesktop.layout.GroupLayout.LEADING, jPl_fichier_RasterConvUnFichier, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .add(org.jdesktop.layout.GroupLayout.LEADING, jPanel2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())

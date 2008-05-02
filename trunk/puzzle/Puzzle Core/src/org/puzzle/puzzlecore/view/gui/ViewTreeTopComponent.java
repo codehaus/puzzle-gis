@@ -20,7 +20,6 @@
  */
 package org.puzzle.puzzlecore.view.gui;
 
-import java.beans.PropertyEditor;
 import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
@@ -36,6 +35,7 @@ import org.openide.util.Lookup;
 import org.openide.util.LookupEvent;
 import org.openide.util.LookupListener;
 import org.openide.util.NbBundle;
+import org.openide.util.Utilities;
 import org.openide.windows.TopComponent;
 import org.openide.windows.WindowManager;
 import org.puzzle.puzzlecore.view.MapGroup;
@@ -48,7 +48,9 @@ import org.puzzle.puzzlecore.view.ViewService;
  */
 final class ViewTreeTopComponent extends TopComponent implements LookupListener, ExplorerManager.Provider {
 
-//    private JViewTree tree = null;
+    
+    static final String ICON_PATH = "org/puzzle/puzzlecore/view/gui/background.png";
+    
     private Lookup.Result result = null;
     private final ExplorerManager mgr = new ExplorerManager();
     private static ViewTreeTopComponent instance;
@@ -59,6 +61,7 @@ final class ViewTreeTopComponent extends TopComponent implements LookupListener,
         initComponents();
         setName(NbBundle.getMessage(ViewTreeTopComponent.class, "CTL_ViewTreeTopComponent"));
         setToolTipText(NbBundle.getMessage(ViewTreeTopComponent.class, "HINT_ViewTreeTopComponent"));
+        setIcon(Utilities.loadImage(ICON_PATH, true));
         
         Property propTL = new PropertySupport("translationLink",boolean.class,"T","TranslationLink",true,true) {
 

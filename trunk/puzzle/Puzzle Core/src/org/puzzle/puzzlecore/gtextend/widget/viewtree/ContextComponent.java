@@ -35,7 +35,6 @@ import javax.swing.table.TableCellRenderer;
 import org.geotools.gui.swing.contexttree.renderer.RenderAndEditComponent;
 import org.geotools.map.MapContext;
 import org.geotools.map.MapLayer;
-import org.puzzle.puzzlecore.struct.CORE;
 
 /**
  *
@@ -85,10 +84,10 @@ final class ContextComponent extends RenderAndEditComponent implements TableCell
         if (obj instanceof MapContext) {
             box.removeAllItems();
             
-            MapContext[] contexts = CORE.getContextManager().getContexts();
-            for(MapContext context : contexts){
-                box.addItem(context);
-            }
+//            MapContext[] contexts = CORE.getContextManager().getContexts();
+//            for(MapContext context : contexts){
+//                box.addItem(context);
+//            }
 
             box.setSelectedItem(obj);
             add(box);

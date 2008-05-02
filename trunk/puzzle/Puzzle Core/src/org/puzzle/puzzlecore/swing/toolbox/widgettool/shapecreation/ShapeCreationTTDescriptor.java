@@ -21,24 +21,22 @@
 
 package org.puzzle.puzzlecore.swing.toolbox.widgettool.shapecreation;
 
-import java.util.Map;
-import java.util.ResourceBundle;
+import java.awt.Component;
+import org.openide.util.NbBundle;
+import org.puzzle.puzzlecore.swing.toolbox.tooltree.ToolTreeConstants;
+import org.puzzle.puzzlecore.tool.AbstractToolDescriptor;
 
-import org.geotools.gui.swing.toolbox.Parameter;
-import org.geotools.gui.swing.toolbox.tooltree.ToolTreeConstants;
-import org.geotools.gui.swing.toolbox.widgettool.AbstractWidgetToolDescriptor;
-import org.geotools.gui.swing.toolbox.widgettool.WidgetTool;
 
 /**
  *
  * @author johann sorel
  */
-public class ShapeCreationTTDescriptor extends AbstractWidgetToolDescriptor{
+public class ShapeCreationTTDescriptor extends AbstractToolDescriptor{
 
    
     private final String[] path = ToolTreeConstants.getInstance().FILE_CREATE.getPath();
     
-    private String title = ResourceBundle.getBundle("org/geotools/gui/swing/toolbox/tools/shapecreation/Bundle").getString("shapefile_creation");
+    private String title = NbBundle.getMessage(ShapeCreationTTDescriptor.class, "shapefile_creation");
        
     
     public String getTitle() {
@@ -50,13 +48,8 @@ public class ShapeCreationTTDescriptor extends AbstractWidgetToolDescriptor{
         return path;
     }
 
-    public WidgetTool createTool(Map parameters) {
-        return new ShapeCreationTool();
-    }
-
-    @Override
-    public Parameter[] getParametersInfo() {
-        return EMPTY_PARAMETER_ARRAY;
+    public Component getComponent() {
+        return new ShapeCreationTool().getComponent();
     }
 
 }
