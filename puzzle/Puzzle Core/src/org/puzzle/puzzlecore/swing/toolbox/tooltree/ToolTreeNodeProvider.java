@@ -28,9 +28,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 import org.geotools.gui.swing.icon.IconBundle;
-import org.geotools.gui.swing.toolbox.widgettool.WidgetToolDescriptor;
 import org.jdesktop.swingx.renderer.CellContext;
 import org.jdesktop.swingx.renderer.ComponentProvider;
+import org.puzzle.puzzlecore.tool.ToolDescriptor;
 
 
 /**
@@ -69,7 +69,7 @@ public final class ToolTreeNodeProvider extends ComponentProvider<JLabel> {
         Object node = arg0.getValue();
         if(node instanceof ToolTreeNode){
             ToolTreeNode nod  = (ToolTreeNode) node;
-            WidgetToolDescriptor tool = (WidgetToolDescriptor)nod.getUserObject();            
+            ToolDescriptor tool = (ToolDescriptor)nod.getUserObject();            
             rendererComponent.setFont(new Font("Arial",Font.PLAIN,9));            
             rendererComponent.setIcon(ICON_TOOL);                        
             rendererComponent.setText( tool.getTitle() );

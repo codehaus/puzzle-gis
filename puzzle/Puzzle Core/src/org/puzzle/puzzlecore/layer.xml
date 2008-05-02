@@ -16,10 +16,10 @@
     <attr name="Menu\Window\org-netbeans-core-windows-actions-UndockAction.shadow\position" intvalue="1100"/>
     <folder name="Actions">
         <folder name="Puzzle">
-            <file name="org-puzzle-puzzlecore-actions-newcontext-NewContextAction.instance"/>
-            <file name="org-puzzle-puzzlecore-actions-addlayer-AddDBLayerAction.instance"/>
-            <file name="org-puzzle-puzzlecore-actions-addlayer-AddFileLayerAction.instance"/>
-            <file name="org-puzzle-puzzlecore-actions-addlayer-AddWebLayerAction.instance"/>
+            <file name="org-puzzle-puzzlecore-context-action-newcontext-NewContextAction.instance"/>
+            <file name="org-puzzle-puzzlecore-context-action-addlayer-AddDBLayerAction.instance"/>
+            <file name="org-puzzle-puzzlecore-context-action-addlayer-AddFileLayerAction.instance"/>
+            <file name="org-puzzle-puzzlecore-context-action-addlayer-AddWebLayerAction.instance"/>
             <file name="org-puzzle-puzzlecore-view-action-NavRefreshAction.instance"/>
             <file name="org-puzzle-puzzlecore-view-action-NavPreviousAreaAction.instance"/>
             <file name="org-puzzle-puzzlecore-view-action-NavNextAreaAction.instance"/>
@@ -36,32 +36,35 @@
             <file name="org-puzzle-puzzlecore-view-action-EditHandlerChooserAction.instance"/>
         </folder>
         <folder name="Window">
-            <file name="org-puzzle-puzzlecore-gui-contexttree-ContextTreeAction.instance"/>
-            <file name="org-puzzle-puzzlecore-gui-minimap-MiniMapAction.instance"/>
-            <file name="org-puzzle-puzzlecore-gui-toolbox-ToolTreeAction.instance"/>
+            <file name="org-puzzle-puzzlecore-context-gui-contexttree-ContextTreeAction.instance"/>
+            <file name="org-puzzle-puzzlecore-view-gui-minimap-MiniMapAction.instance"/>
+            <file name="org-puzzle-puzzlecore-tool-gui-toolbox-ToolTreeAction.instance"/>
             <file name="org-puzzle-puzzlecore-view-gui-ViewTreeAction.instance"/>
         </folder>
     </folder>
     <folder name="Toolbars">
         <folder name="Context">
             <attr name="position" intvalue="400"/>
-            <file name="org-puzzle-puzzlecore-actions-newcontext-NewContextAction.instance">
+            <file name="org-puzzle-puzzlecore-context-action-newcontext-NewContextAction.instance">
                 <attr name="position" intvalue="100"/>
             </file>
-            <file name="org-puzzle-puzzlecore-actions-addlayer-AddFileLayerAction.instance">
+            <file name="org-puzzle-puzzlecore-context-action-addlayer-AddFileLayerAction.instance">
                 <attr name="position" intvalue="200"/>
             </file>
-            <file name="org-puzzle-puzzlecore-actions-addlayer-AddDBLayerAction.instance">
+            <file name="org-puzzle-puzzlecore-context-action-addlayer-AddDBLayerAction.instance">
                 <attr name="position" intvalue="300"/>
             </file>
-            <file name="org-puzzle-puzzlecore-actions-addlayer-AddWebLayerAction.instance">
+            <file name="org-puzzle-puzzlecore-context-action-addlayer-AddWebLayerAction.instance">
                 <attr name="position" intvalue="400"/>
             </file>            
         </folder>
         <file name="Edit_hidden"/>
         <file name="File_hidden"/>
-        <folder name="Map2DNavigation">            
+        <!--<folder name="Map2DNavigation">            
             <attr name="position" intvalue="500"/>
+            <file name="org-puzzle-puzzlecore-view-action-NewView.instance">
+                <attr name="position" intvalue="50"/>
+            </file>
             <file name="org-puzzle-puzzlecore-view-action-NavRefreshAction.instance">
                 <attr name="position" intvalue="100"/>
             </file>
@@ -82,10 +85,6 @@
             </file>
             <file name="org-puzzle-puzzlecore-view-action-NavPanAction.instance">
                 <attr name="position" intvalue="700"/>
-            </file>
-            <file name="org-puzzle-puzzlecore-view-action-NewView.shadow">
-                <attr name="originalFile" stringvalue="Actions/Puzzle/org-puzzle-puzzlecore-view-action-NewView.instance"/>
-                <attr name="position" intvalue="0"/>
             </file>
             </folder>
         <folder name="Map2DSelection">
@@ -111,7 +110,7 @@
             <file name="org-puzzle-puzzlecore-view-action-EditHandlerChooserAction.instance">
                 <attr name="position" intvalue="300"/>
             </file>
-        </folder>
+        </folder>-->
     </folder>
     <folder name="Menu">
         <file name="Edit_hidden"/>
@@ -139,17 +138,17 @@
         <folder name="Window">
             <file name="CloneDocumentAction.shadow_hidden"/>
             <file name="ContextTreeAction.shadow">
-                <attr name="originalFile" stringvalue="Actions/Window/org-puzzle-puzzlecore-gui-contexttree-ContextTreeAction.instance"/>
+                <attr name="originalFile" stringvalue="Actions/Window/org-puzzle-puzzlecore-context-gui-contexttree-ContextTreeAction.instance"/>
                 <attr name="position" intvalue="100"/>
             </file>
             <file name="MiniMapAction.shadow">
-                <attr name="originalFile" stringvalue="Actions/Window/org-puzzle-puzzlecore-gui-minimap-MiniMapAction.instance"/>
+                <attr name="originalFile" stringvalue="Actions/Window/org-puzzle-puzzlecore-view-gui-minimap-MiniMapAction.instance"/>
                 <attr name="position" intvalue="200"/>
             </file>
             <file name="Output_hidden"/>
             <file name="SwitchToRecentDocumentAction.shadow_hidden"/>
             <file name="ToolTreeAction.shadow">
-                <attr name="originalFile" stringvalue="Actions/Window/org-puzzle-puzzlecore-gui-toolbox-ToolTreeAction.instance"/>
+                <attr name="originalFile" stringvalue="Actions/Window/org-puzzle-puzzlecore-tool-gui-toolbox-ToolTreeAction.instance"/>
                 <attr name="position" intvalue="300"/>
             </file>
             <file name="ViewRuntimeTabAction.shadow_hidden"/>

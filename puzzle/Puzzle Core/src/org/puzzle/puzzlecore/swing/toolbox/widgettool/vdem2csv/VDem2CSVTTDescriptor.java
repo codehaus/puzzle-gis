@@ -21,42 +21,35 @@
 
 package org.puzzle.puzzlecore.swing.toolbox.widgettool.vdem2csv;
 
-import java.util.Map;
-import java.util.ResourceBundle;
+import java.awt.Component;
+import org.openide.util.NbBundle;
+import org.puzzle.puzzlecore.swing.toolbox.tooltree.ToolTreeConstants;
+import org.puzzle.puzzlecore.tool.AbstractToolDescriptor;
 
-import org.geotools.gui.swing.toolbox.Parameter;
-import org.geotools.gui.swing.toolbox.tooltree.ToolTreeConstants;
-import org.geotools.gui.swing.toolbox.widgettool.AbstractWidgetToolDescriptor;
-import org.geotools.gui.swing.toolbox.widgettool.WidgetTool;
 
 /**
  *
  * @author johann Sorel
  */
-public class VDem2CSVTTDescriptor extends AbstractWidgetToolDescriptor{
+public class VDem2CSVTTDescriptor extends AbstractToolDescriptor{
 
     private final String[] path = ToolTreeConstants.getInstance().FILE_CONVERT.getPath();
-    String title = ResourceBundle.getBundle("org/geotools/gui/swing/toolbox/tools/vdem2csv/Bundle").getString("title");
+    String title = NbBundle.getMessage(VDem2CSVTTDescriptor.class, "title");
     
     
     public String getTitle(){
         return "VDem > CSV";
     }
 
-
     @Override
     public String[] getPath() {
         return path;
     }
 
-    public WidgetTool createTool(Map parameters) {        
-        return new VDem2CSVTool();
+    public Component getComponent() {
+        return new VDem2CSVTool().getComponent();
     }
 
-    @Override
-    public Parameter[] getParametersInfo() {
-        return EMPTY_PARAMETER_ARRAY;
-    }
 
 
 }

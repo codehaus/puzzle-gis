@@ -23,14 +23,14 @@
 package org.puzzle.puzzlecore.swing.toolbox.tooltree;
 
 import java.util.EventListener;
+import org.puzzle.puzzlecore.tool.ToolDescriptor;
 
-import org.geotools.gui.swing.toolbox.widgettool.WidgetToolDescriptor;
 
 /**
  * @author johann sorel
  */
 public interface ToolTreeListener extends EventListener{
 
-    public void treeToolActivated(WidgetToolDescriptor tool);
+    public void treeToolActivated(ToolDescriptor tool);
     
 }

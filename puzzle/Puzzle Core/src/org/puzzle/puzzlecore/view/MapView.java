@@ -92,9 +92,6 @@ public class MapView extends TopComponent {
         return PERSISTENCE_NEVER;
     }
 
-    
-    
-    
     public boolean isScaleLink() {
         return scaleLink;
     }

@@ -23,7 +23,7 @@ package org.puzzle.puzzlecore.swing.toolbox.tooltree;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ResourceBundle;
+import org.openide.util.NbBundle;
 
 
 /**
@@ -32,13 +32,12 @@ import java.util.ResourceBundle;
  */
 public class ToolTreePath {
 
-    private static final ResourceBundle BUNDLE = ResourceBundle.getBundle("org/geotools/gui/swing/toolbox/tooltree/Bundle");
     private static final String[] EMPTY_STRING_ARRAY = {};
     
     private final List<String> paths = new ArrayList<String>();
     
     ToolTreePath(ToolTreePath father, String i18nKey){
-        String myPath = BUNDLE.getString(i18nKey);
+        String myPath = NbBundle.getMessage(ToolTreePath.class, i18nKey);
         
         if(father != null){
             paths.addAll(father.getInerPath());

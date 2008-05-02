@@ -35,7 +35,7 @@ public class ViewTreeAction extends AbstractAction {
 
     public ViewTreeAction() {
         super(NbBundle.getMessage(ViewTreeAction.class, "CTL_ViewTreeAction"));
-//        putValue(SMALL_ICON, new ImageIcon(Utilities.loadImage(ViewTreeTopComponent.ICON_PATH, true)));
+        putValue(SMALL_ICON, new ImageIcon(Utilities.loadImage(ViewTreeTopComponent.ICON_PATH, true)));
     }
 
     public void actionPerformed(ActionEvent evt) {
