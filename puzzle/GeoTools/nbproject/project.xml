@@ -23,490 +23,8 @@
                     </run-dependency>
                 </dependency>
             </module-dependencies>
-            <class-path-extension>
-                <runtime-relative-path>ext/gt2-xml-2.5-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt2-xml-2.5-SNAPSHOT.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gt2-directory-2.5-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt2-directory-2.5-SNAPSHOT.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/jaxb-libs-1.3.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/jaxb-libs-1.3.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/jai_core-1.1.3.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/jai_core-1.1.3.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gt2-postgis-versioned-2.5-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt2-postgis-versioned-2.5-SNAPSHOT.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/spatialdbbox-1.0-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/spatialdbbox-1.0-SNAPSHOT.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/common-2.2.1.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/common-2.2.1.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gt2-xml-core-2.5-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt2-xml-core-2.5-SNAPSHOT.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/batik-svggen-1.6.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/batik-svggen-1.6.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gt2-jts-wrapper-2.5-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt2-jts-wrapper-2.5-SNAPSHOT.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/xml-apis-1.3.03.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/xml-apis-1.3.03.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gt2-repository-2.5-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt2-repository-2.5-SNAPSHOT.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/ows-1.0.0.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/ows-1.0.0.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/ows11-1.1.0.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/ows11-1.1.0.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gt2-postgis-2.5-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt2-postgis-2.5-SNAPSHOT.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gt2-coverageio-netcdf-2.5-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt2-coverageio-netcdf-2.5-SNAPSHOT.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gt2-sde-dummy-2.5-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt2-sde-dummy-2.5-SNAPSHOT.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/velocity-1.4.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/velocity-1.4.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gt2-imagepyramid-2.5-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt2-imagepyramid-2.5-SNAPSHOT.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/wfs-1.1.0.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/wfs-1.1.0.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gt2-api-2.5-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt2-api-2.5-SNAPSHOT.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/jai_imageio-1.1.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/jai_imageio-1.1.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/bufr-1.1.00.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/bufr-1.1.00.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gt2-graph-2.5-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt2-graph-2.5-SNAPSHOT.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gt2-gml-2.5-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt2-gml-2.5-SNAPSHOT.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gt2-coverage-2.5-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt2-coverage-2.5-SNAPSHOT.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/vecmath-1.3.1.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/vecmath-1.3.1.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/slf4j-api-1.4.0.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/slf4j-api-1.4.0.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gt2-jdbc-2.5-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt2-jdbc-2.5-SNAPSHOT.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gt2-geometry-2.5-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt2-geometry-2.5-SNAPSHOT.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gt2-xml-ows-2.5-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt2-xml-ows-2.5-SNAPSHOT.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/jaxb-api-1.3.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/jaxb-api-1.3.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gt2-render-2.5-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt2-render-2.5-SNAPSHOT.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gt2-db2-2.5-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt2-db2-2.5-SNAPSHOT.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gt2-go-2.5-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt2-go-2.5-SNAPSHOT.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gt2-imagemosaic-2.5-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt2-imagemosaic-2.5-SNAPSHOT.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/jsqlparser-0.3.14.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/jsqlparser-0.3.14.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gt2-xml-sld-2.5-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt2-xml-sld-2.5-SNAPSHOT.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gt2-xml-wfs-2.5-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt2-xml-wfs-2.5-SNAPSHOT.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/imageio-ext-arcgrid-1.0-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/imageio-ext-arcgrid-1.0-SNAPSHOT.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/batik-parser-1.6.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/batik-parser-1.6.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/slf4j-jdk14-1.4.0.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/slf4j-jdk14-1.4.0.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/batik-gvt-1.6.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/batik-gvt-1.6.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gt2-xml-gml2-2.5-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt2-xml-gml2-2.5-SNAPSHOT.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/batik-ext-1.6.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/batik-ext-1.6.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gt2-legacy-2.5-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt2-legacy-2.5-SNAPSHOT.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gt2-svgsupport-2.5-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt2-svgsupport-2.5-SNAPSHOT.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gt2-epsg-hsql-2.5-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt2-epsg-hsql-2.5-SNAPSHOT.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gt2-image-2.5-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt2-image-2.5-SNAPSHOT.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gt2-wfs-2.5-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt2-wfs-2.5-SNAPSHOT.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gt2-mysql-2.5-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt2-mysql-2.5-SNAPSHOT.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gt2-metadata-2.5-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt2-metadata-2.5-SNAPSHOT.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/batik-dom-1.6.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/batik-dom-1.6.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gt2-geotiff-2.5-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt2-geotiff-2.5-SNAPSHOT.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gt2-h2-2.5-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt2-h2-2.5-SNAPSHOT.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/batik-script-1.6.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/batik-script-1.6.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/xml-apis-xerces-2.7.1.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/xml-apis-xerces-2.7.1.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/mysql-connector-java-5.1.5.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/mysql-connector-java-5.1.5.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gt2-referencing-2.5-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt2-referencing-2.5-SNAPSHOT.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gt2-shapefile-2.5-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt2-shapefile-2.5-SNAPSHOT.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gt2-cql-2.5-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt2-cql-2.5-SNAPSHOT.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/batik-xml-1.6.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/batik-xml-1.6.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/ecore-2.2.2.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/ecore-2.2.2.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/h2-1.0-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/h2-1.0-SNAPSHOT.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/xercesImpl-2.8.0.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/xercesImpl-2.8.0.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/geoapi-2.2-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/geoapi-2.2-SNAPSHOT.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gt2-vpf-2.5-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt2-vpf-2.5-SNAPSHOT.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/batik-util-1.6.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/batik-util-1.6.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gt2-xml-gpx-2.5-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt2-xml-gpx-2.5-SNAPSHOT.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/picocontainer-1.2.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/picocontainer-1.2.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/imageio-ext-customstreams-1.0-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/imageio-ext-customstreams-1.0-SNAPSHOT.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gt2-referencing3D-2.5-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt2-referencing3D-2.5-SNAPSHOT.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/netcdf-2.2.20.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/netcdf-2.2.20.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gt2-arcsde-2.5-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt2-arcsde-2.5-SNAPSHOT.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/swing-layout-1.0.2.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/swing-layout-1.0.2.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/jts-1.9.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/jts-1.9.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gt2-xml-gml3-2.5-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt2-xml-gml3-2.5-SNAPSHOT.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gnu-regexp-1.1.4.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gnu-regexp-1.1.4.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gt2-mif-2.5-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt2-mif-2.5-SNAPSHOT.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/velocity-dep-1.4.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/velocity-dep-1.4.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/jaxb-impl-1.3.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/jaxb-impl-1.3.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gt2-brewer-2.5-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt2-brewer-2.5-SNAPSHOT.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gt2-wms-2.5-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt2-wms-2.5-SNAPSHOT.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/postgresql-8.1-407.jdbc3.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/postgresql-8.1-407.jdbc3.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/postgis-driver-1.0.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/postgis-driver-1.0.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/jdom-1.0.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/jdom-1.0.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/xpp3-1.1.3.4.O.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/xpp3-1.1.3.4.O.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/swingx-0.8-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/swingx-0.8-SNAPSHOT.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/batik-transcoder-1.6.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/batik-transcoder-1.6.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/relaxngDatatype-X.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/relaxngDatatype-X.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/xsd-2.2.2.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/xsd-2.2.2.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/batik-css-1.6.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/batik-css-1.6.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gt2-oracle-spatial-2.5-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt2-oracle-spatial-2.5-SNAPSHOT.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/widgets-swing-pending-2.5-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/widgets-swing-pending-2.5-SNAPSHOT.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gt2-coveragetools-2.5-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt2-coveragetools-2.5-SNAPSHOT.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/xsdlib-20050614.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/xsdlib-20050614.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gt2-validation-2.5-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt2-validation-2.5-SNAPSHOT.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/jsr108-0.01.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/jsr108-0.01.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/batik-bridge-1.6.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/batik-bridge-1.6.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/ant-optional-1.5.1.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/ant-optional-1.5.1.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gt2-arcgrid-2.5-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt2-arcgrid-2.5-SNAPSHOT.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gt2-widgets-swing-2.5-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt2-widgets-swing-2.5-SNAPSHOT.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gt2-xml-filter-2.5-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt2-xml-filter-2.5-SNAPSHOT.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gt2-main-2.5-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt2-main-2.5-SNAPSHOT.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gt2-tiger-2.5-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt2-tiger-2.5-SNAPSHOT.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/log4j-1.2.12.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/log4j-1.2.12.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/junit-3.8.1.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/junit-3.8.1.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gt2-gpx-2.5-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt2-gpx-2.5-SNAPSHOT.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gt2-xml-kml-2.5-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt2-xml-kml-2.5-SNAPSHOT.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gt2-gtopo30-2.5-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt2-gtopo30-2.5-SNAPSHOT.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/batik-awt-util-1.6.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/batik-awt-util-1.6.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gt2-mappane-2.5-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt2-mappane-2.5-SNAPSHOT.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/hsqldb-1.8.0.7.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/hsqldb-1.8.0.7.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gt2-shapefile-renderer-2.5-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt2-shapefile-renderer-2.5-SNAPSHOT.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/batik-svg-dom-1.6.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/batik-svg-dom-1.6.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gt2-data-2.5-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt2-data-2.5-SNAPSHOT.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/grib-5.1.03.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/grib-5.1.03.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gt2-openoffice-2.5-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt2-openoffice-2.5-SNAPSHOT.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/jlfgr-1.0.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/jlfgr-1.0.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gt2-coverageio-2.5-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt2-coverageio-2.5-SNAPSHOT.jar</binary-origin>
-            </class-path-extension>
+            
             <public-packages>
-                <package>com.esri.sde.sdk</package>
-                <package>com.esri.sde.sdk.client</package>
-                <package>com.esri.sde.sdk.pe</package>
                 <package>com.mysql.jdbc</package>
                 <package>com.mysql.jdbc.exceptions</package>
                 <package>com.mysql.jdbc.exceptions.jdbc4</package>
@@ -639,21 +157,15 @@
                 <package>com.vividsolutions.jts.precision</package>
                 <package>com.vividsolutions.jts.simplify</package>
                 <package>com.vividsolutions.jts.util</package>
+                <package>com.vividsolutions.jtsexample.geom</package>
+                <package>com.vividsolutions.jtsexample.geom.prep</package>
+                <package>com.vividsolutions.jtsexample.linearref</package>
+                <package>com.vividsolutions.jtsexample.operation.distance</package>
+                <package>com.vividsolutions.jtsexample.operation.linemerge</package>
+                <package>com.vividsolutions.jtsexample.operation.polygonize</package>
+                <package>com.vividsolutions.jtsexample.precision</package>
+                <package>com.vividsolutions.jtsexample.technique</package>
                 <package>gnu.regexp</package>
-                <package>it.geosolutions.imageio.plugins.arcgrid</package>
-                <package>it.geosolutions.imageio.plugins.arcgrid.raster</package>
-                <package>it.geosolutions.imageio.plugins.arcgrid.spi</package>
-                <package>it.geosolutions.imageio.stream.eraf</package>
-                <package>it.geosolutions.imageio.stream.input</package>
-                <package>it.geosolutions.imageio.stream.input.compressed</package>
-                <package>it.geosolutions.imageio.stream.input.spi</package>
-                <package>it.geosolutions.imageio.stream.output</package>
-                <package>it.geosolutions.imageio.stream.output.spi</package>
-                <package>it.geosolutions.io</package>
-                <package>it.geosolutions.io.input</package>
-                <package>it.geosolutions.io.input.adapter</package>
-                <package>it.geosolutions.io.output</package>
-                <package>it.geosolutions.io.output.adapter</package>
                 <package>it.geosolutions.utils</package>
                 <package>it.geosolutions.utils.coveragetiler</package>
                 <package>it.geosolutions.utils.imagemosaic</package>
@@ -712,98 +224,24 @@
                 <package>jp.gr.xml.relax.sax</package>
                 <package>jp.gr.xml.relax.swift</package>
                 <package>jp.gr.xml.relax.xml</package>
-                <package>junit.awtui</package>
-                <package>junit.extensions</package>
-                <package>junit.framework</package>
-                <package>junit.runner</package>
-                <package>junit.swingui</package>
-                <package>junit.textui</package>
-                <package>net.opengis.ows</package>
-                <package>net.opengis.ows.impl</package>
-                <package>net.opengis.ows.v1_1_0</package>
-                <package>net.opengis.ows.v1_1_0.impl</package>
-                <package>net.opengis.ows.v1_1_0.util</package>
-                <package>net.opengis.ows.v1_1_0.validation</package>
+                <package>net.opengis.ows10</package>
+                <package>net.opengis.ows10.impl</package>
+                <package>net.opengis.ows11</package>
+                <package>net.opengis.ows11.impl</package>
+                <package>net.opengis.ows11.util</package>
+                <package>net.opengis.ows11.validation</package>
                 <package>net.opengis.wfs</package>
                 <package>net.opengis.wfs.impl</package>
-                <package>net.sf.jsqlparser</package>
-                <package>net.sf.jsqlparser.expression</package>
-                <package>net.sf.jsqlparser.expression.operators.arithmetic</package>
-                <package>net.sf.jsqlparser.expression.operators.conditional</package>
-                <package>net.sf.jsqlparser.expression.operators.relational</package>
-                <package>net.sf.jsqlparser.parser</package>
-                <package>net.sf.jsqlparser.schema</package>
-                <package>net.sf.jsqlparser.statement</package>
-                <package>net.sf.jsqlparser.statement.create.table</package>
-                <package>net.sf.jsqlparser.statement.delete</package>
-                <package>net.sf.jsqlparser.statement.drop</package>
-                <package>net.sf.jsqlparser.statement.insert</package>
-                <package>net.sf.jsqlparser.statement.replace</package>
-                <package>net.sf.jsqlparser.statement.select</package>
-                <package>net.sf.jsqlparser.statement.truncate</package>
-                <package>net.sf.jsqlparser.statement.update</package>
-                <package>net.sf.jsqlparser.util.deparser</package>
                 <package>opendap.dap</package>
                 <package>opendap.dap.Server</package>
                 <package>opendap.dap.XMLparser</package>
                 <package>opendap.dap.parser</package>
                 <package>opendap.util</package>
                 <package>org.apache.batik</package>
-                <package>org.apache.batik.bridge</package>
-                <package>org.apache.batik.bridge.svg12</package>
-                <package>org.apache.batik.css.dom</package>
-                <package>org.apache.batik.css.engine</package>
-                <package>org.apache.batik.css.engine.sac</package>
-                <package>org.apache.batik.css.engine.value</package>
-                <package>org.apache.batik.css.engine.value.css2</package>
-                <package>org.apache.batik.css.engine.value.svg</package>
-                <package>org.apache.batik.css.engine.value.svg12</package>
-                <package>org.apache.batik.css.parser</package>
-                <package>org.apache.batik.dom</package>
-                <package>org.apache.batik.dom.events</package>
-                <package>org.apache.batik.dom.svg</package>
-                <package>org.apache.batik.dom.svg12</package>
-                <package>org.apache.batik.dom.traversal</package>
-                <package>org.apache.batik.dom.util</package>
-                <package>org.apache.batik.ext.awt</package>
-                <package>org.apache.batik.ext.awt.color</package>
-                <package>org.apache.batik.ext.awt.font</package>
-                <package>org.apache.batik.ext.awt.g2d</package>
-                <package>org.apache.batik.ext.awt.geom</package>
-                <package>org.apache.batik.ext.awt.image</package>
-                <package>org.apache.batik.ext.awt.image.codec</package>
-                <package>org.apache.batik.ext.awt.image.codec.tiff</package>
-                <package>org.apache.batik.ext.awt.image.renderable</package>
-                <package>org.apache.batik.ext.awt.image.rendered</package>
-                <package>org.apache.batik.ext.awt.image.spi</package>
-                <package>org.apache.batik.ext.swing</package>
-                <package>org.apache.batik.gvt</package>
-                <package>org.apache.batik.gvt.event</package>
-                <package>org.apache.batik.gvt.filter</package>
-                <package>org.apache.batik.gvt.flow</package>
-                <package>org.apache.batik.gvt.font</package>
-                <package>org.apache.batik.gvt.renderer</package>
-                <package>org.apache.batik.gvt.svg12</package>
-                <package>org.apache.batik.gvt.text</package>
                 <package>org.apache.batik.i18n</package>
-                <package>org.apache.batik.parser</package>
-                <package>org.apache.batik.script</package>
-                <package>org.apache.batik.script.rhino</package>
-                <package>org.apache.batik.svggen</package>
-                <package>org.apache.batik.svggen.font</package>
-                <package>org.apache.batik.svggen.font.table</package>
-                <package>org.apache.batik.transcoder</package>
-                <package>org.apache.batik.transcoder.image</package>
-                <package>org.apache.batik.transcoder.image.resources</package>
-                <package>org.apache.batik.transcoder.keys</package>
-                <package>org.apache.batik.transcoder.print</package>
-                <package>org.apache.batik.transcoder.svg2svg</package>
-                <package>org.apache.batik.transcoder.wmf</package>
-                <package>org.apache.batik.transcoder.wmf.tosvg</package>
                 <package>org.apache.batik.util</package>
                 <package>org.apache.batik.util.io</package>
                 <package>org.apache.batik.util.resources</package>
-                <package>org.apache.batik.xml</package>
                 <package>org.apache.commons.collections</package>
                 <package>org.apache.html.dom</package>
                 <package>org.apache.log</package>
@@ -841,45 +279,6 @@
                 <package>org.apache.oro.text.perl</package>
                 <package>org.apache.oro.text.regex</package>
                 <package>org.apache.oro.util</package>
-                <package>org.apache.tools.ant.listener</package>
-                <package>org.apache.tools.ant.taskdefs</package>
-                <package>org.apache.tools.ant.taskdefs.email</package>
-                <package>org.apache.tools.ant.taskdefs.optional</package>
-                <package>org.apache.tools.ant.taskdefs.optional.ccm</package>
-                <package>org.apache.tools.ant.taskdefs.optional.clearcase</package>
-                <package>org.apache.tools.ant.taskdefs.optional.depend</package>
-                <package>org.apache.tools.ant.taskdefs.optional.depend.constantpool</package>
-                <package>org.apache.tools.ant.taskdefs.optional.dotnet</package>
-                <package>org.apache.tools.ant.taskdefs.optional.ejb</package>
-                <package>org.apache.tools.ant.taskdefs.optional.extension</package>
-                <package>org.apache.tools.ant.taskdefs.optional.extension.resolvers</package>
-                <package>org.apache.tools.ant.taskdefs.optional.i18n</package>
-                <package>org.apache.tools.ant.taskdefs.optional.ide</package>
-                <package>org.apache.tools.ant.taskdefs.optional.j2ee</package>
-                <package>org.apache.tools.ant.taskdefs.optional.javacc</package>
-                <package>org.apache.tools.ant.taskdefs.optional.jdepend</package>
-                <package>org.apache.tools.ant.taskdefs.optional.jlink</package>
-                <package>org.apache.tools.ant.taskdefs.optional.jsp</package>
-                <package>org.apache.tools.ant.taskdefs.optional.jsp.compilers</package>
-                <package>org.apache.tools.ant.taskdefs.optional.junit</package>
-                <package>org.apache.tools.ant.taskdefs.optional.metamata</package>
-                <package>org.apache.tools.ant.taskdefs.optional.net</package>
-                <package>org.apache.tools.ant.taskdefs.optional.perforce</package>
-                <package>org.apache.tools.ant.taskdefs.optional.pvcs</package>
-                <package>org.apache.tools.ant.taskdefs.optional.scm</package>
-                <package>org.apache.tools.ant.taskdefs.optional.sitraka</package>
-                <package>org.apache.tools.ant.taskdefs.optional.sitraka.bytecode</package>
-                <package>org.apache.tools.ant.taskdefs.optional.sitraka.bytecode.attributes</package>
-                <package>org.apache.tools.ant.taskdefs.optional.sos</package>
-                <package>org.apache.tools.ant.taskdefs.optional.sound</package>
-                <package>org.apache.tools.ant.taskdefs.optional.splash</package>
-                <package>org.apache.tools.ant.taskdefs.optional.starteam</package>
-                <package>org.apache.tools.ant.taskdefs.optional.vss</package>
-                <package>org.apache.tools.ant.types.optional.depend</package>
-                <package>org.apache.tools.ant.util.depend</package>
-                <package>org.apache.tools.ant.util.depend.bcel</package>
-                <package>org.apache.tools.ant.util.optional</package>
-                <package>org.apache.tools.ant.util.regexp</package>
                 <package>org.apache.velocity</package>
                 <package>org.apache.velocity.anakia</package>
                 <package>org.apache.velocity.app</package>
@@ -971,14 +370,6 @@
                 <package>org.eclipse.xsd.impl</package>
                 <package>org.eclipse.xsd.impl.type</package>
                 <package>org.eclipse.xsd.util</package>
-                <package>org.geotools.arcsde</package>
-                <package>org.geotools.arcsde.data</package>
-                <package>org.geotools.arcsde.data.view</package>
-                <package>org.geotools.arcsde.filter</package>
-                <package>org.geotools.arcsde.gce</package>
-                <package>org.geotools.arcsde.gce.band</package>
-                <package>org.geotools.arcsde.gce.imageio</package>
-                <package>org.geotools.arcsde.pool</package>
                 <package>org.geotools.axis</package>
                 <package>org.geotools.brewer.color</package>
                 <package>org.geotools.coverage</package>
@@ -1016,6 +407,7 @@
                 <package>org.geotools.data.postgis.collection</package>
                 <package>org.geotools.data.postgis.fidmapper</package>
                 <package>org.geotools.data.postgis.referencing</package>
+                <package>org.geotools.data.property</package>
                 <package>org.geotools.data.shapefile</package>
                 <package>org.geotools.data.shapefile.dbf</package>
                 <package>org.geotools.data.shapefile.indexed</package>
@@ -1043,7 +435,6 @@
                 <package>org.geotools.display.event</package>
                 <package>org.geotools.display.geom</package>
                 <package>org.geotools.display.style</package>
-                <package>org.geotools.event</package>
                 <package>org.geotools.factory</package>
                 <package>org.geotools.feature</package>
                 <package>org.geotools.feature.collection</package>
@@ -1153,8 +544,6 @@
                 <package>org.geotools.gui.swing.datachooser.model</package>
                 <package>org.geotools.gui.swing.demo</package>
                 <package>org.geotools.gui.swing.event</package>
-                <package>org.geotools.gui.swing.extended</package>
-                <package>org.geotools.gui.swing.extended.event</package>
                 <package>org.geotools.gui.swing.filter</package>
                 <package>org.geotools.gui.swing.icon</package>
                 <package>org.geotools.gui.swing.image</package>
@@ -1164,11 +553,11 @@
                 <package>org.geotools.gui.swing.map.map2d.event</package>
                 <package>org.geotools.gui.swing.map.map2d.handler</package>
                 <package>org.geotools.gui.swing.map.map2d.listener</package>
-                <package>org.geotools.gui.swing.map.map2d.minimap</package>
                 <package>org.geotools.gui.swing.map.map2d.strategy</package>
                 <package>org.geotools.gui.swing.misc</package>
                 <package>org.geotools.gui.swing.misc.Render</package>
                 <package>org.geotools.gui.swing.misc.filter</package>
+                <package>org.geotools.gui.swing.process</package>
                 <package>org.geotools.gui.swing.propertyedit</package>
                 <package>org.geotools.gui.swing.propertyedit.filterproperty</package>
                 <package>org.geotools.gui.swing.propertyedit.model</package>
@@ -1177,17 +566,6 @@
                 <package>org.geotools.gui.swing.style</package>
                 <package>org.geotools.gui.swing.style.sld</package>
                 <package>org.geotools.gui.swing.table</package>
-                <package>org.geotools.gui.swing.toolbox</package>
-                <package>org.geotools.gui.swing.toolbox.process</package>
-                <package>org.geotools.gui.swing.toolbox.tooltree</package>
-                <package>org.geotools.gui.swing.toolbox.widgettool</package>
-                <package>org.geotools.gui.swing.toolbox.widgettool.clipping</package>
-                <package>org.geotools.gui.swing.toolbox.widgettool.shapecreation</package>
-                <package>org.geotools.gui.swing.toolbox.widgettool.svg2mif</package>
-                <package>org.geotools.gui.swing.toolbox.widgettool.svg2mif.element</package>
-                <package>org.geotools.gui.swing.toolbox.widgettool.svg2mif.element.xml</package>
-                <package>org.geotools.gui.swing.toolbox.widgettool.svg2mif.element.xml.svg</package>
-                <package>org.geotools.gui.swing.toolbox.widgettool.vdem2csv</package>
                 <package>org.geotools.gui.swing.tree</package>
                 <package>org.geotools.image</package>
                 <package>org.geotools.image.io</package>
@@ -1230,11 +608,13 @@
                 <package>org.geotools.metadata.iso.spatial</package>
                 <package>org.geotools.metadata.sql</package>
                 <package>org.geotools.nature</package>
-                <package>org.geotools.openoffice</package>
                 <package>org.geotools.ows</package>
                 <package>org.geotools.ows.bindings</package>
                 <package>org.geotools.ows.v1_1</package>
                 <package>org.geotools.parameter</package>
+                <package>org.geotools.process</package>
+                <package>org.geotools.process.impl</package>
+                <package>org.geotools.process.literal</package>
                 <package>org.geotools.referencing</package>
                 <package>org.geotools.referencing.crs</package>
                 <package>org.geotools.referencing.cs</package>
@@ -1247,8 +627,11 @@
                 <package>org.geotools.referencing.operation.matrix</package>
                 <package>org.geotools.referencing.operation.projection</package>
                 <package>org.geotools.referencing.operation.transform</package>
+                <package>org.geotools.referencing.piecewise</package>
                 <package>org.geotools.referencing.wkt</package>
                 <package>org.geotools.renderer</package>
+                <package>org.geotools.renderer.gridcoverage</package>
+                <package>org.geotools.renderer.i18n</package>
                 <package>org.geotools.renderer.lite</package>
                 <package>org.geotools.renderer.lite.gridcoverage2d</package>
                 <package>org.geotools.renderer.shape</package>
@@ -1259,6 +642,7 @@
                 <package>org.geotools.repository.adaptable</package>
                 <package>org.geotools.repository.defaults</package>
                 <package>org.geotools.repository.postgis</package>
+                <package>org.geotools.repository.property</package>
                 <package>org.geotools.repository.shapefile</package>
                 <package>org.geotools.repository.styling</package>
                 <package>org.geotools.repository.wfs</package>
@@ -1268,11 +652,16 @@
                 <package>org.geotools.resources.geometry</package>
                 <package>org.geotools.resources.i18n</package>
                 <package>org.geotools.resources.image</package>
+                <package>org.geotools.resources.jaxb</package>
+                <package>org.geotools.resources.jaxb.code</package>
+                <package>org.geotools.resources.jaxb.metadata</package>
+                <package>org.geotools.resources.jaxb.primitive</package>
+                <package>org.geotools.resources.jaxb.uom</package>
                 <package>org.geotools.sld</package>
                 <package>org.geotools.sld.bindings</package>
                 <package>org.geotools.styling</package>
                 <package>org.geotools.styling.visitor</package>
-                <package>org.geotools.svg</package>
+                <package>org.geotools.text</package>
                 <package>org.geotools.text.filter</package>
                 <package>org.geotools.util</package>
                 <package>org.geotools.util.logging</package>
@@ -1402,10 +791,10 @@
                 <package>org.opengis.coverage.grid</package>
                 <package>org.opengis.coverage.grid.quadrilateral</package>
                 <package>org.opengis.coverage.processing</package>
+                <package>org.opengis.display</package>
+                <package>org.opengis.display.canvas</package>
+                <package>org.opengis.display.canvas.web</package>
                 <package>org.opengis.feature</package>
-                <package>org.opengis.feature.display</package>
-                <package>org.opengis.feature.display.canvas</package>
-                <package>org.opengis.feature.display.canvas.web</package>
                 <package>org.opengis.feature.simple</package>
                 <package>org.opengis.feature.type</package>
                 <package>org.opengis.filter</package>
@@ -1488,8 +877,8 @@
                 <package>org.slf4j.helpers</package>
                 <package>org.slf4j.impl</package>
                 <package>org.slf4j.spi</package>
-                <package>org.w3c.css.sac</package>
-                <package>org.w3c.css.sac.helpers</package>
+                <package>org.w3.xlink</package>
+                <package>org.w3.xlink.impl</package>
                 <package>org.w3c.dom</package>
                 <package>org.w3c.dom.bootstrap</package>
                 <package>org.w3c.dom.css</package>
@@ -1497,9 +886,7 @@
                 <package>org.w3c.dom.html</package>
                 <package>org.w3c.dom.ls</package>
                 <package>org.w3c.dom.ranges</package>
-                <package>org.w3c.dom.smil</package>
                 <package>org.w3c.dom.stylesheets</package>
-                <package>org.w3c.dom.svg</package>
                 <package>org.w3c.dom.traversal</package>
                 <package>org.w3c.dom.views</package>
                 <package>org.w3c.dom.xpath</package>
@@ -1582,6 +969,406 @@
                 <package>ucar.unidata.util</package>
                 <package>ucar.units</package>
             </public-packages>
+            <class-path-extension>
+                <runtime-relative-path>ext/netcdf-2.2.20.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/netcdf-2.2.20.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/spatialdbbox-1.0-SNAPSHOT.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/spatialdbbox-1.0-SNAPSHOT.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/gt-brewer-2.5-SNAPSHOT.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gt-brewer-2.5-SNAPSHOT.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/xml-apis-xerces-2.7.1.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/xml-apis-xerces-2.7.1.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/postgis-driver-1.0.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/postgis-driver-1.0.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/xsd-2.2.2.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/xsd-2.2.2.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/hsqldb-1.8.0.7.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/hsqldb-1.8.0.7.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/gt-db2-2.5-SNAPSHOT.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gt-db2-2.5-SNAPSHOT.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/gt-gml-2.5-SNAPSHOT.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gt-gml-2.5-SNAPSHOT.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/gt-legacy-2.5-SNAPSHOT.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gt-legacy-2.5-SNAPSHOT.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/log4j-1.2.12.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/log4j-1.2.12.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/picocontainer-1.2.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/picocontainer-1.2.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/gt-jts-wrapper-2.5-SNAPSHOT.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gt-jts-wrapper-2.5-SNAPSHOT.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/gt-core-2.5-SNAPSHOT.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gt-core-2.5-SNAPSHOT.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/org.w3.xlink-2.5-SNAPSHOT.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/org.w3.xlink-2.5-SNAPSHOT.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/gt-wfs-2.5-SNAPSHOT.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gt-wfs-2.5-SNAPSHOT.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/h2-1.0-SNAPSHOT.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/h2-1.0-SNAPSHOT.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/velocity-dep-1.4.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/velocity-dep-1.4.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/geoapi-2.2-SNAPSHOT.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/geoapi-2.2-SNAPSHOT.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/gt-sld-2.5-SNAPSHOT.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gt-sld-2.5-SNAPSHOT.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/batik-util-1.6.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/batik-util-1.6.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/jdom-1.0.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/jdom-1.0.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/gt-metadata-2.5-SNAPSHOT.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gt-metadata-2.5-SNAPSHOT.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/gt-geotiff-2.5-SNAPSHOT.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gt-geotiff-2.5-SNAPSHOT.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/vecmath-1.3.1.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/vecmath-1.3.1.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/xercesImpl-2.7.1.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/xercesImpl-2.7.1.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/common-2.2.1.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/common-2.2.1.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/gt-directory-2.5-SNAPSHOT.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gt-directory-2.5-SNAPSHOT.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/gt-imagepyramid-2.5-SNAPSHOT.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gt-imagepyramid-2.5-SNAPSHOT.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/gt-postgis-2.5-SNAPSHOT.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gt-postgis-2.5-SNAPSHOT.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/gt-ows-2.5-SNAPSHOT.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gt-ows-2.5-SNAPSHOT.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/ecore-2.2.2.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/ecore-2.2.2.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/gt-kml-2.5-SNAPSHOT.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gt-kml-2.5-SNAPSHOT.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/gt-shapefile-renderer-2.5-SNAPSHOT.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gt-shapefile-renderer-2.5-SNAPSHOT.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/gt-coverageio-netcdf-2.5-SNAPSHOT.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gt-coverageio-netcdf-2.5-SNAPSHOT.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/gt-process-2.5-SNAPSHOT.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gt-process-2.5-SNAPSHOT.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/net.opengis.wfs-2.5-SNAPSHOT.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/net.opengis.wfs-2.5-SNAPSHOT.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/jaxb-api-1.3.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/jaxb-api-1.3.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/bufr-1.1.00.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/bufr-1.1.00.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/gt-filter-2.5-SNAPSHOT.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gt-filter-2.5-SNAPSHOT.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/gt-h2-2.5-SNAPSHOT.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gt-h2-2.5-SNAPSHOT.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/gt-coverage-2.5-SNAPSHOT.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gt-coverage-2.5-SNAPSHOT.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/grib-5.1.03.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/grib-5.1.03.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/swing-layout-1.0.2.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/swing-layout-1.0.2.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/gt-repository-2.5-SNAPSHOT.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gt-repository-2.5-SNAPSHOT.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/gt-render-2.5-SNAPSHOT.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gt-render-2.5-SNAPSHOT.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/gt-gml3-2.5-SNAPSHOT.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gt-gml3-2.5-SNAPSHOT.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/gt-coverageio-2.5-SNAPSHOT.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gt-coverageio-2.5-SNAPSHOT.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/jaxb-libs-1.3.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/jaxb-libs-1.3.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/gt-postgis-versioned-2.5-SNAPSHOT.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gt-postgis-versioned-2.5-SNAPSHOT.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/gt-mysql-2.5-SNAPSHOT.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gt-mysql-2.5-SNAPSHOT.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/jai_core-1.1.3.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/jai_core-1.1.3.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/gt-validation-2.5-SNAPSHOT.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gt-validation-2.5-SNAPSHOT.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/gt-geometry-2.5-SNAPSHOT.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gt-geometry-2.5-SNAPSHOT.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/gt-vpf-2.5-SNAPSHOT.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gt-vpf-2.5-SNAPSHOT.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/gt-oracle-spatial-2.5-SNAPSHOT.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gt-oracle-spatial-2.5-SNAPSHOT.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/gt-widgets-swing-2.5-SNAPSHOT.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gt-widgets-swing-2.5-SNAPSHOT.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/gt-referencing3D-2.5-SNAPSHOT.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gt-referencing3D-2.5-SNAPSHOT.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/gt-arcgrid-2.5-SNAPSHOT.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gt-arcgrid-2.5-SNAPSHOT.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/swingx-0.8-SNAPSHOT.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/swingx-0.8-SNAPSHOT.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/xsdlib-20050614.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/xsdlib-20050614.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/gt-coveragetools-2.5-SNAPSHOT.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gt-coveragetools-2.5-SNAPSHOT.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/jts-1.9.1-SNAPSHOT.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/jts-1.9.1-SNAPSHOT.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/net.opengis.ows-2.5-SNAPSHOT.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/net.opengis.ows-2.5-SNAPSHOT.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/gt-data-2.5-SNAPSHOT.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gt-data-2.5-SNAPSHOT.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/postgresql-8.1-407.jdbc3.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/postgresql-8.1-407.jdbc3.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/gt-xml-gpx-2.5-SNAPSHOT.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gt-xml-gpx-2.5-SNAPSHOT.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/gnu-regexp-1.1.4.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gnu-regexp-1.1.4.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/gt-property-2.5-SNAPSHOT.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gt-property-2.5-SNAPSHOT.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/gt-gml2-2.5-SNAPSHOT.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gt-gml2-2.5-SNAPSHOT.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/gt-main-2.5-SNAPSHOT.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gt-main-2.5-SNAPSHOT.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/slf4j-api-1.4.0.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/slf4j-api-1.4.0.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/gt-cql-2.5-SNAPSHOT.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gt-cql-2.5-SNAPSHOT.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/velocity-1.4.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/velocity-1.4.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/mysql-connector-java-5.1.5.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/mysql-connector-java-5.1.5.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/gt-go-2.5-SNAPSHOT.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gt-go-2.5-SNAPSHOT.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/gt-wms-2.5-SNAPSHOT.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gt-wms-2.5-SNAPSHOT.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/xpp3-1.1.3.4.O.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/xpp3-1.1.3.4.O.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/gt-referencing-2.5-SNAPSHOT.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gt-referencing-2.5-SNAPSHOT.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/gt-widgets-swing-pending-2.5-SNAPSHOT.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gt-widgets-swing-pending-2.5-SNAPSHOT.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/gt-graph-2.5-SNAPSHOT.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gt-graph-2.5-SNAPSHOT.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/jlfgr-1.0.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/jlfgr-1.0.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/gt-image-2.5-SNAPSHOT.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gt-image-2.5-SNAPSHOT.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/gt-mif-2.5-SNAPSHOT.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gt-mif-2.5-SNAPSHOT.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/gt-gtopo30-2.5-SNAPSHOT.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gt-gtopo30-2.5-SNAPSHOT.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/gt-gpx-2.5-SNAPSHOT.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gt-gpx-2.5-SNAPSHOT.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/jai_imageio-1.1.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/jai_imageio-1.1.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/relaxngDatatype-X.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/relaxngDatatype-X.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/jsr108-0.01.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/jsr108-0.01.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/gt-xml-2.5-SNAPSHOT.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gt-xml-2.5-SNAPSHOT.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/gt-imagemosaic-2.5-SNAPSHOT.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gt-imagemosaic-2.5-SNAPSHOT.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/jaxb-impl-1.3.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/jaxb-impl-1.3.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/gt-shapefile-2.5-SNAPSHOT.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gt-shapefile-2.5-SNAPSHOT.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/gt-xsd-wfs-2.5-SNAPSHOT.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gt-xsd-wfs-2.5-SNAPSHOT.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/gt-jdbc-2.5-SNAPSHOT.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gt-jdbc-2.5-SNAPSHOT.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/gt-epsg-hsql-2.5-SNAPSHOT.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gt-epsg-hsql-2.5-SNAPSHOT.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/xml-apis-1.3.03.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/xml-apis-1.3.03.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/gt-api-2.5-SNAPSHOT.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gt-api-2.5-SNAPSHOT.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/gt-tiger-2.5-SNAPSHOT.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gt-tiger-2.5-SNAPSHOT.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/slf4j-jdk14-1.4.0.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/slf4j-jdk14-1.4.0.jar</binary-origin>
+            </class-path-extension>
         </data>
     </configuration>
 </project>
