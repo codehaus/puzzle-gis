@@ -1,0 +1,646 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+		   
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.puzzle</groupId>
+    <artifactId>PZ_main</artifactId>
+    <version>1.0-SNAPSHOT</version>
+  </parent>
+  
+
+  <!-- =========================================================== -->
+  <!--     Module Description                                      -->
+  <!-- =========================================================== -->
+  <groupId>org.puzzle</groupId>
+  <artifactId>PZ_Geotools</artifactId>
+  <packaging>jar</packaging>
+  <name>PZ_Geotools</name>
+     
+    <!-- =========================================================== -->
+  <!--     Dependencies to be inherited by all modules.            -->
+  <!-- =========================================================== -->
+  
+  <dependencies>
+      
+  <!-- GT libraries -->
+  <!-- =========================================================== -->  
+    <dependency>
+        <groupId>org.geotools</groupId>
+        <artifactId>gt-api</artifactId>
+        <version>2.5-SNAPSHOT</version>
+    </dependency>
+    
+    <dependency>
+        <groupId>org.geotools</groupId>
+        <artifactId>gt-coverage</artifactId>
+        <version>2.5-SNAPSHOT</version>
+    </dependency>
+    
+    <dependency>
+        <groupId>org.geotools</groupId>
+        <artifactId>gt-data</artifactId>
+        <version>2.5-SNAPSHOT</version>
+    </dependency>
+    
+    <dependency>
+        <groupId>org.geotools</groupId>
+        <artifactId>gt-jdbc</artifactId>
+        <version>2.5-SNAPSHOT</version>
+    </dependency>
+    
+    <dependency>
+        <groupId>org.geotools</groupId>
+        <artifactId>gt-legacy</artifactId>
+        <version>2.5-SNAPSHOT</version>
+    </dependency>
+    
+    <dependency>
+        <groupId>org.geotools</groupId>
+        <artifactId>gt-main</artifactId>
+        <version>2.5-SNAPSHOT</version>
+    </dependency>
+    
+    <dependency>
+        <groupId>org.geotools</groupId>
+        <artifactId>gt-metadata</artifactId>
+        <version>2.5-SNAPSHOT</version>
+    </dependency>
+    
+    <dependency>
+        <groupId>org.geotools</groupId>
+        <artifactId>gt-referencing</artifactId>
+        <version>2.5-SNAPSHOT</version>
+    </dependency>
+    
+    <dependency>
+        <groupId>org.geotools</groupId>
+        <artifactId>gt-render</artifactId>
+        <version>2.5-SNAPSHOT</version>
+    </dependency>
+    
+    <!--holds nothing interesting, only samples-->
+    <!--<dependency>
+        <groupId>org.geotools</groupId>
+        <artifactId>gt-xml</artifactId>
+        <version>2.5-SNAPSHOT</version>
+    </dependency>-->
+    
+    <dependency>
+        <groupId>org.geotools</groupId>
+        <artifactId>gt-xml</artifactId>
+        <version>2.5-SNAPSHOT</version>
+    </dependency>
+  
+  
+  <!-- GT extensions -->
+  <!-- =========================================================== -->  
+    <dependency>
+        <groupId>org.geotools</groupId>
+        <artifactId>gt-brewer</artifactId>
+        <version>2.5-SNAPSHOT</version>
+    </dependency>
+    
+    <dependency>
+        <groupId>org.geotools</groupId>
+        <artifactId>gt-graph</artifactId>
+        <version>2.5-SNAPSHOT</version>
+    </dependency>
+    
+    <!-- noting interesting in this-->
+    <!--<dependency>
+        <groupId>org.geotools</groupId>
+        <artifactId>gt-openoffice</artifactId>
+        <version>2.5-SNAPSHOT</version>
+    </dependency>-->
+    
+    <dependency>
+        <groupId>org.geotools</groupId>
+        <artifactId>gt-shapefile-renderer</artifactId>
+        <version>2.5-SNAPSHOT</version>
+    </dependency>
+    
+    <dependency>
+        <groupId>org.geotools</groupId>
+        <artifactId>gt-validation</artifactId>
+        <version>2.5-SNAPSHOT</version>
+    </dependency>
+    
+    <dependency>
+        <groupId>org.geotools</groupId>
+        <artifactId>gt-widgets-swing</artifactId>
+        <version>2.5-SNAPSHOT</version>
+    </dependency>
+    
+    <!--xml package-->
+        <dependency>
+            <groupId>org.geotools.xsd</groupId>
+            <artifactId>gt-core</artifactId>
+            <version>2.5-SNAPSHOT</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.geotools.xsd</groupId>
+            <artifactId>gt-filter</artifactId>
+            <version>2.5-SNAPSHOT</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.geotools.xsd</groupId>
+            <artifactId>gt-gml2</artifactId>
+            <version>2.5-SNAPSHOT</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.geotools.xsd</groupId>
+            <artifactId>gt-gml3</artifactId>
+            <version>2.5-SNAPSHOT</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.geotools.xsd</groupId>
+            <artifactId>gt-kml</artifactId>
+            <version>2.5-SNAPSHOT</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.geotools.xsd</groupId>
+            <artifactId>gt-ows</artifactId>
+            <version>2.5-SNAPSHOT</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.geotools.xsd</groupId>
+            <artifactId>gt-sld</artifactId>
+            <version>2.5-SNAPSHOT</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.geotools.xsd</groupId>
+            <artifactId>gt-xsd-wfs</artifactId>
+            <version>2.5-SNAPSHOT</version>
+        </dependency>
+        
+        <!-- this dependency doesnt work-->
+        <!--<dependency>
+            <groupId>org.geotools.xsd</groupId>
+            <artifactId>gt-wps</artifactId>
+            <version>2.5-SNAPSHOT</version>
+        </dependency>-->
+  
+  <!-- GT plugins -->
+  <!-- =========================================================== -->  
+    <dependency>
+        <groupId>org.geotools</groupId>
+        <artifactId>gt-arcgrid</artifactId>
+        <version>2.5-SNAPSHOT</version>
+    </dependency>
+    
+    <!-- this modulre requiere additions jars -->
+    <!--<dependency>
+        <groupId>org.geotools</groupId>
+        <artifactId>gt-arcsde</artifactId>
+        <version>2.5-SNAPSHOT</version>
+    </dependency>-->
+    
+    <dependency>
+        <groupId>org.geotools</groupId>
+        <artifactId>gt-db2</artifactId>
+        <version>2.5-SNAPSHOT</version>
+    </dependency>
+    
+    <!-- one epsg is enough -->
+    <!--<dependency>
+        <groupId>org.geotools</groupId>
+        <artifactId>gt-epsg-access</artifactId>
+        <version>2.5-SNAPSHOT</version>
+    </dependency>-->
+    
+    <!-- one epsg is enough -->
+    <!--<dependency>
+        <groupId>org.geotools</groupId>
+        <artifactId>gt-epsg-extension</artifactId>
+        <version>2.5-SNAPSHOT</version>
+    </dependency>-->
+    
+   <dependency>
+        <groupId>org.geotools</groupId>
+        <artifactId>gt-epsg-hsql</artifactId>
+        <version>2.5-SNAPSHOT</version>
+    </dependency>
+    
+    <!-- one epsg is enough -->
+    <!--<dependency>
+        <groupId>org.geotools</groupId>
+        <artifactId>gt-epsg-postgresql</artifactId>
+        <version>2.5-SNAPSHOT</version>
+    </dependency>-->
+    
+    <!-- one epsg is enough -->
+    <!--<dependency>
+        <groupId>org.geotools</groupId>
+        <artifactId>gt-epsg-wkt</artifactId>
+        <version>2.5-SNAPSHOT</version>
+    </dependency>-->
+    
+    <dependency>
+        <groupId>org.geotools</groupId>
+        <artifactId>gt-geometry</artifactId>
+        <version>2.5-SNAPSHOT</version>
+    </dependency>
+    
+        <dependency>
+        <groupId>org.geotools</groupId>
+        <artifactId>gt-geotiff</artifactId>
+        <version>2.5-SNAPSHOT</version>
+    </dependency>
+    
+    <dependency>
+        <groupId>org.geotools</groupId>
+        <artifactId>gt-gtopo30</artifactId>
+        <version>2.5-SNAPSHOT</version>
+    </dependency>
+    
+    <dependency>
+        <groupId>org.geotools</groupId>
+        <artifactId>gt-image</artifactId>
+        <version>2.5-SNAPSHOT</version>
+    </dependency>
+    
+    <dependency>
+        <groupId>org.geotools</groupId>
+        <artifactId>gt-imagemosaic</artifactId>
+        <version>2.5-SNAPSHOT</version>
+    </dependency>
+    
+    <dependency>
+        <groupId>org.geotools</groupId>
+        <artifactId>gt-imagepyramid</artifactId>
+        <version>2.5-SNAPSHOT</version>
+    </dependency>
+    
+    <dependency>
+        <groupId>org.geotools</groupId>
+        <artifactId>gt-postgis</artifactId>
+        <version>2.5-SNAPSHOT</version>
+    </dependency>
+    
+    <dependency>
+        <groupId>org.geotools</groupId>
+        <artifactId>gt-property</artifactId>
+        <version>2.5-SNAPSHOT</version>
+    </dependency>
+    
+    <dependency>
+        <groupId>org.geotools</groupId>
+        <artifactId>gt-referencing3D</artifactId>
+        <version>2.5-SNAPSHOT</version>
+    </dependency>
+    
+    <dependency>
+        <groupId>org.geotools</groupId>
+        <artifactId>gt-shapefile</artifactId>
+        <version>2.5-SNAPSHOT</version>
+    </dependency>
+    
+    <dependency>
+        <groupId>org.geotools</groupId>
+        <artifactId>gt-wfs</artifactId>
+        <version>2.5-SNAPSHOT</version>
+    </dependency>
+    
+    <dependency>
+        <groupId>org.geotools</groupId>
+        <artifactId>gt-wms</artifactId>
+        <version>2.5-SNAPSHOT</version>
+    </dependency>
+
+
+  <!-- GT unsupported -->
+  <!-- =========================================================== -->  
+    
+    <!-- doesnt work-->
+    <!--<dependency>
+        <groupId>org.geotools</groupId>
+        <artifactId>gt-caching</artifactId>
+        <version>2.5-SNAPSHOT</version>
+    </dependency>-->
+    
+    <!-- doesnt work-->
+    <!--<dependency>
+        <groupId>org.geotools</groupId>
+        <artifactId>community-schemas</artifactId>
+        <version>2.5-SNAPSHOT</version>
+    </dependency>-->
+    
+    <dependency>
+        <groupId>org.geotools</groupId>
+        <artifactId>gt-coverageio</artifactId>
+        <version>2.5-SNAPSHOT</version>
+    </dependency>
+    
+    <!-- doesnt work-->
+    <!--<dependency>
+        <groupId>org.geotools</groupId>
+        <artifactId>gt-coverageio-hdf</artifactId>
+        <version>2.5-SNAPSHOT</version>
+    </dependency>-->
+    
+    <dependency>
+        <groupId>org.geotools</groupId>
+        <artifactId>gt-coverageio-netcdf</artifactId>
+        <version>2.5-SNAPSHOT</version>
+    </dependency>
+    
+    <dependency>
+        <groupId>org.geotools</groupId>
+        <artifactId>gt-coveragetools</artifactId>
+        <version>2.5-SNAPSHOT</version>
+    </dependency>
+    
+    <dependency>
+        <groupId>org.geotools</groupId>
+        <artifactId>gt-directory</artifactId>
+        <version>2.5-SNAPSHOT</version>
+    </dependency>
+    
+    <!-- doesnt work-->
+    <!--<dependency>
+        <groupId>org.geotools</groupId>
+        <artifactId>gt-ecw</artifactId>
+        <version>2.5-SNAPSHOT</version>
+    </dependency>-->
+    
+    <!-- one epsg is enough-->
+    <!--<dependency>
+        <groupId>org.geotools</groupId>
+        <artifactId>gt-epsg-oracle</artifactId>
+        <version>2.5-SNAPSHOT</version>
+    </dependency>-->
+    
+    <!-- useless -->
+    <!--<dependency>
+        <groupId>org.geotools</groupId>
+        <artifactId>gt-exemple</artifactId>
+        <version>2.5-SNAPSHOT</version>
+    </dependency>-->
+    
+    <!-- doesnt work-->
+    <!--<dependency>
+        <groupId>org.geotools</groupId>
+        <artifactId>gt-geomedia</artifactId>
+        <version>2.5-SNAPSHOT</version>
+    </dependency>-->
+    
+    <!-- doesnt work-->
+    <!--<dependency>
+        <groupId>org.geotools</groupId>
+        <artifactId>gt-geometryless</artifactId>
+        <version>2.5-SNAPSHOT</version>
+    </dependency>-->
+    
+    <!-- doesnt work-->
+    <!--<dependency>
+        <groupId>org.geotools</groupId>
+        <artifactId>gt-gipsy</artifactId>
+        <version>2.5-SNAPSHOT</version>
+    </dependency>-->
+    
+    <dependency>
+        <groupId>org.geotools</groupId>
+        <artifactId>gt-gml</artifactId>
+        <version>2.5-SNAPSHOT</version>
+    </dependency>
+    
+    <!-- doesnt work-->
+    <!--<dependency>
+        <groupId>org.geotools</groupId>
+        <artifactId>gt-gml3</artifactId>
+        <version>2.5-SNAPSHOT</version>
+    </dependency>-->
+    
+    <dependency>
+        <groupId>org.geotools</groupId>
+        <artifactId>gt-go</artifactId>
+        <version>2.5-SNAPSHOT</version>
+    </dependency>
+    
+    <dependency>
+        <groupId>org.geotools</groupId>
+        <artifactId>gt-gpx</artifactId>
+        <version>2.5-SNAPSHOT</version>
+    </dependency>
+    
+    <dependency>
+        <groupId>org.geotools</groupId>
+        <artifactId>gt-h2</artifactId>
+        <version>2.5-SNAPSHOT</version>
+    </dependency>
+    
+    <!-- doesnt work-->
+    <!--<dependency>
+        <groupId>org.geotools</groupId>
+        <artifactId>gt-hsql</artifactId>
+        <version>2.5-SNAPSHOT</version>
+    </dependency>-->
+    
+    <!-- that's a shame to have this in geotools -->
+    <!--<dependency>
+        <groupId>org.geotools</groupId>
+        <artifactId>gt-imageio-ext-gdal</artifactId>
+        <version>2.5-SNAPSHOT</version>
+    </dependency>-->
+    
+    <!-- doesnt work-->
+    <!--<dependency>
+        <groupId>org.geotools</groupId>
+        <artifactId>gt-jpox</artifactId>
+        <version>2.5-SNAPSHOT</version>
+    </dependency>-->
+    
+    <dependency>
+        <groupId>org.geotools</groupId>
+        <artifactId>gt-jts-wrapper</artifactId>
+        <version>2.5-SNAPSHOT</version>
+    </dependency>
+    
+    <!-- old jmappane widget, not used -->
+    <!--<dependency>
+        <groupId>org.geotools</groupId>
+        <artifactId>gt-mappane</artifactId>
+        <version>2.5-SNAPSHOT</version>
+    </dependency>-->
+    
+    <dependency>
+        <groupId>org.geotools</groupId>
+        <artifactId>gt-mif</artifactId>
+        <version>2.5-SNAPSHOT</version>
+    </dependency>
+    
+    <!-- gdal related -->
+    <!--<dependency>
+        <groupId>org.geotools</groupId>
+        <artifactId>gt-mrsid</artifactId>
+        <version>2.5-SNAPSHOT</version>
+    </dependency>-->
+    
+    <dependency>
+        <groupId>org.geotools</groupId>
+        <artifactId>gt-mysql</artifactId>
+        <version>2.5-SNAPSHOT</version>
+    </dependency>
+    
+    <!-- doesnt work-->
+    <!--<dependency>
+        <groupId>org.geotools</groupId>
+        <artifactId>gt-notifying-collections</artifactId>
+        <version>2.5-SNAPSHOT</version>
+    </dependency>-->
+    
+    <!-- doesnt work-->
+    <!--<dependency>
+        <groupId>org.geotools</groupId>
+        <artifactId>gt-ogc</artifactId>
+        <version>2.5-SNAPSHOT</version>
+    </dependency>-->
+    
+    <!-- doesnt work-->
+    <!--<dependency>
+        <groupId>org.geotools</groupId>
+        <artifactId>gt-ogr</artifactId>
+        <version>2.5-SNAPSHOT</version>
+    </dependency>-->
+    
+    <dependency>
+        <groupId>org.geotools</groupId>
+        <artifactId>gt-oracle-spatial</artifactId>
+        <version>2.5-SNAPSHOT</version>
+    </dependency>
+    
+    <dependency>
+        <groupId>org.geotools</groupId>
+        <artifactId>gt-postgis-versioned</artifactId>
+        <version>2.5-SNAPSHOT</version>
+    </dependency>
+    
+    <dependency>
+        <groupId>org.geotools</groupId>
+        <artifactId>gt-process</artifactId>
+        <version>2.5-SNAPSHOT</version>
+    </dependency>
+    
+    <dependency>
+        <groupId>org.geotools</groupId>
+        <artifactId>gt-repository</artifactId>
+        <version>2.5-SNAPSHOT</version>
+    </dependency>
+    
+    <!-- doesnt work -->
+    <!--<dependency>
+        <groupId>org.geotools</groupId>
+        <artifactId>gt-sql-datastore</artifactId>
+        <version>2.5-SNAPSHOT</version>
+    </dependency>-->
+    
+    <dependency>
+        <groupId>org.geotools</groupId>
+        <artifactId>gt-tiger</artifactId>
+        <version>2.5-SNAPSHOT</version>
+    </dependency>
+    
+    <!-- doesnt work-->
+    <!--<dependency>
+        <groupId>org.geotools</groupId>
+        <artifactId>gt-tile</artifactId>
+        <version>2.5-SNAPSHOT</version>
+    </dependency>-->
+    
+    <dependency>
+        <groupId>org.geotools</groupId>
+        <artifactId>gt-vpf</artifactId>
+        <version>2.5-SNAPSHOT</version>
+    </dependency>
+    
+    <dependency>
+        <groupId>org.geotools</groupId>
+        <artifactId>gt-widgets-swing-pending</artifactId>
+        <version>2.5-SNAPSHOT</version>
+    </dependency>
+    
+    <!-- doesnt work-->
+    <!--<dependency>
+        <groupId>org.geotools</groupId>
+        <artifactId>gt-wps</artifactId>
+        <version>2.5-SNAPSHOT</version>
+    </dependency>-->
+    
+    <dependency>
+        <groupId>org.geotools</groupId>
+        <artifactId>gt-xml-gpx</artifactId>
+        <version>2.5-SNAPSHOT</version>
+    </dependency>
+  
+  
+  
+  
+    <!--<dependency>
+      <groupId>javax.media</groupId>
+      <artifactId>jai_core</artifactId>
+      <version>1.1.3</version>
+    </dependency>
+    <dependency>
+      <groupId>javax.media</groupId>
+      <artifactId>jai_codec</artifactId>
+      <version>1.1.3</version>
+    </dependency>
+    <dependency>
+      <groupId>javax.media</groupId>
+      <artifactId>jai_imageio</artifactId>
+      <version>1.1</version>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.3.1</version>
+    </dependency>-->
+    
+  </dependencies>
+     
+     
+  <!-- =========================================================== -->
+  <!--     Build                                                   -->
+  <!-- =========================================================== -->
+   <build>
+    <plugins>
+        <!-- ====    Compilation      ============================== -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <configuration>
+          <!-- ====    Switch commenting to skip tests    = -->
+          <skip>${allow.test.skip}</skip>
+          <!-- skip>true</skip> -->
+          <includes>
+            <include></include>
+          </includes>
+          <excludes>
+            <exclude></exclude>
+          </excludes>
+        </configuration>
+      </plugin>
+              
+    </plugins>
+  </build>
+     
+     
+     
+  <!-- =========================================================== -->
+  <!--     Modules included in the build                           -->
+  <!-- =========================================================== -->
+  <!--<modules>
+    <module>geotools</module>
+  </modules>-->
+  
+  
+</project>

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <!-- =========================================================== -->
+  <!--     Project Description                                     -->
+  <!-- =========================================================== -->
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.puzzle</groupId>
+  <artifactId>PZ_main</artifactId>
+  <packaging>pom</packaging>
+  <version>1.0-SNAPSHOT</version>
+  <name>PZ_main</name>
+    
+       
+  
+  <!-- =========================================================== -->
+  <!--     Dependencies to be inherited by all modules.            -->
+  <!-- =========================================================== -->
+ 
+  
+  <!-- =========================================================== -->
+  <!--     Dependencies optionals, replace version number for GT dependencies     -->
+  <!-- =========================================================== -->
+  <properties>
+    <geotools.version>2.5-SNAPSHOT</geotools.version>
+  </properties>
+  
+  
+  <!-- =========================================================== -->
+  <!--     GeoTools, Geomatys and maven repositories     -->
+  <!-- =========================================================== -->
+  <repositories>    
+    <repository>
+      <id>geotools</id>
+      <name>Geotools et ses dependances specifiques</name>
+      <url>http://maven.geotools.fr/repository</url>
+    </repository>
+    <repository>
+      <id>geomatys</id>
+      <name>Other projects</name>
+      <url>http://maven.geomatys.fr/repository</url>
+    </repository>
+    <repository>
+      <id>refractions</id>
+      <name>Refractions Research Maven 2 Repository</name>
+      <url>http://lists.refractions.net/m2</url>
+    </repository>
+  </repositories>
+  <pluginRepositories>
+    <pluginRepository>
+      <id>geotools</id>
+      <name>Geotools et ses dependances specifiques</name>
+      <url>http://maven.geotools.fr/repository</url>
+    </pluginRepository>
+  </pluginRepositories>
+  
+  
+  <!-- =========================================================== -->
+  <!--     build     -->
+  <!-- =========================================================== -->
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.geotools.maven</groupId>
+        <artifactId>jar-collector</artifactId>
+        <version>2.5-SNAPSHOT</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>collect</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+       <!--<plugin>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <executions>
+          <execution>
+            <phase>install</phase>
+            <configuration>
+              <tasks>
+                <property name="jar_gt" value="PZ_GeoTools-2.5-SNAPSHOT-Assembly.jar"/>
+                <property name="in_gt" value="./modules/geotools/target"/>
+                <property name="out_gt" value="./grr"/>
+                  
+                <mkdir dir="${out_gt}"/>
+                <echo>Dispatching jars</echo>
+                <copy file="${in_gt}/${jar_gt}" tofile="${out_gt}/${jar_gt}"/>
+              </tasks>
+            </configuration>
+            <goals>
+              <goal>run</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>-->
+      
+    </plugins>
+  </build>
+  
+  
+  <!-- =========================================================== -->
+  <!--     Modules for the build in approximate dependency order   -->
+  <!-- =========================================================== -->
+  <modules>
+    <module>modules</module>
+  </modules> 
+</project>
