@@ -56,7 +56,6 @@ import org.geotools.gui.swing.datachooser.DataPanel;
 import org.geotools.gui.swing.datachooser.JDataChooser;
 import org.geotools.gui.swing.datachooser.JFileDataPanel;
 import org.geotools.gui.swing.misc.Render.LayerListRenderer;
-import org.geotools.gui.swing.toolbox.widgettool.AbstractWidgetTool;
 import org.geotools.map.MapLayer;
 import org.geotools.referencing.CRS;
 import org.opengis.feature.simple.SimpleFeature;
@@ -80,6 +79,7 @@ import com.vividsolutions.jts.geom.Point;
 import com.vividsolutions.jts.geom.Polygon;
 import org.geotools.gui.swing.datachooser.JOracleDataPanel;
 import org.geotools.gui.swing.datachooser.JPostGISDataPanel;
+import org.puzzle.puzzlecore.swing.toolbox.widgettool.AbstractWidgetTool;
 
 /**
  *
@@ -693,7 +693,7 @@ public class ClippingTool_old extends AbstractWidgetTool {
                 FeatureSource<SimpleFeatureType, SimpleFeature> source = outStore.getFeatureSource(name);
                 fillLayer(outCol, source);
 
-                fireObjectCreation(new Object[]{outStore});
+//                fireObjectCreation(new Object[]{outStore});
 
             } catch (IOException ex) {
                 gui_progress.setString(error);

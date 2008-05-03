@@ -35,10 +35,10 @@ import java.util.Stack;
 import java.util.StringTokenizer;
 
 import javax.swing.JFrame;
+import org.puzzle.puzzlecore.swing.toolbox.widgettool.svg2mif.element.xml.Element;
+import org.puzzle.puzzlecore.swing.toolbox.widgettool.svg2mif.element.xml.Parser;
+import org.puzzle.puzzlecore.swing.toolbox.widgettool.svg2mif.element.xml.Utility;
 
-import org.geotools.gui.swing.toolbox.widgettool.svg2mif.element.xml.Element;
-import org.geotools.gui.swing.toolbox.widgettool.svg2mif.element.xml.Parser;
-import org.geotools.gui.swing.toolbox.widgettool.svg2mif.element.xml.Utility;
 
 class svgImage extends Canvas{
 

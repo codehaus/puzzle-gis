@@ -61,7 +61,6 @@ import org.geotools.gui.swing.datachooser.JOracleDataPanel;
 import org.geotools.gui.swing.datachooser.JPostGISDataPanel;
 import org.geotools.gui.swing.misc.Render.LayerListRenderer;
 import org.openide.util.NbBundle;
-import org.puzzle.puzzlecore.swing.toolbox.process.ClipProcess;
 import org.puzzle.puzzlecore.swing.toolbox.widgettool.AbstractWidgetTool;
 
 /**
@@ -481,7 +480,7 @@ public class ClippingTool extends AbstractWidgetTool {
             FeatureStore<SimpleFeatureType, SimpleFeature> out = (FeatureStore<SimpleFeatureType, SimpleFeature>) outStore.getFeatureSource(outStore.getTypeNames()[0]);
 
 
-            final ClipProcess process = new ClipProcess(source, clip, out,attlink);
+//            final ClipProcess process = new ClipProcess(source, clip, out,attlink);
 
 
             gui_ok.setEnabled(false);
