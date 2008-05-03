@@ -24,8 +24,8 @@ package org.puzzle.puzzlecore.swing.toolbox.widgettool.svg2mif.element.xml.svg;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.util.StringTokenizer;
+import org.puzzle.puzzlecore.swing.toolbox.widgettool.svg2mif.element.xml.Utility;
 
-import org.geotools.gui.swing.toolbox.widgettool.svg2mif.element.xml.Utility;
 
 public class Style {
     

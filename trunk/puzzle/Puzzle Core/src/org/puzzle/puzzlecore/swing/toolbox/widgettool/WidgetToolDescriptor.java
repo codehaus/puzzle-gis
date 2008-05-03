@@ -23,7 +23,7 @@ package org.puzzle.puzzlecore.swing.toolbox.widgettool;
 
 import java.util.Map;
 
-import org.geotools.gui.swing.toolbox.Parameter;
+import org.puzzle.puzzlecore.swing.toolbox.Parameter;
 
 /**
  * @author johann sorel

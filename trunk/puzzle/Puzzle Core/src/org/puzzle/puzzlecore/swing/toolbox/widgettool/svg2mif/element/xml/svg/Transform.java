@@ -23,7 +23,7 @@ package org.puzzle.puzzlecore.swing.toolbox.widgettool.svg2mif.element.xml.svg;
 import java.awt.geom.AffineTransform;
 import java.util.StringTokenizer;
 
-import org.geotools.gui.swing.toolbox.widgettool.svg2mif.element.xml.Utility;
+import org.puzzle.puzzlecore.swing.toolbox.widgettool.svg2mif.element.xml.Utility;
 /**
  *
  * @author  Default

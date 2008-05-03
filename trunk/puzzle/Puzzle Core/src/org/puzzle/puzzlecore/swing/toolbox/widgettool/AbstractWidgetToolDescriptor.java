@@ -21,7 +21,6 @@
 
 package org.puzzle.puzzlecore.swing.toolbox.widgettool;
 
-import org.geotools.gui.swing.toolbox.Parameter;
 
 /**
  *
@@ -45,8 +44,5 @@ public abstract class AbstractWidgetToolDescriptor implements WidgetToolDescript
         return EMPTY_STRING_ARRAY;
     }
 
-    public Parameter[] getParametersInfo() {
-        return EMPTY_PARAMETER_ARRAY;
-    }
 
 }
