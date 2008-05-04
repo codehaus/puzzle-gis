@@ -51,7 +51,7 @@ import org.openide.util.NbBundle;
 import org.openide.util.Utilities;
 import org.openide.windows.TopComponent;
 import org.openide.windows.WindowManager;
-import org.puzzle.puzzlecore.gtextend.widget.sldeditor.JAdvancedStylePanel;
+import org.puzzle.puzzlecore.gtextend.widget.style.JAdvancedStylePanel;
 import org.puzzle.puzzlecore.swing.layerprop.style.JXMLStylePanel;
 
 /**
