@@ -25,7 +25,6 @@ import java.util.Collection;
 import org.openide.util.Lookup;
 import org.openide.util.lookup.AbstractLookup;
 import org.openide.util.lookup.InstanceContent;
-import org.puzzle.puzzlecore.gtextend.widget.sldeditor.SLDEditorDescriptor;
 import org.puzzle.puzzlecore.swing.toolbox.widgettool.clipping.ClippingTTDescriptor;
 import org.puzzle.puzzlecore.swing.toolbox.widgettool.shapecreation.ShapeCreationTTDescriptor;
 import org.puzzle.puzzlecore.swing.toolbox.widgettool.svg2mif.SVG2MIFTTDescriptor;
@@ -46,7 +45,6 @@ public class DefaultToolService implements ToolService {
         DEFAULT_TOOLS.add(new SVG2MIFTTDescriptor());
         DEFAULT_TOOLS.add(new ShapeCreationTTDescriptor());
         DEFAULT_TOOLS.add(new ClippingTTDescriptor());
-        DEFAULT_TOOLS.add(new SLDEditorDescriptor());
 
         for (ToolDescriptor tool : DEFAULT_TOOLS) {
             CONTENT.add(tool);

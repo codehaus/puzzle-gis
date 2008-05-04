@@ -15,6 +15,12 @@
                     </run-dependency>
                 </dependency>
                 <dependency>
+                    <code-name-base>org.netbeans.modules.autoupdate.services</code-name-base>
+                    <run-dependency>
+                        <specification-version>1.4</specification-version>
+                    </run-dependency>
+                </dependency>
+                <dependency>
                     <code-name-base>org.openide.explorer</code-name-base>
                     <build-prerequisite/>
                     <compile-dependency/>
@@ -49,9 +55,22 @@
             </module-dependencies>
             <public-packages>
                 <package>org.puzzle.puzzlecore.context</package>
+                <package>org.puzzle.puzzlecore.gtextend.widget.style</package>
+                <package>org.puzzle.puzzlecore.gtextend.widget.viewtree</package>
                 <package>org.puzzle.puzzlecore.process</package>
                 <package>org.puzzle.puzzlecore.save</package>
+                <package>org.puzzle.puzzlecore.swing.toolbox</package>
+                <package>org.puzzle.puzzlecore.swing.toolbox.tooltree</package>
+                <package>org.puzzle.puzzlecore.swing.toolbox.widgettool</package>
+                <package>org.puzzle.puzzlecore.swing.toolbox.widgettool.clipping</package>
+                <package>org.puzzle.puzzlecore.swing.toolbox.widgettool.shapecreation</package>
+                <package>org.puzzle.puzzlecore.swing.toolbox.widgettool.svg2mif</package>
+                <package>org.puzzle.puzzlecore.swing.toolbox.widgettool.svg2mif.element</package>
+                <package>org.puzzle.puzzlecore.swing.toolbox.widgettool.svg2mif.element.xml</package>
+                <package>org.puzzle.puzzlecore.swing.toolbox.widgettool.svg2mif.element.xml.svg</package>
+                <package>org.puzzle.puzzlecore.swing.toolbox.widgettool.vdem2csv</package>
                 <package>org.puzzle.puzzlecore.tool</package>
+                <package>org.puzzle.puzzlecore.tool.gui.toolbox</package>
                 <package>org.puzzle.puzzlecore.view</package>
             </public-packages>
         </data>
