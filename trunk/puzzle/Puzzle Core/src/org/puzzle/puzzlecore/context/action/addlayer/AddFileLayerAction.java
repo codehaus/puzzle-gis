@@ -20,8 +20,13 @@
  */
 package org.puzzle.puzzlecore.context.action.addlayer;
 
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JComponent;
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import org.geotools.gui.swing.datachooser.DataPanel;
 import org.geotools.gui.swing.datachooser.JDataChooser;
@@ -39,7 +44,33 @@ import org.puzzle.puzzlecore.context.ContextService;
  */
 public final class AddFileLayerAction extends CallableSystemAction {
 
-    public void performAction() {
+  public void performAction() {
+
+    JDialog dialog = new JDialog();
+
+
+    JComponent glass = new JComponent() {
+
+      @Override
+      protected void paintComponent(Graphics g) {
+        Rectangle clip = g.getClipBounds();
+        Color alphaWhite = new Color(1.0f, 1.0f, 1.0f, 0.65f);
+        g.setColor(alphaWhite);
+        g.fillRect(clip.x, clip.y, clip.width, clip.height);
+        
+//        g.setColor(Color.RED);
+//        g.drawString("hahaha", 50, 50);
+
+      }
+    };
+
+
+//    dialog.setGlassPane(glass);
+//    dialog.getGlassPane().setVisible(true);
+//
+//    dialog.setSize(640, 480);
+//    dialog.setLocationRelativeTo(null);
+//    dialog.setVisible(true);
 
         ContextService service = Lookup.getDefault().lookup(ContextService.class);
         MapContext context = service.getActiveContext();
@@ -59,28 +90,28 @@ public final class AddFileLayerAction extends CallableSystemAction {
                 for (MapLayer layer : layers) {
                     context.addLayer(layer);
                 }
-            } else {
+            } 
+
+        }else {
                 JOptionPane.showMessageDialog(null, "No active Context");
             }
+  }
 
-        }
-    }
-    
-    public String getName() {
-        return NbBundle.getMessage(AddFileLayerAction.class, "CTL_AddLayerAction");
-    }
+  public String getName() {
+    return NbBundle.getMessage(AddFileLayerAction.class, "CTL_AddLayerAction");
+  }
 
-    @Override
-    protected String iconResource() {
-        return "org/puzzle/puzzlecore/context/action/addlayer/file_add.png";
-    }
+  @Override
+  protected String iconResource() {
+    return "org/puzzle/puzzlecore/context/action/addlayer/file_add.png";
+  }
 
-    public HelpCtx getHelpCtx() {
-        return HelpCtx.DEFAULT_HELP;
-    }
+  public HelpCtx getHelpCtx() {
+    return HelpCtx.DEFAULT_HELP;
+  }
 
-    @Override
-    protected boolean asynchronous() {
-        return false;
-    }
+  @Override
+  protected boolean asynchronous() {
+    return false;
+  }
 }
