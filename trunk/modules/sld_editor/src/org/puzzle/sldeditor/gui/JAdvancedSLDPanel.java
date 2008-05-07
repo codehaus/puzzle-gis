@@ -23,7 +23,6 @@ package org.puzzle.sldeditor.gui;
 import java.awt.Component;
 import java.awt.ComponentOrientation;
 import javax.swing.ImageIcon;
-import javax.swing.SwingUtilities;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -257,7 +256,7 @@ public class JAdvancedSLDPanel extends javax.swing.JPanel implements PropertyPan
     }
 
     private void parse() {
-//        tree.setSLD(style); -------------------------------------------------------------------------------------------------------------------
+        tree.setSLD(style);
     }
 
     public ImageIcon getIcon() {
