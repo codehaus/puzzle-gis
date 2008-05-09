@@ -115,7 +115,7 @@ public class JAdvancedSLDPanel extends javax.swing.JPanel implements PropertyPan
                     Symbolizer symb = (Symbolizer) val;
 
                     if (symb instanceof RasterSymbolizer) {
-                        if (guiRulePane == null) {
+                        if (guiRasterPane == null) {
                             guiRasterPane = new JRasterSymbolizerPane();
                         }
                         guiRasterPane.setLayer(layer);
