@@ -37,7 +37,7 @@ import org.puzzle.puzzlecore.tool.ToolDescriptor;
 public class JToolTree extends JComponent{
 
     
-    private final TreeTable treetable;
+    protected final TreeTable treetable;
     
     public JToolTree(){
         

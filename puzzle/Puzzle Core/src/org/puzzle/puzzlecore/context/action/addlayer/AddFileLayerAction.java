@@ -38,6 +38,7 @@ import org.openide.util.Lookup;
 import org.openide.util.NbBundle;
 import org.openide.util.actions.CallableSystemAction;
 import org.puzzle.puzzlecore.context.ContextService;
+import org.puzzle.puzzlecore.context.gui.datadialog.DataDialog;
 
 /**
  * @author johann sorel
@@ -74,7 +75,7 @@ public final class AddFileLayerAction extends CallableSystemAction {
 
         ContextService service = Lookup.getDefault().lookup(ContextService.class);
         MapContext context = service.getActiveContext();
-        
+
         if (context != null) {
             List<DataPanel> lst = new ArrayList<DataPanel>();
             lst.add(new JFileDataPanel());
@@ -96,10 +97,10 @@ public final class AddFileLayerAction extends CallableSystemAction {
                 JOptionPane.showMessageDialog(null, "No active Context");
             }
   }
-
-  public String getName() {
-    return NbBundle.getMessage(AddFileLayerAction.class, "CTL_AddLayerAction");
-  }
+  
+    public String getName() {
+        return NbBundle.getMessage(AddFileLayerAction.class, "CTL_AddLayerAction");
+    }
 
   @Override
   protected String iconResource() {

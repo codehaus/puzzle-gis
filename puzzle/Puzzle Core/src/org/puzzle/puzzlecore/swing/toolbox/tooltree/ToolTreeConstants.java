@@ -32,16 +32,16 @@ public class ToolTreeConstants {
     private static WeakReference<ToolTreeConstants> ref = null;
     
     
-    public final ToolTreePath ANALYSE = new ToolTreePath(null,"analyse");
-    public final ToolTreePath ANALYSE_GEOMETRIE = new ToolTreePath(ANALYSE,"geometry");
+    public final ToolTreePath ANALYSE = new DefaultToolTreePath(null,"analyse");
+    public final ToolTreePath ANALYSE_GEOMETRIE = new DefaultToolTreePath(ANALYSE,"geometry");
     
-    public final ToolTreePath DATABASE = new ToolTreePath(null,"database");
-    public final ToolTreePath DATABASE_CONVERT = new ToolTreePath(DATABASE,"convert");
-    public final ToolTreePath DATABASE_CREATE = new ToolTreePath(DATABASE,"create");
+    public final ToolTreePath DATABASE = new DefaultToolTreePath(null,"database");
+    public final ToolTreePath DATABASE_CONVERT = new DefaultToolTreePath(DATABASE,"convert");
+    public final ToolTreePath DATABASE_CREATE = new DefaultToolTreePath(DATABASE,"create");
     
-    public final ToolTreePath FILE = new ToolTreePath(null,"file");
-    public final ToolTreePath FILE_CONVERT = new ToolTreePath(FILE,"convert");
-    public final ToolTreePath FILE_CREATE = new ToolTreePath(FILE,"create");
+    public final ToolTreePath FILE = new DefaultToolTreePath(null,"file");
+    public final ToolTreePath FILE_CONVERT = new DefaultToolTreePath(FILE,"convert");
+    public final ToolTreePath FILE_CREATE = new DefaultToolTreePath(FILE,"create");
     
     
     

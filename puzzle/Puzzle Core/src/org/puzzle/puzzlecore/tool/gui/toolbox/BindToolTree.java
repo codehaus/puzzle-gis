@@ -24,6 +24,7 @@ import java.awt.GridLayout;
 import java.util.Collection;
 import java.util.Iterator;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import org.openide.util.Lookup;
 import org.openide.util.LookupEvent;
@@ -52,14 +53,13 @@ public class BindToolTree extends JToolTree implements LookupListener {
         addToolTreeListener(new ToolTreeListener() {
 
             public void treeToolActivated(ToolDescriptor tool) {
-                JDialog dialog = new JDialog();
+                JFrame dialog = new JFrame();
                 dialog.setTitle(tool.getTitle());
                 JPanel pane = new JPanel(new GridLayout(1, 1));
                 pane.add(tool.getComponent());
                 dialog.setContentPane(pane);
                 dialog.pack();
                 dialog.setLocationRelativeTo(null);
-                dialog.setModal(false);
                 dialog.setVisible(true);
             }
         });
@@ -82,7 +82,7 @@ public class BindToolTree extends JToolTree implements LookupListener {
         //remove tools non in the lookup
         for (ToolDescriptor tool : contexts) {
             if (!c.contains(tool)) {
-                removeTool(tool);
+                treetable.removeWeakTools();
             }
         }
 
@@ -97,4 +97,5 @@ public class BindToolTree extends JToolTree implements LookupListener {
     public void resultChanged(LookupEvent lookupEvent) {
         reload(lookupEvent);
     }
+
 }

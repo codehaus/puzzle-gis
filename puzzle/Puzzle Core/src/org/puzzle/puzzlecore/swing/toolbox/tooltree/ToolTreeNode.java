@@ -48,6 +48,4 @@ final class ToolTreeNode extends AbstractMutableTreeTableNode{
     public int getColumnCount() {
         return 1;
     }
-                
-        
 }

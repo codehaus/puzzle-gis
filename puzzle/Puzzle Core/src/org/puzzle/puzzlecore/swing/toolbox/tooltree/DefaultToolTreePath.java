@@ -19,37 +19,44 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.puzzle.puzzlecore.swing.toolbox.widgettool.vdem2csv;
+package org.puzzle.puzzlecore.swing.toolbox.tooltree;
 
-import java.awt.Component;
+import java.util.ArrayList;
+import java.util.List;
 import org.openide.util.NbBundle;
-import org.puzzle.puzzlecore.swing.toolbox.tooltree.ToolTreeConstants;
-import org.puzzle.puzzlecore.tool.AbstractToolDescriptor;
 
 
 /**
  *
- * @author johann Sorel
+ * @author johann sorel
  */
-public class VDem2CSVTTDescriptor extends AbstractToolDescriptor{
+class DefaultToolTreePath implements ToolTreePath{
 
-    private final String[] path = ToolTreeConstants.getInstance().FILE_CONVERT.getPath();
-    String title = NbBundle.getMessage(VDem2CSVTTDescriptor.class, "title");
+    private static final String[] EMPTY_STRING_ARRAY = {};
+    
+    private final List<String> paths = new ArrayList<String>();
+    
+    DefaultToolTreePath(ToolTreePath father, String i18nKey){
+        String myPath = NbBundle.getMessage(DefaultToolTreePath.class, i18nKey);
+        
+        if(father != null){
+            paths.addAll(((DefaultToolTreePath)father).getInerPath());
+        }
+        paths.add(myPath);
+    }
+    
+    List<String> getInerPath(){
+        return paths;
+    }
     
     
-    public String getTitle(){
-        return "VDem > CSV";
+    /**
+     * get the Sting array of this path
+     * @return String[]
+     */
+    public String[] getPath(){
+        return paths.toArray(EMPTY_STRING_ARRAY);        
     }
-
-    @Override
-    public String[] getPath() {
-        return path;
-    }
-
-    public Component getComponent() {
-        return new VDem2CSVTool();
-    }
-
-
-
+    
+           
 }

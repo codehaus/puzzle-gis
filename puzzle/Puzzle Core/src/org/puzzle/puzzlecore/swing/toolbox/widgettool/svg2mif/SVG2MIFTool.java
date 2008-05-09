@@ -29,8 +29,8 @@ import java.util.regex.Pattern;
 
 import javax.swing.JFileChooser;
 
+import javax.swing.JPanel;
 import org.geotools.gui.swing.misc.filter.FileFilterFactory;
-import org.puzzle.puzzlecore.swing.toolbox.widgettool.AbstractWidgetTool;
 import org.puzzle.puzzlecore.swing.toolbox.widgettool.svg2mif.element.DCircle;
 import org.puzzle.puzzlecore.swing.toolbox.widgettool.svg2mif.element.DLine;
 import org.puzzle.puzzlecore.swing.toolbox.widgettool.svg2mif.element.DPoint;
@@ -47,7 +47,7 @@ import org.puzzle.puzzlecore.swing.toolbox.widgettool.svg2mif.element.xml.Parser
  *
  * @author  johann sorel
  */
-public class SVG2MIFTool extends AbstractWidgetTool {
+public class SVG2MIFTool extends JPanel {
 
     private String fichierSVG;
     private String fichierMIF;

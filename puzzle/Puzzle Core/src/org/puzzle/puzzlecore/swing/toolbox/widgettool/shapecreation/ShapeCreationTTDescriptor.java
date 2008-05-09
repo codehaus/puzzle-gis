@@ -49,7 +49,7 @@ public class ShapeCreationTTDescriptor extends AbstractToolDescriptor{
     }
 
     public Component getComponent() {
-        return new ShapeCreationTool().getComponent();
+        return new ShapeCreationTool();
     }
 
 }

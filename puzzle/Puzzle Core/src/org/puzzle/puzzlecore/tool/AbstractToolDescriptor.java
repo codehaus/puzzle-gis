@@ -21,6 +21,8 @@
 
 package org.puzzle.puzzlecore.tool;
 
+import java.awt.Image;
+
 /**
  *
  * @author johann sorel
@@ -43,7 +45,7 @@ public abstract class AbstractToolDescriptor implements ToolDescriptor{
         return EMPTY_STRING_ARRAY;
     }
 
-
-    
-    
+    public Image getIcon(int iconType){
+        return null;
+    }
 }

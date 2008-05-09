@@ -46,7 +46,7 @@ public class SVG2MIFTTDescriptor extends AbstractToolDescriptor{
     }
 
     public Component getComponent() {
-        return new SVG2MIFTool().getComponent();
+        return new SVG2MIFTool();
     }
 
 }

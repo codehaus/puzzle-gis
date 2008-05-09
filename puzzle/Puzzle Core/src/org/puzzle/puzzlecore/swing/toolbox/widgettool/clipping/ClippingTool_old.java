@@ -77,15 +77,15 @@ import com.vividsolutions.jts.geom.MultiPoint;
 import com.vividsolutions.jts.geom.MultiPolygon;
 import com.vividsolutions.jts.geom.Point;
 import com.vividsolutions.jts.geom.Polygon;
+import javax.swing.JPanel;
 import org.geotools.gui.swing.datachooser.JOracleDataPanel;
 import org.geotools.gui.swing.datachooser.JPostGISDataPanel;
-import org.puzzle.puzzlecore.swing.toolbox.widgettool.AbstractWidgetTool;
 
 /**
  *
  * @author johann sorel
  */
-public class ClippingTool_old extends AbstractWidgetTool {
+public class ClippingTool_old extends JPanel {
 
     private final GeometryFactory GEOMETRY_FACTORY = new GeometryFactory();
     private LayerListModel inModel = new LayerListModel();
