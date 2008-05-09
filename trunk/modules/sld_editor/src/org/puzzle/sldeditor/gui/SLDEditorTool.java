@@ -22,7 +22,6 @@ import javax.swing.filechooser.FileFilter;
 import org.geotools.factory.CommonFactoryFinder;
 import org.geotools.factory.GeoTools;
 import org.geotools.gui.swing.misc.filter.FileFilterFactory;
-import org.geotools.sld.SLDConfiguration;
 import org.geotools.styling.FeatureTypeConstraint;
 import org.geotools.styling.SLDTransformer;
 import org.geotools.styling.StyleBuilder;
@@ -32,14 +31,12 @@ import org.geotools.styling.UserLayer;
 import org.geotools.xml.Configuration;
 import org.geotools.xml.Parser;
 import org.openide.util.Exceptions;
-import org.puzzle.puzzlecore.swing.toolbox.widgettool.WidgetTool;
-import org.puzzle.puzzlecore.swing.toolbox.widgettool.WidgetToolListener;
 
 /**
  *
  * @author  eclesia
  */
-public class SLDEditorTool extends javax.swing.JPanel implements WidgetTool {
+public class SLDEditorTool extends javax.swing.JPanel {
 
     private File openFile = null;
     private EventListenerList listeners = new EventListenerList();
@@ -51,15 +48,41 @@ public class SLDEditorTool extends javax.swing.JPanel implements WidgetTool {
         initComponents();
         pan_style.setLayout(new GridLayout(1, 1));
         pan_style.add(guiEditor);
-        
+
     }
 
     private void open(File sldFile) {
 
         if (sldFile != null && sldFile.exists()) {
             InputStream xml = null;
+
+//            ClassLoader cl = Lookup.getDefault().lookup(ClassLoader.class);
+            ClassLoader cl = Thread.currentThread().getContextClassLoader();
+            Configuration configuration = null;
             try {
-                Configuration configuration = new SLDConfiguration();
+//            ClassLoader MCL = cl.getSystemClassLoader();
+                cl.loadClass("org.geotools.xml.Parser");
+                cl.loadClass("org.eclipse.emf.common.util.URI");
+
+                configuration = (Configuration) cl.loadClass("org.geotools.sld.SLDConfiguration").newInstance();
+
+                System.out.println("YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY");
+                System.out.println("YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY");
+                System.out.println("YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY");
+//                parser = (Parser) c.newInstance();
+            } catch (Exception ex) {
+                System.out.println("NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN");
+                System.out.println("NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN");
+                System.out.println("NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN");
+                Exceptions.printStackTrace(ex);
+            }
+
+            try {
+//                Configuration configuration = new SLDConfiguration();
+
+
+
+
                 Parser parser = new Parser(configuration);
 
                 xml = new FileInputStream(sldFile);
@@ -275,8 +298,8 @@ public class SLDEditorTool extends javax.swing.JPanel implements WidgetTool {
         if (retour == JFileChooser.APPROVE_OPTION) {
             open(jfc.getSelectedFile());
         }
-        
-        
+
+
 }//GEN-LAST:event_guiOpenActionPerformed
 
     private void guiNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guiNewActionPerformed
@@ -289,7 +312,7 @@ public class SLDEditorTool extends javax.swing.JPanel implements WidgetTool {
                 newSLDProcedure();
             }
         }
-        
+
     }//GEN-LAST:event_guiNewActionPerformed
 
     private void guiSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guiSaveActionPerformed
@@ -303,18 +326,7 @@ public class SLDEditorTool extends javax.swing.JPanel implements WidgetTool {
     public JComponent getComponent() {
         return this;
     }
-
-    public void addWidgetToolListener(WidgetToolListener listener) {
-        listeners.add(WidgetToolListener.class, listener);
-    }
-
-    public void removeWidgetToolListener(WidgetToolListener listener) {
-        listeners.remove(WidgetToolListener.class, listener);
-    }
-
-    public WidgetToolListener[] getWidgetToolListeners() {
-        return listeners.getListeners(WidgetToolListener.class);
-    }
+    
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JButton guiNew;
   private javax.swing.JButton guiOpen;
@@ -323,9 +335,10 @@ public class SLDEditorTool extends javax.swing.JPanel implements WidgetTool {
   private javax.swing.JToolBar jToolBar1;
   private javax.swing.JPanel pan_style;
   // End of variables declaration//GEN-END:variables
-    /** 
+
+    /**
      * Write a String List in a file
-     * 
+     *
      * @param adress : path to the file
      * @param val : String List to write
      * @throws IOException if an error happen while writing
