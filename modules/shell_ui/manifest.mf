@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+OpenIDE-Module: org.puzzle.shell
+OpenIDE-Module-Install: org/puzzle/shell/Installer.class
+OpenIDE-Module-Layer: org/puzzle/shell/layer.xml
+OpenIDE-Module-Localizing-Bundle: org/puzzle/shell/Bundle.properties
+OpenIDE-Module-Specification-Version: 1.0
+
