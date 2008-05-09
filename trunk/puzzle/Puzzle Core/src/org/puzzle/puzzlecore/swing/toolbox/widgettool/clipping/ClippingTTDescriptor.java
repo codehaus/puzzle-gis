@@ -50,7 +50,7 @@ public class ClippingTTDescriptor extends AbstractToolDescriptor{
     }
 
     public Component getComponent() {
-        return new ClippingTool(new HashMap()).getComponent();
+        return new ClippingTool(new HashMap());
     }
 
 

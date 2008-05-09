@@ -22,6 +22,7 @@
 package org.puzzle.puzzlecore.tool;
 
 import java.awt.Component;
+import java.awt.Image;
 
 /**
  *
@@ -68,6 +69,18 @@ public interface ToolDescriptor {
      * @return the panel of the tool
      */
     public Component getComponent();
-                
+           
+    /**
+     * Used if a tool has a special icon.
+     * 
+     * @param iconType : same as bean Icon,
+     * can be BeanInfo :
+     * ICON_COLOR_16x16
+     * ICON_COLOR_32x32
+     * ICON_MONO_16x16
+     * ICON_MONO_32x32
+     * @return
+     */
+    public Image getIcon(int iconType);
     
 }

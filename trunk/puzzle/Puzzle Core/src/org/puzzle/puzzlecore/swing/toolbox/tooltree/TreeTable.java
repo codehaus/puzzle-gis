@@ -22,14 +22,16 @@ package org.puzzle.puzzlecore.swing.toolbox.tooltree;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.HashMap;
+import java.lang.ref.WeakReference;
 import java.util.Map;
 
+import java.util.WeakHashMap;
 import javax.swing.event.EventListenerList;
 import javax.swing.tree.TreePath;
 
 import org.jdesktop.swingx.JXTreeTable;
 import org.jdesktop.swingx.renderer.DefaultTreeRenderer;
+import org.jdesktop.swingx.treetable.AbstractMutableTreeTableNode;
 import org.jdesktop.swingx.treetable.DefaultTreeTableModel;
 import org.jdesktop.swingx.treetable.MutableTreeTableNode;
 import org.jdesktop.swingx.treetable.TreeTableNode;
@@ -40,12 +42,12 @@ import org.puzzle.puzzlecore.tool.ToolDescriptor;
  *
  * @author johann sorel
  */
-final class TreeTable extends JXTreeTable implements MouseListener {
+public final class TreeTable extends JXTreeTable implements MouseListener {
 
     protected final ToolDescriptor[] EMPTY_TREETOOLDESCRIPTOR_ARRAY = {};
     protected final EventListenerList LISTENERS = new EventListenerList();
     private final ToolPackTreeNode root;
-    private final Map<ToolDescriptor, ToolTreeNode> tools = new HashMap<ToolDescriptor, ToolTreeNode>();
+    private final Map<ToolDescriptor, ToolTreeNode> tools = new WeakHashMap<ToolDescriptor, ToolTreeNode>();
     private DefaultTreeTableModel model;
 
     /**
@@ -70,11 +72,11 @@ final class TreeTable extends JXTreeTable implements MouseListener {
     }
 
     void addTool(ToolDescriptor tool) {
-
+        
         if (!tools.containsKey(tool)) {
 
             ToolTreeNode node = new ToolTreeNode(tool.getTitle());
-            node.setUserObject(tool);
+            node.setUserObject(new WeakReference<ToolDescriptor>(tool));
 
             tools.put(tool, node);
 
@@ -135,15 +137,19 @@ final class TreeTable extends JXTreeTable implements MouseListener {
             expandPath(new TreePath(root));
         }
 
-
-
     }
 
     void removeTool(ToolDescriptor tool) {
 
         if (tools.containsKey(tool)) {
-            ToolTreeNode node = tools.get(tool);
-            MutableTreeTableNode origine = (MutableTreeTableNode) node.getParent();
+            ToolTreeNode node = tools.get(tool);            
+            removeNodeAndEmptyParent(node);
+            tools.remove(tool);
+        }
+    }
+    
+    private void removeNodeAndEmptyParent(ToolTreeNode node){
+        MutableTreeTableNode origine = (MutableTreeTableNode) node.getParent();
             model.removeNodeFromParent(node);
             //origine.remove(node);
 
@@ -155,10 +161,28 @@ final class TreeTable extends JXTreeTable implements MouseListener {
             }
 
             revalidate();
-
-            tools.remove(tool);
-        }
     }
+    
+    public void removeWeakTools(){
+        weakCheck(root);
+    }
+    
+    private void weakCheck(AbstractMutableTreeTableNode node){
+        
+        if(node instanceof ToolPackTreeNode){
+            
+            for(int i=node.getChildCount()-1 ; i>=0 ; i--){
+                weakCheck( (AbstractMutableTreeTableNode) node.getChildAt(i));
+            }
+            
+        }else{
+            WeakReference obj = (WeakReference) node.getUserObject();
+            if( obj.get() == null){
+                removeNodeAndEmptyParent((ToolTreeNode)node);
+            }
+        }        
+    }
+    
 
     ToolDescriptor[] getTreeToolDescriptors() {
         return tools.keySet().toArray(EMPTY_TREETOOLDESCRIPTOR_ARRAY);
@@ -171,7 +195,8 @@ final class TreeTable extends JXTreeTable implements MouseListener {
             if (path != null) {
                 Object node = path.getLastPathComponent();
                 if (node instanceof ToolTreeNode) {
-                   ToolDescriptor tool = (ToolDescriptor) ((ToolTreeNode) node).getUserObject();
+                    WeakReference<ToolDescriptor> weak = (WeakReference<ToolDescriptor>) ((ToolTreeNode) node).getUserObject();
+                    ToolDescriptor tool = weak.get();
                     fireActivation(tool);
                 }
             }
@@ -191,10 +216,12 @@ final class TreeTable extends JXTreeTable implements MouseListener {
     }
 
     private void fireActivation(ToolDescriptor tool) {
-        ToolTreeListener[] listeners = getToolTreeListeners();
+        if (tool != null) {
+            ToolTreeListener[] listeners = getToolTreeListeners();
 
-        for (ToolTreeListener listener : listeners) {
-            listener.treeToolActivated(tool);
+            for (ToolTreeListener listener : listeners) {
+                listener.treeToolActivated(tool);
+            }
         }
     }
 

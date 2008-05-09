@@ -54,6 +54,7 @@ import com.vividsolutions.jts.geom.MultiPoint;
 import com.vividsolutions.jts.geom.MultiPolygon;
 import com.vividsolutions.jts.geom.Point;
 import com.vividsolutions.jts.geom.Polygon;
+import javax.swing.JPanel;
 import org.geotools.gui.swing.datachooser.DataPanel;
 import org.geotools.gui.swing.datachooser.JDataChooser;
 import org.geotools.gui.swing.datachooser.JFileDataPanel;
@@ -61,13 +62,12 @@ import org.geotools.gui.swing.datachooser.JOracleDataPanel;
 import org.geotools.gui.swing.datachooser.JPostGISDataPanel;
 import org.geotools.gui.swing.misc.Render.LayerListRenderer;
 import org.openide.util.NbBundle;
-import org.puzzle.puzzlecore.swing.toolbox.widgettool.AbstractWidgetTool;
 
 /**
  *
  * @author johann sorel
  */
-public class ClippingTool extends AbstractWidgetTool {
+public class ClippingTool extends JPanel {
 
     private LayerListModel inModel = new LayerListModel();
     private LayerListModel clipModel = new LayerListModel();

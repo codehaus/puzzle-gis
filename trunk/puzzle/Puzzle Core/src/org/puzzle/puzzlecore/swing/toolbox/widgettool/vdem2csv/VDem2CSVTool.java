@@ -26,14 +26,14 @@ import java.io.File;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
+import javax.swing.JPanel;
 import org.geotools.gui.swing.misc.filter.FileFilterFactory;
-import org.puzzle.puzzlecore.swing.toolbox.widgettool.AbstractWidgetTool;
 
 /**
  *
  * @author  Johann
  */
-public class VDem2CSVTool extends AbstractWidgetTool {
+public class VDem2CSVTool extends JPanel {
     
     private PLMNTVisualDem plvdem = new PLMNTVisualDem();
     
@@ -298,10 +298,10 @@ public class VDem2CSVTool extends AbstractWidgetTool {
         jpb_attente.setIndeterminate(true);
         boolean b = plvdem.convert(jtf_entree.getText(),jtf_sortie.getText(),chk_cover.isSelected(),Integer.valueOf(jtf_refx.getText()).intValue(), Integer.valueOf(jtf_refy.getText()).intValue()) ;
         if( !b ){
-            JOptionPane.showMessageDialog(this,"Echec conversion","Erreur",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Echec conversion","Erreur",JOptionPane.ERROR_MESSAGE);
         }
         else{
-            JOptionPane.showMessageDialog(this,"Conversion reussie","",JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Conversion reussie","",JOptionPane.INFORMATION_MESSAGE);
         }
         jpb_attente.setIndeterminate(false); 
         jbu_convertir.setEnabled(true);
@@ -322,7 +322,7 @@ public class VDem2CSVTool extends AbstractWidgetTool {
         jfc.setFileFilter(jfc.getChoosableFileFilters()[1]);
         
         
-        int val = jfc.showSaveDialog(this);
+        int val = jfc.showSaveDialog(null);
         
         if(val == JFileChooser.APPROVE_OPTION){
             File f = jfc.getSelectedFile();
@@ -345,7 +345,7 @@ public class VDem2CSVTool extends AbstractWidgetTool {
         
         jfc.setFileFilter(jfc.getChoosableFileFilters()[1]);
                 
-        int val = jfc.showOpenDialog(this);
+        int val = jfc.showOpenDialog(null);
         
         if(val == JFileChooser.APPROVE_OPTION){
             File f = jfc.getSelectedFile();

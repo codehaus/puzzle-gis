@@ -22,8 +22,10 @@ package org.puzzle.puzzlecore.tool;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import org.openide.util.Exceptions;
 import org.openide.util.Lookup;
 import org.openide.util.lookup.AbstractLookup;
+import org.openide.util.lookup.AbstractLookup.Content;
 import org.openide.util.lookup.InstanceContent;
 import org.puzzle.puzzlecore.swing.toolbox.widgettool.clipping.ClippingTTDescriptor;
 import org.puzzle.puzzlecore.swing.toolbox.widgettool.shapecreation.ShapeCreationTTDescriptor;

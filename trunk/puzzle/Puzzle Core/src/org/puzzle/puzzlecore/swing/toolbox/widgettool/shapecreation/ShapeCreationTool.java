@@ -30,6 +30,7 @@ import java.util.Map;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
+import javax.swing.JPanel;
 import org.geotools.data.DataUtilities;
 import org.geotools.data.FileDataStoreFactorySpi;
 import org.geotools.data.shapefile.ShapefileDataStore;
@@ -39,14 +40,13 @@ import org.geotools.gui.swing.crschooser.JCRSChooser;
 import org.geotools.referencing.crs.DefaultGeographicCRS;
 import org.opengis.feature.simple.SimpleFeatureType;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
-import org.puzzle.puzzlecore.swing.toolbox.widgettool.AbstractWidgetTool;
 
 
 /**
  *
  * @author johann sorel
  */
-public class ShapeCreationTool extends AbstractWidgetTool {
+public class ShapeCreationTool extends JPanel {
 
     
     
