@@ -20,11 +20,15 @@
  */
 package org.puzzle.puzzlecore.gtextend.widget.viewtree;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import org.geotools.map.MapContext;
 import org.jdesktop.swingx.treetable.DefaultMutableTreeTableNode;
 import org.jdesktop.swingx.treetable.DefaultTreeTableModel;
+import org.jdesktop.swingx.treetable.TreeTableNode;
 import org.puzzle.puzzlecore.view.MapGroup;
 import org.puzzle.puzzlecore.view.MapView;
 
@@ -34,9 +38,12 @@ import org.puzzle.puzzlecore.view.MapView;
  */
 public class ViewTreeModel extends DefaultTreeTableModel {
 
-    private Map<MapView, DefaultMutableTreeTableNode> mapViews = new HashMap<MapView, DefaultMutableTreeTableNode>();
-    private Map<MapGroup, DefaultMutableTreeTableNode> mapGroups = new HashMap<MapGroup, DefaultMutableTreeTableNode>();
+    private final Map<MapView, DefaultMutableTreeTableNode> mapViews = new HashMap<MapView, DefaultMutableTreeTableNode>();
+    private final Map<MapGroup, DefaultMutableTreeTableNode> mapGroups = new HashMap<MapGroup, DefaultMutableTreeTableNode>();
 
+    private final DefaultMutableTreeTableNode noGroupNode = new DefaultMutableTreeTableNode();
+    
+    
     /**
      * create a StyleTreeModel
      * @param style , can't be null
@@ -44,6 +51,10 @@ public class ViewTreeModel extends DefaultTreeTableModel {
     public ViewTreeModel() {
         super(new DefaultMutableTreeTableNode());
 
+        getRoot().add(noGroupNode);
+        
+        
+        
 //        parse();
 //
 //        
@@ -97,11 +108,71 @@ public class ViewTreeModel extends DefaultTreeTableModel {
 //        });
     }
 
-//    private void parse() {
-//        mapGroups.clear();
-//        mapViews.clear();
-//
-//        TreeTableNode root = getRoot();
+    public void addView(MapView view){
+        if(!mapViews.containsKey(view)){
+            DefaultMutableTreeTableNode node = new DefaultMutableTreeTableNode(view);
+            mapViews.put(view, node);
+            if(view.getGroup() == null){
+                insertNodeInto(node, noGroupNode, noGroupNode.getChildCount());
+            }else{
+                DefaultMutableTreeTableNode parent = mapViews.get(view.getGroup());
+                insertNodeInto(node, parent, parent.getChildCount());
+            }
+        }
+    }
+    
+    public void addView(Collection<MapView> views){
+        for(MapView view : views){
+            addView(view);
+        }
+    }
+    
+    public void removeView(MapView view){
+        if(mapViews.containsKey(view)){
+            DefaultMutableTreeTableNode node = mapViews.get(view);
+//            ((MapView)node.getUserObject()).dispose();
+            removeNodeFromParent(node);
+        }
+    }
+    
+    public void addGroup(MapGroup group){
+        if(!mapGroups.containsKey(group)){
+            DefaultMutableTreeTableNode node = new DefaultMutableTreeTableNode(group);
+            mapGroups.put(group, node);
+            insertNodeInto(node, getRoot(), getRoot().getChildCount());
+         }
+    }
+    
+    public void addGroup(Collection<MapGroup> groups){
+        for(MapGroup group : groups){
+            addGroup(group);
+        }
+    }
+    
+    public void removeGroup(MapGroup group){
+        if(mapGroups.containsKey(group)){            
+            for(MapView view : mapViews.keySet()){
+                if(view.getGroup() == group){
+                    view.setGroup(null);
+                }
+            }            
+            removeNodeFromParent(mapGroups.get(group));
+        }
+    }
+    
+    public Collection<MapView> getViews(){
+        return new ArrayList<MapView>(mapViews.keySet());
+    }
+    
+    public Collection<MapGroup> getGroups(){
+        return new ArrayList<MapGroup>(mapGroups.keySet());
+    }
+        
+    private void parse() {
+        mapGroups.clear();
+        mapViews.clear();
+
+        TreeTableNode root = getRoot();
 //
 //        while(root.getChildCount() >0){
 //            removeNodeFromParent( (DefaultMutableTreeTableNode)root.getChildAt(0));
@@ -133,7 +204,7 @@ public class ViewTreeModel extends DefaultTreeTableModel {
 //
 //
 //        }
-//    }
+    }
 
     @Override
     public int getColumnCount() {
@@ -168,7 +239,7 @@ public class ViewTreeModel extends DefaultTreeTableModel {
                     return null;
             }
         } else {
-            return null;
+            return "no group";
         }
 
     }
@@ -194,6 +265,7 @@ public class ViewTreeModel extends DefaultTreeTableModel {
                     ((MapView) obj).setRotationLink((Boolean) value);
                     break;
                 case 4:
+                    if(value != null)                    
                     ((MapView) obj).getMap().getRenderingStrategy().setContext( (MapContext)value);
                     break;
             }
@@ -231,6 +303,12 @@ public class ViewTreeModel extends DefaultTreeTableModel {
         return "";
     }
 
+    @Override
+    public DefaultMutableTreeTableNode getRoot() {
+        return (DefaultMutableTreeTableNode) super.getRoot();
+    }
+
+    
 //---------------------using nodes------------------------------------------
     /**
      * move an existing node

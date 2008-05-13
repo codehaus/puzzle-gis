@@ -64,6 +64,7 @@ import org.geotools.gui.swing.misc.Render.RandomStyleFactory;
 import org.jdesktop.swingx.JXTreeTable;
 import org.jdesktop.swingx.table.TableColumnExt;
 import org.jdesktop.swingx.treetable.DefaultMutableTreeTableNode;
+import org.jdesktop.swingx.treetable.TreeTableModel;
 import org.jdesktop.swingx.treetable.TreeTableNode;
 import org.puzzle.puzzlecore.view.MapGroup;
 import org.puzzle.puzzlecore.view.MapView;
@@ -80,17 +81,17 @@ public class JViewTree extends JXTreeTable implements DragGestureListener, DragS
     private static final Icon ICON_SCALE = new ImageIcon(JViewTree.class.getResource("/org/puzzle/puzzlecore/gtextend/widget/iconset/scale.png"));
     private static final Icon ICON_ROTATION = new ImageIcon(JViewTree.class.getResource("/org/puzzle/puzzlecore/gtextend/widget/iconset/rotation.png"));
     private static final Icon ICON_TRANSLATION = new ImageIcon(JViewTree.class.getResource("/org/puzzle/puzzlecore/gtextend/widget/iconset/translation.png"));
-    private final ViewTreeModel treemodel = new ViewTreeModel();
+    private final ViewTreeModel treemodel ;
     /** Variables needed for DnD */
     private DragSource dragSource = null;
 
     public JViewTree() {
-        super();
-
+        super(new ViewTreeModel());
+        treemodel = getTreeTableModel();
+        
         putClientProperty("JTree.lineStyle", "Angled");
 
-        setTreeTableModel(treemodel);
-        setRootVisible(true);
+        setRootVisible(false);
         setEditable(true);
         
 //        setShowsRootHandles(false);
@@ -258,6 +259,12 @@ public class JViewTree extends JXTreeTable implements DragGestureListener, DragS
 
     }
 
+    @Override
+    public ViewTreeModel getTreeTableModel() {
+        return (ViewTreeModel) super.getTreeTableModel();
+    }
+
+    
 
     //-------------private classes----------------------------------------------
     class ViewCellRenderer extends DefaultTreeCellRenderer {
@@ -283,7 +290,7 @@ public class JViewTree extends JXTreeTable implements DragGestureListener, DragS
                     lbl.setText(group.getTitle());
                     lbl.setIcon(ICON_GROUP);
                 } else {
-                    lbl.setText("Views");
+                    lbl.setText(" No group");
                     lbl.setIcon(IconBundle.EMPTY_ICON);
                 }
 
@@ -315,31 +322,15 @@ public class JViewTree extends JXTreeTable implements DragGestureListener, DragS
 
                 DefaultMutableTreeTableNode node = (DefaultMutableTreeTableNode) path.getLastPathComponent();
 
-                add(new DuplicateItem(node));
-                add(new DeleteItem(node));
+                if(node.getUserObject() != null){
+                    add(new DeleteItem(node));
+                }
 
 
                 super.setVisible(b);
             } else {
                 super.setVisible(false);
             }
-        }
-    }
-
-    class DuplicateItem extends JMenuItem {
-
-        private final DefaultMutableTreeTableNode NODE;
-
-        DuplicateItem(DefaultMutableTreeTableNode node) {
-            this.NODE = node;
-            setText("Duplicate");
-            setIcon(ICON_GROUP);
-            addActionListener(new ActionListener() {
-
-                public void actionPerformed(ActionEvent e) {
-//                    DefaultMutableTreeTableNode copy = treemodel.duplicateNode(NODE);
-                }
-            });
         }
     }
 
@@ -354,7 +345,16 @@ public class JViewTree extends JXTreeTable implements DragGestureListener, DragS
             addActionListener(new ActionListener() {
 
                 public void actionPerformed(ActionEvent e) {
-//                    treemodel.deleteNode(NODE);
+                    Object obj = NODE.getUserObject();
+                    if(obj != null){
+                        if(obj instanceof MapView){
+                            ((MapView)obj).close();
+//                            treemodel.removeView((MapView)obj);
+                        }
+                        if(obj instanceof MapGroup){
+                            treemodel.removeGroup((MapGroup)obj);
+                        }
+                    }
                 }
             });
         }

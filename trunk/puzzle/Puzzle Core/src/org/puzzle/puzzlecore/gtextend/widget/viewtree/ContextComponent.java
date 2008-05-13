@@ -25,6 +25,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import java.util.Collection;
 import javax.swing.DefaultListCellRenderer;
 
 import javax.swing.JComboBox;
@@ -35,6 +36,9 @@ import javax.swing.table.TableCellRenderer;
 import org.geotools.gui.swing.contexttree.renderer.RenderAndEditComponent;
 import org.geotools.map.MapContext;
 import org.geotools.map.MapLayer;
+import org.openide.util.Lookup;
+import org.puzzle.puzzlecore.context.ContextService;
+import org.puzzle.puzzlecore.view.MapView;
 
 /**
  *
@@ -43,7 +47,6 @@ import org.geotools.map.MapLayer;
 final class ContextComponent extends RenderAndEditComponent implements TableCellRenderer {
 
     private final JComboBox box = new JComboBox();
-    private MapLayer layer = null;
 
     ContextComponent() {
         super();
@@ -66,28 +69,20 @@ final class ContextComponent extends RenderAndEditComponent implements TableCell
             }
             });
 
-        box.addActionListener(new ActionListener() {
-
-            public void actionPerformed(ActionEvent e) {
-
-            }
-            });
-
     }
 
     @Override
     public void parse(Object obj) {
-        layer = null;
-
-
+        
         removeAll();
         if (obj instanceof MapContext) {
             box.removeAllItems();
             
-//            MapContext[] contexts = CORE.getContextManager().getContexts();
-//            for(MapContext context : contexts){
-//                box.addItem(context);
-//            }
+            Collection<MapContext> contexts = (Collection<MapContext>) Lookup.getDefault().lookup(ContextService.class).getLookup().lookupAll(MapContext.class);
+            
+            for(MapContext context : contexts){
+                box.addItem(context);
+            }
 
             box.setSelectedItem(obj);
             add(box);

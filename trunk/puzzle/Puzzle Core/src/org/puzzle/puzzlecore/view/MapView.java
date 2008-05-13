@@ -23,6 +23,7 @@ package org.puzzle.puzzlecore.view;
 import java.awt.BorderLayout;
 import org.geotools.gui.swing.map.map2d.Map2D;
 import org.openide.util.Lookup;
+import org.openide.util.lookup.Lookups;
 import org.openide.windows.TopComponent;
 
 /**
@@ -41,6 +42,8 @@ public class MapView extends TopComponent {
     public MapView(Map2D map){
         super();
         
+        associateLookup( Lookups.singleton(this));
+        
         this.map = map;
         setLayout(new BorderLayout());
         add(BorderLayout.CENTER,map.getComponent());
@@ -55,7 +58,7 @@ public class MapView extends TopComponent {
         return group;
     }
 
-    void setGroup(MapGroup group) {
+    public void setGroup(MapGroup group) {
         this.group = group;
     }
 
@@ -64,7 +67,7 @@ public class MapView extends TopComponent {
         
         ViewService v = Lookup.getDefault().lookup(ViewService.class);
         if (v != null) {
-            v.addView(this);
+            v.add(this);
         }
         
         super.componentOpened();
@@ -74,7 +77,7 @@ public class MapView extends TopComponent {
     protected void componentClosed() {
         ViewService v = Lookup.getDefault().lookup(ViewService.class);
         if (v != null) {
-            v.removeView(this);
+            v.remove(this);
         }
         
         map.dispose();

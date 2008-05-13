@@ -21,12 +21,17 @@
 
 package org.puzzle.puzzlecore.view;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author johann sorel
  */
-public class MapGroup {
+public final class MapGroup {
 
+    private final List<MapView> views = new ArrayList<MapView>();
+    
     private String title = "";
 
     public String getTitle() {

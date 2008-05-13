@@ -45,7 +45,7 @@ public class DefaultViewService implements ViewService{
      * add a new view
      * @param view the mapview to add
      */
-    public void addView(MapView view) {        
+    public void add(MapView view) {        
         CONTENT.add(view);        
     }
 
@@ -53,7 +53,15 @@ public class DefaultViewService implements ViewService{
      * remove view
      * @param view target mapview to remove
      */
-    public void removeView(MapView view) {
+    public void remove(MapView view) {
         CONTENT.remove(view);
+    }
+
+    public void add(MapGroup group) {
+        CONTENT.add(group);
+    }
+
+    public void remove(MapGroup group) {
+        CONTENT.remove(group);
     }
 }

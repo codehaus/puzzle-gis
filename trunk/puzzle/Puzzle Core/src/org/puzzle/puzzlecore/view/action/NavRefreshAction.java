@@ -30,17 +30,12 @@ import org.openide.util.actions.CallableSystemAction;
  * 
  * @author johann sorel
  */
-public final class NavRefreshAction extends CallableSystemAction {
+public final class NavRefreshAction extends CallableSystemAction implements MapAction{
 
     private RefreshAction action = new  RefreshAction();
+    private ViewLookUpSync sync = new ViewLookUpSync(this);
 
     public NavRefreshAction() {
-//        DefaultViewService manager = CORE.getViewManager();
-//        manager.addViewListener(this);
-//        
-//        if(manager.getActiveView() != null){
-//            action.setMap(manager.getActiveView().getMap());
-//        }
     }
 
     public Map2D getMap() {
@@ -72,20 +67,5 @@ public final class NavRefreshAction extends CallableSystemAction {
     protected boolean asynchronous() {
         return false;
     }
-    
-//    public void viewActivated(ViewEvent event) {
-//        if(event.getView() != null){
-//            action.setMap(event.getView().getMap());
-//        }else{
-//            action.setMap(null);
-//        }
-//        
-//    }
-//
-//    public void viewAdded(ViewEvent event) {}
-//    public void viewRemoved(ViewEvent event) {}
-//    public void groupAdded(GroupEvent event) {}
-//    public void groupRemoved(GroupEvent event) {}
-//    public void groupChanged(GroupEvent event) {}
     
 }

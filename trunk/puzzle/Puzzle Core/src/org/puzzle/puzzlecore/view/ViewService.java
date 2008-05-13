@@ -12,7 +12,13 @@ import org.openide.util.Lookup;
  */
 public interface ViewService extends Lookup.Provider{
 
-    void addView(MapView view);
+    void add(MapView view);
 
-    void removeView(MapView view);
+    void remove(MapView view);
+    
+    void add(MapGroup group);
+
+    void remove(MapGroup group);
+    
+    
 }
