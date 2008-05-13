@@ -27,7 +27,6 @@ import java.awt.Image;
 import java.beans.IntrospectionException;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.beans.PropertyVetoException;
 import org.openide.explorer.propertysheet.PropertySheet;
 import org.openide.nodes.BeanNode;
 import org.openide.nodes.Node;
@@ -73,18 +72,18 @@ public class ShellToolPane extends javax.swing.JPanel implements PropertyChangeL
         
         Node node = null;
         try {
-            node = new BeanNode(bean);
+            node = new BeanNode<ShellBean>(bean);
         } catch (IntrospectionException ex) {
             Exceptions.printStackTrace(ex);
         }
         
         if(node != null){
             propertySheet.setNodes(new Node[]{node});
-            try {
-                propertySheet.setSortingMode(propertySheet.SORTED_BY_NAMES);
-            } catch (PropertyVetoException ex) {
-                Exceptions.printStackTrace(ex);
-            }
+//            try {
+//                propertySheet.setSortingMode(propertySheet.SORTED_BY_NAMES);
+//            } catch (PropertyVetoException ex) {
+//                Exceptions.printStackTrace(ex);
+//            }
         }else{
             propertySheet.setNodes(new Node[]{});
         }
@@ -112,58 +111,23 @@ public class ShellToolPane extends javax.swing.JPanel implements PropertyChangeL
     private void initComponents() {
 
         jSplitPane1 = new javax.swing.JSplitPane();
-        jPanel2 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        guiCommand = new javax.swing.JTextArea();
-        panDOS = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
-        jToolBar2 = new javax.swing.JToolBar();
+        jPanel2 = new javax.swing.JPanel();
         guiExec = new javax.swing.JButton();
         panBean = new javax.swing.JPanel();
         jToolBar1 = new javax.swing.JToolBar();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jSplitPane2 = new javax.swing.JSplitPane();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        guiCommand = new javax.swing.JTextArea();
+        panDOS = new javax.swing.JPanel();
 
         jSplitPane1.setBorder(null);
         jSplitPane1.setDividerLocation(300);
         jSplitPane1.setDividerSize(8);
 
-        jScrollPane1.setBorder(null);
-
-        guiCommand.setBackground(new java.awt.Color(0, 0, 0));
-        guiCommand.setColumns(20);
-        guiCommand.setEditable(false);
-        guiCommand.setForeground(new java.awt.Color(255, 255, 255));
-        guiCommand.setLineWrap(true);
-        guiCommand.setRows(3);
-        guiCommand.setBorder(null);
-        jScrollPane1.setViewportView(guiCommand);
-
-        panDOS.setBackground(new java.awt.Color(0, 0, 0));
-        panDOS.setLayout(new java.awt.GridLayout(1, 1));
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 322, Short.MAX_VALUE)
-            .addComponent(panDOS, javax.swing.GroupLayout.DEFAULT_SIZE, 322, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panDOS, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE))
-        );
-
-        jSplitPane1.setRightComponent(jPanel2);
-
         jPanel1.setLayout(new java.awt.BorderLayout());
-
-        jToolBar2.setFloatable(false);
-        jToolBar2.setOrientation(1);
-        jToolBar2.setRollover(true);
 
         guiExec.setFont(guiExec.getFont().deriveFont(guiExec.getFont().getStyle() | java.awt.Font.BOLD));
         guiExec.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/puzzle/shell/gui/runprog.png"))); // NOI18N
@@ -173,9 +137,25 @@ public class ShellToolPane extends javax.swing.JPanel implements PropertyChangeL
                 guiExecActionPerformed(evt);
             }
         });
-        jToolBar2.add(guiExec);
 
-        jPanel1.add(jToolBar2, java.awt.BorderLayout.SOUTH);
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(193, Short.MAX_VALUE)
+                .addComponent(guiExec)
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(guiExec)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel1.add(jPanel2, java.awt.BorderLayout.PAGE_END);
 
         javax.swing.GroupLayout panBeanLayout = new javax.swing.GroupLayout(panBean);
         panBean.setLayout(panBeanLayout);
@@ -185,7 +165,7 @@ public class ShellToolPane extends javax.swing.JPanel implements PropertyChangeL
         );
         panBeanLayout.setVerticalGroup(
             panBeanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 244, Short.MAX_VALUE)
+            .addGap(0, 233, Short.MAX_VALUE)
         );
 
         jPanel1.add(panBean, java.awt.BorderLayout.CENTER);
@@ -212,6 +192,28 @@ public class ShellToolPane extends javax.swing.JPanel implements PropertyChangeL
         jPanel1.add(jToolBar1, java.awt.BorderLayout.PAGE_START);
 
         jSplitPane1.setLeftComponent(jPanel1);
+
+        jSplitPane2.setBorder(null);
+        jSplitPane2.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
+
+        jScrollPane1.setBorder(null);
+
+        guiCommand.setBackground(new java.awt.Color(0, 0, 0));
+        guiCommand.setColumns(20);
+        guiCommand.setEditable(false);
+        guiCommand.setForeground(new java.awt.Color(255, 255, 255));
+        guiCommand.setLineWrap(true);
+        guiCommand.setRows(3);
+        guiCommand.setBorder(null);
+        jScrollPane1.setViewportView(guiCommand);
+
+        jSplitPane2.setTopComponent(jScrollPane1);
+
+        panDOS.setBackground(new java.awt.Color(0, 0, 0));
+        panDOS.setLayout(new java.awt.GridLayout(1, 1));
+        jSplitPane2.setBottomComponent(panDOS);
+
+        jSplitPane1.setRightComponent(jSplitPane2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -265,8 +267,8 @@ private void guiExecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSplitPane jSplitPane1;
+    private javax.swing.JSplitPane jSplitPane2;
     private javax.swing.JToolBar jToolBar1;
-    private javax.swing.JToolBar jToolBar2;
     private javax.swing.JPanel panBean;
     private javax.swing.JPanel panDOS;
     // End of variables declaration//GEN-END:variables

@@ -54,7 +54,7 @@ public class ShellTreePathConstants {
         
         if(cst == null){
             cst = new ShellTreePathConstants();
-            ref = new WeakReference(cst);
+            ref = new WeakReference<ShellTreePathConstants>(cst);
         }
         
         return cst;        

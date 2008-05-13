@@ -29,8 +29,13 @@ import org.puzzle.puzzlecore.tool.ToolService;
 import org.puzzle.shell.gdal.bean.GdalInfo;
 import org.puzzle.shell.gdal.bean.Ogr2ogr;
 import org.puzzle.shell.gdal.database.esriaccess.ESRIAccessToolDescriptor;
-import org.puzzle.shell.gdal.database.postgis.PostGISToolDescriptor1;
-import org.puzzle.shell.gdal.database.postgis.PostGISToolDescriptor2;
+import org.puzzle.shell.gdal.database.postgis.PostGISToShapeToolDescriptor;
+import org.puzzle.shell.gdal.database.postgis.ShapeToPostGISToolDescriptor;
+import org.puzzle.shell.gdal.raster.folder.FolderRasterConvertToolDescriptor;
+import org.puzzle.shell.gdal.raster.mnt.MntToRasterToolDescriptor;
+import org.puzzle.shell.gdal.raster.mnt.RasterToMntToolDescriptor;
+import org.puzzle.shell.gdal.raster.onefile.OneFileRasterConvertToolDescriptor;
+import org.puzzle.shell.gdal.vector.folder.FolderVectorConvertToolDescriptor;
 import org.puzzle.shell.gdal.vector.onefile.OneFileVectorConvertToolDescriptor;
 import org.puzzle.shell.gui.ShellToolPane;
 
@@ -58,13 +63,14 @@ public class Installer extends ModuleInstall {
         
         // GDAL Simple tools ---------------------------------------------------
         DEFAULT_TOOLS.add(new ESRIAccessToolDescriptor());
-        DEFAULT_TOOLS.add(new PostGISToolDescriptor1());
-        DEFAULT_TOOLS.add(new PostGISToolDescriptor2());//        
-//        DEFAULT_TOOLS.add(new OneFileMNTConvertToolDescriptor());
-//        DEFAULT_TOOLS.add(new FolderRasterConvertToolDescriptor());
-//        DEFAULT_TOOLS.add(new OneFileRasterConvertToolDescriptor());
-//        DEFAULT_TOOLS.add(new FolderVectorConvertToolDescriptor());
+        DEFAULT_TOOLS.add(new PostGISToShapeToolDescriptor());
+        DEFAULT_TOOLS.add(new ShapeToPostGISToolDescriptor());
+        DEFAULT_TOOLS.add(new FolderRasterConvertToolDescriptor());
+        DEFAULT_TOOLS.add(new OneFileRasterConvertToolDescriptor());
+        DEFAULT_TOOLS.add(new FolderVectorConvertToolDescriptor());
         DEFAULT_TOOLS.add(new OneFileVectorConvertToolDescriptor());
+        DEFAULT_TOOLS.add(new MntToRasterToolDescriptor());
+        DEFAULT_TOOLS.add(new RasterToMntToolDescriptor());
         
         
         
