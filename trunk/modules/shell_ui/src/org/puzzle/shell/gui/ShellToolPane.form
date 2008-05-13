@@ -36,76 +36,6 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JSplitPaneSupportLayout"/>
       <SubComponents>
-        <Container class="javax.swing.JPanel" name="jPanel2">
-          <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JSplitPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JSplitPaneSupportLayout$JSplitPaneConstraintsDescription">
-              <JSplitPaneConstraints position="right"/>
-            </Constraint>
-          </Constraints>
-
-          <Layout>
-            <DimensionLayout dim="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane1" alignment="0" pref="322" max="32767" attributes="0"/>
-                  <Component id="panDOS" alignment="0" pref="322" max="32767" attributes="0"/>
-              </Group>
-            </DimensionLayout>
-            <DimensionLayout dim="1">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="panDOS" pref="270" max="32767" attributes="0"/>
-                  </Group>
-              </Group>
-            </DimensionLayout>
-          </Layout>
-          <SubComponents>
-            <Container class="javax.swing.JScrollPane" name="jScrollPane1">
-              <Properties>
-                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                  <Border info="null"/>
-                </Property>
-              </Properties>
-              <AuxValues>
-                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-              </AuxValues>
-
-              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-              <SubComponents>
-                <Component class="javax.swing.JTextArea" name="guiCommand">
-                  <Properties>
-                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="0" red="0" type="rgb"/>
-                    </Property>
-                    <Property name="columns" type="int" value="20"/>
-                    <Property name="editable" type="boolean" value="false"/>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                    </Property>
-                    <Property name="lineWrap" type="boolean" value="true"/>
-                    <Property name="rows" type="int" value="3"/>
-                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                      <Border info="null"/>
-                    </Property>
-                  </Properties>
-                </Component>
-              </SubComponents>
-            </Container>
-            <Container class="javax.swing.JPanel" name="panDOS">
-              <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="0" red="0" type="rgb"/>
-                </Property>
-              </Properties>
-
-              <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridLayout">
-                <Property name="columns" type="int" value="1"/>
-                <Property name="rows" type="int" value="1"/>
-              </Layout>
-            </Container>
-          </SubComponents>
-        </Container>
         <Container class="javax.swing.JPanel" name="jPanel1">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JSplitPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JSplitPaneSupportLayout$JSplitPaneConstraintsDescription">
@@ -115,19 +45,33 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
           <SubComponents>
-            <Container class="javax.swing.JToolBar" name="jToolBar2">
-              <Properties>
-                <Property name="floatable" type="boolean" value="false"/>
-                <Property name="orientation" type="int" value="1"/>
-                <Property name="rollover" type="boolean" value="true"/>
-              </Properties>
+            <Container class="javax.swing.JPanel" name="jPanel2">
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
-                  <BorderConstraints direction="South"/>
+                  <BorderConstraints direction="Last"/>
                 </Constraint>
               </Constraints>
 
-              <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBoxLayout"/>
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace pref="193" max="32767" attributes="0"/>
+                          <Component id="guiExec" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="guiExec" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
               <SubComponents>
                 <Component class="javax.swing.JButton" name="guiExec">
                   <Properties>
@@ -164,7 +108,7 @@
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="244" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="233" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
@@ -211,6 +155,76 @@
                   </Properties>
                 </Component>
               </SubComponents>
+            </Container>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JSplitPane" name="jSplitPane2">
+          <Properties>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="null"/>
+            </Property>
+            <Property name="orientation" type="int" value="0"/>
+          </Properties>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JSplitPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JSplitPaneSupportLayout$JSplitPaneConstraintsDescription">
+              <JSplitPaneConstraints position="right"/>
+            </Constraint>
+          </Constraints>
+
+          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JSplitPaneSupportLayout"/>
+          <SubComponents>
+            <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+              <Properties>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="null"/>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+              </AuxValues>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JSplitPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JSplitPaneSupportLayout$JSplitPaneConstraintsDescription">
+                  <JSplitPaneConstraints position="top"/>
+                </Constraint>
+              </Constraints>
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+              <SubComponents>
+                <Component class="javax.swing.JTextArea" name="guiCommand">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="columns" type="int" value="20"/>
+                    <Property name="editable" type="boolean" value="false"/>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                    </Property>
+                    <Property name="lineWrap" type="boolean" value="true"/>
+                    <Property name="rows" type="int" value="3"/>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="null"/>
+                    </Property>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
+            <Container class="javax.swing.JPanel" name="panDOS">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="0" green="0" red="0" type="rgb"/>
+                </Property>
+              </Properties>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JSplitPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JSplitPaneSupportLayout$JSplitPaneConstraintsDescription">
+                  <JSplitPaneConstraints position="bottom"/>
+                </Constraint>
+              </Constraints>
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridLayout">
+                <Property name="columns" type="int" value="1"/>
+                <Property name="rows" type="int" value="1"/>
+              </Layout>
             </Container>
           </SubComponents>
         </Container>

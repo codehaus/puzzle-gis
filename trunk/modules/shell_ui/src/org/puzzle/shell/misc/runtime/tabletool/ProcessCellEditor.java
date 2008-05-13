@@ -23,7 +23,6 @@ package org.puzzle.shell.misc.runtime.tabletool;
 
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.Image;
 import java.util.ResourceBundle;
 import javax.swing.AbstractCellEditor;
 import javax.swing.ImageIcon;

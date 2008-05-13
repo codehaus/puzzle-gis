@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.3" maxVersion="1.3" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jXTitledSeparator1" pref="491" max="32767" attributes="0"/>
+                  <Component id="jPanel2" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jXTitledSeparator1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Container class="javax.swing.JPanel" name="jPanel1">
+      <Properties>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+            <TitledBorder title="Files">
+              <ResourceString PropertyName="titleX" bundle="org/puzzle/shell/gdal/vector/folder/Bundle.properties" key="files" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+            </TitledBorder>
+          </Border>
+        </Property>
+      </Properties>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
+                          <Component id="jLabel1" pref="254" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="format_entree" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Component id="jtf_entree" pref="404" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="but_chercher_entree" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Component id="jLabel2" pref="254" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="format_sortie" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Component id="jtf_sortie" pref="404" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="but_chercher_sortie" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="format_entree" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="but_chercher_entree" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jtf_entree" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="format_sortie" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="but_chercher_sortie" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jtf_sortie" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="15" max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JLabel" name="jLabel1">
+          <Properties>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+              <ResourceString bundle="org/puzzle/shell/gdal/vector/folder/Bundle.properties" key="input" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+            </Property>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="jtf_entree">
+        </Component>
+        <Component class="javax.swing.JButton" name="but_chercher_entree">
+          <Properties>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+              <ResourceString bundle="org/puzzle/shell/gdal/vector/folder/Bundle.properties" key="..." replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+            </Property>
+            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[45, 20]"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="actionChercherEntree"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel2">
+          <Properties>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+              <ResourceString bundle="org/puzzle/shell/gdal/vector/folder/Bundle.properties" key="output" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+            </Property>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="format_sortie">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="6">
+                <StringItem index="0" value="MicroStation (.dgn)"/>
+                <StringItem index="1" value="Geography Markup Language (.gml)"/>
+                <StringItem index="2" value="Google Earth / Map  (.kml)"/>
+                <StringItem index="3" value="MapInfo Exchange (.mif)"/>
+                <StringItem index="4" value="ESRI Shape (.shp)"/>
+                <StringItem index="5" value="MapInfo (.tab)"/>
+              </StringArray>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="actionFormatSortie"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JTextField" name="jtf_sortie">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtf_sortiesortieAction"/>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jtf_sortiesortieLost"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="but_chercher_sortie">
+          <Properties>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+              <ResourceString bundle="org/puzzle/shell/gdal/vector/folder/Bundle.properties" key="..." replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+            </Property>
+            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[45, 20]"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="actionChercherSortie"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="format_entree">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="6">
+                <StringItem index="0" value="MicroStation (.dgn)"/>
+                <StringItem index="1" value="Geography Markup Language (.gml)"/>
+                <StringItem index="2" value="Google Earth / Map  (.kml)"/>
+                <StringItem index="3" value="MapInfo Exchange(.mif)"/>
+                <StringItem index="4" value="ESRI Shape (.shp)"/>
+                <StringItem index="5" value="MapInfo (.tab)"/>
+              </StringArray>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="actionFormatEntree"/>
+          </Events>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Container class="javax.swing.JPanel" name="jPanel2">
+      <Properties>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+            <TitledBorder title="Configuration">
+              <ResourceString PropertyName="titleX" bundle="org/puzzle/shell/gdal/vector/folder/Bundle.properties" key="settings" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+            </TitledBorder>
+          </Border>
+        </Property>
+      </Properties>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="chk_sub" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="330" max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <Component id="chk_sub" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JCheckBox" name="chk_sub">
+          <Properties>
+            <Property name="selected" type="boolean" value="true"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+              <ResourceString bundle="org/puzzle/shell/gdal/vector/folder/Bundle.properties" key="subfolder" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+            </Property>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
+                <EmptyBorder bottom="0" left="0" right="0" top="0"/>
+              </Border>
+            </Property>
+            <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
+              <Insets value="[0, 0, 0, 0]"/>
+            </Property>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Component class="org.jdesktop.swingx.JXTitledSeparator" name="jXTitledSeparator1">
+      <Properties>
+        <Property name="title" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+          <ResourceString bundle="org/puzzle/shell/gdal/vector/folder/Bundle.properties" key="title" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+        </Property>
+      </Properties>
+    </Component>
+  </SubComponents>
+</Form>
