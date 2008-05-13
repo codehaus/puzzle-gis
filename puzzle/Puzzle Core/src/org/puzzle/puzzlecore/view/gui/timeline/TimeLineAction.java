@@ -18,40 +18,28 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+package org.puzzle.puzzlecore.view.gui.timeline;
 
-package org.puzzle.puzzlecore.view.gui;
-
-import java.awt.Image;
-import org.openide.nodes.AbstractNode;
-import org.openide.nodes.Children.Array;
-import org.openide.util.lookup.Lookups;
-import org.puzzle.puzzlecore.view.MapGroup;
+import java.awt.event.ActionEvent;
+import javax.swing.AbstractAction;
+import javax.swing.ImageIcon;
+import org.openide.util.NbBundle;
+import org.openide.util.Utilities;
+import org.openide.windows.TopComponent;
 
 /**
- *
- * @author Administrateur
+ * Action which shows TimeLine component.
  */
-class ViewGroup extends AbstractNode{
+public class TimeLineAction extends AbstractAction {
 
-    public ViewGroup(MapGroup obj) {
-        super (new Array(), Lookups.singleton(obj));
-        setDisplayName(obj.getTitle());
-    }
-    
-    @Override
-    public String getHtmlDisplayName() {
-        return "<b>" + getDisplayName() + "</b>";
+    public TimeLineAction() {
+        super(NbBundle.getMessage(TimeLineAction.class, "CTL_TimeLineAction"));
+        putValue(SMALL_ICON, new ImageIcon(Utilities.loadImage(TimeLineTopComponent.ICON_PATH, true)));
     }
 
-    @Override
-    public Image getIcon(int arg0) {
-        return ViewNodeModel.ICON_GROUP;
+    public void actionPerformed(ActionEvent evt) {
+        TopComponent win = TimeLineTopComponent.findInstance();
+        win.open();
+        win.requestActive();
     }
-
-    @Override
-    public Image getOpenedIcon(int arg0) {
-        return getIcon(arg0);
-    }
-    
-    
 }

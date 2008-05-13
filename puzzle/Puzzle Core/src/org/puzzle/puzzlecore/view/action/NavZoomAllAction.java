@@ -30,17 +30,12 @@ import org.openide.util.actions.CallableSystemAction;
  * 
  * @author johann sorel
  */
-public final class NavZoomAllAction extends CallableSystemAction {
+public final class NavZoomAllAction extends CallableSystemAction implements MapAction{
 
      private ZoomAllAction action = new  ZoomAllAction();
+     private ViewLookUpSync sync = new ViewLookUpSync(this);
 
     public NavZoomAllAction() {
-//        DefaultViewService manager = CORE.getViewManager();
-//        manager.addViewListener(this);
-//        
-//        if(manager.getActiveView() != null){
-//            action.setMap(manager.getActiveView().getMap());
-//        }
     }
 
     public Map2D getMap() {
@@ -73,18 +68,19 @@ public final class NavZoomAllAction extends CallableSystemAction {
         return false;
     }
 
-//    public void viewActivated(ViewEvent event) {
-//        if(event.getView() != null){
-//            action.setMap(event.getView().getMap());
-//        }else{
-//            action.setMap(null);
-//        }
-//        
+//    @Override
+//    protected int mode() {
+//        return CookieAction.MODE_EXACTLY_ONE;
 //    }
 //
-//    public void viewAdded(ViewEvent event) {}
-//    public void viewRemoved(ViewEvent event) {}
-//    public void groupAdded(GroupEvent event) {}
-//    public void groupRemoved(GroupEvent event) {}
-//    public void groupChanged(GroupEvent event) {}
+//    @Override
+//    protected Class<?>[] cookieClasses() {
+//        return new Class[]{MapView.class};
+//    }
+//
+//    @Override
+//    protected void performAction(Node[] activatedNodes) {
+//        MapView mapView = activatedNodes[0].getLookup().lookup(MapView.class);
+//    }
+    
 }

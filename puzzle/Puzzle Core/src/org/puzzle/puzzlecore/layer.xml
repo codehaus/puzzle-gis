@@ -40,6 +40,7 @@
             <file name="org-puzzle-puzzlecore-view-gui-minimap-MiniMapAction.instance"/>
             <file name="org-puzzle-puzzlecore-tool-gui-toolbox-ToolTreeAction.instance"/>
             <file name="org-puzzle-puzzlecore-view-gui-ViewTreeAction.instance"/>
+            <file name="org-puzzle-puzzlecore-view-gui-timeline-TimeLineAction.instance"/>
         </folder>
     </folder>
     <folder name="Services">
@@ -71,11 +72,11 @@
         </folder>
         <file name="Edit_hidden"/>
         <file name="File_hidden"/>
-        <!--<folder name="Map2DNavigation">            
+        <folder name="Map2DNavigation">            
             <attr name="position" intvalue="500"/>
-            <file name="org-puzzle-puzzlecore-view-action-NewView.instance">
+            <!--<file name="org-puzzle-puzzlecore-view-action-NewView.instance">
                 <attr name="position" intvalue="50"/>
-            </file>
+            </file>-->
             <file name="org-puzzle-puzzlecore-view-action-NavRefreshAction.instance">
                 <attr name="position" intvalue="100"/>
             </file>
@@ -98,7 +99,7 @@
                 <attr name="position" intvalue="700"/>
             </file>
             </folder>
-        <folder name="Map2DSelection">
+        <!--<folder name="Map2DSelection">
             <attr name="position" intvalue="600"/>            
             <file name="org-puzzle-puzzlecore-view-action-SelectAction.instance">
                 <attr name="position" intvalue="100"/>
@@ -158,6 +159,9 @@
             </file>
             <file name="Output_hidden"/>
             <file name="SwitchToRecentDocumentAction.shadow_hidden"/>
+            <file name="TimeLineAction.shadow">
+                <attr name="originalFile" stringvalue="Actions/Window/org-puzzle-puzzlecore-view-gui-timeline-TimeLineAction.instance"/>
+            </file>
             <file name="ToolTreeAction.shadow">
                 <attr name="originalFile" stringvalue="Actions/Window/org-puzzle-puzzlecore-tool-gui-toolbox-ToolTreeAction.instance"/>
                 <attr name="position" intvalue="300"/>
@@ -174,6 +178,7 @@
         <folder name="Components">
             <file name="ContextTreeTopComponent.settings" url="ContextTreeTopComponentSettings.xml"/>
             <file name="MiniMapTopComponent.settings" url="MiniMapTopComponentSettings.xml"/>
+            <file name="TimeLineTopComponent.settings" url="TimeLineTopComponentSettings.xml"/>
             <file name="ToolTreeTopComponent.settings" url="ToolTreeTopComponentSettings.xml"/>
             <file name="ViewTreeTopComponent.settings" url="ViewTreeTopComponentSettings.xml"/>
         </folder>
@@ -186,6 +191,9 @@
             <folder name="explorer">
                 <file name="ContextTreeTopComponent.wstcref" url="ContextTreeTopComponentWstcref.xml"/>
                 </folder>
+            <folder name="output">
+                <file name="TimeLineTopComponent.wstcref" url="TimeLineTopComponentWstcref.xml"/>
+            </folder>
             <folder name="rightSlidingSide">
                 <file name="ToolTreeTopComponent.wstcref" url="ToolTreeTopComponentWstcref.xml"/>
             </folder>

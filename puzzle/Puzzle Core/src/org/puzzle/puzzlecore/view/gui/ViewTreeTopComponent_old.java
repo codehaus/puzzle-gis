@@ -38,8 +38,6 @@ import org.openide.util.NbBundle;
 import org.openide.util.Utilities;
 import org.openide.windows.TopComponent;
 import org.openide.windows.WindowManager;
-import org.puzzle.puzzlecore.gtextend.widget.viewtree.JViewTree;
-import org.puzzle.puzzlecore.gtextend.widget.viewtree.ViewTreeModel;
 import org.puzzle.puzzlecore.view.MapGroup;
 import org.puzzle.puzzlecore.view.MapView;
 import org.puzzle.puzzlecore.view.ViewService;
@@ -48,24 +46,67 @@ import org.puzzle.puzzlecore.view.ViewService;
  * Top component which displays something.
  * @author : johann sorel
  */
-final class ViewTreeTopComponent extends TopComponent {
+final class ViewTreeTopComponent_old extends TopComponent implements LookupListener, ExplorerManager.Provider {
 
     
     static final String ICON_PATH = "org/puzzle/puzzlecore/view/gui/background.png";
     
-    private Lookup.Result resultViews = null;
-    private Lookup.Result resultGroups = null;
-    private static ViewTreeTopComponent instance;
+    private Lookup.Result result = null;
+    private final ExplorerManager mgr = new ExplorerManager();
+    private static ViewTreeTopComponent_old instance;
     private static final String PREFERRED_ID = "ViewTreeTopComponent";
+    private NodeTableModel model = new NodeTableModel();
 
-    private ViewTreeTopComponent() {
+    private ViewTreeTopComponent_old() {
         initComponents();
-        setName(NbBundle.getMessage(ViewTreeTopComponent.class, "CTL_ViewTreeTopComponent"));
-        setToolTipText(NbBundle.getMessage(ViewTreeTopComponent.class, "HINT_ViewTreeTopComponent"));
+        setName(NbBundle.getMessage(ViewTreeTopComponent_old.class, "CTL_ViewTreeTopComponent"));
+        setToolTipText(NbBundle.getMessage(ViewTreeTopComponent_old.class, "HINT_ViewTreeTopComponent"));
         setIcon(Utilities.loadImage(ICON_PATH, true));
+        
+        Property propTL = new PropertySupport("translationLink",boolean.class,"T","TranslationLink",true,true) {
+
+            private Object v = null;
                         
+            @Override
+            public Object getValue() throws IllegalAccessException, InvocationTargetException {
+                return v;
+            }
+
+            @Override
+            public void setValue(Object arg0) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+                v = arg0;
+            }
+        };
+        
+        
+        
+        TreeTableView view = ((TreeTableView)guiTreeView);
+        view.setRootVisible(false);
+        view.setProperties(new Property[]{propTL});
+
+    }
+
+    //ExplorerManager.Provider
+    public ExplorerManager getExplorerManager() {
+        mgr.setRootContext(new AbstractNode(new ViewNodeModel()));
+        return mgr;
     }
     
+
+    //LookupListener
+    public void resultChanged(LookupEvent lookupEvent) {
+        
+        Lookup.Result r = (Lookup.Result) lookupEvent.getSource();
+        Collection c = r.allInstances();
+        if (!c.isEmpty()) {
+            lbl_nom.setText(new Integer(c.size()).toString());
+//            MapView o = (MapView) c.iterator().next();
+//            lbl_nom.setText(o.getName() );
+        } else {
+            lbl_nom.setText("[no selection]");
+        }
+    }
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -77,8 +118,9 @@ final class ViewTreeTopComponent extends TopComponent {
         jToolBar1 = new javax.swing.JToolBar();
         guiNewGroup = new javax.swing.JButton();
         guiNewView = new javax.swing.JButton();
-        jsp1 = new javax.swing.JScrollPane();
-        guiTreeView = new org.puzzle.puzzlecore.gtextend.widget.viewtree.JViewTree();
+        guiTreeView = new TreeTableView(new ViewTableNodeModel());
+        jPanel1 = new javax.swing.JPanel();
+        lbl_nom = new javax.swing.JLabel();
 
         setLayout(new java.awt.BorderLayout());
 
@@ -108,17 +150,33 @@ final class ViewTreeTopComponent extends TopComponent {
         jToolBar1.add(guiNewView);
 
         add(jToolBar1, java.awt.BorderLayout.PAGE_START);
+        add(guiTreeView, java.awt.BorderLayout.CENTER);
 
-        jsp1.setViewportView(guiTreeView);
+        lbl_nom.setText("jLabel1");
 
-        add(jsp1, java.awt.BorderLayout.CENTER);
+        org.jdesktop.layout.GroupLayout jPanel1Layout = new org.jdesktop.layout.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .add(lbl_nom, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .add(lbl_nom)
+                .addContainerGap(53, Short.MAX_VALUE))
+        );
+
+        add(jPanel1, java.awt.BorderLayout.PAGE_END);
     }// </editor-fold>//GEN-END:initComponents
 
-    private int incV = 0;
-    private int incG = 0;
     private void guiNewViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guiNewViewActionPerformed
         MapView view = new MapView(new JDefaultEditableMap2D());
-        view.setName("View "+ ++incV);
+        view.setName("2D view");
 
         view.open();
         view.requestActive();
@@ -126,18 +184,19 @@ final class ViewTreeTopComponent extends TopComponent {
 
     private void guiNewGroupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guiNewGroupActionPerformed
         MapGroup group = new MapGroup();
-        group.setTitle("Group "+ ++incG);
+        group.setTitle("2D view");
 
-        ViewService service = Lookup.getDefault().lookup(ViewService.class);        
-        service.add(group);        
+//        CORE.getViewManager().addGroup(group);
+
     }//GEN-LAST:event_guiNewGroupActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton guiNewGroup;
     private javax.swing.JButton guiNewView;
-    private org.puzzle.puzzlecore.gtextend.widget.viewtree.JViewTree guiTreeView;
+    private javax.swing.JScrollPane guiTreeView;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JToolBar jToolBar1;
-    private javax.swing.JScrollPane jsp1;
+    private javax.swing.JLabel lbl_nom;
     // End of variables declaration//GEN-END:variables
 
     /**
@@ -145,9 +204,9 @@ final class ViewTreeTopComponent extends TopComponent {
      * i.e. deserialization routines; otherwise you could get a non-deserialized instance.
      * To obtain the singleton instance, use {@link findInstance}.
      */
-    public static synchronized ViewTreeTopComponent getDefault() {
+    public static synchronized ViewTreeTopComponent_old getDefault() {
         if (instance == null) {
-            instance = new ViewTreeTopComponent();
+            instance = new ViewTreeTopComponent_old();
         }
         return instance;
     }
@@ -155,17 +214,17 @@ final class ViewTreeTopComponent extends TopComponent {
     /**
      * Obtain the ViewTreeTopComponent instance. Never call {@link #getDefault} directly!
      */
-    public static synchronized ViewTreeTopComponent findInstance() {
+    public static synchronized ViewTreeTopComponent_old findInstance() {
         TopComponent win = WindowManager.getDefault().findTopComponent(PREFERRED_ID);
         if (win == null) {
-            Logger.getLogger(ViewTreeTopComponent.class.getName()).warning(
+            Logger.getLogger(ViewTreeTopComponent_old.class.getName()).warning(
                     "Cannot find " + PREFERRED_ID + " component. It will not be located properly in the window system.");
             return getDefault();
         }
-        if (win instanceof ViewTreeTopComponent) {
-            return (ViewTreeTopComponent) win;
+        if (win instanceof ViewTreeTopComponent_old) {
+            return (ViewTreeTopComponent_old) win;
         }
-        Logger.getLogger(ViewTreeTopComponent.class.getName()).warning(
+        Logger.getLogger(ViewTreeTopComponent_old.class.getName()).warning(
                 "There seem to be multiple components with the '" + PREFERRED_ID +
                 "' ID. That is a potential source of errors and unexpected behavior.");
         return getDefault();
@@ -181,59 +240,17 @@ final class ViewTreeTopComponent extends TopComponent {
         ViewService v = Lookup.getDefault().lookup(ViewService.class);
 
         if (v != null) {
-            resultViews = v.getLookup().lookupResult(MapView.class);
-            resultViews.addLookupListener(new LookupListener() {
-
-                public void resultChanged(LookupEvent lookupEvent) {
-                    Lookup.Result r = (Lookup.Result) lookupEvent.getSource();
-                    Collection<MapView> c = r.allInstances();
-                    Collection<MapView> tv = guiTreeView.getTreeTableModel().getViews();
-
-                    for (MapView v : c) {
-                        if (!tv.contains(v)) {
-                            guiTreeView.getTreeTableModel().addView(v);
-                        }
-                    }
-                    
-                    for (MapView v : tv) {
-                        if (!c.contains(v)) {
-                            guiTreeView.getTreeTableModel().removeView(v);
-                        }
-                    }
-                    
-                }
-            });
-            
-            resultGroups = v.getLookup().lookupResult(MapGroup.class);
-            resultGroups.addLookupListener(new LookupListener() {
-
-                public void resultChanged(LookupEvent lookupEvent) {
-                    Lookup.Result r = (Lookup.Result) lookupEvent.getSource();
-                    Collection<MapGroup> c = r.allInstances();
-                    Collection<MapGroup> tv = guiTreeView.getTreeTableModel().getGroups();
-
-                    for (MapGroup g : c) {
-                        if (!tv.contains(g)) {
-                            guiTreeView.getTreeTableModel().addGroup(g);
-                        }
-                    }
-                    
-                    for (MapGroup g : tv) {
-                        if (!c.contains(g)) {
-                            guiTreeView.getTreeTableModel().removeGroup(g);
-                        }
-                    }
-                }
-            });
-            
-            
+            result = v.getLookup().lookupResult(MapView.class);
+//        result = Lookup.getDefault().lookupResult(MapView.class);//Utilities.actionsGlobalContext().lookupResult(MapView.class);
+            result.addLookupListener(this);
         }
 
     }
 
     @Override
     public void componentClosed() {
-        resultViews = null;
+        result.removeLookupListener(this);
+        result = null;
     }
 
     /** replaces this in object stream */
@@ -252,7 +269,7 @@ final class ViewTreeTopComponent extends TopComponent {
         private static final long serialVersionUID = 1L;
 
         public Object readResolve() {
-            return ViewTreeTopComponent.getDefault();
+            return ViewTreeTopComponent_old.getDefault();
         }
     }
 }

@@ -30,18 +30,13 @@ import org.openide.util.actions.CallableSystemAction;
  * 
  * @author johann sorel
  */
-public final class NavZoomInAction extends CallableSystemAction {
+public final class NavZoomInAction extends CallableSystemAction implements MapAction{
 
     private ZoomInAction action = new ZoomInAction();
+    private ViewLookUpSync sync = new ViewLookUpSync(this);
 
     
     public NavZoomInAction(){
-//        DefaultViewService manager = CORE.getViewManager();
-//        manager.addViewListener(this);
-//        
-//        if(manager.getActiveView() != null){
-//            action.setMap(manager.getActiveView().getMap());
-//        }
     }
     
     public Map2D getMap() {
@@ -74,22 +69,5 @@ public final class NavZoomInAction extends CallableSystemAction {
     protected boolean asynchronous() {
         return false;
     }
-    
-    
-//    public void viewActivated(ViewEvent event) {
-//        if(event.getView() != null){
-//            action.setMap(event.getView().getMap());
-//        }else{
-//            action.setMap(null);
-//        }
-//        
-//    }
-//
-//    public void viewAdded(ViewEvent event) {}
-//    public void viewRemoved(ViewEvent event) {}
-//    public void groupAdded(GroupEvent event) {}
-//    public void groupRemoved(GroupEvent event) {}
-//    public void groupChanged(GroupEvent event) {}
-    
     
 }
