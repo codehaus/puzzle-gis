@@ -4,3 +4,7 @@ OpenIDE-Module-Layer: org/puzzle/puzzlecore/layer.xml
 OpenIDE-Module-Localizing-Bundle: org/puzzle/puzzlecore/Bundle.properties
 OpenIDE-Module-Specification-Version: 0.0.1.1
 
+Name: org/puzzle/puzzlecore/project/filetype/GISContextDataLoader.class
+Install-Before: org.openide.loaders.XMLDataObject, org.netbeans.modules.xml.XMLDataObject
+OpenIDE-Module-Class: Loader
+

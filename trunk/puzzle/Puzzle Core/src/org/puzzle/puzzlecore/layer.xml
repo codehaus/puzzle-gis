@@ -20,6 +20,7 @@
             <file name="org-puzzle-puzzlecore-context-action-addlayer-AddDBLayerAction.instance"/>
             <file name="org-puzzle-puzzlecore-context-action-addlayer-AddFileLayerAction.instance"/>
             <file name="org-puzzle-puzzlecore-context-action-addlayer-AddWebLayerAction.instance"/>
+            <file name="org-puzzle-puzzlecore-project-action-ShowMapContextAction.instance"/>
             <file name="org-puzzle-puzzlecore-view-action-NavRefreshAction.instance"/>
             <file name="org-puzzle-puzzlecore-view-action-NavPreviousAreaAction.instance"/>
             <file name="org-puzzle-puzzlecore-view-action-NavNextAreaAction.instance"/>
@@ -43,6 +44,61 @@
             <file name="org-puzzle-puzzlecore-view-gui-timeline-TimeLineAction.instance"/>
         </folder>
     </folder>
+    <folder name="Loaders">
+        <folder name="text">
+            <folder name="giscontext+xml">
+                <folder name="Actions">
+                    <file name="org-openide-actions-CopyAction.instance">
+                        <attr name="position" intvalue="500"/>
+                    </file>
+                    <file name="org-openide-actions-CutAction.instance">
+                        <attr name="position" intvalue="400"/>
+                    </file>
+                    <file name="org-openide-actions-DeleteAction.instance">
+                        <attr name="position" intvalue="700"/>
+                    </file>
+                    <file name="org-openide-actions-FileSystemAction.instance">
+                        <attr name="position" intvalue="200"/>
+                    </file>
+                    <file name="org-openide-actions-OpenAction.instance">
+                        <attr name="position" intvalue="100"/>
+                    </file>
+                    <file name="org-openide-actions-PropertiesAction.instance">
+                        <attr name="position" intvalue="1300"/>
+                    </file>
+                    <file name="org-openide-actions-RenameAction.instance">
+                        <attr name="position" intvalue="800"/>
+                    </file>
+                    <file name="org-openide-actions-SaveAsTemplateAction.instance">
+                        <attr name="position" intvalue="1000"/>
+                    </file>
+                    <file name="org-openide-actions-ToolsAction.instance">
+                        <attr name="position" intvalue="1200"/>
+                    </file>
+                    <file name="org-puzzle-puzzlecore-project-action-ShowMapContextAction.shadow">
+                        <attr name="originalFile" stringvalue="Actions/Puzzle/org-puzzle-puzzlecore-project-action-ShowMapContextAction.instance"/>
+                        <attr name="position" intvalue="0"/>
+                    </file>
+                    <file name="sep-1.instance">
+                        <attr name="instanceClass" stringvalue="javax.swing.JSeparator"/>
+                        <attr name="position" intvalue="300"/>
+                    </file>
+                    <file name="sep-2.instance">
+                        <attr name="instanceClass" stringvalue="javax.swing.JSeparator"/>
+                        <attr name="position" intvalue="600"/>
+                    </file>
+                    <file name="sep-3.instance">
+                        <attr name="instanceClass" stringvalue="javax.swing.JSeparator"/>
+                        <attr name="position" intvalue="900"/>
+                    </file>
+                    <file name="sep-4.instance">
+                        <attr name="instanceClass" stringvalue="javax.swing.JSeparator"/>
+                        <attr name="position" intvalue="1100"/>
+                    </file>
+                </folder>
+            </folder>
+        </folder>
+    </folder>
     <folder name="Services">
         <folder name="AutoupdateType">
             <file name="org_puzzle_puzzlecore_update_center.instance">
@@ -53,8 +109,19 @@
                 <attr name="url_key" stringvalue="org_puzzle_puzzlecore_update_center"/>
             </file>
         </folder>
+        <folder name="MIMEResolver">
+            <file name="GISContextResolver.xml" url="GISContextResolver.xml">
+                <attr name="SystemFileSystem.localizingBundle" stringvalue="org.puzzle.puzzlecore.Bundle"/>
+            </file>
+        </folder>
     </folder>
     <folder name="Templates">
+        <folder name="Other">
+            <file name="GISContextTemplate.xml" url="GISContextTemplate.xml">
+                <attr name="SystemFileSystem.localizingBundle" stringvalue="org.puzzle.puzzlecore.Bundle"/>
+                <attr name="template" boolvalue="true"/>
+            </file>
+        </folder>
         <folder name="Project">
             <folder name="Geographic">
                 <file name="EmptyGISProjectProject.zip" url="EmptyGISProjectProject.zip">
