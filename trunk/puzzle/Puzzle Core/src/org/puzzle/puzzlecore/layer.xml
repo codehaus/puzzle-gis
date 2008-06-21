@@ -54,6 +54,19 @@
             </file>
         </folder>
     </folder>
+    <folder name="Templates">
+        <folder name="Project">
+            <folder name="Geographic">
+                <file name="EmptyGISProjectProject.zip" url="EmptyGISProjectProject.zip">
+                    <attr name="SystemFileSystem.icon" urlvalue="nbresloc:/org/puzzle/puzzlecore/boussole.png"/>
+                    <attr name="SystemFileSystem.localizingBundle" stringvalue="org.puzzle.puzzlecore.Bundle"/>
+                    <attr name="instantiatingIterator" methodvalue="org.puzzle.puzzlecore.project.EmptyGISProjectWizardIterator.createIterator"/>
+                    <attr name="instantiatingWizardURL" urlvalue="nbresloc:/org/puzzle/puzzlecore/project/EmptyGISProjectDescription.html"/>
+                    <attr name="template" boolvalue="true"/>
+                </file>
+            </folder>
+        </folder>
+    </folder>
     <folder name="Toolbars">
         <folder name="Context">
             <attr name="position" intvalue="400"/>
