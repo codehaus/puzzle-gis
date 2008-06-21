@@ -77,6 +77,7 @@ import com.vividsolutions.jts.geom.MultiPoint;
 import com.vividsolutions.jts.geom.MultiPolygon;
 import com.vividsolutions.jts.geom.Point;
 import com.vividsolutions.jts.geom.Polygon;
+import java.io.Serializable;
 import javax.swing.JPanel;
 import org.geotools.gui.swing.datachooser.JOracleDataPanel;
 import org.geotools.gui.swing.datachooser.JPostGISDataPanel;
@@ -196,7 +197,7 @@ public class ClippingTool_old extends JPanel {
 
             // Create a Map object used by our DataStore Factory
             // NOTE: file.toURI().toURL() is used because file.toURL() is deprecated
-            Map<String, URL> map = Collections.singletonMap("url", file.toURI().toURL());
+            Map<String, Serializable> map = Collections.singletonMap("url", (Serializable)file.toURI().toURL());
 
             // Create the ShapefileDataStore from our factory based on our Map object
             myData = (ShapefileDataStore) factory.createNewDataStore(map);
