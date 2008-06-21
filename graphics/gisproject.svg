@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+   xmlns:ns="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://web.resource.org/cc/"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="svg2457"
+   sodipodi:version="0.32"
+   inkscape:version="0.45.1"
+   width="512"
+   height="512"
+   version="1.0"
+   sodipodi:docname="gisproject.svg"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape"
+   sodipodi:docbase="F:\DEV\PUZZLE\graphics">
+  <metadata
+     id="metadata2462">
+    <rdf:RDF>
+      <ns:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </ns:Work>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs2460">
+    <linearGradient
+       id="linearGradient3308">
+      <stop
+         style="stop-color:#ffffff;stop-opacity:1;"
+         offset="0"
+         id="stop3310" />
+      <stop
+         style="stop-color:#000000;stop-opacity:1;"
+         offset="1"
+         id="stop3312" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient3302">
+      <stop
+         id="stop3304"
+         offset="0"
+         style="stop-color:#ff0000;stop-opacity:1;" />
+      <stop
+         id="stop3306"
+         offset="1"
+         style="stop-color:#000000;stop-opacity:1;" />
+    </linearGradient>
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 526.18109 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="744.09448 : 526.18109 : 1"
+       inkscape:persp3d-origin="372.04724 : 350.78739 : 1"
+       id="perspective2464" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3302"
+       id="linearGradient3300"
+       x1="297.61255"
+       y1="214.44156"
+       x2="317.45239"
+       y2="242.70129"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3308"
+       id="linearGradient3314"
+       x1="198.3723"
+       y1="282.32034"
+       x2="226.63203"
+       y2="322.77057"
+       gradientUnits="userSpaceOnUse" />
+  </defs>
+  <sodipodi:namedview
+     inkscape:window-height="978"
+     inkscape:window-width="1680"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     guidetolerance="10.0"
+     gridtolerance="10.0"
+     objecttolerance="10.0"
+     borderopacity="1.0"
+     bordercolor="#666666"
+     pagecolor="#ffffff"
+     id="base"
+     showgrid="false"
+     inkscape:zoom="1.8046875"
+     inkscape:cx="139.26683"
+     inkscape:cy="256"
+     inkscape:window-x="0"
+     inkscape:window-y="45"
+     inkscape:current-layer="svg2457" />
+  <g
+     id="g3316"
+     transform="matrix(0.993594,-0.1130085,0.1130085,0.993594,-27.37333,30.550095)"
+     inkscape:export-filename="F:\DEV\PUZZLE\trunk\puzzle\Puzzle Core\src\org\puzzle\puzzlecore\project\boussole100.png"
+     inkscape:export-xdpi="42.313393"
+     inkscape:export-ydpi="42.313393">
+    <path
+       transform="matrix(0.9425695,0,0,0.9156597,16.562024,19.95216)"
+       d="M 300.88311,256.27707 A 46.268398,47.930737 0 1 1 208.34632,256.27707 A 46.268398,47.930737 0 1 1 300.88311,256.27707 z"
+       sodipodi:ry="47.930737"
+       sodipodi:rx="46.268398"
+       sodipodi:cy="256.27707"
+       sodipodi:cx="254.61472"
+       id="path2468"
+       style="opacity:1;fill:none;fill-opacity:1;stroke:#000000;stroke-width:11;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       sodipodi:type="arc" />
+    <path
+       id="path3240"
+       d="M 229.4026,216.65801 L 226.07792,152.38095 L 258.77056,210.00866"
+       style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    <path
+       id="path3242"
+       d="M 273.7316,209.45455 L 291.4632,192.27706 L 286.47619,218.32035"
+       style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    <path
+       id="path3244"
+       d="M 301.99134,257.66234 L 360.17316,225.52381 L 290.90909,227.18615"
+       style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    <path
+       id="path3246"
+       d="M 293.12554,284.25974 L 321.38528,290.35498 L 300.329,268.19048"
+       style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    <path
+       id="path3248"
+       d="M 284.81385,290.90909 L 287.58442,359.61905 L 254.89178,300.329"
+       style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    <path
+       id="path3250"
+       d="M 211.671,241.59307 L 191.16883,218.87446 L 222.75325,223.30736"
+       style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    <path
+       id="path3252"
+       d="M 242.7013,298.66667 L 220.5368,319.72294 L 226.07792,289.80087"
+       style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    <path
+       id="path3254"
+       d="M 210.00866,254.33766 L 152.38095,285.36797 L 222.19913,282.5974"
+       style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    <path
+       id="path3280"
+       d="M 137.97403,348.5368 L 266.52814,268.19048 L 244.91775,241.59307 L 137.97403,348.5368 z"
+       style="fill:url(#linearGradient3314);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    <path
+       id="path3282"
+       d="M 373.47186,160.13853 L 265.97403,268.74459 L 244.91775,242.14719 L 373.47186,160.13853 z"
+       style="fill:url(#linearGradient3300);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+  </g>
+  <text
+     xml:space="preserve"
+     style="font-size:59.16643143px;font-style:normal;font-weight:bold;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans;-inkscape-font-specification:Bitstream Vera Sans Bold"
+     x="145.36856"
+     y="190.7341"
+     id="text3329"
+     inkscape:export-filename="/home/sorel/DEV/PUZZLE/graphics/gisproject16.png"
+     inkscape:export-xdpi="6.770143"
+     inkscape:export-ydpi="6.770143"><tspan
+       sodipodi:role="line"
+       id="tspan3331"
+       x="145.36856"
+       y="190.7341">N</tspan></text>
+</svg>
