@@ -80,6 +80,7 @@
         <artifactId>maven-antrun-plugin</artifactId>
         <executions>
           <execution>
+            <phase>deploy</phase>
             <goals>
               <goal>run</goal>
             </goals>
@@ -198,12 +199,11 @@
             <property name="hsqldb"                     value="hsqldb-1.8.0.7.jar"/>
             <property name="jai_core"                   value="jai_core-1.1.3.jar"/>
             <property name="jai_imageio"                value="jai_imageio-1.1.jar"/>
-            <property name="jaxb-api"                   value="jaxb-api-1.3.jar"/>
-            <property name="jaxb-impl"                  value="jaxb-impl-1.3.jar"/>
-            <property name="jaxb-libs"                  value="jaxb-libs-1.3.jar"/>
+            <property name="jaxb-api"                   value="jaxb-api-2.1.5.jar"/>
+            <property name="jaxb-impl"                  value="jaxb-impl-2.1.5.jar"/>
             <property name="jdom"                       value="jdom-1.0.jar"/>
             <property name="jlfgr"                      value="jlfgr-1.0.jar"/>
-            <property name="jsr108"                     value="jsr108-0.01.jar"/>
+            <property name="jsr275"                     value="jsr-275-1.0-beta-2.jar"/>
             <property name="jts"                        value="jts-1.9.1-SNAPSHOT.jar"/>
             <property name="log4j"                      value="log4j-1.2.12.jar"/>
             <property name="mysql-connector-java"       value="mysql-connector-java-5.1.5.jar"/>
@@ -213,7 +213,7 @@
             <property name="org.w3.xlink"               value="org.w3.xlink-2.5-SNAPSHOT.jar"/>
             <property name="picocontainer"              value="picocontainer-1.2.jar"/>
             <property name="postgis-driver"             value="postgis-driver-1.0.jar"/>
-            <property name="postgresql"                value="postgresql-8.1-407.jdbc3.jar"/>
+            <property name="postgresql"                 value="postgresql-8.1-407.jdbc3.jar"/>
             <property name="relaxngDatatype"            value="relaxngDatatype-X.jar"/>
             <property name="slf4j-api"                  value="slf4j-api-1.4.0.jar"/>
             <property name="slf4j-jdk14"                value="slf4j-jdk14-1.4.0.jar"/>
@@ -307,10 +307,9 @@
             <copy file="${GT_BINARY}/${jai_imageio}"               tofile="${PUZZLE_GT_MODULE}/${jai_imageio}"/>
             <copy file="${GT_BINARY}/${jaxb-api}"                  tofile="${PUZZLE_GT_MODULE}/${jaxb-api}"/>
             <copy file="${GT_BINARY}/${jaxb-impl}"                 tofile="${PUZZLE_GT_MODULE}/${jaxb-impl}"/>
-            <copy file="${GT_BINARY}/${jaxb-libs}"                 tofile="${PUZZLE_GT_MODULE}/${jaxb-libs}"/>
             <copy file="${GT_BINARY}/${jdom}"                      tofile="${PUZZLE_GT_MODULE}/${jdom}"/>
             <copy file="${GT_BINARY}/${jlfgr}"                     tofile="${PUZZLE_GT_MODULE}/${jlfgr}"/>
-            <copy file="${GT_BINARY}/${jsr108}"                    tofile="${PUZZLE_GT_MODULE}/${jsr108}"/>
+            <copy file="${GT_BINARY}/${jsr275}"                    tofile="${PUZZLE_GT_MODULE}/${jsr275}"/>
             <copy file="${GT_BINARY}/${jts}"                       tofile="${PUZZLE_GT_MODULE}/${jts}"/>
             <copy file="${GT_BINARY}/${log4j}"                     tofile="${PUZZLE_GT_MODULE}/${log4j}"/>
             <copy file="${GT_BINARY}/${mysql-connector-java}"      tofile="${PUZZLE_GT_MODULE}/${mysql-connector-java}"/>
