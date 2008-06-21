@@ -22,7 +22,7 @@ package org.puzzle.puzzlecore.view.action;
 
 import java.awt.Component;
 import org.geotools.gui.swing.map.map2d.Map2D;
-import org.geotools.gui.swing.map.map2d.control.SelectHandlerChooser;
+import org.geotools.gui.swing.map.map2d.stream.control.SelectHandlerChooser;
 import org.openide.util.HelpCtx;
 import org.openide.util.NbBundle;
 import org.openide.util.actions.CallableSystemAction;
@@ -57,7 +57,7 @@ public final class SelectHandlerChooserAction extends CallableSystemAction {
     }
 
     public String getName() {
-        return NbBundle.getMessage(EditLayerChooserAction.class, "CTL_ChooseLayerMapAction");
+        return NbBundle.getMessage(SelectHandlerChooserAction.class, "CTL_ChooseLayerMapAction");
     }
 
     @Override
