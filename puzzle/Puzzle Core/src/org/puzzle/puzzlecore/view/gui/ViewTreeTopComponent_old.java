@@ -24,7 +24,7 @@ import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.logging.Logger;
-import org.geotools.gui.swing.map.map2d.JDefaultEditableMap2D;
+import org.geotools.gui.swing.map.map2d.stream.JStreamNavMap;
 import org.openide.explorer.ExplorerManager;
 import org.openide.explorer.view.NodeTableModel;
 import org.openide.explorer.view.TreeTableView;
@@ -175,7 +175,7 @@ final class ViewTreeTopComponent_old extends TopComponent implements LookupListe
     }// </editor-fold>//GEN-END:initComponents
 
     private void guiNewViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guiNewViewActionPerformed
-        MapView view = new MapView(new JDefaultEditableMap2D());
+        MapView view = new MapView(new JStreamNavMap());
         view.setName("2D view");
 
         view.open();

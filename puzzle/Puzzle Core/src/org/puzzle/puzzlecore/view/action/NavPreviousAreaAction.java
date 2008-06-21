@@ -21,7 +21,7 @@
 package org.puzzle.puzzlecore.view.action;
 
 import org.geotools.gui.swing.map.map2d.Map2D;
-import org.geotools.gui.swing.map.map2d.control.PreviousAreaAction;
+import org.geotools.gui.swing.map.map2d.stream.control.StreamPreviousArea;
 import org.openide.util.HelpCtx;
 import org.openide.util.NbBundle;
 import org.openide.util.actions.CallableSystemAction;
@@ -32,7 +32,7 @@ import org.openide.util.actions.CallableSystemAction;
  */
 public final class NavPreviousAreaAction extends CallableSystemAction implements MapAction{
 
-    private PreviousAreaAction action = new PreviousAreaAction();
+    private StreamPreviousArea action = new StreamPreviousArea();
     private ViewLookUpSync sync = new ViewLookUpSync(this);
 
     public NavPreviousAreaAction() {

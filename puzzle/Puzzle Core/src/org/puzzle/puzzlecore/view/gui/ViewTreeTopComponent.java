@@ -21,16 +21,9 @@
 package org.puzzle.puzzlecore.view.gui;
 
 import java.io.Serializable;
-import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.logging.Logger;
-import org.geotools.gui.swing.map.map2d.JDefaultEditableMap2D;
-import org.openide.explorer.ExplorerManager;
-import org.openide.explorer.view.NodeTableModel;
-import org.openide.explorer.view.TreeTableView;
-import org.openide.nodes.AbstractNode;
-import org.openide.nodes.Node.Property;
-import org.openide.nodes.PropertySupport;
+import org.geotools.gui.swing.map.map2d.stream.JStreamNavMap;
 import org.openide.util.Lookup;
 import org.openide.util.LookupEvent;
 import org.openide.util.LookupListener;
@@ -38,8 +31,6 @@ import org.openide.util.NbBundle;
 import org.openide.util.Utilities;
 import org.openide.windows.TopComponent;
 import org.openide.windows.WindowManager;
-import org.puzzle.puzzlecore.gtextend.widget.viewtree.JViewTree;
-import org.puzzle.puzzlecore.gtextend.widget.viewtree.ViewTreeModel;
 import org.puzzle.puzzlecore.view.MapGroup;
 import org.puzzle.puzzlecore.view.MapView;
 import org.puzzle.puzzlecore.view.ViewService;
@@ -117,7 +108,7 @@ final class ViewTreeTopComponent extends TopComponent {
     private int incV = 0;
     private int incG = 0;
     private void guiNewViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guiNewViewActionPerformed
-        MapView view = new MapView(new JDefaultEditableMap2D());
+        MapView view = new MapView(new JStreamNavMap());
         view.setName("View "+ ++incV);
 
         view.open();

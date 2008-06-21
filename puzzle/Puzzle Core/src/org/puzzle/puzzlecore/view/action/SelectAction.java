@@ -21,6 +21,8 @@
 package org.puzzle.puzzlecore.view.action;
 
 import org.geotools.gui.swing.map.map2d.Map2D;
+import org.geotools.gui.swing.map.map2d.stream.StreamingMap2D;
+import org.geotools.gui.swing.map.map2d.stream.control.StreamSelect;
 import org.openide.util.HelpCtx;
 import org.openide.util.NbBundle;
 import org.openide.util.actions.CallableSystemAction;
@@ -31,7 +33,7 @@ import org.openide.util.actions.CallableSystemAction;
  */
 public final class SelectAction extends CallableSystemAction {
 
-    private org.geotools.gui.swing.map.map2d.control.SelectAction action = new  org.geotools.gui.swing.map.map2d.control.SelectAction();
+    private StreamSelect action = new StreamSelect();
 
     public SelectAction() {
 //        DefaultViewService manager = CORE.getViewManager();
@@ -47,7 +49,7 @@ public final class SelectAction extends CallableSystemAction {
     }
 
     public void setMap(Map2D map) {
-        action.setMap(map);
+        action.setMap((StreamingMap2D)map);
     }
 
     public void performAction() {

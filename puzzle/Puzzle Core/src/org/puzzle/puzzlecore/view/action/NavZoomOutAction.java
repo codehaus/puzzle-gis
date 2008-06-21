@@ -21,7 +21,8 @@
 package org.puzzle.puzzlecore.view.action;
 
 import org.geotools.gui.swing.map.map2d.Map2D;
-import org.geotools.gui.swing.map.map2d.control.ZoomOutAction;
+import org.geotools.gui.swing.map.map2d.stream.StreamingMap2D;
+import org.geotools.gui.swing.map.map2d.stream.control.StreamZoomOut;
 import org.openide.util.HelpCtx;
 import org.openide.util.NbBundle;
 import org.openide.util.actions.CallableSystemAction;
@@ -32,7 +33,7 @@ import org.openide.util.actions.CallableSystemAction;
  */
 public final class NavZoomOutAction extends CallableSystemAction implements MapAction{
 
-    private ZoomOutAction action = new ZoomOutAction();
+    private StreamZoomOut action = new StreamZoomOut();
     private ViewLookUpSync sync = new ViewLookUpSync(this);
 
     
@@ -44,7 +45,7 @@ public final class NavZoomOutAction extends CallableSystemAction implements MapA
     }
 
     public void setMap(Map2D map) {
-        action.setMap(map);
+        action.setMap((StreamingMap2D)map);
     }
     
     

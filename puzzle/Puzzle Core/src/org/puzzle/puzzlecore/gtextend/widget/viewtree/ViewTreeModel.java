@@ -25,6 +25,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import org.geotools.gui.swing.map.map2d.stream.StreamingMap2D;
 import org.geotools.map.MapContext;
 import org.jdesktop.swingx.treetable.DefaultMutableTreeTableNode;
 import org.jdesktop.swingx.treetable.DefaultTreeTableModel;
@@ -227,7 +228,7 @@ public class ViewTreeModel extends DefaultTreeTableModel {
                 case 3:
                     return ((MapView) obj).isRotationLink();
                 case 4:
-                    return ((MapView) obj).getMap().getRenderingStrategy().getContext();
+                    return ((StreamingMap2D)((MapView) obj).getMap()).getRenderingStrategy().getContext();
                 default:
                     return null;
             }
@@ -266,7 +267,7 @@ public class ViewTreeModel extends DefaultTreeTableModel {
                     break;
                 case 4:
                     if(value != null)                    
-                    ((MapView) obj).getMap().getRenderingStrategy().setContext( (MapContext)value);
+                    ((StreamingMap2D)((MapView) obj).getMap()).getRenderingStrategy().setContext( (MapContext)value);
                     break;
             }
         } else if (obj instanceof MapGroup) {
