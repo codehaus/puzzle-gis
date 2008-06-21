@@ -43,16 +43,17 @@ import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import org.geotools.geometry.jts.ReferencedEnvelope;
 import org.geotools.gui.swing.icon.IconBundle;
-import org.geotools.gui.swing.map.map2d.JDefaultMap2D;
 import org.geotools.gui.swing.map.map2d.Map2D;
-import org.geotools.gui.swing.map.map2d.control.RefreshAction;
-import org.geotools.gui.swing.map.map2d.control.ZoomAllAction;
 import org.geotools.gui.swing.map.map2d.decoration.ColorDecoration;
 import org.geotools.gui.swing.map.map2d.decoration.MapDecoration;
-import org.geotools.gui.swing.map.map2d.event.RenderingStrategyEvent;
-import org.geotools.gui.swing.map.map2d.event.Map2DEvent;
-import org.geotools.gui.swing.map.map2d.listener.Map2DListener;
-import org.geotools.gui.swing.map.map2d.listener.StrategyListener;
+import org.geotools.gui.swing.map.map2d.stream.JStreamNavMap;
+import org.geotools.gui.swing.map.map2d.stream.StreamingMap2D;
+import org.geotools.gui.swing.map.map2d.stream.control.StreamRefresh;
+import org.geotools.gui.swing.map.map2d.stream.control.StreamZoomAll;
+import org.geotools.gui.swing.map.map2d.stream.event.MapEvent;
+import org.geotools.gui.swing.map.map2d.stream.event.StrategyEvent;
+import org.geotools.gui.swing.map.map2d.stream.listener.MapListener;
+import org.geotools.gui.swing.map.map2d.stream.listener.StrategyListener;
 import org.geotools.map.DefaultMapContext;
 import org.geotools.map.MapContext;
 import org.geotools.map.MapLayer;
@@ -70,8 +71,8 @@ public class JMiniMap extends JComponent {
     private static final ImageIcon ICON_ZOOM_ALL = IconBundle.getResource().getIcon("16_zoom_all");
     private static final ImageIcon ICON_REFRESH = IconBundle.getResource().getIcon("16_data_reload");
     private static final MapLayer[] EMPTY_LAYER_ARRAY = {};
-    private Map2D map = new JDefaultMap2D();
-    private Map2D relatedMap = null;
+    private StreamingMap2D map = new JStreamNavMap();
+    private StreamingMap2D relatedMap = null;
     private MiniMapDecoration deco = new MiniMapDecoration();
     private MapContext activeContext = null;
     private WeakHashMap<MapContext, WeakHashMap<MapLayer,Boolean>> contexts = new WeakHashMap<MapContext, WeakHashMap<MapLayer,Boolean>>();
@@ -80,22 +81,22 @@ public class JMiniMap extends JComponent {
         public void setRendering(boolean rendering) {
         }
 
-        public void mapContextChanged(RenderingStrategyEvent event) {
+        public void mapContextChanged(StrategyEvent event) {
             setContext(event.getContext());
         }
 
-        public void mapAreaChanged(RenderingStrategyEvent event) {
+        public void mapAreaChanged(StrategyEvent event) {
         }
 
     };
-    private final Map2DListener mapListen = new Map2DListener() {
+    private final MapListener mapListen = new MapListener() {
         
-        public void mapStrategyChanged(Map2DEvent mapEvent) {
+        public void mapStrategyChanged(MapEvent mapEvent) {
             mapEvent.getPreviousStrategy().removeStrategyListener(strategyListen);
             mapEvent.getStrategy().addStrategyListener(strategyListen);
         }
 
-        public void mapActionStateChanged(Map2DEvent mapEvent) {
+        public void mapActionStateChanged(MapEvent mapEvent) {
         }
     };
 
@@ -178,7 +179,7 @@ public class JMiniMap extends JComponent {
 
     }
 
-    public void setRelatedMap2D(Map2D map) {
+    public void setRelatedMap2D(StreamingMap2D map) {
 
         if (relatedMap != null) {
             relatedMap.removeMap2DListener(mapListen);
@@ -243,32 +244,32 @@ public class JMiniMap extends JComponent {
 
     class MiniMapDecoration extends JPanel implements MapDecoration,MouseListener {
 
-        private Map2D map = null;
-        private Map2D relatedMap = null;
-        private ZoomAllAction zoomAllAction = new ZoomAllAction();
-        private final RefreshAction refreshAction = new RefreshAction();
+        private StreamingMap2D map = null;
+        private StreamingMap2D relatedMap = null;
+        private StreamZoomAll zoomAllAction = new StreamZoomAll();
+        private final StreamRefresh refreshAction = new StreamRefresh();
         private final StrategyListener strategyListen = new StrategyListener() {
 
             public void setRendering(boolean rendering) {
             }
 
-            public void mapContextChanged(RenderingStrategyEvent event) {
+            public void mapContextChanged(StrategyEvent event) {
             }
 
-            public void mapAreaChanged(RenderingStrategyEvent event) {
+            public void mapAreaChanged(StrategyEvent event) {
                 revalidate();
                 repaint();
             }
 
         };
-        private final Map2DListener mapListen = new Map2DListener() {
+        private final MapListener mapListen = new MapListener() {
 
-            public void mapStrategyChanged(Map2DEvent mapEvent) {
+            public void mapStrategyChanged(MapEvent mapEvent) {
                 mapEvent.getPreviousStrategy().removeStrategyListener(strategyListen);
                 mapEvent.getStrategy().addStrategyListener(strategyListen);
             }
 
-            public void mapActionStateChanged(Map2DEvent mapEvent) {
+            public void mapActionStateChanged(MapEvent mapEvent) {
             }
         };
 
@@ -331,16 +332,18 @@ public class JMiniMap extends JComponent {
         }
 
         public void setMap2D(Map2D map) {
-            this.map = map;
-            zoomAllAction.setMap(map);
-            refreshAction.setMap(map);
+            if(map instanceof StreamingMap2D){
+                this.map = (StreamingMap2D)map;
+                zoomAllAction.setMap(this.map);
+                refreshAction.setMap(this.map);
+            }
         }
 
         public Map2D getMap2D() {
             return map;
         }
 
-        public void setRelatedMap2D(Map2D map) {
+        public void setRelatedMap2D(StreamingMap2D map) {
 
             if (relatedMap != null) {
                 relatedMap.removeMap2DListener(mapListen);
@@ -422,5 +425,6 @@ public class JMiniMap extends JComponent {
 
         public void dispose() {
         }
+
     }
 }
