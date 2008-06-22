@@ -265,30 +265,30 @@ class svgImage extends Canvas{
            }
            else if (elem.getTagName().equals("text")) {
               tempBuffer = elem.getAttribute("x");
-              fx = (float)new Float(tempBuffer).floatValue();
+              fx = new Float(tempBuffer).floatValue();
               tempBuffer = elem.getAttribute("y");
-              fy = (float)new Float(tempBuffer).floatValue();              
+              fy = new Float(tempBuffer).floatValue();              
                 svgGraphics.drawString( elem.getValue(),fx,fy);
             }
             else if (elem.getTagName().equals("rect")) {
               tempBuffer = elem.getAttribute("x");
-              fx = (float)new Float(tempBuffer).floatValue();              
+              fx = new Float(tempBuffer).floatValue();              
               tempBuffer = elem.getAttribute("y");
-              fy = (float)new Float(tempBuffer).floatValue();              
+              fy = new Float(tempBuffer).floatValue();              
               tempBuffer = elem.getAttribute("width");
-              fw = (float)new Float(tempBuffer).floatValue();              
+              fw = new Float(tempBuffer).floatValue();              
               tempBuffer = elem.getAttribute("height");
-              fh = (float)new Float(tempBuffer).floatValue();
+              fh = new Float(tempBuffer).floatValue();
               boolean rounded = false;
               if (elem.hasAttribute("rx")) {              
                  rounded = true;
                  tempBuffer = elem.getAttribute("rx");
-                 frx = (float)new Float(tempBuffer).floatValue();
+                 frx = new Float(tempBuffer).floatValue();
               }
               if (elem.hasAttribute("ry")) {              
                  rounded = true;
                  tempBuffer = elem.getAttribute("ry");
-                 fry = (float)new Float(tempBuffer).floatValue();
+                 fry = new Float(tempBuffer).floatValue();
               }
               RoundRectangle2D.Float roundRect = null;
               Rectangle2D.Float rect = null;             
@@ -317,13 +317,13 @@ class svgImage extends Canvas{
            
             else if (elem.getTagName().equals("ellipse")) {
               tempBuffer = elem.getAttribute("cx");
-              fx = (float)new Float(tempBuffer).floatValue();              
+              fx = new Float(tempBuffer).floatValue();              
               tempBuffer = elem.getAttribute("cy");
-              fy = (float)new Float(tempBuffer).floatValue();              
+              fy = new Float(tempBuffer).floatValue();              
               tempBuffer = elem.getAttribute("rx");
-              fw = (float)new Float(tempBuffer).floatValue();              
+              fw = new Float(tempBuffer).floatValue();              
               tempBuffer = elem.getAttribute("ry");
-              fh = (float)new Float(tempBuffer).floatValue();              
+              fh = new Float(tempBuffer).floatValue();              
               fy = fy - fh;
               fx= fx - fw;
               Ellipse2D.Float ellipse = new Ellipse2D.Float(fx, fy,2*fw, 2*fh);
@@ -335,11 +335,11 @@ class svgImage extends Canvas{
             }
             else if (elem.getTagName().equals("circle")) {
               tempBuffer = elem.getAttribute("cx");
-              fx = (float)new Float(tempBuffer).floatValue();              
+              fx = new Float(tempBuffer).floatValue();              
               tempBuffer = elem.getAttribute("cy");
-              fy = (float)new Float(tempBuffer).floatValue();              
+              fy = new Float(tempBuffer).floatValue();              
               tempBuffer = elem.getAttribute("r");
-              fw = (float)new Float(tempBuffer).floatValue();              
+              fw = new Float(tempBuffer).floatValue();              
               fh = fw;              
               fy = fy - fh;
               fx= fx - fw;
@@ -356,13 +356,13 @@ class svgImage extends Canvas{
             else if (elem.getTagName().equals("line")) { // requires fixing
               GeneralPath l = new GeneralPath(GeneralPath.WIND_EVEN_ODD);
               tempBuffer = elem.getAttribute("x1");
-              fx1 = (float)new Float(tempBuffer).floatValue();              
+              fx1 = new Float(tempBuffer).floatValue();              
               tempBuffer = elem.getAttribute("y1");
-              fy1 = (float)new Float(tempBuffer).floatValue();              
+              fy1 = new Float(tempBuffer).floatValue();              
               tempBuffer = elem.getAttribute("x2");
-              fx2 = (float)new Float(tempBuffer).floatValue();              
+              fx2 = new Float(tempBuffer).floatValue();              
               tempBuffer = elem.getAttribute("y2");
-              fy2 = (float)new Float(tempBuffer).floatValue();                            
+              fy2 = new Float(tempBuffer).floatValue();                            
 
               l.moveTo(fx1, fy1);
               l.lineTo(fx2,fy2);
@@ -378,16 +378,16 @@ class svgImage extends Canvas{
                 tempBuffer = tempBuffer.replace('\t', ' ');  // suppress tab
                 StringTokenizer t = new StringTokenizer(tempBuffer," ,");
                 tempBuffer = t.nextToken();
-                fx = (float)new Float(tempBuffer).floatValue();              
+                fx = new Float(tempBuffer).floatValue();              
                 tempBuffer = t.nextToken();
-                fy = (float)new Float(tempBuffer).floatValue();              
+                fy = new Float(tempBuffer).floatValue();              
                 polygonPath.moveTo( fx , fy );
                   
                 while(t.hasMoreElements()){
                   tempBuffer = t.nextToken();
-                  fx = (float)new Float(tempBuffer).floatValue();              
+                  fx = new Float(tempBuffer).floatValue();              
                   tempBuffer = t.nextToken();
-                  fy = (float)new Float(tempBuffer).floatValue();              
+                  fy = new Float(tempBuffer).floatValue();              
                   polygonPath.lineTo( fx , fy );
                 }
                 polygonPath.closePath();
@@ -404,16 +404,16 @@ class svgImage extends Canvas{
                 tempBuffer = tempBuffer.replace('\t', ' ');  // suppress tab
                 StringTokenizer t = new StringTokenizer(tempBuffer," ,");
                 tempBuffer = t.nextToken();
-                fx = (float)new Float(tempBuffer).floatValue();              
+                fx = new Float(tempBuffer).floatValue();              
                 tempBuffer = t.nextToken();
-                fy = (float)new Float(tempBuffer).floatValue();              
+                fy = new Float(tempBuffer).floatValue();              
                 polygonPath.moveTo( fx , fy );
                   
                 while(t.hasMoreElements()){
                   tempBuffer = t.nextToken();
-                  fx = (float)new Float(tempBuffer).floatValue();              
+                  fx = new Float(tempBuffer).floatValue();              
                   tempBuffer = t.nextToken();
-                  fy = (float)new Float(tempBuffer).floatValue();              
+                  fy = new Float(tempBuffer).floatValue();              
                   polygonPath.lineTo( fx , fy );
                 }
                 svgGraphics.setPaint(localStyle.getFillColor());

@@ -539,8 +539,8 @@ public class SVG2MIFTool extends JPanel {
                         if (e.equals("M")) {
                             po.addPoint((DPoint) premierPoint.clone());
                             DPoint center = new DPoint(0, 0);
-                            center.x = (double) ((bounds[0].x + bounds[1].x) / 2);
-                            center.y = (double) ((bounds[0].y + bounds[1].y) / 2);
+                            center.x = (bounds[0].x + bounds[1].x) / 2;
+                            center.y = (bounds[0].y + bounds[1].y) / 2;
                             po.setCenter((DPoint) center.clone());
                             MM.addObject(po.clone());
                             bounds[0] = new DPoint(Double.MAX_VALUE, Double.MAX_VALUE);
@@ -556,8 +556,8 @@ public class SVG2MIFTool extends JPanel {
                         if (e.equals("m")) {
                             po.addPoint((DPoint) premierPoint.clone());
                             DPoint center = new DPoint(0, 0);
-                            center.x = (double) ((bounds[0].x + bounds[1].x) / 2);
-                            center.y = (double) ((bounds[0].y + bounds[1].y) / 2);
+                            center.x = (bounds[0].x + bounds[1].x) / 2;
+                            center.y = (bounds[0].y + bounds[1].y) / 2;
                             po.setCenter((DPoint) center.clone());
                             MM.addObject(po.clone());
                             bounds[0] = new DPoint(Double.MAX_VALUE, Double.MAX_VALUE);
@@ -596,8 +596,8 @@ public class SVG2MIFTool extends JPanel {
                         }
                     }
                     DPoint center = new DPoint(0, 0);
-                    center.x = (double) ((bounds[0].x + bounds[1].x) / 2);
-                    center.y = (double) ((bounds[0].y + bounds[1].y) / 2);
+                    center.x = (bounds[0].x + bounds[1].x) / 2;
+                    center.y = (bounds[0].y + bounds[1].y) / 2;
                     po.setCenter((DPoint) center.clone());
                     po.addPoint((DPoint) premierPoint.clone());
                     MM.addObject(po.clone());
@@ -641,8 +641,8 @@ public class SVG2MIFTool extends JPanel {
             po.addPoint(new DPoint(x1, y2));
             po.addPoint(new DPoint(x1, y1));
             DPoint center = new DPoint(0, 0);
-            center.x = (double) ((bounds[0].x + bounds[1].x) / 2);
-            center.y = (double) ((bounds[0].y + bounds[1].y) / 2);
+            center.x = (bounds[0].x + bounds[1].x) / 2;
+            center.y = (bounds[0].y + bounds[1].y) / 2;
             po.setCenter((DPoint) center.clone());
             MM.addObject(po);
         }
@@ -683,8 +683,8 @@ public class SVG2MIFTool extends JPanel {
             po.addPoint(new DPoint(x1, y2));
             po.addPoint(new DPoint(x1, y1));
             DPoint center = new DPoint(0, 0);
-            center.x = (double) ((bounds[0].x + bounds[1].x) / 2);
-            center.y = (double) ((bounds[0].y + bounds[1].y) / 2);
+            center.x = (bounds[0].x + bounds[1].x) / 2;
+            center.y = (bounds[0].y + bounds[1].y) / 2;
             po.setCenter((DPoint) center.clone());
             MM.addObject(po);
         }
@@ -736,8 +736,8 @@ public class SVG2MIFTool extends JPanel {
                 po.addPoint((DPoint) pt.clone());
             }
             DPoint center = new DPoint(0, 0);
-            center.x = (double) ((bounds[0].x + bounds[1].x) / 2);
-            center.y = (double) ((bounds[0].y + bounds[1].y) / 2);
+            center.x = (bounds[0].x + bounds[1].x) / 2;
+            center.y = (bounds[0].y + bounds[1].y) / 2;
             po.setCenter((DPoint) center.clone());
             po.addPoint((DPoint) premierPoint.clone());
             MM.addObject(po);
@@ -766,8 +766,8 @@ public class SVG2MIFTool extends JPanel {
             po.addPoint((DPoint) pt.clone());
         }
         DPoint center = new DPoint(0, 0);
-        center.x = (double) ((bounds[0].x + bounds[1].x) / 2);
-        center.y = (double) ((bounds[0].y + bounds[1].y) / 2);
+        center.x = (bounds[0].x + bounds[1].x) / 2;
+        center.y = (bounds[0].y + bounds[1].y) / 2;
         po.setCenter(center);
         MM.addObject(po);
     }
@@ -813,8 +813,8 @@ public class SVG2MIFTool extends JPanel {
             po.addPoint(new DPoint(x1, y2));
             po.addPoint(new DPoint(x1, y1));
             DPoint center = new DPoint(0, 0);
-            center.x = (double) ((bounds[0].x + bounds[1].x) / 2);
-            center.y = (double) ((bounds[0].y + bounds[1].y) / 2);
+            center.x = (bounds[0].x + bounds[1].x) / 2;
+            center.y = (bounds[0].y + bounds[1].y) / 2;
             po.setCenter((DPoint) center.clone());
             MM.addObject(po);
         }
@@ -863,8 +863,8 @@ public class SVG2MIFTool extends JPanel {
             po.addPoint(new DPoint(x1, y2));
             po.addPoint(new DPoint(x1, y1));
             DPoint center = new DPoint(0, 0);
-            center.x = (double) ((bounds[0].x + bounds[1].x) / 2);
-            center.y = (double) ((bounds[0].y + bounds[1].y) / 2);
+            center.x = (bounds[0].x + bounds[1].x) / 2;
+            center.y = (bounds[0].y + bounds[1].y) / 2;
             po.setCenter((DPoint) center.clone());
             MM.addObject(po);
         }

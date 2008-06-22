@@ -59,7 +59,7 @@ public class ToolTreeConstants {
         
         if(cst == null){
             cst = new ToolTreeConstants();
-            ref = new WeakReference(cst);
+            ref = new WeakReference<ToolTreeConstants>(cst);
         }
         
         return cst;        
