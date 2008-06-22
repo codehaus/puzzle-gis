@@ -13,6 +13,9 @@ import org.openide.util.NbBundle;
 import org.openide.util.actions.CookieAction;
 import org.puzzle.puzzlecore.context.ContextService;
 import org.puzzle.puzzlecore.project.filetype.GISContextDataObject;
+import org.puzzle.puzzlecore.view.MapView;
+import org.puzzle.puzzlecore.view.RenderingService;
+import org.puzzle.puzzlecore.view.ViewService;
 
 public final class ShowMapContextAction extends CookieAction {
 
@@ -20,8 +23,15 @@ public final class ShowMapContextAction extends CookieAction {
         GISContextDataObject dataObject = activatedNodes[0].getLookup().lookup(GISContextDataObject.class);
     
         MapContext context = dataObject.getContext();        
-        ContextService service = Lookup.getDefault().lookup(ContextService.class);
-        service.addContext(context);
+        ContextService contextService = Lookup.getDefault().lookup(ContextService.class);
+        contextService.addContext(context);
+        
+        RenderingService renderingService = Lookup.getDefault().lookup(RenderingService.class);
+        MapView view = renderingService.createView(context);
+        
+        ViewService viewService = Lookup.getDefault().lookup(ViewService.class);
+        viewService.add(view);
+        
         
 //        JOptionPane.showMessageDialog(null, "hahaha");
         
