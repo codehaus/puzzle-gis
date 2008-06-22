@@ -48,7 +48,7 @@ public class DPolygon {
 	}
 	
 	public DPoint getPoint(int index) {
-		return (DPoint)this.points.elementAt(index);
+		return this.points.elementAt(index);
 	}
 	
 	public void addPoint(double x, double y) {
@@ -61,11 +61,12 @@ public class DPolygon {
 		this.numPoints += 1;
 	}
 	
+    @Override
 	public Object clone() {
 		int i = 0;
 		DPolygon p2 = new DPolygon();
 		for (i = 0; i < this.getNumPoints(); i++) {
-			p2.addPoint((DPoint)this.points.elementAt(i));
+			p2.addPoint(this.points.elementAt(i));
 		}
 		p2.setCenter(this.getCenter());
 		return p2;

@@ -123,7 +123,7 @@ public class Parser {
                      if ( offset > 0){
                        endString = xmlString.substring(2, offset);
                      }
-                     String testString =(String) elementStack.pop();
+                     String testString = elementStack.pop();
                      if ( !endString.equals(testString)){
                          System.out.println("Parsing error near: "+ xmlString + "  element number " + elementCount );
                          System.exit(0);

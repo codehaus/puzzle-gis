@@ -43,7 +43,7 @@ public class polyline {
 	}
 	
 	public polylineSection getSection(int index) {
-		return (polylineSection)this.sections.elementAt(index);
+		return this.sections.elementAt(index);
 	}
 	
 	public void addSection(polylineSection section) {

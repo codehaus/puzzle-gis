@@ -46,7 +46,7 @@ public class polylineSection {
 	}
 	
 	public DPoint getPoint(int index) {
-		return (DPoint)this.points.elementAt(index);
+		return this.points.elementAt(index);
 	}
 	
 	public void addPoint(double x, double y) {
@@ -63,7 +63,7 @@ public class polylineSection {
 		int i = 0;
 		polylineSection ps2 = new polylineSection();
 		for (i = 0; i < this.getNumPoints(); i++) {
-			ps2.addPoint((DPoint)this.points.elementAt(i));
+			ps2.addPoint(this.points.elementAt(i));
 		}
 		return ps2;
 	}

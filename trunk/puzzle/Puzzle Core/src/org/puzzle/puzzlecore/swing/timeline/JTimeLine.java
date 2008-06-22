@@ -242,7 +242,7 @@ public class JTimeLine extends JComponent implements MouseListener, MouseMotionL
         calendar.setTime(centralDate);
 
 
-        int nbYears = (int) (((float) width / 2f) / (float) pxYear) + 1;
+        int nbYears = (int) (((float) width / 2f) / pxYear) + 1;
 
         //draw the years
         g2.setColor(Ccenter);
@@ -289,7 +289,7 @@ public class JTimeLine extends JComponent implements MouseListener, MouseMotionL
         calendar.setTime(centralDate);
 
         if (pxMonth > 28) {
-            int nbMonth = (int) (((float) width / 2f) / (float) pxMonth) + 1;
+            int nbMonth = (int) (((float) width / 2f) / pxMonth) + 1;
 
             //draw the months
             g2.setColor(Ctop);
@@ -345,7 +345,7 @@ public class JTimeLine extends JComponent implements MouseListener, MouseMotionL
         calendar.setTime(centralDate);
 
         if (pxDay > 22) {
-            int nbDays = (int) (((float) width / 2f) / (float) pxDay) + 1;
+            int nbDays = (int) (((float) width / 2f) / pxDay) + 1;
 
             //draw the days
             g2.setColor(Color.WHITE);

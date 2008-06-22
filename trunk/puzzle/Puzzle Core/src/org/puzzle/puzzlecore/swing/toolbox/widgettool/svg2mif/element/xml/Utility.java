@@ -56,7 +56,7 @@ public final class Utility {
          
          doubleData = new double[t.countTokens()];
          while (t.hasMoreTokens()){
-             doubleData[i] = (double)new Double(t.nextToken()).doubleValue();
+             doubleData[i] = new Double(t.nextToken()).doubleValue();
              i++;
          }
          return doubleData;
@@ -69,7 +69,7 @@ public final class Utility {
          StringTokenizer t = new StringTokenizer(floatString,",() \t\n");
          floatData = new float[t.countTokens()];
          while (t.hasMoreTokens()){
-             floatData[i] = (float)new Float(t.nextToken()).floatValue();
+             floatData[i] = new Float(t.nextToken()).floatValue();
              i++;
          }
          return floatData;

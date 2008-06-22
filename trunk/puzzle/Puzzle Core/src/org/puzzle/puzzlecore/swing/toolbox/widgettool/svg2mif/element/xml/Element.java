@@ -74,7 +74,7 @@ public class Element {
     
     public String getAttribute(String name) {
         if (requestedAttributes.containsKey(name)){
-            return (String) requestedAttributes.get(name);
+            return requestedAttributes.get(name);
         }
 
         int i;
