@@ -8,6 +8,8 @@ package org.puzzle.puzzlecore.project;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Properties;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -22,6 +24,8 @@ import org.openide.util.Lookup;
 import org.openide.util.Utilities;
 import org.openide.util.lookup.AbstractLookup;
 import org.openide.util.lookup.InstanceContent;
+import org.puzzle.puzzlecore.project.filetype.GISSourceDataObject;
+import org.puzzle.puzzlecore.project.source.GISSource;
 
 /**
  *
@@ -43,7 +47,6 @@ public class GISProject implements Project { //, LogicalViewProvider{
     private final InstanceContent lookUpContent = new InstanceContent();
     private final Lookup lookUp = new AbstractLookup(lookUpContent);
     
-    
     public GISProject(FileObject root, ProjectState state){
         this.projectDir = root;
         this.state = state;
@@ -64,6 +67,10 @@ public class GISProject implements Project { //, LogicalViewProvider{
         return lookUp;
     }
     
+    public void addGISSource(GISSource src){
+        lookUpContent.add(src);
+    }
+        
     FileObject getMapFolder(boolean create) {
         FileObject result = projectDir.getFileObject(MAP_DIR);
 
