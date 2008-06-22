@@ -17,6 +17,23 @@ public class GISContextDataNode extends DataNode {
         setIconBaseWithExtension(IMAGE_ICON_BASE);
     }
 
+    @Override
+    public String getHtmlDisplayName() {
+        String str = super.getHtmlDisplayName();
+        if(str != null) str = str.replaceAll(".xml", "");
+        return str;
+    }
+
+    @Override
+    public String getDisplayName() {
+        String str = super.getDisplayName();
+        if(str != null) str = str.replaceAll(".xml", "");
+        return str;
+    }
+    
+    
+    
+    
     GISContextDataNode(GISContextDataObject obj, Lookup lookup) {
         super(obj, Children.LEAF, lookup);
         setIconBaseWithExtension(IMAGE_ICON_BASE);

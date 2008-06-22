@@ -47,6 +47,7 @@ public class DefaultViewService implements ViewService{
      */
     public void add(MapView view) {        
         CONTENT.add(view);        
+        if(!view.isOpened()) view.open();
     }
 
     /**
