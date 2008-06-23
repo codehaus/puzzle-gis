@@ -6,8 +6,10 @@
 package org.puzzle.puzzlecore.project.nodes;
 
 import java.awt.Image;
+import javax.swing.Action;
 import javax.swing.ImageIcon;
 import org.netbeans.api.project.ProjectInformation;
+import org.netbeans.spi.project.ui.support.CommonProjectActions;
 import org.openide.nodes.AbstractNode;
 import org.openide.nodes.Children;
 import org.openide.util.Utilities;
@@ -45,6 +47,18 @@ public class GISProjectNode extends AbstractNode{
         ProjectInformation info = project.getLookup().lookup(ProjectInformation.class);
         return info.getDisplayName();
     }
+
+    @Override
+    public Action[] getActions(boolean arg0) {
+        return new Action[]{
+            CommonProjectActions.closeProjectAction(),
+             CommonProjectActions.deleteProjectAction(),
+            CommonProjectActions.setAsMainProjectAction(),
+             CommonProjectActions.setProjectConfigurationAction()
+        };
+    }
+
+    
 
     
     
