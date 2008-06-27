@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-OpenIDE-Module: org.puzzle.puzzlestreamingrenderer
-OpenIDE-Module-Localizing-Bundle: org/puzzle/puzzlestreamingrenderer/Bundle.properties
+OpenIDE-Module: org.puzzle.renderer.streaming
+OpenIDE-Module-Localizing-Bundle: org/puzzle/renderer/streaming/Bundle.properties
 OpenIDE-Module-Specification-Version: 1.0
 
