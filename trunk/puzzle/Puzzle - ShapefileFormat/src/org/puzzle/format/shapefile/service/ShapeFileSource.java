@@ -13,10 +13,10 @@ import org.geotools.data.DataStore;
 import org.geotools.data.DataStoreFinder;
 import org.geotools.data.FeatureSource;
 import org.geotools.gui.swing.misc.Render.RandomStyleFactory;
-import org.geotools.map.DefaultMapLayer;
-import org.geotools.map.MapLayer;
 import org.geotools.styling.Style;
 import org.openide.util.Exceptions;
+import org.puzzle.puzzlecore.context.LayerSource;
+import org.puzzle.puzzlecore.context.RichMapLayer;
 import org.puzzle.puzzlecore.project.source.GISSource;
 
 /**
@@ -47,10 +47,11 @@ public class ShapeFileSource implements GISSource{
         
     }
     
-    public MapLayer createLayer(Map<String, String> parameters) {
+    public RichMapLayer createLayer(Map<String, String> parameters) {
         
         Style style = new RandomStyleFactory().createRandomVectorStyle(featureSource);
-        MapLayer layer = new DefaultMapLayer(featureSource, style);
+        LayerSource source = new LayerSource(id, parameters);
+        RichMapLayer layer = new RichMapLayer(featureSource, style,source);
         layer.setTitle(name);
         
         return layer;
