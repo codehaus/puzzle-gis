@@ -61,8 +61,7 @@ public class GISLogicalView implements LogicalViewProvider{
         try {
             FileObject sources = project.getSourceFolder(true);
             DataFolder sourceDataObject = DataFolder.findFolder (sources);
-            Node sourcesNode = sourceDataObject.getNodeDelegate();
-            srcNode = new GISSourceNode (sourcesNode, project);
+            srcNode = new GISSourceNode (sourceDataObject, project);
         } catch (DataObjectNotFoundException donfe) {
             ErrorManager.getDefault().notify(donfe);
             srcNode = new AbstractNode (Children.LEAF);
