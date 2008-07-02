@@ -6,7 +6,7 @@
 package org.puzzle.puzzlecore.project.source;
 
 import java.util.Map;
-import org.geotools.map.MapLayer;
+import org.puzzle.puzzlecore.context.RichMapLayer;
 
 /**
  *
@@ -16,6 +16,6 @@ public interface GISSource {
 
     int getID();
     
-    MapLayer createLayer(Map<String,String> parameters);
+    RichMapLayer createLayer(Map<String,String> parameters);
     
 }

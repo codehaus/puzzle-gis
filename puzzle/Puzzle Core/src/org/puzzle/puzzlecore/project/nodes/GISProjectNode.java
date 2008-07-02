@@ -13,6 +13,7 @@ import org.netbeans.spi.project.ui.support.CommonProjectActions;
 import org.openide.nodes.AbstractNode;
 import org.openide.nodes.Children;
 import org.openide.util.Utilities;
+import org.openide.util.lookup.Lookups;
 import org.puzzle.puzzlecore.project.GISProject;
 
 /**
@@ -24,14 +25,13 @@ public class GISProjectNode extends AbstractNode{
     private final String ICON_PATH = "org/puzzle/puzzlecore/project/boussole.png";
     private final ImageIcon ICON = new ImageIcon(Utilities.loadImage(ICON_PATH, true));
     
-    
     private final GISProject project;
     
     public GISProjectNode(GISProject project){
-        super(new Children.Array());
+        super(new Children.Array(), Lookups.singleton(project) );
         this.project = project;
     }
-
+       
     @Override
     public Image getIcon(int arg0) {
         return ICON.getImage();
@@ -52,9 +52,7 @@ public class GISProjectNode extends AbstractNode{
     public Action[] getActions(boolean arg0) {
         return new Action[]{
             CommonProjectActions.closeProjectAction(),
-             CommonProjectActions.deleteProjectAction(),
-            CommonProjectActions.setAsMainProjectAction(),
-             CommonProjectActions.setProjectConfigurationAction()
+            CommonProjectActions.setAsMainProjectAction()
         };
     }
 

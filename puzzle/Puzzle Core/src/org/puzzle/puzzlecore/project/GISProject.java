@@ -31,7 +31,7 @@ import org.puzzle.puzzlecore.project.source.GISSource;
  *
  * @author johann sorel
  */
-public class GISProject implements Project { //, LogicalViewProvider{
+public class GISProject implements Project { 
 
     public static final String MAP_DIR = "map";
     public static final String DOC_DIR = "doc";
@@ -39,9 +39,7 @@ public class GISProject implements Project { //, LogicalViewProvider{
     
     private final FileObject projectDir;
     private final ProjectState state;
-    LogicalViewProvider logicalView = new GISLogicalView(this);
-    
-    
+    private final LogicalViewProvider logicalView = new GISLogicalView(this);
     
     
     private final InstanceContent lookUpContent = new InstanceContent();
