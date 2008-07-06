@@ -20,85 +20,65 @@
  */
 package org.puzzle.puzzlecore.context.action.addlayer;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Rectangle;
-import java.util.ArrayList;
-import java.util.List;
-import javax.swing.JComponent;
-import javax.swing.JDialog;
-import javax.swing.JOptionPane;
-import org.geotools.gui.swing.datachooser.DataPanel;
-import org.geotools.gui.swing.datachooser.JDataChooser;
-import org.geotools.gui.swing.datachooser.JFileDataPanel;
-import org.geotools.map.MapContext;
-import org.geotools.map.MapLayer;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Collection;
+import org.netbeans.api.project.Project;
+import org.netbeans.api.project.ui.OpenProjects;
+import org.openide.DialogDescriptor;
+import org.openide.DialogDisplayer;
+import org.openide.NotifyDescriptor;
 import org.openide.util.HelpCtx;
-import org.openide.util.Lookup;
 import org.openide.util.NbBundle;
 import org.openide.util.actions.CallableSystemAction;
-import org.puzzle.puzzlecore.context.ContextService;
-import org.puzzle.puzzlecore.context.gui.datadialog.DataDialog;
+import org.puzzle.puzzlecore.context.gui.datadialog.JFileSourcePane;
+import org.puzzle.puzzlecore.project.GISProject;
+import org.puzzle.puzzlecore.project.source.GISSource;
 
 /**
  * @author johann sorel
  */
 public final class AddFileLayerAction extends CallableSystemAction {
 
-  public void performAction() {
+    public void performAction() {
 
-    JDialog dialog = new JDialog();
-
-
-    JComponent glass = new JComponent() {
-
-      @Override
-      protected void paintComponent(Graphics g) {
-        Rectangle clip = g.getClipBounds();
-        Color alphaWhite = new Color(1.0f, 1.0f, 1.0f, 0.65f);
-        g.setColor(alphaWhite);
-        g.fillRect(clip.x, clip.y, clip.width, clip.height);
+        final Project mainProject = OpenProjects.getDefault().getMainProject();
         
-//        g.setColor(Color.RED);
-//        g.drawString("hahaha", 50, 50);
+        
+      
+        
+        if(mainProject != null && mainProject instanceof GISProject) {
+            final GISProject gis = (GISProject) mainProject;
+            
+            final JFileSourcePane pane = new JFileSourcePane();
+            ActionListener lst = new ActionListener() {
 
-      }
-    };
-
-
-//    dialog.setGlassPane(glass);
-//    dialog.getGlassPane().setVisible(true);
-//
-//    dialog.setSize(640, 480);
-//    dialog.setLocationRelativeTo(null);
-//    dialog.setVisible(true);
-
-        ContextService service = Lookup.getDefault().lookup(ContextService.class);
-        MapContext context = service.getActiveContext();
-
-        if (context != null) {
-            List<DataPanel> lst = new ArrayList<DataPanel>();
-            lst.add(new JFileDataPanel());
-
-            JDataChooser jdc = new JDataChooser(null, lst);
-
-            JDataChooser.ACTION ret = jdc.showDialog();
-
-            if (ret == JDataChooser.ACTION.APPROVE) {
-                        
-                final MapLayer[] layers = jdc.getLayers();
-
-                for (MapLayer layer : layers) {
-                    context.addLayer(layer);
-                }
-            } 
-
-        }else {
-                JOptionPane.showMessageDialog(null, "No active Context");
-            }
+              public void actionPerformed(ActionEvent e) {
+                  
+                  if(e.getActionCommand().equalsIgnoreCase("ok")){
+                      
+                    Collection<GISSource> sources = pane.getGISSources();
+                    for(GISSource source : sources){
+                        gis.appendGISSource(source);  
+                    }
+                  }
+              }
+          };
+      
+        DialogDescriptor desc = new DialogDescriptor(pane,"Open file",true,lst);
+            
+            
+            
+            DialogDisplayer.getDefault().notify(desc);
+            
+        } else {
+            NotifyDescriptor notify = new NotifyDescriptor.Message("Current main project is not a GIS project.",
+                    NotifyDescriptor.INFORMATION_MESSAGE);
+            DialogDisplayer.getDefault().notify(notify);
+        }
   }
   
-    public String getName() {
+  public String getName() {
         return NbBundle.getMessage(AddFileLayerAction.class, "CTL_AddLayerAction");
     }
 

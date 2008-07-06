@@ -5,6 +5,7 @@
 
 package org.puzzle.puzzlecore.project.source;
 
+import java.awt.Image;
 import java.util.Map;
 import org.puzzle.puzzlecore.context.RichMapLayer;
 
@@ -16,6 +17,13 @@ public interface GISSource {
 
     int getID();
     
+    String getServiceName();
+    
+    Map<String,String> getParameters();
+    
     RichMapLayer createLayer(Map<String,String> parameters);
     
+    Image getIcon(int type);
+    
+    String getTitle();
 }

@@ -4,6 +4,7 @@
  */
 package org.puzzle.puzzlecore.project.filetype;
 
+import java.awt.Image;
 import org.openide.loaders.DataNode;
 import org.openide.nodes.Children;
 import org.openide.util.Lookup;
@@ -11,7 +12,8 @@ import org.openide.util.Lookup;
 public class GISSourceDataNode extends DataNode {
 
     private static final String IMAGE_ICON_BASE = "org/puzzle/puzzlecore/project/filetype/signal-1.png";
-
+    
+    
     public GISSourceDataNode(GISSourceDataObject obj) {
         super(obj, Children.LEAF);
         setIconBaseWithExtension(IMAGE_ICON_BASE);
@@ -23,6 +25,15 @@ public class GISSourceDataNode extends DataNode {
         String str = super.getHtmlDisplayName();
         if(str != null) str = str.replaceAll(".xml", "");
         return str;
+    }
+
+    @Override
+    public Image getIcon(int arg0) {
+        Image img = ((GISSourceDataObject)getDataObject()).getSource().getIcon(arg0);
+        
+        if(img != null) return img;
+        
+        return super.getIcon(arg0);
     }
 
     @Override
