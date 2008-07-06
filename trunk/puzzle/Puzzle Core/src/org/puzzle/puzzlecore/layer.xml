@@ -25,7 +25,7 @@
         <folder name="Window">
             <file name="org-puzzle-puzzlecore-context-gui-contexttree-ContextTreeAction.instance"/>
             <file name="org-puzzle-puzzlecore-tool-gui-toolbox-ToolTreeAction.instance"/>
-            <file name="org-puzzle-puzzlecore-view-gui-ViewTreeAction.instance"/>
+            <!--<file name="org-puzzle-puzzlecore-view-gui-ViewTreeAction.instance"/>-->
             <file name="org-puzzle-puzzlecore-view-gui-timeline-TimeLineAction.instance"/>
         </folder>
     </folder>
@@ -212,10 +212,10 @@
                 <attr name="position" intvalue="300"/>
             </file>
             <file name="ViewRuntimeTabAction.shadow_hidden"/>
-            <file name="ViewTreeAction.shadow">
+            <!--<file name="ViewTreeAction.shadow">
                 <attr name="originalFile" stringvalue="Actions/Window/org-puzzle-puzzlecore-view-gui-ViewTreeAction.instance"/>
                 <attr name="position" intvalue="400"/>
-            </file>
+            </file>-->
             <file name="org-netbeans-core-actions-GlobalPropertiesAction.shadow_hidden"/>
         </folder>
     </folder>
@@ -225,15 +225,15 @@
             <file name="MiniMapTopComponent.settings" url="MiniMapTopComponentSettings.xml"/>
             <file name="TimeLineTopComponent.settings" url="TimeLineTopComponentSettings.xml"/>
             <file name="ToolTreeTopComponent.settings" url="ToolTreeTopComponentSettings.xml"/>
-            <file name="ViewTreeTopComponent.settings" url="ViewTreeTopComponentSettings.xml"/>
+            <!--<file name="ViewTreeTopComponent.settings" url="ViewTreeTopComponentSettings.xml"/>-->
             <file name="favorites.settings_hidden"/>
             <file name="output.settings_hidden"/>
             <file name="runtime.settings_hidden"/>
         </folder>
         <folder name="Modes">
-            <folder name="navigator">
+            <!--<folder name="navigator">
                 <file name="ViewTreeTopComponent.wstcref" url="ViewTreeTopComponentWstcref.xml"/>
-            </folder>
+            </folder>-->
             <file name="navigator.wsmode" url="navigator.xml"/>
             <folder name="explorer">
                 <file name="ContextTreeTopComponent.wstcref" url="ContextTreeTopComponentWstcref.xml"/>

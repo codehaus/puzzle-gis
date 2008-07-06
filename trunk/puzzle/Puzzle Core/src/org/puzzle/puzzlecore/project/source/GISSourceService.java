@@ -15,5 +15,6 @@ public interface GISSourceService {
 
     String getIdentifier();
     
-    GISSource createSource(Map<String,String> parameters,int id) throws IllegalArgumentException;
+    GISSource restoreSource(Map<String,String> parameters,int id) throws IllegalArgumentException;
+    
 }
