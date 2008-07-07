@@ -152,7 +152,7 @@ public class ClippingTool extends JPanel {
     private boolean verify() {
         if (outFile != null && inLayer != null && !inLayer.getFeatureSource().getSchema().getName().getLocalPart().equals("GridCoverage") && clipLayer != null && !clipLayer.getFeatureSource().getSchema().getName().getLocalPart().equals("GridCoverage")) {
 
-            Class jtsClass = clipLayer.getFeatureSource().getSchema().getDefaultGeometry().getType().getBinding();
+            Class jtsClass = clipLayer.getFeatureSource().getSchema().getGeometryDescriptor().getType().getBinding();
 
             if (jtsClass.equals(Polygon.class) || jtsClass.equals(MultiPolygon.class)) {
                 gui_ok.setEnabled(true);
@@ -184,7 +184,7 @@ public class ClippingTool extends JPanel {
             // Create the ShapefileDataStore from our factory based on our Map object
             myData = (ShapefileDataStore) factory.createNewDataStore(map);
 
-            AttributeDescriptor geodesc = type.getDefaultGeometry();
+            AttributeDescriptor geodesc = type.getGeometryDescriptor();
             Class jtsClass = geodesc.getType().getBinding();
 
             String geotype = "";
@@ -205,7 +205,7 @@ public class ClippingTool extends JPanel {
             buffer.append(geotype);
 
 
-            List<AttributeDescriptor> lst = type.getAttributes();
+            List<AttributeDescriptor> lst = type.getAttributeDescriptors();
             for (AttributeDescriptor att : lst) {
 
 
@@ -467,11 +467,11 @@ public class ClippingTool extends JPanel {
                 .getFeatureSource();
         SimpleFeatureType inType = inFS.getSchema();
 
-        DataStore outStore = createShapeFile(outFile, inType, inType.getCRS(), inLayer.getTitle());
+        DataStore outStore = createShapeFile(outFile, inType, inType.getCoordinateReferenceSystem(), inLayer.getTitle());
         
         try{
-            attlink.put(inType.getDefaultGeometry().getName().toString(), 
-                    outStore.getSchema(outStore.getTypeNames()[0]).getDefaultGeometry().getName().toString());
+            attlink.put(inType.getGeometryDescriptor().getName().toString(), 
+                    outStore.getSchema(outStore.getTypeNames()[0]).getGeometryDescriptor().getName().toString());
         }catch(Exception e){
             e.printStackTrace();
         }

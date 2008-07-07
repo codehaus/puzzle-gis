@@ -171,7 +171,7 @@ public class ClippingTool_old extends JPanel {
     private boolean verify() {
         if (outFile != null && inLayer != null && !inLayer.getFeatureSource().getSchema().getName().getLocalPart().equals("GridCoverage") && clipLayer != null && !clipLayer.getFeatureSource().getSchema().getName().getLocalPart().equals("GridCoverage")) {
 
-            Class jtsClass = clipLayer.getFeatureSource().getSchema().getDefaultGeometry().getType().getBinding();
+            Class jtsClass = clipLayer.getFeatureSource().getSchema().getGeometryDescriptor().getType().getBinding();
 
             if (jtsClass.equals(Polygon.class) || jtsClass.equals(MultiPolygon.class)) {
                 gui_ok.setEnabled(true);
@@ -202,7 +202,7 @@ public class ClippingTool_old extends JPanel {
             // Create the ShapefileDataStore from our factory based on our Map object
             myData = (ShapefileDataStore) factory.createNewDataStore(map);
 
-            AttributeDescriptor geodesc = type.getDefaultGeometry();
+            AttributeDescriptor geodesc = type.getGeometryDescriptor();
             Class jtsClass = geodesc.getType().getBinding();
 
             String geotype = "";
@@ -223,7 +223,7 @@ public class ClippingTool_old extends JPanel {
             buffer.append(geotype);
 
 
-            List<AttributeDescriptor> lst = type.getAttributes();
+            List<AttributeDescriptor> lst = type.getAttributeDescriptors();
             for (AttributeDescriptor att : lst) {
 
                 if (att != geodesc) {
@@ -373,8 +373,8 @@ public class ClippingTool_old extends JPanel {
 
                     //we copy each attribut and replace the geometry
                     Object[] values = new Object[outType.getAttributeCount()];
-                    AttributeDescriptor geomAttribut = outType.getDefaultGeometry();
-                    List<AttributeDescriptor> attributes = outType.getAttributes();
+                    AttributeDescriptor geomAttribut = outType.getGeometryDescriptor();
+                    List<AttributeDescriptor> attributes = outType.getAttributeDescriptors();
 
                     for (int i = 0,  max = attributes.size(); i < max; i++) {
                         AttributeDescriptor oneAttribut = attributes.get(i);
@@ -651,13 +651,13 @@ public class ClippingTool_old extends JPanel {
 
             FeatureSource<SimpleFeatureType, SimpleFeature> inFS = (FeatureSource<SimpleFeatureType, SimpleFeature>) inLayer.getFeatureSource();
             SimpleFeatureType inType = inFS.getSchema();
-            CoordinateReferenceSystem inCRS = inLayer.getFeatureSource().getSchema().getCRS();
+            CoordinateReferenceSystem inCRS = inLayer.getFeatureSource().getSchema().getCoordinateReferenceSystem();
 
-            CoordinateReferenceSystem clipCRS = clipLayer.getFeatureSource().getSchema().getCRS();
+            CoordinateReferenceSystem clipCRS = clipLayer.getFeatureSource().getSchema().getCoordinateReferenceSystem();
 
-            DataStore outStore = createShapeFile(outFile, inType, inType.getCRS(), inLayer.getTitle());
+            DataStore outStore = createShapeFile(outFile, inType, inType.getCoordinateReferenceSystem(), inLayer.getTitle());
 
-            String geoAtt = inLayer.getFeatureSource().getSchema().getDefaultGeometry().getName().toString();
+            String geoAtt = inLayer.getFeatureSource().getSchema().getGeometryDescriptor().getName().toString();
 
             //we make a first filter with envelope to limite the collection size
             ReferencedEnvelope env = clipLayer.getBounds();
