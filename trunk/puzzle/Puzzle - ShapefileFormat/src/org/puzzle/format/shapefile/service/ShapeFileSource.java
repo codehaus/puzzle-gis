@@ -47,7 +47,8 @@ public class ShapeFileSource implements GISSource{
         this.parameters = parameters;
         DataStore store = null;
         try {
-            store = DataStoreFinder.getDataStore(new SingletonMap("url", shapefile.toURI().toURL()));
+            System.out.println("file = " + shapefile + " url = " + shapefile.getPath());
+            store = DataStoreFinder.getDataStore(new SingletonMap("url", shapefile.getPath()));
         } catch (IOException ex) {
             Exceptions.printStackTrace(ex);
         }
