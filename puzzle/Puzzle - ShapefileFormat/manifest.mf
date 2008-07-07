@@ -1,5 +1,6 @@
 Manifest-Version: 1.0
 OpenIDE-Module: org.puzzle.format.shapefile
+OpenIDE-Module-Install: org/puzzle/format/shapefile/Installer.class
 OpenIDE-Module-Localizing-Bundle: org/puzzle/format/shapefile/Bundle.properties
 OpenIDE-Module-Specification-Version: 1.0
 
