@@ -51,7 +51,7 @@ import org.xml.sax.SAXException;
  * contexts files.
  * 
  * @author  Johann Sorel
- * @author  Thomas Bonavia
+ * @author  Thomas Bonavia (comments)
  * 
  * @see     org.openide.loaders.XMLDataObject
  */
