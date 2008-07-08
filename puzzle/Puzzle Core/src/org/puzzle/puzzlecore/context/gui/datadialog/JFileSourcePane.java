@@ -26,6 +26,7 @@ import java.util.Collection;
 import org.openide.util.Lookup;
 import org.puzzle.puzzlecore.project.source.GISFileSourceService;
 import org.puzzle.puzzlecore.project.source.GISSource;
+import org.puzzle.puzzlecore.project.source.GISSourceService;
 
 /**
  * File generic chooser. This will call all GISFileSourceService
@@ -34,7 +35,7 @@ import org.puzzle.puzzlecore.project.source.GISSource;
  */
 public class JFileSourcePane extends javax.swing.JPanel {
     
-    private final Collection<? extends GISFileSourceService> services;
+    private final Collection<? extends GISSourceService> services;
     
     public JFileSourcePane() {
        this(null);
@@ -48,10 +49,12 @@ public class JFileSourcePane extends javax.swing.JPanel {
     public JFileSourcePane(File openPath) {
         initComponents();
                 
-        services = Lookup.getDefault().lookupAll(GISFileSourceService.class);
+        services = Lookup.getDefault().lookupAll(GISSourceService.class);
         
-        for(GISFileSourceService service : services){
-            gui_choose.addChoosableFileFilter(service.createFilter());
+        for(GISSourceService service : services){
+            
+            if(service instanceof GISFileSourceService)
+                gui_choose.addChoosableFileFilter( ((GISFileSourceService)service).createFilter());
         }
         
         if(openPath != null){
@@ -104,10 +107,11 @@ public class JFileSourcePane extends javax.swing.JPanel {
         file_loop:
         for(File f : files){
             
-            for(GISFileSourceService service : services){
+            for(GISSourceService service : services){
+                if( ! (service instanceof GISFileSourceService)) continue;
                 GISSource source = null;
                 
-                try{ source = service.createSource(f);
+                try{ source = ((GISFileSourceService)service).createSource(f);
                 }catch(IllegalArgumentException ex){
                     ex.printStackTrace();}
                 
