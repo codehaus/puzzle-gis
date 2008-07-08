@@ -9,7 +9,7 @@ import java.io.File;
 import javax.swing.filechooser.FileFilter;
 
 /**
- *
+ * 
  * @author Administrateur
  */
 public interface GISFileSourceService extends GISSourceService{
