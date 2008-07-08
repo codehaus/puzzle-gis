@@ -1,6 +1,22 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ *  Puzzle-GIS - OpenSource mapping program
+ *  http://docs.codehaus.org/display/PUZZLEGIS
+ *  Copyright (C) 2007 Puzzle-GIS
+ *  
+ *  GPLv3 + Classpath exception
+ *  
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *  
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *  
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 package org.puzzle.puzzlecore.project.filetype;
 
@@ -27,11 +43,32 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+/**
+ * This class is used to represent XML files describing contexts for the
+ * project. It extends {@code XMLDocument} which provides main functionalities
+ * for using XML documents.<br>
+ * This class provides special support for understanding and using 
+ * contexts files.
+ * 
+ * @author  Johann Sorel
+ * @author  Thomas Bonavia
+ * 
+ * @see     org.openide.loaders.XMLDataObject
+ */
 public class GISContextDataObject extends XMLDataObject {
 
     private final RandomStyleFactory RANDOM_STYLE_FACTORY = new RandomStyleFactory();
     private MapContext context = null;
     
+    /**
+     * Constructor.
+     * This contructor creates a {@code GISContextDataObject} and make it
+     * openable in an editor.
+     * @param   pf      The {@code FileObject} representing XML document.
+     * @param   loader  The loader to use for this {@code DataObject}.
+     * @throws  org.openide.loaders.DataObjectExistsException
+     * @throws  java.io.IOException
+     */
     public GISContextDataObject(FileObject pf, GISContextDataLoader loader) throws DataObjectExistsException, IOException {
         super(pf, loader);
         
@@ -39,7 +76,13 @@ public class GISContextDataObject extends XMLDataObject {
         cookies.add((Node.Cookie) DataEditorSupport.create(this, getPrimaryEntry(), cookies));
     }
 
-    
+    /**
+     * This method is used to retrieve the {@code MapContext} associated with
+     * the {@code GISContextDataObject}. If not context is currently associated,
+     * it creates a new one and intialize it with layers described in the 
+     * XML document.
+     * @return  The {@code MapContext} associated.
+     */
     public MapContext getContext(){
         
         if(context == null){
@@ -122,6 +165,4 @@ public class GISContextDataObject extends XMLDataObject {
     public Lookup getLookup() {
         return getCookieSet().getLookup();
     }
-    
-    
 }
