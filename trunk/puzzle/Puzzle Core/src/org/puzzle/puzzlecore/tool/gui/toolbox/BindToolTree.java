@@ -60,7 +60,7 @@ public class BindToolTree extends JToolTree implements LookupListener {
                 dialog.setContentPane(pane);
                 dialog.pack();
                 dialog.setLocationRelativeTo(null);
-                dialog.setAlwaysOnTop(true);
+                dialog.setAlwaysOnTop(false);
                 dialog.setVisible(true);
             }
         });

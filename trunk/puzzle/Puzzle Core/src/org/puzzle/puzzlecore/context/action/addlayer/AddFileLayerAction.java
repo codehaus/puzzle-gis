@@ -44,9 +44,6 @@ public final class AddFileLayerAction extends CallableSystemAction {
 
         final Project mainProject = OpenProjects.getDefault().getMainProject();
         
-        
-      
-        
         if(mainProject != null && mainProject instanceof GISProject) {
             final GISProject gis = (GISProject) mainProject;
             
