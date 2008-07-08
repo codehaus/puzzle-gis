@@ -1,13 +1,26 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ *  Puzzle-GIS - OpenSource mapping program
+ *  http://docs.codehaus.org/display/PUZZLEGIS
+ *  Copyright (C) 2007 Puzzle-GIS
+ *  
+ *  GPLv3 + Classpath exception
+ *  
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *  
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *  
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package org.puzzle.puzzlecore.project.nodes;
 
 import java.awt.Image;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import org.openide.filesystems.FileAttributeEvent;
 import org.openide.filesystems.FileChangeListener;
 import org.openide.filesystems.FileEvent;
@@ -18,17 +31,23 @@ import org.openide.loaders.DataObject;
 import org.openide.loaders.DataObjectNotFoundException;
 import org.openide.nodes.AbstractNode;
 import org.openide.nodes.Children;
-import org.openide.nodes.FilterNode;
 import org.openide.nodes.Node;
-import org.openide.util.Lookup;
 import org.openide.util.Utilities;
-import org.openide.util.lookup.Lookups;
-import org.openide.util.lookup.ProxyLookup;
 import org.puzzle.puzzlecore.project.GISProject;
 
 /**
- *
- * @author Administrateur
+ * This class represents the folder "src" defined in the 
+ * {@link org.puzzle.puzzlecore.project.GISProject}, which is intended to
+ * contain all sources describing the datas of a project.
+ * <br>
+ * This class extends the {@code AbstractNode}, which provides some basics
+ * methods for managing nodes.
+ * 
+ * @author  Johann Sorel
+ * @author  Thomas Bonavia (comments)
+ * 
+ * @see     org.openide.nodes.AbstractNode
+ * @see     org.openide.filesystems.FileChangeListener
  */
 public class GISSourceNode extends AbstractNode implements FileChangeListener{
     
@@ -37,6 +56,12 @@ public class GISSourceNode extends AbstractNode implements FileChangeListener{
     
     private final GISProject project;
     
+    /**
+     * Constructor.
+     * @param   folder      The "src" folder.
+     * @param   project     The current {@code GISProject}.
+     * @throws  org.openide.loaders.DataObjectNotFoundException
+     */
     public GISSourceNode(DataFolder folder, GISProject project) throws DataObjectNotFoundException{
         super (createChildren(folder));
 //                , new FilterNode.Children (node),
@@ -89,7 +114,7 @@ public class GISSourceNode extends AbstractNode implements FileChangeListener{
 
     public void fileAttributeChanged(FileAttributeEvent arg0) {
     }
-    
+     
     private static final synchronized Children createChildren(DataFolder folder){
         
         Children childs = new Children.Array();

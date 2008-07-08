@@ -37,7 +37,7 @@ import org.geotools.gui.swing.datachooser.DataPanel;
  *  <li>...</li>
  * </ul>
  * 
- * @author  Johan Sorel
+ * @author  Johann Sorel
  * @author  Thomas Bonavia (comments)
  */
 public interface GISDistantSourceService extends GISSourceService{
