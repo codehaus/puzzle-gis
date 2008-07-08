@@ -65,7 +65,10 @@
                     </run-dependency>
                 </dependency>
             </module-dependencies>
-            <public-packages/>
+            <public-packages>
+                <package>org.puzzle.format.shapefile.service</package>
+                <package>org.puzzle.format.shapefile.tool</package>
+            </public-packages>
         </data>
     </configuration>
 </project>
