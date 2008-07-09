@@ -35,7 +35,11 @@ import org.puzzle.puzzlecore.project.nodes.GISProjectNode;
 import org.puzzle.puzzlecore.project.nodes.GISSourceNode;
 
 /**
- * 
+ * This class provides a tree for displaying the {@link GISProject}.
+ * This tree is used by the "Projects" window, included by default in
+ * the NetBeans GUI. Using this class, extending {@code LogicalViewProvider}
+ * is a great improvment in term of time, because we can reuse a lot of
+ * possibilities offered by NetBeans to manage projects.
  * 
  * @author  Johann Sorel
  * @author  Thomas Bonavia (comments)
@@ -47,13 +51,20 @@ public class GISLogicalView implements LogicalViewProvider{
     private final GISProject project;
     
     /**
-     * 
-     * @param project
+     * Constructor.
+     * @param project The {@code GISProject} to present.
      */
     public GISLogicalView(GISProject project){
         this.project = project;
     }
     
+    /**
+     * This method creates the tree.
+     * @return  A {@code org.openide.nodes.Node} representing the project. This
+     *          node is the root of the tree.
+     * 
+     * @see org.netbeans.spi.project.ui.LogicalViewProvider#createLogicalView() 
+     */
     public Node createLogicalView() {
         
         GISProjectNode root = new GISProjectNode(project);
@@ -98,7 +109,9 @@ public class GISLogicalView implements LogicalViewProvider{
         return root;
     }
 
-    
+    /**
+     * @see org.netbeans.spi.project.ui.LogicalViewProvider#findPath(Node,Object)
+     */
     public Node findPath(Node root, Object target) {
         return null;
     }

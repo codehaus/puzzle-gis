@@ -1,23 +1,35 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ *  Puzzle-GIS - OpenSource mapping program
+ *  http://docs.codehaus.org/display/PUZZLEGIS
+ *  Copyright (C) 2007 Puzzle-GIS
+ *  
+ *  GPLv3 + Classpath exception
+ *  
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *  
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *  
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package org.puzzle.puzzlecore.project;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-import java.io.BufferedOutputStream;
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.xml.parsers.DocumentBuilder;
@@ -29,45 +41,66 @@ import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-import org.apache.commons.collections.CollectionUtils;
-import org.apache.xerces.dom.DocumentImpl;
-import org.geotools.feature.visitor.CollectionUtil;
 import org.netbeans.api.project.Project;
 import org.netbeans.api.project.ProjectInformation;
 import org.netbeans.spi.project.ActionProvider;
 import org.netbeans.spi.project.ProjectState;
 import org.netbeans.spi.project.ui.LogicalViewProvider;
-import org.openide.ErrorManager;
 import org.openide.filesystems.FileObject;
-import org.openide.loaders.DataObject;
 import org.openide.util.Lookup;
 import org.openide.util.Utilities;
 import org.openide.util.lookup.AbstractLookup;
 import org.openide.util.lookup.InstanceContent;
-import org.puzzle.puzzlecore.project.filetype.GISSourceDataLoader;
-import org.puzzle.puzzlecore.project.filetype.GISSourceDataObject;
 import org.puzzle.puzzlecore.project.source.GISSource;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 /**
- *
- * @author johann sorel
+ * This class is the project. the project allow to manage the
+ * datas. These datas are not necessary georeferenced datas.
+ * It provides support for managing :
+ * <ul>
+ *  <li>maps (saving {@code MapContext}s...),</li>
+ *  <li>sources (adding, removing, organizing),</li>
+ *  <li>documents (reports...).</li>
+ * </ul>
+ * 
+ * 
+ * @author  Johann Sorel
+ * @author  Thomas Bonavia (comments)
+ * 
+ * @see     org.netbeans.api.project.Project
  */
 public class GISProject implements Project { 
-
+    /** The name of the folder containing maps files. */
     public static final String MAP_DIR = "map";
+    /** The name of the folder containing documents files. */
     public static final String DOC_DIR = "doc";
+    /** The name of the folder containing sources files. */
     public static final String SRC_DIR = "src";
     
     private final FileObject projectDir;
     private final ProjectState state;
     private final LogicalViewProvider logicalView = new GISLogicalView(this);
     
-    
     private final InstanceContent lookUpContent = new InstanceContent();
     private final Lookup lookUp = new AbstractLookup(lookUpContent);
     
+    /**
+     * Constructor.
+     * This constructor initializes the project by adding to its {@code Lookup}
+     * <ul>
+     *  <li>The project ({@code this}),</li>
+     *  <li>The project's state,</li>
+     *  <li>The project personal {@code ActionProvider},</li>
+     *  <li>The project properties,</li>
+     *  <li>The project personal {@code ProjectInformation},</li>
+     *  <li>The {@link GISLogicalView} associated to the project.</li>
+     * </ul>
+     * @param root  The folder containing the project.
+     * @param state The state of the project. This state describes if the
+     *              the project needs or not to be saved.
+     */
     public GISProject(FileObject root, ProjectState state){
         this.projectDir = root;
         this.state = state;
@@ -80,8 +113,11 @@ public class GISProject implements Project {
         lookUpContent.add(logicalView);
     }
 
+    /**
+     * 
+     * @return
+     */
     public int getNextSourceID() {
-        
         Collection<? extends GISSource> sources = getLookup().lookupAll(GISSource.class);
         
         number_loop:
@@ -227,7 +263,11 @@ public class GISProject implements Project {
         }
     }
 
-    
+    /**
+     * Get the maps folder.
+     * @param   create    Create the folder if does not exists ?
+     * @return  The {@code FileObject} representing the maps folder.
+     */
     FileObject getMapFolder(boolean create) {
         FileObject result = projectDir.getFileObject(MAP_DIR);
 
@@ -235,12 +275,18 @@ public class GISProject implements Project {
             try {
                 result = projectDir.createFolder(MAP_DIR);
             } catch (IOException ioe) {
-                ErrorManager.getDefault().notify(ioe);
+                Logger.getLogger(GISProject.class.getName()).log(Level.SEVERE, 
+                        "Unable to create folder "+MAP_DIR, ioe);
             }
         }
         return result;
     }
 
+    /**
+     * Get the documents folder.
+     * @param   create    Create the folder if does not exists ?
+     * @return  The {@code FileObject} representing the documents folder.
+     */
     FileObject getDocFolder(boolean create) {
         FileObject result = projectDir.getFileObject(DOC_DIR);
 
@@ -248,12 +294,18 @@ public class GISProject implements Project {
             try {
                 result = projectDir.createFolder(DOC_DIR);
             } catch (IOException ioe) {
-                ErrorManager.getDefault().notify(ioe);
+                Logger.getLogger(GISProject.class.getName()).log(Level.SEVERE, 
+                        "Unable to create folder "+DOC_DIR, ioe);
             }
         }
         return result;
     }
     
+    /**
+     * Get the sources folder.
+     * @param   create    Create the folder if does not exists ?
+     * @return  The {@code FileObject} representing the sources folder.
+     */
     FileObject getSourceFolder(boolean create) {
         FileObject result = projectDir.getFileObject(SRC_DIR);
 
@@ -261,12 +313,17 @@ public class GISProject implements Project {
             try {
                 result = projectDir.createFolder(SRC_DIR);
             } catch (IOException ioe) {
-                ErrorManager.getDefault().notify(ioe);
+                Logger.getLogger(GISProject.class.getName()).log(Level.SEVERE, 
+                        "Unable to create folder "+SRC_DIR, ioe);
             }
         }
         return result;
     }
-        
+    
+    /**
+     * Load project properties.
+     * @return  A {@code Properties} containing project properties.
+     */
     private Properties loadProperties() {
         FileObject fob = projectDir.getFileObject(GISProjectFactory.PROJECT_DIR +
             "/" + GISProjectFactory.PROJECT_PROPFILE);
@@ -275,7 +332,8 @@ public class GISProject implements Project {
             try {
                 properties.load(fob.getInputStream());
             } catch (Exception e) {
-                ErrorManager.getDefault().notify(e);
+                Logger.getLogger(GISProject.class.getName()).log(Level.WARNING, 
+                        "Unable to load project properties",e);
             }
         }
         return properties;

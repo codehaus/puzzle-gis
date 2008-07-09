@@ -1,8 +1,23 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ *  Puzzle-GIS - OpenSource mapping program
+ *  http://docs.codehaus.org/display/PUZZLEGIS
+ *  Copyright (C) 2007 Puzzle-GIS
+ *  
+ *  GPLv3 + Classpath exception
+ *  
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *  
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *  
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package org.puzzle.puzzlecore.project;
 
 import java.io.File;
@@ -16,24 +31,55 @@ import org.openide.filesystems.FileObject;
 import org.openide.filesystems.FileUtil;
 
 /**
- *
- * @author sorel
+ * This class is used by the NetBeans platform to know :
+ * <ul>
+ *  <li>Which folder represents a {@code GISProject},</li>
+ *  <li>How to load a {@code GISProject},</li>
+ *  <li>How to save a {@code GISProject}.</li
+ * </ul>
+ * 
+ * @author  Johann Sorel
+ * @author  Thomas Bonavia (comments)
+ * 
+ * @see     org.netbeans.spi.project.ProjectFactory
  */
 public class GISProjectFactory implements ProjectFactory{
     
     public static final String PROJECT_DIR = "gisproject";
     public static final String PROJECT_PROPFILE = "project.properties";
     
+    /**
+     * Specify if a folder on the disk contains a {@code GISProject}.
+     * @param   file  A folder on the disk.
+     * @return  A {@code boolean}:
+     *          <ul>
+     *              <li>{@code true} : The folder is a {@code GISProject}</li>
+     *              <li>{@code false}: The folder is not a {@code GISProject}</li>
+     *          </ul>
+     */
     public boolean isProject(FileObject file) {
         FileObject folder = file.getFileObject(PROJECT_DIR);
         if(folder == null) return false;
         return folder.getFileObject(PROJECT_PROPFILE) != null;
     }
 
+    /**
+     * Load a {@code GISProject} from a folder on the disk.
+     * @param   dir     The folder containing the {@code GISFolder}.
+     * @param   state   The state of the project (needs to be saved ?).
+     * @return  The just loaded {@code GISProject}.
+     * @throws  java.io.IOException
+     */
     public Project loadProject(FileObject dir, ProjectState state) throws IOException {
         return isProject (dir) ? new GISProject (dir, state) : null;
     }
 
+    /**
+     * Save a {@code GISProject} on the disk.
+     * @param   project   The project to be saved.
+     * @throws  java.io.IOException
+     * @throws  java.lang.ClassCastException
+     */
     public void saveProject(Project project) throws IOException, ClassCastException {
         FileObject projectRoot = project.getProjectDirectory();
         if (projectRoot.getFileObject(PROJECT_DIR) == null) {
@@ -58,7 +104,4 @@ public class GISProjectFactory implements ProjectFactory{
         File f = FileUtil.toFile(propertiesFile);
         properties.store(new FileOutputStream(f), "NetBeans GIS Project Properties");
     }
-
-    
-    
 }
