@@ -114,8 +114,12 @@ public class GISProject implements Project {
     }
 
     /**
-     * 
-     * @return
+     * Get an ID for a new source.<br>
+     * When adding a source to the project, an ID is allocated to him. This
+     * ID is simply an integer raised each time we add a source. This method
+     * read each source an get the highest ID. Next it adds 1 to this ID and
+     * return the number.
+     * @return  An {@code int} representing the ID for the new source.
      */
     public int getNextSourceID() {
         Collection<? extends GISSource> sources = getLookup().lookupAll(GISSource.class);
@@ -131,14 +135,28 @@ public class GISProject implements Project {
         return 1;
     }
     
+    /**
+     * Get the project folder.
+     * @return  A {@code FileObject} representing the project folder.
+     */
     public FileObject getProjectDirectory() {
         return projectDir;
     }
 
+    /**
+     * Get the {@code Lookup} of the project.
+     * @return  The {@code Lookup} of the project.
+     */
     public Lookup getLookup() {
         return lookUp;
     }
     
+    /**
+     * Add a {@code GISSource} to the project.<br>
+     * WARNING : this source will be added only in memory. When closing the 
+     * session, this source will be lost.
+     * @param src   The {@code GISSource} to add to the project's {@code Lookup}.
+     */
     public void addGISSource(GISSource src){
         if(checkSourceExist(src)) return;
         
@@ -147,14 +165,36 @@ public class GISProject implements Project {
         }
     }
     
+    /**
+     * Add a {@code GISSource} to the project.<br>
+     * Contrary to {@link addGISSource(GISSource src)}, this method add a
+     * persistant source, saved on the disk.
+     * @param src   The {@code GISSource} to add to the project.
+     */
     public void appendGISSource(GISSource src){
         if(checkSourceExist(src)) return;
         GISSource source = createPersistantSource(src);
         if(source != null) lookUpContent.add(source);
     }
     
+    /**
+     * This method check if a source already exists in the project's 
+     * {@code Lookup}. We can consider a {@code GISSource} to be present in
+     * the project by two ways :
+     * <ul>
+     *  <li>The {@code GISSource} exists in the project's {@code Lookup},</li>
+     *  <li>The {@code GISSource} does not exist in the project, but another
+     *      {@code GISSource} owns the same parameters, so we consider that
+     *      the two sources are identicals.
+     * </ul>
+     * @param   source    The {@code GISSource} we want to test.
+     * @return  A {@code boolean} :
+     * <ul>
+     *  <li>{@code true} : The {@code GISSource} already exists in the project,</li>
+     *  <li>{@code false}: The {@code GISSource} is not yet in the project.</li>
+     * </ul>
+     */
     private boolean checkSourceExist(GISSource source){
-         
         Collection<? extends GISSource> sources = getLookup().lookupAll(GISSource.class);
         
         //check is the object is already in the lookup
@@ -173,12 +213,17 @@ public class GISProject implements Project {
             }
         }
         
-        
         return false;
     }
     
+    /*
+     * This method is used to create a persistant source to the project.
+     * It is used by appendGISSource().
+     * Indeed, when creating a persistant source, we first add the source
+     * to  the Lookup of the project, then create the file on the disk.
+     * This method is used to create the file.
+     */
     private GISSource createPersistantSource(GISSource source){
-        
         try{            
             Document doc = fill(source);
             System.out.println("PATH >>>>>> " + getSourceFolder(true).getPath() + File.separator + source.getTitle() + ".xml");
@@ -191,8 +236,13 @@ public class GISProject implements Project {
         return source;
     }
     
+    /**
+     * Fill the source document with the suitable datas.
+     * @param   source    The {@code GISSource} to save on the disk.
+     * @return  A DOM {@code Document} containing the XML datas.
+     * @throws  java.lang.Exception
+     */
     public Document fill(GISSource source) throws Exception {
-
         //try to read the xml file
         DocumentBuilderFactory fabrique = DocumentBuilderFactory.newInstance();
         // création d'un constructeur de documents
@@ -207,8 +257,6 @@ public class GISProject implements Project {
         Element racine = gisDoc.createElement("root");
         racine.setAttribute("xmlns","gissource");
         gisDoc.appendChild(racine);
-        
-
 
         //if file is valid
         if (gisDoc != null) {
@@ -224,7 +272,6 @@ public class GISProject implements Project {
 
             org.w3c.dom.Node parametersNode = gisDoc.createElement("parameters");
             rootNode.appendChild(parametersNode);
-
 
             Map<String, String> parameters = source.getParameters();
             Set<String> keys = parameters.keySet();
@@ -242,6 +289,11 @@ public class GISProject implements Project {
         return gisDoc;
     }
     
+    /**
+     * Convert a DOM document to a file on the disk.
+     * @param document  The DOM document do save.
+     * @param output    The file where to write the DOM document.
+     */
     public static void transformerXml(Document document, File output) {
         try {
             // Création de la source DOM
@@ -376,7 +428,7 @@ public class GISProject implements Project {
         }
     }
 
-    /** Implementation of project system's ProjectInformation class */
+    /* Implementation of project system's ProjectInformation class */
     private final class Info implements ProjectInformation {
         
         private final String ICON_PATH = "org/puzzle/puzzlecore/project/boussole.png";
@@ -412,7 +464,4 @@ public class GISProject implements Project {
         }
 
     }
-    
-    
-    
 }
