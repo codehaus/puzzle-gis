@@ -30,44 +30,58 @@ import javax.swing.event.CellEditorListener;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.EventListenerList;
 import javax.swing.table.TableCellEditor;
-import org.puzzle.format.shapefile.tool.Data.TYPE;
 
 
 /**
- *
- * @author johann sorel
+ * Cell editor for ShapeFile creation field table.
+ * 
+ * @author Johann Sorel
  */
-public class TypeEditor implements TableCellEditor{
+class TypeEditor implements TableCellEditor{
 
     private final EventListenerList LISTENERS = new EventListenerList();
     private JComboBox box = new JComboBox();
     
     TypeEditor(){        
-        box.addItem(TYPE.INTEGER);
-        box.addItem(TYPE.LONG);
-        box.addItem(TYPE.DOUBLE);
-        box.addItem(TYPE.STRING);
-        box.addItem(TYPE.DATE);
+        box.addItem(FieldType.INTEGER);
+        box.addItem(FieldType.LONG);
+        box.addItem(FieldType.DOUBLE);
+        box.addItem(FieldType.STRING);
+        box.addItem(FieldType.DATE);
     }
     
-    
+    /**
+     * {@inheritDoc }
+     */
     public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {        
         box.setSelectedItem(value);
         return box;
     }
 
+    /**
+     * {@inheritDoc }
+     */
     public Object getCellEditorValue() {
         return box.getSelectedItem();
     }
 
+    /**
+     * {@inheritDoc }
+     */
     public boolean isCellEditable(EventObject anEvent) {
         return true;
     }
 
+    /**
+     * {@inheritDoc }
+     */
     public boolean shouldSelectCell(EventObject anEvent) {
         return true;
     }
 
+    /**
+     * {@inheritDoc }
+     */
     public boolean stopCellEditing() {
         CellEditorListener[] lst = LISTENERS.getListeners(CellEditorListener.class);
         
@@ -78,6 +92,9 @@ public class TypeEditor implements TableCellEditor{
         return true;
     }
 
+    /**
+     * {@inheritDoc }
+     */
     public void cancelCellEditing() {
         CellEditorListener[] lst = LISTENERS.getListeners(CellEditorListener.class);
         
@@ -86,10 +103,16 @@ public class TypeEditor implements TableCellEditor{
         }
     }
 
+    /**
+     * {@inheritDoc }
+     */
     public void addCellEditorListener(CellEditorListener l) {
         LISTENERS.add(CellEditorListener.class, l);
     }
 
+    /**
+     * {@inheritDoc }
+     */
     public void removeCellEditorListener(CellEditorListener l) {
         LISTENERS.remove(CellEditorListener.class, l);
     }

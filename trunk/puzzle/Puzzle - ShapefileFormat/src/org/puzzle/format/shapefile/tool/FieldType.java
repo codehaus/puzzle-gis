@@ -21,21 +21,14 @@
 package org.puzzle.format.shapefile.tool;
 
 /**
- *
- * @author Administrateur
+ * Supported field types for shapefiles.
+ * 
+ * @author Johann Sorel
  */
-class Data {
-
-    public static enum TYPE{
-        INTEGER,
-        LONG,
-        DOUBLE,
-        STRING,
-        DATE
-    }
-    
-    
-    public String name = "name";
-    public TYPE type = TYPE.STRING;
-    
+enum FieldType {
+    INTEGER,
+    LONG,
+    DOUBLE,
+    STRING,
+    DATE
 }

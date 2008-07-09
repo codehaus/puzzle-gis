@@ -23,15 +23,13 @@ package org.puzzle.format.shapefile.tool;
 import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
-import java.net.URL;
 import java.util.Collections;
 import java.util.Date;
 import java.util.Map;
-
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-
 import javax.swing.JPanel;
+
 import org.geotools.data.DataUtilities;
 import org.geotools.data.FileDataStoreFactorySpi;
 import org.geotools.data.shapefile.ShapefileDataStore;
@@ -39,18 +37,18 @@ import org.geotools.data.shapefile.indexed.IndexedShapefileDataStoreFactory;
 import org.geotools.feature.SchemaException;
 import org.geotools.gui.swing.crschooser.JCRSChooser;
 import org.geotools.referencing.crs.DefaultGeographicCRS;
+
 import org.opengis.feature.simple.SimpleFeatureType;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
 
 /**
- *
- * @author johann sorel
+ * Widget Panel to create ShapeFiles.
+ * 
+ * @author Johann Sorel
  */
 public class ShapeCreationTool extends JPanel {
 
-    
-    
     private ShapeAttModel model = new ShapeAttModel();
     private String geotype = "Point";
     private CoordinateReferenceSystem crs = DefaultGeographicCRS.WGS84;
@@ -85,12 +83,12 @@ public class ShapeCreationTool extends JPanel {
             buffer.append("geom:");
             buffer.append(geotype);
 
-            Data[] datas = model.getDatas();
+            Field[] datas = model.getDatas();
 
-            for (Data data : datas) {
-                buffer.append("," + data.name);
+            for (Field data : datas) {
+                buffer.append("," + data.getName());
 
-                switch (data.type) {
+                switch (data.getType()) {
                     case INTEGER:
                         buffer.append(":" + Integer.class.getName());
                         break;
@@ -381,7 +379,7 @@ public class ShapeCreationTool extends JPanel {
 
         int selected = gui_tab.getSelectionModel().getMinSelectionIndex();
         if (selected >= 0) {
-            Data data = model.getDataAt(selected);
+            Field data = model.getDataAt(selected);
             model.deleteAttribut(data);
         }
         
@@ -390,7 +388,7 @@ public class ShapeCreationTool extends JPanel {
     private void gui_but_upActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gui_but_upActionPerformed
         int selected = gui_tab.getSelectionModel().getMinSelectionIndex();
         if (selected >= 0) {
-            Data data = model.getDataAt(selected);
+            Field data = model.getDataAt(selected);
             model.moveUp(data);
         }
     }//GEN-LAST:event_gui_but_upActionPerformed
@@ -398,7 +396,7 @@ public class ShapeCreationTool extends JPanel {
     private void gui_but_downActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gui_but_downActionPerformed
         int selected = gui_tab.getSelectionModel().getMinSelectionIndex();
         if (selected >= 0) {
-            Data data = model.getDataAt(selected);
+            Field data = model.getDataAt(selected);
             model.moveDown(data);
         }
     }//GEN-LAST:event_gui_but_downActionPerformed

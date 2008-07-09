@@ -18,46 +18,31 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package org.puzzle.format.shapefile.tool;
 
-import java.awt.Component;
-import org.openide.util.NbBundle;
-import org.puzzle.puzzlecore.swing.toolbox.tooltree.ToolTreeConstants;
-import org.puzzle.puzzlecore.tool.AbstractToolDescriptor;
-
-
 /**
- * Widget Tool descriptor for shapefile creation tool, this is used in the ToolBox tree.
+ * A single field for a shapefile creation.
  * 
  * @author Johann Sorel
  */
-public class ShapeCreationTTDescriptor extends AbstractToolDescriptor{
+class Field {
+    private String name = "name";
+    private FieldType type = FieldType.STRING;
+
+    String getName() {
+        return name;
+    }
+
+    void setName(String name) {
+        this.name = name;
+    }
+
+    FieldType getType() {
+        return type;
+    }
+
+    void setType(FieldType type) {
+        this.type = type;
+    }
     
-    private final String[] path = ToolTreeConstants.getInstance().FILE_CREATE.getPath();
-    
-    private String title = NbBundle.getMessage(ShapeCreationTTDescriptor.class, "shapefile_creation");
-       
-    /**
-     * {@inheritDoc }
-     */
-    public String getTitle() {
-        return title;
-    }
-
-    /**
-     * {@inheritDoc }
-     */
-    @Override
-    public String[] getPath() {
-        return path;
-    }
-
-    /**
-     * {@inheritDoc }
-     */
-    public Component getComponent() {
-        return new ShapeCreationTool();
-    }
-
 }
