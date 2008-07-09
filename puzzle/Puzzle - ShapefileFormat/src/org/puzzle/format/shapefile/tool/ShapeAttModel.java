@@ -25,27 +25,34 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.table.AbstractTableModel;
-import org.puzzle.format.shapefile.tool.Data.TYPE;
-
 
 
 /**
- *
+ * TableModel for fields edition in the shapefile creation tool.
+ * 
  * @author johann sorel
  */
 class ShapeAttModel extends AbstractTableModel{
 
-    private List<Data> datas = new ArrayList<Data>();
+    private List<Field> datas = new ArrayList<Field>();
     
-    
+    /**
+     * {@inheritDoc }
+     */
     public int getRowCount() {
         return datas.size();
     }
 
+    /**
+     * {@inheritDoc }
+     */
     public int getColumnCount() {        
         return 2;
     }
 
+    /**
+     * {@inheritDoc }
+     */
     @Override
     public String getColumnName(int columnIndex) {
         if(columnIndex == 0){
@@ -55,63 +62,75 @@ class ShapeAttModel extends AbstractTableModel{
         }
     }
 
+    /**
+     * {@inheritDoc }
+     */
     @Override
     public Class<?> getColumnClass(int columnIndex) {
         if(columnIndex == 0){
             return String.class;
         }else{
-            return Data.TYPE.class;
+            return FieldType.class;
         }
     }
 
+    /**
+     * {@inheritDoc }
+     */
     @Override
     public boolean isCellEditable(int rowIndex, int columnIndex) {
         return true;
     }
 
-    Data getDataAt(int rowIndex){
+    Field getDataAt(int rowIndex){
         return datas.get(rowIndex);
     }
     
-    Data[] getDatas(){
-        return datas.toArray(new Data[datas.size()]);
+    Field[] getDatas(){
+        return datas.toArray(new Field[datas.size()]);
     }
     
-    int indexOf(Data data){
+    int indexOf(Field data){
         return datas.indexOf(data);
     }
     
+    /**
+     * {@inheritDoc }
+     */
     public Object getValueAt(int rowIndex, int columnIndex) {
         if(columnIndex == 0){
-            return datas.get(rowIndex).name;
+            return datas.get(rowIndex).getName();
         }else{
-            return datas.get(rowIndex).type;
+            return datas.get(rowIndex).getType();
         }
     }
 
+    /**
+     * {@inheritDoc }
+     */
     @Override
     public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
         if(columnIndex == 0){
-            datas.get(rowIndex).name = (String) aValue;
+            datas.get(rowIndex).setName((String) aValue);
         }else{
-            datas.get(rowIndex).type = (TYPE) aValue;
+            datas.get(rowIndex).setType((FieldType) aValue);
         }
         fireTableCellUpdated(rowIndex, columnIndex);
     }
     
     void addAttribut(){
-        Data newData = new Data();
+        Field newData = new Field();
         datas.add(newData);
         fireTableRowsInserted(datas.indexOf(newData), datas.indexOf(newData));
     }
     
-    void deleteAttribut(Data data){
+    void deleteAttribut(Field data){
         int index = datas.indexOf(data);
         datas.remove(data);
         fireTableRowsDeleted(index, index);
     }
 
-    void moveUp(Data data){
+    void moveUp(Field data){
         int index = datas.indexOf(data);
         if(index > 0){
             datas.remove(index);
@@ -122,7 +141,7 @@ class ShapeAttModel extends AbstractTableModel{
         
     }
     
-    void moveDown(Data data){
+    void moveDown(Field data){
         int index = datas.indexOf(data);
         if(index >= 0 && index < datas.size()-1 ){
             datas.remove(index);
