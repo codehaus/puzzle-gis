@@ -25,7 +25,6 @@ import java.util.Collection;
 import org.openide.util.Lookup;
 import org.openide.util.lookup.AbstractLookup;
 import org.openide.util.lookup.InstanceContent;
-import org.puzzle.puzzlecore.swing.toolbox.widgettool.clipping.ClippingTTDescriptor;
 import org.puzzle.puzzlecore.swing.toolbox.widgettool.svg2mif.SVG2MIFTTDescriptor;
 import org.puzzle.puzzlecore.swing.toolbox.widgettool.vdem2csv.VDem2CSVTTDescriptor;
 
@@ -42,7 +41,6 @@ public class DefaultToolService implements ToolService {
     public DefaultToolService() {
         DEFAULT_TOOLS.add(new VDem2CSVTTDescriptor());
         DEFAULT_TOOLS.add(new SVG2MIFTTDescriptor());
-        DEFAULT_TOOLS.add(new ClippingTTDescriptor());
 
         for (ToolDescriptor tool : DEFAULT_TOOLS) {
             CONTENT.add(tool);
