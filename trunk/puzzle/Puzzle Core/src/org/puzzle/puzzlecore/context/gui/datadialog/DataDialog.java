@@ -20,28 +20,17 @@
  */
 package org.puzzle.puzzlecore.context.gui.datadialog;
 
-import java.awt.AlphaComposite;
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.GridLayout;
-import java.awt.Rectangle;
-import java.awt.image.BufferedImage;
-import java.awt.image.ConvolveOp;
-import java.awt.image.Kernel;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JComponent;
 import javax.swing.JDialog;
-import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import org.geotools.gui.swing.datachooser.DataPanel;
 import org.openide.util.Exceptions;
 
 /**
  *
- * @author johann sorel
+ * @author  Johann Sorel
  */
 public class DataDialog extends JDialog {
 

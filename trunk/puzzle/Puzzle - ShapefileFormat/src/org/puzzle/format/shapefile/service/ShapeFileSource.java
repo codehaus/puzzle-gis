@@ -40,11 +40,10 @@ import org.puzzle.puzzlecore.project.source.GISSource;
 
 /**
  *
- * @author Johann Sorel
+ * @author  Johann Sorel
  */
 public class ShapeFileSource implements GISSource{
 
-    
     private static final String IMAGE_ICON_BASE = "org/puzzle/format/shapefile/shapefile.png";
     
     private final int id;
@@ -74,7 +73,6 @@ public class ShapeFileSource implements GISSource{
     }
     
     public RichMapLayer createLayer(Map<String, String> parameters) {
-        
         Style style = new RandomStyleFactory().createRandomVectorStyle(featureSource);
         LayerSource source = new LayerSource(id, parameters);
         RichMapLayer layer = new RichMapLayer(featureSource, style,source);

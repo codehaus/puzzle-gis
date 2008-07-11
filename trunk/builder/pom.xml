@@ -204,7 +204,7 @@
             <property name="jdom"                       value="jdom-1.0.jar"/>
             <property name="jlfgr"                      value="jlfgr-1.0.jar"/>
             <property name="jsr275"                     value="jsr-275-1.0-beta-2.jar"/>
-            <property name="jts"                        value="jts-1.9.1-SNAPSHOT.jar"/>
+            <property name="jts"                        value="jts-1.9.jar"/>
             <property name="log4j"                      value="log4j-1.2.12.jar"/>
             <property name="mysql-connector-java"       value="mysql-connector-java-5.1.5.jar"/>
             <property name="net.opengis.ows"            value="net.opengis.ows-2.5-SNAPSHOT.jar"/>
