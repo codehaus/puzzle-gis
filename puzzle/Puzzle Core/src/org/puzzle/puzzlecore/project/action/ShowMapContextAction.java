@@ -20,6 +20,7 @@
  */
 package org.puzzle.puzzlecore.project.action;
 
+import java.util.Collection;
 import org.geotools.map.MapContext;
 import org.openide.nodes.Node;
 import org.openide.util.HelpCtx;
@@ -28,6 +29,7 @@ import org.openide.util.NbBundle;
 import org.openide.util.actions.CookieAction;
 import org.puzzle.puzzlecore.context.ContextService;
 import org.puzzle.puzzlecore.project.filetype.GISContextDataObject;
+import org.puzzle.puzzlecore.swing.RendererChooser;
 import org.puzzle.puzzlecore.view.MapView;
 import org.puzzle.puzzlecore.view.RenderingService;
 import org.puzzle.puzzlecore.view.ViewService;
@@ -54,11 +56,13 @@ public final class ShowMapContextAction extends CookieAction {
         ContextService contextService = Lookup.getDefault().lookup(ContextService.class);
         contextService.addContext(context);
         
-        RenderingService renderingService = Lookup.getDefault().lookup(RenderingService.class);
-        MapView view = renderingService.createView(context);
-        
-        ViewService viewService = Lookup.getDefault().lookup(ViewService.class);
-        viewService.add(view);
+        if(context != null){
+            MapView view = RendererChooser.showChooserDialog(context);
+            if(view != null){
+                ViewService viewService = Lookup.getDefault().lookup(ViewService.class);
+                viewService.add(view);
+            }
+        }
     }
 
     /**

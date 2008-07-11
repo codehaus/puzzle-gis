@@ -5,6 +5,7 @@
 
 package org.puzzle.puzzlecore.view;
 
+import java.awt.Image;
 import org.geotools.map.MapContext;
 
 /**
@@ -13,6 +14,10 @@ import org.geotools.map.MapContext;
  */
 public interface RenderingService {
 
+    public Image getIcon();
+
+    public String getTitle();
+    
     MapView createView(MapContext context);
     
 }
