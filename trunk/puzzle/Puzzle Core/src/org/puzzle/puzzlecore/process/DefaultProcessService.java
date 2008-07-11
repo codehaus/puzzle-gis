@@ -27,7 +27,7 @@ import org.openide.util.lookup.InstanceContent;
 
 /**
  *
- * @author Johann Sorel
+ * @author  Johann Sorel
  */
 public class DefaultProcessService implements ProcessService{
 

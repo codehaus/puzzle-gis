@@ -111,10 +111,12 @@ public class JFileSourcePane extends javax.swing.JPanel {
                 if( ! (service instanceof GISFileSourceService)) continue;
                 GISSource source = null;
                 
-                try{ source = ((GISFileSourceService)service).createSource(f);
+                try{
+                    if(((GISFileSourceService)service).isValidFile(f))
+                        source = ((GISFileSourceService)service).createSource(f);
                 }catch(IllegalArgumentException ex){
-                    ex.printStackTrace();}
-                
+                    ex.printStackTrace();
+                }
                 if(source != null){
                     sources.add(source);
                     continue file_loop;

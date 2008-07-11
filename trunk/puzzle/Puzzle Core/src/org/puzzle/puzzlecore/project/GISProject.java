@@ -159,10 +159,7 @@ public class GISProject implements Project {
      */
     public void addGISSource(GISSource src){
         if(checkSourceExist(src)) return;
-        
-        if(src != null){
-            lookUpContent.add(src);
-        }
+        if(src != null) lookUpContent.add(src);
     }
     
     /**
