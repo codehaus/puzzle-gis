@@ -18,7 +18,6 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package org.puzzle.format.shapefile.service;
 
 import java.io.File;
@@ -36,7 +35,7 @@ import org.puzzle.puzzlecore.project.source.GISSource;
 
 /**
  *
- * @author Johann Sorel
+ * @author  Johann Sorel
  */
 public class ShapeFileSourceService implements GISFileSourceService{
 
@@ -59,7 +58,6 @@ public class ShapeFileSourceService implements GISFileSourceService{
     }
 
     public GISSource createSource(File file) throws IllegalArgumentException {
-        
         String url = null;
         Map<String,String> params = new HashMap<String, String>();
         try {
@@ -84,8 +82,12 @@ public class ShapeFileSourceService implements GISFileSourceService{
             throw new IllegalArgumentException("Not a valid GIS project open");
         }
         
-        
         return restoreSource(params, id);
     }
 
+    public boolean isValidFile(File file) {
+        String name = file.getName().toLowerCase();
+        if(name.endsWith("shp")) return true;
+        else return false;
+    }
 }

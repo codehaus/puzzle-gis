@@ -268,8 +268,8 @@
                 <binary-origin>release/modules/ext/gt-coveragetools-2.5-SNAPSHOT.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/jts-1.9.1-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/jts-1.9.1-SNAPSHOT.jar</binary-origin>
+                <runtime-relative-path>ext/jts-1.9.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/jts-1.9.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
                 <runtime-relative-path>ext/net.opengis.ows-2.5-SNAPSHOT.jar</runtime-relative-path>

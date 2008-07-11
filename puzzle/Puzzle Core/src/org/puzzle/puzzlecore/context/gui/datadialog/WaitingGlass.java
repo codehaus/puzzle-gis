@@ -18,14 +18,13 @@ import java.awt.event.ComponentEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseMotionAdapter;
-import java.awt.image.BufferedImage;
 import java.awt.image.ConvolveOp;
 import java.awt.image.Kernel;
 import javax.swing.JComponent;
 
 /**
  *
- * @author Administrateur
+ * @author  Johann Sorel
  */
 public class WaitingGlass extends JComponent {
 

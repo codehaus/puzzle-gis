@@ -25,7 +25,6 @@ import org.geotools.data.FeatureSource;
 import org.geotools.data.memory.CollectionSource;
 import org.geotools.factory.FactoryRegistryException;
 import org.geotools.feature.FeatureCollection;
-import org.geotools.feature.IllegalAttributeException;
 import org.geotools.feature.SchemaException;
 import org.geotools.map.DefaultMapLayer;
 import org.geotools.styling.Style;
@@ -33,6 +32,7 @@ import org.opengis.coverage.grid.GridCoverage;
 import org.opengis.feature.simple.SimpleFeature;
 import org.opengis.feature.simple.SimpleFeatureType;
 import org.opengis.referencing.operation.TransformException;
+import org.geotools.feature.IllegalAttributeException;
 
 /**
  *
