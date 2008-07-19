@@ -22,6 +22,7 @@ package org.puzzle.shell.gdal;
 
 import java.awt.BorderLayout;
 import javax.swing.JComponent;
+import javax.swing.JScrollPane;
 import org.puzzle.shell.misc.runtime.ProcessObject;
 import org.puzzle.shell.misc.runtime.ProcessObjectPanel;
 import org.puzzle.shell.misc.runtime.StatusListener;
@@ -129,11 +130,11 @@ public class GDALProcessWidgetTool extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                .add(guiPanTool, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .add(guiPanTool, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(guiAddProcess)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(es_pan_process, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(es_pan_process, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(guiStart)

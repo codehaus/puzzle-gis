@@ -88,11 +88,9 @@ public class ProcessObjectPanel extends JPanel implements ProcessEventListener{
         table.getColumn(2).setCellEditor(new ProcessCellEditor(ProcessCellEditor.ERRORBUTTON));
         
         table.setShowGrid(false,true);
-        table.setPreferredSize(new Dimension(100,100));
         setPreferredSize(new Dimension(100,100));
         
         jsp = new JScrollPane(table);
-        jsp.setPreferredSize(new Dimension(100,100));
         add(BorderLayout.CENTER,jsp);
         
     }
