@@ -29,6 +29,13 @@ import java.util.Map;
  * @author  Thomas Bonavia (comments)
  */
 public interface GISSourceService {
+
+    
+    /**
+     * Get the title of the service.
+     * @return A {@code String} containing the title.
+     */
+    String getTitle();
     
     /**
      * Get the service's identifier.
