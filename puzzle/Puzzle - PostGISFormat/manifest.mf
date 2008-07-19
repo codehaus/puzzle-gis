@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+OpenIDE-Module: org.puzzle.format.postgis
+OpenIDE-Module-Localizing-Bundle: org/puzzle/format/postgis/Bundle.properties
+OpenIDE-Module-Specification-Version: 1.0
+
