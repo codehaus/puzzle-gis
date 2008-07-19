@@ -20,44 +20,52 @@
  */
 package org.puzzle.puzzlecore.context.action.addlayer;
 
-import java.util.ArrayList;
-import java.util.List;
-import javax.swing.JOptionPane;
-import org.geotools.gui.swing.datachooser.DataPanel;
-import org.geotools.gui.swing.datachooser.JDataChooser;
-import org.geotools.gui.swing.datachooser.JWFSDataPanel;
-import org.geotools.map.MapContext;
-import org.geotools.map.MapLayer;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Collection;
+import org.netbeans.api.project.Project;
+import org.netbeans.api.project.ui.OpenProjects;
+import org.openide.DialogDescriptor;
+import org.openide.DialogDisplayer;
+import org.openide.NotifyDescriptor;
 import org.openide.util.HelpCtx;
-import org.openide.util.Lookup;
 import org.openide.util.NbBundle;
 import org.openide.util.actions.CallableSystemAction;
-import org.puzzle.puzzlecore.context.ContextService;
+import org.puzzle.puzzlecore.context.gui.datadialog.JDistantSourcePane;
+import org.puzzle.puzzlecore.project.GISProject;
+import org.puzzle.puzzlecore.project.source.GISSource;
 
 public final class AddWebLayerAction extends CallableSystemAction {
 
     public void performAction() {
     
-        ContextService service = Lookup.getDefault().lookup(ContextService.class);
-        MapContext context = service.getActiveContext();
-        
-        if (context != null) {
-            List<DataPanel> lst = new ArrayList<DataPanel>();
-            lst.add(new JWFSDataPanel());
-            
-            JDataChooser jdc = new JDataChooser(null, lst);
+        final Project mainProject = OpenProjects.getDefault().getMainProject();
 
-            JDataChooser.ACTION ret = jdc.showDialog();
+        if (mainProject != null && mainProject instanceof GISProject) {
+            final GISProject gis = (GISProject) mainProject;
 
-            if (ret == JDataChooser.ACTION.APPROVE) {
-                MapLayer[] layers = jdc.getLayers();
+            final JDistantSourcePane pane = new JDistantSourcePane();
+            ActionListener lst = new ActionListener() {
 
-                for (MapLayer layer : layers) {
-                    context.addLayer(layer);
+                public void actionPerformed(ActionEvent e) {
+
+                    if (e.getActionCommand().equalsIgnoreCase("ok")) {
+
+                        Collection<GISSource> sources = pane.getGISSources();
+                        for (GISSource source : sources) {
+                            gis.appendGISSource(source);
+                        }
+                    }
                 }
-            }
-        }else{
-            JOptionPane.showMessageDialog(null, "No active Context");
+            };
+
+            DialogDescriptor desc = new DialogDescriptor(pane, "Open file", true, lst);
+            DialogDisplayer.getDefault().notify(desc);
+
+        } else {
+            NotifyDescriptor notify = new NotifyDescriptor.Message("Current main project is not a GIS project.",
+                    NotifyDescriptor.INFORMATION_MESSAGE);
+            DialogDisplayer.getDefault().notify(notify);
         }
         
     }

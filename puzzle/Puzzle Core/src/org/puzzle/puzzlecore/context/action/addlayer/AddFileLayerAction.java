@@ -43,31 +43,28 @@ public final class AddFileLayerAction extends CallableSystemAction {
     public void performAction() {
 
         final Project mainProject = OpenProjects.getDefault().getMainProject();
-        
-        if(mainProject != null && mainProject instanceof GISProject) {
+
+        if (mainProject != null && mainProject instanceof GISProject) {
             final GISProject gis = (GISProject) mainProject;
-            
+
             final JFileSourcePane pane = new JFileSourcePane();
             ActionListener lst = new ActionListener() {
 
-              public void actionPerformed(ActionEvent e) {
-                  
-                  if(e.getActionCommand().equalsIgnoreCase("ok")){
-                      
-                    Collection<GISSource> sources = pane.getGISSources();
-                    for(GISSource source : sources){
-                        gis.appendGISSource(source);  
+                public void actionPerformed(ActionEvent e) {
+
+                    if (e.getActionCommand().equalsIgnoreCase("ok")) {
+
+                        Collection<GISSource> sources = pane.getGISSources();
+                        for (GISSource source : sources) {
+                            gis.appendGISSource(source);
+                        }
                     }
-                  }
-              }
-          };
-      
-        DialogDescriptor desc = new DialogDescriptor(pane,"Open file",true,lst);
-            
-            
-            
+                }
+            };
+
+            DialogDescriptor desc = new DialogDescriptor(pane, "Open file", true, lst);
             DialogDisplayer.getDefault().notify(desc);
-            
+
         } else {
             NotifyDescriptor notify = new NotifyDescriptor.Message("Current main project is not a GIS project.",
                     NotifyDescriptor.INFORMATION_MESSAGE);
