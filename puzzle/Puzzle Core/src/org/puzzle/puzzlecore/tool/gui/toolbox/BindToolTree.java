@@ -21,11 +21,15 @@
 package org.puzzle.puzzlecore.tool.gui.toolbox;
 
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Collection;
 import java.util.Iterator;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import org.openide.DialogDescriptor;
+import org.openide.DialogDisplayer;
 import org.openide.util.Lookup;
 import org.openide.util.LookupEvent;
 import org.openide.util.LookupListener;
@@ -53,15 +57,14 @@ public class BindToolTree extends JToolTree implements LookupListener {
         addToolTreeListener(new ToolTreeListener() {
 
             public void treeToolActivated(ToolDescriptor tool) {
-                JFrame dialog = new JFrame();
-                dialog.setTitle(tool.getTitle());
-                JPanel pane = new JPanel(new GridLayout(1, 1));
-                pane.add(tool.getComponent());
-                dialog.setContentPane(pane);
-                dialog.pack();
-                dialog.setLocationRelativeTo(null);
-                dialog.setAlwaysOnTop(false);
-                dialog.setVisible(true);
+                
+                Object close = "Close";
+                Object[] objs = new Object[]{close};
+                
+                DialogDescriptor desc = new DialogDescriptor(tool.getComponent(), tool.getTitle(), false, objs, close,DialogDescriptor.DEFAULT_ALIGN,null, null);
+                desc.setClosingOptions(objs);
+                DialogDisplayer.getDefault().notify(desc);
+                
             }
         });
     }

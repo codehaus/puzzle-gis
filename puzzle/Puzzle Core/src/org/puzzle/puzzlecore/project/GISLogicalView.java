@@ -76,8 +76,7 @@ public class GISLogicalView implements LogicalViewProvider{
         try {
             FileObject maps = project.getMapFolder(true);
             DataFolder mapDataObject = DataFolder.findFolder (maps);
-            Node mapsNode = mapDataObject.getNodeDelegate();
-            mapNode = new GISMapNode (mapsNode, project);
+            mapNode = new GISMapNode (mapDataObject, project);
         } catch (DataObjectNotFoundException donfe) {
             Logger.getLogger(GISLogicalView.class.getName()).log(
                     Level.WARNING,"Unable to find maps folder",donfe );

@@ -50,8 +50,12 @@ public final class ShowMapContextAction extends CookieAction {
      * @param   activatedNodes  The currently activated nodes.
      */
     protected void performAction(Node[] activatedNodes) {
+        if(activatedNodes.length == 0 ) return ;
+        
         GISContextDataObject dataObject = activatedNodes[0].getLookup().lookup(GISContextDataObject.class);
     
+        if(dataObject == null) return;
+        
         MapContext context = dataObject.getContext();        
         ContextService contextService = Lookup.getDefault().lookup(ContextService.class);
         contextService.addContext(context);

@@ -21,14 +21,26 @@
 package org.puzzle.puzzlecore.project.nodes;
 
 import java.awt.Image;
+import javax.swing.Action;
+import org.openide.filesystems.FileAttributeEvent;
+import org.openide.filesystems.FileChangeListener;
+import org.openide.filesystems.FileEvent;
+import org.openide.filesystems.FileObject;
+import org.openide.filesystems.FileRenameEvent;
+import org.openide.loaders.DataFolder;
+import org.openide.loaders.DataObject;
 import org.openide.loaders.DataObjectNotFoundException;
-import org.openide.nodes.FilterNode;
+import org.openide.nodes.AbstractNode;
+import org.openide.nodes.Children;
 import org.openide.nodes.Node;
 import org.openide.util.Lookup;
+import org.openide.util.SharedClassObject;
 import org.openide.util.Utilities;
+import org.openide.util.actions.SystemAction;
 import org.openide.util.lookup.Lookups;
 import org.openide.util.lookup.ProxyLookup;
 import org.puzzle.puzzlecore.project.GISProject;
+import org.puzzle.puzzlecore.project.action.source.AddMapContext;
 
 /**
  * This class provides a {@link org.openide.nodes.Node} for the "map" folder
@@ -39,9 +51,10 @@ import org.puzzle.puzzlecore.project.GISProject;
  * @author  Johann Sorel
  * @author  Thomas Bonavia (comments)
  * 
- * @see     org.openide.nodes.FilterNode
+ * @see     org.openide.nodes.AbstractNode
+ * @see     org.openide.filesystems.FileChangeListener
  */
-public class GISMapNode extends FilterNode{
+public class GISMapNode extends AbstractNode implements FileChangeListener{
     
     private static final String ICON_PATH = "org/puzzle/puzzlecore/project/map.png";
     private static final Image ICON = Utilities.loadImage(ICON_PATH, true);
@@ -50,18 +63,19 @@ public class GISMapNode extends FilterNode{
     
     /**
      * Constructor.
-     * @param   node      The {@code Node} describing the folder.
+     * @param folder 
      * @param   project   The current {@code GISProject}.
      * @throws  org.openide.loaders.DataObjectNotFoundException
      */
-    public GISMapNode(Node node, GISProject project) throws DataObjectNotFoundException{
-        super (node, new FilterNode.Children (node),
-                    //The projects system wants the project in the Node's lookup.
-                    //NewAction and friends want the original Node's lookup.
-                    //Make a merge of both
-                    new ProxyLookup (new Lookup[] { Lookups.singleton(project),
-                    node.getLookup() }));
-            this.project = project;
+    public GISMapNode(DataFolder folder, GISProject project) throws DataObjectNotFoundException{
+        super (createChildren(folder),
+                //The projects system wants the project in the Node's lookup.
+                //NewAction and friends want the original Node's lookup.
+                //Make a merge of both
+                new ProxyLookup (new Lookup[] { Lookups.singleton(project) }));
+        
+        this.project = project;
+        folder.getPrimaryFile().addFileChangeListener(this);
     }
 
     @Override
@@ -78,4 +92,49 @@ public class GISMapNode extends FilterNode{
     public String getDisplayName() {
         return "Maps";
     }
+    
+    
+    public void fileFolderCreated(FileEvent arg0) {
+    }
+
+    public void fileDataCreated(FileEvent event) {
+        FileObject file = event.getFile();
+        try{
+            DataObject data = DataObject.find(file);
+            getChildren().add(new Node[]{data.getNodeDelegate()});
+        }catch(Exception e){e.printStackTrace();}
+        
+    }
+
+    public void fileChanged(FileEvent arg0) {
+    }
+
+    public void fileDeleted(FileEvent arg0) {
+    }
+
+    public void fileRenamed(FileRenameEvent arg0) {
+    }
+
+    public void fileAttributeChanged(FileAttributeEvent arg0) {
+    }
+    
+    private static final synchronized Children createChildren(DataFolder folder){
+        
+        Children childs = new Children.Array();
+                
+        DataObject[] datas = folder.getChildren();
+        for(DataObject data : datas){
+            childs.add(new Node[]{data.getNodeDelegate()});
+        }
+        
+        return childs;
+    }
+        
+    @Override
+    public Action[] getActions(boolean arg0) {
+        return new Action[]{
+            SharedClassObject.findObject(AddMapContext.class, true),
+        };
+    }
+    
 }
