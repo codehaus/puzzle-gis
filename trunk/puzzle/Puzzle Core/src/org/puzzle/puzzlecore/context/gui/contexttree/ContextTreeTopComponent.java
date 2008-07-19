@@ -62,7 +62,7 @@ final class ContextTreeTopComponent extends TopComponent {
 
     private JContextTree tree = null;
     private static ContextTreeTopComponent instance;
-    static final String ICON_PATH = "org/puzzle/puzzlecore/context/gui/contexttree/navigator.png";
+    static final String ICON_PATH = "org/puzzle/puzzlecore/project/map.png";
     private static final String PREFERRED_ID = "ContextTreeTopComponent";
 
     private ContextTreeTopComponent() {

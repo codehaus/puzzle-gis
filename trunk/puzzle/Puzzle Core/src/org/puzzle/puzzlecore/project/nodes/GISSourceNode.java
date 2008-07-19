@@ -21,6 +21,7 @@
 package org.puzzle.puzzlecore.project.nodes;
 
 import java.awt.Image;
+import javax.swing.Action;
 import org.openide.filesystems.FileAttributeEvent;
 import org.openide.filesystems.FileChangeListener;
 import org.openide.filesystems.FileEvent;
@@ -32,8 +33,14 @@ import org.openide.loaders.DataObjectNotFoundException;
 import org.openide.nodes.AbstractNode;
 import org.openide.nodes.Children;
 import org.openide.nodes.Node;
+import org.openide.util.Lookup;
+import org.openide.util.SharedClassObject;
 import org.openide.util.Utilities;
+import org.openide.util.lookup.Lookups;
+import org.openide.util.lookup.ProxyLookup;
 import org.puzzle.puzzlecore.project.GISProject;
+import org.puzzle.puzzlecore.project.action.source.AddDistantSource;
+import org.puzzle.puzzlecore.project.action.source.AddFileSource;
 
 /**
  * This class represents the folder "src" defined in the 
@@ -63,13 +70,11 @@ public class GISSourceNode extends AbstractNode implements FileChangeListener{
      * @throws  org.openide.loaders.DataObjectNotFoundException
      */
     public GISSourceNode(DataFolder folder, GISProject project) throws DataObjectNotFoundException{
-        super (createChildren(folder));
-//                , new FilterNode.Children (node),
-//                    //The projects system wants the project in the Node's lookup.
-//                    //NewAction and friends want the original Node's lookup.
-//                    //Make a merge of both
-//                    new ProxyLookup (new Lookup[] { Lookups.singleton(project),
-//                    node.getLookup() }));
+        super (createChildren(folder), 
+                //The projects system wants the project in the Node's lookup.
+                //NewAction and friends want the original Node's lookup.
+                //Make a merge of both
+                new ProxyLookup (new Lookup[] { Lookups.singleton(project) }));
         
         this.project = project;
         folder.getPrimaryFile().addFileChangeListener(this);
@@ -125,6 +130,14 @@ public class GISSourceNode extends AbstractNode implements FileChangeListener{
         }
         
         return childs;
+    }
+    
+    @Override
+    public Action[] getActions(boolean arg0) {
+        return new Action[]{
+            SharedClassObject.findObject(AddFileSource.class, true),
+            SharedClassObject.findObject(AddDistantSource.class, true)
+        };
     }
     
 }

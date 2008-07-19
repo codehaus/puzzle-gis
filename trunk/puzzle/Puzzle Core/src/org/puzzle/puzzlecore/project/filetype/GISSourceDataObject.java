@@ -101,7 +101,11 @@ public class GISSourceDataObject extends XMLDataObject {
                 org.w3c.dom.Node rootNode = gisDoc.getFirstChild();
 
                 NodeList ids = gisDoc.getElementsByTagName("id");
-                int id = Integer.valueOf( ids.item(0).getTextContent() );
+                int id = 0;
+                if(ids.getLength()>0){
+                    //there is a set ID
+                    id = Integer.valueOf( ids.item(0).getTextContent() );
+                }
 
                 NodeList serviceIds = gisDoc.getElementsByTagName("serviceid");
                 String serviceId = serviceIds.item(0).getTextContent();

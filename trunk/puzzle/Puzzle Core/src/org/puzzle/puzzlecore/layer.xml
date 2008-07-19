@@ -21,6 +21,9 @@
             <file name="org-puzzle-puzzlecore-context-action-addlayer-AddFileLayerAction.instance"/>
             <file name="org-puzzle-puzzlecore-context-action-addlayer-AddWebLayerAction.instance"/>
             <file name="org-puzzle-puzzlecore-project-action-ShowMapContextAction.instance"/>
+            <file name="org-puzzle-puzzlecore-project-action-source-AddDistantSource.instance"/>
+            <file name="org-puzzle-puzzlecore-project-action-source-AddFileSource.instance"/>
+            <file name="org-puzzle-puzzlecore-project-action-source-AddMapContext.instance"/>
         </folder>
         <folder name="Window">
             <file name="org-puzzle-puzzlecore-context-gui-contexttree-ContextTreeAction.instance"/>
@@ -155,6 +158,21 @@
     </folder>
     <folder name="Toolbars">
         <file name="Build_hidden"/>
+        <folder name="GISProject">
+            <attr name="position" intvalue="100"/>
+            <file name="org-puzzle-puzzlecore-project-action-source-AddFileSource.shadow">
+                <attr name="originalFile" stringvalue="Actions/Puzzle/org-puzzle-puzzlecore-project-action-source-AddFileSource.instance"/>
+                <attr name="position" intvalue="100"/>
+            </file>
+            <file name="org-puzzle-puzzlecore-project-action-source-AddDistantSource.shadow">
+                <attr name="originalFile" stringvalue="Actions/Puzzle/org-puzzle-puzzlecore-project-action-source-AddDistantSource.instance"/>
+                <attr name="position" intvalue="200"/>
+            </file>
+            <file name="org-puzzle-puzzlecore-project-action-source-AddMapContext.shadow">
+                <attr name="originalFile" stringvalue="Actions/Puzzle/org-puzzle-puzzlecore-project-action-source-AddMapContext.instance"/>
+                <attr name="position" intvalue="300"/>
+            </file>
+        </folder>
         <folder name="Context">
             <attr name="position" intvalue="400"/>
             <file name="org-puzzle-puzzlecore-context-action-newcontext-NewContextAction.instance">
@@ -168,7 +186,7 @@
             </file>
             <file name="org-puzzle-puzzlecore-context-action-addlayer-AddWebLayerAction.instance">
                 <attr name="position" intvalue="400"/>
-            </file>            
+            </file>
         </folder>
         <file name="Edit_hidden"/>
         <file name="File_hidden"/>
