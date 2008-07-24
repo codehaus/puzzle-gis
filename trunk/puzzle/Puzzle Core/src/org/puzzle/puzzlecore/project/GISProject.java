@@ -47,6 +47,7 @@ import org.netbeans.spi.project.ActionProvider;
 import org.netbeans.spi.project.ProjectState;
 import org.netbeans.spi.project.ui.LogicalViewProvider;
 import org.openide.filesystems.FileObject;
+import org.openide.filesystems.FileUtil;
 import org.openide.util.Lookup;
 import org.openide.util.Utilities;
 import org.openide.util.lookup.AbstractLookup;
@@ -223,8 +224,12 @@ public class GISProject implements Project {
     private GISSource createPersistantSource(GISSource source){
         try{            
             Document doc = fill(source);
-            System.out.println("PATH >>>>>> " + getSourceFolder(true).getPath() + File.separator + source.getTitle() + ".xml");
-            File xml = new File(getSourceFolder(true).getPath() + File.separator + source.getTitle() + ".xml");
+            /*
+             * We need to use FileUtil.toFile().
+             * Indeed, if we don't, getSourceFolder(true).getPath() don't return
+             * an absolute path, which generate an error.
+             */
+            File xml = new File(FileUtil.toFile(getSourceFolder(true)).getAbsolutePath() + File.separator + source.getTitle() + ".xml");
             transformerXml(doc, xml);
         } catch (Exception e) {
             e.printStackTrace();
@@ -304,7 +309,7 @@ public class GISProject implements Project {
             Transformer transformer = fabrique.newTransformer();
             transformer.setOutputProperty(OutputKeys.INDENT, "yes");
             transformer.setOutputProperty(OutputKeys.ENCODING, "ISO-8859-1");
-
+            
             // Transformation
             transformer.transform(source, resultat);
         } catch (Exception e) {
