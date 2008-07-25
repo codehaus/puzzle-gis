@@ -40,8 +40,17 @@ import org.puzzle.puzzlecore.context.RichMapLayer;
 import org.puzzle.puzzlecore.project.source.GISSource;
 
 /**
- *
+ * This is a {@code GISSource} used to reference a World Image file in
+ * a {@link org.puzzle.puzzlecore.project.GISProject}. World Image files are :
+ * <ul>
+ *  <li>JPEG,</li>
+ *  <li>PNG,</li>
+ *  <li>BMP.</li>
+ * </ul>
+ * 
  * @author  Thomas Bonavia
+ * 
+ * @see     org.puzzle.puzzlecore.project.source.GISSource
  */
 public class WorldImageSource implements GISSource{
     private static final String IMAGE_ICON_BASE = "org/puzzle/format/worldimage/worldimage.png";
@@ -52,6 +61,14 @@ public class WorldImageSource implements GISSource{
     private final String serviceName;
     private GridCoverage2D gc2d = null;
 
+    /**
+     * Constructor.
+     * Initializes a {@code WorldImageSource} from the World Image file.
+     * @param worldImage    The world image file.
+     * @param serviceName   The name of the service to use to manage this source.
+     * @param id            The ID of the source.
+     * @param parameters    The parameters (from the XML file).
+     */
     public WorldImageSource(File worldImage, String serviceName, int id, Map<String, String> parameters) {
         this.id = id;
         this.parameters = parameters;
@@ -71,6 +88,7 @@ public class WorldImageSource implements GISSource{
         }
     }
     
+    /** {@inheritDoc } */
     public RichMapLayer createLayer(Map<String, String> parameters) {
         Style style = new RandomStyleFactory().createRasterStyle();
         LayerSource source = new LayerSource(id, parameters);
@@ -88,22 +106,27 @@ public class WorldImageSource implements GISSource{
         return layer;
     }
 
+    /** {@inheritDoc } */
     public int getID() {
         return id;
     }
 
+    /** {@inheritDoc } */
     public Image getIcon(int type) {
         return Utilities.loadImage(IMAGE_ICON_BASE);
     }
 
+    /** {@inheritDoc } */
     public Map<String, String> getParameters() {
         return Collections.unmodifiableMap(parameters);
     }
 
+    /** {@inheritDoc } */
     public String getServiceName() {
         return serviceName;
     }
 
+    /** {@inheritDoc } */
     public String getTitle() {
         return name;
     }
