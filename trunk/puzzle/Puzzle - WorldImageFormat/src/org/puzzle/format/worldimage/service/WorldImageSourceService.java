@@ -36,20 +36,27 @@ import org.puzzle.puzzlecore.project.source.GISFileSourceService;
 import org.puzzle.puzzlecore.project.source.GISSource;
 
 /**
- *
+ * This is the service linked with the {@code WorldImageSource}.
+ * The service is used to manage this kind of source.
+ * 
  * @author  Thomas Bonavia
+ * 
+ * @see     org.puzzle.puzzlecore.project.source.GISFileSourceService
  */
 public class WorldImageSourceService implements GISFileSourceService{
     private static final String TITLE = "WorldImage";
     
+    /** {@inheritDoc} */
     public String getIdentifier() {
         return "SingleWorldImage";
     }
 
+    /** {@inheritDoc} */
     public String getTitle() {
         return TITLE;
     }
 
+    /** {@inheritDoc} */
     public GISSource restoreSource(Map<String, String> parameters, int id) throws IllegalArgumentException {
         final String url = parameters.get("url");
         
@@ -66,6 +73,7 @@ public class WorldImageSourceService implements GISFileSourceService{
         return worldImageSource;
     }
 
+    /** {@inheritDoc} */
     public GISSource createSource(File file) throws IllegalArgumentException {
         String url = null;
         Map<String,String> params = new HashMap<String, String>();
@@ -94,10 +102,12 @@ public class WorldImageSourceService implements GISFileSourceService{
         return restoreSource(params, id);
     }
     
+    /** {@inheritDoc} */
     public FileFilter createFilter() {
         return FileFilterFactory.createFileFilter(FileFilterFactory.FORMAT.WORLD_IMAGE);
     }
 
+    /** {@inheritDoc} */
     public boolean isValidFile(File file) {
         String name = file.getName().toLowerCase();
         if(name.endsWith("png") || 
@@ -106,6 +116,4 @@ public class WorldImageSourceService implements GISFileSourceService{
            name.endsWith("bmp")) return true;
         else return false;
     }
-    
-    
 }

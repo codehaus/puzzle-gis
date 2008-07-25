@@ -59,7 +59,7 @@ public class GeoTiffSource implements GISSource{
 
     /**
      * Constructor.
-     * Initializes a {@code GeotTiffSource} from the Geotiff file.
+     * Initializes a {@code GeoTiffSource} from the Geotiff file.
      * @param geotiff       The geotiff file.
      * @param serviceName   The name of the service to use to manage this source.
      * @param id            The ID of the source.
