@@ -28,7 +28,7 @@ public final class AddFileSource extends CookieAction {
             public void actionPerformed(ActionEvent e) {
 
                 if (e.getActionCommand().equalsIgnoreCase("ok")) {
-
+                    pane.setVisible(false);
                     Collection<GISSource> sources = pane.getGISSources();
                     for (GISSource source : sources) {
                         gis.appendGISSource(source);

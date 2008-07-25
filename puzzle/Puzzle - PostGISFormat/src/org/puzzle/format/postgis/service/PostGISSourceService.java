@@ -20,7 +20,6 @@
  */
 package org.puzzle.format.postgis.service;
 
-import java.io.File;
 import java.util.Map;
 import org.geotools.gui.swing.datachooser.DataPanel;
 import org.geotools.gui.swing.datachooser.JPostGISDataPanel;
@@ -44,7 +43,6 @@ public class PostGISSourceService implements GISDistantSourceService{
         
         if(url == null) throw new IllegalArgumentException("missing parameter url");
         
-        File shapeFile = new File(url);
         GISSource postgisSource = new PostGISSource(getIdentifier(),id,parameters);
         return postgisSource;
     }

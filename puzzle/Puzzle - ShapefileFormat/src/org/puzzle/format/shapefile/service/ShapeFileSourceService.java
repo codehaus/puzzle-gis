@@ -38,7 +38,8 @@ import org.puzzle.puzzlecore.project.source.GISSource;
  * @author  Johann Sorel
  */
 public class ShapeFileSourceService implements GISFileSourceService{
-
+    private static final String TITLE = "Shapefile";
+    
     public String getIdentifier(){
         return "SingleShapeFile";
     }
@@ -89,5 +90,9 @@ public class ShapeFileSourceService implements GISFileSourceService{
         String name = file.getName().toLowerCase();
         if(name.endsWith("shp")) return true;
         else return false;
+    }
+    
+    public String getTitle() {
+        return TITLE;
     }
 }
