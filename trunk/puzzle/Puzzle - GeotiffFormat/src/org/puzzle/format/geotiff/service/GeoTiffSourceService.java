@@ -22,6 +22,8 @@ package org.puzzle.format.geotiff.service;
 
 import java.io.File;
 import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.filechooser.FileFilter;
@@ -42,7 +44,8 @@ import org.puzzle.puzzlecore.project.source.GISSource;
  * @see     org.puzzle.puzzlecore.project.source.GISFileSourceService
  */
 public class GeoTiffSourceService implements GISFileSourceService{
-    
+    private static final String TITLE = "Geotiff";
+        
     /** {@inheritDoc} */
     public FileFilter createFilter() {
         return FileFilterFactory.createFileFilter(FileFilterFactory.FORMAT.GEOTIFF);
@@ -58,8 +61,14 @@ public class GeoTiffSourceService implements GISFileSourceService{
         final String url = parameters.get("url");
         
         if(url == null) throw new IllegalArgumentException("missing parameter url");
-        
-        File geotiff = new File(url);
+
+        File geotiff = null;
+        try{
+            geotiff = new File(new URI(url));
+        }catch(URISyntaxException urise){
+            Exceptions.printStackTrace(urise);
+        }
+            
         GISSource geotiffSource = new GeoTiffSource(geotiff,getIdentifier(),id,parameters);
         return geotiffSource;
     }
@@ -98,5 +107,10 @@ public class GeoTiffSourceService implements GISFileSourceService{
         String name = file.getName().toLowerCase();
         if(name.endsWith("tiff") || name.endsWith("tif")) return true;
         else return false;
+    }
+    
+    /** {@inheritDoc} */
+    public String getTitle(){
+        return TITLE;
     }
 }

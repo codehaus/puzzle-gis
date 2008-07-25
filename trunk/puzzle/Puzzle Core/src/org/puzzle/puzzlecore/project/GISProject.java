@@ -227,7 +227,7 @@ public class GISProject implements Project {
             /*
              * We need to use FileUtil.toFile().
              * Indeed, if we don't, getSourceFolder(true).getPath() don't return
-             * an absolute path, which generate an error.
+             * an absolute path, which generates an error.
              */
             File xml = new File(FileUtil.toFile(getSourceFolder(true)).getAbsolutePath() + File.separator + source.getTitle() + ".xml");
             transformerXml(doc, xml);

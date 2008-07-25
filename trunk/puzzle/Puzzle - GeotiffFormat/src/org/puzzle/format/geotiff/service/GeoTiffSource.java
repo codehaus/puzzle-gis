@@ -27,6 +27,7 @@ import java.util.Collections;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import org.geotools.coverage.grid.GridCoverage2D;
 import org.geotools.data.DataSourceException;
 import org.geotools.feature.SchemaException;
@@ -71,8 +72,6 @@ public class GeoTiffSource implements GISSource{
         this.serviceName = serviceName;
         this.parameters = parameters;
         
-        System.out.println("PATH GEOTIFF >>>>>>> " + geotiff.getPath());
-         
         GeoTiffReader reader;
         try {
             reader = new GeoTiffReader(geotiff);
