@@ -27,6 +27,14 @@ public final class AddMapContext extends CookieAction {
         }
         //System.out.println("Template = " + tw.getTemplate().getName());
         tw.templateChooser();
+//        FileObject maps = gis.getMapFolder(true);
+//        DataFolder mapDataObject = DataFolder.findFolder (maps);
+//        
+//        TemplateWizard desc = new TemplateWizard();
+//        desc.
+//        EmptyGISProjectWizardIterator it = EmptyGISProjectWizardIterator.createIterator();
+//        it.initialize(desc);
+//        DialogDisplayer.getDefault().notify(desc);
     }
 
     protected int mode() {

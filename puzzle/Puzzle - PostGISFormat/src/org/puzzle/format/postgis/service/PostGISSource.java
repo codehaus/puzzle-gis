@@ -22,20 +22,18 @@
 package org.puzzle.format.postgis.service;
 
 import java.awt.Image;
-import java.io.File;
-import java.io.IOException;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Map;
-import org.apache.commons.collections.map.SingletonMap;
-import org.geotools.data.DataStore;
-import org.geotools.data.DataStoreFinder;
 import org.geotools.data.FeatureSource;
 import org.geotools.gui.swing.misc.Render.RandomStyleFactory;
+import org.geotools.map.MapContext;
 import org.geotools.styling.Style;
-import org.openide.util.Exceptions;
+import org.openide.WizardDescriptor;
 import org.openide.util.Utilities;
 import org.puzzle.puzzlecore.context.LayerSource;
 import org.puzzle.puzzlecore.context.RichMapLayer;
+import org.puzzle.puzzlecore.project.GISProject;
 import org.puzzle.puzzlecore.project.source.GISSource;
 
 /**
@@ -88,6 +86,10 @@ public class PostGISSource implements GISSource{
 
     public String getServiceName() {
         return serviceName;
+    }
+
+    public WizardDescriptor createLayerWizard(Collection<? extends MapContext> contexts, GISProject project) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
 }

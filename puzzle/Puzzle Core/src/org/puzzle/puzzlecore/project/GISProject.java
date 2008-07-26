@@ -322,7 +322,7 @@ public class GISProject implements Project {
      * @param   create    Create the folder if does not exists ?
      * @return  The {@code FileObject} representing the maps folder.
      */
-    FileObject getMapFolder(boolean create) {
+    public FileObject getMapFolder(boolean create) {
         FileObject result = projectDir.getFileObject(MAP_DIR);
 
         if (result == null && create) {
@@ -341,7 +341,7 @@ public class GISProject implements Project {
      * @param   create    Create the folder if does not exists ?
      * @return  The {@code FileObject} representing the documents folder.
      */
-    FileObject getDocFolder(boolean create) {
+    public FileObject getDocFolder(boolean create) {
         FileObject result = projectDir.getFileObject(DOC_DIR);
 
         if (result == null && create) {
@@ -360,7 +360,7 @@ public class GISProject implements Project {
      * @param   create    Create the folder if does not exists ?
      * @return  The {@code FileObject} representing the sources folder.
      */
-    FileObject getSourceFolder(boolean create) {
+    public FileObject getSourceFolder(boolean create) {
         FileObject result = projectDir.getFileObject(SRC_DIR);
 
         if (result == null && create) {
