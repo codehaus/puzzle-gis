@@ -24,6 +24,7 @@
             <file name="org-puzzle-puzzlecore-project-action-source-AddDistantSource.instance"/>
             <file name="org-puzzle-puzzlecore-project-action-source-AddFileSource.instance"/>
             <file name="org-puzzle-puzzlecore-project-action-source-AddMapContext.instance"/>
+            <file name="org-puzzle-puzzlecore-project-action-source-ShowLayerWizard.instance"/>
         </folder>
         <folder name="Window">
             <file name="org-puzzle-puzzlecore-context-gui-contexttree-ContextTreeAction.instance"/>
@@ -94,6 +95,10 @@
                     <file name="org-openide-actions-ToolsAction.instance">
                         <attr name="position" intvalue="1200"/>
                     </file>
+                    <file name="org-puzzle-puzzlecore-project-action-source-ShowLayerWizard.shadow">
+                        <attr name="originalFile" stringvalue="Actions/Puzzle/org-puzzle-puzzlecore-project-action-source-ShowLayerWizard.instance"/>
+                        <attr name="position" intvalue="0"/>
+                    </file>
                     <file name="sep-1.instance">
                         <attr name="instanceClass" stringvalue="javax.swing.JSeparator"/>
                         <attr name="position" intvalue="300"/>
@@ -132,6 +137,14 @@
                 <attr name="SystemFileSystem.localizingBundle" stringvalue="org.puzzle.puzzlecore.Bundle"/>
             </file>
         </folder>
+    </folder>
+    <folder name="Shortcuts">
+        <file name="D-L.shadow">
+            <attr name="originalFile" stringvalue="Actions/Puzzle/org-puzzle-puzzlecore-project-action-source-ShowLayerWizard.instance"/>
+        </file>
+        <file name="TAB.shadow">
+            <attr name="originalFile" stringvalue="Actions/Puzzle/org-puzzle-puzzlecore-project-action-source-ShowLayerWizard.instance"/>
+        </file>
     </folder>
     <folder name="Templates">
         <folder name="Other">

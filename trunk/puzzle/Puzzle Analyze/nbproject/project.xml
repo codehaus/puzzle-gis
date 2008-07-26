@@ -47,7 +47,10 @@
                     </run-dependency>
                 </dependency>
             </module-dependencies>
-            <public-packages/>
+            <public-packages>
+                <package>org.puzzle.analyze</package>
+                <package>org.puzzle.analyze.clip</package>
+            </public-packages>
         </data>
     </configuration>
 </project>

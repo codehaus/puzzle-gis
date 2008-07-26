@@ -21,8 +21,12 @@
 package org.puzzle.puzzlecore.project.source;
 
 import java.awt.Image;
+import java.util.Collection;
 import java.util.Map;
+import org.geotools.map.MapContext;
+import org.openide.WizardDescriptor;
 import org.puzzle.puzzlecore.context.RichMapLayer;
+import org.puzzle.puzzlecore.project.GISProject;
 
 /**
  * This interface allows to create some GIS "sources".<br>
@@ -63,6 +67,16 @@ public interface GISSource {
      * @return  A new {@code RichMapLayer}.
      */
     RichMapLayer createLayer(Map<String,String> parameters);
+    
+    /**
+     * create a wizard to see all possible layers.
+     * Exemple : a database source displays all available GIS layers.
+     * 
+     * @param contexts
+     * @param project
+     * @return Wizard
+     */
+    WizardDescriptor createLayerWizard(Collection<? extends MapContext> contexts, GISProject project);
     
     /**
      * Get the icon to use for each kind of {@code GISSource}.

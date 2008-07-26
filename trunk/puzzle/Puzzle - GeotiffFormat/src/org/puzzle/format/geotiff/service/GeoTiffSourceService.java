@@ -45,7 +45,7 @@ import org.puzzle.puzzlecore.project.source.GISSource;
  */
 public class GeoTiffSourceService implements GISFileSourceService{
     private static final String TITLE = "Geotiff";
-        
+    
     /** {@inheritDoc} */
     public FileFilter createFilter() {
         return FileFilterFactory.createFileFilter(FileFilterFactory.FORMAT.GEOTIFF);
