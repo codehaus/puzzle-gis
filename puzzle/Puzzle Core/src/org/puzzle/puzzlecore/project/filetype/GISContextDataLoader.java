@@ -21,11 +21,14 @@
 package org.puzzle.puzzlecore.project.filetype;
 
 import java.io.IOException;
+import org.netbeans.api.project.FileOwnerQuery;
+import org.netbeans.api.project.ui.OpenProjects;
 import org.openide.filesystems.FileObject;
 import org.openide.loaders.DataObjectExistsException;
 import org.openide.loaders.MultiDataObject;
 import org.openide.loaders.UniFileLoader;
 import org.openide.util.NbBundle;
+import org.puzzle.puzzlecore.project.GISProject;
 
 /**
  * This class is a loader for the {@code GISContextDataObject}.
@@ -58,7 +61,12 @@ public class GISContextDataLoader extends UniFileLoader {
     }
 
     protected MultiDataObject createMultiObject(FileObject primaryFile) throws DataObjectExistsException, IOException {
-        return new GISContextDataObject(primaryFile, this);
+        GISContextDataObject dObject = new GISContextDataObject(primaryFile, this);
+//        GISProject prj = (GISProject)FileOwnerQuery.getOwner(dObject.getPrimaryFile());
+
+//        prj.addContext(dObject.getContext());
+        
+        return dObject;
     }
 
     @Override
