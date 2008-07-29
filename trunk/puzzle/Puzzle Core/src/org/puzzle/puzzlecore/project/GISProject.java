@@ -41,6 +41,7 @@ import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+import org.geotools.map.MapContext;
 import org.netbeans.api.project.Project;
 import org.netbeans.api.project.ProjectInformation;
 import org.netbeans.spi.project.ActionProvider;
@@ -65,7 +66,6 @@ import org.w3c.dom.Element;
  *  <li>sources (adding, removing, organizing),</li>
  *  <li>documents (reports...).</li>
  * </ul>
- * 
  * 
  * @author  Johann Sorel
  * @author  Thomas Bonavia (comments)
@@ -150,6 +150,14 @@ public class GISProject implements Project {
      */
     public Lookup getLookup() {
         return lookUp;
+    }
+    
+    /**
+     * Add a {@code MapContext} to the project.
+     * @param map   The {@code MapContext} to add to the project's {@code Lookup}.
+     */
+    public void addContext(MapContext map){
+        lookUpContent.add(map);
     }
     
     /**
