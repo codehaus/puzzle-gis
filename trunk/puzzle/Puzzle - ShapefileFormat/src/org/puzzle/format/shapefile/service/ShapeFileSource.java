@@ -33,7 +33,7 @@ import org.geotools.data.DataStoreFinder;
 import org.geotools.data.FeatureSource;
 import org.geotools.gui.swing.misc.Render.RandomStyleFactory;
 import org.geotools.map.MapContext;
-import org.geotools.styling.Style;
+import org.geotools.style.MutableStyle;
 import org.openide.WizardDescriptor;
 import org.openide.util.Exceptions;
 import org.openide.util.Utilities;
@@ -77,7 +77,7 @@ public class ShapeFileSource implements GISSource{
     }
     
     public RichMapLayer createLayer(Map<String, String> parameters) {
-        Style style = new RandomStyleFactory().createRandomVectorStyle(featureSource);
+        MutableStyle style = new RandomStyleFactory().createRandomVectorStyle(featureSource);
         LayerSource source = new LayerSource(id, parameters);
         RichMapLayer layer = new RichMapLayer(featureSource, style,source);
         layer.setTitle(name);

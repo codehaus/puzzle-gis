@@ -156,9 +156,9 @@ public class GISProject implements Project {
      * Add a {@code MapContext} to the project.
      * @param map   The {@code MapContext} to add to the project's {@code Lookup}.
      */
-    public void addContext(MapContext map){
-        lookUpContent.add(map);
-    }
+//    public void addContext(MapContext map){
+//        lookUpContent.add(map);
+//    }
     
     /**
      * Add a {@code GISSource} to the project.<br>

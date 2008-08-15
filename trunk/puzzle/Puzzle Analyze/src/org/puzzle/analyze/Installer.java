@@ -23,7 +23,7 @@ package org.puzzle.analyze;
 
 import org.openide.modules.ModuleInstall;
 import org.openide.util.Lookup;
-import org.puzzle.analyze.clip.ClipToolDescriptor;
+//import org.puzzle.analyze.clip.ClipToolDescriptor;
 import org.puzzle.puzzlecore.tool.ToolService;
 
 /**
@@ -37,7 +37,7 @@ public class Installer extends ModuleInstall {
         
         ToolService service = Lookup.getDefault().lookup(ToolService.class);
         if(service != null){
-            service.addTool(new ClipToolDescriptor());
+//            service.addTool(new ClipToolDescriptor());
         }
     }
 }

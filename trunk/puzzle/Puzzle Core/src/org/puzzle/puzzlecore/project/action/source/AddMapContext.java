@@ -9,7 +9,6 @@ import java.util.Enumeration;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.netbeans.api.project.ui.OpenProjects;
-import org.openide.DialogDisplayer;
 import org.openide.filesystems.FileObject;
 import org.openide.loaders.DataFolder;
 import org.openide.loaders.DataObject;
@@ -24,14 +23,14 @@ import org.puzzle.puzzlecore.project.GISProject;
 public final class AddMapContext extends CookieAction {
 
     protected void performAction(Node[] activatedNodes) {
-        final GISProject gis = (GISProject)OpenProjects.getDefault().getMainProject();//activatedNodes[0].getLookup().lookup(GISProject.class);
+        final GISProject gis = (GISProject)OpenProjects.getDefault().getMainProject();
+        //activatedNodes[0].getLookup().lookup(GISProject.class);
         
         TemplateWizard tw = new TemplateWizard();
         //System.out.println("Template folder = " + tw.getTemplatesFolder().getPrimaryFile().getPath());
         Enumeration<DataObject> enu = tw.getTemplatesFolder().children();
         DataObject temp = null;
-        while(enu.hasMoreElements())
-        {
+        while(enu.hasMoreElements()){
             temp = enu.nextElement();
             if(temp.getName().equals("Other")) break;
         }
@@ -40,17 +39,10 @@ public final class AddMapContext extends CookieAction {
         
         FileObject[] templates = temp.getPrimaryFile().getChildren();
         for(FileObject fo : templates){
-            //System.out.println("template name = " + fo.getName());
+            
             if(fo.getName().equals("GISContextTemplate")){
                 try{
-                    //System.out.println("Starting wizard...");
-                    //tw.setTemplate(DataObject.find(fo));
-                    //tw.setTargetFolder(DataFolder.findFolder(gis.getMapFolder(true)));
                     tw.instantiate(DataObject.find(fo), DataFolder.findFolder(gis.getMapFolder(true)));
-                    //System.out.println(tw.getTemplate().getPrimaryFile().getPath());
-                    //System.out.println(tw.getTargetFolder().getPrimaryFile().getPath());
-                    //System.out.println(TemplateWizard.getDescription(DataObject.find(fo)));
-                    //DialogDisplayer.getDefault().createDialog(tw);
                 }catch(DataObjectNotFoundException donfe){
                     Logger.getLogger(GISProject.class.getName()).log(Level.SEVERE, 
                         "Unable to find object "+ fo.getPath(), donfe);
@@ -58,6 +50,7 @@ public final class AddMapContext extends CookieAction {
                     Logger.getLogger(GISProject.class.getName()).log(Level.SEVERE, 
                         "Unable to find object "+ fo.getPath(), ioe);
                 }
+                break;
             }
         }
     }

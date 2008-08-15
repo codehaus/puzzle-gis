@@ -35,23 +35,23 @@ import org.geotools.gui.swing.style.JRasterSymbolizerPane;
 import org.geotools.gui.swing.style.JTextSymbolizerPane;
 import org.geotools.gui.swing.style.StyleElementEditor;
 import org.geotools.map.MapLayer;
-import org.geotools.styling.FeatureTypeStyle;
-import org.geotools.styling.LineSymbolizer;
-import org.geotools.styling.PointSymbolizer;
-import org.geotools.styling.PolygonSymbolizer;
-import org.geotools.styling.RasterSymbolizer;
-import org.geotools.styling.Rule;
-import org.geotools.styling.Style;
-import org.geotools.styling.Symbolizer;
-import org.geotools.styling.TextSymbolizer;
+import org.geotools.style.MutableFeatureTypeStyle;
+import org.geotools.style.MutableRule;
+import org.geotools.style.MutableStyle;
+import org.opengis.style.LineSymbolizer;
+import org.opengis.style.PointSymbolizer;
+import org.opengis.style.PolygonSymbolizer;
+import org.opengis.style.RasterSymbolizer;
+import org.opengis.style.Symbolizer;
+import org.opengis.style.TextSymbolizer;
 
 /**
  * @author johann sorel
  */
-public class JAdvancedStylePanel extends javax.swing.JPanel implements PropertyPane, StyleElementEditor<Style> {
+public class JAdvancedStylePanel extends javax.swing.JPanel{ //implements PropertyPane, StyleElementEditor<MutableStyle> {
 
     private MapLayer layer = null;
-    private Style style = null;
+    private MutableStyle style = null;
     private StyleElementEditor editor = null;
     private final TreeSelectionListener listener = new TreeSelectionListener() {
 
@@ -59,74 +59,74 @@ public class JAdvancedStylePanel extends javax.swing.JPanel implements PropertyP
             TreePath path = tree.getSelectionModel().getSelectionPath();
 
             //we validate the previous edition pane
-            if (editor != null) {
-                editor.apply();
-            }
+//            if (editor != null) {
+//                editor.apply();
+//            }
 
            
-            if (path != null) {
-                Object val = ((DefaultMutableTreeNode) path.getLastPathComponent()).getUserObject();
-
-                pan_info.removeAll();
-
-                if (val instanceof Style) {
-                    Style style = (Style) val;
-                    JStylePane pan = new JStylePane();
-                    pan.setEdited(style);
-                    editor = pan;
-                    pan_info.add(pan);
-                } else if (val instanceof FeatureTypeStyle) {
-                    FeatureTypeStyle fts = (FeatureTypeStyle) val;
-                    JFeatureTypeStylePane pan = new JFeatureTypeStylePane();
-                    pan.setEdited(fts);
-                    editor = pan;
-                    pan_info.add(pan);
-                } else if (val instanceof Rule) {
-                    Rule rule = (Rule) val;
-                    JRulePane pan = new JRulePane();
-                    pan.setEdited(rule);
-                    editor = pan;
-                    pan_info.add(pan);
-                } else if (val instanceof Symbolizer) {
-                    Symbolizer symb = (Symbolizer) val;
-
-                    if (symb instanceof RasterSymbolizer) {
-                        JRasterSymbolizerPane p = new JRasterSymbolizerPane();
-                        p.setLayer(layer);
-                        p.setEdited((RasterSymbolizer) symb);
-                        editor = p;
-                    } else if (symb instanceof PolygonSymbolizer) {
-                        JPolygonSymbolizerPane p = new JPolygonSymbolizerPane();
-                        p.setLayer(layer);
-                        p.setEdited((PolygonSymbolizer) symb);
-                        editor = p;
-                    } else if (symb instanceof LineSymbolizer) {
-                        JLineSymbolizerPane p = new JLineSymbolizerPane();
-                        p.setLayer(layer);
-                        p.setEdited((LineSymbolizer) symb);
-                        editor = p;
-                    } else if (symb instanceof PointSymbolizer) {
-                        JPointSymbolizerPane p = new JPointSymbolizerPane();
-                        p.setLayer(layer);
-                        p.setEdited((PointSymbolizer) symb);
-                        editor = p;
-                    } else if (symb instanceof TextSymbolizer) {
-                        JTextSymbolizerPane p = new JTextSymbolizerPane();
-                        p.setLayer(layer);
-                        p.setEdited((TextSymbolizer) symb);
-                        editor = p;
-                    } else {
-                        editor = null;
-                    }
-
-                    if(editor != null){
-                        pan_info.add(editor.getComponent());
-                    }
-                }
-
-                pan_info.revalidate();
-
-            }
+//            if (path != null) {
+//                Object val = ((DefaultMutableTreeNode) path.getLastPathComponent()).getUserObject();
+//
+//                pan_info.removeAll();
+//
+//                if (val instanceof MutableStyle) {
+//                    MutableStyle style = (MutableStyle) val;
+//                    JStylePane pan = new JStylePane();
+//                    pan.setEdited(style);
+//                    editor = pan;
+//                    pan_info.add(pan);
+//                } else if (val instanceof MutableFeatureTypeStyle) {
+//                    MutableFeatureTypeStyle fts = (MutableFeatureTypeStyle) val;
+//                    JFeatureTypeStylePane pan = new JFeatureTypeStylePane();
+//                    pan.setEdited(fts);
+//                    editor = pan;
+//                    pan_info.add(pan);
+//                } else if (val instanceof MutableRule) {
+//                    MutableRule rule = (MutableRule) val;
+//                    JRulePane pan = new JRulePane();
+//                    pan.setEdited(rule);
+//                    editor = pan;
+//                    pan_info.add(pan);
+//                } else if (val instanceof Symbolizer) {
+//                    Symbolizer symb = (Symbolizer) val;
+//
+//                    if (symb instanceof RasterSymbolizer) {
+//                        JRasterSymbolizerPane p = new JRasterSymbolizerPane();
+//                        p.setLayer(layer);
+//                        p.setEdited((RasterSymbolizer) symb);
+//                        editor = p;
+//                    } else if (symb instanceof PolygonSymbolizer) {
+//                        JPolygonSymbolizerPane p = new JPolygonSymbolizerPane();
+//                        p.setLayer(layer);
+//                        p.setEdited((PolygonSymbolizer) symb);
+//                        editor = p;
+//                    } else if (symb instanceof LineSymbolizer) {
+//                        JLineSymbolizerPane p = new JLineSymbolizerPane();
+//                        p.setLayer(layer);
+//                        p.setEdited((LineSymbolizer) symb);
+//                        editor = p;
+//                    } else if (symb instanceof PointSymbolizer) {
+//                        JPointSymbolizerPane p = new JPointSymbolizerPane();
+//                        p.setLayer(layer);
+//                        p.setEdited((PointSymbolizer) symb);
+//                        editor = p;
+//                    } else if (symb instanceof TextSymbolizer) {
+//                        JTextSymbolizerPane p = new JTextSymbolizerPane();
+//                        p.setLayer(layer);
+//                        p.setEdited((TextSymbolizer) symb);
+//                        editor = p;
+//                    } else {
+//                        editor = null;
+//                    }
+//
+//                    if(editor != null){
+//                        pan_info.add(editor.getComponent());
+//                    }
+//                }
+//
+//                pan_info.revalidate();
+//
+//            }
         }
     };
 
@@ -175,7 +175,7 @@ public class JAdvancedStylePanel extends javax.swing.JPanel implements PropertyP
     }// </editor-fold>//GEN-END:initComponents
     public void apply() {
         if (editor != null) {
-            editor.apply();
+//            editor.apply();
         }
 
         style = tree.getStyle();
@@ -193,12 +193,12 @@ public class JAdvancedStylePanel extends javax.swing.JPanel implements PropertyP
         return layer;
     }
 
-    public void setEdited(Style style) {
+    public void setEdited(MutableStyle style) {
         this.style = style;
         parse();
     }
 
-    public Style getEdited() {
+    public MutableStyle getEdited() {
         style = tree.getStyle();
         apply();
         return style;

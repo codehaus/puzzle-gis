@@ -27,15 +27,15 @@ import org.geotools.gui.swing.misc.FilterToCQL;
 import org.geotools.gui.swing.propertyedit.filterproperty.JCQLPropertyPanel;
 import org.geotools.gui.swing.style.StyleElementEditor;
 import org.geotools.map.MapLayer;
-import org.geotools.styling.Rule;
+import org.geotools.style.MutableRule;
 
 /**
  *
  * @author johann sorel
  */
-public class JRulePane extends javax.swing.JPanel implements StyleElementEditor<Rule> {
+public class JRulePane extends javax.swing.JPanel{ //implements StyleElementEditor<Rule> {
 
-    private Rule rule = null;
+    private MutableRule rule = null;
     
     private MapLayer layer = null;
     
@@ -45,42 +45,42 @@ public class JRulePane extends javax.swing.JPanel implements StyleElementEditor<
         initComponents();
     }
 
-    private void parse() {
-        if (rule != null) {
-            rule.getAbstract();
-            rule.getLegendGraphic();
-            jsp_maxscale.setValue(rule.getMaxScaleDenominator());
-            jsp_minscale.setValue(rule.getMinScaleDenominator());
-            jtf_name.setText(rule.getName());
-            jtf_title.setText(rule.getTitle());
-
-            if (rule.getFilter() != null) {
-                FilterToCQL visitor = new FilterToCQL();
-                try {
-                    jtp_filter.setText(visitor.encodeToString(rule.getFilter()));
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
-
-    public void setEdited(Rule rule) {
-        this.rule = rule;
-        parse();
-    }
-
-    public Rule getEdited() {
-        apply();
-        return rule;
-    }
-
-    public void apply() {
-        rule.setMaxScaleDenominator((Double) jsp_maxscale.getValue());
-        rule.setMinScaleDenominator((Double) jsp_minscale.getValue());
-        rule.setName(jtf_name.getText());
-        rule.setTitle(jtf_title.getText());
-    }
+//    private void parse() {
+//        if (rule != null) {
+//            rule.getAbstract();
+//            rule.getLegendGraphic();
+//            jsp_maxscale.setValue(rule.getMaxScaleDenominator());
+//            jsp_minscale.setValue(rule.getMinScaleDenominator());
+//            jtf_name.setText(rule.getName());
+//            jtf_title.setText(rule.getTitle());
+//
+//            if (rule.getFilter() != null) {
+//                FilterToCQL visitor = new FilterToCQL();
+//                try {
+//                    jtp_filter.setText(visitor.encodeToString(rule.getFilter()));
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }
+//    }
+//
+//    public void setEdited(Rule rule) {
+//        this.rule = rule;
+//        parse();
+//    }
+//
+//    public Rule getEdited() {
+//        apply();
+//        return rule;
+//    }
+//
+//    public void apply() {
+//        rule.setMaxScaleDenominator((Double) jsp_maxscale.getValue());
+//        rule.setMinScaleDenominator((Double) jsp_minscale.getValue());
+//        rule.setName(jtf_name.getText());
+//        rule.setTitle(jtf_title.getText());
+//    }
 
     /** This method is called from within the constructor to
      * initialize the form.
@@ -203,7 +203,7 @@ public class JRulePane extends javax.swing.JPanel implements StyleElementEditor<
         );
     }// </editor-fold>//GEN-END:initComponents
     private void jtf_titleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtf_titleActionPerformed
-        rule.setTitle(jtf_title.getText());
+//        rule.setTitle(jtf_title.getText());
     }//GEN-LAST:event_jtf_titleActionPerformed
 
     private void but_editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_but_editActionPerformed

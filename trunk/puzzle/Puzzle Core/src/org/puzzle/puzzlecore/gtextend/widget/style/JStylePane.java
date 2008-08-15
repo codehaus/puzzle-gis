@@ -24,45 +24,45 @@ package org.puzzle.puzzlecore.gtextend.widget.style;
 import java.awt.Component;
 import org.geotools.gui.swing.style.StyleElementEditor;
 import org.geotools.map.MapLayer;
-import org.geotools.styling.Style;
+import org.geotools.style.MutableStyle;
 
 /**
  *
  * @author johann sorel
  */
-public class JStylePane extends javax.swing.JPanel implements StyleElementEditor<Style>{
+public class JStylePane extends javax.swing.JPanel{ // implements StyleElementEditor<Style>{
     
     private MapLayer layer = null;
-    private Style style = null;
+    private MutableStyle style = null;
     
     /** Creates new form JRulePanel */
     public JStylePane() {
         initComponents();
     }
     
-    private void parse(){
-        if(style != null){
-            jtf_abstract.setText(style.getAbstract());
-            jtf_name.setText(style.getName());
-            jtf_title.setText( style.getTitle() );
-        }
-    }
-    
-    public void setEdited(Style style){
-        this.style = style;
-        parse();
-    }
-    
-    public Style getEdited(){
-        apply();
-        return style;
-    }
-    
-    public void apply() {
-        style.setTitle( jtf_title.getText() );
-        style.setAbstract(jtf_abstract.getText());
-        style.setName(jtf_name.getText());
-    }
+//    private void parse(){
+//        if(style != null){
+//            jtf_abstract.setText(style.getAbstract());
+//            jtf_name.setText(style.getName());
+//            jtf_title.setText( style.getTitle() );
+//        }
+//    }
+//    
+//    public void setEdited(Style style){
+//        this.style = style;
+//        parse();
+//    }
+//    
+//    public Style getEdited(){
+//        apply();
+//        return style;
+//    }
+//    
+//    public void apply() {
+//        style.setTitle( jtf_title.getText() );
+//        style.setAbstract(jtf_abstract.getText());
+//        style.setName(jtf_name.getText());
+//    }
     
     /** This method is called from within the constructor to
      * initialize the form.

@@ -5,14 +5,13 @@
 
 package org.puzzle.puzzlecore.context;
 
-import org.geotools.map.DefaultMapContext;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
 /**
  *
  * @author Administrateur
  */
-public class RichMapContext extends DefaultMapContext{
+public class RichMapContext extends org.geotools.map.DefaultMapContext{
 
     public RichMapContext(CoordinateReferenceSystem crs){
         super(crs);

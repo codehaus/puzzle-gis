@@ -22,7 +22,6 @@ package org.puzzle.puzzlecore.project.filetype;
 
 import java.io.IOException;
 import java.util.Collection;
-import org.geotools.gui.swing.misc.Render.RandomStyleFactory;
 import org.geotools.map.DefaultMapContext;
 import org.geotools.map.MapContext;
 import org.geotools.map.MapLayer;
@@ -57,7 +56,6 @@ import org.xml.sax.SAXException;
  */
 public class GISContextDataObject extends XMLDataObject {
 
-    private final RandomStyleFactory RANDOM_STYLE_FACTORY = new RandomStyleFactory();
     private MapContext context = null;
     
     /**

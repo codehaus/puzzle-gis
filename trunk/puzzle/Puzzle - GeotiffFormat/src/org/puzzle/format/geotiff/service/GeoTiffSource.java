@@ -34,7 +34,7 @@ import org.geotools.feature.SchemaException;
 import org.geotools.gce.geotiff.GeoTiffReader;
 import org.geotools.gui.swing.misc.Render.RandomStyleFactory;
 import org.geotools.map.MapContext;
-import org.geotools.styling.Style;
+import org.geotools.style.MutableStyle;
 import org.opengis.referencing.operation.TransformException;
 import org.openide.WizardDescriptor;
 import org.openide.util.Utilities;
@@ -91,7 +91,7 @@ public class GeoTiffSource implements GISSource{
     
     /** {@inheritDoc } */
     public RichMapLayer createLayer(Map<String, String> parameters) {
-        Style style = new RandomStyleFactory().createRasterStyle();
+        MutableStyle style = new RandomStyleFactory().createRasterStyle();
         LayerSource source = new LayerSource(id, parameters);
         RichMapLayer layer = null;
         try{

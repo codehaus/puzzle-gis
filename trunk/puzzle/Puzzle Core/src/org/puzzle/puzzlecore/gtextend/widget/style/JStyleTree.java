@@ -56,10 +56,10 @@ import javax.swing.tree.TreePath;
 import javax.swing.tree.TreeSelectionModel;
 import org.geotools.gui.swing.icon.IconBundle;
 import org.geotools.gui.swing.misc.Render.RandomStyleFactory;
-import org.geotools.styling.FeatureTypeStyle;
-import org.geotools.styling.Rule;
-import org.geotools.styling.Style;
-import org.geotools.styling.Symbolizer;
+import org.geotools.style.MutableFeatureTypeStyle;
+import org.geotools.style.MutableRule;
+import org.geotools.style.MutableStyle;
+import org.opengis.style.Symbolizer;
 import org.jdesktop.swingx.JXTree;
 
 /**
@@ -76,7 +76,7 @@ public class JStyleTree extends JXTree implements DragGestureListener, DragSourc
     private static final Icon ICON_DUPLICATE = IconBundle.getResource().getIcon("16_duplicate");
     private static final Icon ICON_DELETE = IconBundle.getResource().getIcon("16_delete");
     
-    private Style style = null;
+    private MutableStyle style = null;
     private StyleTreeModel treemodel = null;
     /** Variables needed for DnD */
     private DragSource dragSource = null;
@@ -107,18 +107,18 @@ public class JStyleTree extends JXTree implements DragGestureListener, DragSourc
 
     private void parseStyle() {
         if (style != null) {
-            treemodel = new StyleTreeModel(style);
-            setModel(treemodel);
-            revalidate();
+////            treemodel = new StyleTreeModel(style);
+//            setModel(treemodel);
+//            revalidate();
         }
         expandAll();
     }
 
-    public Style getStyle() {
+    public MutableStyle getStyle() {
         return style;
     }
 
-    public void setStyle(Style style) {
+    public void setStyle(MutableStyle style) {
         this.style = style;
         parseStyle();
     }
@@ -176,7 +176,7 @@ public class JStyleTree extends JXTree implements DragGestureListener, DragSourc
             DefaultMutableTreeNode dragNode = (DefaultMutableTreeNode) originPath.getLastPathComponent();
             DefaultMutableTreeNode targetNode = (DefaultMutableTreeNode) targetPath.getLastPathComponent();
 
-            treemodel.moveNode(dragNode, targetNode);
+//            treemodel.moveNode(dragNode, targetNode);
 
 //
 //            DefaultMutableTreeNode dragNodeParent = (DefaultMutableTreeNode) dragNode.getParent();
@@ -251,23 +251,23 @@ public class JStyleTree extends JXTree implements DragGestureListener, DragSourc
                 DefaultMutableTreeNode node = (DefaultMutableTreeNode) value;
                 Object val = node.getUserObject();
 
-                if (val instanceof Style) {
-                    Style style = (Style) val;
-                    lbl.setText(style.getTitle());
+                if (val instanceof MutableStyle) {
+                    MutableStyle style = (MutableStyle) val;
+//                    lbl.setText(style.getTitle());
                     lbl.setIcon(ICON_STYLE);
-                } else if (val instanceof FeatureTypeStyle) {
-                    FeatureTypeStyle fts = (FeatureTypeStyle) val;
-                    lbl.setText(fts.getTitle());
+                } else if (val instanceof MutableFeatureTypeStyle) {
+                    MutableFeatureTypeStyle fts = (MutableFeatureTypeStyle) val;
+//                    lbl.setText(fts.getTitle());
                     lbl.setIcon(ICON_FTS);
-                } else if (val instanceof Rule) {
-                    Rule r = (Rule) val;
-                    lbl.setText(r.getTitle());
+                } else if (val instanceof MutableRule) {
+                    MutableRule r = (MutableRule) val;
+//                    lbl.setText(r.getTitle());
                     lbl.setIcon(ICON_RULE);
                 } else if (val instanceof Symbolizer) {
                     Symbolizer symb = (Symbolizer) val;
-                    Icon ico = new ImageIcon(RANDOM_STYLE_FACTORY.createGlyph(symb));
-                    lbl.setText(" - ");
-                    lbl.setIcon(ico);
+//                    Icon ico = new ImageIcon(RANDOM_STYLE_FACTORY.createGlyph(symb));
+//                    lbl.setText(" - ");
+//                    lbl.setIcon(ico);
                 }
 
             }
@@ -299,16 +299,16 @@ public class JStyleTree extends JXTree implements DragGestureListener, DragSourc
                 DefaultMutableTreeNode node = (DefaultMutableTreeNode) path.getLastPathComponent();
                 Object val = node.getUserObject();
 
-                if (val instanceof Style) {
-                    Style style = (Style) val;
+                if (val instanceof MutableStyle) {
+                    MutableStyle style = (MutableStyle) val;
                     add(new NewFTSItem());
-                } else if (val instanceof FeatureTypeStyle) {
-                    FeatureTypeStyle fts = (FeatureTypeStyle) val;
+                } else if (val instanceof MutableFeatureTypeStyle) {
+                    MutableFeatureTypeStyle fts = (MutableFeatureTypeStyle) val;
                     add(new NewRuleItem(node));
                     add(new JSeparator(SwingConstants.HORIZONTAL));
                     add(new DuplicateItem(node));
-                } else if (val instanceof Rule) {
-                    Rule rule = (Rule) val;
+                } else if (val instanceof MutableRule) {
+                    MutableRule rule = (MutableRule) val;
                     add(new NewPointSymbolizerItem(node));
                     add(new NewLineSymbolizerItem(node));
                     add(new NewPolygonSymbolizerItem(node));
@@ -321,10 +321,10 @@ public class JStyleTree extends JXTree implements DragGestureListener, DragSourc
                     add(new DuplicateItem(node));
                 }
                                 
-                if(treemodel.isDeletable(node)){
-                    add(new JSeparator(SwingConstants.HORIZONTAL));
-                    add(new DeleteItem(node));
-                }
+//                if(treemodel.isDeletable(node)){
+//                    add(new JSeparator(SwingConstants.HORIZONTAL));
+//                    add(new DeleteItem(node));
+//                }
                 
                 super.setVisible(b);
             } else {
@@ -341,7 +341,7 @@ public class JStyleTree extends JXTree implements DragGestureListener, DragSourc
             addActionListener(new ActionListener() {
 
                 public void actionPerformed(ActionEvent e) {
-                    treemodel.newFeatureTypeStyle();
+//                    treemodel.newFeatureTypeStyle();
                 }
             });
         }
@@ -359,7 +359,7 @@ public class JStyleTree extends JXTree implements DragGestureListener, DragSourc
             addActionListener(new ActionListener() {
 
                 public void actionPerformed(ActionEvent e) {
-                    treemodel.newRule(NODE);
+//                    treemodel.newRule(NODE);
                 }
             });
         }
@@ -376,7 +376,7 @@ public class JStyleTree extends JXTree implements DragGestureListener, DragSourc
             addActionListener(new ActionListener() {
 
                 public void actionPerformed(ActionEvent e) {
-                    DefaultMutableTreeNode copy = treemodel.duplicateNode(NODE);
+//                    DefaultMutableTreeNode copy = treemodel.duplicateNode(NODE);
                 }
             });
         }
@@ -393,7 +393,7 @@ public class JStyleTree extends JXTree implements DragGestureListener, DragSourc
             addActionListener(new ActionListener() {
 
                 public void actionPerformed(ActionEvent e) {
-                    treemodel.deleteNode(NODE);
+//                    treemodel.deleteNode(NODE);
                 }
             });
         }
@@ -411,7 +411,7 @@ public class JStyleTree extends JXTree implements DragGestureListener, DragSourc
             addActionListener(new ActionListener() {
 
                 public void actionPerformed(ActionEvent e) {
-                    treemodel.newPointSymbolizer(NODE);
+//                    treemodel.newPointSymbolizer(NODE);
                 }
             });
         }
@@ -428,7 +428,7 @@ public class JStyleTree extends JXTree implements DragGestureListener, DragSourc
             addActionListener(new ActionListener() {
 
                 public void actionPerformed(ActionEvent e) {
-                    treemodel.newLineSymbolizer(NODE);
+//                    treemodel.newLineSymbolizer(NODE);
                 }
             });
         }
@@ -445,7 +445,7 @@ public class JStyleTree extends JXTree implements DragGestureListener, DragSourc
             addActionListener(new ActionListener() {
 
                 public void actionPerformed(ActionEvent e) {
-                    treemodel.newPolygonSymbolizer(NODE);
+//                    treemodel.newPolygonSymbolizer(NODE);
                 }
             });
         }
@@ -462,7 +462,7 @@ public class JStyleTree extends JXTree implements DragGestureListener, DragSourc
             addActionListener(new ActionListener() {
 
                 public void actionPerformed(ActionEvent e) {
-                    treemodel.newTextSymbolizer(NODE);
+//                    treemodel.newTextSymbolizer(NODE);
                     
                 }
             });
@@ -480,7 +480,7 @@ public class JStyleTree extends JXTree implements DragGestureListener, DragSourc
             addActionListener(new ActionListener() {
 
                 public void actionPerformed(ActionEvent e) {
-                    treemodel.newRasterSymbolizer(NODE);
+//                    treemodel.newRasterSymbolizer(NODE);
                 }
             });
         }

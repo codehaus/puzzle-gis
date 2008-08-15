@@ -23,7 +23,6 @@ package org.puzzle.puzzlecore.view.gui;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.logging.Logger;
-import org.geotools.gui.swing.map.map2d.stream.JStreamNavMap;
 import org.openide.util.Lookup;
 import org.openide.util.LookupEvent;
 import org.openide.util.LookupListener;
@@ -108,11 +107,11 @@ final class ViewTreeTopComponent extends TopComponent {
     private int incV = 0;
     private int incG = 0;
     private void guiNewViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guiNewViewActionPerformed
-        MapView view = new MapView(new JStreamNavMap());
-        view.setName("View "+ ++incV);
-
-        view.open();
-        view.requestActive();
+//        MapView view = new MapView(new JStreamNavMap());
+//        view.setName("View "+ ++incV);
+//
+//        view.open();
+//        view.requestActive();
     }//GEN-LAST:event_guiNewViewActionPerformed
 
     private void guiNewGroupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guiNewGroupActionPerformed
