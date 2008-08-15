@@ -5,12 +5,12 @@
   <kind type="view" />
   <state type="joined" />
   <constraints>
-    <path orientation="vertical" number="20" weight="0.7"/>
-    <path orientation="horizontal" number="20" weight="0.26505016722408026"/>
-    <path orientation="vertical" number="21" weight="0.3860759493670886"/>
+    <path orientation="vertical" number="0" weight="0.7678381256656017"/>
+    <path orientation="horizontal" number="20" weight="0.2596899224806202"/>
+    <path orientation="vertical" number="60" weight="0.3550624133148405"/>
   </constraints>
-  <bounds x="0" y="0" width="0" height="0" />
+  <bounds x="157" y="451" width="551" height="472" />
   <frame state="0"/>
-    <active-tc  id="MiniMapTopComponent" />
+    <active-tc  id="navigatorTC"  prev-id="ComponentInspector" />
     <empty-behavior permanent="true"/>
 </mode>

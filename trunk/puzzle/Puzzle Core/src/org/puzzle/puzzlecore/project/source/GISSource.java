@@ -74,9 +74,8 @@ public interface GISSource {
      * 
      * @param contexts
      * @param project
-     * @return Wizard
      */
-    WizardDescriptor createLayerWizard(Collection<? extends MapContext> contexts, GISProject project);
+    void showLayerWizard(Collection<? extends MapContext> contexts, GISProject project);
     
     /**
      * Get the icon to use for each kind of {@code GISSource}.

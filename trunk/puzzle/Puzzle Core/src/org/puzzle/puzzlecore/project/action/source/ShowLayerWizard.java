@@ -4,6 +4,7 @@
  */
 package org.puzzle.puzzlecore.project.action.source;
 
+import java.awt.Dialog;
 import java.util.Collection;
 import org.geotools.map.MapContext;
 import org.netbeans.api.project.FileOwnerQuery;
@@ -21,6 +22,7 @@ import org.puzzle.puzzlecore.project.source.GISSource;
 
 public final class ShowLayerWizard extends CookieAction {
 
+    @Override
     protected void performAction(Node[] activatedNodes) {
         GISSourceDataObject dataObject = (GISSourceDataObject) activatedNodes[0].getLookup().lookup(DataObject.class);
         GISSource source = dataObject.getSource();
@@ -29,9 +31,8 @@ public final class ShowLayerWizard extends CookieAction {
         
         Collection<? extends MapContext> contexts = prj.getLookup().lookupAll(MapContext.class);
         
-        if(contexts.size() > 0){
-            WizardDescriptor wizard = source.createLayerWizard(contexts, prj);
-            DialogDisplayer.getDefault().notify(wizard);
+        if(contexts.size() > 0 && prj != null){
+            source.showLayerWizard(contexts, prj);
         }else{
             DialogDescriptor desc = new DialogDescriptor("No maps in the project", "Warning", true, null);
             DialogDisplayer.getDefault().notify(desc);
@@ -40,14 +41,17 @@ public final class ShowLayerWizard extends CookieAction {
         
     }
 
+    @Override
     protected int mode() {
         return CookieAction.MODE_EXACTLY_ONE;
     }
 
+    @Override
     public String getName() {
         return NbBundle.getMessage(ShowLayerWizard.class, "CTL_ShowLayerWizard");
     }
 
+    @Override
     protected Class[] cookieClasses() {
         return new Class[]{DataObject.class};
     }
@@ -59,6 +63,7 @@ public final class ShowLayerWizard extends CookieAction {
         putValue("noIconInMenu", Boolean.TRUE);
     }
 
+    @Override
     public HelpCtx getHelpCtx() {
         return HelpCtx.DEFAULT_HELP;
     }

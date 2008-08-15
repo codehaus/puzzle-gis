@@ -16,6 +16,5 @@ public class RichMapContext extends org.geotools.map.DefaultMapContext{
     public RichMapContext(CoordinateReferenceSystem crs){
         super(crs);
     }
-    
-    
+   
 }

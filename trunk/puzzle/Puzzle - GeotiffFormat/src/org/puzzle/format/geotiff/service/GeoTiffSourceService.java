@@ -47,16 +47,19 @@ public class GeoTiffSourceService implements GISFileSourceService{
     private static final String TITLE = "Geotiff";
     
     /** {@inheritDoc} */
+    @Override
     public FileFilter createFilter() {
         return FileFilterFactory.createFileFilter(FileFilterFactory.FORMAT.GEOTIFF);
     }
 
     /** {@inheritDoc} */
+    @Override
     public String getIdentifier() {
         return "SingleGeoTiff";
     }
 
     /** {@inheritDoc} */
+    @Override
     public GISSource restoreSource(Map<String, String> parameters, int id) throws IllegalArgumentException {
         final String url = parameters.get("url");
         
@@ -74,6 +77,7 @@ public class GeoTiffSourceService implements GISFileSourceService{
     }
     
     /** {@inheritDoc} */
+    @Override
     public GISSource createSource(File file) throws IllegalArgumentException {
         String url = null;
         Map<String,String> params = new HashMap<String, String>();
@@ -103,6 +107,7 @@ public class GeoTiffSourceService implements GISFileSourceService{
     }
     
     /** {@inheritDoc} */
+    @Override
     public boolean isValidFile(File file) {
         String name = file.getName().toLowerCase();
         if(name.endsWith("tiff") || name.endsWith("tif")) return true;
@@ -110,6 +115,7 @@ public class GeoTiffSourceService implements GISFileSourceService{
     }
     
     /** {@inheritDoc} */
+    @Override
     public String getTitle(){
         return TITLE;
     }

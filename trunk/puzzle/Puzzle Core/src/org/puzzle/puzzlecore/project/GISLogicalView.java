@@ -65,6 +65,7 @@ public class GISLogicalView implements LogicalViewProvider{
      * 
      * @see org.netbeans.spi.project.ui.LogicalViewProvider#createLogicalView() 
      */
+    @Override
     public Node createLogicalView() {
         
         GISProjectNode root = new GISProjectNode(project);
@@ -72,7 +73,19 @@ public class GISLogicalView implements LogicalViewProvider{
         Node mapNode = null;
         Node docNode = null;
         Node srcNode = null;
-        
+
+        //we must load the sources first
+        try {
+            FileObject sources = project.getSourceFolder(true);
+            DataFolder sourceDataObject = DataFolder.findFolder (sources);
+            srcNode = new GISSourceNode (sourceDataObject, project);
+        } catch (DataObjectNotFoundException donfe) {
+            Logger.getLogger(GISLogicalView.class.getName()).log(
+                    Level.WARNING,"Unable to find sources folder",donfe );
+            srcNode = new AbstractNode (Children.LEAF);
+        }
+
+        //when we have the sources we can load the maps
         try {
             FileObject maps = project.getMapFolder(true);
             DataFolder mapDataObject = DataFolder.findFolder (maps);
@@ -82,7 +95,8 @@ public class GISLogicalView implements LogicalViewProvider{
                     Level.WARNING,"Unable to find maps folder",donfe );
             mapNode = new AbstractNode (Children.LEAF);
         }
-        
+
+        //and finaly the documents that might need the maps
         try {
             FileObject docs = project.getDocFolder(true);
             DataFolder docDataObject = DataFolder.findFolder (docs);
@@ -94,15 +108,7 @@ public class GISLogicalView implements LogicalViewProvider{
             docNode = new AbstractNode (Children.LEAF);
         }
         
-        try {
-            FileObject sources = project.getSourceFolder(true);
-            DataFolder sourceDataObject = DataFolder.findFolder (sources);
-            srcNode = new GISSourceNode (sourceDataObject, project);
-        } catch (DataObjectNotFoundException donfe) {
-            Logger.getLogger(GISLogicalView.class.getName()).log(
-                    Level.WARNING,"Unable to find sources folder",donfe );
-            srcNode = new AbstractNode (Children.LEAF);
-        }
+        
         
         root.getChildren().add(new Node[]{mapNode,docNode,srcNode});
         return root;
@@ -111,6 +117,7 @@ public class GISLogicalView implements LogicalViewProvider{
     /**
      * @see org.netbeans.spi.project.ui.LogicalViewProvider#findPath(Node,Object)
      */
+    @Override
     public Node findPath(Node root, Object target) {
         return null;
     }

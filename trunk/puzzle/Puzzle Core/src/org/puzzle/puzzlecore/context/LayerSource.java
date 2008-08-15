@@ -36,6 +36,9 @@ public final class LayerSource {
     private final Map<String,String> params = new HashMap<String, String>();
     
     public LayerSource(int sourceId, Map<String,String> parameters){
+        if(sourceId <=0 || parameters == null)
+            throw new NullPointerException("SourceID and parameters can not be null");
+
         this.sourceId = sourceId;
         if(parameters != null) this.params.putAll(parameters);
     }
