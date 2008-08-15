@@ -24,16 +24,16 @@ package org.puzzle.puzzlecore.gtextend.widget.style;
 import java.awt.Component;
 import org.geotools.gui.swing.style.StyleElementEditor;
 import org.geotools.map.MapLayer;
-import org.geotools.styling.FeatureTypeStyle;
+import org.geotools.style.MutableFeatureTypeStyle;
 
 /**
  *
  * @author johann sorel
  */
-public class JFeatureTypeStylePane extends javax.swing.JPanel implements StyleElementEditor<FeatureTypeStyle>{
+public class JFeatureTypeStylePane extends javax.swing.JPanel{ //implements StyleElementEditor<MutableFeatureTypeStyle>{
     
     private MapLayer layer = null;
-    private FeatureTypeStyle fts = null;
+    private MutableFeatureTypeStyle fts = null;
     
     /** Creates new form JRulePanel */
     public JFeatureTypeStylePane() {
@@ -42,29 +42,29 @@ public class JFeatureTypeStylePane extends javax.swing.JPanel implements StyleEl
     
     private void parse(){
         if(fts != null){
-            guiAbstract.setText(fts.getAbstract());
-            guiftn.setText(fts.getFeatureTypeName());
-            guiName.setText(fts.getName());
-            guiTitle.setText( fts.getTitle() );
+//            guiAbstract.setText(fts.getAbstract());
+//            guiftn.setText(fts.getFeatureTypeName());
+//            guiName.setText(fts.getName());
+//            guiTitle.setText( fts.getTitle() );
                         
-            fts.getSemanticTypeIdentifiers();
+            fts.semanticTypeIdentifiers();
         }
     }
     
-    public void setEdited(FeatureTypeStyle fts){
+    public void setEdited(MutableFeatureTypeStyle fts){
         this.fts = fts;
         parse();
     }
     
-    public FeatureTypeStyle getEdited(){
+    public MutableFeatureTypeStyle getEdited(){
         apply();
         return fts;
     }
     
     public void apply() {
-        fts.setTitle(guiTitle.getText());
-        fts.setAbstract(guiAbstract.getText());
-        fts.setFeatureTypeName(guiftn.getText());
+//        fts.setTitle(guiTitle.getText());
+//        fts.setAbstract(guiAbstract.getText());
+//        fts.setFeatureTypeName(guiftn.getText());
         fts.setName(guiName.getText());
     }
     
@@ -156,7 +156,7 @@ public class JFeatureTypeStylePane extends javax.swing.JPanel implements StyleEl
     }// </editor-fold>//GEN-END:initComponents
 
     private void guiTitleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guiTitleActionPerformed
-        fts.setTitle(guiTitle.getText());
+//        fts.setTitle(guiTitle.getText());
 }//GEN-LAST:event_guiTitleActionPerformed
     
     

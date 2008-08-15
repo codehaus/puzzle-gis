@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+OpenIDE-Module: org.puzzle.renderer.go2
+OpenIDE-Module-Localizing-Bundle: org/puzzle/renderer/go2/Bundle.properties
+OpenIDE-Module-Specification-Version: 1.0
+

@@ -7,7 +7,7 @@
             <suite-component/>
             <module-dependencies>
                 <dependency>
-                    <code-name-base>org.apache.commons</code-name-base>
+                    <code-name-base>apache.commons</code-name-base>
                     <build-prerequisite/>
                     <compile-dependency/>
                     <run-dependency>

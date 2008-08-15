@@ -27,8 +27,6 @@ import java.util.List;
 import java.util.logging.Logger;
 import org.geotools.gui.swing.contexttree.JContextTree;
 import org.geotools.gui.swing.contexttree.JContextTreePopup;
-import org.geotools.gui.swing.contexttree.column.OpacityTreeTableColumn;
-import org.geotools.gui.swing.contexttree.column.StyleTreeTableColumn;
 import org.geotools.gui.swing.contexttree.column.VisibleTreeTableColumn;
 import org.geotools.gui.swing.contexttree.popup.ContextActiveItem;
 import org.geotools.gui.swing.contexttree.popup.CopyItem;
@@ -37,7 +35,7 @@ import org.geotools.gui.swing.contexttree.popup.DeleteItem;
 import org.geotools.gui.swing.contexttree.popup.DuplicateItem;
 import org.geotools.gui.swing.contexttree.popup.LayerFeatureItem;
 import org.geotools.gui.swing.contexttree.popup.LayerPropertyItem;
-import org.geotools.gui.swing.contexttree.popup.LayerVisibilityItem;
+import org.geotools.gui.swing.contexttree.popup.LayerVisibleItem;
 import org.geotools.gui.swing.contexttree.popup.PasteItem;
 import org.geotools.gui.swing.contexttree.popup.SeparatorItem;
 import org.geotools.gui.swing.propertyedit.LayerCRSPropertyPanel;
@@ -78,11 +76,9 @@ final class ContextTreeTopComponent extends TopComponent {
         BindContextTree tree = new BindContextTree();
 
         tree.addColumn(new VisibleTreeTableColumn());
-        tree.addColumn(new OpacityTreeTableColumn());
-        tree.addColumn(new StyleTreeTableColumn());
 
         JContextTreePopup popupMenu = tree.getPopupMenu();
-        popupMenu.addItem(new LayerVisibilityItem());
+        popupMenu.addItem(new LayerVisibleItem());
         popupMenu.addItem(new SeparatorItem());
         popupMenu.addItem(new LayerFeatureItem());
         popupMenu.addItem(new ContextActiveItem(tree));
@@ -106,7 +102,7 @@ final class ContextTreeTopComponent extends TopComponent {
 
         LayerStylePropertyPanel styles = new LayerStylePropertyPanel();
         styles.addPropertyPanel(new JSimpleStylePanel());
-        styles.addPropertyPanel(new JAdvancedStylePanel());
+//        styles.addPropertyPanel(new JAdvancedStylePanel());
         styles.addPropertyPanel(new JXMLStylePanel());
         lstproperty.add(styles);
 

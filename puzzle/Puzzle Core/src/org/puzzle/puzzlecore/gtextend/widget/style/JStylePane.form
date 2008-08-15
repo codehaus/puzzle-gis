@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.5" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+<Form version="1.5" maxVersion="1.5" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -15,7 +15,6 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="202" max="32767" attributes="0"/>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -35,7 +34,6 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="90" max="32767" attributes="0"/>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -62,7 +60,7 @@
       <Properties>
         <Property name="horizontalAlignment" type="int" value="4"/>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-          <ResourceString bundle="org/puzzle/puzzlecore/gtextend/widget/sldeditor/Bundle.properties" key="name" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+          <ResourceString bundle="" key="name" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
         </Property>
       </Properties>
     </Component>
@@ -70,7 +68,7 @@
       <Properties>
         <Property name="horizontalAlignment" type="int" value="4"/>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-          <ResourceString bundle="org/puzzle/puzzlecore/gtextend/widget/sldeditor/Bundle.properties" key="abstract" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+          <ResourceString bundle="" key="abstract" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
         </Property>
       </Properties>
     </Component>
@@ -83,7 +81,7 @@
         </Property>
         <Property name="horizontalAlignment" type="int" value="4"/>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-          <ResourceString bundle="org/puzzle/puzzlecore/gtextend/widget/sldeditor/Bundle.properties" key="title" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+          <ResourceString bundle="" key="title" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
         </Property>
       </Properties>
     </Component>

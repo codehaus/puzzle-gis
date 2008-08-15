@@ -6,8 +6,9 @@
 package org.puzzle.renderer.streaming;
 
 import java.awt.BorderLayout;
-import org.geotools.gui.swing.map.map2d.stream.StreamingMap2D;
-import org.geotools.gui.swing.map.map2d.stream.control.JStreamNavigationBar;
+//import org.geotools.gui.swing.map.map2d.stream.StreamingMap2D;
+//import org.geotools.gui.swing.map.map2d.stream.control.JStreamNavigationBar;
+import org.geotools.gui.swing.map.map2d.Map2D;
 import org.puzzle.puzzlecore.view.MapView;
 
 /**
@@ -16,13 +17,16 @@ import org.puzzle.puzzlecore.view.MapView;
  */
 public class StreamingMapView extends MapView{
 
-    private final JStreamNavigationBar bar = new JStreamNavigationBar();
     
-    public StreamingMapView(StreamingMap2D map){
+    
+    
+//    private final JStreamNavigationBar bar = new JStreamNavigationBar();
+//    
+    public StreamingMapView(Map2D map){
         super(map);
-        bar.setMap(map);
-        bar.setFloatable(false);
-        add(BorderLayout.NORTH,bar);
+//        bar.setMap(map);
+//        bar.setFloatable(false);
+//        add(BorderLayout.NORTH,bar);
     }
     
     

@@ -48,11 +48,11 @@ import org.geotools.gui.swing.icon.IconBundle;
 import org.geotools.gui.swing.misc.filter.FileFilterFactory;
 import org.geotools.gui.swing.propertyedit.PropertyPane;
 import org.geotools.map.MapLayer;
-import org.geotools.sld.SLDConfiguration;
-import org.geotools.styling.SLDTransformer;
-import org.geotools.styling.StyledLayerDescriptor;
-import org.geotools.xml.Configuration;
-import org.geotools.xml.Parser;
+//import org.geotools.sld.SLDConfiguration;
+//import org.geotools.styling.SLDTransformer;
+//import org.geotools.styling.StyledLayerDescriptor;
+//import org.geotools.xml.Configuration;
+//import org.geotools.xml.Parser;
 
 
 
@@ -159,19 +159,19 @@ public class JXMLStylePanel extends javax.swing.JPanel implements PropertyPane {
         jfc.setFileFilter(fsld);
 
         int ret = jfc.showOpenDialog(this);
-        if (ret == JFileChooser.APPROVE_OPTION) {
-            try {
-                Configuration configuration = new SLDConfiguration();
-                Parser parser = new Parser(configuration);
-
-                InputStream xml = new ByteArrayInputStream(editpane.getText().getBytes());
-                StyledLayerDescriptor sld = (StyledLayerDescriptor) parser.parse( xml );
-                
-                //layer.setStyle(sld);
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(this, "", "", JOptionPane.ERROR_MESSAGE);
-            }
-        }
+//        if (ret == JFileChooser.APPROVE_OPTION) {
+//            try {
+//                Configuration configuration = new SLDConfiguration();
+//                Parser parser = new Parser(configuration);
+//
+//                InputStream xml = new ByteArrayInputStream(editpane.getText().getBytes());
+//                StyledLayerDescriptor sld = (StyledLayerDescriptor) parser.parse( xml );
+//                
+//                //layer.setStyle(sld);
+//            } catch (Exception ex) {
+//                JOptionPane.showMessageDialog(this, "", "", JOptionPane.ERROR_MESSAGE);
+//            }
+//        }
     }//GEN-LAST:event_actionImport
 
     private void actionExport(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actionExport
@@ -181,20 +181,20 @@ public class JXMLStylePanel extends javax.swing.JPanel implements PropertyPane {
         jfc.setFileFilter(fsld);
 
         int ret = jfc.showSaveDialog(this);
-        if (ret == JFileChooser.APPROVE_OPTION) {
-            
-            File f = jfc.getSelectedFile();
-            SLDTransformer st = new SLDTransformer();
-
-            try {
-                String xml = st.transform(layer.getStyle());
-                ArrayList<String> str = new ArrayList<String>();
-                str.add(xml);
-                new FileUtilities().write(f.getPath(), str); 
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
-        }
+//        if (ret == JFileChooser.APPROVE_OPTION) {
+//            
+//            File f = jfc.getSelectedFile();
+//            SLDTransformer st = new SLDTransformer();
+//
+//            try {
+//                String xml = st.transform(layer.getStyle());
+//                ArrayList<String> str = new ArrayList<String>();
+//                str.add(xml);
+//                new FileUtilities().write(f.getPath(), str); 
+//            } catch (Exception ex) {
+//                ex.printStackTrace();
+//            }
+//        }
     }//GEN-LAST:event_actionExport
 
     public JComponent getComponent() {
@@ -202,18 +202,18 @@ public class JXMLStylePanel extends javax.swing.JPanel implements PropertyPane {
     }
 
     public void apply() {
-        try {
-            Configuration configuration = new SLDConfiguration();
-            Parser parser = new Parser(configuration);
-
-            //the xml instance document above
-            InputStream xml = new ByteArrayInputStream(editpane.getText().getBytes());
-
-            //parse
-            StyledLayerDescriptor sld = (StyledLayerDescriptor) parser.parse( xml );
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "", "", JOptionPane.ERROR_MESSAGE);
-        }
+//        try {
+//            Configuration configuration = new SLDConfiguration();
+//            Parser parser = new Parser(configuration);
+//
+//            //the xml instance document above
+//            InputStream xml = new ByteArrayInputStream(editpane.getText().getBytes());
+//
+//            //parse
+//            StyledLayerDescriptor sld = (StyledLayerDescriptor) parser.parse( xml );
+//        } catch (Exception ex) {
+//            JOptionPane.showMessageDialog(this, "", "", JOptionPane.ERROR_MESSAGE);
+//        }
     }
 
     public ImageIcon getIcon() {
@@ -234,14 +234,14 @@ public class JXMLStylePanel extends javax.swing.JPanel implements PropertyPane {
     }
     
     private void parse(){
-        SLDTransformer st = new SLDTransformer();
-
-            try {
-                String xml = st.transform(this.layer.getStyle());            
-                editpane.setText(xml);
-            } catch (TransformerException ex) {
-                ex.printStackTrace();
-            }
+//        SLDTransformer st = new SLDTransformer();
+//
+//            try {
+//                String xml = st.transform(this.layer.getStyle());            
+//                editpane.setText(xml);
+//            } catch (TransformerException ex) {
+//                ex.printStackTrace();
+//            }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton but_check;
