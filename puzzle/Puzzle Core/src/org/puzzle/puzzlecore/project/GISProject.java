@@ -53,6 +53,7 @@ import org.openide.util.Lookup;
 import org.openide.util.Utilities;
 import org.openide.util.lookup.AbstractLookup;
 import org.openide.util.lookup.InstanceContent;
+import org.puzzle.puzzlecore.context.RichMapContext;
 import org.puzzle.puzzlecore.project.source.GISSource;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -140,6 +141,7 @@ public class GISProject implements Project {
      * Get the project folder.
      * @return  A {@code FileObject} representing the project folder.
      */
+    @Override
     public FileObject getProjectDirectory() {
         return projectDir;
     }
@@ -148,6 +150,7 @@ public class GISProject implements Project {
      * Get the {@code Lookup} of the project.
      * @return  The {@code Lookup} of the project.
      */
+    @Override
     public Lookup getLookup() {
         return lookUp;
     }
@@ -156,9 +159,9 @@ public class GISProject implements Project {
      * Add a {@code MapContext} to the project.
      * @param map   The {@code MapContext} to add to the project's {@code Lookup}.
      */
-//    public void addContext(MapContext map){
-//        lookUpContent.add(map);
-//    }
+    public void addContext(MapContext map){
+        lookUpContent.add(map);
+    }
     
     /**
      * Add a {@code GISSource} to the project.<br>

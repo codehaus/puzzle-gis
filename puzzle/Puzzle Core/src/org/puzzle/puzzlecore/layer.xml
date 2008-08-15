@@ -171,22 +171,23 @@
     </folder>
     <folder name="Toolbars">
         <file name="Build_hidden"/>
+        <file name="Clipboard_hidden"/>
         <folder name="GISProject">
             <attr name="position" intvalue="100"/>
             <file name="org-puzzle-puzzlecore-project-action-source-AddFileSource.shadow">
                 <attr name="originalFile" stringvalue="Actions/Puzzle/org-puzzle-puzzlecore-project-action-source-AddFileSource.instance"/>
                 <attr name="position" intvalue="100"/>
             </file>
-            <file name="org-puzzle-puzzlecore-project-action-source-AddDistantSource.shadow">
+            <!--file name="org-puzzle-puzzlecore-project-action-source-AddDistantSource.shadow">
                 <attr name="originalFile" stringvalue="Actions/Puzzle/org-puzzle-puzzlecore-project-action-source-AddDistantSource.instance"/>
                 <attr name="position" intvalue="200"/>
-            </file>
+            </file-->
             <file name="org-puzzle-puzzlecore-project-action-source-AddMapContext.shadow">
                 <attr name="originalFile" stringvalue="Actions/Puzzle/org-puzzle-puzzlecore-project-action-source-AddMapContext.instance"/>
                 <attr name="position" intvalue="300"/>
             </file>
         </folder>
-        <folder name="Context">
+        <!--folder name="Context">
             <attr name="position" intvalue="400"/>
             <file name="org-puzzle-puzzlecore-context-action-newcontext-NewContextAction.instance">
                 <attr name="position" intvalue="100"/>
@@ -200,9 +201,10 @@
             <file name="org-puzzle-puzzlecore-context-action-addlayer-AddWebLayerAction.instance">
                 <attr name="position" intvalue="400"/>
             </file>
-        </folder>
+        </folder-->
         <file name="Edit_hidden"/>
         <file name="File_hidden"/>
+            <file name="UndoRedo_hidden"/>
     </folder>
     <folder name="Menu">
         <file name="Edit_hidden"/>
@@ -253,7 +255,6 @@
     <folder name="Windows2">
         <folder name="Components">
             <file name="ContextTreeTopComponent.settings" url="ContextTreeTopComponentSettings.xml"/>
-            <file name="MiniMapTopComponent.settings" url="MiniMapTopComponentSettings.xml"/>
             <file name="TimeLineTopComponent.settings" url="TimeLineTopComponentSettings.xml"/>
             <file name="ToolTreeTopComponent.settings" url="ToolTreeTopComponentSettings.xml"/>
             <!--<file name="ViewTreeTopComponent.settings" url="ViewTreeTopComponentSettings.xml"/>-->
@@ -265,10 +266,11 @@
             <!--<folder name="navigator">
                 <file name="ViewTreeTopComponent.wstcref" url="ViewTreeTopComponentWstcref.xml"/>
             </folder>-->
+            <folder name="navigator"/>
             <file name="navigator.wsmode" url="navigator.xml"/>
             <folder name="explorer">
                 <file name="ContextTreeTopComponent.wstcref" url="ContextTreeTopComponentWstcref.xml"/>
-                </folder>
+            </folder>
             <folder name="output">
                 <file name="TimeLineTopComponent.wstcref" url="TimeLineTopComponentWstcref.xml"/>
             </folder>

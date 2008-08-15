@@ -21,19 +21,24 @@
 
 package org.puzzle.format.shapefile.service;
 
+import java.awt.Component;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
+import java.text.MessageFormat;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Map;
+import javax.swing.JComponent;
 import org.apache.commons.collections.map.SingletonMap;
 import org.geotools.data.DataStore;
 import org.geotools.data.DataStoreFinder;
 import org.geotools.data.FeatureSource;
 import org.geotools.gui.swing.misc.Render.RandomStyleFactory;
 import org.geotools.map.MapContext;
+import org.geotools.map.MapLayer;
 import org.geotools.style.MutableStyle;
+import org.openide.DialogDisplayer;
 import org.openide.WizardDescriptor;
 import org.openide.util.Exceptions;
 import org.openide.util.Utilities;
@@ -76,8 +81,10 @@ public class ShapeFileSource implements GISSource{
         
     }
     
+    @Override
     public RichMapLayer createLayer(Map<String, String> parameters) {
         MutableStyle style = new RandomStyleFactory().createRandomVectorStyle(featureSource);
+        if(parameters == null) parameters = Collections.emptyMap();
         LayerSource source = new LayerSource(id, parameters);
         RichMapLayer layer = new RichMapLayer(featureSource, style,source);
         layer.setTitle(name);
@@ -85,28 +92,81 @@ public class ShapeFileSource implements GISSource{
         return layer;
     }
 
+    @Override
     public int getID() {
         return id;
     }
 
+    @Override
     public Image getIcon(int type) {
         return Utilities.loadImage(IMAGE_ICON_BASE);
     }
 
+    @Override
     public Map<String, String> getParameters() {
         return Collections.unmodifiableMap(parameters);
     }
 
+    @Override
     public String getTitle() {
         return name;
     }
 
+    @Override
     public String getServiceName() {
         return serviceName;
     }
 
-    public WizardDescriptor createLayerWizard(Collection<? extends MapContext> contexts, GISProject project) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    @Override
+    public void showLayerWizard(Collection<? extends MapContext> contexts, GISProject project) {
+        WizardDescriptor wizardDescriptor = new WizardDescriptor(getPanels(contexts, project));
+        // {0} will be replaced by WizardDesriptor.Panel.getComponent().getName()
+        wizardDescriptor.setTitleFormat(new MessageFormat("{0}"));
+        wizardDescriptor.setTitle("Create a Shapefile layer from source");
+        DialogDisplayer.getDefault().notify(wizardDescriptor);
+        
+        boolean cancelled = wizardDescriptor.getValue() != WizardDescriptor.FINISH_OPTION;
+        if (!cancelled) {
+            MapContext context = ((LayerCreationVisualPanel)panels[0].getComponent()).getContext();
+            String title = ((LayerCreationVisualPanel)panels[0].getComponent()).getTitle();
+            MapLayer layer = createLayer(null);
+            layer.setTitle(title);
+            context.addLayer(layer);
+        }
+        
     }
 
+    private WizardDescriptor.Panel[] panels;
+    
+    private WizardDescriptor.Panel[] getPanels(Collection<? extends MapContext> contexts, GISProject project) {
+        if (panels == null) {
+            panels = new WizardDescriptor.Panel[]{
+                        new LayerCreationWizardPanel(contexts,project)
+                    };
+            String[] steps = new String[panels.length];
+            for (int i = 0; i < panels.length; i++) {
+                Component c = panels[i].getComponent();
+                // Default step name to component name of panel. Mainly useful
+                // for getting the name of the target chooser to appear in the
+                // list of steps.
+                steps[i] = c.getName();
+                if (c instanceof JComponent) { // assume Swing components
+                    JComponent jc = (JComponent) c;
+                    // Sets step number of a component
+                    // TODO if using org.openide.dialogs >= 7.8, can use WizardDescriptor.PROP_*:
+                    jc.putClientProperty(WizardDescriptor.PROP_CONTENT_SELECTED_INDEX, new Integer(i));
+                    // Sets steps names for a panel
+                    jc.putClientProperty(WizardDescriptor.PROP_CONTENT_DATA, steps);
+                    // Turn on subtitle creation on each step
+                    jc.putClientProperty(WizardDescriptor.PROP_AUTO_WIZARD_STYLE, Boolean.TRUE);
+                    // Show steps on the left side with the image on the background
+                    jc.putClientProperty(WizardDescriptor.PROP_CONTENT_DISPLAYED, Boolean.TRUE);
+                    // Turn on numbering of all steps
+                    jc.putClientProperty(WizardDescriptor.PROP_CONTENT_NUMBERED, Boolean.TRUE);
+                }
+            }
+        }
+        return panels;
+    }
+    
 }

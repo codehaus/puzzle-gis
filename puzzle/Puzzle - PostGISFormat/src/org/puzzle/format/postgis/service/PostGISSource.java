@@ -88,8 +88,8 @@ public class PostGISSource implements GISSource{
         return serviceName;
     }
 
-    public WizardDescriptor createLayerWizard(Collection<? extends MapContext> contexts, GISProject project) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    @Override
+    public void showLayerWizard(Collection<? extends MapContext> contexts, GISProject project) {
     }
 
 }
