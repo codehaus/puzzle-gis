@@ -706,6 +706,10 @@
                 <binary-origin>release/modules/ext/swingx-0.8-SNAPSHOT.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
+                <runtime-relative-path>ext/timingframework-1.0.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/timingframework-1.0.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
                 <runtime-relative-path>ext/gt-display-2.9-SNAPSHOT.jar</runtime-relative-path>
                 <binary-origin>release/modules/ext/gt-display-2.9-SNAPSHOT.jar</binary-origin>
             </class-path-extension>
