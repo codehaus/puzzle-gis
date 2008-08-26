@@ -24,7 +24,9 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
@@ -115,6 +117,9 @@ public class GISProject implements Project {
         lookUpContent.add(logicalView);
     }
 
+
+    private List<Integer> alreadyGiven = new ArrayList<Integer>();
+
     /**
      * Get an ID for a new source.<br>
      * When adding a source to the project, an ID is allocated to him. This
@@ -128,9 +133,12 @@ public class GISProject implements Project {
         
         number_loop:
         for(int i=1; i<Integer.MAX_VALUE; i++){
+            if(alreadyGiven.contains(i))continue;
+
             for(GISSource src : sources){
                 if(src.getID() == i) continue number_loop;
             }
+            alreadyGiven.add(i);
             return i;
         }
         
