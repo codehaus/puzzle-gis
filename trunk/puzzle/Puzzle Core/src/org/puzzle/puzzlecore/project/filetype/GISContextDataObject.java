@@ -38,6 +38,8 @@ import org.geotools.map.event.MapLayerListListener;
 import org.geotools.referencing.crs.DefaultGeographicCRS;
 import org.netbeans.api.project.FileOwnerQuery;
 import org.netbeans.api.project.Project;
+import org.opengis.referencing.FactoryException;
+import org.opengis.referencing.operation.TransformException;
 import org.openide.cookies.SaveCookie;
 import org.openide.filesystems.FileAlreadyLockedException;
 import org.openide.filesystems.FileAttributeEvent;
@@ -171,6 +173,15 @@ public class GISContextDataObject extends XMLDataObject {
             for (int i = 0, n = layerNodes.getLength(); i < n; i++) {
                 RichMapLayer layer = parseLayer(layerNodes.item(i));
                 context.addLayer(layer);
+                
+                try {
+                    context.setCoordinateReferenceSystem(layer.getFeatureSource().getSchema().getCoordinateReferenceSystem());
+                } catch (TransformException ex) {
+                    Exceptions.printStackTrace(ex);
+                } catch (FactoryException ex) {
+                    Exceptions.printStackTrace(ex);
+                }
+
             }
         }
 

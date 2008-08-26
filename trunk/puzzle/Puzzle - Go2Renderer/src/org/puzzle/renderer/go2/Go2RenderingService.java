@@ -6,11 +6,7 @@
 package org.puzzle.renderer.go2;
 
 import java.awt.Image;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-//import org.geotools.gui.swing.map.map2d.stream.JStreamEditMap;
-import org.geotools.gui.swing.go.J2DMap;
+import org.geotools.gui.swing.go.J2DMapVolatile;
 import org.geotools.map.MapContext;
 import org.openide.util.Utilities;
 import org.puzzle.puzzlecore.view.MapView;
@@ -28,7 +24,7 @@ public class Go2RenderingService implements RenderingService{
     @Override
     public MapView createView(MapContext context) {
         
-        J2DMap map = new J2DMap();
+        J2DMapVolatile map = new J2DMapVolatile();
         map.getRenderer().setContext(context);
         
         Go2MapView view = new Go2MapView(map);
