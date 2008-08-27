@@ -758,10 +758,6 @@
                 <binary-origin>release/modules/ext/gt-geotiff-2.9-SNAPSHOT.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/geoapi-2.2-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/geoapi-2.2-SNAPSHOT.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
                 <runtime-relative-path>ext/gt-coverageio-2.9-SNAPSHOT.jar</runtime-relative-path>
                 <binary-origin>release/modules/ext/gt-coverageio-2.9-SNAPSHOT.jar</binary-origin>
             </class-path-extension>

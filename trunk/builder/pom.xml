@@ -89,6 +89,7 @@
         <configuration>
           <tasks>
             <property name="GT_BINARY" value="./target/binaries"/>
+            <property name="PUZZLE_GEOAPI_MODULE" value="../puzzle/geoapi/release/modules/ext"/>
             <property name="PUZZLE_GT_MODULE" value="../puzzle/geotools/release/modules/ext"/>
             <property name="PUZZLE_APACHE_MODULE" value="../puzzle/apache_commons/release/modules/ext"/>
                               
@@ -119,6 +120,22 @@
             <copy file="${GT_BINARY}/${commons-logging}"        tofile="${PUZZLE_APACHE_MODULE}/${commons-logging}"/>
             <copy file="${GT_BINARY}/${commons-pool}"           tofile="${PUZZLE_APACHE_MODULE}/${commons-pool}"/>
             <echo>=> Done !</echo>
+            
+            <!-- COPY JAR IN GEOAPI MODULE -->
+            
+            <echo>=> DISPATCHING GEOAPI JARS -------------------------------------</echo>
+            <property name="geoapi"                     value="geoapi-2.2-SNAPSHOT.jar"/>
+            
+            <echo>=> Deleting existing jars </echo>
+            <delete>
+              <fileset dir="${PUZZLE_GEOAPI_MODULE}" includes="*.jar"/>
+            </delete>
+            
+            <echo>=> Copying new jars </echo>
+            <copy file="${GT_BINARY}/${geoapi}"                    tofile="${PUZZLE_GEOAPI_MODULE}/${geoapi}"/>
+            <echo>=> Done !</echo>
+            
+            
                                                         
             <!-- COPY JAR IN GEOTOOLS MODULE -->     
             
@@ -127,7 +144,6 @@
             <property name="bufr"                       value="bufr-1.1.00.jar"/>
             <property name="common"                     value="common-2.2.1.jar"/>
             <property name="ecore"                      value="ecore-2.2.2.jar"/>
-            <property name="geoapi"                     value="geoapi-2.2-SNAPSHOT.jar"/>
             <property name="gnu-regexp"                 value="gnu-regexp-1.1.4.jar"/>
             <property name="grib"                       value="grib-5.1.03.jar"/>
             <property name="gt-api"                     value="gt-api-2.9-SNAPSHOT.jar"/>
@@ -194,7 +210,6 @@
             <copy file="${GT_BINARY}/${bufr}"                      tofile="${PUZZLE_GT_MODULE}/${bufr}"/>
             <copy file="${GT_BINARY}/${common}"                    tofile="${PUZZLE_GT_MODULE}/${common}"/>
             <copy file="${GT_BINARY}/${ecore}"                     tofile="${PUZZLE_GT_MODULE}/${ecore}"/>
-            <copy file="${GT_BINARY}/${geoapi}"                    tofile="${PUZZLE_GT_MODULE}/${geoapi}"/>
             <copy file="${GT_BINARY}/${gnu-regexp}"                tofile="${PUZZLE_GT_MODULE}/${gnu-regexp}"/>
             <copy file="${GT_BINARY}/${grib}"                      tofile="${PUZZLE_GT_MODULE}/${grib}"/>
             <copy file="${GT_BINARY}/${gt-api}"                    tofile="${PUZZLE_GT_MODULE}/${gt-api}"/>
