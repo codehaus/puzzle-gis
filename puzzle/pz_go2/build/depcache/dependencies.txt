@@ -1,0 +1,17 @@
+||:org.puzzle.renderer.go2.Go2RenderingService
+java.lang.StringBuilder
+org.puzzle.renderer.go2.Go2RenderingService
+org.geotools.map.MapContext
+org.openide.util.Utilities
+org.puzzle.puzzlecore.view.RenderingService
+org.geotools.display.renderer.J2DRenderer2
+org.puzzle.renderer.go2.Go2MapView
+java.lang.Object
+org.geotools.gui.swing.go.J2DMapVolatile
+||:org.puzzle.renderer.go2.Go2MapView
+org.geotools.gui.swing.go.control.JNavigationBar
+org.geotools.gui.swing.go.control.JCoordinateBar
+org.puzzle.puzzlecore.view.MapView
+org.geotools.gui.swing.go.GoMap2D
+org.geotools.gui.swing.go.decoration.JNavigationDecoration
+org.puzzle.renderer.go2.Go2MapView
