@@ -2,5 +2,5 @@ Manifest-Version: 1.0
 OpenIDE-Module: org.puzzle.format.geotiff
 OpenIDE-Module-Layer: org/puzzle/format/geotiff/layer.xml
 OpenIDE-Module-Localizing-Bundle: org/puzzle/format/geotiff/Bundle.properties
-OpenIDE-Module-Specification-Version: 1.0
+OpenIDE-Module-Specification-Version: 1.1
 
