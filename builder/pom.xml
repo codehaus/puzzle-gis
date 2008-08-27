@@ -89,8 +89,8 @@
         <configuration>
           <tasks>
             <property name="GT_BINARY" value="./target/binaries"/>
-            <property name="PUZZLE_GT_MODULE" value="../puzzle/GeoTools - 2.9/release/modules/ext"/>
-            <property name="PUZZLE_APACHE_MODULE" value="../puzzle/Apache - Commons/release/modules/ext"/>
+            <property name="PUZZLE_GT_MODULE" value="../puzzle/geotools/release/modules/ext"/>
+            <property name="PUZZLE_APACHE_MODULE" value="../puzzle/apache_commons/release/modules/ext"/>
                               
             <!-- COPY JAR IN APACHE MODULE -->
             
