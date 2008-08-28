@@ -36,6 +36,7 @@ import org.puzzle.puzzlecore.context.ContextService;
 
 public final class AddDBLayerAction extends CallableSystemAction {
 
+    @Override
     public void performAction() {
     
         ContextService service = Lookup.getDefault().lookup(ContextService.class);
@@ -53,7 +54,7 @@ public final class AddDBLayerAction extends CallableSystemAction {
                 MapLayer[] layers = jdc.getLayers();
 
                 for (MapLayer layer : layers) {
-                    context.addLayer(layer);
+                    context.layers().add(layer);
                 }
             }
         }else{
@@ -61,6 +62,7 @@ public final class AddDBLayerAction extends CallableSystemAction {
         }
     }
 
+    @Override
     public String getName() {
         return NbBundle.getMessage(AddDBLayerAction.class, "CTL_AddDBLayerAction");
     }
@@ -70,6 +72,7 @@ public final class AddDBLayerAction extends CallableSystemAction {
         return "org/puzzle/puzzlecore/context/action/addlayer/db_add.png";
     }
 
+    @Override
     public HelpCtx getHelpCtx() {
         return HelpCtx.DEFAULT_HELP;
     }

@@ -33,6 +33,7 @@ import java.util.logging.Logger;
 import javax.swing.JComponent;
 import org.geotools.coverage.grid.GridCoverage2D;
 import org.geotools.data.DataSourceException;
+import org.geotools.factory.CommonFactoryFinder;
 import org.geotools.feature.SchemaException;
 import org.geotools.gce.geotiff.GeoTiffReader;
 import org.geotools.gui.swing.misc.Render.RandomStyleFactory;
@@ -108,8 +109,7 @@ public class GeoTiffSource implements GISSource{
         }catch(SchemaException se){
             
         }
-        
-        layer.setTitle(name);
+        layer.setDescription(CommonFactoryFinder.getStyleFactory(null).createDescription(name,"") );
         
         return layer;
     }
@@ -157,8 +157,8 @@ public class GeoTiffSource implements GISSource{
             MapContext context = ((LayerCreationVisualPanel)panels[0].getComponent()).getContext();
             String title = ((LayerCreationVisualPanel)panels[0].getComponent()).getTitle();
             MapLayer layer = createLayer(null);
-            layer.setTitle(title);
-            context.addLayer(layer);
+            layer.setDescription(CommonFactoryFinder.getStyleFactory(null).createDescription(title,"") );
+            context.layers().add(layer);
         }
         
     }

@@ -28,14 +28,14 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.Set;
 import org.apache.xml.serialize.XMLSerializer;
+import org.geotools.factory.CommonFactoryFinder;
+import org.geotools.map.ContextListener;
 import org.geotools.map.DefaultMapContext;
 import org.geotools.map.MapContext;
 import org.geotools.map.MapLayer;
-import org.geotools.map.event.MapLayerListEvent;
-import org.geotools.map.event.MapLayerListListener;
 import org.geotools.referencing.crs.DefaultGeographicCRS;
+import org.geotools.style.CollectionChangeEvent;
 import org.netbeans.api.project.FileOwnerQuery;
 import org.netbeans.api.project.Project;
 import org.opengis.referencing.FactoryException;
@@ -88,7 +88,7 @@ public class GISContextDataObject extends XMLDataObject {
     private static final String TAG_LAYER_SOURCE_PARAMS = "Parameters";
     private static final String TAG_LAYER_SOURCE_ID = "Id";
     
-    private final ContextListener contextListener = new ContextListener();
+    private final DefaultContextListener contextListener = new DefaultContextListener();
     private MapContext context = null;
 
 
@@ -110,8 +110,6 @@ public class GISContextDataObject extends XMLDataObject {
             gisprj.addContext(getContext());
         }
         
-        
-        
         CookieSet cookies = getCookieSet();
         cookies.add((org.openide.nodes.Node.Cookie) DataEditorSupport.create(this, getPrimaryEntry(), cookies));
     }
@@ -127,8 +125,7 @@ public class GISContextDataObject extends XMLDataObject {
         
         if(context == null){
             context = parseContext(getDOM());
-            context.addMapLayerListListener(contextListener);
-            context.addPropertyChangeListener(contextListener);
+            context.addContextListener(contextListener);
         }
         
         return context;
@@ -163,7 +160,7 @@ public class GISContextDataObject extends XMLDataObject {
     
     private MapContext parseContext(Document gisDoc) {
         context = new DefaultMapContext(DefaultGeographicCRS.WGS84);
-        context.setTitle(getPrimaryFile().getName().replaceAll(".xml", ""));
+        context.setDescription( CommonFactoryFinder.getStyleFactory(null).createDescription(getPrimaryFile().getName().replaceAll(".xml", ""),"") );
         
         if (gisDoc != null) {
             Node rootNode = gisDoc.getFirstChild();
@@ -172,15 +169,8 @@ public class GISContextDataObject extends XMLDataObject {
 
             for (int i = 0, n = layerNodes.getLength(); i < n; i++) {
                 RichMapLayer layer = parseLayer(layerNodes.item(i));
-                context.addLayer(layer);
-                
-                try {
-                    context.setCoordinateReferenceSystem(layer.getFeatureSource().getSchema().getCoordinateReferenceSystem());
-                } catch (TransformException ex) {
-                    Exceptions.printStackTrace(ex);
-                } catch (FactoryException ex) {
-                    Exceptions.printStackTrace(ex);
-                }
+                context.layers().add(layer);
+                context.setCoordinateReferenceSystem(layer.getFeatureSource().getSchema().getCoordinateReferenceSystem());
 
             }
         }
@@ -213,7 +203,7 @@ public class GISContextDataObject extends XMLDataObject {
             for (GISSource src : sources) {
                 if (src.getID() == id) {
                     layer = src.createLayer(params);
-                    layer.setTitle(title);
+                    layer.setDescription( CommonFactoryFinder.getStyleFactory(null).createDescription(title,"") );
                 }
             }
         }
@@ -271,15 +261,14 @@ public class GISContextDataObject extends XMLDataObject {
         }
         
         //create layer nodes
-        MapLayer[] layers = context.getLayers();
-        for(MapLayer layer : layers){
+        for(MapLayer layer : context.layers()){
             //check if we can save the layer
             if(layer instanceof RichMapLayer){
                 RichMapLayer rich = (RichMapLayer) layer;
                 Element layerNode = doc.createElement(TAG_LAYER);
                                 
                 //store layer title
-                String title = rich.getTitle();
+                String title = rich.getDescription().getTitle().toString();
                 Element layerTitle = doc.createElement(TAG_LAYER_TITLE);
                 layerTitle.setTextContent(title);
                 layerNode.appendChild(layerTitle);
@@ -347,30 +336,15 @@ public class GISContextDataObject extends XMLDataObject {
         }
     }
     
-    private class ContextListener implements MapLayerListListener,PropertyChangeListener{
-
-        @Override
-        public void layerAdded(MapLayerListEvent evt) {
-            encodeLayers();
-        }
-
-        @Override
-        public void layerRemoved(MapLayerListEvent evt) {
-            encodeLayers();
-        }
-
-        @Override
-        public void layerChanged(MapLayerListEvent evt) {
-            encodeLayers();
-        }
-
-        @Override
-        public void layerMoved(MapLayerListEvent evt) {
-            encodeLayers();
-        }
+    private class DefaultContextListener implements ContextListener{
 
         @Override
         public void propertyChange(PropertyChangeEvent evt) {
+        }
+
+        @Override
+        public void layerChange(CollectionChangeEvent<MapLayer> arg0) {
+            encodeLayers();
         }
 
     }

@@ -29,7 +29,7 @@ final class LayerCreationVisualPanel extends JPanel {
             @Override
             public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
                 if(value instanceof MapContext){
-                    String title = ((MapContext)value).getTitle();
+                    String title = ((MapContext)value).getDescription().getTitle().toString();
                     return super.getListCellRendererComponent(list, title, index, isSelected, cellHasFocus);
                 }else{
                     return super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);

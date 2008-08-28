@@ -21,13 +21,16 @@
 
 package org.puzzle.puzzlecore.context.action.newcontext;
 
+import org.geotools.factory.CommonFactoryFinder;
 import org.geotools.map.DefaultMapContext;
 import org.geotools.map.MapContext;
 import org.geotools.referencing.crs.DefaultGeographicCRS;
+
 import org.openide.util.HelpCtx;
 import org.openide.util.Lookup;
 import org.openide.util.NbBundle;
 import org.openide.util.actions.CallableSystemAction;
+
 import org.puzzle.puzzlecore.context.ContextService;
 
 /**
@@ -37,15 +40,17 @@ public final class NewContextAction extends CallableSystemAction {
 
     int inc = 0;
     
+    @Override
     public void performAction() {
         MapContext context = new DefaultMapContext(DefaultGeographicCRS.WGS84);
-        context.setTitle("Context " + ++inc);   
+        context.setDescription(CommonFactoryFinder.getStyleFactory(null).createDescription("Context " + ++inc, ""));
         
         ContextService service = Lookup.getDefault().lookup(ContextService.class);
         service.addContext(context);
         service.setActiveContext(context);
     }
 
+    @Override
     public String getName() {
         return NbBundle.getMessage(NewContextAction.class, "CTL_NewContextAction");
     }
@@ -55,6 +60,7 @@ public final class NewContextAction extends CallableSystemAction {
         return "org/puzzle/puzzlecore/context/action/newcontext/newcontext.png";
     }
 
+    @Override
     public HelpCtx getHelpCtx() {
         return HelpCtx.DEFAULT_HELP;
     }
