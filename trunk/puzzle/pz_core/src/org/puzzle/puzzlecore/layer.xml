@@ -266,14 +266,13 @@
             <!--<folder name="navigator">
                 <file name="ViewTreeTopComponent.wstcref" url="ViewTreeTopComponentWstcref.xml"/>
             </folder>-->
-            <folder name="navigator"/>
-            <file name="navigator.wsmode" url="navigator.xml"/>
             <folder name="explorer">
                 <file name="ContextTreeTopComponent.wstcref" url="ContextTreeTopComponentWstcref.xml"/>
             </folder>
             <folder name="output">
                 <file name="TimeLineTopComponent.wstcref" url="TimeLineTopComponentWstcref.xml"/>
             </folder>
+            <folder name="properties"/>
             <folder name="rightSlidingSide">
                 <file name="ToolTreeTopComponent.wstcref" url="ToolTreeTopComponentWstcref.xml"/>
             </folder>
