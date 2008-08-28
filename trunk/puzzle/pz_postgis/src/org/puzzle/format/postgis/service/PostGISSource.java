@@ -26,6 +26,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Map;
 import org.geotools.data.FeatureSource;
+import org.geotools.factory.CommonFactoryFinder;
 import org.geotools.gui.swing.misc.Render.RandomStyleFactory;
 import org.geotools.map.MapContext;
 import org.geotools.style.MutableStyle;
@@ -59,31 +60,37 @@ public class PostGISSource implements GISSource{
                 
     }
     
+    @Override
     public RichMapLayer createLayer(Map<String, String> parameters) {
         MutableStyle style = new RandomStyleFactory().createRandomVectorStyle(featureSource);
         LayerSource source = new LayerSource(id, parameters);
         RichMapLayer layer = new RichMapLayer(featureSource, style,source);
-        layer.setTitle(name);
+        layer.setDescription(CommonFactoryFinder.getStyleFactory(null).createDescription(name,"") );
         
         return layer;
     }
 
+    @Override
     public int getID() {
         return id;
     }
 
+    @Override
     public Image getIcon(int type) {
         return Utilities.loadImage(IMAGE_ICON_BASE);
     }
 
+    @Override
     public Map<String, String> getParameters() {
         return Collections.unmodifiableMap(parameters);
     }
 
+    @Override
     public String getTitle() {
         return name;
     }
 
+    @Override
     public String getServiceName() {
         return serviceName;
     }

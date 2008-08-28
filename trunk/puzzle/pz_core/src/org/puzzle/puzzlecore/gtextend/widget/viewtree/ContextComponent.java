@@ -62,7 +62,7 @@ final class ContextComponent extends RenderAndEditComponent implements TableCell
 
                 if (value != null && value instanceof MapContext) {
                     MapContext context = (MapContext) value;
-                    lbl.setText(context.getTitle());
+                    lbl.setText(context.getDescription().getTitle().toString());
                 }
 
                 return lbl;

@@ -28,7 +28,7 @@ public class Go2RenderingService implements RenderingService{
         map.getRenderer().setContext(context);
         
         Go2MapView view = new Go2MapView(map);
-        view.setDisplayName(context.getTitle() + " - Go2");
+        view.setDisplayName(context.getDescription().getTitle().toString() + " - Go2");
         return view;
     }
 

@@ -34,6 +34,7 @@ import org.apache.commons.collections.map.SingletonMap;
 import org.geotools.data.DataStore;
 import org.geotools.data.DataStoreFinder;
 import org.geotools.data.FeatureSource;
+import org.geotools.factory.CommonFactoryFinder;
 import org.geotools.gui.swing.misc.Render.RandomStyleFactory;
 import org.geotools.map.MapContext;
 import org.geotools.map.MapLayer;
@@ -87,7 +88,7 @@ public class ShapeFileSource implements GISSource{
         if(parameters == null) parameters = Collections.emptyMap();
         LayerSource source = new LayerSource(id, parameters);
         RichMapLayer layer = new RichMapLayer(featureSource, style,source);
-        layer.setTitle(name);
+        layer.setDescription(CommonFactoryFinder.getStyleFactory(null).createDescription(name,"") );
         
         return layer;
     }
@@ -130,8 +131,8 @@ public class ShapeFileSource implements GISSource{
             MapContext context = ((LayerCreationVisualPanel)panels[0].getComponent()).getContext();
             String title = ((LayerCreationVisualPanel)panels[0].getComponent()).getTitle();
             MapLayer layer = createLayer(null);
-            layer.setTitle(title);
-            context.addLayer(layer);
+            layer.setDescription(CommonFactoryFinder.getStyleFactory(null).createDescription(title,"") );
+            context.layers().add(layer);
         }
         
     }
