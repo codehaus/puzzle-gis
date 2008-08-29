@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+OpenIDE-Module: org.puzzle
+OpenIDE-Module-Layer: org/puzzle/layer.xml
+OpenIDE-Module-Localizing-Bundle: org/puzzle/Bundle.properties
+OpenIDE-Module-Specification-Version: 1.0
+

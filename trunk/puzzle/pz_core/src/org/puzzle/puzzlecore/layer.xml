@@ -170,8 +170,6 @@
         </folder>
     </folder>
     <folder name="Toolbars">
-        <file name="Build_hidden"/>
-        <file name="Clipboard_hidden"/>
         <folder name="GISProject">
             <attr name="position" intvalue="100"/>
             <file name="org-puzzle-puzzlecore-project-action-source-AddFileSource.shadow">
@@ -202,41 +200,13 @@
                 <attr name="position" intvalue="400"/>
             </file>
         </folder-->
-        <file name="Edit_hidden"/>
-        <file name="File_hidden"/>
-            <file name="UndoRedo_hidden"/>
     </folder>
     <folder name="Menu">
-        <file name="Edit_hidden"/>
-        <folder name="File">
-            <file name="Separator2.instance_hidden"/>
-            <file name="Separator3.instance_hidden"/>
-            <file name="org-openide-actions-PageSetupAction.instance_hidden"/>
-            <file name="org-openide-actions-PrintAction.instance_hidden"/>
-            <file name="org-openide-actions-SaveAction.instance_hidden"/>
-            <file name="org-openide-actions-SaveAllAction.instance_hidden"/>
-            <file name="org-openide-actions-SaveAsAction.shadow_hidden"/>
-        </folder>
-        <folder name="GoTo">
-            <file name="SeparatorBeforeGoToLine.instance_hidden"/>
-            <file name="core-windows-SeparatorAfterRecentList.instance_hidden"/>
-            <file name="org-netbeans-modules-favorites-SelectInFavorites.shadow_hidden"/>
-            <file name="org-openide-actions-GotoAction.shadow_hidden"/>
-        </folder>
-        <folder name="Tools">
-            <file name="Separator1.instance_hidden"/>
-            <file name="Separator2.instance_hidden"/>
-            <file name="org-netbeans-modules-favorites-templates-TemplatesAction.instance_hidden"/>
-            <file name="org-openide-actions-ToolsAction.instance_hidden"/>
-        </folder>
         <folder name="Window">
-            <file name="CloneDocumentAction.shadow_hidden"/>
             <file name="ContextTreeAction.shadow">
                 <attr name="originalFile" stringvalue="Actions/Window/org-puzzle-puzzlecore-context-gui-contexttree-ContextTreeAction.instance"/>
                 <attr name="position" intvalue="100"/>
             </file>
-            <file name="Output_hidden"/>
-            <file name="SwitchToRecentDocumentAction.shadow_hidden"/>
             <file name="TimeLineAction.shadow">
                 <attr name="originalFile" stringvalue="Actions/Window/org-puzzle-puzzlecore-view-gui-timeline-TimeLineAction.instance"/>
             </file>
@@ -244,12 +214,10 @@
                 <attr name="originalFile" stringvalue="Actions/Window/org-puzzle-puzzlecore-tool-gui-toolbox-ToolTreeAction.instance"/>
                 <attr name="position" intvalue="300"/>
             </file>
-            <file name="ViewRuntimeTabAction.shadow_hidden"/>
             <!--<file name="ViewTreeAction.shadow">
                 <attr name="originalFile" stringvalue="Actions/Window/org-puzzle-puzzlecore-view-gui-ViewTreeAction.instance"/>
                 <attr name="position" intvalue="400"/>
             </file>-->
-            <file name="org-netbeans-core-actions-GlobalPropertiesAction.shadow_hidden"/>
         </folder>
     </folder>
     <folder name="Windows2">
@@ -258,15 +226,15 @@
             <file name="TimeLineTopComponent.settings" url="TimeLineTopComponentSettings.xml"/>
             <file name="ToolTreeTopComponent.settings" url="ToolTreeTopComponentSettings.xml"/>
             <!--<file name="ViewTreeTopComponent.settings" url="ViewTreeTopComponentSettings.xml"/>-->
-            <file name="favorites.settings_hidden"/>
-            <file name="output.settings_hidden"/>
-            <file name="runtime.settings_hidden"/>
         </folder>
         <folder name="Modes">
             <!--<folder name="navigator">
                 <file name="ViewTreeTopComponent.wstcref" url="ViewTreeTopComponentWstcref.xml"/>
             </folder>-->
             <folder name="explorer">
+                <file name="ContextTreeTopComponent.wstcref"/>
+            </folder>
+            <folder name="navigator">
                 <file name="ContextTreeTopComponent.wstcref" url="ContextTreeTopComponentWstcref.xml"/>
             </folder>
             <folder name="output">

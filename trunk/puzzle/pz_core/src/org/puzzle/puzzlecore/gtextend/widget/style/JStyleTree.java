@@ -21,7 +21,6 @@
 package org.puzzle.puzzlecore.gtextend.widget.style;
 
 import java.awt.Component;
-import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.Transferable;
@@ -43,7 +42,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.InputEvent;
 import javax.swing.Icon;
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
@@ -55,10 +53,10 @@ import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.TreePath;
 import javax.swing.tree.TreeSelectionModel;
 import org.geotools.gui.swing.icon.IconBundle;
-import org.geotools.gui.swing.misc.Render.RandomStyleFactory;
 import org.geotools.style.MutableFeatureTypeStyle;
 import org.geotools.style.MutableRule;
 import org.geotools.style.MutableStyle;
+import org.geotools.style.RandomStyleFactory;
 import org.opengis.style.Symbolizer;
 import org.jdesktop.swingx.JXTree;
 
