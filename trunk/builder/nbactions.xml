@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <actions>
         <action>
-            <actionName>CUSTOM-DISPATCH</actionName>
-            <displayName>DISPATCH</displayName>
+            <actionName>CUSTOM-DOWNLOAD and DISPATCH</actionName>
+            <displayName>DOWNLOAD and DISPATCH</displayName>
             <goals>
+                <goal>dependency:copy-dependencies</goal>
                 <goal>antrun:run</goal>
             </goals>
         </action>

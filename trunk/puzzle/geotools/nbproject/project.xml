@@ -678,240 +678,240 @@
                 <package>ucar.units</package>
             </public-packages>
             <class-path-extension>
-                <runtime-relative-path>ext/netcdf-2.2.20.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/netcdf-2.2.20.jar</binary-origin>
+                <runtime-relative-path>ext/netcdf.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/netcdf.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/jts-1.9.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/jts-1.9.jar</binary-origin>
+                <runtime-relative-path>ext/jts.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/jts.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/xml-apis-xerces-2.7.1.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/xml-apis-xerces-2.7.1.jar</binary-origin>
+                <runtime-relative-path>ext/xml-apis-xerces.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/xml-apis-xerces.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/gt-epsg-hsql-2.9-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt-epsg-hsql-2.9-SNAPSHOT.jar</binary-origin>
+                <runtime-relative-path>ext/gt-epsg-hsql.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gt-epsg-hsql.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/postgis-driver-1.0.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/postgis-driver-1.0.jar</binary-origin>
+                <runtime-relative-path>ext/postgis-driver.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/postgis-driver.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/gt-image-2.9-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt-image-2.9-SNAPSHOT.jar</binary-origin>
+                <runtime-relative-path>ext/gt-image.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gt-image.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/xsd-2.2.2.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/xsd-2.2.2.jar</binary-origin>
+                <runtime-relative-path>ext/xsd.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/xsd.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/hsqldb-1.8.0.7.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/hsqldb-1.8.0.7.jar</binary-origin>
+                <runtime-relative-path>ext/hsqldb.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/hsqldb.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/swingx-0.8-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/swingx-0.8-SNAPSHOT.jar</binary-origin>
+                <runtime-relative-path>ext/swingx.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/swingx.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/timingframework-1.0.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/timingframework-1.0.jar</binary-origin>
+                <runtime-relative-path>ext/timingframework.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/timingframework.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/gt-display-2.9-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt-display-2.9-SNAPSHOT.jar</binary-origin>
+                <runtime-relative-path>ext/gt-display.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gt-display.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/log4j-1.2.12.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/log4j-1.2.12.jar</binary-origin>
+                <runtime-relative-path>ext/log4j.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/log4j.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/picocontainer-1.2.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/picocontainer-1.2.jar</binary-origin>
+                <runtime-relative-path>ext/picocontainer.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/picocontainer.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/postgresql-8.1-407.jdbc3.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/postgresql-8.1-407.jdbc3.jar</binary-origin>
+                <runtime-relative-path>ext/postgresql.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/postgresql.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/jaxb-impl-2.1.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/jaxb-impl-2.1.jar</binary-origin>
+                <runtime-relative-path>ext/jaxb-impl.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/jaxb-impl.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/gnu-regexp-1.1.4.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gnu-regexp-1.1.4.jar</binary-origin>
+                <runtime-relative-path>ext/gnu-regexp.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gnu-regexp.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/gt-jdbc-2.9-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt-jdbc-2.9-SNAPSHOT.jar</binary-origin>
+                <runtime-relative-path>ext/gt-jdbc.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gt-jdbc.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/gt-sld-2.9-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt-sld-2.9-SNAPSHOT.jar</binary-origin>
+                <runtime-relative-path>ext/gt-sld.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gt-sld.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/gt-style-2.9-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt-style-2.9-SNAPSHOT.jar</binary-origin>
+                <runtime-relative-path>ext/gt-style.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gt-style.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/slf4j-api-1.4.0.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/slf4j-api-1.4.0.jar</binary-origin>
+                <runtime-relative-path>ext/slf4j-api.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/slf4j-api.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/gt-widgets-swing-pending-2.9-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt-widgets-swing-pending-2.9-SNAPSHOT.jar</binary-origin>
+                <runtime-relative-path>ext/gt-widgets-swing-pending.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gt-widgets-swing-pending.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/gt-geotiff-2.9-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt-geotiff-2.9-SNAPSHOT.jar</binary-origin>
+                <runtime-relative-path>ext/gt-geotiff.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gt-geotiff.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/gt-coverageio-2.9-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt-coverageio-2.9-SNAPSHOT.jar</binary-origin>
+                <runtime-relative-path>ext/gt-coverageio.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gt-coverageio.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/gt-referencing3D-2.9-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt-referencing3D-2.9-SNAPSHOT.jar</binary-origin>
+                <runtime-relative-path>ext/gt-referencing3D.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gt-referencing3D.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/gt-main-2.9-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt-main-2.9-SNAPSHOT.jar</binary-origin>
+                <runtime-relative-path>ext/gt-main.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gt-main.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/xpp3-1.1.3.4.O.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/xpp3-1.1.3.4.O.jar</binary-origin>
+                <runtime-relative-path>ext/xpp3.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/xpp3.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/gt-render-2.9-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt-render-2.9-SNAPSHOT.jar</binary-origin>
+                <runtime-relative-path>ext/gt-render.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gt-render.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/jdom-1.0.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/jdom-1.0.jar</binary-origin>
+                <runtime-relative-path>ext/jdom.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/jdom.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/gt-api-2.9-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt-api-2.9-SNAPSHOT.jar</binary-origin>
+                <runtime-relative-path>ext/gt-api.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gt-api.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/jlfgr-1.0.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/jlfgr-1.0.jar</binary-origin>
+                <runtime-relative-path>ext/jlfgr.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/jlfgr.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/gt-metadata-2.9-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt-metadata-2.9-SNAPSHOT.jar</binary-origin>
+                <runtime-relative-path>ext/gt-metadata.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gt-metadata.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/gt-go2-2.9-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt-go2-2.9-SNAPSHOT.jar</binary-origin>
+                <runtime-relative-path>ext/gt-go2.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gt-go2.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/gt-referencing-2.9-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt-referencing-2.9-SNAPSHOT.jar</binary-origin>
+                <runtime-relative-path>ext/gt-referencing.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gt-referencing.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/gt-shapefile-2.9-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt-shapefile-2.9-SNAPSHOT.jar</binary-origin>
+                <runtime-relative-path>ext/gt-shapefile.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gt-shapefile.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/jaxb-api-2.1.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/jaxb-api-2.1.jar</binary-origin>
+                <runtime-relative-path>ext/jaxb-api.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/jaxb-api.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/gt-postgis-2.9-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt-postgis-2.9-SNAPSHOT.jar</binary-origin>
+                <runtime-relative-path>ext/gt-postgis.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gt-postgis.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/vecmath-1.3.1.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/vecmath-1.3.1.jar</binary-origin>
+                <runtime-relative-path>ext/vecmath.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/vecmath.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/common-2.2.1.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/common-2.2.1.jar</binary-origin>
+                <runtime-relative-path>ext/common.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/common.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/org.w3.xlink-2.9-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/org.w3.xlink-2.9-SNAPSHOT.jar</binary-origin>
+                <runtime-relative-path>ext/org.w3.xlink.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/org.w3.xlink.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/gt-xml-2.9-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt-xml-2.9-SNAPSHOT.jar</binary-origin>
+                <runtime-relative-path>ext/gt-xml.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gt-xml.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/gt-wms-2.9-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt-wms-2.9-SNAPSHOT.jar</binary-origin>
+                <runtime-relative-path>ext/gt-wms.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gt-wms.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/net.opengis.wfs-2.9-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/net.opengis.wfs-2.9-SNAPSHOT.jar</binary-origin>
+                <runtime-relative-path>ext/net.opengis.wfs.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/net.opengis.wfs.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/gt-xsd-wfs-2.9-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt-xsd-wfs-2.9-SNAPSHOT.jar</binary-origin>
+                <runtime-relative-path>ext/gt-xsd-wfs.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gt-xsd-wfs.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/xercesImpl-2.8.0.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/xercesImpl-2.8.0.jar</binary-origin>
+                <runtime-relative-path>ext/xercesImpl.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/xercesImpl.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/net.opengis.ows-2.9-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/net.opengis.ows-2.9-SNAPSHOT.jar</binary-origin>
+                <runtime-relative-path>ext/net.opengis.ows.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/net.opengis.ows.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/ecore-2.2.2.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/ecore-2.2.2.jar</binary-origin>
+                <runtime-relative-path>ext/ecore.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/ecore.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/gt-cql-2.9-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt-cql-2.9-SNAPSHOT.jar</binary-origin>
+                <runtime-relative-path>ext/gt-cql.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gt-cql.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/gt-graph-2.9-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt-graph-2.9-SNAPSHOT.jar</binary-origin>
+                <runtime-relative-path>ext/gt-graph.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gt-graph.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/bufr-1.1.00.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/bufr-1.1.00.jar</binary-origin>
+                <runtime-relative-path>ext/bufr.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/bufr.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/gt-data-2.9-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt-data-2.9-SNAPSHOT.jar</binary-origin>
+                <runtime-relative-path>ext/gt-data.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gt-data.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/swing-layout-1.0.2.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/swing-layout-1.0.2.jar</binary-origin>
+                <runtime-relative-path>ext/swing-layout.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/swing-layout.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/grib-5.1.03.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/grib-5.1.03.jar</binary-origin>
+                <runtime-relative-path>ext/grib.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/grib.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/gt-wfs-2.9-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt-wfs-2.9-SNAPSHOT.jar</binary-origin>
+                <runtime-relative-path>ext/gt-wfs.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gt-wfs.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/gt-coverageio-netcdf-2.9-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt-coverageio-netcdf-2.9-SNAPSHOT.jar</binary-origin>
+                <runtime-relative-path>ext/gt-coverageio-netcdf.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gt-coverageio-netcdf.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/gt-coverage-2.9-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt-coverage-2.9-SNAPSHOT.jar</binary-origin>
+                <runtime-relative-path>ext/gt-coverage.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gt-coverage.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/gt-widgets-swing-2.9-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt-widgets-swing-2.9-SNAPSHOT.jar</binary-origin>
+                <runtime-relative-path>ext/gt-widgets-swing.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gt-widgets-swing.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/jsr-275-1.0-beta-2.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/jsr-275-1.0-beta-2.jar</binary-origin>
+                <runtime-relative-path>ext/jsr-275.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/jsr-275.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/xml-apis-1.3.03.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/xml-apis-1.3.03.jar</binary-origin>
+                <runtime-relative-path>ext/xml-apis.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/xml-apis.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/slf4j-jdk14-1.4.0.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/slf4j-jdk14-1.4.0.jar</binary-origin>
+                <runtime-relative-path>ext/slf4j-jdk14.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/slf4j-jdk14.jar</binary-origin>
             </class-path-extension>
         </data>
     </configuration>
