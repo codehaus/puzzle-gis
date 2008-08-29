@@ -70,8 +70,8 @@
                 <package>org.opengis.webservice.feature</package>
             </public-packages>
             <class-path-extension>
-                <runtime-relative-path>ext/geoapi-2.2-SNAPSHOT.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/geoapi-2.2-SNAPSHOT.jar</binary-origin>
+                <runtime-relative-path>ext/geoapi.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/geoapi.jar</binary-origin>
             </class-path-extension>
         </data>
     </configuration>
