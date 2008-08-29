@@ -12,12 +12,6 @@
     <name>Puzzle - Jar Collector</name>
 
 
-
-  <!-- =========================================================== -->
-  <!--     Dependencies to be inherited by all modules.            -->
-  <!-- =========================================================== -->
-
-
   <!-- =========================================================== -->
   <!--     Dependencies optionals, replace version number for GT dependencies     -->
   <!-- =========================================================== -->
@@ -177,34 +171,27 @@
             <artifactId>gt-coverageio</artifactId>
             <version>${geotools.version}</version>
         </dependency>
-
         <dependency>
             <groupId>org.geotools</groupId>
             <artifactId>gt-coverageio-netcdf</artifactId>
             <version>${geotools.version}</version>
         </dependency>
-
         <dependency>
             <groupId>org.geotools</groupId>
             <artifactId>gt-display</artifactId>
             <version>${geotools.version}</version>
         </dependency>
-
         <dependency>
             <groupId>org.geotools</groupId>
             <artifactId>gt-go2</artifactId>
             <version>${geotools.version}</version>
         </dependency>
-
         <dependency>
             <groupId>org.geotools</groupId>
             <artifactId>gt-widgets-swing-pending</artifactId>
             <version>${geotools.version}</version>
         </dependency>
     </dependencies>
-
-
-
 
 
   <!-- =========================================================== -->
@@ -250,181 +237,119 @@
                         <property name="PUZZLE_APACHE_MODULE" value="../puzzle/apache_commons/release/modules/ext" />
 
 
-            <!-- COPY JAR IN APACHE MODULE -->
-
                         <echo>=&gt; DISPATCHING APACHE COMMONS JARS -------------------------------------</echo>
-                        <property name="commons-beanutils" value="commons-beanutils.jar" />
-                        <property name="commons-codec" value="commons-codec.jar" />
-                        <property name="commons-collections" value="commons-collections.jar" />
-                        <property name="commons-dbcp" value="commons-dbcp.jar" />
-                        <property name="commons-httpclient" value="commons-httpclient.jar" />
-                        <property name="commons-jxpath" value="commons-jxpath.jar" />
-                        <property name="commons-logging" value="commons-logging.jar" />
-                        <property name="commons-pool" value="commons-pool.jar" />
-
                         <echo>=&gt; Deleting existing jars</echo>
                         <delete>
                             <fileset dir="${PUZZLE_APACHE_MODULE}" includes="*.jar" />
                         </delete>
-
                         <echo>=&gt; Copying new jars</echo>
-                        <copy file="${GT_BINARY}/${commons-beanutils}" tofile="${PUZZLE_APACHE_MODULE}/${commons-beanutils}" />
-                        <copy file="${GT_BINARY}/${commons-codec}" tofile="${PUZZLE_APACHE_MODULE}/${commons-codec}" />
-                        <copy file="${GT_BINARY}/${commons-collections}" tofile="${PUZZLE_APACHE_MODULE}/${commons-collections}" />
-                        <copy file="${GT_BINARY}/${commons-dbcp}" tofile="${PUZZLE_APACHE_MODULE}/${commons-dbcp}" />
-                        <copy file="${GT_BINARY}/${commons-httpclient}" tofile="${PUZZLE_APACHE_MODULE}/${commons-httpclient}" />
-                        <copy file="${GT_BINARY}/${commons-jxpath}" tofile="${PUZZLE_APACHE_MODULE}/${commons-jxpath}" />
-                        <copy file="${GT_BINARY}/${commons-logging}" tofile="${PUZZLE_APACHE_MODULE}/${commons-logging}" />
-                        <copy file="${GT_BINARY}/${commons-pool}" tofile="${PUZZLE_APACHE_MODULE}/${commons-pool}" />
+                        <copy todir="${PUZZLE_APACHE_MODULE}">
+                            <fileset dir="${GT_BINARY}" casesensitive="yes">
+                              <patternset id="apache">
+                                <include name="commons-beanutils.jar"/>
+                                <include name="commons-codec.jar"/>
+                                <include name="commons-collections.jar"/>
+                                <include name="commons-dbcp.jar"/>
+                                <include name="commons-httpclient.jar"/>
+                                <include name="commons-jxpath.jar"/>
+                                <include name="commons-logging.jar"/>
+                                <include name="commons-pool.jar"/>
+                              </patternset>
+                            </fileset>
+                        </copy>
                         <echo>=&gt; Done !</echo>
 
-            <!-- COPY JAR IN GEOAPI MODULE -->
 
                         <echo>=&gt; DISPATCHING GEOAPI JARS -------------------------------------</echo>
-                        <property name="geoapi" value="geoapi.jar" />
-
                         <echo>=&gt; Deleting existing jars</echo>
                         <delete>
                             <fileset dir="${PUZZLE_GEOAPI_MODULE}" includes="*.jar" />
                         </delete>
-
                         <echo>=&gt; Copying new jars</echo>
-                        <copy file="${GT_BINARY}/${geoapi}" tofile="${PUZZLE_GEOAPI_MODULE}/${geoapi}" />
+                        <copy todir="${PUZZLE_GEOAPI_MODULE}">
+                            <fileset dir="${GT_BINARY}" casesensitive="yes">
+                              <patternset id="geoapi">
+                                <include name="geoapi.jar"/>
+                              </patternset>
+                            </fileset>
+                        </copy>
                         <echo>=&gt; Done !</echo>
-
-
-
-            <!-- COPY JAR IN GEOTOOLS MODULE -->
-
+                        
+                        
                         <echo>=&gt; DISPATCHING GEOTOOLS JARS -------------------------------------</echo>
-
-                        <property name="bufr" value="bufr.jar" />
-                        <property name="common" value="common.jar" />
-                        <property name="ecore" value="ecore.jar" />
-                        <property name="gnu-regexp" value="gnu-regexp.jar" />
-                        <property name="grib" value="grib.jar" />
-                        <property name="gt-api" value="gt-api.jar" />
-                        <property name="gt-coverage" value="gt-coverage.jar" />
-                        <property name="gt-coverageio" value="gt-coverageio.jar" />
-                        <property name="gt-coverageio-netcdf" value="gt-coverageio-netcdf.jar" />
-                        <property name="gt-cql" value="gt-cql.jar" />
-                        <property name="gt-data" value="gt-data.jar" />
-                        <property name="gt-display" value="gt-display.jar" />
-                        <property name="gt-epsg-hsql" value="gt-epsg-hsql.jar" />
-                        <property name="gt-geotiff" value="gt-geotiff.jar" />
-                        <property name="gt-go2" value="gt-go2.jar" />
-                        <property name="gt-graph" value="gt-graph.jar" />
-                        <property name="gt-image" value="gt-image.jar" />
-                        <property name="gt-jdbc" value="gt-jdbc.jar" />
-                        <property name="gt-main" value="gt-main.jar" />
-                        <property name="gt-metadata" value="gt-metadata.jar" />
-                        <property name="gt-postgis" value="gt-postgis.jar" />
-                        <property name="gt-referencing3D" value="gt-referencing3D.jar" />
-                        <property name="gt-referencing" value="gt-referencing.jar" />
-                        <property name="gt-render" value="gt-render.jar" />
-                        <property name="gt-shapefile" value="gt-shapefile.jar" />
-                        <property name="gt-sld" value="gt-sld.jar" />
-                        <property name="gt-style" value="gt-style.jar" />
-                        <property name="gt-wfs" value="gt-wfs.jar" />
-                        <property name="gt-widgets-swing" value="gt-widgets-swing.jar" />
-                        <property name="gt-widgets-swing-pending" value="gt-widgets-swing-pending.jar" />
-                        <property name="gt-wms" value="gt-wms.jar" />
-                        <property name="gt-xml" value="gt-xml.jar" />
-                        <property name="gt-xsd-wfs" value="gt-xsd-wfs.jar" />
-                        <property name="hsqldb" value="hsqldb.jar" />
-                        <property name="jaxb-api" value="jaxb-api.jar" />
-                        <property name="jaxb-impl" value="jaxb-impl.jar" />
-                        <property name="jdom" value="jdom.jar" />
-                        <property name="jlfgr" value="jlfgr.jar" />
-                        <property name="jsr275" value="jsr-275.jar" />
-                        <property name="jts" value="jts.jar" />
-                        <property name="log4j" value="log4j.jar" />
-                        <property name="net.opengis.ows" value="net.opengis.ows.jar" />
-                        <property name="net.opengis.wfs" value="net.opengis.wfs.jar" />
-                        <property name="netcdf" value="netcdf.jar" />
-                        <property name="org.w3.xlink" value="org.w3.xlink.jar" />
-                        <property name="picocontainer" value="picocontainer.jar" />
-                        <property name="postgis-driver" value="postgis-driver.jar" />
-                        <property name="postgresql" value="postgresql.jar" />
-                        <property name="slf4j-api" value="slf4j-api.jar" />
-                        <property name="slf4j-jdk14" value="slf4j-jdk14.jar" />
-                        <property name="swing-layout" value="swing-layout.jar" />
-                        <property name="swingx-0.8" value="swingx.jar" />
-                        <property name="timing" value="timingframework.jar" />
-                        <property name="vecmath" value="vecmath.jar" />
-                        <property name="xercesImpl" value="xercesImpl.jar" />
-                        <property name="xml-apis" value="xml-apis.jar" />
-                        <property name="xml-apis-xerces" value="xml-apis-xerces.jar" />
-                        <property name="xpp3" value="xpp3.jar" />
-                        <property name="xsd" value="xsd.jar" />
-
                         <echo>=&gt; Deleting existing jars</echo>
                         <delete>
                             <fileset dir="${PUZZLE_GT_MODULE}" includes="*.jar" />
                         </delete>
-
                         <echo>=&gt; Copying new jars</echo>
-                        <copy file="${GT_BINARY}/${bufr}" tofile="${PUZZLE_GT_MODULE}/${bufr}" />
-                        <copy file="${GT_BINARY}/${common}" tofile="${PUZZLE_GT_MODULE}/${common}" />
-                        <copy file="${GT_BINARY}/${ecore}" tofile="${PUZZLE_GT_MODULE}/${ecore}" />
-                        <copy file="${GT_BINARY}/${gnu-regexp}" tofile="${PUZZLE_GT_MODULE}/${gnu-regexp}" />
-                        <copy file="${GT_BINARY}/${grib}" tofile="${PUZZLE_GT_MODULE}/${grib}" />
-                        <copy file="${GT_BINARY}/${gt-api}" tofile="${PUZZLE_GT_MODULE}/${gt-api}" />
-                        <copy file="${GT_BINARY}/${gt-coverage}" tofile="${PUZZLE_GT_MODULE}/${gt-coverage}" />
-                        <copy file="${GT_BINARY}/${gt-coverageio}" tofile="${PUZZLE_GT_MODULE}/${gt-coverageio}" />
-                        <copy file="${GT_BINARY}/${gt-coverageio-netcdf}" tofile="${PUZZLE_GT_MODULE}/${gt-coverageio-netcdf}" />
-                        <copy file="${GT_BINARY}/${gt-cql}" tofile="${PUZZLE_GT_MODULE}/${gt-cql}" />
-                        <copy file="${GT_BINARY}/${gt-data}" tofile="${PUZZLE_GT_MODULE}/${gt-data}" />
-                        <copy file="${GT_BINARY}/${gt-display}" tofile="${PUZZLE_GT_MODULE}/${gt-display}" />
-                        <copy file="${GT_BINARY}/${gt-epsg-hsql}" tofile="${PUZZLE_GT_MODULE}/${gt-epsg-hsql}" />
-                        <copy file="${GT_BINARY}/${gt-geotiff}" tofile="${PUZZLE_GT_MODULE}/${gt-geotiff}" />
-                        <copy file="${GT_BINARY}/${gt-go2}" tofile="${PUZZLE_GT_MODULE}/${gt-go2}" />
-                        <copy file="${GT_BINARY}/${gt-graph}" tofile="${PUZZLE_GT_MODULE}/${gt-graph}" />
-                        <copy file="${GT_BINARY}/${gt-image}" tofile="${PUZZLE_GT_MODULE}/${gt-image}" />
-                        <copy file="${GT_BINARY}/${gt-jdbc}" tofile="${PUZZLE_GT_MODULE}/${gt-jdbc}" />
-                        <copy file="${GT_BINARY}/${gt-main}" tofile="${PUZZLE_GT_MODULE}/${gt-main}" />
-                        <copy file="${GT_BINARY}/${gt-metadata}" tofile="${PUZZLE_GT_MODULE}/${gt-metadata}" />
-                        <copy file="${GT_BINARY}/${gt-postgis}" tofile="${PUZZLE_GT_MODULE}/${gt-postgis}" />
-                        <copy file="${GT_BINARY}/${gt-referencing3D}" tofile="${PUZZLE_GT_MODULE}/${gt-referencing3D}" />
-                        <copy file="${GT_BINARY}/${gt-referencing}" tofile="${PUZZLE_GT_MODULE}/${gt-referencing}" />
-                        <copy file="${GT_BINARY}/${gt-render}" tofile="${PUZZLE_GT_MODULE}/${gt-render}" />
-                        <copy file="${GT_BINARY}/${gt-shapefile}" tofile="${PUZZLE_GT_MODULE}/${gt-shapefile}" />
-                        <copy file="${GT_BINARY}/${gt-sld}" tofile="${PUZZLE_GT_MODULE}/${gt-sld}" />
-                        <copy file="${GT_BINARY}/${gt-style}" tofile="${PUZZLE_GT_MODULE}/${gt-style}" />
-                        <copy file="${GT_BINARY}/${gt-wfs}" tofile="${PUZZLE_GT_MODULE}/${gt-wfs}" />
-                        <copy file="${GT_BINARY}/${gt-widgets-swing}" tofile="${PUZZLE_GT_MODULE}/${gt-widgets-swing}" />
-                        <copy file="${GT_BINARY}/${gt-widgets-swing-pending}" tofile="${PUZZLE_GT_MODULE}/${gt-widgets-swing-pending}" />
-                        <copy file="${GT_BINARY}/${gt-wms}" tofile="${PUZZLE_GT_MODULE}/${gt-wms}" />
-                        <copy file="${GT_BINARY}/${gt-xml}" tofile="${PUZZLE_GT_MODULE}/${gt-xml}" />
-                        <copy file="${GT_BINARY}/${gt-xsd-wfs}" tofile="${PUZZLE_GT_MODULE}/${gt-xsd-wfs}" />
-                        <copy file="${GT_BINARY}/${hsqldb}" tofile="${PUZZLE_GT_MODULE}/${hsqldb}" />
-                        <copy file="${GT_BINARY}/${jaxb-api}" tofile="${PUZZLE_GT_MODULE}/${jaxb-api}" />
-                        <copy file="${GT_BINARY}/${jaxb-impl}" tofile="${PUZZLE_GT_MODULE}/${jaxb-impl}" />
-                        <copy file="${GT_BINARY}/${jdom}" tofile="${PUZZLE_GT_MODULE}/${jdom}" />
-                        <copy file="${GT_BINARY}/${jlfgr}" tofile="${PUZZLE_GT_MODULE}/${jlfgr}" />
-                        <copy file="${GT_BINARY}/${jsr275}" tofile="${PUZZLE_GT_MODULE}/${jsr275}" />
-                        <copy file="${GT_BINARY}/${jts}" tofile="${PUZZLE_GT_MODULE}/${jts}" />
-                        <copy file="${GT_BINARY}/${log4j}" tofile="${PUZZLE_GT_MODULE}/${log4j}" />
-                        <copy file="${GT_BINARY}/${net.opengis.ows}" tofile="${PUZZLE_GT_MODULE}/${net.opengis.ows}" />
-                        <copy file="${GT_BINARY}/${net.opengis.wfs}" tofile="${PUZZLE_GT_MODULE}/${net.opengis.wfs}" />
-                        <copy file="${GT_BINARY}/${netcdf}" tofile="${PUZZLE_GT_MODULE}/${netcdf}" />
-                        <copy file="${GT_BINARY}/${org.w3.xlink}" tofile="${PUZZLE_GT_MODULE}/${org.w3.xlink}" />
-                        <copy file="${GT_BINARY}/${picocontainer}" tofile="${PUZZLE_GT_MODULE}/${picocontainer}" />
-                        <copy file="${GT_BINARY}/${postgis-driver}" tofile="${PUZZLE_GT_MODULE}/${postgis-driver}" />
-                        <copy file="${GT_BINARY}/${postgresql}" tofile="${PUZZLE_GT_MODULE}/${postgresql}" />
-                        <copy file="${GT_BINARY}/${slf4j-api}" tofile="${PUZZLE_GT_MODULE}/${slf4j-api}" />
-                        <copy file="${GT_BINARY}/${slf4j-jdk14}" tofile="${PUZZLE_GT_MODULE}/${slf4j-jdk14}" />
-                        <copy file="${GT_BINARY}/${swing-layout}" tofile="${PUZZLE_GT_MODULE}/${swing-layout}" />
-                        <copy file="${GT_BINARY}/${swingx-0.8}" tofile="${PUZZLE_GT_MODULE}/${swingx-0.8}" />
-                        <copy file="${GT_BINARY}/${timing}" tofile="${PUZZLE_GT_MODULE}/${timing}" />
-                        <copy file="${GT_BINARY}/${vecmath}" tofile="${PUZZLE_GT_MODULE}/${vecmath}" />
-                        <copy file="${GT_BINARY}/${xercesImpl}" tofile="${PUZZLE_GT_MODULE}/${xercesImpl}" />
-                        <copy file="${GT_BINARY}/${xml-apis}" tofile="${PUZZLE_GT_MODULE}/${xml-apis}" />
-                        <copy file="${GT_BINARY}/${xml-apis-xerces}" tofile="${PUZZLE_GT_MODULE}/${xml-apis-xerces}" />
-                        <copy file="${GT_BINARY}/${xpp3}" tofile="${PUZZLE_GT_MODULE}/${xpp3}" />
-                        <copy file="${GT_BINARY}/${xsd}" tofile="${PUZZLE_GT_MODULE}/${xsd}" />
-
+                        <copy todir="${PUZZLE_GT_MODULE}">
+                            <fileset dir="${GT_BINARY}" casesensitive="yes">
+                              <patternset id="geotools">
+                                <include name="geoapi.jar"/>
+                                <include name="bufr.jar" />
+                                <include name="common.jar" />
+                                <include name="ecore.jar" />
+                                <include name="gnu-regexp.jar" />
+                                <include name="grib.jar" />
+                                <include name="gt-api.jar" />
+                                <include name="gt-coverage.jar" />
+                                <include name="gt-coverageio.jar" />
+                                <include name="gt-coverageio-netcdf.jar" />
+                                <include name="gt-cql.jar" />
+                                <include name="gt-data.jar" />
+                                <include name="gt-display.jar" />
+                                <include name="gt-epsg-hsql.jar" />
+                                <include name="gt-geotiff.jar" />
+                                <include name="gt-go2.jar" />
+                                <include name="gt-graph.jar" />
+                                <include name="gt-image.jar" />
+                                <include name="gt-jdbc.jar" />
+                                <include name="gt-main.jar" />
+                                <include name="gt-metadata.jar" />
+                                <include name="gt-postgis.jar" />
+                                <include name="gt-referencing3D.jar" />
+                                <include name="gt-referencing.jar" />
+                                <include name="gt-render.jar" />
+                                <include name="gt-shapefile.jar" />
+                                <include name="gt-sld.jar" />
+                                <include name="gt-style.jar" />
+                                <include name="gt-wfs.jar" />
+                                <include name="gt-widgets-swing.jar" />
+                                <include name="gt-widgets-swing-pending.jar" />
+                                <include name="gt-wms.jar" />
+                                <include name="gt-xml.jar" />
+                                <include name="gt-xsd-wfs.jar" />
+                                <include name="hsqldb.jar" />
+                                <include name="jaxb-api.jar" />
+                                <include name="jaxb-impl.jar" />
+                                <include name="jdom.jar" />
+                                <include name="jlfgr.jar" />
+                                <include name="jsr-275.jar" />
+                                <include name="jts.jar" />
+                                <include name="log4j.jar" />
+                                <include name="net.opengis.ows.jar" />
+                                <include name="net.opengis.wfs.jar" />
+                                <include name="netcdf.jar" />
+                                <include name="org.w3.xlink.jar" />
+                                <include name="picocontainer.jar" />
+                                <include name="postgis-driver.jar" />
+                                <include name="postgresql.jar" />
+                                <include name="slf4j-api.jar" />
+                                <include name="slf4j-jdk14.jar" />
+                                <include name="swing-layout.jar" />
+                                <include name="swingx.jar" />
+                                <include name="timingframework.jar" />
+                                <include name="vecmath.jar" />
+                                <include name="xercesImpl.jar" />
+                                <include name="xml-apis.jar" />
+                                <include name="xml-apis-xerces.jar" />
+                                <include name="xpp3.jar" />
+                                <include name="xsd.jar" />
+                              </patternset>
+                            </fileset>
+                        </copy>
                         <echo>=&gt; Done !</echo>
+                        
                         
                     </tasks>
                 </configuration>
