@@ -20,15 +20,7 @@
  */
 package org.puzzle.puzzlecore.gtextend.widget.style;
 
-import java.util.ArrayList;
-import java.util.List;
-import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
-import org.geotools.gui.swing.misc.Render.RandomStyleFactory;
-import org.geotools.style.MutableFeatureTypeStyle;
-import org.geotools.style.MutableRule;
-import org.geotools.style.MutableStyle;
-import org.opengis.style.Symbolizer;
 
 /**
  *
