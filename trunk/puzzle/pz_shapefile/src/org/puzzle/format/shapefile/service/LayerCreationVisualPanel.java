@@ -23,7 +23,7 @@ final class LayerCreationVisualPanel extends JPanel {
         this.contexts = contexts;
         initComponents();
 
-        guiContexts.setModel( new ListComboBoxModel(new ArrayList(contexts)) );
+        guiContexts.setModel( new ListComboBoxModel(new ArrayList<MapContext>(contexts)) );
         guiContexts.setRenderer(new DefaultListCellRenderer() {
 
             @Override

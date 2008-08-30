@@ -44,7 +44,7 @@ import org.puzzle.puzzlecore.tool.ToolService;
 public class BindToolTree extends JToolTree implements LookupListener {
 
     private ToolService service = Lookup.getDefault().lookup(ToolService.class);
-    private Lookup.Result result = null;
+    private Lookup.Result<ToolDescriptor> result = null;
 
     public BindToolTree() {
 
@@ -74,12 +74,12 @@ public class BindToolTree extends JToolTree implements LookupListener {
     private void reload(LookupEvent lookupEvent) {
         ToolDescriptor[] contexts = getTreeToolDescriptors();
 
-        Collection<ToolDescriptor> c = null;
+        Collection<? extends ToolDescriptor> c = null;
 
         if (lookupEvent == null) {
             c = result.allInstances();
         } else {
-            Lookup.Result r = (Lookup.Result) lookupEvent.getSource();
+            Lookup.Result<? extends ToolDescriptor> r = (Lookup.Result<? extends ToolDescriptor>) lookupEvent.getSource();
             c = r.allInstances();
         }
 
@@ -91,7 +91,7 @@ public class BindToolTree extends JToolTree implements LookupListener {
         }
 
         //add new tools
-        Iterator<ToolDescriptor> ite = c.iterator();
+        Iterator<? extends ToolDescriptor> ite = c.iterator();
         while (ite.hasNext()) {
             ToolDescriptor tool = ite.next();
             addTool(tool);

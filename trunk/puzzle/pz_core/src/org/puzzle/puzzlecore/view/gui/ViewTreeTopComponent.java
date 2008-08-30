@@ -175,8 +175,8 @@ final class ViewTreeTopComponent extends TopComponent {
             resultViews.addLookupListener(new LookupListener() {
 
                 public void resultChanged(LookupEvent lookupEvent) {
-                    Lookup.Result r = (Lookup.Result) lookupEvent.getSource();
-                    Collection<MapView> c = r.allInstances();
+                    Lookup.Result<MapView> r = (Lookup.Result<MapView>) lookupEvent.getSource();
+                    Collection<? extends MapView> c = r.allInstances();
                     Collection<MapView> tv = guiTreeView.getTreeTableModel().getViews();
 
                     for (MapView v : c) {
@@ -197,9 +197,10 @@ final class ViewTreeTopComponent extends TopComponent {
             resultGroups = v.getLookup().lookupResult(MapGroup.class);
             resultGroups.addLookupListener(new LookupListener() {
 
+                @Override
                 public void resultChanged(LookupEvent lookupEvent) {
-                    Lookup.Result r = (Lookup.Result) lookupEvent.getSource();
-                    Collection<MapGroup> c = r.allInstances();
+                    Lookup.Result<MapGroup> r = (Lookup.Result<MapGroup>) lookupEvent.getSource();
+                    Collection<? extends MapGroup> c = r.allInstances();
                     Collection<MapGroup> tv = guiTreeView.getTreeTableModel().getGroups();
 
                     for (MapGroup g : c) {

@@ -48,5 +48,10 @@
             <file name="output.settings_hidden"/>
             <file name="runtime.settings_hidden"/>
         </folder>
-     </folder>
+         <folder name="Modes">
+            <folder name="navigator">
+                <file name="navigatorTC.wstcref_hidden"/>
+            </folder>
+        </folder>
+    </folder>
 </filesystem>

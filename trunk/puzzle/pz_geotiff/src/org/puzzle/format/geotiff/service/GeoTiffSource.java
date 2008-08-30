@@ -25,8 +25,10 @@ import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
 import java.text.MessageFormat;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -146,7 +148,8 @@ public class GeoTiffSource implements GISSource{
 
     @Override
     public void showLayerWizard(Collection<? extends MapContext> contexts, GISProject project) {
-        WizardDescriptor wizardDescriptor = new WizardDescriptor(getPanels(contexts, project));
+        WizardDescriptor.Panel<WizardDescriptor>[] pans = getPanels(contexts, project);
+        WizardDescriptor wizardDescriptor = new WizardDescriptor(pans);
         // {0} will be replaced by WizardDesriptor.Panel.getComponent().getName()
         wizardDescriptor.setTitleFormat(new MessageFormat("{0}"));
         wizardDescriptor.setTitle("Create a Shapefile layer from source");
@@ -163,9 +166,9 @@ public class GeoTiffSource implements GISSource{
         
     }
 
-    private WizardDescriptor.Panel[] panels;
+    private WizardDescriptor.Panel<WizardDescriptor>[] panels;
     
-    private WizardDescriptor.Panel[] getPanels(Collection<? extends MapContext> contexts, GISProject project) {
+    private WizardDescriptor.Panel<WizardDescriptor>[] getPanels(Collection<? extends MapContext> contexts, GISProject project) {
         if (panels == null) {
             panels = new WizardDescriptor.Panel[]{
                         new LayerCreationWizardPanel(contexts,project)

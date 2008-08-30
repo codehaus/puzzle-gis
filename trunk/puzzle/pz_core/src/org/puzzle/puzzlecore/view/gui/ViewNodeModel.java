@@ -24,7 +24,7 @@ public class ViewNodeModel extends Children.Keys implements LookupListener {
     public static final Image ICON_TRANSLATION = Utilities.loadImage ("/org/puzzle/puzzlecore/gtextend/widget/iconset/translation.png");
     
     
-    private Lookup.Result result = null;
+    private Lookup.Result<MapView> result = null;
 
     public ViewNodeModel() {
 
@@ -35,7 +35,7 @@ public class ViewNodeModel extends Children.Keys implements LookupListener {
             result.addLookupListener(this);
         }
 
-        Collection c = result.allInstances();
+        Collection<? extends MapView> c = result.allInstances();
         setKeys(c);
     }
 
@@ -81,8 +81,8 @@ public class ViewNodeModel extends Children.Keys implements LookupListener {
 //        setKeys(c);
 //    }
     public void resultChanged(LookupEvent lookupEvent) {
-        Lookup.Result r = (Lookup.Result) lookupEvent.getSource();
-        Collection c = r.allInstances();
+        Lookup.Result<MapView> r = (Lookup.Result<MapView>) lookupEvent.getSource();
+        Collection<? extends MapView> c = r.allInstances();
 
         setKeys(c);
 //        if (!c.isEmpty()) {
