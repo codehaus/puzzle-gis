@@ -62,17 +62,17 @@ final class ViewTreeTopComponent_old extends TopComponent implements LookupListe
         setToolTipText(NbBundle.getMessage(ViewTreeTopComponent_old.class, "HINT_ViewTreeTopComponent"));
         setIcon(Utilities.loadImage(ICON_PATH, true));
         
-        Property propTL = new PropertySupport("translationLink",boolean.class,"T","TranslationLink",true,true) {
+        Property<Boolean> propTL = new PropertySupport<Boolean>("translationLink",boolean.class,"T","TranslationLink",true,true) {
 
-            private Object v = null;
+            private Boolean v = null;
                         
             @Override
-            public Object getValue() throws IllegalAccessException, InvocationTargetException {
+            public Boolean getValue() throws IllegalAccessException, InvocationTargetException {
                 return v;
             }
 
             @Override
-            public void setValue(Object arg0) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+            public void setValue(Boolean arg0) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
                 v = arg0;
             }
         };

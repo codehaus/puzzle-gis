@@ -39,6 +39,8 @@ import org.geotools.map.MapContext;
 import org.geotools.map.MapLayer;
 import org.geotools.style.MutableStyle;
 import org.geotools.style.RandomStyleFactory;
+import org.opengis.feature.simple.SimpleFeature;
+import org.opengis.feature.simple.SimpleFeatureType;
 import org.openide.DialogDisplayer;
 import org.openide.WizardDescriptor;
 import org.openide.util.Exceptions;
@@ -60,7 +62,7 @@ public class ShapeFileSource implements GISSource{
     private final Map<String,String> parameters;
     private final String name;
     private final String serviceName;
-    private FeatureSource featureSource = null;
+    private FeatureSource<SimpleFeatureType,SimpleFeature> featureSource = null;
     
     
     ShapeFileSource(File shapefile, String serviceName,int id, Map<String,String> parameters){

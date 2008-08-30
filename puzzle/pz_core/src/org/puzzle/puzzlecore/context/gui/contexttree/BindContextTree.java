@@ -40,7 +40,7 @@ import org.puzzle.puzzlecore.context.ContextListener;
 public class BindContextTree extends JContextTree implements LookupListener {
 
     private ContextService service = Lookup.getDefault().lookup(ContextService.class);
-    private Lookup.Result result = null;
+    private Lookup.Result<MapContext> result = null;
     private ContextListener listener = new ContextListener() {
 
         public void contextActivated(ContextEvent event) {
@@ -88,12 +88,12 @@ public class BindContextTree extends JContextTree implements LookupListener {
     private void reload(LookupEvent lookupEvent) {
         MapContext[] contexts = getContexts();
        
-        Collection<MapContext> c = null;
+        Collection<? extends MapContext> c = null;
 
         if (lookupEvent == null) {
             c = result.allInstances();
         } else {
-            Lookup.Result r = (Lookup.Result) lookupEvent.getSource();
+            Lookup.Result<? extends MapContext> r = (Lookup.Result<? extends MapContext>) lookupEvent.getSource();
             c = r.allInstances();
         }
         
@@ -104,7 +104,7 @@ public class BindContextTree extends JContextTree implements LookupListener {
         }
         
         //add new contexts
-        Iterator<MapContext> ite = c.iterator();
+        Iterator<? extends MapContext> ite = c.iterator();
         while (ite.hasNext()) {
             MapContext context = ite.next();
             addContext(context);

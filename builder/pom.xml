@@ -350,12 +350,10 @@
                         </copy>
                         <echo>=&gt; Done !</echo>
                         
-                        
                     </tasks>
                 </configuration>
             </plugin>
         </plugins>
     </build>
-  
-  
+
 </project>

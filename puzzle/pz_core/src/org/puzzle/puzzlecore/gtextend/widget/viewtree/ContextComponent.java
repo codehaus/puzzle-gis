@@ -78,7 +78,7 @@ final class ContextComponent extends RenderAndEditComponent implements TableCell
         if (obj instanceof MapContext) {
             box.removeAllItems();
             
-            Collection<MapContext> contexts = (Collection<MapContext>) Lookup.getDefault().lookup(ContextService.class).getLookup().lookupAll(MapContext.class);
+            Collection<? extends MapContext> contexts = Lookup.getDefault().lookup(ContextService.class).getLookup().lookupAll(MapContext.class);
             
             for(MapContext context : contexts){
                 box.addItem(context);
