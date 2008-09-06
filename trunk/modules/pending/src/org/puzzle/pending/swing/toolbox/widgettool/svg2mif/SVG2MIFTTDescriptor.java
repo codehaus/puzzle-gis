@@ -19,23 +19,34 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.puzzle.analyze;
+package org.puzzle.pending.swing.toolbox.widgettool.svg2mif;
 
-import org.openide.modules.ModuleInstall;
-import org.openide.util.Lookup;
-import org.puzzle.puzzlecore.tool.ToolService;
+import java.awt.Component;
+import org.openide.util.NbBundle;
+import org.puzzle.puzzlecore.swing.toolbox.tooltree.ToolTreeConstants;
+import org.puzzle.puzzlecore.tool.AbstractToolDescriptor;
+
 
 /**
- * Manages a module's lifecycle. Remember that an installer is optional and
- * often not needed at all.
+ *
+ * @author Laurent Jegou
  */
-public class Installer extends ModuleInstall {
+public class SVG2MIFTTDescriptor extends AbstractToolDescriptor{
+
+    private final String[] path = ToolTreeConstants.getInstance().FILE_CONVERT.getPath();    
+    String title = NbBundle.getMessage(SVG2MIFTTDescriptor.class,"title");
+    
+    public String getTitle(){
+        return "SVG > MIF";
+    }
 
     @Override
-    public void restored() {
-        
-        ToolService service = Lookup.getDefault().lookup(ToolService.class);
-        if(service != null){
-        }
+    public String[] getPath() {
+        return path;
     }
+
+    public Component getComponent() {
+        return new SVG2MIFTool();
+    }
+
 }

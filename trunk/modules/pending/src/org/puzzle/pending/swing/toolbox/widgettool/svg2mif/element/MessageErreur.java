@@ -18,24 +18,32 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+package org.puzzle.pending.swing.toolbox.widgettool.svg2mif.element;
 
-package org.puzzle.analyze;
+import java.io.PrintStream;
 
-import org.openide.modules.ModuleInstall;
-import org.openide.util.Lookup;
-import org.puzzle.puzzlecore.tool.ToolService;
+import javax.swing.JOptionPane;
 
-/**
- * Manages a module's lifecycle. Remember that an installer is optional and
- * often not needed at all.
- */
-public class Installer extends ModuleInstall {
+public class MessageErreur extends PrintStream {
+	
+	   public String MessageErreur;
+	    
+	    public MessageErreur(PrintStream ps) {
+			super (ps);
+	    }
+				
+		public void write(byte buf[], int off, int len) {
+			try {
+				if (len != 0) {
+					MessageErreur += new String(buf);
+				} else {
+					JOptionPane.showMessageDialog(null, MessageErreur);
+				}			
+			} catch (Exception e) {
+				e.printStackTrace();
+				setError();
+			}
+			super.write(buf, off, len);
+		}
 
-    @Override
-    public void restored() {
-        
-        ToolService service = Lookup.getDefault().lookup(ToolService.class);
-        if(service != null){
-        }
-    }
 }

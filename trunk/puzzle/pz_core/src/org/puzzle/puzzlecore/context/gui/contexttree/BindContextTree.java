@@ -93,7 +93,7 @@ public class BindContextTree extends JContextTree implements LookupListener {
         if (lookupEvent == null) {
             c = result.allInstances();
         } else {
-            Lookup.Result<? extends MapContext> r = (Lookup.Result<? extends MapContext>) lookupEvent.getSource();
+            Lookup.Result<MapContext> r = (Lookup.Result<MapContext>) lookupEvent.getSource();
             c = r.allInstances();
         }
         

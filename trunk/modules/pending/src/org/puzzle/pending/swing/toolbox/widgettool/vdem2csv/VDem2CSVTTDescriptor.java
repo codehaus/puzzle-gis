@@ -19,23 +19,37 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.puzzle.analyze;
+package org.puzzle.pending.swing.toolbox.widgettool.vdem2csv;
 
-import org.openide.modules.ModuleInstall;
-import org.openide.util.Lookup;
-import org.puzzle.puzzlecore.tool.ToolService;
+import java.awt.Component;
+import org.openide.util.NbBundle;
+import org.puzzle.puzzlecore.swing.toolbox.tooltree.ToolTreeConstants;
+import org.puzzle.puzzlecore.tool.AbstractToolDescriptor;
+
 
 /**
- * Manages a module's lifecycle. Remember that an installer is optional and
- * often not needed at all.
+ *
+ * @author johann Sorel
  */
-public class Installer extends ModuleInstall {
+public class VDem2CSVTTDescriptor extends AbstractToolDescriptor{
+
+    private final String[] path = ToolTreeConstants.getInstance().FILE_CONVERT.getPath();
+    String title = NbBundle.getMessage(VDem2CSVTTDescriptor.class, "title");
+    
+    
+    public String getTitle(){
+        return "VDem > CSV";
+    }
 
     @Override
-    public void restored() {
-        
-        ToolService service = Lookup.getDefault().lookup(ToolService.class);
-        if(service != null){
-        }
+    public String[] getPath() {
+        return path;
     }
+
+    public Component getComponent() {
+        return new VDem2CSVTool();
+    }
+
+
+
 }

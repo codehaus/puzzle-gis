@@ -18,24 +18,59 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+package org.puzzle.pending.swing.toolbox.widgettool.svg2mif.element;
 
-package org.puzzle.analyze;
+public class DCircle {
 
-import org.openide.modules.ModuleInstall;
-import org.openide.util.Lookup;
-import org.puzzle.puzzlecore.tool.ToolService;
+	private double x1;
+	private double y1;
+	private double x2;
+	private double y2;
+	
+	public DCircle() {
+		this.x1 = 0;
+		this.y1 = 0;
+		this.x2 = 0;
+		this.y2 = 0;
+	}
+	
+	public DCircle(double a1, double b1, double a2, double b2) {
+		this.x1 = a1;
+		this.y1 = b1;
+		this.x2 = a2;
+		this.y2 = b2;
+	}
 
-/**
- * Manages a module's lifecycle. Remember that an installer is optional and
- * often not needed at all.
- */
-public class Installer extends ModuleInstall {
+	public double getX1() {
+		return x1;
+	}
 
-    @Override
-    public void restored() {
-        
-        ToolService service = Lookup.getDefault().lookup(ToolService.class);
-        if(service != null){
-        }
-    }
+	public void setX1(double x1) {
+		this.x1 = x1;
+	}
+
+	public double getX2() {
+		return x2;
+	}
+
+	public void setX2(double x2) {
+		this.x2 = x2;
+	}
+
+	public double getY1() {
+		return y1;
+	}
+
+	public void setY1(double y1) {
+		this.y1 = y1;
+	}
+
+	public double getY2() {
+		return y2;
+	}
+
+	public void setY2(double y2) {
+		this.y2 = y2;
+	}
+
 }

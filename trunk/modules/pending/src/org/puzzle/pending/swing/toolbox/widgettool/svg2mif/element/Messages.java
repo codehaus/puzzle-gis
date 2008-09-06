@@ -18,24 +18,25 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+package org.puzzle.pending.swing.toolbox.widgettool.svg2mif.element;
 
-package org.puzzle.analyze;
+import java.util.MissingResourceException;
+import java.util.ResourceBundle;
 
-import org.openide.modules.ModuleInstall;
-import org.openide.util.Lookup;
-import org.puzzle.puzzlecore.tool.ToolService;
+public class Messages {
+    private static final String BUNDLE_NAME = "altersig.convert.ihm.outil.divers.svg2mif.element.messages";//$NON-NLS-1$
 
-/**
- * Manages a module's lifecycle. Remember that an installer is optional and
- * often not needed at all.
- */
-public class Installer extends ModuleInstall {
+    private static final ResourceBundle RESOURCE_BUNDLE = ResourceBundle.getBundle(BUNDLE_NAME);
 
-    @Override
-    public void restored() {
-        
-        ToolService service = Lookup.getDefault().lookup(ToolService.class);
-        if(service != null){
+    private Messages() {
+    }
+
+    public static String getString(String key) {
+
+        try {
+            return RESOURCE_BUNDLE.getString(key);
+        } catch (MissingResourceException e) {
+            return '!' + key + '!';
         }
     }
 }

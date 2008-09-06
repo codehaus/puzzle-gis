@@ -29,9 +29,7 @@
         <folder name="Window">
             <file name="org-puzzle-puzzlecore-context-gui-contexttree-ContextTreeAction.instance"/>
             <file name="org-puzzle-puzzlecore-tool-gui-toolbox-ToolTreeAction.instance"/>
-            <!--<file name="org-puzzle-puzzlecore-view-gui-ViewTreeAction.instance"/>-->
-            <file name="org-puzzle-puzzlecore-view-gui-timeline-TimeLineAction.instance"/>
-        </folder>
+            </folder>
     </folder>
     <folder name="Loaders">
         <folder name="text">
@@ -185,21 +183,6 @@
                 <attr name="position" intvalue="300"/>
             </file>
         </folder>
-        <!--folder name="Context">
-            <attr name="position" intvalue="400"/>
-            <file name="org-puzzle-puzzlecore-context-action-newcontext-NewContextAction.instance">
-                <attr name="position" intvalue="100"/>
-            </file>
-            <file name="org-puzzle-puzzlecore-context-action-addlayer-AddFileLayerAction.instance">
-                <attr name="position" intvalue="200"/>
-            </file>
-            <file name="org-puzzle-puzzlecore-context-action-addlayer-AddDBLayerAction.instance">
-                <attr name="position" intvalue="300"/>
-            </file>
-            <file name="org-puzzle-puzzlecore-context-action-addlayer-AddWebLayerAction.instance">
-                <attr name="position" intvalue="400"/>
-            </file>
-        </folder-->
     </folder>
     <folder name="Menu">
         <folder name="Window">
@@ -214,33 +197,17 @@
                 <attr name="originalFile" stringvalue="Actions/Window/org-puzzle-puzzlecore-tool-gui-toolbox-ToolTreeAction.instance"/>
                 <attr name="position" intvalue="300"/>
             </file>
-            <!--<file name="ViewTreeAction.shadow">
-                <attr name="originalFile" stringvalue="Actions/Window/org-puzzle-puzzlecore-view-gui-ViewTreeAction.instance"/>
-                <attr name="position" intvalue="400"/>
-            </file>-->
         </folder>
     </folder>
     <folder name="Windows2">
         <folder name="Components">
             <file name="ContextTreeTopComponent.settings" url="ContextTreeTopComponentSettings.xml"/>
-            <file name="TimeLineTopComponent.settings" url="TimeLineTopComponentSettings.xml"/>
             <file name="ToolTreeTopComponent.settings" url="ToolTreeTopComponentSettings.xml"/>
-            <!--<file name="ViewTreeTopComponent.settings" url="ViewTreeTopComponentSettings.xml"/>-->
         </folder>
         <folder name="Modes">
-            <!--<folder name="navigator">
-                <file name="ViewTreeTopComponent.wstcref" url="ViewTreeTopComponentWstcref.xml"/>
-            </folder>-->
-            <folder name="explorer">
-                <file name="ContextTreeTopComponent.wstcref"/>
-            </folder>
             <folder name="navigator">
                 <file name="ContextTreeTopComponent.wstcref" url="ContextTreeTopComponentWstcref.xml"/>
             </folder>
-            <folder name="output">
-                <file name="TimeLineTopComponent.wstcref" url="TimeLineTopComponentWstcref.xml"/>
-            </folder>
-            <folder name="properties"/>
             <folder name="rightSlidingSide">
                 <file name="ToolTreeTopComponent.wstcref" url="ToolTreeTopComponentWstcref.xml"/>
             </folder>
