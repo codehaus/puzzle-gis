@@ -47,6 +47,7 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import org.geotools.map.MapContext;
+import org.geotools.map.MapLayer;
 import org.netbeans.api.project.Project;
 import org.netbeans.api.project.ProjectInformation;
 import org.netbeans.spi.project.ActionProvider;
@@ -59,7 +60,7 @@ import org.openide.util.Utilities;
 import org.openide.util.lookup.AbstractLookup;
 import org.openide.util.lookup.InstanceContent;
 import org.puzzle.puzzlecore.context.ContextService;
-import org.puzzle.puzzlecore.context.RichMapContext;
+import org.puzzle.puzzlecore.context.RichMapLayer;
 import org.puzzle.puzzlecore.project.source.GISSource;
 import org.puzzle.puzzlecore.view.MapView;
 import org.puzzle.puzzlecore.view.ViewService;
@@ -226,6 +227,28 @@ public class GISProject implements Project {
         if(src != null) sources.add(src);
     }
     
+    public void removeGISSource(GISSource source) {
+        if(source == null) return;
+        
+        for(MapContext context : contexts){
+            List<MapLayer> layers = context.layers();
+            for(int i=layers.size()-1; i>=0; i--){
+                MapLayer layer = layers.get(i);
+                if(layer instanceof RichMapLayer){
+                    RichMapLayer ly = (RichMapLayer) layer;
+                    if(ly.getSource().equals(source)){
+                        context.layers().remove(i);
+                    }
+                }
+            }
+            
+        }
+        
+        //finally remove source from project
+        sources.remove(source);
+    }
+    
+    
     /**
      * Add a {@code GISSource} to the project.<br>
      * Contrary to {@link addGISSource(GISSource src)}, this method add a
@@ -241,6 +264,8 @@ public class GISProject implements Project {
     public Collection<GISSource> getGISSources(){
         return Collections.unmodifiableCollection(sources);
     }
+
+
     
     /**
      * This method check if a source already exists in the project's 

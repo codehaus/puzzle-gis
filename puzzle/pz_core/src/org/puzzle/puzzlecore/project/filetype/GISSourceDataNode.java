@@ -21,7 +21,9 @@
 package org.puzzle.puzzlecore.project.filetype;
 
 import java.awt.Image;
+import java.io.IOException;
 import org.openide.loaders.DataNode;
+import org.openide.loaders.DataObject;
 import org.openide.nodes.Children;
 import org.openide.util.Lookup;
 
@@ -65,6 +67,21 @@ public class GISSourceDataNode extends DataNode {
         return super.getIcon(arg0);
     }
 
+    @Override
+    public GISSourceDataObject getDataObject() {
+        return (GISSourceDataObject) super.getDataObject();
+    }
+
+    
+    
+    @Override
+    public void destroy() throws IOException {
+        getDataObject().dispose();
+        super.destroy();
+    }
+
+    
+    
     @Override
     public String getDisplayName() {
         String str = super.getDisplayName();

@@ -89,7 +89,7 @@ public class ShapeFileSource implements GISSource{
         MutableStyle style = new RandomStyleFactory().createRandomVectorStyle(featureSource);
         if(parameters == null) parameters = Collections.emptyMap();
         LayerSource source = new LayerSource(id, parameters);
-        RichMapLayer layer = new RichMapLayer(featureSource, style,source);
+        RichMapLayer layer = new RichMapLayer(featureSource, style,this,source);
         layer.setDescription(CommonFactoryFinder.getStyleFactory(null).createDescription(name,"") );
         
         return layer;

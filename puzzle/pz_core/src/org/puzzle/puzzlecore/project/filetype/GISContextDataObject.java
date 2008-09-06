@@ -21,7 +21,6 @@
 package org.puzzle.puzzlecore.project.filetype;
 
 import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Collection;
@@ -38,16 +37,9 @@ import org.geotools.referencing.crs.DefaultGeographicCRS;
 import org.geotools.style.CollectionChangeEvent;
 import org.netbeans.api.project.FileOwnerQuery;
 import org.netbeans.api.project.Project;
-import org.opengis.referencing.FactoryException;
-import org.opengis.referencing.operation.TransformException;
-import org.openide.cookies.SaveCookie;
 import org.openide.filesystems.FileAlreadyLockedException;
-import org.openide.filesystems.FileAttributeEvent;
-import org.openide.filesystems.FileChangeListener;
-import org.openide.filesystems.FileEvent;
 import org.openide.filesystems.FileLock;
 import org.openide.filesystems.FileObject;
-import org.openide.filesystems.FileRenameEvent;
 import org.openide.loaders.DataObjectExistsException;
 import org.openide.loaders.XMLDataObject;
 import org.openide.nodes.CookieSet;
@@ -55,13 +47,11 @@ import org.openide.util.Exceptions;
 import org.openide.util.Lookup;
 import org.openide.text.DataEditorSupport;
 import org.openide.xml.XMLUtil;
-import org.puzzle.puzzlecore.context.RichMapContext;
 import org.puzzle.puzzlecore.context.RichMapLayer;
 import org.puzzle.puzzlecore.project.GISProject;
 import org.puzzle.puzzlecore.project.source.GISSource;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
@@ -115,7 +105,6 @@ public class GISContextDataObject extends XMLDataObject {
 
     @Override
     public void dispose() {
-        System.out.println("LA ?");
         Project prj = FileOwnerQuery.getOwner(getPrimaryFile());
         if(prj != null && prj instanceof GISProject){
             GISProject gisprj = (GISProject) prj;
@@ -286,8 +275,8 @@ public class GISContextDataObject extends XMLDataObject {
                 layerNode.appendChild(layerTitle);
                 
                 //store layer source
-                int id = rich.getLayerSource().getSourceId();
-                Map<String,String> params = rich.getLayerSource().getParameters();
+                int id = rich.getSourceParameters().getSourceId();
+                Map<String,String> params = rich.getSourceParameters().getParameters();
                 Element layerSource = doc.createElement(TAG_LAYER_SOURCE);
                 Element sourceId = doc.createElement(TAG_LAYER_SOURCE_ID);
                 Element sourceParams = doc.createElement(TAG_LAYER_SOURCE_PARAMS);

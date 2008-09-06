@@ -32,6 +32,7 @@ import org.opengis.feature.simple.SimpleFeatureType;
 import org.opengis.referencing.operation.TransformException;
 import org.geotools.style.MutableStyle;
 import org.opengis.feature.IllegalAttributeException;
+import org.puzzle.puzzlecore.project.source.GISSource;
 
 /**
  *
@@ -42,25 +43,33 @@ import org.opengis.feature.IllegalAttributeException;
  */
 public class RichMapLayer extends DefaultMapLayer {
 
-    private final LayerSource source ;
+    private final LayerSource info ;
+    private final GISSource source;
     
-    public RichMapLayer(FeatureSource<SimpleFeatureType, SimpleFeature> collection, MutableStyle style, LayerSource source) {
+    public RichMapLayer(FeatureSource<SimpleFeatureType, SimpleFeature> collection, MutableStyle style, GISSource src, LayerSource info) {
         super(collection,style);
-        this.source = source;
+        this.source = src;
+        this.info = info;
     }
     
-    public RichMapLayer(FeatureCollection<SimpleFeatureType, SimpleFeature> collection, MutableStyle style, LayerSource source) {
+    public RichMapLayer(FeatureCollection<SimpleFeatureType, SimpleFeature> collection, MutableStyle style, GISSource src, LayerSource info) {
         super(collection,style);
-        this.source = source;
+        this.source = src;
+        this.info = info;
     }
 
-    public RichMapLayer(GridCoverage coverage, MutableStyle style, LayerSource source) 
+    public RichMapLayer(GridCoverage coverage, MutableStyle style, GISSource src, LayerSource info)
             throws TransformException, FactoryRegistryException, SchemaException, IllegalAttributeException {
         super(coverage,style);
-        this.source = source;
+        this.source = src;
+        this.info = info;
     }
     
-    public final LayerSource getLayerSource(){
+    public final LayerSource getSourceParameters(){
+        return info;
+    }
+
+    public final GISSource getSource(){
         return source;
     }
     
