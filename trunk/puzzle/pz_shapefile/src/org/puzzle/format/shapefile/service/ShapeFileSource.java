@@ -142,7 +142,6 @@ public class ShapeFileSource implements GISSource{
     private WizardDescriptor.Panel[] panels;
     
     private WizardDescriptor.Panel[] getPanels(Collection<? extends MapContext> contexts, GISProject project) {
-        if (panels == null) {
             panels = new WizardDescriptor.Panel[]{
                         new LayerCreationWizardPanel(contexts,project)
                     };
@@ -168,7 +167,6 @@ public class ShapeFileSource implements GISSource{
                     jc.putClientProperty(WizardDescriptor.PROP_CONTENT_NUMBERED, Boolean.TRUE);
                 }
             }
-        }
         return panels;
     }
     

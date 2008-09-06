@@ -91,7 +91,6 @@ public class GISContextDataObject extends XMLDataObject {
     private final DefaultContextListener contextListener = new DefaultContextListener();
     private MapContext context = null;
 
-
     /**
      * Constructor.
      * This contructor creates a {@code GISContextDataObject} and make it
@@ -114,6 +113,19 @@ public class GISContextDataObject extends XMLDataObject {
         cookies.add((org.openide.nodes.Node.Cookie) DataEditorSupport.create(this, getPrimaryEntry(), cookies));
     }
 
+    @Override
+    public void dispose() {
+        System.out.println("LA ?");
+        Project prj = FileOwnerQuery.getOwner(getPrimaryFile());
+        if(prj != null && prj instanceof GISProject){
+            GISProject gisprj = (GISProject) prj;
+            gisprj.removeContext(getContext());
+        }
+        super.dispose();
+    }
+
+    
+    
     /**
      * This method is used to retrieve the {@code MapContext} associated with
      * the {@code GISContextDataObject}. If not context is currently associated,
@@ -155,7 +167,7 @@ public class GISContextDataObject extends XMLDataObject {
     
     private Collection<? extends GISSource> getGISSources(){
         GISProject prj = (GISProject) FileOwnerQuery.getOwner(getPrimaryFile());
-        return prj.getLookup().lookupAll(GISSource.class);
+        return prj.getGISSources();
     }
     
     private MapContext parseContext(Document gisDoc) {

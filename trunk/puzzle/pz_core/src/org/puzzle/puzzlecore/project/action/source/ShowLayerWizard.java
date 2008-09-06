@@ -29,7 +29,7 @@ public final class ShowLayerWizard extends CookieAction {
         
         GISProject prj = (GISProject) FileOwnerQuery.getOwner(dataObject.getPrimaryFile());
         
-        Collection<? extends MapContext> contexts = prj.getLookup().lookupAll(MapContext.class);
+        Collection<MapContext> contexts = prj.getContexts();
         
         if(contexts.size() > 0 && prj != null){
             source.showLayerWizard(contexts, prj);

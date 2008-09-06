@@ -26,6 +26,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
@@ -34,6 +36,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.SwingUtilities;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.OutputKeys;
@@ -55,8 +58,11 @@ import org.openide.util.Lookup;
 import org.openide.util.Utilities;
 import org.openide.util.lookup.AbstractLookup;
 import org.openide.util.lookup.InstanceContent;
+import org.puzzle.puzzlecore.context.ContextService;
 import org.puzzle.puzzlecore.context.RichMapContext;
 import org.puzzle.puzzlecore.project.source.GISSource;
+import org.puzzle.puzzlecore.view.MapView;
+import org.puzzle.puzzlecore.view.ViewService;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -86,7 +92,10 @@ public class GISProject implements Project {
     private final FileObject projectDir;
     private final ProjectState state;
     private final LogicalViewProvider logicalView = new GISLogicalView(this);
-    
+
+    private Collection<GISSource> sources = new HashSet<GISSource>();
+    private Collection<MapContext> contexts = new HashSet<MapContext>();
+
     private final InstanceContent lookUpContent = new InstanceContent();
     private final Lookup lookUp = new AbstractLookup(lookUpContent);
     
@@ -117,7 +126,6 @@ public class GISProject implements Project {
         lookUpContent.add(logicalView);
     }
 
-
     private List<Integer> alreadyGiven = new ArrayList<Integer>();
 
     /**
@@ -129,7 +137,6 @@ public class GISProject implements Project {
      * @return  An {@code int} representing the ID for the new source.
      */
     public int getNextSourceID() {
-        Collection<? extends GISSource> sources = getLookup().lookupAll(GISSource.class);
         
         number_loop:
         for(int i=1; i<Integer.MAX_VALUE; i++){
@@ -168,7 +175,44 @@ public class GISProject implements Project {
      * @param map   The {@code MapContext} to add to the project's {@code Lookup}.
      */
     public void addContext(MapContext map){
-        lookUpContent.add(map);
+        contexts.add(map);
+    }
+    
+    /**
+     * Remove a {@code MapContext}, will remove it from the lookup, close all related view and
+      * remove it from the contextservice.
+     * @param map   The {@code MapContext} to add to the project's {@code Lookup}.
+     */
+    public void removeContext(MapContext context) {
+
+        //remove context from context service lookup
+        ContextService contextService = Lookup.getDefault().lookup(ContextService.class);
+        if(contextService != null){
+            contextService.removeContext(context);
+        }
+
+        //close existing views using this mapcontext
+        ViewService viewService = Lookup.getDefault().lookup(ViewService.class);
+        if(viewService != null){
+            Collection<? extends MapView> views = viewService.getLookup().lookupAll(MapView.class);
+            for(final MapView view : views){
+                if(view.getContext().equals(context)){
+                    SwingUtilities.invokeLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            view.close();
+                        }
+                    });
+                }
+            }
+        }
+        
+        //finally remove context from project
+        contexts.remove(context);
+    }
+    
+    public Collection<MapContext> getContexts() {
+        return Collections.unmodifiableCollection(contexts);
     }
     
     /**
@@ -179,7 +223,7 @@ public class GISProject implements Project {
      */
     public void addGISSource(GISSource src){
         if(checkSourceExist(src)) return;
-        if(src != null) lookUpContent.add(src);
+        if(src != null) sources.add(src);
     }
     
     /**
@@ -191,7 +235,11 @@ public class GISProject implements Project {
     public void appendGISSource(GISSource src){
         if(checkSourceExist(src)) return;
         GISSource source = createPersistantSource(src);
-        if(source != null) lookUpContent.add(source);
+        if(source != null) sources.add(source);
+    }
+
+    public Collection<GISSource> getGISSources(){
+        return Collections.unmodifiableCollection(sources);
     }
     
     /**
@@ -212,7 +260,6 @@ public class GISProject implements Project {
      * </ul>
      */
     private boolean checkSourceExist(GISSource source){
-        Collection<? extends GISSource> sources = getLookup().lookupAll(GISSource.class);
         
         //check is the object is already in the lookup
         if(sources.contains(source)){
@@ -233,7 +280,7 @@ public class GISProject implements Project {
         return false;
     }
     
-    /*
+    /**
      * This method is used to create a persistant source to the project.
      * It is used by appendGISSource().
      * Indeed, when creating a persistant source, we first add the source
@@ -412,7 +459,11 @@ public class GISProject implements Project {
         return properties;
     }
     
-    
+    private void dispose(){
+        contexts.clear();
+        sources.clear();
+    }
+
     ////////////////////////////////////////////////////////////////////////////
     // PRIVATE CLASSES /////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////

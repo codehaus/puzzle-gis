@@ -22,6 +22,7 @@ package org.puzzle.puzzlecore.view;
 
 import java.awt.BorderLayout;
 import org.geotools.gui.swing.map.map2d.Map2D;
+import org.geotools.map.MapContext;
 import org.openide.util.Lookup;
 import org.openide.util.lookup.Lookups;
 import org.openide.windows.TopComponent;
@@ -30,7 +31,7 @@ import org.openide.windows.TopComponent;
  *
  * @author johann sorel
  */
-public class MapView extends TopComponent {
+public abstract class MapView extends TopComponent {
 
     protected Map2D map;
     protected MapGroup group = null;
@@ -53,6 +54,8 @@ public class MapView extends TopComponent {
     public Map2D getMap() {
         return map;
     }
+
+    public abstract MapContext getContext();
 
     public MapGroup getGroup() {
         return group;

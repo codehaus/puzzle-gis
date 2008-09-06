@@ -20,7 +20,9 @@
  */
 package org.puzzle.puzzlecore.project.filetype;
 
+import java.io.IOException;
 import org.openide.loaders.DataNode;
+import org.openide.loaders.DataObject;
 import org.openide.nodes.Children;
 import org.openide.util.Lookup;
 
@@ -60,6 +62,19 @@ public class GISContextDataNode extends DataNode {
         if(str != null) str = str.replaceAll(".xml", "");
         return str;
     }
+
+    @Override
+    public void destroy() throws IOException {
+        getDataObject().dispose();
+        super.destroy();
+    }
+
+    @Override
+    public GISContextDataObject getDataObject() {
+        return (GISContextDataObject)super.getDataObject();
+    }
+    
+    
     
     GISContextDataNode(GISContextDataObject obj, Lookup lookup) {
         super(obj, Children.LEAF, lookup);

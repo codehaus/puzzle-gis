@@ -169,7 +169,6 @@ public class GeoTiffSource implements GISSource{
     private WizardDescriptor.Panel<WizardDescriptor>[] panels;
     
     private WizardDescriptor.Panel<WizardDescriptor>[] getPanels(Collection<? extends MapContext> contexts, GISProject project) {
-        if (panels == null) {
             panels = new WizardDescriptor.Panel[]{
                         new LayerCreationWizardPanel(contexts,project)
                     };
@@ -195,7 +194,6 @@ public class GeoTiffSource implements GISSource{
                     jc.putClientProperty(WizardDescriptor.PROP_CONTENT_NUMBERED, Boolean.TRUE);
                 }
             }
-        }
         return panels;
     }
 }
