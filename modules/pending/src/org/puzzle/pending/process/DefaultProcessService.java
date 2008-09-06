@@ -18,24 +18,42 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+package org.puzzle.pending.process;
 
-package org.puzzle.analyze;
-
-import org.openide.modules.ModuleInstall;
 import org.openide.util.Lookup;
-import org.puzzle.puzzlecore.tool.ToolService;
+import org.openide.util.lookup.AbstractLookup;
+import org.openide.util.lookup.InstanceContent;
+
 
 /**
- * Manages a module's lifecycle. Remember that an installer is optional and
- * often not needed at all.
+ *
+ * @author  Johann Sorel
  */
-public class Installer extends ModuleInstall {
+public class DefaultProcessService implements ProcessService{
 
-    @Override
-    public void restored() {
-        
-        ToolService service = Lookup.getDefault().lookup(ToolService.class);
-        if(service != null){
-        }
+    private final InstanceContent CONTENT = new InstanceContent();
+    private final Lookup LOOKUP = new AbstractLookup(CONTENT);
+    
+    public DefaultProcessService() {        
+    }
+    
+    public Lookup getLookup() {
+        return LOOKUP;
+    }    
+    
+    /**
+     * add a new process
+     * @param process
+     */
+    public void addProcess(Process process) {        
+        CONTENT.add(process);        
+    }
+
+    /**
+     * remove a process
+     * @param process
+     */
+    public void removeProcess(Process process) {
+        CONTENT.remove(process);
     }
 }

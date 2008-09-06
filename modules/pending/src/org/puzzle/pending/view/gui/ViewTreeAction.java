@@ -18,24 +18,29 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+package org.puzzle.pending.view.gui;
 
-package org.puzzle.analyze;
-
-import org.openide.modules.ModuleInstall;
-import org.openide.util.Lookup;
-import org.puzzle.puzzlecore.tool.ToolService;
+import java.awt.event.ActionEvent;
+import javax.swing.AbstractAction;
+import javax.swing.ImageIcon;
+import org.openide.util.NbBundle;
+import org.openide.util.Utilities;
+import org.openide.windows.TopComponent;
 
 /**
- * Manages a module's lifecycle. Remember that an installer is optional and
- * often not needed at all.
+ * Action which shows ViewTree component.
+ * @author : johann sorel
  */
-public class Installer extends ModuleInstall {
+public class ViewTreeAction extends AbstractAction {
 
-    @Override
-    public void restored() {
-        
-        ToolService service = Lookup.getDefault().lookup(ToolService.class);
-        if(service != null){
-        }
+    public ViewTreeAction() {
+        super(NbBundle.getMessage(ViewTreeAction.class, "CTL_ViewTreeAction"));
+        putValue(SMALL_ICON, new ImageIcon(Utilities.loadImage(ViewTreeTopComponent.ICON_PATH, true)));
+    }
+
+    public void actionPerformed(ActionEvent evt) {
+        TopComponent win = ViewTreeTopComponent.findInstance();
+        win.open();
+        win.requestActive();
     }
 }

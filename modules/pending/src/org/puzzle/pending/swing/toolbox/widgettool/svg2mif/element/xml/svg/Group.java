@@ -19,23 +19,36 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.puzzle.analyze;
+package org.puzzle.pending.swing.toolbox.widgettool.svg2mif.element.xml.svg;
 
-import org.openide.modules.ModuleInstall;
-import org.openide.util.Lookup;
-import org.puzzle.puzzlecore.tool.ToolService;
+
 
 /**
- * Manages a module's lifecycle. Remember that an installer is optional and
- * often not needed at all.
+ *
+ * @author  Default
  */
-public class Installer extends ModuleInstall {
-
-    @Override
-    public void restored() {
+public class Group {
+    
+    private Style style = new Style();
+    private Transform transform = new Transform();
+    
+    /** Creates a new instance of Group */
+    public Group() {
         
-        ToolService service = Lookup.getDefault().lookup(ToolService.class);
-        if(service != null){
-        }
     }
+    void setStyle( Style newStyle){
+        style.setStyle(newStyle);
+    }
+    Style getStyle(){
+        return (style);
+    }
+    void setTransform( Transform newTransform){
+        transform.setTransform(newTransform);
+    }
+    Transform getTransform(){
+        return (transform);
+    }
+     
+
+    
 }

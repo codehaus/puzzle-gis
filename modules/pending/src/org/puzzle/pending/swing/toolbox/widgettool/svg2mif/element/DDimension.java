@@ -18,24 +18,42 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+package org.puzzle.pending.swing.toolbox.widgettool.svg2mif.element;
 
-package org.puzzle.analyze;
+public class DDimension {
+	
+	private double width;
+	private double height;
+	
+	public double getHeight() {
+		return height;
+	}
 
-import org.openide.modules.ModuleInstall;
-import org.openide.util.Lookup;
-import org.puzzle.puzzlecore.tool.ToolService;
+	public void setHeight(double height) {
+		this.height = height;
+	}
 
-/**
- * Manages a module's lifecycle. Remember that an installer is optional and
- * often not needed at all.
- */
-public class Installer extends ModuleInstall {
+	public double getWidth() {
+		return width;
+	}
 
-    @Override
-    public void restored() {
-        
-        ToolService service = Lookup.getDefault().lookup(ToolService.class);
-        if(service != null){
-        }
-    }
+	public void setWidth(double width) {
+		this.width = width;
+	}
+
+	public DDimension() {
+		this.width = 0;
+		this.height = 0;
+	}
+	
+	public DDimension(double l, double h) {
+		this.width = l;
+		this.height = h;
+	}
+	
+	public String toString() {
+		String s = new String();
+		s = s + "Width : " + this.width + ", Height : " + height;
+		return s;
+	}
 }

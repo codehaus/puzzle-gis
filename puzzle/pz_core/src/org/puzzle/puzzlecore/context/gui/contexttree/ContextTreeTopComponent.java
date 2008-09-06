@@ -49,8 +49,6 @@ import org.openide.util.NbBundle;
 import org.openide.util.Utilities;
 import org.openide.windows.TopComponent;
 import org.openide.windows.WindowManager;
-import org.puzzle.puzzlecore.gtextend.widget.style.JAdvancedStylePanel;
-import org.puzzle.puzzlecore.swing.layerprop.style.JXMLStylePanel;
 
 /**
  * Top component which displays something.
@@ -103,7 +101,7 @@ final class ContextTreeTopComponent extends TopComponent {
         LayerStylePropertyPanel styles = new LayerStylePropertyPanel();
         styles.addPropertyPanel(new JSimpleStylePanel());
 //        styles.addPropertyPanel(new JAdvancedStylePanel());
-        styles.addPropertyPanel(new JXMLStylePanel());
+//        styles.addPropertyPanel(new JXMLStylePanel());
         lstproperty.add(styles);
 
         property.setPropertyPanels(lstproperty);

@@ -18,24 +18,36 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+package org.puzzle.pending.swing.toolbox.widgettool.svg2mif.element;
 
-package org.puzzle.analyze;
+public class DPoint {
 
-import org.openide.modules.ModuleInstall;
-import org.openide.util.Lookup;
-import org.puzzle.puzzlecore.tool.ToolService;
+	public double x;
+	public double y;
+	
+	public double getX() {
+		return x;
+	}
 
-/**
- * Manages a module's lifecycle. Remember that an installer is optional and
- * often not needed at all.
- */
-public class Installer extends ModuleInstall {
+	public void setX(double x) {
+		this.x = x;
+	}
 
-    @Override
-    public void restored() {
-        
-        ToolService service = Lookup.getDefault().lookup(ToolService.class);
-        if(service != null){
-        }
-    }
+	public double getY() {
+		return y;
+	}
+
+	public void setY(double y) {
+		this.y = y;
+	}
+
+	public DPoint(double x, double y) {
+		this.x = x;
+		this.y = y;
+	}
+	
+	public Object clone() {
+		DPoint pt2 = new DPoint(this.x, this.y);
+		return pt2;
+	}
 }
