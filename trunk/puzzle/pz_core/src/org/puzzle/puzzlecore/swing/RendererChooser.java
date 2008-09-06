@@ -22,22 +22,25 @@
 package org.puzzle.puzzlecore.swing;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.Dialog;
 import java.awt.GridLayout;
-import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.text.MessageFormat;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.event.ChangeListener;
 import org.geotools.map.MapContext;
-import org.openide.DialogDescriptor;
 import org.openide.DialogDisplayer;
+import org.openide.WizardDescriptor;
+import org.openide.util.HelpCtx;
 import org.openide.util.Lookup;
 import org.puzzle.puzzlecore.view.MapView;
 import org.puzzle.puzzlecore.view.RenderingService;
@@ -47,7 +50,7 @@ import org.puzzle.puzzlecore.view.RenderingService;
  * 
  * @author Johann Sorel
  */
-public class RendererChooser extends JPanel implements ActionListener{
+public class RendererChooser extends JPanel implements WizardDescriptor.Panel {
 
     private final Collection<? extends RenderingService> services = Lookup.getDefault().lookupAll(RenderingService.class);
     private final ButtonGroup group = new ButtonGroup();
@@ -62,6 +65,13 @@ public class RendererChooser extends JPanel implements ActionListener{
         }
         
     }
+
+    @Override
+    public String getName() {
+        return "Choose renderer";
+    }
+       
+    
     
     private JPanel createServicePane(RenderingService service){
         JPanel pane = new JPanel(new BorderLayout());
@@ -91,17 +101,97 @@ public class RendererChooser extends JPanel implements ActionListener{
     
     
     public static MapView showChooserDialog(MapContext context){
-        final RendererChooser pane = new RendererChooser();
-        DialogDescriptor desc = new DialogDescriptor(pane, "Choose the renderer", true, pane);
-        DialogDisplayer.getDefault().notify(desc);
+        final RendererChooser chooser = new RendererChooser();
+        WizardDescriptor wizardDescriptor = new WizardDescriptor(chooser.getPanels());
+        // {0} will be replaced by WizardDesriptor.Panel.getComponent().getName()
+        wizardDescriptor.setTitleFormat(new MessageFormat("{0}"));
+        wizardDescriptor.setTitle("Choose renderer");
+        Dialog dialog = DialogDisplayer.getDefault().createDialog(wizardDescriptor);
+        dialog.setVisible(true);
+        dialog.toFront();
+        boolean cancelled = wizardDescriptor.getValue() != WizardDescriptor.FINISH_OPTION;
+        if (!cancelled) {
+           chooser.flagok = true;
+        }
+        
+        return chooser.getView(context);
+    }
+        
+    
+    private WizardDescriptor.Panel[] panels;
 
-        return pane.getView(context);
+    
+    /**
+     * Initialize panels representing individual wizard's steps and sets
+     * various properties for them influencing wizard appearance.
+     */
+    private WizardDescriptor.Panel[] getPanels() {
+            panels = new WizardDescriptor.Panel[]{
+                        this
+                    };
+            String[] steps = new String[panels.length];
+            for (int i = 0; i < panels.length; i++) {
+                Component c = panels[i].getComponent();
+                // Default step name to component name of panel. Mainly useful
+                // for getting the name of the target chooser to appear in the
+                // list of steps.
+                steps[i] = c.getName();
+                if (c instanceof JComponent) { // assume Swing components
+                    JComponent jc = (JComponent) c;
+                    // Sets step number of a component
+                    // TODO if using org.openide.dialogs >= 7.8, can use WizardDescriptor.PROP_*:
+                    jc.putClientProperty("WizardPanel_contentSelectedIndex", new Integer(i));
+                    // Sets steps names for a panel
+                    jc.putClientProperty("WizardPanel_contentData", steps);
+                    // Turn on subtitle creation on each step
+                    jc.putClientProperty("WizardPanel_autoWizardStyle", Boolean.TRUE);
+                    // Show steps on the left side with the image on the background
+                    jc.putClientProperty("WizardPanel_contentDisplayed", Boolean.TRUE);
+                    // Turn on numbering of all steps
+                    jc.putClientProperty("WizardPanel_contentNumbered", Boolean.TRUE);
+                }
+            }
+        return panels;
     }
 
-    public void actionPerformed(ActionEvent e) {
-        if(e.getActionCommand().toLowerCase().equals("ok")){
-            flagok = true;
-        }
+    @Override
+    public Component getComponent() {
+        return this;
+    }
+
+    @Override
+    public HelpCtx getHelp() {
+        // Show no Help button for this panel:
+        return HelpCtx.DEFAULT_HELP;
+    // If you have context help:
+    // return new HelpCtx(SampleWizardPanel1.class);
+    }
+
+    @Override
+    public boolean isValid() {
+        // If it is always OK to press Next or Finish, then:
+        return true;
+    // If it depends on some condition (form filled out...), then:
+    // return someCondition();
+    // and when this condition changes (last form field filled in...) then:
+    // fireChangeEvent();
+    // and uncomment the complicated stuff below.
+    }
+
+    @Override
+    public final void addChangeListener(ChangeListener l) {
+    }
+
+    @Override
+    public final void removeChangeListener(ChangeListener l) {
+    }
+    
+    @Override
+    public void readSettings(Object settings) {
+    }
+
+    @Override
+    public void storeSettings(Object settings) {
     }
     
     
