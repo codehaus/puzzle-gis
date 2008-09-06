@@ -20,7 +20,6 @@
  */
 package org.puzzle.puzzlecore.project.action;
 
-import java.util.Collection;
 import org.geotools.map.MapContext;
 import org.openide.nodes.Node;
 import org.openide.util.HelpCtx;
@@ -31,7 +30,6 @@ import org.puzzle.puzzlecore.context.ContextService;
 import org.puzzle.puzzlecore.project.filetype.GISContextDataObject;
 import org.puzzle.puzzlecore.swing.RendererChooser;
 import org.puzzle.puzzlecore.view.MapView;
-import org.puzzle.puzzlecore.view.RenderingService;
 import org.puzzle.puzzlecore.view.ViewService;
 
 /**
@@ -49,6 +47,7 @@ public final class ShowMapContextAction extends CookieAction {
      * This method displays the first activated context node in a map.
      * @param   activatedNodes  The currently activated nodes.
      */
+    @Override
     protected void performAction(Node[] activatedNodes) {
         if(activatedNodes.length == 0 ) return ;
         
@@ -74,6 +73,7 @@ public final class ShowMapContextAction extends CookieAction {
      * This one is enable when only one node is selected.
      * @return  An {@code int} containing the mode.
      */
+    @Override
     protected int mode() {
         return CookieAction.MODE_EXACTLY_ONE;
     }
@@ -82,6 +82,7 @@ public final class ShowMapContextAction extends CookieAction {
      * Get the name of the action.
      * @return  A {@code String} containing the Action's name.
      */
+    @Override
     public String getName() {
         return NbBundle.getMessage(ShowMapContextAction.class, "CTL_ShowMapContextAction");
     }
@@ -91,6 +92,7 @@ public final class ShowMapContextAction extends CookieAction {
      * node must contain a {@code GISContextDataObject} to be enabled.
      * @return  A set of {@code Class}es.
      */
+    @Override
     protected Class[] cookieClasses() {
         return new Class[]{GISContextDataObject.class};
     }
@@ -100,6 +102,7 @@ public final class ShowMapContextAction extends CookieAction {
         return "org/puzzle/puzzlecore/project/action/demo.png";
     }
 
+    @Override
     public HelpCtx getHelpCtx() {
         return HelpCtx.DEFAULT_HELP;
     }

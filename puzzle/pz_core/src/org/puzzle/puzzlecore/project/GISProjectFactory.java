@@ -80,6 +80,7 @@ public class GISProjectFactory implements ProjectFactory{
      * @throws  java.io.IOException
      * @throws  java.lang.ClassCastException
      */
+    @Override
     public void saveProject(Project project) throws IOException, ClassCastException {
         FileObject projectRoot = project.getProjectDirectory();
         if (projectRoot.getFileObject(PROJECT_DIR) == null) {

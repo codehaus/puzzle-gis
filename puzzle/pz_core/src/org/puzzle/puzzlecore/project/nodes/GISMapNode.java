@@ -33,6 +33,7 @@ import org.openide.loaders.DataObjectNotFoundException;
 import org.openide.nodes.AbstractNode;
 import org.openide.nodes.Children;
 import org.openide.nodes.Node;
+import org.openide.util.Exceptions;
 import org.openide.util.Lookup;
 import org.openide.util.SharedClassObject;
 import org.openide.util.Utilities;
@@ -41,6 +42,7 @@ import org.openide.util.lookup.Lookups;
 import org.openide.util.lookup.ProxyLookup;
 import org.puzzle.puzzlecore.project.GISProject;
 import org.puzzle.puzzlecore.project.action.source.AddMapContext;
+import org.puzzle.puzzlecore.project.filetype.GISContextDataObject;
 
 /**
  * This class provides a {@link org.openide.nodes.Node} for the "map" folder
@@ -113,7 +115,7 @@ public class GISMapNode extends AbstractNode implements FileChangeListener{
     }
 
     @Override
-    public void fileDeleted(FileEvent arg0) {
+    public void fileDeleted(FileEvent event) {
     }
 
     @Override

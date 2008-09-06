@@ -19,12 +19,14 @@ import org.puzzle.puzzlecore.project.source.GISSource;
 
 public final class AddFileSource extends CookieAction {
 
+    @Override
     protected void performAction(Node[] activatedNodes) {
         final GISProject gis = activatedNodes[0].getLookup().lookup(GISProject.class);
 
         final JFileSourcePane pane = new JFileSourcePane();
         ActionListener lst = new ActionListener() {
 
+            @Override
             public void actionPerformed(ActionEvent e) {
 
                 if (e.getActionCommand().equalsIgnoreCase("ok")) {
@@ -42,14 +44,17 @@ public final class AddFileSource extends CookieAction {
 
     }
 
+    @Override
     protected int mode() {
         return CookieAction.MODE_ALL;
     }
 
+    @Override
     public String getName() {
         return NbBundle.getMessage(AddFileSource.class, "CTL_AddFileSource");
     }
 
+    @Override
     protected Class[] cookieClasses() {
         return new Class[]{GISProject.class};
     }
@@ -59,6 +64,7 @@ public final class AddFileSource extends CookieAction {
         return "org/puzzle/puzzlecore/addFileSource.png";
     }
 
+    @Override
     public HelpCtx getHelpCtx() {
         return HelpCtx.DEFAULT_HELP;
     }
