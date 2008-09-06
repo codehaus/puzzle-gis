@@ -25,6 +25,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import org.netbeans.api.project.FileOwnerQuery;
+import org.netbeans.api.project.Project;
 import org.openide.filesystems.FileObject;
 import org.openide.loaders.DataObjectExistsException;
 import org.openide.loaders.XMLDataObject;
@@ -140,6 +141,18 @@ public class GISSourceDataObject extends XMLDataObject {
         return source;
 
     }
+
+    @Override
+    public void dispose() {
+        Project prj = FileOwnerQuery.getOwner(getPrimaryFile());
+        if(prj != null && prj instanceof GISProject){
+            GISProject gisprj = (GISProject) prj;
+            gisprj.removeGISSource(getSource());
+        }
+        super.dispose();
+    }
+
+
 
     @Override
     protected Node createNodeDelegate() {

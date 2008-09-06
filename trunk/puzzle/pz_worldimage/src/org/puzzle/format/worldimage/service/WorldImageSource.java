@@ -105,7 +105,7 @@ public class WorldImageSource implements GISSource{
         LayerSource source = new LayerSource(id, parameters);
         RichMapLayer layer = null;
         try{
-            layer = new RichMapLayer(gc2d, style,source);
+            layer = new RichMapLayer(gc2d, style,this,source);
         }catch(TransformException te){
             
         }catch(SchemaException se){

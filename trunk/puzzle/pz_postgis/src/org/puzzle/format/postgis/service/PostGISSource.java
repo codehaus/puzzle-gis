@@ -64,7 +64,7 @@ public class PostGISSource implements GISSource{
     public RichMapLayer createLayer(Map<String, String> parameters) {
         MutableStyle style = new RandomStyleFactory().createRandomVectorStyle(featureSource);
         LayerSource source = new LayerSource(id, parameters);
-        RichMapLayer layer = new RichMapLayer(featureSource, style,source);
+        RichMapLayer layer = new RichMapLayer(featureSource, style,this, source);
         layer.setDescription(CommonFactoryFinder.getStyleFactory(null).createDescription(name,"") );
         
         return layer;
