@@ -23,8 +23,8 @@ package org.puzzle.format.shapefile.tool;
 
 import java.awt.Component;
 import org.openide.util.NbBundle;
-import org.puzzle.puzzlecore.swing.toolbox.tooltree.ToolTreeConstants;
-import org.puzzle.puzzlecore.tool.AbstractToolDescriptor;
+import org.puzzle.core.swing.toolbox.tooltree.ToolTreeConstants;
+import org.puzzle.core.tool.AbstractToolDescriptor;
 
 
 /**

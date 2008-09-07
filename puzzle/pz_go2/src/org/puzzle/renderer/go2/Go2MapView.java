@@ -13,7 +13,7 @@ import org.geotools.gui.swing.go.control.JNavigationBar;
 import org.geotools.gui.swing.go.decoration.JNavigationDecoration;
 import org.geotools.gui.swing.map.map2d.Map2D;
 import org.geotools.map.MapContext;
-import org.puzzle.puzzlecore.view.MapView;
+import org.puzzle.core.view.MapView;
 
 /**
  *

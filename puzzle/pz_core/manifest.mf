@@ -1,14 +1,14 @@
 Manifest-Version: 1.0
-OpenIDE-Module: org.puzzle.puzzlecore
-OpenIDE-Module-Layer: org/puzzle/puzzlecore/layer.xml
-OpenIDE-Module-Localizing-Bundle: org/puzzle/puzzlecore/Bundle.properties
+OpenIDE-Module: org.puzzle.core
+OpenIDE-Module-Layer: org/puzzle/core/layer.xml
+OpenIDE-Module-Localizing-Bundle: org/puzzle/core/Bundle.properties
 OpenIDE-Module-Specification-Version: 0.0.1.2
 
-Name: org/puzzle/puzzlecore/project/filetype/GISContextDataLoader.class
+Name: org/puzzle/core/project/filetype/GISContextDataLoader.class
 Install-Before: org.openide.loaders.XMLDataObject, org.netbeans.modules.xml.XMLDataObject
 OpenIDE-Module-Class: Loader
 
-Name: org/puzzle/puzzlecore/project/filetype/GISSourceDataLoader.class
+Name: org/puzzle/core/project/filetype/GISSourceDataLoader.class
 Install-Before: org.openide.loaders.XMLDataObject, org.netbeans.modules.xml.XMLDataObject
 OpenIDE-Module-Class: Loader
 

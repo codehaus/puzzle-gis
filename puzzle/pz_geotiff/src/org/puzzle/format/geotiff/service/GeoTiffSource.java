@@ -46,18 +46,18 @@ import org.opengis.referencing.operation.TransformException;
 import org.openide.DialogDisplayer;
 import org.openide.WizardDescriptor;
 import org.openide.util.Utilities;
-import org.puzzle.puzzlecore.context.LayerSource;
-import org.puzzle.puzzlecore.context.RichMapLayer;
-import org.puzzle.puzzlecore.project.GISProject;
-import org.puzzle.puzzlecore.project.source.GISSource;
+import org.puzzle.core.context.LayerSource;
+import org.puzzle.core.context.RichMapLayer;
+import org.puzzle.core.project.GISProject;
+import org.puzzle.core.project.source.GISSource;
 
 /**
  * This is a {@code GISSource} used to reference a Geotiff file in
- * a {@link org.puzzle.puzzlecore.project.GISProject}.
+ * a {@link org.puzzle.core.project.GISProject}.
  * 
  * @author  Thomas Bonavia
  * 
- * @see     org.puzzle.puzzlecore.project.source.GISSource
+ * @see     org.puzzle.core.project.source.GISSource
  */
 public class GeoTiffSource implements GISSource{
 

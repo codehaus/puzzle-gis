@@ -31,9 +31,9 @@ import org.geotools.gui.swing.misc.filter.FileFilterFactory;
 import org.netbeans.api.project.Project;
 import org.netbeans.api.project.ui.OpenProjects;
 import org.openide.util.Exceptions;
-import org.puzzle.puzzlecore.project.GISProject;
-import org.puzzle.puzzlecore.project.source.GISFileSourceService;
-import org.puzzle.puzzlecore.project.source.GISSource;
+import org.puzzle.core.project.GISProject;
+import org.puzzle.core.project.source.GISFileSourceService;
+import org.puzzle.core.project.source.GISSource;
 
 /**
  * This is the service linked with the {@code GeoTiffSource}.
@@ -41,7 +41,7 @@ import org.puzzle.puzzlecore.project.source.GISSource;
  * 
  * @author  Thomas Bonavia
  * 
- * @see     org.puzzle.puzzlecore.project.source.GISFileSourceService
+ * @see     org.puzzle.core.project.source.GISFileSourceService
  */
 public class GeoTiffSourceService implements GISFileSourceService{
     private static final String TITLE = "Geotiff";

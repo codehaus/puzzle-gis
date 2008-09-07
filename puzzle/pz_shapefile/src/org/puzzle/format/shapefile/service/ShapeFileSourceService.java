@@ -29,9 +29,9 @@ import org.geotools.gui.swing.misc.filter.FileFilterFactory;
 import org.netbeans.api.project.Project;
 import org.netbeans.api.project.ui.OpenProjects;
 import org.openide.util.Exceptions;
-import org.puzzle.puzzlecore.project.GISProject;
-import org.puzzle.puzzlecore.project.source.GISFileSourceService;
-import org.puzzle.puzzlecore.project.source.GISSource;
+import org.puzzle.core.project.GISProject;
+import org.puzzle.core.project.source.GISFileSourceService;
+import org.puzzle.core.project.source.GISSource;
 
 /**
  *
