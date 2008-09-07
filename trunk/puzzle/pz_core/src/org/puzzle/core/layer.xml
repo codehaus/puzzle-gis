@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE filesystem PUBLIC "-//NetBeans//DTD Filesystem 1.1//EN" "http://www.netbeans.org/dtds/filesystem-1_1.dtd">
+<!DOCTYPE filesystem PUBLIC "-//NetBeans//DTD Filesystem 1.2//EN" "http://www.netbeans.org/dtds/filesystem-1_2.dtd">
 <filesystem>
     <attr name="Menu\Window\CloseAllButThisAction.shadow\position" intvalue="1400"/>
     <attr name="Menu\Window\CloseAllDocumentsAction.shadow\position" intvalue="1300"/>
@@ -16,21 +16,31 @@
     <attr name="Menu\Window\org-netbeans-core-windows-actions-UndockAction.shadow\position" intvalue="1100"/>
     <folder name="Actions">
         <folder name="Puzzle">
-            <file name="org-puzzle-core-context-action-newcontext-NewContextAction.instance"/>
-            <file name="org-puzzle-core-context-action-addlayer-AddDBLayerAction.instance"/>
-            <file name="org-puzzle-core-context-action-addlayer-AddFileLayerAction.instance"/>
-            <file name="org-puzzle-core-context-action-addlayer-AddWebLayerAction.instance"/>
             <file name="org-puzzle-core-project-action-ShowMapContextAction.instance"/>
             <file name="org-puzzle-core-project-action-source-AddDistantSource.instance"/>
-            <file name="org-puzzle-core-project-action-source-AddFileSource.instance"/>
-            <file name="org-puzzle-core-project-action-source-AddMapContext.instance"/>
+            <file name="org-puzzle-core-project-action-source-NewFileSource.instance">
+                <attr name="SystemFileSystem.localizingBundle" stringvalue="org.puzzle.core.Bundle"/>
+                <attr name="delegate" newvalue="org.puzzle.core.project.action.source.NewFileSource"/>
+                <attr name="displayName" bundlevalue="org.puzzle.core.project.action.source.Bundle#CTL_NewFileSource"/>
+                <attr name="iconBase" stringvalue="org/puzzle/core/addFileSource.png"/>
+                <attr name="instanceCreate" methodvalue="org.openide.awt.Actions.alwaysEnabled"/>
+                <attr name="noIconInMenu" stringvalue="false"/>
+            </file>
+            <file name="org-puzzle-core-project-action-source-NewMapContext.instance">
+                <attr name="SystemFileSystem.localizingBundle" stringvalue="org.puzzle.core.Bundle"/>
+                <attr name="delegate" newvalue="org.puzzle.core.project.action.source.NewMapContext"/>
+                <attr name="displayName" bundlevalue="org.puzzle.core.project.action.source.Bundle#CTL_NewMapContext"/>
+                <attr name="iconBase" stringvalue="org/puzzle/core/addMapContext.png"/>
+                <attr name="instanceCreate" methodvalue="org.openide.awt.Actions.alwaysEnabled"/>
+                <attr name="noIconInMenu" stringvalue="false"/>
+            </file>
             <file name="org-puzzle-core-project-action-source-ShowLayerWizard.instance"/>
         </folder>
         <folder name="Window">
             <file name="org-puzzle-core-context-gui-contexttree-ContextTreeAction.instance"/>
             <file name="org-puzzle-core-tool-gui-toolbox-ToolTreeAction.instance"/>
             </folder>
-    </folder>
+        </folder>
     <folder name="Loaders">
         <folder name="text">
             <folder name="giscontext+xml">
@@ -170,17 +180,17 @@
     <folder name="Toolbars">
         <folder name="GISProject">
             <attr name="position" intvalue="100"/>
-            <file name="org-puzzle-core-project-action-source-AddFileSource.shadow">
-                <attr name="originalFile" stringvalue="Actions/Puzzle/org-puzzle-core-project-action-source-AddFileSource.instance"/>
-                <attr name="position" intvalue="100"/>
-            </file>
             <!--file name="org-puzzle-core-project-action-source-AddDistantSource.shadow">
                 <attr name="originalFile" stringvalue="Actions/Puzzle/org-puzzle-core-project-action-source-AddDistantSource.instance"/>
                 <attr name="position" intvalue="200"/>
             </file-->
-            <file name="org-puzzle-core-project-action-source-AddMapContext.shadow">
-                <attr name="originalFile" stringvalue="Actions/Puzzle/org-puzzle-core-project-action-source-AddMapContext.instance"/>
-                <attr name="position" intvalue="300"/>
+            <file name="org-puzzle-core-project-action-source-NewFileSource.shadow">
+                <attr name="originalFile" stringvalue="Actions/Puzzle/org-puzzle-core-project-action-source-NewFileSource.instance"/>
+                <attr name="position" intvalue="0"/>
+            </file>
+            <file name="org-puzzle-core-project-action-source-NewMapContext.shadow">
+                <attr name="originalFile" stringvalue="Actions/Puzzle/org-puzzle-core-project-action-source-NewMapContext.instance"/>
+                <attr name="position" intvalue="200"/>
             </file>
         </folder>
     </folder>
@@ -189,9 +199,6 @@
             <file name="ContextTreeAction.shadow">
                 <attr name="originalFile" stringvalue="Actions/Window/org-puzzle-core-context-gui-contexttree-ContextTreeAction.instance"/>
                 <attr name="position" intvalue="100"/>
-            </file>
-            <file name="TimeLineAction.shadow">
-                <attr name="originalFile" stringvalue="Actions/Window/org-puzzle-core-view-gui-timeline-TimeLineAction.instance"/>
             </file>
             <file name="ToolTreeAction.shadow">
                 <attr name="originalFile" stringvalue="Actions/Window/org-puzzle-core-tool-gui-toolbox-ToolTreeAction.instance"/>
