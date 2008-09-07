@@ -87,12 +87,6 @@ public class GISProjectNode extends AbstractNode{
         };
     }
 
-    
-
-    
-    
-    
-    
 //    private synchronized  static Children createChildren(GISProject project){
 //        Children child = new Children.Array();
 //        GISMapNode map = new GISMapNode(project);

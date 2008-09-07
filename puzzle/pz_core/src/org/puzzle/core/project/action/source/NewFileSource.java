@@ -49,7 +49,7 @@ public final class NewFileSource implements ActionListener {
 
                     if (e.getActionCommand().equalsIgnoreCase("ok")) {
                         pane.setVisible(false);
-                        Collection<GISSource> sources = pane.getGISSources();
+                        Collection<GISSource> sources = pane.getGISSources(gis);
                         for (GISSource source : sources) {
                             gis.appendGISSource(source);
                         }

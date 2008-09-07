@@ -24,6 +24,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
 import org.openide.util.Lookup;
+import org.puzzle.core.project.GISProject;
 import org.puzzle.core.project.source.GISFileSourceService;
 import org.puzzle.core.project.source.GISSource;
 import org.puzzle.core.project.source.GISSourceService;
@@ -100,7 +101,7 @@ public class JFileSourcePane extends javax.swing.JPanel {
     private javax.swing.JFileChooser gui_choose;
     // End of variables declaration//GEN-END:variables
 
-    public Collection<GISSource> getGISSources(){
+    public Collection<GISSource> getGISSources(GISProject project){
         Collection<GISSource> sources = new ArrayList<GISSource>();
         File[] files = gui_choose.getSelectedFiles();
         
@@ -113,7 +114,7 @@ public class JFileSourcePane extends javax.swing.JPanel {
                 
                 try{
                     if(((GISFileSourceService)service).isValidFile(f))
-                        source = ((GISFileSourceService)service).createSource(f);
+                        source = ((GISFileSourceService)service).createSource(f,project);
                 }catch(IllegalArgumentException ex){
                     ex.printStackTrace();
                 }
