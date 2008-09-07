@@ -1,7 +1,7 @@
 /*
  *  Puzzle-GIS - OpenSource mapping program
  *  http://docs.codehaus.org/display/PUZZLEGIS
- *  Copyright (C) 2007-2008 Puzzle-GIS
+ *  Copyright (C) 2007 Puzzle-GIS
  *  
  *  GPLv3 + Classpath exception
  *  
@@ -18,7 +18,7 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.puzzle.core.context.action.addlayer;
+package org.puzzle.core.project.action.source;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -28,29 +28,27 @@ import org.netbeans.api.project.ui.OpenProjects;
 import org.openide.DialogDescriptor;
 import org.openide.DialogDisplayer;
 import org.openide.NotifyDescriptor;
-import org.openide.util.HelpCtx;
-import org.openide.util.NbBundle;
-import org.openide.util.actions.CallableSystemAction;
-import org.puzzle.core.context.gui.datadialog.JDistantSourcePane;
+import org.puzzle.core.context.gui.datadialog.JFileSourcePane;
 import org.puzzle.core.project.GISProject;
 import org.puzzle.core.project.source.GISSource;
 
-public final class AddWebLayerAction extends CallableSystemAction {
+public final class NewFileSource implements ActionListener {
 
-    public void performAction() {
-    
-        final Project mainProject = OpenProjects.getDefault().getMainProject();
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        Project project = OpenProjects.getDefault().getMainProject();
+        
+        if(project != null && project instanceof GISProject) {
+            final GISProject gis =(GISProject) project;
 
-        if (mainProject != null && mainProject instanceof GISProject) {
-            final GISProject gis = (GISProject) mainProject;
-
-            final JDistantSourcePane pane = new JDistantSourcePane();
+            final JFileSourcePane pane = new JFileSourcePane();
             ActionListener lst = new ActionListener() {
 
+                @Override
                 public void actionPerformed(ActionEvent e) {
 
                     if (e.getActionCommand().equalsIgnoreCase("ok")) {
-
+                        pane.setVisible(false);
                         Collection<GISSource> sources = pane.getGISSources();
                         for (GISSource source : sources) {
                             gis.appendGISSource(source);
@@ -61,30 +59,11 @@ public final class AddWebLayerAction extends CallableSystemAction {
 
             DialogDescriptor desc = new DialogDescriptor(pane, "Open file", true, lst);
             DialogDisplayer.getDefault().notify(desc);
-
-        } else {
-            NotifyDescriptor notify = new NotifyDescriptor.Message("Current main project is not a GIS project.",
-                    NotifyDescriptor.INFORMATION_MESSAGE);
-            DialogDisplayer.getDefault().notify(notify);
+        }else{
+            NotifyDescriptor d =  new NotifyDescriptor.Message("Main project is not a GIS project", NotifyDescriptor.INFORMATION_MESSAGE);
+            DialogDisplayer.getDefault().notify(d);
         }
         
-    }
-
-    public String getName() {
-        return NbBundle.getMessage(AddWebLayerAction.class, "CTL_AddWebLayerAction");
-    }
-
-    @Override
-    protected String iconResource() {
-        return "org/puzzle/core/context/action/addlayer/web_add.png";
-    }
-
-    public HelpCtx getHelpCtx() {
-        return HelpCtx.DEFAULT_HELP;
-    }
-
-    @Override
-    protected boolean asynchronous() {
-        return false;
+        
     }
 }
