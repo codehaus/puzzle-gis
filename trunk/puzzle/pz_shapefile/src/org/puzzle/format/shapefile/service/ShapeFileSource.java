@@ -25,6 +25,7 @@ import java.awt.Component;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
+import java.net.URI;
 import java.text.MessageFormat;
 import java.util.Collection;
 import java.util.Collections;
@@ -72,7 +73,7 @@ public class ShapeFileSource implements GISSource{
         this.parameters = parameters;
         DataStore store = null;
         try {
-            store = DataStoreFinder.getDataStore(new SingletonMap("url", shapefile.getPath()));
+            store = DataStoreFinder.getDataStore(new SingletonMap("url",shapefile.toURI().toURL()));
         } catch (IOException ex) {
             Exceptions.printStackTrace(ex);
         }

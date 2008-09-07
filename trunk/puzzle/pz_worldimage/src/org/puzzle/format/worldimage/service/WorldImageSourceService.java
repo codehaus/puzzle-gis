@@ -21,15 +21,12 @@
 package org.puzzle.format.worldimage.service;
 
 import java.io.File;
-import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.filechooser.FileFilter;
 import org.geotools.gui.swing.misc.filter.FileFilterFactory;
-import org.netbeans.api.project.Project;
-import org.netbeans.api.project.ui.OpenProjects;
 import org.openide.util.Exceptions;
 import org.puzzle.core.project.GISProject;
 import org.puzzle.core.project.source.GISFileSourceService;
@@ -58,13 +55,13 @@ public class WorldImageSourceService implements GISFileSourceService{
 
     /** {@inheritDoc} */
     public GISSource restoreSource(Map<String, String> parameters, int id) throws IllegalArgumentException {
-        final String url = parameters.get("url");
+        final String strURI = parameters.get("uri");
         
-        if(url == null) throw new IllegalArgumentException("missing parameter url");
+        if(strURI == null) throw new IllegalArgumentException("missing parameter uri");
 
         File worldImage = null;
         try{
-            worldImage = new File(new URI(url));
+            worldImage = new File(new URI(strURI));
         }catch(URISyntaxException urise){
             Exceptions.printStackTrace(urise);
         }
@@ -74,22 +71,17 @@ public class WorldImageSourceService implements GISFileSourceService{
     }
 
     /** {@inheritDoc} */
-    public GISSource createSource(File file) throws IllegalArgumentException {
-        String url = null;
+    public GISSource createSource(File file,GISProject mainProject) throws IllegalArgumentException {
+        String uri = null;
         Map<String,String> params = new HashMap<String, String>();
-        try {
-            url = file.toURI().toURL().toString();
-        } catch (MalformedURLException ex) {
-            Exceptions.printStackTrace(ex);
-        }
+        uri = file.toURI().toString();
         
-        if(url == null){
+        if(uri == null){
             throw new IllegalArgumentException("Not a valid File");
         }
         
-        params.put("url", url);
+        params.put("uri", uri);
         
-        Project mainProject = OpenProjects.getDefault().getMainProject();
         int id = -1;
         
         if(mainProject != null && mainProject instanceof GISProject){

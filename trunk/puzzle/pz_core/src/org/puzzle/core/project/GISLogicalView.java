@@ -119,6 +119,7 @@ public class GISLogicalView implements LogicalViewProvider{
      */
     @Override
     public Node findPath(Node root, Object target) {
+        System.out.println("Called");
         return null;
     }
 

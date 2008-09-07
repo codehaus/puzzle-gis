@@ -162,8 +162,7 @@ public class GISSourceNode extends AbstractNode implements FileChangeListener{
         
         @Override
         public void actionPerformed(ActionEvent arg0) {
-            final GISProject gis =(GISProject) project;
-
+            
             final JFileSourcePane pane = new JFileSourcePane();
             ActionListener lst = new ActionListener() {
 
@@ -172,9 +171,9 @@ public class GISSourceNode extends AbstractNode implements FileChangeListener{
 
                     if (e.getActionCommand().equalsIgnoreCase("ok")) {
                         pane.setVisible(false);
-                        Collection<GISSource> sources = pane.getGISSources();
+                        Collection<GISSource> sources = pane.getGISSources(project);
                         for (GISSource source : sources) {
-                            gis.appendGISSource(source);
+                            project.appendGISSource(source);
                         }
                     }
                 }
