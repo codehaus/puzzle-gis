@@ -9,8 +9,8 @@ import java.awt.Image;
 import org.geotools.gui.swing.go.J2DMapVolatile;
 import org.geotools.map.MapContext;
 import org.openide.util.Utilities;
-import org.puzzle.puzzlecore.view.MapView;
-import org.puzzle.puzzlecore.view.RenderingService;
+import org.puzzle.core.view.MapView;
+import org.puzzle.core.view.RenderingService;
 
 /**
  *

@@ -3,7 +3,7 @@
     <type>org.netbeans.modules.apisupport.project</type>
     <configuration>
         <data xmlns="http://www.netbeans.org/ns/nb-module-project/3">
-            <code-name-base>org.puzzle.puzzlecore</code-name-base>
+            <code-name-base>org.puzzle.core</code-name-base>
             <suite-component/>
             <module-dependencies>
                 <dependency>
@@ -131,29 +131,29 @@
                 </dependency>
             </module-dependencies>
             <public-packages>
-                <package>org.puzzle.puzzlecore.context</package>
-                <package>org.puzzle.puzzlecore.gtextend.widget.style</package>
-                <package>org.puzzle.puzzlecore.gtextend.widget.viewtree</package>
-                <package>org.puzzle.puzzlecore.process</package>
-                <package>org.puzzle.puzzlecore.project</package>
-                <package>org.puzzle.puzzlecore.project.action</package>
-                <package>org.puzzle.puzzlecore.project.filetype</package>
-                <package>org.puzzle.puzzlecore.project.nodes</package>
-                <package>org.puzzle.puzzlecore.project.source</package>
-                <package>org.puzzle.puzzlecore.project.source.shapefile</package>
-                <package>org.puzzle.puzzlecore.swing.toolbox</package>
-                <package>org.puzzle.puzzlecore.swing.toolbox.tooltree</package>
-                <package>org.puzzle.puzzlecore.swing.toolbox.widgettool</package>
-                <package>org.puzzle.puzzlecore.swing.toolbox.widgettool.clipping</package>
-                <package>org.puzzle.puzzlecore.swing.toolbox.widgettool.shapecreation</package>
-                <package>org.puzzle.puzzlecore.swing.toolbox.widgettool.svg2mif</package>
-                <package>org.puzzle.puzzlecore.swing.toolbox.widgettool.svg2mif.element</package>
-                <package>org.puzzle.puzzlecore.swing.toolbox.widgettool.svg2mif.element.xml</package>
-                <package>org.puzzle.puzzlecore.swing.toolbox.widgettool.svg2mif.element.xml.svg</package>
-                <package>org.puzzle.puzzlecore.swing.toolbox.widgettool.vdem2csv</package>
-                <package>org.puzzle.puzzlecore.tool</package>
-                <package>org.puzzle.puzzlecore.tool.gui.toolbox</package>
-                <package>org.puzzle.puzzlecore.view</package>
+                <package>org.puzzle.core.context</package>
+                <package>org.puzzle.core.gtextend.widget.style</package>
+                <package>org.puzzle.core.gtextend.widget.viewtree</package>
+                <package>org.puzzle.core.process</package>
+                <package>org.puzzle.core.project</package>
+                <package>org.puzzle.core.project.action</package>
+                <package>org.puzzle.core.project.filetype</package>
+                <package>org.puzzle.core.project.nodes</package>
+                <package>org.puzzle.core.project.source</package>
+                <package>org.puzzle.core.project.source.shapefile</package>
+                <package>org.puzzle.core.swing.toolbox</package>
+                <package>org.puzzle.core.swing.toolbox.tooltree</package>
+                <package>org.puzzle.core.swing.toolbox.widgettool</package>
+                <package>org.puzzle.core.swing.toolbox.widgettool.clipping</package>
+                <package>org.puzzle.core.swing.toolbox.widgettool.shapecreation</package>
+                <package>org.puzzle.core.swing.toolbox.widgettool.svg2mif</package>
+                <package>org.puzzle.core.swing.toolbox.widgettool.svg2mif.element</package>
+                <package>org.puzzle.core.swing.toolbox.widgettool.svg2mif.element.xml</package>
+                <package>org.puzzle.core.swing.toolbox.widgettool.svg2mif.element.xml.svg</package>
+                <package>org.puzzle.core.swing.toolbox.widgettool.vdem2csv</package>
+                <package>org.puzzle.core.tool</package>
+                <package>org.puzzle.core.tool.gui.toolbox</package>
+                <package>org.puzzle.core.view</package>
             </public-packages>
         </data>
     </configuration>

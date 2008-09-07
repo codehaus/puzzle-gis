@@ -23,8 +23,8 @@ package org.puzzle.format.postgis.service;
 import java.util.Map;
 import org.geotools.gui.swing.datachooser.DataPanel;
 import org.geotools.gui.swing.datachooser.JPostGISDataPanel;
-import org.puzzle.puzzlecore.project.source.GISDistantSourceService;
-import org.puzzle.puzzlecore.project.source.GISSource;
+import org.puzzle.core.project.source.GISDistantSourceService;
+import org.puzzle.core.project.source.GISSource;
 
 /**
  *

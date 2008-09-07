@@ -23,7 +23,7 @@ package org.puzzle.analyze;
 
 import org.openide.modules.ModuleInstall;
 import org.openide.util.Lookup;
-import org.puzzle.puzzlecore.tool.ToolService;
+import org.puzzle.core.tool.ToolService;
 
 /**
  * Manages a module's lifecycle. Remember that an installer is optional and

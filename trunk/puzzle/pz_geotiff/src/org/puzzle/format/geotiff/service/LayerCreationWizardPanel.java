@@ -10,7 +10,7 @@ import javax.swing.event.ChangeListener;
 import org.geotools.map.MapContext;
 import org.openide.WizardDescriptor;
 import org.openide.util.HelpCtx;
-import org.puzzle.puzzlecore.project.GISProject;
+import org.puzzle.core.project.GISProject;
 
 class LayerCreationWizardPanel implements WizardDescriptor.Panel {
 

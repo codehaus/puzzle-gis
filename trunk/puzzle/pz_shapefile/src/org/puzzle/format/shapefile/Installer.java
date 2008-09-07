@@ -25,7 +25,7 @@ import org.openide.modules.ModuleInstall;
 import org.openide.util.Lookup;
 
 import org.puzzle.format.shapefile.tool.ShapeCreationTTDescriptor;
-import org.puzzle.puzzlecore.tool.ToolService;
+import org.puzzle.core.tool.ToolService;
 
 /**
  * Install the shapefiles tools in the toolService lookup.
