@@ -55,12 +55,19 @@ import org.netbeans.spi.project.ProjectState;
 import org.netbeans.spi.project.ui.LogicalViewProvider;
 import org.openide.filesystems.FileObject;
 import org.openide.filesystems.FileUtil;
+import org.openide.loaders.DataFolder;
+import org.openide.loaders.DataObject;
+import org.openide.loaders.DataObjectNotFoundException;
+import org.openide.util.Exceptions;
 import org.openide.util.Lookup;
 import org.openide.util.Utilities;
 import org.openide.util.lookup.AbstractLookup;
 import org.openide.util.lookup.InstanceContent;
 import org.puzzle.core.context.ContextService;
 import org.puzzle.core.context.RichMapLayer;
+import org.puzzle.core.project.filetype.GISContextDataObject;
+import org.puzzle.core.project.filetype.GISSourceDataNode;
+import org.puzzle.core.project.filetype.GISSourceDataObject;
 import org.puzzle.core.project.source.GISSource;
 import org.puzzle.core.view.MapView;
 import org.puzzle.core.view.ViewService;
@@ -94,8 +101,8 @@ public class GISProject implements Project {
     private final ProjectState state;
     private final LogicalViewProvider logicalView = new GISLogicalView(this);
 
-    private Collection<GISSource> sources = new HashSet<GISSource>();
-    private Collection<MapContext> contexts = new HashSet<MapContext>();
+//    private Collection<GISSource> sources = new HashSet<GISSource>();
+//    private Collection<MapContext> contexts = new HashSet<MapContext>();
 
     private final InstanceContent lookUpContent = new InstanceContent();
     private final Lookup lookUp = new AbstractLookup(lookUpContent);
@@ -143,6 +150,7 @@ public class GISProject implements Project {
         for(int i=1; i<Integer.MAX_VALUE; i++){
             if(alreadyGiven.contains(i))continue;
 
+            Collection<GISSource> sources = getGISSources();
             for(GISSource src : sources){
                 if(src.getID() == i) continue number_loop;
             }
@@ -171,13 +179,13 @@ public class GISProject implements Project {
         return lookUp;
     }
     
-    /**
-     * Add a {@code MapContext} to the project.
-     * @param map   The {@code MapContext} to add to the project's {@code Lookup}.
-     */
-    public void addContext(MapContext map){
-        contexts.add(map);
-    }
+//    /**
+//     * Add a {@code MapContext} to the project.
+//     * @param map   The {@code MapContext} to add to the project's {@code Lookup}.
+//     */
+//    public void addContext(MapContext map){
+//        contexts.add(map);
+//    }
     
     /**
      * Remove a {@code MapContext}, will remove it from the lookup, close all related view and
@@ -209,27 +217,43 @@ public class GISProject implements Project {
         }
         
         //finally remove context from project
-        contexts.remove(context);
+//        contexts.remove(context);
     }
     
     public Collection<MapContext> getContexts() {
+        final Collection<MapContext> contexts = new ArrayList<MapContext>();
+       findContext(getSourceFolder(true), contexts);
         return Collections.unmodifiableCollection(contexts);
     }
-    
-    /**
-     * Add a {@code GISSource} to the project.<br>
-     * WARNING : this source will be added only in memory. When closing the 
-     * session, this source will be lost.
-     * @param src   The {@code GISSource} to add to the project's {@code Lookup}.
-     */
-    public void addGISSource(GISSource src){
-        if(checkSourceExist(src)) return;
-        if(src != null) sources.add(src);
+      
+    private void findContext(FileObject file, Collection<MapContext> contexts){
+         DataObject data = null;
+        try {
+            data = DataObject.find(file);
+        } catch (DataObjectNotFoundException ex) {
+        }
+         
+         if(data != null){
+             if(data instanceof DataFolder){
+                 FileObject[] childs = file.getChildren();
+                 for(FileObject obj : childs){
+                     findContext(obj, contexts);
+                 }
+             }else if(data instanceof GISContextDataObject){
+                GISContextDataObject src = (GISContextDataObject) data;
+                contexts.add(src.getContext());
+             }
+         }
+         
     }
+    
+    
+    
+    
     
     public void removeGISSource(GISSource source) {
         if(source == null) return;
-        
+        Collection<MapContext> contexts = getContexts();
         for(MapContext context : contexts){
             List<MapLayer> layers = context.layers();
             for(int i=layers.size()-1; i>=0; i--){
@@ -245,7 +269,7 @@ public class GISProject implements Project {
         }
         
         //finally remove source from project
-        sources.remove(source);
+//        sources.remove(source);
     }
     
     
@@ -258,13 +282,35 @@ public class GISProject implements Project {
     public void appendGISSource(GISSource src){
         if(checkSourceExist(src)) return;
         GISSource source = createPersistantSource(src);
-        if(source != null) sources.add(source);
+//        if(source != null) sources.add(source);
     }
 
     public Collection<GISSource> getGISSources(){
+        final Collection<GISSource> sources = new ArrayList<GISSource>();
+        findGISSource(getSourceFolder(true), sources);
         return Collections.unmodifiableCollection(sources);
     }
 
+    private void findGISSource(FileObject file, Collection<GISSource> sources){
+         DataObject data = null;
+        try {
+            data = DataObject.find(file);
+        } catch (DataObjectNotFoundException ex) {
+        }
+         
+         if(data != null){
+             if(data instanceof DataFolder){
+                 FileObject[] childs = file.getChildren();
+                 for(FileObject obj : childs){
+                     findGISSource(obj, sources);
+                 }
+             }else if(data instanceof GISSourceDataObject){
+                 GISSourceDataObject src = (GISSourceDataObject) data;
+                 sources.add(src.getSource());
+             }
+         }
+         
+    }
 
     
     /**
@@ -285,7 +331,7 @@ public class GISProject implements Project {
      * </ul>
      */
     private boolean checkSourceExist(GISSource source){
-        
+        Collection<GISSource> sources = getGISSources();
         //check is the object is already in the lookup
         if(sources.contains(source)){
             //source already in the project

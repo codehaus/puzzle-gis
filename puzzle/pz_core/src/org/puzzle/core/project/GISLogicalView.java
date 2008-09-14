@@ -20,19 +20,12 @@
  */
 package org.puzzle.core.project;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.netbeans.spi.project.ui.LogicalViewProvider;
-import org.openide.filesystems.FileObject;
-import org.openide.loaders.DataFolder;
+import org.openide.loaders.DataObject;
 import org.openide.loaders.DataObjectNotFoundException;
-import org.openide.nodes.AbstractNode;
-import org.openide.nodes.Children;
 import org.openide.nodes.Node;
-import org.puzzle.core.project.nodes.GISDocNode;
-import org.puzzle.core.project.nodes.GISMapNode;
+import org.openide.util.Exceptions;
 import org.puzzle.core.project.nodes.GISProjectNode;
-import org.puzzle.core.project.nodes.GISSourceNode;
 
 /**
  * This class provides a tree for displaying the {@link GISProject}.
@@ -46,18 +39,18 @@ import org.puzzle.core.project.nodes.GISSourceNode;
  * 
  * @see     org.netbeans.spi.project.ui.LogicalViewProvider
  */
-public class GISLogicalView implements LogicalViewProvider{
+public class GISLogicalView implements LogicalViewProvider {
 
     private final GISProject project;
-    
+
     /**
      * Constructor.
      * @param project The {@code GISProject} to present.
      */
-    public GISLogicalView(GISProject project){
+    public GISLogicalView(GISProject project) {
         this.project = project;
     }
-    
+
     /**
      * This method creates the tree.
      * @return  A {@code org.openide.nodes.Node} representing the project. This
@@ -67,51 +60,21 @@ public class GISLogicalView implements LogicalViewProvider{
      */
     @Override
     public Node createLogicalView() {
-        
-        GISProjectNode root = new GISProjectNode(project);
-        
-        Node mapNode = null;
-        Node docNode = null;
-        Node srcNode = null;
 
-        //we must load the sources first
+        DataObject obj = null;
         try {
-            FileObject sources = project.getSourceFolder(true);
-            DataFolder sourceDataObject = DataFolder.findFolder (sources);
-            srcNode = new GISSourceNode (sourceDataObject, project);
-        } catch (DataObjectNotFoundException donfe) {
-            Logger.getLogger(GISLogicalView.class.getName()).log(
-                    Level.WARNING,"Unable to find sources folder",donfe );
-            srcNode = new AbstractNode (Children.LEAF);
+            obj = DataObject.find(project.getProjectDirectory());
+        } catch (DataObjectNotFoundException ex) {
+            Exceptions.printStackTrace(ex);
         }
 
-        //when we have the sources we can load the maps
-        try {
-            FileObject maps = project.getMapFolder(true);
-            DataFolder mapDataObject = DataFolder.findFolder (maps);
-            mapNode = new GISMapNode (mapDataObject, project);
-        } catch (DataObjectNotFoundException donfe) {
-            Logger.getLogger(GISLogicalView.class.getName()).log(
-                    Level.WARNING,"Unable to find maps folder",donfe );
-            mapNode = new AbstractNode (Children.LEAF);
+        if (obj != null) {
+            Node root = obj.getNodeDelegate();
+            return new GISProjectNode(root, project);
+        } else {
+            return Node.EMPTY;
         }
 
-        //and finaly the documents that might need the maps
-        try {
-            FileObject docs = project.getDocFolder(true);
-            DataFolder docDataObject = DataFolder.findFolder (docs);
-            Node docsNode = docDataObject.getNodeDelegate();
-            docNode = new GISDocNode (docsNode, project);
-        } catch (DataObjectNotFoundException donfe) {
-            Logger.getLogger(GISLogicalView.class.getName()).log(
-                    Level.WARNING,"Unable to find docs folder",donfe );
-            docNode = new AbstractNode (Children.LEAF);
-        }
-        
-        
-        
-        root.getChildren().add(new Node[]{mapNode,docNode,srcNode});
-        return root;
     }
 
     /**
@@ -122,5 +85,4 @@ public class GISLogicalView implements LogicalViewProvider{
         System.out.println("Called");
         return null;
     }
-
 }

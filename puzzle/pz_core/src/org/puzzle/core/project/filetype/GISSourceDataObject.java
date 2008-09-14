@@ -71,14 +71,14 @@ public class GISSourceDataObject extends XMLDataObject {
         CookieSet cookies = getCookieSet();
         cookies.add((Node.Cookie) DataEditorSupport.create(this, getPrimaryEntry(), cookies));
 
-        Project project = FileOwnerQuery.getOwner(getPrimaryFile());
-        if(project instanceof GISProject){
-            GISProject prj = (GISProject)project;
-            GISSource src = getSource();
-            if(src != null){
-                prj.addGISSource(src);
-            }
-        }
+//        Project project = FileOwnerQuery.getOwner(getPrimaryFile());
+//        if(project instanceof GISProject){
+//            GISProject prj = (GISProject)project;
+//            GISSource src = getSource();
+//            if(src != null){
+//                prj.addGISSource(src);
+//            }
+//        }
         
     }
 
@@ -161,8 +161,6 @@ public class GISSourceDataObject extends XMLDataObject {
         }
         super.dispose();
     }
-
-
 
     @Override
     protected Node createNodeDelegate() {

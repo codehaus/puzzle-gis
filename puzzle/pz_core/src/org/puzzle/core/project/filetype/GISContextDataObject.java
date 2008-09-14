@@ -93,11 +93,11 @@ public class GISContextDataObject extends XMLDataObject {
     public GISContextDataObject(FileObject pf, GISContextDataLoader loader) throws DataObjectExistsException, IOException {
         super(pf, loader);
         
-        Project prj = FileOwnerQuery.getOwner(pf);
-        if(prj != null && prj instanceof GISProject){
-            GISProject gisprj = (GISProject) prj;
-            gisprj.addContext(getContext());
-        }
+//        Project prj = FileOwnerQuery.getOwner(pf);
+//        if(prj != null && prj instanceof GISProject){
+//            GISProject gisprj = (GISProject) prj;
+//            gisprj.addContext(getContext());
+//        }
         
         CookieSet cookies = getCookieSet();
         cookies.add((org.openide.nodes.Node.Cookie) DataEditorSupport.create(this, getPrimaryEntry(), cookies));
