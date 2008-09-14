@@ -23,12 +23,16 @@ package org.puzzle.core.project.nodes;
 import java.awt.Image;
 import javax.swing.Action;
 import javax.swing.ImageIcon;
+
 import org.netbeans.api.project.ProjectInformation;
 import org.netbeans.spi.project.ui.support.CommonProjectActions;
-import org.openide.nodes.AbstractNode;
-import org.openide.nodes.Children;
+import org.openide.nodes.FilterNode;
+import org.openide.nodes.Node;
+import org.openide.util.Lookup;
 import org.openide.util.Utilities;
 import org.openide.util.lookup.Lookups;
+import org.openide.util.lookup.ProxyLookup;
+
 import org.puzzle.core.project.GISProject;
 
 /**
@@ -37,32 +41,36 @@ import org.puzzle.core.project.GISProject;
  * <br>
  * This is the root node used in the the "Projects" window provided
  * by NetBeans.
- * 
- * @author  Johann Sorel
+ *
+ * @author Johann Sorel (Puzzle-GIS)
  * @author  Thomas Bonavia (comments)
  * 
- * @see     org.openide.nodes.AbstractNode
+ * @see     org.openide.nodes.FilterNode
  */
-public class GISProjectNode extends AbstractNode{
-    
+public class GISProjectNode extends FilterNode{
+
     private final String ICON_PATH = "org/puzzle/core/project/boussole.png";
     private final ImageIcon ICON = new ImageIcon(Utilities.loadImage(ICON_PATH, true));
-    
+
     private final GISProject project;
-    
+
     /**
      * Constructor.<br>
      * This constructor only initialize a new array to contain project node
-     * childrens ("src", "doc", "map"). These children are not created at
-     * this time. This is deported to 
-     * {@link org.puzzle.core.project.GISLogicalView#createLogicalView}.
+     * childrens ("src", "doc", "map").
+     * 
      * @param   project The current {@code GISProject}.
      */
-    public GISProjectNode(GISProject project){
-        super(new Children.Array(), Lookups.singleton(project) );
+    public  GISProjectNode(Node node, GISProject project){
+        super(node, new GISProjectNodeFilter(node,project),
+                    //The projects system wants the project in the Node's lookup.
+                    //NewAction and friends want the original Node's lookup.
+                    //Make a merge of both
+                    new ProxyLookup (new Lookup[] { Lookups.singleton(project),
+                    node.getLookup() }));
         this.project = project;
     }
-       
+    
     @Override
     public Image getIcon(int arg0) {
         return ICON.getImage();
@@ -86,37 +94,6 @@ public class GISProjectNode extends AbstractNode{
             CommonProjectActions.setAsMainProjectAction()
         };
     }
-
-//    private synchronized  static Children createChildren(GISProject project){
-//        Children child = new Children.Array();
-//        GISMapNode map = new GISMapNode(project);
-//        
-//        FileObject projectFolder = project.getProjectDirectory();
-//        FileObject mapFolder = getFolder(projectFolder, MAP_FOLDER);
-//        FileObject docFolder = getFolder(projectFolder, DOC_FOLDER);
-//        FileObject srcFolder = getFolder(projectFolder, SRC_FOLDER);
-//                
-//        GISDocNode docs = new GISDocNode(docFolder);
-//        GISSourceNode sources = new GISSourceNode(project);
-//        
-//        child.add(new Node[]{map,docs,sources});
-//        
-//        return child;
-//    }
-//    
-//    private synchronized  static FileObject getFolder(final FileObject projectFolder, final String name){
-//        FileObject folder = projectFolder.getFileObject(name);
-//        
-//        if(folder == null){
-//            try {
-//                projectFolder.createFolder(name);
-//            } catch (IOException ex) {
-//                Exceptions.printStackTrace(ex);
-//            }
-//            folder = projectFolder.getFileObject(name);
-//        }
-//        
-//        return folder;
-//    }
+    
     
 }

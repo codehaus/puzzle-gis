@@ -7,6 +7,10 @@
             <suite-component/>
             <module-dependencies/>
             <public-packages>
+                <package>javax.measure</package>
+                <package>javax.measure.converter</package>
+                <package>javax.measure.quantity</package>
+                <package>javax.measure.unit</package>
                 <package>org.opengis.annotation</package>
                 <package>org.opengis.coverage</package>
                 <package>org.opengis.coverage.grid</package>
@@ -72,6 +76,10 @@
             <class-path-extension>
                 <runtime-relative-path>ext/geoapi.jar</runtime-relative-path>
                 <binary-origin>release/modules/ext/geoapi.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/jsr-275.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/jsr-275.jar</binary-origin>
             </class-path-extension>
         </data>
     </configuration>
