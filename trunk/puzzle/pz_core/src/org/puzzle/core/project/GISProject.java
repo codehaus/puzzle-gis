@@ -535,14 +535,17 @@ public class GISProject implements Project {
     
     private final class ActionProviderImpl implements ActionProvider {
         
+        @Override
         public String[] getSupportedActions() {
             return new String[0];
         }
 
+        @Override
         public void invokeAction(String string, Lookup lookup) throws IllegalArgumentException {
             //do nothing
         }
 
+        @Override
         public boolean isActionEnabled(String string, Lookup lookup) throws IllegalArgumentException {
             return false;
         }

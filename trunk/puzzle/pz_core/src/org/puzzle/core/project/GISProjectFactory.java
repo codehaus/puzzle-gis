@@ -57,6 +57,7 @@ public class GISProjectFactory implements ProjectFactory{
      *              <li>{@code false}: The folder is not a {@code GISProject}</li>
      *          </ul>
      */
+    @Override
     public boolean isProject(FileObject file) {
         FileObject folder = file.getFileObject(PROJECT_DIR);
         if(folder == null) return false;
@@ -70,6 +71,7 @@ public class GISProjectFactory implements ProjectFactory{
      * @return  The just loaded {@code GISProject}.
      * @throws  java.io.IOException
      */
+    @Override
     public Project loadProject(FileObject dir, ProjectState state) throws IOException {
         return isProject (dir) ? new GISProject (dir, state) : null;
     }
@@ -105,4 +107,5 @@ public class GISProjectFactory implements ProjectFactory{
         File f = FileUtil.toFile(propertiesFile);
         properties.store(new FileOutputStream(f), "NetBeans GIS Project Properties");
     }
+    
 }
