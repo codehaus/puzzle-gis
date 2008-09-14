@@ -94,6 +94,5 @@ public class GISProjectNode extends FilterNode{
             CommonProjectActions.setAsMainProjectAction()
         };
     }
-    
-    
+        
 }
