@@ -153,6 +153,11 @@ public class GISSourceDataObject extends XMLDataObject {
     }
 
     @Override
+    protected void handleDelete() throws IOException {
+        super.handleDelete();
+    }
+
+    @Override
     public void dispose() {
         Project prj = FileOwnerQuery.getOwner(getPrimaryFile());
         if(prj != null && prj instanceof GISProject){

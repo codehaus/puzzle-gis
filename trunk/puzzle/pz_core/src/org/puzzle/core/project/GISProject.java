@@ -27,7 +27,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
@@ -46,8 +45,12 @@ import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
 import org.geotools.map.MapContext;
 import org.geotools.map.MapLayer;
+
 import org.netbeans.api.project.Project;
 import org.netbeans.api.project.ProjectInformation;
 import org.netbeans.spi.project.ActionProvider;
@@ -58,21 +61,18 @@ import org.openide.filesystems.FileUtil;
 import org.openide.loaders.DataFolder;
 import org.openide.loaders.DataObject;
 import org.openide.loaders.DataObjectNotFoundException;
-import org.openide.util.Exceptions;
 import org.openide.util.Lookup;
 import org.openide.util.Utilities;
 import org.openide.util.lookup.AbstractLookup;
 import org.openide.util.lookup.InstanceContent;
+
 import org.puzzle.core.context.ContextService;
 import org.puzzle.core.context.RichMapLayer;
 import org.puzzle.core.project.filetype.GISContextDataObject;
-import org.puzzle.core.project.filetype.GISSourceDataNode;
 import org.puzzle.core.project.filetype.GISSourceDataObject;
 import org.puzzle.core.project.source.GISSource;
 import org.puzzle.core.view.MapView;
 import org.puzzle.core.view.ViewService;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
 
 /**
  * This class is the project. the project allow to manage the
@@ -100,10 +100,6 @@ public class GISProject implements Project {
     private final FileObject projectDir;
     private final ProjectState state;
     private final LogicalViewProvider logicalView = new GISLogicalView(this);
-
-//    private Collection<GISSource> sources = new HashSet<GISSource>();
-//    private Collection<MapContext> contexts = new HashSet<MapContext>();
-
     private final InstanceContent lookUpContent = new InstanceContent();
     private final Lookup lookUp = new AbstractLookup(lookUpContent);
     
@@ -178,15 +174,7 @@ public class GISProject implements Project {
     public Lookup getLookup() {
         return lookUp;
     }
-    
-//    /**
-//     * Add a {@code MapContext} to the project.
-//     * @param map   The {@code MapContext} to add to the project's {@code Lookup}.
-//     */
-//    public void addContext(MapContext map){
-//        contexts.add(map);
-//    }
-    
+        
     /**
      * Remove a {@code MapContext}, will remove it from the lookup, close all related view and
       * remove it from the contextservice.
@@ -222,7 +210,7 @@ public class GISProject implements Project {
     
     public Collection<MapContext> getContexts() {
         final Collection<MapContext> contexts = new ArrayList<MapContext>();
-       findContext(getSourceFolder(true), contexts);
+       findContext(getMapFolder(true), contexts);
         return Collections.unmodifiableCollection(contexts);
     }
       
@@ -247,10 +235,6 @@ public class GISProject implements Project {
          
     }
     
-    
-    
-    
-    
     public void removeGISSource(GISSource source) {
         if(source == null) return;
         Collection<MapContext> contexts = getContexts();
@@ -271,7 +255,6 @@ public class GISProject implements Project {
         //finally remove source from project
 //        sources.remove(source);
     }
-    
     
     /**
      * Add a {@code GISSource} to the project.<br>
@@ -312,7 +295,6 @@ public class GISProject implements Project {
          
     }
 
-    
     /**
      * This method check if a source already exists in the project's 
      * {@code Lookup}. We can consider a {@code GISSource} to be present in
@@ -573,10 +555,12 @@ public class GISProject implements Project {
         private final ImageIcon ICON = new ImageIcon(Utilities.loadImage(ICON_PATH, true));
         private final PropertyChangeSupport support = new PropertyChangeSupport(this);
         
+        @Override
         public String getName() {
             return projectDir.getName();
         }
 
+        @Override
         public String getDisplayName() {
             return getProjectDirectory().getName();
         }
@@ -585,21 +569,26 @@ public class GISProject implements Project {
             return ICON;
         }
 
+        @Override
         public Icon getIcon() {
             return ICON;
         }
 
+        @Override
         public Project getProject() {
             return GISProject.this;
         }
 
+        @Override
         public void addPropertyChangeListener(PropertyChangeListener listener) {
             support.addPropertyChangeListener(listener);
         }
 
+        @Override
         public void removePropertyChangeListener(PropertyChangeListener listener) {
             support.removePropertyChangeListener(listener);
         }
 
     }
+
 }
