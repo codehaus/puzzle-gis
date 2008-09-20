@@ -28,24 +28,25 @@ import java.text.MessageFormat;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JComponent;
-import org.geotools.coverage.grid.GridCoverage2D;
-import org.geotools.data.DataSourceException;
+
+import org.geotools.coverage.io.CoverageReader;
+import org.geotools.coverage.wi.WorldImageFactory;
 import org.geotools.factory.CommonFactoryFinder;
-import org.geotools.feature.SchemaException;
-import org.geotools.gce.image.WorldImageReader;
 import org.geotools.map.MapContext;
 import org.geotools.map.MapLayer;
+import org.geotools.map.MapLayerBuilder;
 import org.geotools.style.MutableStyle;
 import org.geotools.style.RandomStyleFactory;
-import org.opengis.referencing.operation.TransformException;
+
+import org.opengis.referencing.operation.NoninvertibleTransformException;
 import org.openide.DialogDisplayer;
 import org.openide.WizardDescriptor;
+import org.openide.util.Exceptions;
 import org.openide.util.Utilities;
+
 import org.puzzle.core.context.LayerSource;
-import org.puzzle.core.context.RichMapLayer;
+import org.puzzle.core.context.PZLayerConstants;
 import org.puzzle.core.project.GISProject;
 import org.puzzle.core.project.source.GISSource;
 
@@ -63,13 +64,18 @@ import org.puzzle.core.project.source.GISSource;
  * @see     org.puzzle.core.project.source.GISSource
  */
 public class WorldImageSource implements GISSource{
+
+    private static final File CACHE_FOLDER = new File("tileCache");
     private static final String IMAGE_ICON_BASE = "org/puzzle/format/worldimage/worldimage.png";
+    static{
+        CACHE_FOLDER.mkdirs();
+    }
     
     private final int id;
     private final Map<String,String> parameters;
     private final String name;
     private final String serviceName;
-    private GridCoverage2D gc2d = null;
+    private CoverageReader reader = null;
 
     /**
      * Constructor.
@@ -84,35 +90,30 @@ public class WorldImageSource implements GISSource{
         this.parameters = parameters;
         this.name = worldImage.getName();
         this.serviceName = serviceName;
-        
-        WorldImageReader reader;
+
+        final WorldImageFactory factory = new WorldImageFactory();
+        final File cache = new File(CACHE_FOLDER.getAbsolutePath() + File.separator + name);
+        cache.mkdirs();
+
         try {
-            reader = new WorldImageReader(worldImage);
-            gc2d = (GridCoverage2D)reader.read(null);
-        } catch (DataSourceException ex) {
-            Logger.getLogger(WorldImageSource.class.getName()).log(Level.SEVERE,
-                    "Unable to read "+worldImage.getName(),ex);
-        } catch (IOException ioe){
-            Logger.getLogger(WorldImageSource.class.getName()).log(Level.SEVERE,
-                    "Unable to read "+worldImage.getName(),ioe);
+            reader = factory.createMosaicReader(worldImage, 512, cache);
+        } catch (IOException ex) {
+            Exceptions.printStackTrace(ex);
+        } catch (NoninvertibleTransformException ex) {
+            Exceptions.printStackTrace(ex);
         }
+        
     }
     
     /** {@inheritDoc } */
     @Override
-    public RichMapLayer createLayer(Map<String, String> parameters) {
-        MutableStyle style = new RandomStyleFactory().createRasterStyle();
-        LayerSource source = new LayerSource(id, parameters);
-        RichMapLayer layer = null;
-        try{
-            layer = new RichMapLayer(gc2d, style,this,source);
-        }catch(TransformException te){
-            
-        }catch(SchemaException se){
-            
-        }
-        layer.setDescription(CommonFactoryFinder.getStyleFactory(null).createDescription(name,"") );
-        
+    public MapLayer createLayer(Map<String, String> parameters) {
+        final MutableStyle style = new RandomStyleFactory().createRasterStyle();
+        final LayerSource source = new LayerSource(id, parameters,this);
+        final MapLayerBuilder builder = new MapLayerBuilder();
+        final MapLayer layer = builder.create(reader, style, name);
+        layer.setUserPropertie(PZLayerConstants.KEY_LAYER_INFO, source);
+        layer.setDescription(CommonFactoryFinder.getStyleFactory(null).createDescription(name,"") );        
         return layer;
     }
 

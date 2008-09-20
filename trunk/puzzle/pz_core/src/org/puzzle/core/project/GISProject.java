@@ -67,7 +67,8 @@ import org.openide.util.lookup.AbstractLookup;
 import org.openide.util.lookup.InstanceContent;
 
 import org.puzzle.core.context.ContextService;
-import org.puzzle.core.context.RichMapLayer;
+import org.puzzle.core.context.LayerSource;
+import org.puzzle.core.context.PZLayerConstants;
 import org.puzzle.core.project.filetype.GISContextDataObject;
 import org.puzzle.core.project.filetype.GISSourceDataObject;
 import org.puzzle.core.project.source.GISSource;
@@ -242,9 +243,9 @@ public class GISProject implements Project {
             List<MapLayer> layers = context.layers();
             for(int i=layers.size()-1; i>=0; i--){
                 MapLayer layer = layers.get(i);
-                if(layer instanceof RichMapLayer){
-                    RichMapLayer ly = (RichMapLayer) layer;
-                    if(ly.getSource().equals(source)){
+                if(layer.getUserPropertie(PZLayerConstants.KEY_LAYER_INFO) != null){
+                    GISSource ly = ((LayerSource)layer.getUserPropertie(PZLayerConstants.KEY_LAYER_INFO)).getGISSource();
+                    if(ly.equals(source)){
                         context.layers().remove(i);
                     }
                 }

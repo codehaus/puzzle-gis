@@ -6,8 +6,11 @@
 package org.puzzle.renderer.go2;
 
 import java.awt.Image;
+import java.io.IOException;
 import org.geotools.gui.swing.go.J2DMapVolatile;
 import org.geotools.map.MapContext;
+import org.opengis.referencing.operation.TransformException;
+import org.openide.util.Exceptions;
 import org.openide.util.Utilities;
 import org.puzzle.core.view.MapView;
 import org.puzzle.core.view.RenderingService;
@@ -25,7 +28,13 @@ public class Go2RenderingService implements RenderingService{
     public MapView createView(MapContext context) {
         
         J2DMapVolatile map = new J2DMapVolatile();
-        map.getRenderer().setContext(context);
+        try {
+            map.getRenderer().setContext(context);
+        } catch (IOException ex) {
+            Exceptions.printStackTrace(ex);
+        } catch (TransformException ex) {
+            Exceptions.printStackTrace(ex);
+        }
         
         Go2MapView view = new Go2MapView(map);
         view.setDisplayName(context.getDescription().getTitle().toString() + " - Go2");

@@ -23,6 +23,7 @@ package org.puzzle.core.context;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import org.puzzle.core.project.source.GISSource;
 
 /**
  * 
@@ -34,12 +35,18 @@ public final class LayerSource {
 
     private final int sourceId;
     private final Map<String,String> params = new HashMap<String, String>();
+    private final GISSource source;
     
-    public LayerSource(int sourceId, Map<String,String> parameters){
-        if(sourceId <=0 || parameters == null)
-            throw new NullPointerException("SourceID and parameters can not be null");
+    public LayerSource(int sourceId, Map<String,String> parameters, GISSource source){
+        if(sourceId <=0){
+            throw new NullPointerException("SourceID can not be null");
+        }
+        if(parameters == null){
+            parameters = Collections.emptyMap();
+        }
 
         this.sourceId = sourceId;
+        this.source = source;
         if(parameters != null) this.params.putAll(parameters);
     }
     
@@ -49,6 +56,10 @@ public final class LayerSource {
     
     public final Map<String,String> getParameters(){
         return Collections.unmodifiableMap(params);
+    }
+
+    public final GISSource getGISSource(){
+        return source;
     }
     
 }

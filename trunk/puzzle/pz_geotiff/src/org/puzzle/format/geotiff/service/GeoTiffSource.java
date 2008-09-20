@@ -40,6 +40,7 @@ import org.geotools.feature.SchemaException;
 import org.geotools.gce.geotiff.GeoTiffReader;
 import org.geotools.map.MapContext;
 import org.geotools.map.MapLayer;
+import org.geotools.map.MapLayerBuilder;
 import org.geotools.style.MutableStyle;
 import org.geotools.style.RandomStyleFactory;
 import org.opengis.referencing.operation.TransformException;
@@ -47,7 +48,7 @@ import org.openide.DialogDisplayer;
 import org.openide.WizardDescriptor;
 import org.openide.util.Utilities;
 import org.puzzle.core.context.LayerSource;
-import org.puzzle.core.context.RichMapLayer;
+import org.puzzle.core.context.PZLayerConstants;
 import org.puzzle.core.project.GISProject;
 import org.puzzle.core.project.source.GISSource;
 
@@ -99,18 +100,14 @@ public class GeoTiffSource implements GISSource{
     
     /** {@inheritDoc } */
     @Override
-    public RichMapLayer createLayer(Map<String, String> parameters) {
-        MutableStyle style = new RandomStyleFactory().createRasterStyle();
+    public MapLayer createLayer(Map<String, String> parameters) {
+        final MutableStyle style = new RandomStyleFactory().createRasterStyle();
         if(parameters == null)parameters = Collections.emptyMap();
-        LayerSource source = new LayerSource(id, parameters);
-        RichMapLayer layer = null;
-        try{
-            layer = new RichMapLayer(gc2d, style,this,source);
-        }catch(TransformException te){
-            
-        }catch(SchemaException se){
-            
-        }
+        final LayerSource source = new LayerSource(id, parameters,this);
+
+        final MapLayerBuilder builder = new MapLayerBuilder();
+        final MapLayer layer = builder.create(gc2d, style, name);
+        layer.setUserPropertie(PZLayerConstants.KEY_LAYER_INFO, source);
         layer.setDescription(CommonFactoryFinder.getStyleFactory(null).createDescription(name,"") );
         
         return layer;

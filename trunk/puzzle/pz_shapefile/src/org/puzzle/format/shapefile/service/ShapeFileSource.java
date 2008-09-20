@@ -38,6 +38,7 @@ import org.geotools.data.FeatureSource;
 import org.geotools.factory.CommonFactoryFinder;
 import org.geotools.map.MapContext;
 import org.geotools.map.MapLayer;
+import org.geotools.map.MapLayerBuilder;
 import org.geotools.style.MutableStyle;
 import org.geotools.style.RandomStyleFactory;
 import org.opengis.feature.simple.SimpleFeature;
@@ -47,7 +48,7 @@ import org.openide.WizardDescriptor;
 import org.openide.util.Exceptions;
 import org.openide.util.Utilities;
 import org.puzzle.core.context.LayerSource;
-import org.puzzle.core.context.RichMapLayer;
+import org.puzzle.core.context.PZLayerConstants;
 import org.puzzle.core.project.GISProject;
 import org.puzzle.core.project.source.GISSource;
 
@@ -86,13 +87,14 @@ public class ShapeFileSource implements GISSource{
     }
     
     @Override
-    public RichMapLayer createLayer(Map<String, String> parameters) {
-        MutableStyle style = new RandomStyleFactory().createRandomVectorStyle(featureSource);
+    public MapLayer createLayer(Map<String, String> parameters) {
+        final MutableStyle style = new RandomStyleFactory().createRandomVectorStyle(featureSource);
         if(parameters == null) parameters = Collections.emptyMap();
-        LayerSource source = new LayerSource(id, parameters);
-        RichMapLayer layer = new RichMapLayer(featureSource, style,this,source);
+        final LayerSource source = new LayerSource(id, parameters,this);
+        final MapLayerBuilder builder = new MapLayerBuilder();
+        final MapLayer layer = builder.create(featureSource, style);
+        layer.setUserPropertie(PZLayerConstants.KEY_LAYER_INFO, source);
         layer.setDescription(CommonFactoryFinder.getStyleFactory(null).createDescription(name,"") );
-        
         return layer;
     }
 

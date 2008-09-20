@@ -24,8 +24,7 @@ import java.awt.Image;
 import java.util.Collection;
 import java.util.Map;
 import org.geotools.map.MapContext;
-import org.openide.WizardDescriptor;
-import org.puzzle.core.context.RichMapLayer;
+import org.geotools.map.MapLayer;
 import org.puzzle.core.project.GISProject;
 
 /**
@@ -64,9 +63,9 @@ public interface GISSource {
      * Creates a new {@code MapLayer} from the data represented
      * by the {@code GISSource}.
      * @param   parameters A set of parameters used to create the layer.
-     * @return  A new {@code RichMapLayer}.
+     * @return  A new {@code PuzzleLayerConstants}.
      */
-    RichMapLayer createLayer(Map<String,String> parameters);
+    MapLayer createLayer(Map<String,String> parameters);
     
     /**
      * create a wizard to see all possible layers.
