@@ -6,12 +6,10 @@
 package org.puzzle.renderer.go2;
 
 import java.awt.BorderLayout;
-import org.geotools.gui.swing.go.GoMap2D;
 import org.geotools.gui.swing.go.J2DMapVolatile;
 import org.geotools.gui.swing.go.control.JCoordinateBar;
 import org.geotools.gui.swing.go.control.JNavigationBar;
 import org.geotools.gui.swing.go.decoration.JNavigationDecoration;
-import org.geotools.gui.swing.map.map2d.Map2D;
 import org.geotools.map.MapContext;
 import org.puzzle.core.view.MapView;
 

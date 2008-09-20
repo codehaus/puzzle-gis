@@ -211,6 +211,7 @@
                 <package>org.geotools.coverage.io</package>
                 <package>org.geotools.coverage.processing</package>
                 <package>org.geotools.coverage.processing.operation</package>
+                <package>org.geotools.coverage.wi</package>
                 <package>org.geotools.data</package>
                 <package>org.geotools.data.collection</package>
                 <package>org.geotools.data.crs</package>
@@ -716,10 +717,6 @@
             <class-path-extension>
                 <runtime-relative-path>ext/gt-display.jar</runtime-relative-path>
                 <binary-origin>release/modules/ext/gt-display.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/log4j.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/log4j.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
                 <runtime-relative-path>ext/picocontainer.jar</runtime-relative-path>

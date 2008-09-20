@@ -254,6 +254,7 @@
                                 <include name="commons-jxpath.jar"/>
                                 <include name="commons-logging.jar"/>
                                 <include name="commons-pool.jar"/>
+                                <include name="log4j.jar"/>
                               </patternset>
                             </fileset>
                         </copy>
@@ -326,7 +327,6 @@
                                 <include name="jdom.jar"/>
                                 <include name="jlfgr.jar"/>
                                 <include name="jts.jar"/>
-                                <include name="log4j.jar"/>
                                 <include name="net.opengis.ows.jar"/>
                                 <include name="net.opengis.wfs.jar"/>
                                 <include name="netcdf.jar"/>

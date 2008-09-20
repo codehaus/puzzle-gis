@@ -2,19 +2,19 @@
  *  Puzzle-GIS - OpenSource mapping program
  *  http://docs.codehaus.org/display/PUZZLEGIS
  *  Copyright (C) 2007 Puzzle-GIS
- *  
+ *
  *  GPLv3 + Classpath exception
- *  
+ *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
- *  
+ *
  *  This program is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU General Public License for more details.
- *  
+ *
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -36,7 +36,7 @@ import org.openide.util.lookup.ProxyLookup;
 import org.puzzle.core.project.GISProject;
 
 /**
- * This class provides a {@link org.openide.nodes.Node} for the 
+ * This class provides a {@link org.openide.nodes.Node} for the
  * {@link org.puzzle.core.project.GISProject}.
  * <br>
  * This is the root node used in the the "Projects" window provided
@@ -44,7 +44,7 @@ import org.puzzle.core.project.GISProject;
  *
  * @author Johann Sorel (Puzzle-GIS)
  * @author  Thomas Bonavia (comments)
- * 
+ *
  * @see     org.openide.nodes.FilterNode
  */
 public class GISProjectNode extends FilterNode{
@@ -58,7 +58,7 @@ public class GISProjectNode extends FilterNode{
      * Constructor.<br>
      * This constructor only initialize a new array to contain project node
      * childrens ("src", "doc", "map").
-     * 
+     *
      * @param   project The current {@code GISProject}.
      */
     public  GISProjectNode(Node node, GISProject project){
@@ -70,7 +70,7 @@ public class GISProjectNode extends FilterNode{
                     node.getLookup() }));
         this.project = project;
     }
-    
+
     @Override
     public Image getIcon(int arg0) {
         return ICON.getImage();
@@ -94,5 +94,5 @@ public class GISProjectNode extends FilterNode{
             CommonProjectActions.setAsMainProjectAction()
         };
     }
-        
+
 }

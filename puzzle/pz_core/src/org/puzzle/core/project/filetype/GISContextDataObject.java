@@ -47,7 +47,8 @@ import org.openide.util.Exceptions;
 import org.openide.util.Lookup;
 import org.openide.text.DataEditorSupport;
 import org.openide.xml.XMLUtil;
-import org.puzzle.core.context.RichMapLayer;
+import org.puzzle.core.context.LayerSource;
+import org.puzzle.core.context.PZLayerConstants;
 import org.puzzle.core.project.GISProject;
 import org.puzzle.core.project.source.GISSource;
 import org.w3c.dom.Document;
@@ -164,14 +165,14 @@ public class GISContextDataObject extends XMLDataObject {
         context.setDescription( CommonFactoryFinder.getStyleFactory(null).createDescription(getPrimaryFile().getName().replaceAll(".xml", ""),"") );
         
         if (gisDoc != null) {
-            Node rootNode = gisDoc.getFirstChild();
+            final Node rootNode = gisDoc.getFirstChild();
 
             NodeList layerNodes = gisDoc.getElementsByTagName(TAG_LAYER);
 
             for (int i = 0, n = layerNodes.getLength(); i < n; i++) {
-                RichMapLayer layer = parseLayer(layerNodes.item(i));
+                MapLayer layer = parseLayer(layerNodes.item(i));
                 context.layers().add(layer);
-                context.setCoordinateReferenceSystem(layer.getFeatureSource().getSchema().getCoordinateReferenceSystem());
+                context.setCoordinateReferenceSystem(layer.getBounds().getCoordinateReferenceSystem());
 
             }
         }
@@ -179,8 +180,8 @@ public class GISContextDataObject extends XMLDataObject {
         return context;
     }
     
-    private RichMapLayer parseLayer(Node node){
-        RichMapLayer layer = null;
+    private MapLayer parseLayer(Node node){
+        MapLayer layer = null;
         int id = 0;
         Map<String,String> params = null;
         String title = "";
@@ -264,19 +265,19 @@ public class GISContextDataObject extends XMLDataObject {
         //create layer nodes
         for(MapLayer layer : context.layers()){
             //check if we can save the layer
-            if(layer instanceof RichMapLayer){
-                RichMapLayer rich = (RichMapLayer) layer;
+            if(layer.getUserPropertie(PZLayerConstants.KEY_LAYER_INFO) != null){
                 Element layerNode = doc.createElement(TAG_LAYER);
                                 
                 //store layer title
-                String title = rich.getDescription().getTitle().toString();
+                String title = layer.getDescription().getTitle().toString();
                 Element layerTitle = doc.createElement(TAG_LAYER_TITLE);
                 layerTitle.setTextContent(title);
                 layerNode.appendChild(layerTitle);
                 
                 //store layer source
-                int id = rich.getSourceParameters().getSourceId();
-                Map<String,String> params = rich.getSourceParameters().getParameters();
+                final LayerSource source = (LayerSource) layer.getUserPropertie(PZLayerConstants.KEY_LAYER_INFO);
+                final int id = source.getSourceId();
+                final Map<String,String> params = source.getParameters();
                 Element layerSource = doc.createElement(TAG_LAYER_SOURCE);
                 Element sourceId = doc.createElement(TAG_LAYER_SOURCE_ID);
                 Element sourceParams = doc.createElement(TAG_LAYER_SOURCE_PARAMS);
