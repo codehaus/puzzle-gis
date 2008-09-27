@@ -44,16 +44,19 @@ public class WorldImageSourceService implements GISFileSourceService{
     private static final String TITLE = "WorldImage";
     
     /** {@inheritDoc} */
+    @Override
     public String getIdentifier() {
         return "SingleWorldImage";
     }
 
     /** {@inheritDoc} */
+    @Override
     public String getTitle() {
         return TITLE;
     }
 
     /** {@inheritDoc} */
+    @Override
     public GISSource restoreSource(Map<String, String> parameters, int id) throws IllegalArgumentException {
         final String strURI = parameters.get("uri");
         
@@ -65,12 +68,13 @@ public class WorldImageSourceService implements GISFileSourceService{
         }catch(URISyntaxException urise){
             Exceptions.printStackTrace(urise);
         }
-            
+
         GISSource worldImageSource = new WorldImageSource(worldImage,getIdentifier(),id,parameters);
         return worldImageSource;
     }
 
     /** {@inheritDoc} */
+    @Override
     public GISSource createSource(File file,GISProject mainProject) throws IllegalArgumentException {
         String uri = null;
         Map<String,String> params = new HashMap<String, String>();
@@ -95,11 +99,13 @@ public class WorldImageSourceService implements GISFileSourceService{
     }
     
     /** {@inheritDoc} */
+    @Override
     public FileFilter createFilter() {
         return FileFilterFactory.createFileFilter(FileFilterFactory.FORMAT.WORLD_IMAGE);
     }
 
     /** {@inheritDoc} */
+    @Override
     public boolean isValidFile(File file) {
         String name = file.getName().toLowerCase();
         if(name.endsWith("png") || 
