@@ -27,7 +27,8 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-import org.apache.xml.serialize.XMLSerializer;
+import javax.xml.bind.JAXBException;
+import org.geotools.data.DefaultQuery;
 import org.geotools.factory.CommonFactoryFinder;
 import org.geotools.map.ContextListener;
 import org.geotools.map.DefaultMapContext;
@@ -35,6 +36,11 @@ import org.geotools.map.MapContext;
 import org.geotools.map.MapLayer;
 import org.geotools.referencing.crs.DefaultGeographicCRS;
 import org.geotools.style.CollectionChangeEvent;
+import org.geotools.style.MutableStyle;
+import org.geotools.style.sld.Specification.Filter;
+import org.geotools.style.sld.Specification.StyledLayerDescriptor;
+import org.geotools.style.sld.Specification.SymbologyEncoding;
+import org.geotools.style.sld.XMLUtilities;
 import org.netbeans.api.project.FileOwnerQuery;
 import org.netbeans.api.project.Project;
 import org.openide.filesystems.FileAlreadyLockedException;
@@ -78,6 +84,9 @@ public class GISContextDataObject extends XMLDataObject {
     private static final String TAG_LAYER_SOURCE = "Source";
     private static final String TAG_LAYER_SOURCE_PARAMS = "Parameters";
     private static final String TAG_LAYER_SOURCE_ID = "Id";
+    private static final String TAG_LAYER_STYLE = "sld:UserStyle";
+    private static final String TAG_LAYER_VISIBLE = "visible";
+    private static final String TAG_LAYER_QUERY = "filter";
     
     private final DefaultContextListener contextListener = new DefaultContextListener();
     private MapContext context = null;
@@ -185,17 +194,34 @@ public class GISContextDataObject extends XMLDataObject {
         int id = 0;
         Map<String,String> params = null;
         String title = "";
+        MutableStyle style = CommonFactoryFinder.getStyleFactory(null).createStyle();
+        DefaultQuery query = new DefaultQuery();
+        boolean visible = true;
                 
-        NodeList elements = node.getChildNodes();
+        final NodeList elements = node.getChildNodes();
         for (int j = 0, m = elements.getLength(); j < m; j++) {
-            Node elementNode = elements.item(j);
-            String elementName = elementNode.getNodeName();
+            final Node elementNode = elements.item(j);
+            final String elementName = elementNode.getNodeName();
             
             if(TAG_LAYER_SOURCE.equals(elementName)){
                 id = parseSourceId(elementNode);
                 params = parseSourceParams(elementNode);
             }else if(TAG_LAYER_TITLE.equals(elementName)) {
                 title = elementNode.getTextContent();
+            }else if(TAG_LAYER_STYLE.equals(elementName)){
+                try {
+                    style = new XMLUtilities().readStyle(elementNode, SymbologyEncoding.V_1_1_0);
+                } catch (JAXBException ex) {
+                    Exceptions.printStackTrace(ex);
+                }
+            }else if(TAG_LAYER_VISIBLE.equals(elementName)){
+                visible = Boolean.parseBoolean(elementNode.getTextContent());
+            }else if(TAG_LAYER_QUERY.equals(elementName)){
+                try {
+                    query.setFilter( new XMLUtilities().readFilter(elementNode, Filter.V_1_1_0) );
+                } catch (JAXBException ex) {
+                    Exceptions.printStackTrace(ex);
+                }
             }
         }
 
@@ -206,6 +232,9 @@ public class GISContextDataObject extends XMLDataObject {
                 if (src.getID() == id) {
                     layer = src.createLayer(params);
                     layer.setDescription( CommonFactoryFinder.getStyleFactory(null).createDescription(title,"") );
+                    layer.setStyle(style);
+                    layer.setVisible(visible);
+                    layer.setQuery(query);
                 }
             }
         }
@@ -251,86 +280,140 @@ public class GISContextDataObject extends XMLDataObject {
         return parameters;
     }
     
-    private void encodeLayers(){
-        Document doc = getDOM();
-        Node root = doc.getElementsByTagName(TAG_LAYERS).item(0);
+    
+    private void DOMremoveLayer(final int index){
+        final Document doc = getDOM();
+        final Node root = doc.getElementsByTagName(TAG_LAYERS).item(0);
+        final NodeList children = root.getChildNodes();
+        int onLayer = -1;
+        
+        for(int i = 0, n = children.getLength(); i < n; i++) {
+            final Node child = children.item(i);
+            final String name = child.getNodeName();
+            if(name.equals(TAG_LAYER)){
+                onLayer++;
+            }
+            if(onLayer == index){
+                root.removeChild(child);
+                break;
+            }
+        }
+
+        DOMsave(doc);
+    }
+    
+    private void DOMupdateLayer(final MapLayer layer, int index){
+        final Document doc = getDOM();
+        final Node root = doc.getElementsByTagName(TAG_LAYERS).item(0);
+        final NodeList children = root.getChildNodes();
+        int onLayer = -1;
+        
+        for(int i = 0, n = children.getLength(); i < n; i++) {
+            final Node child = children.item(i);
+            final String name = child.getNodeName();
+            if(name.equals(TAG_LAYER)){
+                onLayer++;
+            }
+            if(onLayer == index){
+                //we are on the layer to update
+                DOMencodeLayer(doc,layer,child);
+                break;
+            }
+        }
+        
+        DOMsave(doc);
+    }
+
+    private Node DOMencodeLayer(final Document doc,final MapLayer layer, final Node layerNode){
+        
+        //clear all store informations
+        final NodeList children = layerNode.getChildNodes();
+        for(int i=children.getLength()-1 ; i>=0; i--){
+            layerNode.removeChild(children.item(i));
+        }
+        
+        //check if we can save the layer and store the new values
+        if (layer.getUserPropertie(PZLayerConstants.KEY_LAYER_INFO) != null) {
+
+            //store layer title
+            final String title = layer.getDescription().getTitle().toString();
+            final Element layerTitle = doc.createElement(TAG_LAYER_TITLE);
+            layerTitle.setTextContent(title);
+            layerNode.appendChild(layerTitle);
+
+            //store layer source
+            final LayerSource source = (LayerSource) layer.getUserPropertie(PZLayerConstants.KEY_LAYER_INFO);
+            final int id = source.getSourceId();
+            final Map<String, String> params = source.getParameters();
+            final Element layerSource = doc.createElement(TAG_LAYER_SOURCE);
+            final Element sourceId = doc.createElement(TAG_LAYER_SOURCE_ID);
+            final Element sourceParams = doc.createElement(TAG_LAYER_SOURCE_PARAMS);
+            final Element visibleNode = doc.createElement(TAG_LAYER_VISIBLE);
+            sourceId.setTextContent(String.valueOf(id));
+            final Iterator<String> keys = params.keySet().iterator();
+            while (keys.hasNext()) {
+                final String key = keys.next();
+                final Element aParam = doc.createElement(key);
+                aParam.setTextContent(params.get(key));
+                sourceParams.appendChild(aParam);
+            }
+            visibleNode.setTextContent(Boolean.valueOf(layer.isVisible()).toString());
+            layerSource.appendChild(sourceId);
+            layerSource.appendChild(sourceParams);
+            layerNode.appendChild(layerSource);
+            layerNode.appendChild(visibleNode);
+
+            //store features filter
+            if(layer.getQuery() != null && layer.getQuery().getFilter() != null){
+                final org.opengis.filter.Filter filter = layer.getQuery().getFilter();
+                if(!filter.equals(org.opengis.filter.Filter.INCLUDE ) &&
+                   !filter.equals(org.opengis.filter.Filter.EXCLUDE )){
+                    try {
+                        new XMLUtilities().writeFilter(layerNode, layer.getQuery().getFilter(), Filter.V_1_1_0);
+                    } catch (JAXBException ex) {
+                        Exceptions.printStackTrace(ex);
+                    }
+                }
+            }
+
+            //store layer style
+            try {
+                new XMLUtilities().writeStyle(layerNode, layer.getStyle(), StyledLayerDescriptor.V_1_1_0);
+            } catch (JAXBException ex) {
+                Exceptions.printStackTrace(ex);
+            }
+        }
+
+        return layerNode;
+    }
+
+    private void DOMencodeLayers(){
+        final Document doc = getDOM();
+        final Node root = doc.getElementsByTagName(TAG_LAYERS).item(0);
         
         //we clear the layers list
         //TODO avoid doing so by using a more accurate listener method
-        NodeList children = root.getChildNodes();
+        final NodeList children = root.getChildNodes();
         for(int i=children.getLength()-1 ; i>=0; i--){
             root.removeChild(children.item(i));
         }
         
         //create layer nodes
-        for(MapLayer layer : context.layers()){
-            //check if we can save the layer
-            if(layer.getUserPropertie(PZLayerConstants.KEY_LAYER_INFO) != null){
-                Element layerNode = doc.createElement(TAG_LAYER);
-                                
-                //store layer title
-                String title = layer.getDescription().getTitle().toString();
-                Element layerTitle = doc.createElement(TAG_LAYER_TITLE);
-                layerTitle.setTextContent(title);
-                layerNode.appendChild(layerTitle);
-                
-                //store layer source
-                final LayerSource source = (LayerSource) layer.getUserPropertie(PZLayerConstants.KEY_LAYER_INFO);
-                final int id = source.getSourceId();
-                final Map<String,String> params = source.getParameters();
-                Element layerSource = doc.createElement(TAG_LAYER_SOURCE);
-                Element sourceId = doc.createElement(TAG_LAYER_SOURCE_ID);
-                Element sourceParams = doc.createElement(TAG_LAYER_SOURCE_PARAMS);
-                sourceId.setTextContent(String.valueOf(id));
-                Iterator<String> keys = params.keySet().iterator();
-                while(keys.hasNext()){
-                    String key = keys.next();
-                    Element aParam = doc.createElement(key);
-                    aParam.setTextContent(params.get(key));
-                    sourceParams.appendChild(aParam);
-                }
-                layerSource.appendChild(sourceId);
-                layerSource.appendChild(sourceParams);
-                layerNode.appendChild(layerSource);
-                
-                //store features filter
-                //TODO
-                
-                //store layer style
-                //TODO
-                
-                root.appendChild(layerNode);
-            }
+        for(final MapLayer layer : context.layers()){
+            final Element layerNode = doc.createElement(TAG_LAYER);
+            DOMencodeLayer(doc, layer, layerNode);
+            root.appendChild(layerNode);
         }
 
+        DOMsave(doc);
+    }
+        
+    private void DOMsave(Document doc){
         try {
-            OutputStream output = getPrimaryFile().getOutputStream(FileLock.NONE);
+            final OutputStream output = getPrimaryFile().getOutputStream(FileLock.NONE);
             XMLUtil.write(doc, output, "UTF-8");
             output.flush();
             output.close();
-        } catch (FileAlreadyLockedException ex) {
-            Exceptions.printStackTrace(ex);
-        } catch (IOException ex) {
-            Exceptions.printStackTrace(ex);
-        }
-
-//        setModified(true);
-//
-//        SaveCookie sc = getCookie(SaveCookie.class);
-//        try {
-//            sc.save();
-//        } catch (IOException ex) {
-//            Exceptions.printStackTrace(ex);
-//        }
-        
-//        save(doc);
-    }
-    
-    private void save(Document doc){
-        try {
-            XMLSerializer serializer = new XMLSerializer();
-            serializer.setOutputByteStream(getPrimaryFile().getOutputStream());
-            serializer.serialize(doc);
         } catch (FileAlreadyLockedException ex) {
             Exceptions.printStackTrace(ex);
         } catch (IOException ex) {
@@ -342,11 +425,24 @@ public class GISContextDataObject extends XMLDataObject {
 
         @Override
         public void propertyChange(PropertyChangeEvent evt) {
+            DOMencodeLayers();
         }
 
         @Override
-        public void layerChange(CollectionChangeEvent<MapLayer> arg0) {
-            encodeLayers();
+        public void layerChange(CollectionChangeEvent<MapLayer> evt) {
+            switch(evt.getType()){
+                case CollectionChangeEvent.ITEM_ADDED :
+                    DOMencodeLayers();
+                    break;
+                case CollectionChangeEvent.ITEM_CHANGED :
+                    //assume there is only one layer change
+                    DOMupdateLayer(evt.getItems().iterator().next(), (int)evt.getRange().getMinimum() );
+                    break;
+                case CollectionChangeEvent.ITEM_REMOVED :
+                    //assume there is only one layer added
+                    DOMremoveLayer( (int)evt.getRange().getMinimum() );
+                    break;
+            }
         }
 
     }
