@@ -18,26 +18,30 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.puzzle.core.view;
+package org.puzzle.print.action;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Collection;
+import org.openide.DialogDisplayer;
+import org.openide.NotifyDescriptor;
 import org.openide.util.Lookup;
+import org.puzzle.core.view.ViewService;
 
-/**
- *
- * @author Johann Sorel (Puzzle-GIS)
- */
-public interface ViewService extends Lookup.Provider{
+public final class ExportImage implements ActionListener {
 
-    Collection<? extends MapView> getViews();
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        
+        final ViewService service = Lookup.getDefault().lookup(ViewService.class);
+        final Collection views = service.getViews();
 
-    void add(MapView view);
-
-    void remove(MapView view);
-    
-    void add(MapGroup group);
-
-    void remove(MapGroup group);
-    
-    
+        if(views.isEmpty()){
+            final NotifyDescriptor d =  new NotifyDescriptor.Message("No avaible views.", NotifyDescriptor.ERROR_MESSAGE);
+            DialogDisplayer.getDefault().notify(d);
+        }else{
+            SaveWizard.showChooserDialog(views);
+        }
+            
+    }
 }

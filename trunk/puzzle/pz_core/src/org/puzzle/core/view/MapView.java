@@ -29,7 +29,7 @@ import org.openide.windows.TopComponent;
 
 /**
  *
- * @author johann sorel
+ * @author Johann Sorel (Puzzle-GIS)
  */
 public abstract class MapView extends TopComponent {
 
