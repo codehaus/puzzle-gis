@@ -26,7 +26,7 @@ import java.util.List;
 
 /**
  *
- * @author johann sorel
+ * @author Johann Sorel (Puzzle-GIS)
  */
 public final class MapGroup {
 

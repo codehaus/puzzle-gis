@@ -20,6 +20,7 @@
  */
 package org.puzzle.core.view;
 
+import java.util.Collection;
 import org.openide.util.Lookup;
 import org.openide.util.lookup.AbstractLookup;
 import org.openide.util.lookup.InstanceContent;
@@ -27,7 +28,7 @@ import org.openide.util.lookup.InstanceContent;
 
 /**
  *
- * @author Johann Sorel
+ * @author Johann Sorel (Puzzle-GIS)
  */
 public class DefaultViewService implements ViewService{
 
@@ -37,6 +38,12 @@ public class DefaultViewService implements ViewService{
     public DefaultViewService() {
     }
 
+    @Override
+    public Collection<? extends MapView> getViews(){
+        return LOOKUP.lookupAll(MapView.class);
+    }
+
+    @Override
     public Lookup getLookup() {
         return LOOKUP;
     }
@@ -45,6 +52,7 @@ public class DefaultViewService implements ViewService{
      * add a new view
      * @param view the mapview to add
      */
+    @Override
     public void add(MapView view) {        
         CONTENT.add(view);        
         if(!view.isOpened()) view.open();
@@ -54,14 +62,17 @@ public class DefaultViewService implements ViewService{
      * remove view
      * @param view target mapview to remove
      */
+    @Override
     public void remove(MapView view) {
         CONTENT.remove(view);
     }
 
+    @Override
     public void add(MapGroup group) {
         CONTENT.add(group);
     }
 
+    @Override
     public void remove(MapGroup group) {
         CONTENT.remove(group);
     }

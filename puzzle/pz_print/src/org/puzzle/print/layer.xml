@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE filesystem PUBLIC "-//NetBeans//DTD Filesystem 1.2//EN" "http://www.netbeans.org/dtds/filesystem-1_2.dtd">
+<filesystem>
+    <folder name="Actions">
+        <folder name="Puzzle">
+            <file name="org-puzzle-print-action-ExportImage.instance">
+                <attr name="SystemFileSystem.localizingBundle" stringvalue="org.puzzle.print.Bundle"/>
+                <attr name="delegate" newvalue="org.puzzle.print.action.ExportImage"/>
+                <attr name="displayName" bundlevalue="org.puzzle.print.action.Bundle#CTL_ExportImage"/>
+                <attr name="iconBase" stringvalue="org/puzzle/print/action/saveimage.png"/>
+                <attr name="instanceCreate" methodvalue="org.openide.awt.Actions.alwaysEnabled"/>
+                <attr name="noIconInMenu" stringvalue="false"/>
+            </file>
+        </folder>
+    </folder>
+    <folder name="Toolbars">
+        <folder name="GISPrint">
+            <file name="org-puzzle-print-action-ExportImage.shadow">
+                <attr name="originalFile" stringvalue="Actions/Puzzle/org-puzzle-print-action-ExportImage.instance"/>
+            </file>
+        </folder>
+    </folder>
+</filesystem>
