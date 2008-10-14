@@ -26,28 +26,24 @@
   <!-- =========================================================== -->
     <repositories>
         <repository>
-            <id>geomatys</id>
+            <id>puzzle</id>
             <name>Other projects</name>
-            <url>http://maven.geomatys.fr/repository</url>
-        </repository>
-        <repository>
-            <id>geotools</id>
-            <name>Geotools et ses dependances specifiques</name>
-            <url>http://maven.geotools.fr/repository</url>
+            <url>http://repository.codehaus.org/org/codehaus/puzzle-gis</url>
         </repository>
         <repository>
             <id>refractions</id>
             <name>Refractions Research Maven 2 Repository</name>
             <url>http://lists.refractions.net/m2</url>
         </repository>
-    </repositories>
-    <pluginRepositories>
-        <pluginRepository>
+        <repository>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
             <id>geotools</id>
-            <name>Geotools et ses dependances specifiques</name>
+            <name>Geotools repository</name>
             <url>http://maven.geotools.fr/repository</url>
-        </pluginRepository>
-    </pluginRepositories>
+        </repository>
+    </repositories>
 
    <!-- =========================================================== -->
   <!--     Dependencies to be inherited by all modules.            -->
