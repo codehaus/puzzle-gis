@@ -51,27 +51,23 @@ import org.puzzle.core.context.LayerSource;
 import org.puzzle.core.context.PZLayerConstants;
 import org.puzzle.core.project.GISProject;
 import org.puzzle.core.project.source.GISSource;
+import org.puzzle.core.project.source.GISSourceInfo;
 
 /**
  *
  * @author  Johann Sorel
  */
-public class ShapeFileSource implements GISSource{
+public class ShapeFileSource extends GISSource{
 
     private static final String IMAGE_ICON_BASE = "org/puzzle/format/shapefile/shapefile.png";
     
-    private final int id;
-    private final Map<String,String> parameters;
     private final String name;
-    private final String serviceName;
     private FeatureSource<SimpleFeatureType,SimpleFeature> featureSource = null;
     
     
-    ShapeFileSource(File shapefile, String serviceName,int id, Map<String,String> parameters){
-        this.id = id;
+    ShapeFileSource(final GISSourceInfo info, final File shapefile){
+        super(info);
         this.name = shapefile.getName();
-        this.serviceName = serviceName;
-        this.parameters = parameters;
         DataStore store = null;
         try {
             store = DataStoreFinder.getDataStore(new SingletonMap("url",shapefile.toURI().toURL()));
@@ -90,7 +86,7 @@ public class ShapeFileSource implements GISSource{
     public MapLayer createLayer(Map<String, String> parameters) {
         final MutableStyle style = new RandomStyleFactory().createRandomVectorStyle(featureSource);
         if(parameters == null) parameters = Collections.emptyMap();
-        final LayerSource source = new LayerSource(id, parameters,this);
+        final LayerSource source = new LayerSource(getInfo().getID(), parameters,this);
         final MapLayerBuilder builder = new MapLayerBuilder();
         final MapLayer layer = builder.create(featureSource, style);
         layer.setUserPropertie(PZLayerConstants.KEY_LAYER_INFO, source);
@@ -99,28 +95,13 @@ public class ShapeFileSource implements GISSource{
     }
 
     @Override
-    public int getID() {
-        return id;
-    }
-
-    @Override
     public Image getIcon(int type) {
         return Utilities.loadImage(IMAGE_ICON_BASE);
     }
 
     @Override
-    public Map<String, String> getParameters() {
-        return Collections.unmodifiableMap(parameters);
-    }
-
-    @Override
     public String getTitle() {
         return name;
-    }
-
-    @Override
-    public String getServiceName() {
-        return serviceName;
     }
 
     @Override

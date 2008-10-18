@@ -72,6 +72,7 @@ import org.puzzle.core.context.PZLayerConstants;
 import org.puzzle.core.project.filetype.GISContextDataObject;
 import org.puzzle.core.project.filetype.GISSourceDataObject;
 import org.puzzle.core.project.source.GISSource;
+import org.puzzle.core.project.source.GISSourceInfo;
 import org.puzzle.core.view.MapView;
 import org.puzzle.core.view.ViewService;
 
@@ -147,9 +148,8 @@ public class GISProject implements Project {
         for(int i=1; i<Integer.MAX_VALUE; i++){
             if(alreadyGiven.contains(i))continue;
 
-            Collection<GISSource> sources = getGISSources();
-            for(GISSource src : sources){
-                if(src.getID() == i) continue number_loop;
+            for(final GISSource src : getGISSources()){
+                if(src.getInfo().getID() == i) continue number_loop;
             }
             alreadyGiven.add(i);
             return i;
@@ -190,9 +190,9 @@ public class GISProject implements Project {
         }
 
         //close existing views using this mapcontext
-        ViewService viewService = Lookup.getDefault().lookup(ViewService.class);
+        final ViewService viewService = Lookup.getDefault().lookup(ViewService.class);
         if(viewService != null){
-            Collection<? extends MapView> views = viewService.getLookup().lookupAll(MapView.class);
+            final Collection<? extends MapView> views = viewService.getLookup().lookupAll(MapView.class);
             for(final MapView view : views){
                 if(view.getContext().equals(context)){
                     SwingUtilities.invokeLater(new Runnable() {
@@ -233,10 +233,9 @@ public class GISProject implements Project {
                 contexts.add(src.getContext());
              }
          }
-         
     }
     
-    public void removeGISSource(GISSource source) {
+    public void removeGISSource(final GISSource source) {
         if(source == null) return;
         Collection<MapContext> contexts = getContexts();
         for(MapContext context : contexts){
@@ -250,11 +249,7 @@ public class GISProject implements Project {
                     }
                 }
             }
-            
         }
-        
-        //finally remove source from project
-//        sources.remove(source);
     }
     
     /**
@@ -263,10 +258,9 @@ public class GISProject implements Project {
      * persistant source, saved on the disk.
      * @param src   The {@code GISSource} to add to the project.
      */
-    public void appendGISSource(GISSource src){
-        if(checkSourceExist(src)) return;
-        GISSource source = createPersistantSource(src);
-//        if(source != null) sources.add(source);
+    public void registerSource(final String name, final GISSourceInfo info){
+        if(checkSourceExist(info)) return;
+        createPersistantSource(info, name);
     }
 
     public Collection<GISSource> getGISSources(){
@@ -276,24 +270,22 @@ public class GISProject implements Project {
     }
 
     private void findGISSource(FileObject file, Collection<GISSource> sources){
-         DataObject data = null;
+        DataObject data = null;
         try {
             data = DataObject.find(file);
-        } catch (DataObjectNotFoundException ex) {
+        } catch (DataObjectNotFoundException ex) {}
+
+        if (data != null) {
+            if (data instanceof DataFolder) {
+                final FileObject[] childs = file.getChildren();
+                for (final FileObject obj : childs) {
+                    findGISSource(obj, sources);
+                }
+            } else if (data instanceof GISSourceDataObject) {
+                final GISSourceDataObject src = (GISSourceDataObject) data;
+                sources.add(src.getSource());
+            }
         }
-         
-         if(data != null){
-             if(data instanceof DataFolder){
-                 FileObject[] childs = file.getChildren();
-                 for(FileObject obj : childs){
-                     findGISSource(obj, sources);
-                 }
-             }else if(data instanceof GISSourceDataObject){
-                 GISSourceDataObject src = (GISSourceDataObject) data;
-                 sources.add(src.getSource());
-             }
-         }
-         
     }
 
     /**
@@ -313,18 +305,18 @@ public class GISProject implements Project {
      *  <li>{@code false}: The {@code GISSource} is not yet in the project.</li>
      * </ul>
      */
-    private boolean checkSourceExist(GISSource source){
-        Collection<GISSource> sources = getGISSources();
+    private boolean checkSourceExist(GISSourceInfo info){
+        final Collection<GISSource> sources = getGISSources();
         //check is the object is already in the lookup
-        if(sources.contains(source)){
+        if(sources.contains(info)){
             //source already in the project
             return true;
         }
         
-        Map<String,String> sourceParameters = source.getParameters();
+        final Map<String,String> sourceParameters = info.getParameters();
         //check if another source have the same parameters
-        for(GISSource src : sources){
-            Map<String,String> srcParameters = src.getParameters();
+        for(final GISSource src : sources){
+            final Map<String,String> srcParameters = src.getInfo().getParameters();
 
             if(srcParameters.equals(sourceParameters)){
                 return true;
@@ -341,21 +333,23 @@ public class GISProject implements Project {
      * to  the Lookup of the project, then create the file on the disk.
      * This method is used to create the file.
      */
-    private GISSource createPersistantSource(GISSource source){
+    private void createPersistantSource(GISSourceInfo info, final String name){
+        //allow an ID to this GIS Source
+        info = new GISSourceInfo(getNextSourceID(), info.getServiceName(), info.getParameters());
+
         try{            
-            Document doc = fill(source);
+            final Document doc = fill(info);
             /*
              * We need to use FileUtil.toFile().
              * Indeed, if we don't, getSourceFolder(true).getPath() don't return
              * an absolute path, which generates an error.
              */
-            File xml = new File(FileUtil.toFile(getSourceFolder(true)).getAbsolutePath() + File.separator + source.getTitle() + ".xml");
+            final File xml = new File(FileUtil.toFile(getSourceFolder(true)).getAbsolutePath() + File.separator + name + ".xml");
             transformerXml(doc, xml);
         } catch (Exception e) {
             e.printStackTrace();
         }
         
-        return source;
     }
     
     /**
@@ -364,43 +358,43 @@ public class GISProject implements Project {
      * @return  A DOM {@code Document} containing the XML datas.
      * @throws  java.lang.Exception
      */
-    public Document fill(GISSource source) throws Exception {
+    private Document fill(GISSourceInfo info) throws Exception {
         //try to read the xml file
-        DocumentBuilderFactory fabrique = DocumentBuilderFactory.newInstance();
+        final DocumentBuilderFactory fabrique = DocumentBuilderFactory.newInstance();
         // création d'un constructeur de documents
-        DocumentBuilder constructeur = fabrique.newDocumentBuilder();
+        final DocumentBuilder constructeur = fabrique.newDocumentBuilder();
 
-        Document gisDoc = constructeur.newDocument();
+        final Document gisDoc = constructeur.newDocument();
         
         gisDoc.setXmlVersion("1.0");
         gisDoc.setXmlStandalone(true);
 
         // Création de l'arborescence du DOM
-        Element racine = gisDoc.createElement("root");
+        final Element racine = gisDoc.createElement("root");
         racine.setAttribute("xmlns","gissource");
         gisDoc.appendChild(racine);
 
         //if file is valid
         if (gisDoc != null) {
-            org.w3c.dom.Node rootNode = gisDoc.getFirstChild();
+            final org.w3c.dom.Node rootNode = gisDoc.getFirstChild();
 
-            org.w3c.dom.Node idNode = gisDoc.createElement("id");
-            idNode.setTextContent(String.valueOf(source.getID()));
+            final org.w3c.dom.Node idNode = gisDoc.createElement("id");
+            idNode.setTextContent(String.valueOf(info.getID()));
             rootNode.appendChild(idNode);
 
-            org.w3c.dom.Node serviceIDNode = gisDoc.createElement("serviceid");
-            serviceIDNode.setTextContent(source.getServiceName());
+            final org.w3c.dom.Node serviceIDNode = gisDoc.createElement("serviceid");
+            serviceIDNode.setTextContent(info.getServiceName());
             rootNode.appendChild(serviceIDNode);
 
-            org.w3c.dom.Node parametersNode = gisDoc.createElement("parameters");
+            final org.w3c.dom.Node parametersNode = gisDoc.createElement("parameters");
             rootNode.appendChild(parametersNode);
 
-            Map<String, String> parameters = source.getParameters();
-            Set<String> keys = parameters.keySet();
+            final Map<String, String> parameters = info.getParameters();
+            final Set<String> keys = parameters.keySet();
 
-            for (String key : keys) {
-                org.w3c.dom.Element paramNode = gisDoc.createElement(key);
-                String value = parameters.get(key);
+            for (final String key : keys) {
+                final org.w3c.dom.Element paramNode = gisDoc.createElement(key);
+                final String value = parameters.get(key);
 //                paramNode.setNodeValue(key);
 //                paramNode.setAttribute(key, value);
                 paramNode.setTextContent(value);
@@ -416,7 +410,7 @@ public class GISProject implements Project {
      * @param document  The DOM document do save.
      * @param output    The file where to write the DOM document.
      */
-    public static void transformerXml(Document document, File output) {
+    private void transformerXml(Document document, File output) {
         try {
             // Création de la source DOM
             Source source = new DOMSource(document);

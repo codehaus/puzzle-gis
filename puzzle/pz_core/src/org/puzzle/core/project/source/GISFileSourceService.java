@@ -22,7 +22,6 @@ package org.puzzle.core.project.source;
 
 import java.io.File;
 import javax.swing.filechooser.FileFilter;
-import org.puzzle.core.project.GISProject;
 
 /**
  * This class is a special {@code GISSourceService} dedicated to file datas.<br>
@@ -45,7 +44,7 @@ public interface GISFileSourceService extends GISSourceService{
      * @return  A new {@code GISSource} associated with the {@code file}.
      * @throws  java.lang.IllegalArgumentException
      */
-    GISSource createSource(File file,GISProject project) throws IllegalArgumentException;
+    GISSourceInfo createSourceInfo(File file) throws IllegalArgumentException;
     
     /**
      * This method is used to know if a specific file can be handled by

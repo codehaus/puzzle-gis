@@ -21,41 +21,48 @@
 package org.puzzle.format.postgis.service;
 
 import java.util.Map;
-import org.geotools.gui.swing.datachooser.DataPanel;
-import org.geotools.gui.swing.datachooser.JPostGISDataPanel;
+
+import org.puzzle.core.context.gui.datadialog.SourceCreationPane;
 import org.puzzle.core.project.source.GISDistantSourceService;
 import org.puzzle.core.project.source.GISSource;
+import org.puzzle.core.project.source.GISSourceInfo;
+import org.puzzle.format.postgis.ui.JPostGISDataPanel;
 
 /**
  *
- * @author  Johann Sorel
+ * @author  Johann Sorel (Puzzle-GIS)
  */
 public class PostGISSourceService implements GISDistantSourceService{
 
     private static final String TITLE = "PostGIS";
     
+    @Override
     public String getIdentifier(){
         return "PostGIS";
     }
     
-    public GISSource restoreSource(Map<String, String> parameters, int id) throws IllegalArgumentException{
-        final String url = parameters.get("url");
-        
-        if(url == null) throw new IllegalArgumentException("missing parameter url");
-        
-        GISSource postgisSource = new PostGISSource(getIdentifier(),id,parameters);
-        return postgisSource;
+    @Override
+    public GISSource restoreSource(final GISSourceInfo info) throws IllegalArgumentException{
+//        final String url = parameters.get("url");
+//
+//        if(url == null) throw new IllegalArgumentException("missing parameter url");
+//
+//        GISSource postgisSource = new PostGISSource(getIdentifier(),id,parameters);
+        return null;
     }
 
-    public DataPanel createDataPanel() {
-        return new JPostGISDataPanel();
-    }
-
+    @Override
     public GISSource createSource(Map parameters) throws IllegalArgumentException {
         return null;
     }
 
+    @Override
     public String getTitle() {
         return TITLE;
+    }
+
+    @Override
+    public SourceCreationPane createPanel() {
+        return new JPostGISDataPanel();
     }
 }

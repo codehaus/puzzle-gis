@@ -20,19 +20,20 @@
  */
 package org.puzzle.core.context.gui.datadialog;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import org.geotools.gui.swing.datachooser.DataPanel;
-import org.geotools.map.MapLayer;
+
+import java.util.Map;
 import org.openide.util.Lookup;
+
 import org.puzzle.core.project.source.GISDistantSourceService;
 import org.puzzle.core.project.source.GISSource;
+import org.puzzle.core.project.source.GISSourceInfo;
 import org.puzzle.core.project.source.GISSourceService;
 
 /**
  * Distant generic chooser. This will call all GISDistantSourceService
  * 
- * @author  Johann Sorel
+ * @author  Johann Sorel (Puzzle-GIS)
  */
 public class JDistantSourcePane extends javax.swing.JPanel {
     
@@ -44,12 +45,12 @@ public class JDistantSourcePane extends javax.swing.JPanel {
 
         services = Lookup.getDefault().lookupAll(GISSourceService.class);
 
-        for (GISSourceService service : services) {
+        for (final GISSourceService service : services) {
 
             if (service instanceof GISDistantSourceService) {
-                GISDistantSourceService distantService = (GISDistantSourceService) service;
-                DataPanel panel = distantService.createDataPanel();
-                guiTabPane.add(distantService.getTitle(), panel.getChooserComponent());
+                final GISDistantSourceService distantService = (GISDistantSourceService) service;
+                final SourceCreationPane panel = distantService.createPanel();
+                guiTabPane.add(distantService.getTitle(), panel);
             }
         }
     }
@@ -64,15 +65,15 @@ public class JDistantSourcePane extends javax.swing.JPanel {
 
         guiTabPane = new javax.swing.JTabbedPane();
 
-        org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(guiTabPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 541, Short.MAX_VALUE)
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(guiTabPane, javax.swing.GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(guiTabPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 372, Short.MAX_VALUE)
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(guiTabPane, javax.swing.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -80,38 +81,9 @@ public class JDistantSourcePane extends javax.swing.JPanel {
     private javax.swing.JTabbedPane guiTabPane;
     // End of variables declaration//GEN-END:variables
 
-    public Collection<GISSource> getGISSources(){
-        Collection<GISSource> sources = new ArrayList<GISSource>();
-        
-        
-        DataPanel panel = (DataPanel) guiTabPane.getSelectedComponent();
-        
-        MapLayer[] layers = panel.getLayers();
-        
-//        
-//        File[] files = gui_choose.getSelectedFiles();
-//        
-//        file_loop:
-//        for(File f : files){
-//            
-//            for(GISSourceService service : services){
-//                if( ! (service instanceof GISFileSourceService)) continue;
-//                GISSource source = null;
-//                
-//                try{
-//                    if(((GISFileSourceService)service).isValidFile(f))
-//                        source = ((GISFileSourceService)service).createSource(f);
-//                }catch(IllegalArgumentException ex){
-//                    ex.printStackTrace();
-//                }
-//                if(source != null){
-//                    sources.add(source);
-//                    continue file_loop;
-//                }
-//            }
-//        }
-        
-        return sources;
+    public Map<String,GISSourceInfo> getSources(){
+        final SourceCreationPane panel = (SourceCreationPane) guiTabPane.getSelectedComponent();
+        return panel.createSources();
     }
     
 }

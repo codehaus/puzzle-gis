@@ -41,23 +41,20 @@ import org.puzzle.core.project.GISProject;
  * @author  Johann Sorel
  * @author  Thomas Bonavia (comments)
  */
-public interface GISSource {
+public abstract class GISSource {
 
-    int getID();
+    private final GISSourceInfo info;
     
-    /**
-     * Get the {@code GISSourceService} name to use for managing the data
-     * represented by each {@code GISSource}.
-     * @return  A {@code String} containing the name of the service.
-     */
-    String getServiceName();
+    protected GISSource(final GISSourceInfo info){
+        if(info == null || info.getID() < 0){
+            throw new IllegalArgumentException("SourceInfo can not be null or have an invalid ID number");
+        }
+        this.info = info;
+    }
     
-    /**
-     * The parameters describing the {@code GISSource}.
-     * This parameters are retrieved from the XML storing the {@code GISSource}.
-     * @return A {@code Map} containing all parameters.
-     */
-    Map<String,String> getParameters();
+    public final GISSourceInfo getInfo(){
+        return info;
+    }
     
     /**
      * Creates a new {@code MapLayer} from the data represented
@@ -65,7 +62,7 @@ public interface GISSource {
      * @param   parameters A set of parameters used to create the layer.
      * @return  A new {@code PuzzleLayerConstants}.
      */
-    MapLayer createLayer(Map<String,String> parameters);
+    public abstract MapLayer createLayer(Map<String,String> parameters);
     
     /**
      * create a wizard to see all possible layers.
@@ -74,19 +71,20 @@ public interface GISSource {
      * @param contexts
      * @param project
      */
-    void showLayerWizard(Collection<? extends MapContext> contexts, GISProject project);
+    public abstract void showLayerWizard(Collection<? extends MapContext> contexts, GISProject project);
     
     /**
      * Get the icon to use for each kind of {@code GISSource}.
      * @param   type The type of icon to use (allows to define multiple icons).
      * @return  A new {@code Image} representing the icon.
      */
-    Image getIcon(int type);
+     public abstract Image getIcon(int type);
     
     /**
      * Get the title of the {@code GISSource}. It makes sense to give to the
      * source the name of its data, but it is not an obligation !
      * @return  A {@code String} containing the name of the {@code GISSource}.
      */
-    String getTitle();
+     public abstract String getTitle();
+     
 }

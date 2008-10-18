@@ -26,22 +26,27 @@ import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.filechooser.FileFilter;
+
 import org.geotools.gui.swing.misc.filter.FileFilterFactory;
+
 import org.openide.util.Exceptions;
-import org.puzzle.core.project.GISProject;
+
 import org.puzzle.core.project.source.GISFileSourceService;
 import org.puzzle.core.project.source.GISSource;
+import org.puzzle.core.project.source.GISSourceInfo;
 
 /**
  * This is the service linked with the {@code GeoTiffSource}.
  * The service is used to manage this kind of source.
  * 
  * @author  Thomas Bonavia
+ * @author  Johann Sorel (Puzzle-GIS)
  * 
  * @see     org.puzzle.core.project.source.GISFileSourceService
  */
 public class GeoTiffSourceService implements GISFileSourceService{
     private static final String TITLE = "Geotiff";
+    private static final String SERVICE_ID = "SingleGeoTiff";
     
     /** {@inheritDoc} */
     @Override
@@ -52,13 +57,13 @@ public class GeoTiffSourceService implements GISFileSourceService{
     /** {@inheritDoc} */
     @Override
     public String getIdentifier() {
-        return "SingleGeoTiff";
+        return SERVICE_ID;
     }
 
     /** {@inheritDoc} */
     @Override
-    public GISSource restoreSource(Map<String, String> parameters, int id) throws IllegalArgumentException {
-        final String strURI = parameters.get("uri");
+    public GISSource restoreSource(final GISSourceInfo info) throws IllegalArgumentException {
+        final String strURI = info.getParameters().get("uri");
         
         if(strURI == null) throw new IllegalArgumentException("missing parameter url");
 
@@ -68,43 +73,24 @@ public class GeoTiffSourceService implements GISFileSourceService{
         }catch(URISyntaxException urise){
             Exceptions.printStackTrace(urise);
         }
-            
-        GISSource geotiffSource = new GeoTiffSource(geotiff,getIdentifier(),id,parameters);
-        return geotiffSource;
+        
+        return new GeoTiffSource(info,geotiff);
     }
     
     /** {@inheritDoc} */
     @Override
-    public GISSource createSource(File file,GISProject mainProject) throws IllegalArgumentException {
-        String uri = null;
-        Map<String,String> params = new HashMap<String, String>();
-        uri = file.toURI().toString();
-        
-        
-        if(uri == null){
-            throw new IllegalArgumentException("Not a valid File");
-        }
-        
+    public GISSourceInfo createSourceInfo(final File file) throws IllegalArgumentException {
+        final String uri = file.toURI().toString();
+        final Map<String,String> params = new HashMap<String, String>();
         params.put("uri", uri);
-        
-        int id = -1;
-        
-        if(mainProject != null){
-            GISProject gis = (GISProject) mainProject;
-            id = gis.getNextSourceID();
-        }else{
-            throw new IllegalArgumentException("Not a valid GIS project open");
-        }
-        
-        return restoreSource(params, id);
+        return new GISSourceInfo(GISSourceInfo.UNREGISTERED_ID, SERVICE_ID, params);
     }
     
     /** {@inheritDoc} */
     @Override
     public boolean isValidFile(File file) {
-        String name = file.getName().toLowerCase();
-        if(name.endsWith("tiff") || name.endsWith("tif")) return true;
-        else return false;
+        final String name = file.getName().toLowerCase();
+        return (name.endsWith("tiff") || name.endsWith("tif"));
     }
     
     /** {@inheritDoc} */

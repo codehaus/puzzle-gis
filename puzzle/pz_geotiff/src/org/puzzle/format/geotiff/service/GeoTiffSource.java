@@ -51,6 +51,7 @@ import org.puzzle.core.context.LayerSource;
 import org.puzzle.core.context.PZLayerConstants;
 import org.puzzle.core.project.GISProject;
 import org.puzzle.core.project.source.GISSource;
+import org.puzzle.core.project.source.GISSourceInfo;
 
 /**
  * This is a {@code GISSource} used to reference a Geotiff file in
@@ -60,14 +61,11 @@ import org.puzzle.core.project.source.GISSource;
  * 
  * @see     org.puzzle.core.project.source.GISSource
  */
-public class GeoTiffSource implements GISSource{
+public class GeoTiffSource extends GISSource{
 
     private static final String IMAGE_ICON_BASE = "org/puzzle/format/geotiff/geotiff.png";
     
-    private final int id;
-    private final Map<String,String> parameters;
     private final String name;
-    private final String serviceName;
     private GridCoverage2D gc2d = null;
 
     /**
@@ -78,11 +76,9 @@ public class GeoTiffSource implements GISSource{
      * @param id            The ID of the source.
      * @param parameters    The parameters (from the XML file).
      */
-    GeoTiffSource(File geotiff, String serviceName,int id, Map<String,String> parameters){
-        this.id = id;
+    GeoTiffSource(final GISSourceInfo info,File geotiff){
+        super(info);
         this.name = geotiff.getName();
-        this.serviceName = serviceName;
-        this.parameters = parameters;
         
         GeoTiffReader reader;
         try {
@@ -103,7 +99,7 @@ public class GeoTiffSource implements GISSource{
     public MapLayer createLayer(Map<String, String> parameters) {
         final MutableStyle style = new RandomStyleFactory().createRasterStyle();
         if(parameters == null)parameters = Collections.emptyMap();
-        final LayerSource source = new LayerSource(id, parameters,this);
+        final LayerSource source = new LayerSource(getInfo().getID(), parameters,this);
 
         final MapLayerBuilder builder = new MapLayerBuilder();
         final MapLayer layer = builder.create(gc2d, style, name);
@@ -115,26 +111,8 @@ public class GeoTiffSource implements GISSource{
 
     /** {@inheritDoc } */
     @Override
-    public int getID() {
-        return id;
-    }
-
-    /** {@inheritDoc } */
-    @Override
     public Image getIcon(int type) {
         return Utilities.loadImage(IMAGE_ICON_BASE);
-    }
-
-    /** {@inheritDoc } */
-    @Override
-    public Map<String, String> getParameters() {
-        return Collections.unmodifiableMap(parameters);
-    }
-
-    /** {@inheritDoc } */
-    @Override
-    public String getServiceName() {
-        return serviceName;
     }
 
     /** {@inheritDoc } */

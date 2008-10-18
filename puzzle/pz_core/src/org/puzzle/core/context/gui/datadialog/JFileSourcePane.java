@@ -21,12 +21,12 @@
 package org.puzzle.core.context.gui.datadialog;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 import org.openide.util.Lookup;
-import org.puzzle.core.project.GISProject;
 import org.puzzle.core.project.source.GISFileSourceService;
-import org.puzzle.core.project.source.GISSource;
+import org.puzzle.core.project.source.GISSourceInfo;
 import org.puzzle.core.project.source.GISSourceService;
 
 /**
@@ -52,8 +52,7 @@ public class JFileSourcePane extends javax.swing.JPanel {
                 
         services = Lookup.getDefault().lookupAll(GISSourceService.class);
         
-        for(GISSourceService service : services){
-            
+        for(final GISSourceService service : services){
             if(service instanceof GISFileSourceService)
                 gui_choose.addChoosableFileFilter( ((GISFileSourceService)service).createFilter());
         }
@@ -62,7 +61,6 @@ public class JFileSourcePane extends javax.swing.JPanel {
             gui_choose.setCurrentDirectory(openPath);
         }
         gui_choose.setMultiSelectionEnabled(true);
-
     }
 
     public void setDirectory(File directory){
@@ -101,25 +99,26 @@ public class JFileSourcePane extends javax.swing.JPanel {
     private javax.swing.JFileChooser gui_choose;
     // End of variables declaration//GEN-END:variables
 
-    public Collection<GISSource> getGISSources(GISProject project){
-        Collection<GISSource> sources = new ArrayList<GISSource>();
-        File[] files = gui_choose.getSelectedFiles();
+    public Map<String,GISSourceInfo> getSources(){
+        final Map<String,GISSourceInfo> sources = new HashMap<String, GISSourceInfo>();
+        final File[] files = gui_choose.getSelectedFiles();
         
         file_loop:
-        for(File f : files){
+        for(final File f : files){
             
-            for(GISSourceService service : services){
+            for(final GISSourceService service : services){
                 if( ! (service instanceof GISFileSourceService)) continue;
-                GISSource source = null;
+                GISSourceInfo source = null;
                 
                 try{
-                    if(((GISFileSourceService)service).isValidFile(f))
-                        source = ((GISFileSourceService)service).createSource(f,project);
+                    if(((GISFileSourceService)service).isValidFile(f)){
+                        source = ((GISFileSourceService)service).createSourceInfo(f);
+                    }
                 }catch(IllegalArgumentException ex){
                     ex.printStackTrace();
                 }
                 if(source != null){
-                    sources.add(source);
+                    sources.put(f.getName(),source);
                     continue file_loop;
                 }
             }

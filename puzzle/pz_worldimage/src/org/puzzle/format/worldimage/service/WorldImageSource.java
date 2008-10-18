@@ -49,6 +49,7 @@ import org.puzzle.core.context.LayerSource;
 import org.puzzle.core.context.PZLayerConstants;
 import org.puzzle.core.project.GISProject;
 import org.puzzle.core.project.source.GISSource;
+import org.puzzle.core.project.source.GISSourceInfo;
 
 /**
  * This is a {@code GISSource} used to reference a World Image file in
@@ -63,7 +64,7 @@ import org.puzzle.core.project.source.GISSource;
  * 
  * @see     org.puzzle.core.project.source.GISSource
  */
-public class WorldImageSource implements GISSource{
+public class WorldImageSource extends GISSource{
 
     private static final File CACHE_FOLDER = new File("tileCache");
     private static final String IMAGE_ICON_BASE = "org/puzzle/format/worldimage/worldimage.png";
@@ -71,10 +72,7 @@ public class WorldImageSource implements GISSource{
         CACHE_FOLDER.mkdirs();
     }
     
-    private final int id;
-    private final Map<String,String> parameters;
     private final String name;
-    private final String serviceName;
     private CoverageReader reader = null;
 
     /**
@@ -85,11 +83,9 @@ public class WorldImageSource implements GISSource{
      * @param id            The ID of the source.
      * @param parameters    The parameters (from the XML file).
      */
-    public WorldImageSource(File worldImage, String serviceName, int id, Map<String, String> parameters) {
-        this.id = id;
-        this.parameters = parameters;
+    public WorldImageSource(final GISSourceInfo info, final File worldImage) {
+        super(info);
         this.name = worldImage.getName();
-        this.serviceName = serviceName;
 
         final WorldImageFactory factory = new WorldImageFactory();
         final File cache = new File(CACHE_FOLDER.getAbsolutePath() + File.separator + name);
@@ -109,7 +105,7 @@ public class WorldImageSource implements GISSource{
     @Override
     public MapLayer createLayer(Map<String, String> parameters) {
         final MutableStyle style = new RandomStyleFactory().createRasterStyle();
-        final LayerSource source = new LayerSource(id, parameters,this);
+        final LayerSource source = new LayerSource(getInfo().getID(), parameters,this);
         final MapLayerBuilder builder = new MapLayerBuilder();
         final MapLayer layer = builder.create(reader, style, name);
         layer.setUserPropertie(PZLayerConstants.KEY_LAYER_INFO, source);
@@ -119,26 +115,8 @@ public class WorldImageSource implements GISSource{
 
     /** {@inheritDoc } */
     @Override
-    public int getID() {
-        return id;
-    }
-
-    /** {@inheritDoc } */
-    @Override
     public Image getIcon(int type) {
         return Utilities.loadImage(IMAGE_ICON_BASE);
-    }
-
-    /** {@inheritDoc } */
-    @Override
-    public Map<String, String> getParameters() {
-        return Collections.unmodifiableMap(parameters);
-    }
-
-    /** {@inheritDoc } */
-    @Override
-    public String getServiceName() {
-        return serviceName;
     }
 
     /** {@inheritDoc } */

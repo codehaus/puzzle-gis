@@ -132,25 +132,15 @@
             </module-dependencies>
             <public-packages>
                 <package>org.puzzle.core.context</package>
-                <package>org.puzzle.core.gtextend.widget.style</package>
-                <package>org.puzzle.core.gtextend.widget.viewtree</package>
-                <package>org.puzzle.core.process</package>
+                <package>org.puzzle.core.context.gui.datadialog</package>
                 <package>org.puzzle.core.project</package>
                 <package>org.puzzle.core.project.action</package>
                 <package>org.puzzle.core.project.filetype</package>
                 <package>org.puzzle.core.project.nodes</package>
                 <package>org.puzzle.core.project.source</package>
-                <package>org.puzzle.core.project.source.shapefile</package>
                 <package>org.puzzle.core.swing.toolbox</package>
                 <package>org.puzzle.core.swing.toolbox.tooltree</package>
                 <package>org.puzzle.core.swing.toolbox.widgettool</package>
-                <package>org.puzzle.core.swing.toolbox.widgettool.clipping</package>
-                <package>org.puzzle.core.swing.toolbox.widgettool.shapecreation</package>
-                <package>org.puzzle.core.swing.toolbox.widgettool.svg2mif</package>
-                <package>org.puzzle.core.swing.toolbox.widgettool.svg2mif.element</package>
-                <package>org.puzzle.core.swing.toolbox.widgettool.svg2mif.element.xml</package>
-                <package>org.puzzle.core.swing.toolbox.widgettool.svg2mif.element.xml.svg</package>
-                <package>org.puzzle.core.swing.toolbox.widgettool.vdem2csv</package>
                 <package>org.puzzle.core.tool</package>
                 <package>org.puzzle.core.tool.gui.toolbox</package>
                 <package>org.puzzle.core.view</package>

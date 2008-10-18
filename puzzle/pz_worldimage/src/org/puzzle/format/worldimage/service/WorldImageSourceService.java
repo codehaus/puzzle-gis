@@ -28,9 +28,9 @@ import java.util.Map;
 import javax.swing.filechooser.FileFilter;
 import org.geotools.gui.swing.misc.filter.FileFilterFactory;
 import org.openide.util.Exceptions;
-import org.puzzle.core.project.GISProject;
 import org.puzzle.core.project.source.GISFileSourceService;
 import org.puzzle.core.project.source.GISSource;
+import org.puzzle.core.project.source.GISSourceInfo;
 
 /**
  * This is the service linked with the {@code WorldImageSource}.
@@ -42,11 +42,12 @@ import org.puzzle.core.project.source.GISSource;
  */
 public class WorldImageSourceService implements GISFileSourceService{
     private static final String TITLE = "WorldImage";
+    private static final String SERVICE_ID = "SingleWorldImage";
     
     /** {@inheritDoc} */
     @Override
     public String getIdentifier() {
-        return "SingleWorldImage";
+        return SERVICE_ID;
     }
 
     /** {@inheritDoc} */
@@ -57,8 +58,8 @@ public class WorldImageSourceService implements GISFileSourceService{
 
     /** {@inheritDoc} */
     @Override
-    public GISSource restoreSource(Map<String, String> parameters, int id) throws IllegalArgumentException {
-        final String strURI = parameters.get("uri");
+    public GISSource restoreSource(final GISSourceInfo info) throws IllegalArgumentException {
+        final String strURI = info.getParameters().get("uri");
         
         if(strURI == null) throw new IllegalArgumentException("missing parameter uri");
 
@@ -69,33 +70,16 @@ public class WorldImageSourceService implements GISFileSourceService{
             Exceptions.printStackTrace(urise);
         }
 
-        GISSource worldImageSource = new WorldImageSource(worldImage,getIdentifier(),id,parameters);
-        return worldImageSource;
+        return new WorldImageSource(info,worldImage);
     }
 
     /** {@inheritDoc} */
     @Override
-    public GISSource createSource(File file,GISProject mainProject) throws IllegalArgumentException {
-        String uri = null;
-        Map<String,String> params = new HashMap<String, String>();
-        uri = file.toURI().toString();
-        
-        if(uri == null){
-            throw new IllegalArgumentException("Not a valid File");
-        }
-        
+    public GISSourceInfo createSourceInfo(final File file) throws IllegalArgumentException {
+        final String uri = file.toURI().toString();
+        final Map<String,String> params = new HashMap<String, String>();
         params.put("uri", uri);
-        
-        int id = -1;
-        
-        if(mainProject != null && mainProject instanceof GISProject){
-            GISProject gis = (GISProject) mainProject;
-            id = gis.getNextSourceID();
-        }else{
-            throw new IllegalArgumentException("Not a valid GIS project open");
-        }
-        
-        return restoreSource(params, id);
+        return new GISSourceInfo(GISSourceInfo.UNREGISTERED_ID, SERVICE_ID, params);
     }
     
     /** {@inheritDoc} */

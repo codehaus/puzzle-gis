@@ -24,6 +24,8 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Collection;
+import java.util.Map;
+import java.util.Set;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.ImageIcon;
@@ -41,6 +43,7 @@ import org.openide.util.Utilities;
 import org.puzzle.core.context.gui.datadialog.JFileSourcePane;
 import org.puzzle.core.project.GISProject;
 import org.puzzle.core.project.source.GISSource;
+import org.puzzle.core.project.source.GISSourceInfo;
 
 /**
  * This class represents the folder "src" defined in the
@@ -102,26 +105,27 @@ public class GISSourceNode extends FilterNode {
         public void actionPerformed(ActionEvent arg0) {
 
             final JFileSourcePane pane = new JFileSourcePane();
-            ActionListener lst = new ActionListener() {
+            final ActionListener lst = new ActionListener() {
 
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    DataObject obj = getLookup().lookup(DataObject.class);
-                    Project proj = FileOwnerQuery.getOwner(obj.getPrimaryFile());
+                    final DataObject obj = getLookup().lookup(DataObject.class);
+                    final Project proj = FileOwnerQuery.getOwner(obj.getPrimaryFile());
 
                     if (proj instanceof GISProject) {
-                        GISProject project = (GISProject) proj;
+                        final GISProject project = (GISProject) proj;
 
                         if (e.getActionCommand().equalsIgnoreCase("ok")) {
                             pane.setVisible(false);
                         }
 
-                        Collection<GISSource> sources = pane.getGISSources(project);
-                        for (GISSource source : sources) {
-                            project.appendGISSource(source);
+                        final Map<String,GISSourceInfo> sources = pane.getSources();
+                        final Set<String> names = sources.keySet();
+                        for (final String name : names) {
+                            project.registerSource(name,sources.get(name));
                         }
                     } else {
-                        NotifyDescriptor d = new NotifyDescriptor.Message("Project is not a GIS project", NotifyDescriptor.INFORMATION_MESSAGE);
+                        final NotifyDescriptor d = new NotifyDescriptor.Message("Project is not a GIS project", NotifyDescriptor.INFORMATION_MESSAGE);
                         DialogDisplayer.getDefault().notify(d);
                     }
 
@@ -130,7 +134,7 @@ public class GISSourceNode extends FilterNode {
                 }
             };
 
-            DialogDescriptor desc = new DialogDescriptor(pane, "Open file", true, lst);
+            final DialogDescriptor desc = new DialogDescriptor(pane, "Open file", true, lst);
             DialogDisplayer.getDefault().notify(desc);
         }
     }
