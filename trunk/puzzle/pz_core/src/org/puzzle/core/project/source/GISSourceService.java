@@ -20,8 +20,6 @@
  */
 package org.puzzle.core.project.source;
 
-import java.util.Map;
-
 /**
  * This class describe a generic way of managing {@code GISSource}s.
  * 
@@ -50,7 +48,6 @@ public interface GISSourceService {
      * @return  The rebuilt {@code GISSource}.
      * @throws  java.lang.IllegalArgumentException
      */
-    GISSource restoreSource(Map<String,String> parameters,int id)
-            throws IllegalArgumentException;
+    GISSource restoreSource(GISSourceInfo info) throws IllegalArgumentException;
     
 }

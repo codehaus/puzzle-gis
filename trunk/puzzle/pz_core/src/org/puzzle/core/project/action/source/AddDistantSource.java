@@ -22,64 +22,48 @@ package org.puzzle.core.project.action.source;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Collection;
+import java.util.Map;
+import java.util.Set;
+
+import org.netbeans.api.project.Project;
+import org.netbeans.api.project.ui.OpenProjects;
 import org.openide.DialogDescriptor;
 import org.openide.DialogDisplayer;
-import org.openide.nodes.Node;
-import org.openide.util.HelpCtx;
-import org.openide.util.NbBundle;
-import org.openide.util.actions.CookieAction;
+import org.openide.NotifyDescriptor;
+
 import org.puzzle.core.context.gui.datadialog.JDistantSourcePane;
 import org.puzzle.core.project.GISProject;
-import org.puzzle.core.project.source.GISSource;
+import org.puzzle.core.project.source.GISSourceInfo;
 
-public final class AddDistantSource extends CookieAction {
+public final class AddDistantSource implements ActionListener {
 
-    protected void performAction(Node[] activatedNodes) {
-        final GISProject gis = activatedNodes[0].getLookup().lookup(GISProject.class);
-        final JDistantSourcePane pane = new JDistantSourcePane();
-        ActionListener lst = new ActionListener() {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        final Project project = OpenProjects.getDefault().getMainProject();
+        
+        if(project != null && project instanceof GISProject) {
+            final GISProject gis =(GISProject) project;
+            final JDistantSourcePane pane = new JDistantSourcePane();
+            final ActionListener lst = new ActionListener() {
 
-            public void actionPerformed(ActionEvent e) {
-
-                if (e.getActionCommand().equalsIgnoreCase("ok")) {
-
-                    Collection<GISSource> sources = pane.getGISSources();
-                    for (GISSource source : sources) {
-                        gis.appendGISSource(source);
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    if (e.getActionCommand().equalsIgnoreCase("ok")) {
+                        final Map<String,GISSourceInfo> sources = pane.getSources();
+                        final Set<String> names = sources.keySet();
+                        for (final String name : names) {
+                            gis.registerSource(name,sources.get(name));
+                        }
                     }
                 }
-            }
-        };
+            };
 
-        DialogDescriptor desc = new DialogDescriptor(pane, "Open file", true, lst);
-        DialogDisplayer.getDefault().notify(desc);
-    }
-
-    protected int mode() {
-        return CookieAction.MODE_ALL;
-    }
-
-    public String getName() {
-        return NbBundle.getMessage(AddDistantSource.class, "CTL_AddDistantSource");
-    }
-
-    protected Class[] cookieClasses() {
-        return new Class[]{GISProject.class};
-    }
-
-    @Override
-    protected String iconResource() {
-        return "org/puzzle/core/addDistantSource.png";
-    }
-
-    public HelpCtx getHelpCtx() {
-        return HelpCtx.DEFAULT_HELP;
-    }
-
-    @Override
-    protected boolean asynchronous() {
-        return false;
+            final DialogDescriptor desc = new DialogDescriptor(pane, "Open file", true, lst);
+            DialogDisplayer.getDefault().notify(desc);
+        }else{
+            final NotifyDescriptor d =  new NotifyDescriptor.Message("Main project is not a GIS project", NotifyDescriptor.INFORMATION_MESSAGE);
+            DialogDisplayer.getDefault().notify(d);
+        }
     }
 }
 

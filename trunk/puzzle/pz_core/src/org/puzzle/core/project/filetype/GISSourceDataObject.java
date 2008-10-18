@@ -36,6 +36,7 @@ import org.openide.text.DataEditorSupport;
 import org.openide.util.Exceptions;
 import org.puzzle.core.project.GISProject;
 import org.puzzle.core.project.source.GISSource;
+import org.puzzle.core.project.source.GISSourceInfo;
 import org.puzzle.core.project.source.GISSourceService;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
@@ -105,9 +106,9 @@ public class GISSourceDataObject extends XMLDataObject {
 
             //if file is valid
             if(gisDoc != null){
-                org.w3c.dom.Node rootNode = gisDoc.getFirstChild();
+                final org.w3c.dom.Node rootNode = gisDoc.getFirstChild();
 
-                NodeList ids = gisDoc.getElementsByTagName("id");
+                final NodeList ids = gisDoc.getElementsByTagName("id");
                 int id = 0;
                 if(ids.getLength()>0){
                     //there is a set ID
@@ -115,33 +116,34 @@ public class GISSourceDataObject extends XMLDataObject {
                 }
 
                 String serviceId = "unknowned";
-                NodeList serviceIds = gisDoc.getElementsByTagName("serviceid");
+                final NodeList serviceIds = gisDoc.getElementsByTagName("serviceid");
                 if(serviceIds.getLength()>0){
                     //there is a set service ID
                     serviceId = serviceIds.item(0).getTextContent();
                 }
 
-                NodeList urls = gisDoc.getElementsByTagName("parameters");
-                Map<String,String> parameters = new HashMap<String,String>();
+                final NodeList urls = gisDoc.getElementsByTagName("parameters");
+                final Map<String,String> parameters = new HashMap<String,String>();
 
                 for(int i=0, n = urls.getLength(); i<n; i++){
                     org.w3c.dom.Node paramsNode = urls.item(i);
-                    NodeList params = paramsNode.getChildNodes();
+                    final NodeList params = paramsNode.getChildNodes();
 
                     for(int j=0, l=params.getLength(); j<l; j++){
-                        org.w3c.dom.Node singleParam = params.item(j);
-                        String key = singleParam.getNodeName();
-                        String value = singleParam.getTextContent();
+                        final org.w3c.dom.Node singleParam = params.item(j);
+                        final String key = singleParam.getNodeName();
+                        final String value = singleParam.getTextContent();
                         if(key != null && value != null){
                             parameters.put(key, value);
                         }
                     }
                 }
 
-                GISSourceService service = getSourceService(serviceId);
+                final GISSourceService service = getSourceService(serviceId);
 
                 if(service != null){
-                    source = service.restoreSource(parameters,id);
+                    final GISSourceInfo info = new GISSourceInfo(id, serviceId, parameters);
+                    source = service.restoreSource(info);
                 }
 
             }

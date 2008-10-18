@@ -229,7 +229,7 @@ public class GISContextDataObject extends XMLDataObject {
         if (id > 0) {
             Collection<? extends GISSource> sources = getGISSources();
             for (GISSource src : sources) {
-                if (src.getID() == id) {
+                if (src.getInfo().getID() == id) {
                     layer = src.createLayer(params);
                     layer.setDescription( CommonFactoryFinder.getStyleFactory(null).createDescription(title,"") );
                     layer.setStyle(style);

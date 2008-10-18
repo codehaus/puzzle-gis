@@ -15,6 +15,7 @@
     </folder>
     <folder name="Toolbars">
         <folder name="GISPrint">
+            <attr name="position" intvalue="130"/>
             <file name="org-puzzle-print-action-ExportImage.shadow">
                 <attr name="originalFile" stringvalue="Actions/Puzzle/org-puzzle-print-action-ExportImage.instance"/>
             </file>

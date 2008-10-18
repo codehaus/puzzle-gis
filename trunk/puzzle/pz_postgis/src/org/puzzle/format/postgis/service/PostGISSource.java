@@ -43,7 +43,7 @@ import org.puzzle.core.project.source.GISSource;
  *
  * @author  Johann Sorel
  */
-public class PostGISSource implements GISSource{
+public class PostGISSource extends GISSource{
 
     private static final String IMAGE_ICON_BASE = "org/puzzle/format/postgis/postgres.png";
     
@@ -55,6 +55,7 @@ public class PostGISSource implements GISSource{
     
     
     PostGISSource(String serviceName,int id, Map<String,String> parameters){
+        super(null);
         this.id = id;
         this.name = "hahaha";
         this.serviceName = serviceName;
@@ -73,10 +74,6 @@ public class PostGISSource implements GISSource{
         return layer;
     }
 
-    @Override
-    public int getID() {
-        return id;
-    }
 
     @Override
     public Image getIcon(int type) {
@@ -84,18 +81,8 @@ public class PostGISSource implements GISSource{
     }
 
     @Override
-    public Map<String, String> getParameters() {
-        return Collections.unmodifiableMap(parameters);
-    }
-
-    @Override
     public String getTitle() {
         return name;
-    }
-
-    @Override
-    public String getServiceName() {
-        return serviceName;
     }
 
     @Override

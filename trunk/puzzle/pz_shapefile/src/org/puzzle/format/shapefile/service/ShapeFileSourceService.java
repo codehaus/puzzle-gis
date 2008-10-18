@@ -21,19 +21,17 @@
 package org.puzzle.format.shapefile.service;
 
 import java.io.File;
-import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.filechooser.FileFilter;
+
 import org.geotools.gui.swing.misc.filter.FileFilterFactory;
-import org.netbeans.api.project.Project;
-import org.netbeans.api.project.ui.OpenProjects;
-import org.openide.util.Exceptions;
-import org.puzzle.core.project.GISProject;
+
 import org.puzzle.core.project.source.GISFileSourceService;
 import org.puzzle.core.project.source.GISSource;
+import org.puzzle.core.project.source.GISSourceInfo;
 
 /**
  *
@@ -41,15 +39,16 @@ import org.puzzle.core.project.source.GISSource;
  */
 public class ShapeFileSourceService implements GISFileSourceService{
     private static final String TITLE = "Shapefile";
+    private static final String SERVICE_ID = "SingleShapeFile";
     
     @Override
     public String getIdentifier(){
-        return "SingleShapeFile";
+        return SERVICE_ID;
     }
     
     @Override
-    public GISSource restoreSource(Map<String, String> parameters, int id) throws IllegalArgumentException{
-        final String strURI = parameters.get("uri");
+    public GISSource restoreSource(final GISSourceInfo info) throws IllegalArgumentException{
+        final String strURI = info.getParameters().get("uri");
         
         if(strURI == null) throw new IllegalArgumentException("missing parameter uri");
         
@@ -59,9 +58,9 @@ public class ShapeFileSourceService implements GISFileSourceService{
         } catch (URISyntaxException ex) {
             throw new IllegalArgumentException("Invalide parameter uri");
         }
-        File shapeFile = new File(uri);
-        GISSource shapeSource = new ShapeFileSource(shapeFile,getIdentifier(),id,parameters);
-        return shapeSource;
+        final File shapeFile = new File(uri);
+
+        return new ShapeFileSource(info,shapeFile);
     }
 
     @Override
@@ -70,32 +69,16 @@ public class ShapeFileSourceService implements GISFileSourceService{
     }
 
     @Override
-    public GISSource createSource(File file, GISProject mainProject) throws IllegalArgumentException {
-        String uri = null;
-        Map<String,String> params = new HashMap<String, String>();
-         uri = file.toURI().toString();
-        
-        if(uri == null){
-            throw new IllegalArgumentException("Not a valid File");
-        }
-        
+    public GISSourceInfo createSourceInfo(File file) throws IllegalArgumentException {
+        final String uri = file.toURI().toString();
+        final Map<String,String> params = new HashMap<String, String>();
         params.put("uri", uri);
-        
-        int id = -1;
-        
-        if(mainProject != null ){
-            GISProject gis = (GISProject) mainProject;
-            id = gis.getNextSourceID();
-        }else{
-            throw new IllegalArgumentException("Not a valid GIS project open");
-        }
-        
-        return restoreSource(params, id);
+        return new GISSourceInfo(GISSourceInfo.UNREGISTERED_ID, SERVICE_ID, params);
     }
 
     @Override
     public boolean isValidFile(File file) {
-        String name = file.getName().toLowerCase();
+        final String name = file.getName().toLowerCase();
         if(name.endsWith("shp")) return true;
         else return false;
     }

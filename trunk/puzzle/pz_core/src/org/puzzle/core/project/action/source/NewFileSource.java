@@ -22,45 +22,49 @@ package org.puzzle.core.project.action.source;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Collection;
+import java.util.Map;
+import java.util.Set;
+
 import org.netbeans.api.project.Project;
 import org.netbeans.api.project.ui.OpenProjects;
 import org.openide.DialogDescriptor;
 import org.openide.DialogDisplayer;
 import org.openide.NotifyDescriptor;
+
 import org.puzzle.core.context.gui.datadialog.JFileSourcePane;
 import org.puzzle.core.project.GISProject;
-import org.puzzle.core.project.source.GISSource;
+import org.puzzle.core.project.source.GISSourceInfo;
 
 public final class NewFileSource implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        Project project = OpenProjects.getDefault().getMainProject();
+        final Project project = OpenProjects.getDefault().getMainProject();
         
         if(project != null && project instanceof GISProject) {
             final GISProject gis =(GISProject) project;
 
             final JFileSourcePane pane = new JFileSourcePane();
-            ActionListener lst = new ActionListener() {
+            final ActionListener lst = new ActionListener() {
 
                 @Override
                 public void actionPerformed(ActionEvent e) {
 
                     if (e.getActionCommand().equalsIgnoreCase("ok")) {
                         pane.setVisible(false);
-                        Collection<GISSource> sources = pane.getGISSources(gis);
-                        for (GISSource source : sources) {
-                            gis.appendGISSource(source);
+                        final Map<String,GISSourceInfo> sources = pane.getSources();
+                        final Set<String> names = sources.keySet();
+                        for (final String name : names) {
+                            gis.registerSource(name,sources.get(name));
                         }
                     }
                 }
             };
 
-            DialogDescriptor desc = new DialogDescriptor(pane, "Open file", true, lst);
+            final DialogDescriptor desc = new DialogDescriptor(pane, "Open file", true, lst);
             DialogDisplayer.getDefault().notify(desc);
         }else{
-            NotifyDescriptor d =  new NotifyDescriptor.Message("Main project is not a GIS project", NotifyDescriptor.INFORMATION_MESSAGE);
+            final NotifyDescriptor d =  new NotifyDescriptor.Message("Main project is not a GIS project", NotifyDescriptor.INFORMATION_MESSAGE);
             DialogDisplayer.getDefault().notify(d);
         }
         

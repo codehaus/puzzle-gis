@@ -21,7 +21,7 @@
 package org.puzzle.core.project.source;
 
 import java.util.Map;
-import org.geotools.gui.swing.datachooser.DataPanel;
+import org.puzzle.core.context.gui.datadialog.SourceCreationPane;
 
 /**
  * This class is a special {@code GISSourceService} dedicated to distant datas,
@@ -42,12 +42,12 @@ import org.geotools.gui.swing.datachooser.DataPanel;
  */
 public interface GISDistantSourceService extends GISSourceService{
     /**
-     * Creates a {@code DataPanel} to allow the user entering informations
-     * needed to retrieve distant datas. This {@code DataPanel} is a graphical
+     * Creates a {@code sourceCreationPane} to allow the user entering informations
+     * needed to retrieve distant datas. This {@code SourceCreationPane} is a graphical
      * component.
-     * @return  A {@code DataPanel}.
+     * @return  A {@code SourceCreationPane}.
      */
-    DataPanel createDataPanel();
+    SourceCreationPane createPanel();
     
     /**
      * Creates the {@code GISSource} to associated with the distant data
