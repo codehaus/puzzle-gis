@@ -30,8 +30,9 @@ import org.openide.nodes.FilterNode;
 import org.openide.nodes.Node;
 import org.openide.util.Utilities;
 
-import org.puzzle.core.project.GISProject;
+import org.puzzle.core.actions.NewDistantSource;
 import org.puzzle.core.actions.NewFileSource;
+import org.puzzle.core.project.GISProject;
 
 /**
  * This class represents the folder "src" defined in the
@@ -83,7 +84,8 @@ public class GISSourceNode extends FilterNode {
         
         if(proj != null && proj instanceof GISProject){
             return new Action[]{
-                new NewFileSource((GISProject)proj)
+                new NewFileSource((GISProject)proj),
+                new NewDistantSource((GISProject)proj)
             };
         }else{
             return new Action[0];

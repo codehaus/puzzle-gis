@@ -25,24 +25,41 @@ import java.awt.event.ActionListener;
 import java.util.Map;
 import java.util.Set;
 
+import javax.swing.AbstractAction;
 import org.netbeans.api.project.Project;
 import org.netbeans.api.project.ui.OpenProjects;
 import org.openide.DialogDescriptor;
 import org.openide.DialogDisplayer;
 import org.openide.NotifyDescriptor;
 
-import org.puzzle.core.context.gui.datadialog.JDistantSourcePane;
+import org.puzzle.core.actions.JDistantSourcePane;
 import org.puzzle.core.project.GISProject;
 import org.puzzle.core.project.source.GISSourceInfo;
 
-public final class NewDistantSource implements ActionListener {
+public final class NewDistantSource extends AbstractAction {
 
+    private final GISProject project;
+
+    public NewDistantSource(){
+        this(null);
+    }
+
+    public NewDistantSource(final GISProject project){
+        super("New distant source");
+        this.project = project;
+    }
+    
     @Override
     public void actionPerformed(ActionEvent e) {
-        final Project project = OpenProjects.getDefault().getMainProject();
+        final Project candidate;
+        if(project == null){
+            candidate = OpenProjects.getDefault().getMainProject();
+        }else{
+            candidate = project;
+        }
         
-        if(project != null && project instanceof GISProject) {
-            final GISProject gis =(GISProject) project;
+        if(candidate != null && candidate instanceof GISProject) {
+            final GISProject gis =(GISProject) candidate;
             final JDistantSourcePane pane = new JDistantSourcePane();
             final ActionListener lst = new ActionListener() {
 

@@ -21,11 +21,11 @@
 package org.puzzle.core.actions;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.Enumeration;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.AbstractAction;
 import org.netbeans.api.project.Project;
 import org.netbeans.api.project.ui.OpenProjects;
 import org.openide.DialogDisplayer;
@@ -37,14 +37,31 @@ import org.openide.loaders.DataObjectNotFoundException;
 import org.openide.loaders.TemplateWizard;
 import org.puzzle.core.project.GISProject;
 
-public final class NewMapContext implements ActionListener {
+public final class NewMapContext extends AbstractAction {
 
+    private final GISProject project;
+    
+    public NewMapContext(){
+        this(null);
+    }
+    
+    public NewMapContext(final GISProject project){
+        super("New map");
+        this.project = project;
+    }
+    
+    
     @Override
     public void actionPerformed(ActionEvent e) {
-        Project project = OpenProjects.getDefault().getMainProject();
+        final Project candidate;
+        if(project == null){
+            candidate = OpenProjects.getDefault().getMainProject();
+        }else{
+            candidate = project;
+        }
         
-        if(project != null && project instanceof GISProject) {
-            final GISProject gis = (GISProject) project;
+        if(candidate != null && candidate instanceof GISProject) {
+            final GISProject gis = (GISProject) candidate;
             TemplateWizard tw = new TemplateWizard();
             //System.out.println("Template folder = " + tw.getTemplatesFolder().getPrimaryFile().getPath());
             Enumeration<DataObject> enu = tw.getTemplatesFolder().children();

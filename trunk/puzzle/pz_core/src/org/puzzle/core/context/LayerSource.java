@@ -28,7 +28,6 @@ import org.puzzle.core.project.source.GISSource;
 
 /**
  * 
- * 
  * @author  Johann Sorel (Puzzle-GIS)
  * @author  Thomas Bonavia (comments)
  */

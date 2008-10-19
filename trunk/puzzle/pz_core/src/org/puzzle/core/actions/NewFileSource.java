@@ -32,7 +32,7 @@ import org.openide.DialogDescriptor;
 import org.openide.DialogDisplayer;
 import org.openide.NotifyDescriptor;
 
-import org.puzzle.core.context.gui.datadialog.JFileSourcePane;
+import org.puzzle.core.actions.JFileSourcePane;
 import org.puzzle.core.project.GISProject;
 import org.puzzle.core.project.source.GISSourceInfo;
 
