@@ -38,6 +38,7 @@ import org.geotools.style.RandomStyleFactory;
 import org.opengis.feature.simple.SimpleFeature;
 import org.opengis.feature.simple.SimpleFeatureType;
 
+import org.openide.util.Exceptions;
 import org.puzzle.core.context.gui.datadialog.SourceCreationPane;
 import org.puzzle.core.project.source.GISSourceInfo;
 
@@ -410,12 +411,13 @@ public class JPostGISDataPanel extends SourceCreationPane {
                     store = DataStoreFinder.getDataStore(params);
                     refreshTable();
                 } catch (IOException ex) {
+                    Exceptions.printStackTrace(ex);
                     store = null;
                 }
+            but_refresh.setEnabled(true);
             }
         }.start();
         
-        but_refresh.setEnabled(true);
     }//GEN-LAST:event_actionRefresh
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

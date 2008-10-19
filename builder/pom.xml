@@ -229,6 +229,7 @@
                     <tasks>
                         <property name="GT_BINARY" value="./lib" />
                         <property name="PUZZLE_GEOAPI_MODULE" value="../puzzle/geoapi/release/modules/ext" />
+                        <property name="PUZZLE_POSTGIS_MODULE" value="../puzzle/driver_postgis/release/modules/ext" />
                         <property name="PUZZLE_GT_MODULE" value="../puzzle/geotools/release/modules/ext" />
                         <property name="PUZZLE_APACHE_MODULE" value="../puzzle/apache_commons/release/modules/ext" />
 
@@ -273,6 +274,22 @@
                         </copy>
                         <echo>=&gt; Done !</echo>
                         
+                        <echo>=&gt; DISPATCHING POSTGIS JARS -------------------------------------</echo>
+                        <echo>=&gt; Deleting existing jars</echo>
+                        <delete>
+                            <fileset dir="${PUZZLE_POSTGIS_MODULE}" includes="*.jar" />
+                        </delete>
+                        <echo>=&gt; Copying new jars</echo>
+                        <copy todir="${PUZZLE_POSTGIS_MODULE}">
+                            <fileset dir="${GT_BINARY}" casesensitive="yes">
+                              <patternset id="postgis">
+                                <include name="postgis-driver.jar"/>
+                                <include name="postgresql.jar"/>
+                              </patternset>
+                            </fileset>
+                        </copy>
+                        <echo>=&gt; Done !</echo>
+                        
                         
                         <echo>=&gt; DISPATCHING GEOTOOLS JARS -------------------------------------</echo>
                         <echo>=&gt; Deleting existing jars</echo>
@@ -283,7 +300,6 @@
                         <copy todir="${PUZZLE_GT_MODULE}">
                             <fileset dir="${GT_BINARY}" casesensitive="yes">
                               <patternset id="geotools">
-                                <include name="geoapi.jar"/>
                                 <include name="bufr.jar"/>
                                 <include name="common.jar"/>
                                 <include name="ecore.jar"/>
@@ -328,8 +344,6 @@
                                 <include name="netcdf.jar"/>
                                 <include name="org.w3.xlink.jar"/>
                                 <include name="picocontainer.jar"/>
-                                <include name="postgis-driver.jar"/>
-                                <include name="postgresql.jar"/>
                                 <include name="slf4j-api.jar"/>
                                 <include name="slf4j-jdk14.jar"/>
                                 <include name="swing-layout.jar"/>
