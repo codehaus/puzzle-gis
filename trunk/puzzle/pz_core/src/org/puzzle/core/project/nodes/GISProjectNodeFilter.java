@@ -46,8 +46,8 @@ public class GISProjectNodeFilter extends FilterNode.Children{
 
     @Override
     protected Node[] createNodes(Node node) {
-        DataObject dob =node.getLookup().lookup (DataObject.class);
-        FileObject file = dob.getPrimaryFile();
+        final DataObject dob =node.getLookup().lookup (DataObject.class);
+        final FileObject file = dob.getPrimaryFile();
         
         if(file.equals(project.getSourceFolder(true))){
             return new Node[]{new GISSourceNode(node)};
@@ -57,31 +57,6 @@ public class GISProjectNodeFilter extends FilterNode.Children{
             return new Node[]{new GISDocNode(node)};
         }
         return new Node[0];
-
-//        return super.createNodes(node);
     }
-
-
-//    protected Node[] createNodes(Object object) {
-//        Node origChild = (Node) object;
-//        DataObject dob = (DataObject)
-//            origChild.getLookup().lookup (DataObject.class);
-//
-//        if (dob != null) {
-//            FileObject fob = dob.getPrimaryFile();
-//            if ("text/x-povray".equals(fob.getMIMEType())) {
-//                return super.createNodes (object);
-//            } else if (dob instanceof DataFolder) {
-//                //Allow child folders of the scenes/ dir
-//                return new Node[] {
-//                    new FilterNode (origChild,
-//                            new ProjectFilterChildren(origChild))
-//                };
-//            }
-//        }
-//        //Don't create any nodes for non-povray files
-//        return new Node[0];
-//    }
-
     
 }

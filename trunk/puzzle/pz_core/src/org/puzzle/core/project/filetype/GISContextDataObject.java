@@ -174,12 +174,10 @@ public class GISContextDataObject extends XMLDataObject {
         context.setDescription( CommonFactoryFinder.getStyleFactory(null).createDescription(getPrimaryFile().getName().replaceAll(".xml", ""),"") );
         
         if (gisDoc != null) {
-            final Node rootNode = gisDoc.getFirstChild();
 
-            NodeList layerNodes = gisDoc.getElementsByTagName(TAG_LAYER);
-
+            final NodeList layerNodes = gisDoc.getElementsByTagName(TAG_LAYER);
             for (int i = 0, n = layerNodes.getLength(); i < n; i++) {
-                MapLayer layer = parseLayer(layerNodes.item(i));
+                final MapLayer layer = parseLayer(layerNodes.item(i));
                 context.layers().add(layer);
                 context.setCoordinateReferenceSystem(layer.getBounds().getCoordinateReferenceSystem());
 
