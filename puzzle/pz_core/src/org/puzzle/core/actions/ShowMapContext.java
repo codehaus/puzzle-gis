@@ -64,8 +64,8 @@ public final class ShowMapContext extends CookieAction {
             if(view != null){
                 ViewService viewService = Lookup.getDefault().lookup(ViewService.class);
                 viewService.add(view);
-            }
         }
+    }
     }
 
     /**

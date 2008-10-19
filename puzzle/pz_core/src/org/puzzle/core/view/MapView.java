@@ -34,11 +34,6 @@ import org.openide.windows.TopComponent;
 public abstract class MapView extends TopComponent {
 
     protected Map2D map;
-    protected MapGroup group = null;
-
-    private boolean scaleLink = false;
-    private boolean rotationLink = false;
-    private boolean translationLink = false;
     
     public MapView(Map2D map){
         super();
@@ -56,14 +51,6 @@ public abstract class MapView extends TopComponent {
     }
 
     public abstract MapContext getContext();
-
-    public MapGroup getGroup() {
-        return group;
-    }
-
-    public void setGroup(MapGroup group) {
-        this.group = group;
-    }
 
     @Override
     protected void componentOpened() {
@@ -98,30 +85,4 @@ public abstract class MapView extends TopComponent {
         return PERSISTENCE_NEVER;
     }
 
-    public boolean isScaleLink() {
-        return scaleLink;
-    }
-
-    public void setScaleLink(boolean scaleLink) {
-        this.scaleLink = scaleLink;
-    }
-
-    public boolean isRotationLink() {
-        return rotationLink;
-    }
-
-    public void setRotationLink(boolean rotationLink) {
-        this.rotationLink = rotationLink;
-    }
-
-    public boolean isTranslationLink() {
-        return translationLink;
-    }
-
-    public void setTranslationLink(boolean translationLink) {
-        this.translationLink = translationLink;
-    }
-    
-    
-    
 }
