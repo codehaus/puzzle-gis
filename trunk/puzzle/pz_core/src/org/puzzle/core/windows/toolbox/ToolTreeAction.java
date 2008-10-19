@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.puzzle.core.tool.gui.toolbox;
+package org.puzzle.core.windows.toolbox;
 
 import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;

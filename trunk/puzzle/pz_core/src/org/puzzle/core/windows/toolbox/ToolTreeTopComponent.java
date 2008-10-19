@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.puzzle.core.tool.gui.toolbox;
+package org.puzzle.core.windows.toolbox;
 
 import java.awt.BorderLayout;
 import java.io.Serializable;
@@ -20,7 +20,7 @@ final class ToolTreeTopComponent extends TopComponent {
 
     private JToolTree tree = null;
     private static ToolTreeTopComponent instance;
-    static final String ICON_PATH = "org/puzzle/core/tool/gui/toolbox/tool.png";
+    static final String ICON_PATH = "org/puzzle/core/windows/toolbox/tool.png";
     private static final String PREFERRED_ID = "ToolTreeTopComponent";
 
     private ToolTreeTopComponent() {

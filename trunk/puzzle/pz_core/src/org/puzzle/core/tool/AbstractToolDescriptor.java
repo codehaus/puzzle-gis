@@ -25,26 +25,31 @@ import java.awt.Image;
 
 /**
  *
- * @author johann sorel
+ * @author Johann Sorel (Puzzle-GIS)
  */
 public abstract class AbstractToolDescriptor implements ToolDescriptor{
 
+    @Override
     public String getDescription() {
         return "";
     }
 
+    @Override
     public String[] getPath() {
         return EMPTY_STRING_ARRAY;
     }
 
+    @Override
     public String[] getKeyWords() {
         return EMPTY_STRING_ARRAY;
     }
 
+    @Override
     public String[] getCategories() {
         return EMPTY_STRING_ARRAY;
     }
 
+    @Override
     public Image getIcon(int iconType){
         return null;
     }
