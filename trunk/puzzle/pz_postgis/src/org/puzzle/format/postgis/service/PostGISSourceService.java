@@ -22,7 +22,7 @@ package org.puzzle.format.postgis.service;
 
 import java.util.Map;
 
-import org.puzzle.core.context.gui.datadialog.SourceCreationPane;
+import org.puzzle.core.project.source.SourceCreationPane;
 import org.puzzle.core.project.source.GISDistantSourceService;
 import org.puzzle.core.project.source.GISSource;
 import org.puzzle.core.project.source.GISSourceInfo;

@@ -21,29 +21,17 @@
 package org.puzzle.core.project.nodes;
 
 import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.Collection;
-import java.util.Map;
-import java.util.Set;
-import javax.swing.AbstractAction;
 import javax.swing.Action;
-import javax.swing.ImageIcon;
 
 import org.netbeans.api.project.FileOwnerQuery;
 import org.netbeans.api.project.Project;
-import org.openide.DialogDescriptor;
-import org.openide.DialogDisplayer;
-import org.openide.NotifyDescriptor;
 import org.openide.loaders.DataObject;
 import org.openide.nodes.FilterNode;
 import org.openide.nodes.Node;
 import org.openide.util.Utilities;
 
-import org.puzzle.core.context.gui.datadialog.JFileSourcePane;
 import org.puzzle.core.project.GISProject;
-import org.puzzle.core.project.source.GISSource;
-import org.puzzle.core.project.source.GISSourceInfo;
+import org.puzzle.core.actions.NewFileSource;
 
 /**
  * This class represents the folder "src" defined in the
@@ -90,52 +78,16 @@ public class GISSourceNode extends FilterNode {
 
     @Override
     public Action[] getActions(boolean arg0) {
-        return new Action[]{
-                    new NewFileSourceAction()
-                };
-    }
-
-    private class NewFileSourceAction extends AbstractAction {
-
-        NewFileSourceAction() {
-            super("New file source", new ImageIcon(Utilities.loadImage("/org/puzzle/core/addFileSource.png")));
-        }
-
-        @Override
-        public void actionPerformed(ActionEvent arg0) {
-
-            final JFileSourcePane pane = new JFileSourcePane();
-            final ActionListener lst = new ActionListener() {
-
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    final DataObject obj = getLookup().lookup(DataObject.class);
-                    final Project proj = FileOwnerQuery.getOwner(obj.getPrimaryFile());
-
-                    if (proj instanceof GISProject) {
-                        final GISProject project = (GISProject) proj;
-
-                        if (e.getActionCommand().equalsIgnoreCase("ok")) {
-                            pane.setVisible(false);
-                        }
-
-                        final Map<String,GISSourceInfo> sources = pane.getSources();
-                        final Set<String> names = sources.keySet();
-                        for (final String name : names) {
-                            project.registerSource(name,sources.get(name));
-                        }
-                    } else {
-                        final NotifyDescriptor d = new NotifyDescriptor.Message("Project is not a GIS project", NotifyDescriptor.INFORMATION_MESSAGE);
-                        DialogDisplayer.getDefault().notify(d);
-                    }
-
-
-
-                }
+        final DataObject obj = getLookup().lookup(DataObject.class);
+        final Project proj = FileOwnerQuery.getOwner(obj.getPrimaryFile());
+        
+        if(proj != null && proj instanceof GISProject){
+            return new Action[]{
+                new NewFileSource((GISProject)proj)
             };
-
-            final DialogDescriptor desc = new DialogDescriptor(pane, "Open file", true, lst);
-            DialogDisplayer.getDefault().notify(desc);
+        }else{
+            return new Action[0];
         }
     }
+
 }

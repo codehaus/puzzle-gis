@@ -1,21 +1,38 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ *  Puzzle-GIS - OpenSource mapping program
+ *  http://docs.codehaus.org/display/PUZZLEGIS
+ *  Copyright (C) 2007 Puzzle-GIS
+ *  
+ *  GPLv3 + Classpath exception
+ *  
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *  
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *  
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.puzzle.core.project.action.source;
+package org.puzzle.core.actions;
 
-import java.awt.Dialog;
 import java.util.Collection;
+
 import org.geotools.map.MapContext;
+
 import org.netbeans.api.project.FileOwnerQuery;
 import org.openide.DialogDescriptor;
 import org.openide.DialogDisplayer;
-import org.openide.WizardDescriptor;
 import org.openide.loaders.DataObject;
 import org.openide.nodes.Node;
 import org.openide.util.HelpCtx;
 import org.openide.util.NbBundle;
 import org.openide.util.actions.CookieAction;
+
 import org.puzzle.core.project.GISProject;
 import org.puzzle.core.project.filetype.GISSourceDataObject;
 import org.puzzle.core.project.source.GISSource;
@@ -24,20 +41,19 @@ public final class ShowLayerWizard extends CookieAction {
 
     @Override
     protected void performAction(Node[] activatedNodes) {
-        GISSourceDataObject dataObject = (GISSourceDataObject) activatedNodes[0].getLookup().lookup(DataObject.class);
-        GISSource source = dataObject.getSource();
+        final GISSourceDataObject dataObject = (GISSourceDataObject) activatedNodes[0].getLookup().lookup(DataObject.class);
+        final GISSource source = dataObject.getSource();
         
-        GISProject prj = (GISProject) FileOwnerQuery.getOwner(dataObject.getPrimaryFile());
+        final GISProject prj = (GISProject) FileOwnerQuery.getOwner(dataObject.getPrimaryFile());
         
-        Collection<MapContext> contexts = prj.getContexts();
+        final Collection<MapContext> contexts = prj.getContexts();
         
         if(contexts.size() > 0 && prj != null){
             source.showLayerWizard(contexts, prj);
         }else{
-            DialogDescriptor desc = new DialogDescriptor("No maps in the project", "Warning", true, null);
+            final DialogDescriptor desc = new DialogDescriptor("No maps in the project", "Warning", true, null);
             DialogDisplayer.getDefault().notify(desc);
         }
-        
         
     }
 

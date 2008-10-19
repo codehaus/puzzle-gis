@@ -23,12 +23,13 @@ package org.puzzle.core.context;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+
 import org.puzzle.core.project.source.GISSource;
 
 /**
  * 
  * 
- * @author  Johann Sorel
+ * @author  Johann Sorel (Puzzle-GIS)
  * @author  Thomas Bonavia (comments)
  */
 public final class LayerSource {

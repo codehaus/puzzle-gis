@@ -20,13 +20,13 @@
  */
 package org.puzzle.core.context.gui.datadialog;
 
+import org.puzzle.core.project.source.SourceCreationPane;
 import java.util.Collection;
 
 import java.util.Map;
 import org.openide.util.Lookup;
 
 import org.puzzle.core.project.source.GISDistantSourceService;
-import org.puzzle.core.project.source.GISSource;
 import org.puzzle.core.project.source.GISSourceInfo;
 import org.puzzle.core.project.source.GISSourceService;
 
@@ -64,6 +64,8 @@ public class JDistantSourcePane extends javax.swing.JPanel {
     private void initComponents() {
 
         guiTabPane = new javax.swing.JTabbedPane();
+
+        guiTabPane.setTabPlacement(javax.swing.JTabbedPane.LEFT);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
