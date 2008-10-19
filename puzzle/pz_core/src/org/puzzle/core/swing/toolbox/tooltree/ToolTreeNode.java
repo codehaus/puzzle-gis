@@ -41,10 +41,12 @@ final class ToolTreeNode extends AbstractMutableTreeTableNode{
     }    
     
     
+    @Override
     public Object getValueAt(int arg0) {
         return name;
     }
 
+    @Override
     public int getColumnCount() {
         return 1;
     }
