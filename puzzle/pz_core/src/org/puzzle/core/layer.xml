@@ -45,7 +45,7 @@
         </folder>
         <folder name="Window">
             <file name="org-puzzle-core-context-gui-contexttree-ContextTreeAction.instance"/>
-            <file name="org-puzzle-core-tool-gui-toolbox-ToolTreeAction.instance"/>
+            <file name="org-puzzle-core-windows-toolbox-ToolTreeAction.instance"/>
             </folder>
         </folder>
     <folder name="Loaders">
@@ -208,7 +208,7 @@
                 <attr name="position" intvalue="100"/>
             </file>
             <file name="ToolTreeAction.shadow">
-                <attr name="originalFile" stringvalue="Actions/Window/org-puzzle-core-tool-gui-toolbox-ToolTreeAction.instance"/>
+                <attr name="originalFile" stringvalue="Actions/Window/org-puzzle-core-windows-toolbox-ToolTreeAction.instance"/>
                 <attr name="position" intvalue="300"/>
             </file>
         </folder>
