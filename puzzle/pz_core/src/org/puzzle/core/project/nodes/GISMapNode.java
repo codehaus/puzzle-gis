@@ -99,7 +99,7 @@ public class GISMapNode extends FilterNode {
     private class NewMapContextAction extends AbstractAction {
 
         NewMapContextAction() {
-            super("New map", new ImageIcon(Utilities.loadImage("/org/puzzle/core/addMapContext.png")));
+            super("New map");
         }
 
         @Override

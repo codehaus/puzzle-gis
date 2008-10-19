@@ -18,7 +18,7 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.puzzle.core.project.action.source;
+package org.puzzle.core.actions;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -35,7 +35,7 @@ import org.puzzle.core.context.gui.datadialog.JDistantSourcePane;
 import org.puzzle.core.project.GISProject;
 import org.puzzle.core.project.source.GISSourceInfo;
 
-public final class AddDistantSource implements ActionListener {
+public final class NewDistantSource implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {

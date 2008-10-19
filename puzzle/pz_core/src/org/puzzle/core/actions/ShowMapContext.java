@@ -18,7 +18,7 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.puzzle.core.project.action;
+package org.puzzle.core.actions;
 
 import org.geotools.map.MapContext;
 import org.openide.nodes.Node;
@@ -28,7 +28,7 @@ import org.openide.util.NbBundle;
 import org.openide.util.actions.CookieAction;
 import org.puzzle.core.context.ContextService;
 import org.puzzle.core.project.filetype.GISContextDataObject;
-import org.puzzle.core.swing.RendererChooser;
+import org.puzzle.core.view.RendererChooser;
 import org.puzzle.core.view.MapView;
 import org.puzzle.core.view.ViewService;
 
@@ -40,7 +40,7 @@ import org.puzzle.core.view.ViewService;
  * 
  * @see     org.openide.util.actions.CookieAction
  */
-public final class ShowMapContextAction extends CookieAction {
+public final class ShowMapContext extends CookieAction {
 
     /**
      * Method called when this action is clicked.<br>
@@ -84,7 +84,7 @@ public final class ShowMapContextAction extends CookieAction {
      */
     @Override
     public String getName() {
-        return NbBundle.getMessage(ShowMapContextAction.class, "CTL_ShowMapContextAction");
+        return NbBundle.getMessage(ShowMapContext.class, "CTL_ShowMapContext");
     }
 
     /**
@@ -99,7 +99,7 @@ public final class ShowMapContextAction extends CookieAction {
 
     @Override
     protected String iconResource() {
-        return "org/puzzle/core/project/action/demo.png";
+        return "org/puzzle/core/actions/showMap.png";
     }
 
     @Override

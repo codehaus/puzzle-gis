@@ -23,7 +23,7 @@ package org.puzzle.core.context;
 /**
  * Key constants used it MapLayer UserProperties.
  *
- * @author  Johann Sorel
+ * @author  Johann Sorel (Puzzle-GIS)
  * @author  Thomas Bonavia (comments)
  */
 public class PZLayerConstants{

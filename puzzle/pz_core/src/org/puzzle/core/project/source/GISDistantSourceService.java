@@ -21,7 +21,7 @@
 package org.puzzle.core.project.source;
 
 import java.util.Map;
-import org.puzzle.core.context.gui.datadialog.SourceCreationPane;
+import org.puzzle.core.project.source.SourceCreationPane;
 
 /**
  * This class is a special {@code GISSourceService} dedicated to distant datas,

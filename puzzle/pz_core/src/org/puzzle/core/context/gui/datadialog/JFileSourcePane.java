@@ -24,7 +24,9 @@ import java.io.File;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+
 import org.openide.util.Lookup;
+
 import org.puzzle.core.project.source.GISFileSourceService;
 import org.puzzle.core.project.source.GISSourceInfo;
 import org.puzzle.core.project.source.GISSourceService;
@@ -32,7 +34,7 @@ import org.puzzle.core.project.source.GISSourceService;
 /**
  * File generic chooser. This will call all GISFileSourceService
  * 
- * @author  Johann Sorel
+ * @author Johann Sorel (Puzzle-GIS)
  */
 public class JFileSourcePane extends javax.swing.JPanel {
     

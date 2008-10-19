@@ -16,32 +16,32 @@
     <attr name="Menu\Window\org-netbeans-core-windows-actions-UndockAction.shadow\position" intvalue="1100"/>
     <folder name="Actions">
         <folder name="Puzzle">
-            <file name="org-puzzle-core-project-action-ShowMapContextAction.instance"/>
-            <file name="org-puzzle-core-project-action-source-AddDistantSource.instance">
+            <file name="org-puzzle-core-actions-ShowMapContext.instance"/>
+            <file name="org-puzzle-core-actions-NewDistantSource.instance">
                 <attr name="SystemFileSystem.localizingBundle" stringvalue="org.puzzle.core.Bundle"/>
-                <attr name="delegate" newvalue="org.puzzle.core.project.action.source.AddDistantSource"/>
-                <attr name="displayName" bundlevalue="org.puzzle.core.project.action.source.Bundle#CTL_AddDistantSource"/>
-                <attr name="iconBase" stringvalue="org/puzzle/core/addDistantSource.png"/>
+                <attr name="delegate" newvalue="org.puzzle.core.actions.NewDistantSource"/>
+                <attr name="displayName" bundlevalue="org.puzzle.core.actions.Bundle#CTL_NewDistantSource"/>
+                <attr name="iconBase" stringvalue="org/puzzle/core/actions/newDistantSource.png"/>
                 <attr name="instanceCreate" methodvalue="org.openide.awt.Actions.alwaysEnabled"/>
                 <attr name="noIconInMenu" stringvalue="false"/>
             </file>
-            <file name="org-puzzle-core-project-action-source-NewFileSource.instance">
+            <file name="org-puzzle-core-actions-NewFileSource.instance">
                 <attr name="SystemFileSystem.localizingBundle" stringvalue="org.puzzle.core.Bundle"/>
-                <attr name="delegate" newvalue="org.puzzle.core.project.action.source.NewFileSource"/>
-                <attr name="displayName" bundlevalue="org.puzzle.core.project.action.source.Bundle#CTL_NewDistantSource"/>
-                <attr name="iconBase" stringvalue="org/puzzle/core/addFileSource.png"/>
+                <attr name="delegate" newvalue="org.puzzle.core.actions.NewFileSource"/>
+                <attr name="displayName" bundlevalue="org.puzzle.core.actions.Bundle#CTL_NewDistantSource"/>
+                <attr name="iconBase" stringvalue="org/puzzle/core/actions/newFileSource.png"/>
                 <attr name="instanceCreate" methodvalue="org.openide.awt.Actions.alwaysEnabled"/>
                 <attr name="noIconInMenu" stringvalue="false"/>
             </file>
-            <file name="org-puzzle-core-project-action-source-NewMapContext.instance">
+            <file name="org-puzzle-core-actions-NewMapContext.instance">
                 <attr name="SystemFileSystem.localizingBundle" stringvalue="org.puzzle.core.Bundle"/>
-                <attr name="delegate" newvalue="org.puzzle.core.project.action.source.NewMapContext"/>
-                <attr name="displayName" bundlevalue="org.puzzle.core.project.action.source.Bundle#CTL_NewMapContext"/>
-                <attr name="iconBase" stringvalue="org/puzzle/core/addMapContext.png"/>
+                <attr name="delegate" newvalue="org.puzzle.core.actions.NewMapContext"/>
+                <attr name="displayName" bundlevalue="org.puzzle.core.actions.Bundle#CTL_NewMapContext"/>
+                <attr name="iconBase" stringvalue="org/puzzle/core/actions/newMapContext.png"/>
                 <attr name="instanceCreate" methodvalue="org.openide.awt.Actions.alwaysEnabled"/>
                 <attr name="noIconInMenu" stringvalue="false"/>
             </file>
-            <file name="org-puzzle-core-project-action-source-ShowLayerWizard.instance"/>
+            <file name="org-puzzle-core-actions-ShowLayerWizard.instance"/>
         </folder>
         <folder name="Window">
             <file name="org-puzzle-core-context-gui-contexttree-ContextTreeAction.instance"/>
@@ -67,8 +67,8 @@
                     <file name="org-openide-actions-RenameAction.instance">
                         <attr name="position" intvalue="800"/>
                     </file>
-                    <file name="org-puzzle-core-project-action-ShowMapContextAction.shadow">
-                        <attr name="originalFile" stringvalue="Actions/Puzzle/org-puzzle-core-project-action-ShowMapContextAction.instance"/>
+                    <file name="org-puzzle-core-actions-ShowMapContext.shadow">
+                        <attr name="originalFile" stringvalue="Actions/Puzzle/org-puzzle-core-actions-ShowMapContext.instance"/>
                         <attr name="position" intvalue="0"/>
                     </file>
                     <file name="sep-1.instance">
@@ -111,7 +111,7 @@
                         <attr name="position" intvalue="1200"/>
                     </file>
                     <file name="org-puzzle-core-project-action-source-ShowLayerWizard.shadow">
-                        <attr name="originalFile" stringvalue="Actions/Puzzle/org-puzzle-core-project-action-source-ShowLayerWizard.instance"/>
+                        <attr name="originalFile" stringvalue="Actions/Puzzle/org-puzzle-core-actions-ShowLayerWizard.instance"/>
                         <attr name="position" intvalue="0"/>
                     </file>
                     <file name="sep-1.instance">
@@ -155,10 +155,10 @@
     </folder>
     <folder name="Shortcuts">
         <file name="D-L.shadow">
-            <attr name="originalFile" stringvalue="Actions/Puzzle/org-puzzle-core-project-action-source-ShowLayerWizard.instance"/>
+            <attr name="originalFile" stringvalue="Actions/Puzzle/org-puzzle-core-actions-ShowLayerWizard.instance"/>
         </file>
         <file name="TAB.shadow">
-            <attr name="originalFile" stringvalue="Actions/Puzzle/org-puzzle-core-project-action-source-ShowLayerWizard.instance"/>
+            <attr name="originalFile" stringvalue="Actions/Puzzle/org-puzzle-core-actions-ShowLayerWizard.instance"/>
         </file>
     </folder>
     <folder name="Templates">
@@ -187,16 +187,16 @@
     <folder name="Toolbars">
         <folder name="GISProject">
             <attr name="position" intvalue="110"/>
-            <file name="org-puzzle-core-project-action-source-NewFileSource.shadow">
-                <attr name="originalFile" stringvalue="Actions/Puzzle/org-puzzle-core-project-action-source-NewFileSource.instance"/>
+            <file name="org-puzzle-core-actions-NewFileSource.shadow">
+                <attr name="originalFile" stringvalue="Actions/Puzzle/org-puzzle-core-actions-NewFileSource.instance"/>
                 <attr name="position" intvalue="100"/>
             </file>
-            <file name="org-puzzle-core-project-action-source-AddDistantSource.shadow">
-                <attr name="originalFile" stringvalue="Actions/Puzzle/org-puzzle-core-project-action-source-AddDistantSource.instance"/>
+            <file name="org-puzzle-core-actions-NewDistantSource.shadow">
+                <attr name="originalFile" stringvalue="Actions/Puzzle/org-puzzle-core-actions-NewDistantSource.instance"/>
                 <attr name="position" intvalue="200"/>
             </file>
-            <file name="org-puzzle-core-project-action-source-NewMapContext.shadow">
-                <attr name="originalFile" stringvalue="Actions/Puzzle/org-puzzle-core-project-action-source-NewMapContext.instance"/>
+            <file name="org-puzzle-core-actions-NewMapContext.shadow">
+                <attr name="originalFile" stringvalue="Actions/Puzzle/org-puzzle-core-actions-NewMapContext.instance"/>
                 <attr name="position" intvalue="300"/>
             </file>
         </folder>

@@ -39,7 +39,7 @@ import org.opengis.feature.simple.SimpleFeature;
 import org.opengis.feature.simple.SimpleFeatureType;
 
 import org.openide.util.Exceptions;
-import org.puzzle.core.context.gui.datadialog.SourceCreationPane;
+import org.puzzle.core.project.source.SourceCreationPane;
 import org.puzzle.core.project.source.GISSourceInfo;
 
 /**

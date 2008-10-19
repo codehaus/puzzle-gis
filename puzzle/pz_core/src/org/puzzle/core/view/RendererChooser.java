@@ -19,7 +19,7 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.puzzle.core.swing;
+package org.puzzle.core.view;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
@@ -70,8 +70,6 @@ public class RendererChooser extends JPanel implements WizardDescriptor.Panel {
     public String getName() {
         return "Choose renderer";
     }
-       
-    
     
     private JPanel createServicePane(RenderingService service){
         JPanel pane = new JPanel(new BorderLayout());

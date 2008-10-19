@@ -18,13 +18,14 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.puzzle.core.project.action.source;
+package org.puzzle.core.actions;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Map;
 import java.util.Set;
 
+import javax.swing.AbstractAction;
 import org.netbeans.api.project.Project;
 import org.netbeans.api.project.ui.OpenProjects;
 import org.openide.DialogDescriptor;
@@ -35,15 +36,30 @@ import org.puzzle.core.context.gui.datadialog.JFileSourcePane;
 import org.puzzle.core.project.GISProject;
 import org.puzzle.core.project.source.GISSourceInfo;
 
-public final class NewFileSource implements ActionListener {
+public final class NewFileSource extends AbstractAction {
 
+    private final GISProject project;
+
+    public NewFileSource(){
+        this(null);
+    }
+
+    public NewFileSource(final GISProject project){
+        super("New file source");
+        this.project = project;
+    }
+    
     @Override
     public void actionPerformed(ActionEvent e) {
-        final Project project = OpenProjects.getDefault().getMainProject();
+        final Project candidate;
+        if(project == null){
+            candidate = OpenProjects.getDefault().getMainProject();
+        }else{
+            candidate = project;
+        }
         
-        if(project != null && project instanceof GISProject) {
-            final GISProject gis =(GISProject) project;
-
+        if(candidate != null && candidate instanceof GISProject) {
+            final GISProject gis =(GISProject) candidate;
             final JFileSourcePane pane = new JFileSourcePane();
             final ActionListener lst = new ActionListener() {
 
