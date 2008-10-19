@@ -246,14 +246,17 @@
                 <package>org.geotools.data.wms.xml</package>
                 <package>org.geotools.display.array</package>
                 <package>org.geotools.display.canvas</package>
+                <package>org.geotools.display.canvas.event</package>
                 <package>org.geotools.display.canvas.control</package>
                 <package>org.geotools.display.canvas.map</package>
                 <package>org.geotools.display.event</package>
+                <package>org.geotools.display.exception</package>
                 <package>org.geotools.display.geom</package>
                 <package>org.geotools.display.primitive</package>
                 <package>org.geotools.display.renderer</package>
                 <package>org.geotools.display.service</package>
                 <package>org.geotools.display.style</package>
+                <package>org.geotools.display.style.j2d</package>
                 <package>org.geotools.display.style.raster</package>
                 <package>org.geotools.factory</package>
                 <package>org.geotools.feature</package>
@@ -320,11 +323,13 @@
                 <package>org.geotools.gui.swing.crschooser</package>
                 <package>org.geotools.gui.swing.datachooser</package>
                 <package>org.geotools.gui.swing.datachooser.model</package>
+                <package>org.geotools.gui.swing.debug</package>
                 <package>org.geotools.gui.swing.event</package>
                 <package>org.geotools.gui.swing.filter</package>
                 <package>org.geotools.gui.swing.go</package>
                 <package>org.geotools.gui.swing.go.control</package>
                 <package>org.geotools.gui.swing.go.decoration</package>
+                <package>org.geotools.gui.swing.go.extractor</package>
                 <package>org.geotools.gui.swing.go.handler</package>
                 <package>org.geotools.gui.swing.icon</package>
                 <package>org.geotools.gui.swing.image</package>
@@ -452,6 +457,9 @@
                 <package>org.hsqldb.store</package>
                 <package>org.hsqldb.types</package>
                 <package>org.hsqldb.util</package>
+                <package>org.jdesktop.animation.timing</package>
+                <package>org.jdesktop.animation.timing.interpolation</package>
+                <package>org.jdesktop.animation.timing.triggers</package>
                 <package>org.jdesktop.beans</package>
                 <package>org.jdesktop.layout</package>
                 <package>org.jdesktop.swingx</package>
@@ -561,24 +569,6 @@
                 <package>org.picocontainer.alternatives</package>
                 <package>org.picocontainer.defaults</package>
                 <package>org.picocontainer.monitors</package>
-                <package>org.postgis</package>
-                <package>org.postgresql</package>
-                <package>org.postgresql.core</package>
-                <package>org.postgresql.core.types</package>
-                <package>org.postgresql.core.v2</package>
-                <package>org.postgresql.core.v3</package>
-                <package>org.postgresql.ds</package>
-                <package>org.postgresql.ds.common</package>
-                <package>org.postgresql.fastpath</package>
-                <package>org.postgresql.geometric</package>
-                <package>org.postgresql.jdbc2</package>
-                <package>org.postgresql.jdbc2.optional</package>
-                <package>org.postgresql.jdbc3</package>
-                <package>org.postgresql.largeobject</package>
-                <package>org.postgresql.ssl</package>
-                <package>org.postgresql.translation</package>
-                <package>org.postgresql.util</package>
-                <package>org.postgresql.xa</package>
                 <package>org.slf4j</package>
                 <package>org.slf4j.helpers</package>
                 <package>org.slf4j.impl</package>
@@ -691,10 +681,6 @@
                 <binary-origin>release/modules/ext/gt-epsg-hsql.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/postgis-driver.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/postgis-driver.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
                 <runtime-relative-path>ext/gt-image.jar</runtime-relative-path>
                 <binary-origin>release/modules/ext/gt-image.jar</binary-origin>
             </class-path-extension>
@@ -721,10 +707,6 @@
             <class-path-extension>
                 <runtime-relative-path>ext/picocontainer.jar</runtime-relative-path>
                 <binary-origin>release/modules/ext/picocontainer.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/postgresql.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/postgresql.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
                 <runtime-relative-path>ext/jaxb-impl.jar</runtime-relative-path>
