@@ -18,7 +18,7 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.puzzle.core.context.gui.contexttree;
+package org.puzzle.core.windows.mapdetail;
 
 import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
@@ -29,7 +29,7 @@ import org.openide.windows.TopComponent;
 
 /**
  * Action which shows ContextTree component.
- * @author : johann sorel
+ * @author : Johann Sorel (Puzzle-GIS)
  */
 public class ContextTreeAction extends AbstractAction {
 

@@ -26,7 +26,7 @@ import java.awt.Image;
 
 /**
  *
- * @author johann sorel
+ * @author Johann Sorel (Puzzle-GIS)
  */
 public interface ToolDescriptor {
 

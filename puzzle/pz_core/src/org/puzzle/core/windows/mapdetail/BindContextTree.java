@@ -18,24 +18,27 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.puzzle.core.context.gui.contexttree;
+package org.puzzle.core.windows.mapdetail;
 
 import java.util.Collection;
 import java.util.Iterator;
+
 import org.geotools.gui.swing.contexttree.JContextTree;
 import org.geotools.gui.swing.contexttree.TreeContextEvent;
 import org.geotools.gui.swing.contexttree.TreeContextListener;
 import org.geotools.map.MapContext;
+
 import org.openide.util.Lookup;
 import org.openide.util.LookupEvent;
 import org.openide.util.LookupListener;
+
 import org.puzzle.core.context.ContextService;
 import org.puzzle.core.context.ContextEvent;
 import org.puzzle.core.context.ContextListener;
 
 /**
  *
- * @author johann sorel
+ * @author Johann Sorel (Puzzle-GIS)
  */
 public class BindContextTree extends JContextTree implements LookupListener {
 
@@ -43,6 +46,7 @@ public class BindContextTree extends JContextTree implements LookupListener {
     private Lookup.Result<MapContext> result = null;
     private ContextListener listener = new ContextListener() {
 
+        @Override
         public void contextActivated(ContextEvent event) {
             setActiveContext(event.getMapContext());
         }
@@ -50,19 +54,23 @@ public class BindContextTree extends JContextTree implements LookupListener {
     };
     private TreeContextListener treeContextListener = new TreeContextListener() {
 
+        @Override
         public void contextAdded(TreeContextEvent event) {
             service.addContext(event.getContext());
         }
 
+        @Override
         public void contextRemoved(TreeContextEvent event) {
             service.removeContext(event.getContext());
         }
 
+        @Override
         public void contextActivated(TreeContextEvent event) {
             MapContext context = event.getContext();
             service.setActiveContext(context);
         }
 
+        @Override
         public void contextMoved(TreeContextEvent event) {
         }
     };
@@ -111,6 +119,7 @@ public class BindContextTree extends JContextTree implements LookupListener {
         }
     }
 
+    @Override
     public void resultChanged(LookupEvent lookupEvent) {
         reload(lookupEvent);
     }

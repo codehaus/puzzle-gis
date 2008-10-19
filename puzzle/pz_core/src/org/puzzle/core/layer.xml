@@ -44,7 +44,7 @@
             <file name="org-puzzle-core-actions-ShowLayerWizard.instance"/>
         </folder>
         <folder name="Window">
-            <file name="org-puzzle-core-context-gui-contexttree-ContextTreeAction.instance"/>
+            <file name="org-puzzle-core-windows-mapdetail-ContextTreeAction.instance"/>
             <file name="org-puzzle-core-windows-toolbox-ToolTreeAction.instance"/>
             </folder>
         </folder>
@@ -204,7 +204,7 @@
     <folder name="Menu">
         <folder name="Window">
             <file name="ContextTreeAction.shadow">
-                <attr name="originalFile" stringvalue="Actions/Window/org-puzzle-core-context-gui-contexttree-ContextTreeAction.instance"/>
+                <attr name="originalFile" stringvalue="Actions/Window/org-puzzle-core-windows-mapdetail-ContextTreeAction.instance"/>
                 <attr name="position" intvalue="100"/>
             </file>
             <file name="ToolTreeAction.shadow">

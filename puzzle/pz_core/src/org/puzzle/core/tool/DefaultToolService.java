@@ -22,13 +22,14 @@ package org.puzzle.core.tool;
 
 import java.util.ArrayList;
 import java.util.Collection;
+
 import org.openide.util.Lookup;
 import org.openide.util.lookup.AbstractLookup;
 import org.openide.util.lookup.InstanceContent;
 
 /**
  *
- * @author Johann Sorel
+ * @author Johann Sorel (Puzzle-GIS)
  */
 public class DefaultToolService implements ToolService {
 
