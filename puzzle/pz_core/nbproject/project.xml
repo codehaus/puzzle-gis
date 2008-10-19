@@ -132,18 +132,14 @@
             </module-dependencies>
             <public-packages>
                 <package>org.puzzle.core.context</package>
-                <package>org.puzzle.core.context.gui.datadialog</package>
                 <package>org.puzzle.core.project</package>
-                <package>org.puzzle.core.project.action</package>
                 <package>org.puzzle.core.project.filetype</package>
                 <package>org.puzzle.core.project.nodes</package>
                 <package>org.puzzle.core.project.source</package>
-                <package>org.puzzle.core.swing.toolbox</package>
-                <package>org.puzzle.core.swing.toolbox.tooltree</package>
-                <package>org.puzzle.core.swing.toolbox.widgettool</package>
                 <package>org.puzzle.core.tool</package>
                 <package>org.puzzle.core.tool.gui.toolbox</package>
                 <package>org.puzzle.core.view</package>
+                <package>org.puzzle.core.windows.toolbox.tree</package>
             </public-packages>
         </data>
     </configuration>
