@@ -7,6 +7,6 @@ and open the template in the editor.
 <settings version="1.0">
     <module name="org.puzzle.core" spec="1.0"/>
     <instanceof class="org.openide.windows.TopComponent"/>
-    <instanceof class="org.puzzle.core.context.gui.contexttree.ContextTreeTopComponent"/>
-    <instance class="org.puzzle.core.context.gui.contexttree.ContextTreeTopComponent" method="getDefault"/>
+    <instanceof class="org.puzzle.core.windows.mapdetail.ContextTreeTopComponent"/>
+    <instance class="org.puzzle.core.windows.mapdetail.ContextTreeTopComponent" method="getDefault"/>
 </settings>

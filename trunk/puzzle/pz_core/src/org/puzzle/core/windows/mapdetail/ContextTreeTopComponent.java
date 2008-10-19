@@ -18,7 +18,7 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.puzzle.core.context.gui.contexttree;
+package org.puzzle.core.windows.mapdetail;
 
 import java.awt.BorderLayout;
 import java.io.Serializable;
@@ -52,7 +52,7 @@ import org.openide.windows.WindowManager;
 
 /**
  * Top component which displays something.
- * @author : johann sorel
+ * @author : Johann Sorel (Puzzle-GIS)
  */
 final class ContextTreeTopComponent extends TopComponent {
 
