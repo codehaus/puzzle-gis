@@ -19,29 +19,38 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.puzzle.core.swing.toolbox;
+package org.puzzle.core.windows.toolbox.tree;
 
+import org.jdesktop.swingx.treetable.AbstractMutableTreeTableNode;
 
 /**
- *
+ * 
  * @author johann sorel
  */
-public class Parameter {
-
+final class ToolPackTreeNode extends AbstractMutableTreeTableNode{
     
-    public final String description;    
-    public final String key;    
-    public final boolean required;        
-    public final Object sample;    
-    public final Class type ;
-        
-    public Parameter(String description, String key, boolean required, Object sample, Class type){
-        this.description = description;
-        this.key = key;
-        this.required = required;
-        this.sample = sample;
-        this.type = type;               
+    private String name ="";
+    
+    /**
+     * Creates a new instance of ContextTreeNode
+     * @param model model of the tree
+     */
+    ToolPackTreeNode(String name) {
+        super();
+        this.name = name;
     }
     
+    public String getTitle(){
+        return name;
+    }
     
+    public Object getValueAt(int arg0) {
+        return name;
+    }
+
+    public int getColumnCount() {
+        return 1;
+    }
+                
+        
 }

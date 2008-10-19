@@ -27,8 +27,8 @@ import org.openide.DialogDisplayer;
 import org.openide.util.Lookup;
 import org.openide.util.LookupEvent;
 import org.openide.util.LookupListener;
-import org.puzzle.core.swing.toolbox.tooltree.JToolTree;
-import org.puzzle.core.swing.toolbox.tooltree.ToolTreeListener;
+import org.puzzle.core.windows.toolbox.tree.JToolTree;
+import org.puzzle.core.windows.toolbox.tree.ToolTreeListener;
 import org.puzzle.core.tool.ToolDescriptor;
 import org.puzzle.core.tool.ToolService;
 

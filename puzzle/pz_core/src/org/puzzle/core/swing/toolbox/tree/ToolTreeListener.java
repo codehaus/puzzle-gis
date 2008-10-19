@@ -19,44 +19,18 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.puzzle.core.swing.toolbox.tooltree;
 
-import java.util.ArrayList;
-import java.util.List;
-import org.openide.util.NbBundle;
+package org.puzzle.core.windows.toolbox.tree;
+
+import java.util.EventListener;
+import org.puzzle.core.tool.ToolDescriptor;
 
 
 /**
- *
  * @author johann sorel
  */
-class DefaultToolTreePath implements ToolTreePath{
+public interface ToolTreeListener extends EventListener{
 
-    private static final String[] EMPTY_STRING_ARRAY = {};
+    public void treeToolActivated(ToolDescriptor tool);
     
-    private final List<String> paths = new ArrayList<String>();
-    
-    DefaultToolTreePath(ToolTreePath father, String i18nKey){
-        String myPath = NbBundle.getMessage(DefaultToolTreePath.class, i18nKey);
-        
-        if(father != null){
-            paths.addAll(((DefaultToolTreePath)father).getInerPath());
-        }
-        paths.add(myPath);
-    }
-    
-    List<String> getInerPath(){
-        return paths;
-    }
-    
-    
-    /**
-     * get the Sting array of this path
-     * @return String[]
-     */
-    public String[] getPath(){
-        return paths.toArray(EMPTY_STRING_ARRAY);        
-    }
-    
-           
 }

@@ -19,7 +19,7 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.puzzle.core.swing.toolbox.tooltree;
+package org.puzzle.core.windows.toolbox.tree;
 
 import java.lang.ref.WeakReference;
 

@@ -11,7 +11,7 @@ import org.openide.util.NbBundle;
 import org.openide.windows.TopComponent;
 import org.openide.windows.WindowManager;
 import org.openide.util.Utilities;
-import org.puzzle.core.swing.toolbox.tooltree.JToolTree;
+import org.puzzle.core.windows.toolbox.tree.JToolTree;
 
 /**
  * Top component which displays something.
