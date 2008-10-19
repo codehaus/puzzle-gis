@@ -20,14 +20,8 @@
  */
 package org.puzzle.core.tool.gui.toolbox;
 
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.Collection;
 import java.util.Iterator;
-import javax.swing.JDialog;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 import org.openide.DialogDescriptor;
 import org.openide.DialogDisplayer;
 import org.openide.util.Lookup;
@@ -56,6 +50,7 @@ public class BindToolTree extends JToolTree implements LookupListener {
 
         addToolTreeListener(new ToolTreeListener() {
 
+            @Override
             public void treeToolActivated(ToolDescriptor tool) {
                 
                 Object close = "Close";
@@ -98,6 +93,7 @@ public class BindToolTree extends JToolTree implements LookupListener {
         }
     }
 
+    @Override
     public void resultChanged(LookupEvent lookupEvent) {
         reload(lookupEvent);
     }
