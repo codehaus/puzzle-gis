@@ -18,7 +18,7 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.puzzle.core.context.gui.datadialog;
+package org.puzzle.core.actions;
 
 import org.puzzle.core.project.source.SourceCreationPane;
 import java.util.Collection;

@@ -21,28 +21,16 @@
 package org.puzzle.core.project.nodes;
 
 import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.io.IOException;
-import java.util.Enumeration;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.AbstractAction;
 import javax.swing.Action;
-import javax.swing.ImageIcon;
 
 import org.netbeans.api.project.FileOwnerQuery;
 import org.netbeans.api.project.Project;
-import org.openide.DialogDisplayer;
-import org.openide.NotifyDescriptor;
-import org.openide.filesystems.FileObject;
-import org.openide.loaders.DataFolder;
 import org.openide.loaders.DataObject;
-import org.openide.loaders.DataObjectNotFoundException;
-import org.openide.loaders.TemplateWizard;
 import org.openide.nodes.FilterNode;
 import org.openide.nodes.Node;
 import org.openide.util.Utilities;
 
+import org.puzzle.core.actions.NewMapContext;
 import org.puzzle.core.project.GISProject;
 
 /**
@@ -91,53 +79,16 @@ public class GISMapNode extends FilterNode {
 
     @Override
     public Action[] getActions(boolean arg0) {
-        return new Action[]{
-                    new NewMapContextAction()
-                };
-    }
+        final DataObject obj = getLookup().lookup(DataObject.class);
+        final Project project = FileOwnerQuery.getOwner(obj.getPrimaryFile());
 
-    private class NewMapContextAction extends AbstractAction {
-
-        NewMapContextAction() {
-            super("New map");
-        }
-
-        @Override
-        public void actionPerformed(ActionEvent arg0) {
-            DataObject obj = getLookup().lookup(DataObject.class);
-            Project project = FileOwnerQuery.getOwner(obj.getPrimaryFile());
-
-            if (project instanceof GISProject) {
-                final GISProject gis = (GISProject) project;
-                TemplateWizard tw = new TemplateWizard();
-                Enumeration<DataObject> enu = tw.getTemplatesFolder().children();
-                DataObject temp = null;
-                while (enu.hasMoreElements()) {
-                    temp = enu.nextElement();
-                    if (temp.getName().equals("Other")) {
-                        break;
-                    }
-                }
-
-                FileObject[] templates = temp.getPrimaryFile().getChildren();
-                for (FileObject fo : templates) {
-                    if (fo.getName().equals("GISContextTemplate")) {
-                        try {
-                            tw.instantiate(DataObject.find(fo), DataFolder.findFolder(gis.getMapFolder(true)));
-                        } catch (DataObjectNotFoundException donfe) {
-                            Logger.getLogger(GISProject.class.getName()).log(Level.SEVERE,
-                                    "Unable to find object " + fo.getPath(), donfe);
-                        } catch (IOException ioe) {
-                            Logger.getLogger(GISProject.class.getName()).log(Level.SEVERE,
-                                    "Unable to find object " + fo.getPath(), ioe);
-                        }
-                        break;
-                    }
-                }
-            } else {
-                NotifyDescriptor d = new NotifyDescriptor.Message("Project is not a GIS project", NotifyDescriptor.INFORMATION_MESSAGE);
-                DialogDisplayer.getDefault().notify(d);
-            }
+        if (project instanceof GISProject) {
+            return new Action[]{
+                new NewMapContext( (GISProject)project)
+            };
+        }else{
+            return new Action[0];
         }
     }
+
 }
