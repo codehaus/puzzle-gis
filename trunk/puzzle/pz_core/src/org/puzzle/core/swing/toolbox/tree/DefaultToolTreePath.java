@@ -19,35 +19,45 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.puzzle.core.swing.toolbox.tooltree;
+package org.puzzle.core.windows.toolbox.tree;
 
-import org.jdesktop.swingx.treetable.AbstractMutableTreeTableNode;
+import java.util.ArrayList;
+import java.util.List;
+import org.openide.util.NbBundle;
+
 
 /**
- * 
+ *
  * @author johann sorel
  */
-final class ToolTreeNode extends AbstractMutableTreeTableNode{
+class DefaultToolTreePath implements ToolTreePath{
+
+    private static final String[] EMPTY_STRING_ARRAY = {};
     
-    private String name ="";
+    private final List<String> paths = new ArrayList<String>();
+    
+    DefaultToolTreePath(ToolTreePath father, String i18nKey){
+        String myPath = NbBundle.getMessage(DefaultToolTreePath.class, i18nKey);
+        
+        if(father != null){
+            paths.addAll(((DefaultToolTreePath)father).getInerPath());
+        }
+        paths.add(myPath);
+    }
+    
+    List<String> getInerPath(){
+        return paths;
+    }
+    
     
     /**
-     * Creates a new instance of ContextTreeNode
-     * @param model model of the tree
+     * get the Sting array of this path
+     * @return String[]
      */
-    ToolTreeNode(String name) {
-        super();
-        this.name = name;
-    }    
-    
-    
     @Override
-    public Object getValueAt(int arg0) {
-        return name;
+    public String[] getPath(){
+        return paths.toArray(EMPTY_STRING_ARRAY);        
     }
-
-    @Override
-    public int getColumnCount() {
-        return 1;
-    }
+    
+           
 }

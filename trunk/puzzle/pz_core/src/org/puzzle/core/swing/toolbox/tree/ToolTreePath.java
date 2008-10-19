@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package org.puzzle.core.swing.toolbox.tooltree;
+package org.puzzle.core.windows.toolbox.tree;
 
 /**
  *

@@ -19,18 +19,35 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+package org.puzzle.core.windows.toolbox.tree;
 
-package org.puzzle.core.swing.toolbox.tooltree;
-
-import java.util.EventListener;
-import org.puzzle.core.tool.ToolDescriptor;
-
+import org.jdesktop.swingx.treetable.AbstractMutableTreeTableNode;
 
 /**
+ * 
  * @author johann sorel
  */
-public interface ToolTreeListener extends EventListener{
-
-    public void treeToolActivated(ToolDescriptor tool);
+final class ToolTreeNode extends AbstractMutableTreeTableNode{
     
+    private String name ="";
+    
+    /**
+     * Creates a new instance of ContextTreeNode
+     * @param model model of the tree
+     */
+    ToolTreeNode(String name) {
+        super();
+        this.name = name;
+    }    
+    
+    
+    @Override
+    public Object getValueAt(int arg0) {
+        return name;
+    }
+
+    @Override
+    public int getColumnCount() {
+        return 1;
+    }
 }
