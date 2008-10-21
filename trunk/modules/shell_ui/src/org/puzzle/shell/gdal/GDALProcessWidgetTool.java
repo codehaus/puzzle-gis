@@ -21,8 +21,21 @@
 package org.puzzle.shell.gdal;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ResourceBundle;
+import javax.swing.BorderFactory;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JButton;
 import javax.swing.JComponent;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.SwingConstants;
+import org.openide.util.NbBundle;
 import org.puzzle.shell.misc.runtime.ProcessObject;
 import org.puzzle.shell.misc.runtime.ProcessObjectPanel;
 import org.puzzle.shell.misc.runtime.StatusListener;
@@ -71,88 +84,88 @@ public class GDALProcessWidgetTool extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        es_pan_process = new javax.swing.JPanel();
-        guiErase = new javax.swing.JButton();
-        guiStart = new javax.swing.JButton();
-        guiPanTool = new javax.swing.JPanel();
-        guiAddProcess = new javax.swing.JButton();
+        es_pan_process = new JPanel();
+        guiErase = new JButton();
+        guiStart = new JButton();
+        guiPanTool = new JPanel();
+        guiAddProcess = new JButton();
 
-        es_pan_process.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(GDALProcessWidgetTool.class, "processes"))); // NOI18N
-        es_pan_process.setPreferredSize(new java.awt.Dimension(100, 200));
-        es_pan_process.setLayout(new java.awt.BorderLayout());
+        es_pan_process.setBorder(BorderFactory.createTitledBorder(NbBundle.getMessage(GDALProcessWidgetTool.class, "processes"))); // NOI18N
+        es_pan_process.setPreferredSize(new Dimension(100, 200));
+        es_pan_process.setLayout(new BorderLayout());
 
-        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("org/puzzle/shell/gdal/Bundle"); // NOI18N
+        ResourceBundle bundle = ResourceBundle.getBundle("org/puzzle/shell/gdal/Bundle"); // NOI18N
         guiErase.setText(bundle.getString("erase")); // NOI18N
-        guiErase.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        guiErase.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 guiEraseesActionEffacer(evt);
             }
         });
 
-        guiStart.setText(org.openide.util.NbBundle.getMessage(GDALProcessWidgetTool.class, "start")); // NOI18N
-        guiStart.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        guiStart.setText(NbBundle.getMessage(GDALProcessWidgetTool.class, "start")); // NOI18N
+        guiStart.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 guiStartesActionDemarrer(evt);
             }
         });
 
-        guiPanTool.setLayout(new java.awt.BorderLayout());
+        guiPanTool.setLayout(new BorderLayout());
 
-        guiAddProcess.setText(org.openide.util.NbBundle.getMessage(GDALProcessWidgetTool.class, "add")); // NOI18N
-        guiAddProcess.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        guiAddProcess.setText(NbBundle.getMessage(GDALProcessWidgetTool.class, "add")); // NOI18N
+        guiAddProcess.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 guiAddProcessesActionAjouter(evt);
             }
         });
 
-        org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
+        GroupLayout layout = new GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(layout.createSequentialGroup()
+            layout.createParallelGroup(Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                    .add(es_pan_process, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 441, Short.MAX_VALUE)
-                    .add(layout.createSequentialGroup()
-                        .add(guiErase, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 130, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(guiStart, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 135, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(layout.createParallelGroup(Alignment.TRAILING)
+                    .addComponent(es_pan_process, GroupLayout.DEFAULT_SIZE, 441, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(guiErase, GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(ComponentPlacement.RELATED)
+                        .addComponent(guiStart, GroupLayout.PREFERRED_SIZE, 135, GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(316, Short.MAX_VALUE)
-                .add(guiAddProcess)
+            .addGroup(Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(318, Short.MAX_VALUE)
+                .addComponent(guiAddProcess)
                 .addContainerGap())
-            .add(guiPanTool, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 461, Short.MAX_VALUE)
+            .addComponent(guiPanTool, GroupLayout.DEFAULT_SIZE, 465, Short.MAX_VALUE)
         );
 
-        layout.linkSize(new java.awt.Component[] {guiAddProcess, guiErase, guiStart}, org.jdesktop.layout.GroupLayout.HORIZONTAL);
+        layout.linkSize(SwingConstants.HORIZONTAL, new Component[] {guiAddProcess, guiErase, guiStart});
 
         layout.setVerticalGroup(
-            layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                .add(guiPanTool, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(guiAddProcess)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(es_pan_process, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(guiStart)
-                    .add(guiErase))
+            layout.createParallelGroup(Alignment.LEADING)
+            .addGroup(Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(guiPanTool, GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
+                .addPreferredGap(ComponentPlacement.RELATED)
+                .addComponent(guiAddProcess)
+                .addPreferredGap(ComponentPlacement.RELATED)
+                .addComponent(es_pan_process, GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
+                .addPreferredGap(ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(Alignment.BASELINE)
+                    .addComponent(guiStart)
+                    .addComponent(guiErase))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
-    private void guiEraseesActionEffacer(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guiEraseesActionEffacer
+    private void guiEraseesActionEffacer(ActionEvent evt) {//GEN-FIRST:event_guiEraseesActionEffacer
         guiProcessTable.empty();
         guiStart.setEnabled(guiProcessTable.getProcessNumber() > 0);
         guiErase.setEnabled(guiProcessTable.getProcessNumber() > 0);
 }//GEN-LAST:event_guiEraseesActionEffacer
 
-    private void guiStartesActionDemarrer(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guiStartesActionDemarrer
+    private void guiStartesActionDemarrer(ActionEvent evt) {//GEN-FIRST:event_guiStartesActionDemarrer
         guiProcessTable.start();
 }//GEN-LAST:event_guiStartesActionDemarrer
 
-    private void guiAddProcessesActionAjouter(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guiAddProcessesActionAjouter
+    private void guiAddProcessesActionAjouter(ActionEvent evt) {//GEN-FIRST:event_guiAddProcessesActionAjouter
         ProcessObject[] pos = tool.createProcesses();
 
         for (ProcessObject po : pos) {
@@ -164,11 +177,11 @@ public class GDALProcessWidgetTool extends javax.swing.JPanel {
                
 }//GEN-LAST:event_guiAddProcessesActionAjouter
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel es_pan_process;
-    private javax.swing.JButton guiAddProcess;
-    private javax.swing.JButton guiErase;
-    private javax.swing.JPanel guiPanTool;
-    private javax.swing.JButton guiStart;
+    private JPanel es_pan_process;
+    private JButton guiAddProcess;
+    private JButton guiErase;
+    private JPanel guiPanTool;
+    private JButton guiStart;
     // End of variables declaration//GEN-END:variables
 
     public JComponent getComponent() {

@@ -20,12 +20,28 @@
  */
 package org.puzzle.shell.gdal.raster.onefile;
 
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.io.File;
+import javax.swing.BorderFactory;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.LayoutStyle.ComponentPlacement;
 import org.geotools.gui.swing.misc.filter.FileFilterFactory;
 import org.geotools.gui.swing.misc.filter.FileFilterFactory.FORMAT;
+import org.jdesktop.swingx.JXTitledSeparator;
+import org.openide.util.NbBundle;
 import org.puzzle.shell.gdal.ENV;
 import org.puzzle.shell.gdal.GDALTool;
 import org.puzzle.shell.misc.runtime.ProcessObject;
@@ -52,148 +68,148 @@ public class OneFileRasterConvertTool extends JPanel implements GDALTool {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPl_fichier_RasterConvUnFichier = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jBn_fichier_a_conv = new javax.swing.JButton();
-        Jtf_Fichier_a_convertir = new javax.swing.JTextField();
-        jCB_format_voulu = new javax.swing.JComboBox();
-        jLabel5 = new javax.swing.JLabel();
-        jTF_fichier_en_sortie = new javax.swing.JTextField();
-        jBn_fichier_en_sortie = new javax.swing.JButton();
-        jXTitledSeparator1 = new org.jdesktop.swingx.JXTitledSeparator();
 
-        jPl_fichier_RasterConvUnFichier.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(OneFileRasterConvertTool.class, "files"))); // NOI18N
 
-        jLabel1.setText(org.openide.util.NbBundle.getMessage(OneFileRasterConvertTool.class, "input")); // NOI18N
 
-        jBn_fichier_a_conv.setText(org.openide.util.NbBundle.getMessage(OneFileRasterConvertTool.class, "...")); // NOI18N
-        jBn_fichier_a_conv.setPreferredSize(new java.awt.Dimension(45, 20));
-        jBn_fichier_a_conv.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jPl_fichier_RasterConvUnFichier = new JPanel();
+        jLabel1 = new JLabel();
+        jBn_fichier_a_conv = new JButton();
+        Jtf_Fichier_a_convertir = new JTextField();
+        jCB_format_voulu = new JComboBox();
+        jLabel5 = new JLabel();
+        jTF_fichier_en_sortie = new JTextField();
+        jBn_fichier_en_sortie = new JButton();
+        jXTitledSeparator1 = new JXTitledSeparator();
+
+        jPl_fichier_RasterConvUnFichier.setBorder(BorderFactory.createTitledBorder(NbBundle.getMessage(OneFileRasterConvertTool.class, "files"))); // NOI18N
+        jLabel1.setText(NbBundle.getMessage(OneFileRasterConvertTool.class, "input")); // NOI18N
+        jBn_fichier_a_conv.setText(NbBundle.getMessage(OneFileRasterConvertTool.class, "...")); // NOI18N
+        jBn_fichier_a_conv.setPreferredSize(new Dimension(45, 20));
+        jBn_fichier_a_conv.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 clic_fichier_source(evt);
             }
         });
 
-        Jtf_Fichier_a_convertir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        Jtf_Fichier_a_convertir.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 actionChangementSource(evt);
             }
         });
 
-        jCB_format_voulu.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ERDAS IMAGINE (.img)", "ERMapper Compressed Wavelets (.ecw)", "Joint Photographic Experts Group (.jpg)", "JPEG2000(.jp2)", "Portable Network Graphics (.png)", "GEOTIF (.tif)" }));
-        jCB_format_voulu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jCB_format_voulu.setModel(new DefaultComboBoxModel(new String[] { "ERDAS IMAGINE (.img)", "ERMapper Compressed Wavelets (.ecw)", "Joint Photographic Experts Group (.jpg)", "JPEG2000(.jp2)", "Portable Network Graphics (.png)", "GEOTIF (.tif)" }));
+        jCB_format_voulu.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 actionChangementFormat(evt);
             }
         });
 
-        jLabel5.setText(org.openide.util.NbBundle.getMessage(OneFileRasterConvertTool.class, "output")); // NOI18N
-
-        jTF_fichier_en_sortie.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jLabel5.setText(NbBundle.getMessage(OneFileRasterConvertTool.class, "output")); // NOI18N
+        jTF_fichier_en_sortie.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 actionChangementDestination(evt);
             }
         });
-        jTF_fichier_en_sortie.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
+        jTF_fichier_en_sortie.addFocusListener(new FocusAdapter() {
+            public void focusLost(FocusEvent evt) {
                 actionChangementDestination2(evt);
             }
         });
 
-        jBn_fichier_en_sortie.setText(org.openide.util.NbBundle.getMessage(OneFileRasterConvertTool.class, "...")); // NOI18N
-        jBn_fichier_en_sortie.setPreferredSize(new java.awt.Dimension(45, 20));
-        jBn_fichier_en_sortie.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jBn_fichier_en_sortie.setText(NbBundle.getMessage(OneFileRasterConvertTool.class, "...")); // NOI18N
+        jBn_fichier_en_sortie.setPreferredSize(new Dimension(45, 20));
+        jBn_fichier_en_sortie.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 clic_fichier_destination(evt);
             }
         });
 
-        javax.swing.GroupLayout jPl_fichier_RasterConvUnFichierLayout = new javax.swing.GroupLayout(jPl_fichier_RasterConvUnFichier);
+        GroupLayout jPl_fichier_RasterConvUnFichierLayout = new GroupLayout(jPl_fichier_RasterConvUnFichier);
         jPl_fichier_RasterConvUnFichier.setLayout(jPl_fichier_RasterConvUnFichierLayout);
+
         jPl_fichier_RasterConvUnFichierLayout.setHorizontalGroup(
-            jPl_fichier_RasterConvUnFichierLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            jPl_fichier_RasterConvUnFichierLayout.createParallelGroup(Alignment.LEADING)
             .addGroup(jPl_fichier_RasterConvUnFichierLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPl_fichier_RasterConvUnFichierLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPl_fichier_RasterConvUnFichierLayout.createParallelGroup(Alignment.LEADING)
                     .addGroup(jPl_fichier_RasterConvUnFichierLayout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(342, 342, 342))
                     .addGroup(jPl_fichier_RasterConvUnFichierLayout.createSequentialGroup()
-                        .addComponent(Jtf_Fichier_a_convertir, javax.swing.GroupLayout.DEFAULT_SIZE, 334, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jBn_fichier_a_conv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Jtf_Fichier_a_convertir, GroupLayout.DEFAULT_SIZE, 404, Short.MAX_VALUE)
+                        .addPreferredGap(ComponentPlacement.RELATED)
+                        .addComponent(jBn_fichier_a_conv, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPl_fichier_RasterConvUnFichierLayout.createSequentialGroup()
+                    .addGroup(Alignment.TRAILING, jPl_fichier_RasterConvUnFichierLayout.createSequentialGroup()
                         .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
-                        .addComponent(jCB_format_voulu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
+                        .addComponent(jCB_format_voulu, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPl_fichier_RasterConvUnFichierLayout.createSequentialGroup()
-                        .addComponent(jTF_fichier_en_sortie, javax.swing.GroupLayout.DEFAULT_SIZE, 334, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jBn_fichier_en_sortie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(Alignment.TRAILING, jPl_fichier_RasterConvUnFichierLayout.createSequentialGroup()
+                        .addComponent(jTF_fichier_en_sortie, GroupLayout.DEFAULT_SIZE, 404, Short.MAX_VALUE)
+                        .addPreferredGap(ComponentPlacement.RELATED)
+                        .addComponent(jBn_fichier_en_sortie, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
         );
         jPl_fichier_RasterConvUnFichierLayout.setVerticalGroup(
-            jPl_fichier_RasterConvUnFichierLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            jPl_fichier_RasterConvUnFichierLayout.createParallelGroup(Alignment.LEADING)
             .addGroup(jPl_fichier_RasterConvUnFichierLayout.createSequentialGroup()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPl_fichier_RasterConvUnFichierLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBn_fichier_a_conv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Jtf_Fichier_a_convertir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPl_fichier_RasterConvUnFichierLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addPreferredGap(ComponentPlacement.RELATED)
+                .addGroup(jPl_fichier_RasterConvUnFichierLayout.createParallelGroup(Alignment.BASELINE)
+                    .addComponent(jBn_fichier_a_conv, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Jtf_Fichier_a_convertir, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(ComponentPlacement.RELATED)
+                .addGroup(jPl_fichier_RasterConvUnFichierLayout.createParallelGroup(Alignment.BASELINE)
                     .addComponent(jCB_format_voulu)
                     .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPl_fichier_RasterConvUnFichierLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBn_fichier_en_sortie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTF_fichier_en_sortie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(ComponentPlacement.RELATED)
+                .addGroup(jPl_fichier_RasterConvUnFichierLayout.createParallelGroup(Alignment.BASELINE)
+                    .addComponent(jBn_fichier_en_sortie, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTF_fichier_en_sortie, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
-        jXTitledSeparator1.setTitle(org.openide.util.NbBundle.getMessage(OneFileRasterConvertTool.class, "title")); // NOI18N
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        jXTitledSeparator1.setTitle(NbBundle.getMessage(OneFileRasterConvertTool.class, "title")); // NOI18N
+        GroupLayout layout = new GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            layout.createParallelGroup(Alignment.LEADING)
+            .addGroup(Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPl_fichier_RasterConvUnFichier, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jXTitledSeparator1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 421, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(Alignment.TRAILING)
+                    .addComponent(jPl_fichier_RasterConvUnFichier, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jXTitledSeparator1, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 489, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            layout.createParallelGroup(Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jXTitledSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPl_fichier_RasterConvUnFichier, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jXTitledSeparator1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(ComponentPlacement.RELATED)
+                .addComponent(jPl_fichier_RasterConvUnFichier, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(13, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void actionChangementDestination2(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_actionChangementDestination2
+    private void actionChangementDestination2(FocusEvent evt) {//GEN-FIRST:event_actionChangementDestination2
         verification();
     }//GEN-LAST:event_actionChangementDestination2
 
-    private void actionChangementDestination(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actionChangementDestination
+    private void actionChangementDestination(ActionEvent evt) {//GEN-FIRST:event_actionChangementDestination
         verification();
     }//GEN-LAST:event_actionChangementDestination
 
-    private void actionChangementFormat(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actionChangementFormat
+    private void actionChangementFormat(ActionEvent evt) {//GEN-FIRST:event_actionChangementFormat
         verification();
     }//GEN-LAST:event_actionChangementFormat
 
-    private void actionChangementSource(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actionChangementSource
+    private void actionChangementSource(ActionEvent evt) {//GEN-FIRST:event_actionChangementSource
         verification();
     }//GEN-LAST:event_actionChangementSource
 
-    private void clic_fichier_destination(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clic_fichier_destination
+    private void clic_fichier_destination(ActionEvent evt) {//GEN-FIRST:event_clic_fichier_destination
         JFileChooser explorateurDestination = new JFileChooser();
 
         explorateurDestination.setFileFilter(explorateurDestination.getChoosableFileFilters()[1]);
@@ -209,7 +225,7 @@ public class OneFileRasterConvertTool extends JPanel implements GDALTool {
         }
     }//GEN-LAST:event_clic_fichier_destination
 
-    private void clic_fichier_source(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clic_fichier_source
+    private void clic_fichier_source(ActionEvent evt) {//GEN-FIRST:event_clic_fichier_source
         JFileChooser explorateur = new JFileChooser();
         explorateur.addChoosableFileFilter(FileFilterFactory.createFileFilter(FORMAT.ERMAPPER_COMPRESSED_WAVELETS));
         explorateur.addChoosableFileFilter(FileFilterFactory.createFileFilter(FORMAT.TIFF));
@@ -291,15 +307,15 @@ public class OneFileRasterConvertTool extends JPanel implements GDALTool {
 
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField Jtf_Fichier_a_convertir;
-    private javax.swing.JButton jBn_fichier_a_conv;
-    private javax.swing.JButton jBn_fichier_en_sortie;
-    private javax.swing.JComboBox jCB_format_voulu;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JPanel jPl_fichier_RasterConvUnFichier;
-    private javax.swing.JTextField jTF_fichier_en_sortie;
-    private org.jdesktop.swingx.JXTitledSeparator jXTitledSeparator1;
+    private JTextField Jtf_Fichier_a_convertir;
+    private JButton jBn_fichier_a_conv;
+    private JButton jBn_fichier_en_sortie;
+    private JComboBox jCB_format_voulu;
+    private JLabel jLabel1;
+    private JLabel jLabel5;
+    private JPanel jPl_fichier_RasterConvUnFichier;
+    private JTextField jTF_fichier_en_sortie;
+    private JXTitledSeparator jXTitledSeparator1;
     // End of variables declaration//GEN-END:variables
 
     public JComponent getComponent() {

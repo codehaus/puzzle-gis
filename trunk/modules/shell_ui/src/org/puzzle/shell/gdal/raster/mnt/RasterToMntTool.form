@@ -4,6 +4,7 @@
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="false"/>
     <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
     <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
     <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
@@ -20,7 +21,7 @@
               <Group type="103" groupAlignment="1" attributes="0">
                   <Component id="pan_detail" alignment="0" max="32767" attributes="0"/>
                   <Component id="jPanel1" alignment="0" max="32767" attributes="1"/>
-                  <Component id="jXTitledSeparator1" alignment="1" pref="423" max="32767" attributes="0"/>
+                  <Component id="jXTitledSeparator1" alignment="1" pref="452" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -35,7 +36,7 @@
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="pan_detail" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="13" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -59,7 +60,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="rm_jtf_sortie" pref="336" max="32767" attributes="0"/>
+                          <Component id="rm_jtf_sortie" pref="367" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="rm_chercher_sortie" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -70,7 +71,7 @@
                           <Component id="rm_format" min="-2" max="-2" attributes="1"/>
                       </Group>
                       <Group type="102" attributes="0">
-                          <Component id="rm_jtf_entree" pref="336" max="32767" attributes="0"/>
+                          <Component id="rm_jtf_entree" pref="367" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="rm_chercher" min="-2" max="-2" attributes="1"/>
                       </Group>
@@ -185,7 +186,7 @@
                   <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="guiBand" min="-2" pref="73" max="-2" attributes="0"/>
-                  <EmptySpace pref="275" max="32767" attributes="0"/>
+                  <EmptySpace pref="301" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>

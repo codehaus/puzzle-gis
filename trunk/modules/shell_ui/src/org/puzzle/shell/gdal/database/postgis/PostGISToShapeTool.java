@@ -21,13 +21,28 @@
 
 package org.puzzle.shell.gdal.database.postgis;
 
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.io.File;
 import java.util.ResourceBundle;
+import javax.swing.BorderFactory;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+import javax.swing.LayoutStyle.ComponentPlacement;
 import org.geotools.gui.swing.misc.filter.FileFilterFactory;
+import org.jdesktop.swingx.JXTitledSeparator;
+import org.openide.util.NbBundle;
 import org.puzzle.shell.gdal.ENV;
 import org.puzzle.shell.gdal.GDALTool;
 import org.puzzle.shell.misc.runtime.ProcessObject;
@@ -95,176 +110,176 @@ public class PostGISToShapeTool extends JPanel implements GDALTool {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel5 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jtf_login = new javax.swing.JTextField();
-        jtf_db = new javax.swing.JTextField();
-        jtf_ip = new javax.swing.JTextField();
-        jtf_mdp = new javax.swing.JPasswordField();
-        jLabel9 = new javax.swing.JLabel();
-        jtf_table = new javax.swing.JTextField();
-        jXTitledSeparator1 = new org.jdesktop.swingx.JXTitledSeparator();
-        jPanel4 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        ps_jtf_sortie = new javax.swing.JTextField();
-        ps_chercher = new javax.swing.JButton();
 
-        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(PostGISToShapeTool.class, "database"))); // NOI18N
+        jPanel5 = new JPanel();
+        jLabel5 = new JLabel();
+        jLabel6 = new JLabel();
+        jLabel7 = new JLabel();
+        jLabel8 = new JLabel();
+        jtf_login = new JTextField();
+        jtf_db = new JTextField();
+        jtf_ip = new JTextField();
+        jtf_mdp = new JPasswordField();
+        jLabel9 = new JLabel();
+        jtf_table = new JTextField();
+        jXTitledSeparator1 = new JXTitledSeparator();
+        jPanel4 = new JPanel();
+        jLabel2 = new JLabel();
+        ps_jtf_sortie = new JTextField();
+        ps_chercher = new JButton();
 
-        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("org/puzzle/shell/gdal/database/postgis/Bundle"); // NOI18N
+        jPanel5.setBorder(BorderFactory.createTitledBorder(NbBundle.getMessage(PostGISToShapeTool.class, "database"))); // NOI18N
+        ResourceBundle bundle = ResourceBundle.getBundle("org/puzzle/shell/gdal/database/postgis/Bundle"); // NOI18N
         jLabel5.setText(bundle.getString("id")); // NOI18N
 
         jLabel6.setText(bundle.getString("password")); // NOI18N
 
         jLabel7.setText(bundle.getString("ip")); // NOI18N
 
-        jLabel8.setText(org.openide.util.NbBundle.getMessage(PostGISToShapeTool.class, "thedatabase")); // NOI18N
 
+        jLabel8.setText(NbBundle.getMessage(PostGISToShapeTool.class, "thedatabase")); // NOI18N
         jtf_ip.setText("127.0.0.1");
 
         jLabel9.setText(bundle.getString("table")); // NOI18N
 
-        org.jdesktop.layout.GroupLayout jPanel5Layout = new org.jdesktop.layout.GroupLayout(jPanel5);
+        GroupLayout jPanel5Layout = new GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
+
+
         jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jPanel5Layout.createSequentialGroup()
+            jPanel5Layout.createParallelGroup(Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .add(jPanel5Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jPanel5Layout.createSequentialGroup()
-                        .add(jLabel5)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jtf_login, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 369, Short.MAX_VALUE))
-                    .add(jPanel5Layout.createSequentialGroup()
-                        .add(jLabel6)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jtf_mdp, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE))
-                    .add(jPanel5Layout.createSequentialGroup()
-                        .add(jLabel9)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jtf_table, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 368, Short.MAX_VALUE))
-                    .add(jPanel5Layout.createSequentialGroup()
-                        .add(jLabel8)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jtf_db, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE))
-                    .add(jPanel5Layout.createSequentialGroup()
-                        .add(jLabel7)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jtf_ip, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 384, Short.MAX_VALUE)))
+                .addGroup(jPanel5Layout.createParallelGroup(Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(ComponentPlacement.RELATED)
+                        .addComponent(jtf_login, GroupLayout.DEFAULT_SIZE, 373, Short.MAX_VALUE))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addPreferredGap(ComponentPlacement.RELATED)
+                        .addComponent(jtf_mdp, GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(jLabel9)
+                        .addPreferredGap(ComponentPlacement.RELATED)
+                        .addComponent(jtf_table, GroupLayout.DEFAULT_SIZE, 374, Short.MAX_VALUE))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addPreferredGap(ComponentPlacement.RELATED)
+                        .addComponent(jtf_db, GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addPreferredGap(ComponentPlacement.RELATED)
+                        .addComponent(jtf_ip, GroupLayout.DEFAULT_SIZE, 397, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jPanel5Layout.createSequentialGroup()
-                .add(jPanel5Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jLabel5)
-                    .add(jtf_login, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jPanel5Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jLabel6)
-                    .add(jtf_mdp, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jPanel5Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jLabel9)
-                    .add(jtf_table, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jPanel5Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jLabel8)
-                    .add(jtf_db, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jPanel5Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jLabel7)
-                    .add(jtf_ip, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            jPanel5Layout.createParallelGroup(Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGroup(jPanel5Layout.createParallelGroup(Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jtf_login, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(ComponentPlacement.RELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(jtf_mdp, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(ComponentPlacement.RELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(jtf_table, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(ComponentPlacement.RELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(jtf_db, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(ComponentPlacement.RELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(jtf_ip, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jXTitledSeparator1.setTitle(org.openide.util.NbBundle.getMessage(PostGISToShapeTool.class, "title")); // NOI18N
-
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(PostGISToShapeTool.class, "file"))); // NOI18N
-
+        jXTitledSeparator1.setTitle(NbBundle.getMessage(PostGISToShapeTool.class, "title")); // NOI18N
+        jPanel4.setBorder(BorderFactory.createTitledBorder(NbBundle.getMessage(PostGISToShapeTool.class, "file"))); // NOI18N
         jLabel2.setText(bundle.getString("output")); // NOI18N
 
-        ps_jtf_sortie.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        ps_jtf_sortie.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 psActionEdit(evt);
             }
         });
-        ps_jtf_sortie.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
+        ps_jtf_sortie.addFocusListener(new FocusAdapter() {
+            public void focusLost(FocusEvent evt) {
                 psActionLost(evt);
             }
         });
 
         ps_chercher.setText(bundle.getString("...")); // NOI18N
-        ps_chercher.setPreferredSize(new java.awt.Dimension(45, 20));
-        ps_chercher.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        ps_chercher.setPreferredSize(new Dimension(45, 20));
+        ps_chercher.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 ps_chercherspActionChercher(evt);
             }
         });
 
-        org.jdesktop.layout.GroupLayout jPanel4Layout = new org.jdesktop.layout.GroupLayout(jPanel4);
+        GroupLayout jPanel4Layout = new GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jPanel4Layout.createSequentialGroup()
+            jPanel4Layout.createParallelGroup(Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .add(jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .add(ps_jtf_sortie, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(ps_chercher, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                    .add(jLabel2))
+                .addGroup(jPanel4Layout.createParallelGroup(Alignment.LEADING)
+                    .addGroup(Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addComponent(ps_jtf_sortie, GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)
+                        .addPreferredGap(ComponentPlacement.RELATED)
+                        .addComponent(ps_chercher, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel2))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jPanel4Layout.createSequentialGroup()
-                .add(jLabel2)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(ps_chercher, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(ps_jtf_sortie, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            jPanel4Layout.createParallelGroup(Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addComponent(jLabel2)
+                .addPreferredGap(ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(Alignment.BASELINE)
+                    .addComponent(ps_chercher, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ps_jtf_sortie, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
+        GroupLayout layout = new GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(layout.createSequentialGroup()
+            layout.createParallelGroup(Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jPanel5, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .add(jXTitledSeparator1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 441, Short.MAX_VALUE)
-                    .add(jPanel4, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(Alignment.LEADING)
+                    .addComponent(jPanel5, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jXTitledSeparator1, GroupLayout.DEFAULT_SIZE, 461, Short.MAX_VALUE)
+                    .addComponent(jPanel4, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(layout.createSequentialGroup()
+            layout.createParallelGroup(Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .add(jXTitledSeparator1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(13, 13, 13)
-                .add(jPanel5, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jPanel4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jXTitledSeparator1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addGap(13, 13, 13)
+                .addComponent(jPanel5, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(ComponentPlacement.RELATED)
+                .addComponent(jPanel4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(14, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void psActionLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_psActionLost
+    private void psActionLost(FocusEvent evt) {//GEN-FIRST:event_psActionLost
         psTestName();
     }//GEN-LAST:event_psActionLost
 
-    private void psActionEdit(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_psActionEdit
+    private void psActionEdit(ActionEvent evt) {//GEN-FIRST:event_psActionEdit
         psTestName();
     }//GEN-LAST:event_psActionEdit
                 
-    private void ps_chercherspActionChercher(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ps_chercherspActionChercher
+    private void ps_chercherspActionChercher(ActionEvent evt) {//GEN-FIRST:event_ps_chercherspActionChercher
         JFileChooser jfc = new JFileChooser();
         jfc.addChoosableFileFilter(FileFilterFactory.createFileFilter(FileFilterFactory.FORMAT.ESRI_SHAPEFILE));
         
@@ -287,22 +302,22 @@ public class PostGISToShapeTool extends JPanel implements GDALTool {
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private org.jdesktop.swingx.JXTitledSeparator jXTitledSeparator1;
-    private javax.swing.JTextField jtf_db;
-    private javax.swing.JTextField jtf_ip;
-    private javax.swing.JTextField jtf_login;
-    private javax.swing.JPasswordField jtf_mdp;
-    private javax.swing.JTextField jtf_table;
-    private javax.swing.JButton ps_chercher;
-    private javax.swing.JTextField ps_jtf_sortie;
+    private JLabel jLabel2;
+    private JLabel jLabel5;
+    private JLabel jLabel6;
+    private JLabel jLabel7;
+    private JLabel jLabel8;
+    private JLabel jLabel9;
+    private JPanel jPanel4;
+    private JPanel jPanel5;
+    private JXTitledSeparator jXTitledSeparator1;
+    private JTextField jtf_db;
+    private JTextField jtf_ip;
+    private JTextField jtf_login;
+    private JPasswordField jtf_mdp;
+    private JTextField jtf_table;
+    private JButton ps_chercher;
+    private JTextField ps_jtf_sortie;
     // End of variables declaration//GEN-END:variables
 
     public ProcessObject[] createProcesses() {

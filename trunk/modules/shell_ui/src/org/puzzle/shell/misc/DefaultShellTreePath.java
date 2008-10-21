@@ -24,7 +24,7 @@ package org.puzzle.shell.misc;
 import java.util.ArrayList;
 import java.util.List;
 import org.openide.util.NbBundle;
-import org.puzzle.puzzlecore.swing.toolbox.tooltree.ToolTreePath;
+import org.puzzle.core.windows.toolbox.tree.ToolTreePath;
 
 
 /**

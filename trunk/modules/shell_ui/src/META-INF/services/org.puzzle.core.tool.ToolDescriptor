@@ -1,0 +1,10 @@
+org.puzzle.shell.gdal.database.esriaccess.ESRIAccessToolDescriptor
+org.puzzle.shell.gdal.database.postgis.PostGISToShapeToolDescriptor
+org.puzzle.shell.gdal.database.postgis.ShapeToPostGISToolDescriptor
+org.puzzle.shell.gdal.raster.folder.FolderRasterConvertToolDescriptor
+org.puzzle.shell.gdal.raster.mnt.MntToRasterToolDescriptor
+org.puzzle.shell.gdal.raster.mnt.RasterToMntToolDescriptor
+org.puzzle.shell.gdal.raster.onefile.OneFileRasterConvertToolDescriptor
+org.puzzle.shell.gdal.vector.folder.FolderVectorConvertToolDescriptor
+org.puzzle.shell.gdal.vector.onefile.OneFileVectorConvertToolDescriptor
+org.puzzle.shell.gdal.bean.GDalInfoToolDescriptor

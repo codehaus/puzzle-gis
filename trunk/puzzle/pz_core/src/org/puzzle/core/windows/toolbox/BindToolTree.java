@@ -30,23 +30,19 @@ import org.openide.util.LookupListener;
 import org.puzzle.core.windows.toolbox.tree.JToolTree;
 import org.puzzle.core.windows.toolbox.tree.ToolTreeListener;
 import org.puzzle.core.tool.ToolDescriptor;
-import org.puzzle.core.tool.ToolService;
 
 /**
  * @author johann sorel
  */
 public class BindToolTree extends JToolTree implements LookupListener {
 
-    private ToolService service = Lookup.getDefault().lookup(ToolService.class);
     private Lookup.Result<ToolDescriptor> result = null;
 
     public BindToolTree() {
 
-        if (service != null) {
-            result = service.getLookup().lookupResult(ToolDescriptor.class);
-            result.addLookupListener(this);
-            reload(null);
-        }
+        result = Lookup.getDefault().lookupResult(ToolDescriptor.class);
+        result.addLookupListener(this);
+        reload(null);
 
         addToolTreeListener(new ToolTreeListener() {
 
