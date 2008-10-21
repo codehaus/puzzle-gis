@@ -28,8 +28,8 @@ import org.netbeans.api.project.ProjectInformation;
 import org.netbeans.spi.project.ui.support.CommonProjectActions;
 import org.openide.nodes.FilterNode;
 import org.openide.nodes.Node;
+import org.openide.util.ImageUtilities;
 import org.openide.util.Lookup;
-import org.openide.util.Utilities;
 import org.openide.util.lookup.Lookups;
 import org.openide.util.lookup.ProxyLookup;
 
@@ -50,7 +50,7 @@ import org.puzzle.core.project.GISProject;
 public class GISProjectNode extends FilterNode{
 
     private final String ICON_PATH = "org/puzzle/core/project/boussole.png";
-    private final ImageIcon ICON = new ImageIcon(Utilities.loadImage(ICON_PATH, true));
+    private final ImageIcon ICON = new ImageIcon(ImageUtilities.loadImage(ICON_PATH, true));
 
     private final GISProject project;
 

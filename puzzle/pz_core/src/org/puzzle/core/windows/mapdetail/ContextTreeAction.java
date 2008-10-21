@@ -23,8 +23,8 @@ package org.puzzle.core.windows.mapdetail;
 import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
+import org.openide.util.ImageUtilities;
 import org.openide.util.NbBundle;
-import org.openide.util.Utilities;
 import org.openide.windows.TopComponent;
 
 /**
@@ -35,7 +35,7 @@ public class ContextTreeAction extends AbstractAction {
 
     public ContextTreeAction() {
         super(NbBundle.getMessage(ContextTreeAction.class, "CTL_ContextTreeAction"));
-        putValue(SMALL_ICON, new ImageIcon(Utilities.loadImage(ContextTreeTopComponent.ICON_PATH, true)));
+        putValue(SMALL_ICON, new ImageIcon(ImageUtilities.loadImage(ContextTreeTopComponent.ICON_PATH, true)));
     }
 
     public void actionPerformed(ActionEvent evt) {

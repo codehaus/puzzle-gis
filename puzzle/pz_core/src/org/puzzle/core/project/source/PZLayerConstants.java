@@ -18,24 +18,16 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
-package org.puzzle.core.context;
-
-import org.puzzle.core.context.ContextEvent;
-import java.util.EventListener;
+package org.puzzle.core.project.source;
 
 /**
- * Listener for Application
- * 
- * @author johann sorel
+ * Key constants used it MapLayer UserProperties.
+ *
+ * @author  Johann Sorel (Puzzle-GIS)
+ * @author  Thomas Bonavia (comments)
  */
-public interface ContextListener extends EventListener{
-        
-    /**
-     * When a Context is activated
-     * 
-     * @param event the event
-     */
-    public void contextActivated(ContextEvent event);
-              
+public class PZLayerConstants{
+
+    public static final String KEY_LAYER_INFO = "pz_layer_source_info";
+
 }

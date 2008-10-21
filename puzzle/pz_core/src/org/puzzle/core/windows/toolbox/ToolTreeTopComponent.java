@@ -7,10 +7,10 @@ package org.puzzle.core.windows.toolbox;
 import java.awt.BorderLayout;
 import java.io.Serializable;
 import java.util.logging.Logger;
+import org.openide.util.ImageUtilities;
 import org.openide.util.NbBundle;
 import org.openide.windows.TopComponent;
 import org.openide.windows.WindowManager;
-import org.openide.util.Utilities;
 import org.puzzle.core.windows.toolbox.tree.JToolTree;
 
 /**
@@ -27,7 +27,7 @@ final class ToolTreeTopComponent extends TopComponent {
         initComponents();
         setName(NbBundle.getMessage(ToolTreeTopComponent.class, "CTL_ToolTreeTopComponent"));
         setToolTipText(NbBundle.getMessage(ToolTreeTopComponent.class, "HINT_ToolTreeTopComponent"));
-        setIcon(Utilities.loadImage(ICON_PATH, true));
+        setIcon(ImageUtilities.loadImage(ICON_PATH, true));
     }
 
     /** This method is called from within the constructor to

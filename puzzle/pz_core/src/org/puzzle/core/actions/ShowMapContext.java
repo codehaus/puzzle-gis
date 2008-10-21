@@ -26,7 +26,6 @@ import org.openide.util.HelpCtx;
 import org.openide.util.Lookup;
 import org.openide.util.NbBundle;
 import org.openide.util.actions.CookieAction;
-import org.puzzle.core.context.ContextService;
 import org.puzzle.core.project.filetype.GISContextDataObject;
 import org.puzzle.core.view.RendererChooser;
 import org.puzzle.core.view.MapView;
@@ -51,18 +50,16 @@ public final class ShowMapContext extends CookieAction {
     protected void performAction(Node[] activatedNodes) {
         if(activatedNodes.length == 0 ) return ;
         
-        GISContextDataObject dataObject = activatedNodes[0].getLookup().lookup(GISContextDataObject.class);
+        final GISContextDataObject dataObject = activatedNodes[0].getLookup().lookup(GISContextDataObject.class);
     
         if(dataObject == null) return;
         
-        MapContext context = dataObject.getContext();        
-        ContextService contextService = Lookup.getDefault().lookup(ContextService.class);
-        contextService.addContext(context);
+        final MapContext context = dataObject.getContext();
         
         if(context != null){
-            MapView view = RendererChooser.showChooserDialog(context);
+            final MapView view = RendererChooser.showChooserDialog(context);
             if(view != null){
-                ViewService viewService = Lookup.getDefault().lookup(ViewService.class);
+                final ViewService viewService = Lookup.getDefault().lookup(ViewService.class);
                 viewService.add(view);
         }
     }
