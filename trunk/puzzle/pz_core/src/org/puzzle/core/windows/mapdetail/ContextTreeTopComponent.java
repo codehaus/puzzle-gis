@@ -23,6 +23,8 @@ package org.puzzle.core.windows.mapdetail;
 import java.awt.BorderLayout;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Logger;
 import org.geotools.gui.swing.contexttree.JContextTree;
@@ -45,16 +47,25 @@ import org.geotools.gui.swing.propertyedit.LayerStylePropertyPanel;
 import org.geotools.gui.swing.propertyedit.PropertyPane;
 import org.geotools.gui.swing.propertyedit.filterproperty.JCQLPropertyPanel;
 import org.geotools.gui.swing.propertyedit.styleproperty.JSimpleStylePanel;
+import org.geotools.map.MapContext;
+import org.openide.util.ImageUtilities;
+import org.openide.util.Lookup;
+import org.openide.util.LookupEvent;
+import org.openide.util.LookupListener;
 import org.openide.util.NbBundle;
 import org.openide.util.Utilities;
 import org.openide.windows.TopComponent;
 import org.openide.windows.WindowManager;
+import org.puzzle.core.project.filetype.GISContextDataObject;
 
 /**
  * Top component which displays something.
  * @author : Johann Sorel (Puzzle-GIS)
  */
-final class ContextTreeTopComponent extends TopComponent {
+final class ContextTreeTopComponent extends TopComponent implements LookupListener{
+
+    private Lookup.Result result = null;
+
 
     private JContextTree tree = null;
     private static ContextTreeTopComponent instance;
@@ -65,13 +76,13 @@ final class ContextTreeTopComponent extends TopComponent {
         initComponents();
         setName(NbBundle.getMessage(ContextTreeTopComponent.class, "CTL_ContextTreeTopComponent"));
         setToolTipText(NbBundle.getMessage(ContextTreeTopComponent.class, "HINT_ContextTreeTopComponent"));
-        setIcon(Utilities.loadImage(ICON_PATH, true));
+        setIcon(ImageUtilities.loadImage(ICON_PATH, true));
 
     }
 
     public JContextTree getContextTree() {
 
-        BindContextTree tree = new BindContextTree();
+        final JContextTree tree = new JContextTree();
 
         tree.addColumn(new VisibleTreeTableColumn());
 
@@ -163,18 +174,31 @@ final class ContextTreeTopComponent extends TopComponent {
 
     @Override
     public void componentOpened() {
+        result = Utilities.actionsGlobalContext().lookupResult(GISContextDataObject.class);
+        result.addLookupListener (this);
+
         removeAll();
         if (tree == null) {
             tree = getContextTree();
         }
 
         add(BorderLayout.CENTER, tree);
+
+        requestActive();
     }
 
     @Override
     public void componentClosed() {
+        result.removeLookupListener (this);
+        result = null;
+
         removeAll();
         tree = null;
+    }
+
+    @Override
+    protected void componentShowing() {
+        super.componentShowing();
     }
 
     /** replaces this in object stream */
@@ -196,4 +220,26 @@ final class ContextTreeTopComponent extends TopComponent {
             return ContextTreeTopComponent.getDefault();
         }
     }
+
+    @Override
+    public void resultChanged(LookupEvent lookupEvent) {
+        final Lookup.Result r = (Lookup.Result) lookupEvent.getSource();
+        final Collection c = r.allInstances();
+        if (!c.isEmpty()) {
+            
+            final MapContext[] contexts = tree.getContexts();
+            //remove contexts non in the lookup
+            for (final MapContext context : contexts) {
+                tree.removeContext(context);
+            }
+
+            final Iterator ite = c.iterator();
+            while(ite.hasNext()){
+                final GISContextDataObject da = (GISContextDataObject) ite.next();
+                tree.addContext(da.getContext());
+            }
+            
+        }
+    }
+
 }

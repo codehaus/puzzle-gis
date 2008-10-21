@@ -26,7 +26,7 @@ import java.beans.IntrospectionException;
 import java.beans.Introspector;
 import java.beans.SimpleBeanInfo;
 import org.openide.loaders.UniFileLoader;
-import org.openide.util.Utilities;
+import org.openide.util.ImageUtilities;
 
 public class GISSourceDataLoaderBeanInfo extends SimpleBeanInfo {
 
@@ -42,7 +42,7 @@ public class GISSourceDataLoaderBeanInfo extends SimpleBeanInfo {
     @Override
     public Image getIcon(int type) {
         if (type == BeanInfo.ICON_COLOR_16x16 || type == BeanInfo.ICON_MONO_16x16) {
-            return Utilities.loadImage("org/puzzle/core/project/filetype/signal-1.png");
+            return ImageUtilities.loadImage("org/puzzle/core/project/filetype/signal-1.png");
         } else {
             return null;
         }

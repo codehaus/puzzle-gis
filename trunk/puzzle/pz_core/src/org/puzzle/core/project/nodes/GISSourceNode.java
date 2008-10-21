@@ -28,7 +28,7 @@ import org.netbeans.api.project.Project;
 import org.openide.loaders.DataObject;
 import org.openide.nodes.FilterNode;
 import org.openide.nodes.Node;
-import org.openide.util.Utilities;
+import org.openide.util.ImageUtilities;
 
 import org.puzzle.core.actions.NewDistantSource;
 import org.puzzle.core.actions.NewFileSource;
@@ -47,7 +47,7 @@ import org.puzzle.core.project.GISProject;
 public class GISSourceNode extends FilterNode {
 
     private final String ICON_PATH = "org/puzzle/core/project/source.png";
-    private final Image ICON = Utilities.loadImage(ICON_PATH, true);
+    private final Image ICON = ImageUtilities.loadImage(ICON_PATH, true);
 
     /**
      * Constructor.

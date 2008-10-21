@@ -61,14 +61,13 @@ import org.openide.filesystems.FileUtil;
 import org.openide.loaders.DataFolder;
 import org.openide.loaders.DataObject;
 import org.openide.loaders.DataObjectNotFoundException;
+import org.openide.util.ImageUtilities;
 import org.openide.util.Lookup;
-import org.openide.util.Utilities;
 import org.openide.util.lookup.AbstractLookup;
 import org.openide.util.lookup.InstanceContent;
 
-import org.puzzle.core.context.ContextService;
-import org.puzzle.core.context.LayerSource;
-import org.puzzle.core.context.PZLayerConstants;
+import org.puzzle.core.project.source.LayerSource;
+import org.puzzle.core.project.source.PZLayerConstants;
 import org.puzzle.core.project.filetype.GISContextDataObject;
 import org.puzzle.core.project.filetype.GISSourceDataObject;
 import org.puzzle.core.project.source.GISSource;
@@ -182,12 +181,6 @@ public class GISProject implements Project {
      * @param map   The {@code MapContext} to add to the project's {@code Lookup}.
      */
     public void removeContext(MapContext context) {
-
-        //remove context from context service lookup
-        ContextService contextService = Lookup.getDefault().lookup(ContextService.class);
-        if(contextService != null){
-            contextService.removeContext(context);
-        }
 
         //close existing views using this mapcontext
         final ViewService viewService = Lookup.getDefault().lookup(ViewService.class);
@@ -550,7 +543,7 @@ public class GISProject implements Project {
     private final class Info implements ProjectInformation {
         
         private final String ICON_PATH = "org/puzzle/core/project/boussole.png";
-        private final ImageIcon ICON = new ImageIcon(Utilities.loadImage(ICON_PATH, true));
+        private final ImageIcon ICON = new ImageIcon(ImageUtilities.loadImage(ICON_PATH, true));
         private final PropertyChangeSupport support = new PropertyChangeSupport(this);
         
         @Override

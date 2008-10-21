@@ -34,8 +34,8 @@ import org.geotools.style.MutableStyle;
 import org.geotools.style.RandomStyleFactory;
 import org.openide.WizardDescriptor;
 import org.openide.util.Utilities;
-import org.puzzle.core.context.LayerSource;
-import org.puzzle.core.context.PZLayerConstants;
+import org.puzzle.core.project.source.LayerSource;
+import org.puzzle.core.project.source.PZLayerConstants;
 import org.puzzle.core.project.GISProject;
 import org.puzzle.core.project.source.GISSource;
 
