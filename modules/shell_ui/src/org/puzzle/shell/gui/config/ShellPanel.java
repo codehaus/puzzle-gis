@@ -21,7 +21,17 @@
 
 package org.puzzle.shell.gui.config;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JButton;
 import javax.swing.JFileChooser;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import org.openide.awt.Mnemonics;
+import org.openide.util.NbBundle;
 import org.openide.util.NbPreferences;
 import org.puzzle.shell.gdal.ENV;
 
@@ -47,49 +57,46 @@ final class ShellPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jtf_path = new javax.swing.JTextField();
-        but_search = new javax.swing.JButton();
 
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel1, org.openide.util.NbBundle.getMessage(ShellPanel.class, "path_gdal")); // NOI18N
+        jLabel1 = new JLabel();
+        jtf_path = new JTextField();
+        but_search = new JButton();
 
+        Mnemonics.setLocalizedText(jLabel1, NbBundle.getMessage(ShellPanel.class, "path_gdal")); // NOI18N
         jtf_path.setEditable(false);
-
-        org.openide.awt.Mnemonics.setLocalizedText(but_search, org.openide.util.NbBundle.getMessage(ShellPanel.class, "ShellPanel.but_search.text")); // NOI18N
-        but_search.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        Mnemonics.setLocalizedText(but_search, NbBundle.getMessage(ShellPanel.class, "ShellPanel.but_search.text"));
+        but_search.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 but_searchActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        GroupLayout layout = new GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 430, Short.MAX_VALUE)
+            layout.createParallelGroup(Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jtf_path, javax.swing.GroupLayout.DEFAULT_SIZE, 322, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(ComponentPlacement.RELATED)
+                .addComponent(jtf_path, GroupLayout.DEFAULT_SIZE, 322, Short.MAX_VALUE)
+                .addPreferredGap(ComponentPlacement.RELATED)
                 .addComponent(but_search)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 45, Short.MAX_VALUE)
+            layout.createParallelGroup(Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(but_search)
-                    .addComponent(jtf_path, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jtf_path, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-private void but_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_but_searchActionPerformed
+private void but_searchActionPerformed(ActionEvent evt) {//GEN-FIRST:event_but_searchActionPerformed
         JFileChooser jfc = new JFileChooser();
         jfc.setMultiSelectionEnabled(false);
         jfc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
@@ -129,8 +136,8 @@ private void but_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton but_search;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField jtf_path;
+    private JButton but_search;
+    private JLabel jLabel1;
+    private JTextField jtf_path;
     // End of variables declaration//GEN-END:variables
 }

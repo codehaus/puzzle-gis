@@ -22,7 +22,7 @@
 package org.puzzle.shell.misc;
 
 import java.lang.ref.WeakReference;
-import org.puzzle.puzzlecore.swing.toolbox.tooltree.ToolTreePath;
+import org.puzzle.core.windows.toolbox.tree.ToolTreePath;
 
 /**
  *

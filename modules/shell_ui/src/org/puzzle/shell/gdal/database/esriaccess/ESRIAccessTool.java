@@ -20,15 +20,33 @@
  */
 package org.puzzle.shell.gdal.database.esriaccess;
 
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.io.File;
 import java.util.ResourceBundle;
+import javax.swing.BorderFactory;
+import javax.swing.ButtonGroup;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JTextField;
+import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.filechooser.FileFilter;
 import org.geotools.gui.swing.misc.filter.FileFilterFactory;
+import org.jdesktop.swingx.JXTitledSeparator;
+import org.openide.util.NbBundle;
 import org.puzzle.shell.gdal.ENV;
 import org.puzzle.shell.gdal.GDALTool;
 import org.puzzle.shell.misc.runtime.JRuntimePanel;
@@ -188,79 +206,79 @@ public class ESRIAccessTool extends JPanel implements GDALTool{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
-        jPanel5 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
-        jtf_base = new javax.swing.JTextField();
-        detail = new javax.swing.JButton();
-        chercher = new javax.swing.JButton();
-        jPanel4 = new javax.swing.JPanel();
-        lbl_sortie = new javax.swing.JLabel();
-        es_sortie = new javax.swing.JTextField();
-        es_jrb_toutes = new javax.swing.JRadioButton();
-        es_jrb_une = new javax.swing.JRadioButton();
-        es_nomcouche = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        es_chercher = new javax.swing.JButton();
-        jXTitledSeparator1 = new org.jdesktop.swingx.JXTitledSeparator();
 
-        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(ESRIAccessTool.class, "database"))); // NOI18N
+        buttonGroup1 = new ButtonGroup();
+        jPanel5 = new JPanel();
+        jLabel5 = new JLabel();
+        jtf_base = new JTextField();
+        detail = new JButton();
+        chercher = new JButton();
+        jPanel4 = new JPanel();
+        lbl_sortie = new JLabel();
+        es_sortie = new JTextField();
+        es_jrb_toutes = new JRadioButton();
+        es_jrb_une = new JRadioButton();
+        es_nomcouche = new JTextField();
+        jLabel1 = new JLabel();
+        es_chercher = new JButton();
+        jXTitledSeparator1 = new JXTitledSeparator();
 
-        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("org/puzzle/shell/gdal/database/esriaccess/Bundle"); // NOI18N
+        jPanel5.setBorder(BorderFactory.createTitledBorder(NbBundle.getMessage(ESRIAccessTool.class, "database"))); // NOI18N
+        ResourceBundle bundle = ResourceBundle.getBundle("org/puzzle/shell/gdal/database/esriaccess/Bundle"); // NOI18N
         jLabel5.setText(bundle.getString("access_db")); // NOI18N
 
-        detail.setText(org.openide.util.NbBundle.getMessage(ESRIAccessTool.class, "detail")); // NOI18N
-        detail.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        detail.setText(NbBundle.getMessage(ESRIAccessTool.class, "detail")); // NOI18N
+        detail.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 actionDetail(evt);
             }
         });
 
-        chercher.setText(org.openide.util.NbBundle.getMessage(ESRIAccessTool.class, "...")); // NOI18N
-        chercher.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        chercher.setText(NbBundle.getMessage(ESRIAccessTool.class, "...")); // NOI18N
+        chercher.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 actionChercher(evt);
             }
         });
 
-        org.jdesktop.layout.GroupLayout jPanel5Layout = new org.jdesktop.layout.GroupLayout(jPanel5);
+        GroupLayout jPanel5Layout = new GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
+
         jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jPanel5Layout.createSequentialGroup()
+            jPanel5Layout.createParallelGroup(Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .add(jPanel5Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jPanel5Layout.createSequentialGroup()
-                        .add(jLabel5)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jtf_base, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(chercher))
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, detail))
+                .addGroup(jPanel5Layout.createParallelGroup(Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(ComponentPlacement.RELATED)
+                        .addComponent(jtf_base, GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
+                        .addPreferredGap(ComponentPlacement.RELATED)
+                        .addComponent(chercher))
+                    .addComponent(detail, Alignment.TRAILING))
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jPanel5Layout.createSequentialGroup()
-                .add(jPanel5Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jLabel5)
-                    .add(jtf_base, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(chercher))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(detail))
+            jPanel5Layout.createParallelGroup(Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGroup(jPanel5Layout.createParallelGroup(Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jtf_base, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(chercher))
+                .addPreferredGap(ComponentPlacement.RELATED)
+                .addComponent(detail))
         );
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(ESRIAccessTool.class, "settings"))); // NOI18N
-
+        jPanel4.setBorder(BorderFactory.createTitledBorder(NbBundle.getMessage(ESRIAccessTool.class, "settings"))); // NOI18N
         lbl_sortie.setText(bundle.getString("output")); // NOI18N
 
-        es_sortie.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        es_sortie.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 esActionEdit(evt);
             }
         });
-        es_sortie.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
+        es_sortie.addFocusListener(new FocusAdapter() {
+            public void focusLost(FocusEvent evt) {
                 esActionLost(evt);
             }
         });
@@ -268,107 +286,107 @@ public class ESRIAccessTool extends JPanel implements GDALTool{
         buttonGroup1.add(es_jrb_toutes);
         es_jrb_toutes.setSelected(true);
         es_jrb_toutes.setText(bundle.getString("all_layers")); // NOI18N
-        es_jrb_toutes.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
-        es_jrb_toutes.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        es_jrb_toutes.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+        es_jrb_toutes.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        es_jrb_toutes.setMargin(new Insets(0, 0, 0, 0));
+        es_jrb_toutes.addItemListener(new ItemListener() {
+            public void itemStateChanged(ItemEvent evt) {
                 esActionToutes(evt);
             }
         });
 
         buttonGroup1.add(es_jrb_une);
         es_jrb_une.setText(bundle.getString("one_layer")); // NOI18N
-        es_jrb_une.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
-        es_jrb_une.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        es_jrb_une.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+
+        es_jrb_une.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        es_jrb_une.setMargin(new Insets(0, 0, 0, 0));
+        es_jrb_une.addItemListener(new ItemListener() {
+            public void itemStateChanged(ItemEvent evt) {
                 esActionUne(evt);
             }
         });
 
-        jLabel1.setText(org.openide.util.NbBundle.getMessage(ESRIAccessTool.class, "name")); // NOI18N
-
-        es_chercher.setText(org.openide.util.NbBundle.getMessage(ESRIAccessTool.class, "...")); // NOI18N
-        es_chercher.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jLabel1.setText(NbBundle.getMessage(ESRIAccessTool.class, "name")); // NOI18N
+        es_chercher.setText(NbBundle.getMessage(ESRIAccessTool.class, "...")); // NOI18N
+        es_chercher.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 esActionChercher(evt);
             }
         });
 
-        org.jdesktop.layout.GroupLayout jPanel4Layout = new org.jdesktop.layout.GroupLayout(jPanel4);
+        GroupLayout jPanel4Layout = new GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
+
         jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel4Layout.createSequentialGroup()
+            jPanel4Layout.createParallelGroup(Alignment.LEADING)
+            .addGroup(Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .add(jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(es_jrb_toutes)
-                    .add(jPanel4Layout.createSequentialGroup()
-                        .add(es_jrb_une)
-                        .add(18, 18, 18)
-                        .add(jLabel1)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(es_nomcouche, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE))
-                    .add(lbl_sortie)
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .add(es_sortie, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 358, Short.MAX_VALUE)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(es_chercher)))
+                .addGroup(jPanel4Layout.createParallelGroup(Alignment.LEADING)
+                    .addComponent(es_jrb_toutes)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(es_jrb_une)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(ComponentPlacement.RELATED)
+                        .addComponent(es_nomcouche, GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE))
+                    .addComponent(lbl_sortie)
+                    .addGroup(Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addComponent(es_sortie, GroupLayout.DEFAULT_SIZE, 387, Short.MAX_VALUE)
+                        .addPreferredGap(ComponentPlacement.RELATED)
+                        .addComponent(es_chercher)))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jPanel4Layout.createSequentialGroup()
-                .add(es_jrb_toutes)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(es_jrb_une)
-                    .add(jLabel1)
-                    .add(es_nomcouche, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(lbl_sortie)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(es_chercher)
-                    .add(es_sortie, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            jPanel4Layout.createParallelGroup(Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addComponent(es_jrb_toutes)
+                .addPreferredGap(ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(Alignment.BASELINE)
+                    .addComponent(es_jrb_une)
+                    .addComponent(jLabel1)
+                    .addComponent(es_nomcouche, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(ComponentPlacement.RELATED)
+                .addComponent(lbl_sortie)
+                .addPreferredGap(ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(Alignment.BASELINE)
+                    .addComponent(es_chercher)
+                    .addComponent(es_sortie, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jXTitledSeparator1.setTitle(org.openide.util.NbBundle.getMessage(ESRIAccessTool.class, "title")); // NOI18N
-
-        org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
+        jXTitledSeparator1.setTitle(NbBundle.getMessage(ESRIAccessTool.class, "title")); // NOI18N
+        GroupLayout layout = new GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(layout.createSequentialGroup()
+            layout.createParallelGroup(Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jXTitledSeparator1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 445, Short.MAX_VALUE)
-                    .add(jPanel5, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .add(jPanel4, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(Alignment.LEADING)
+                    .addComponent(jXTitledSeparator1, GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
+                    .addComponent(jPanel5, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel4, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(layout.createSequentialGroup()
+            layout.createParallelGroup(Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .add(jXTitledSeparator1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jPanel5, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jPanel4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jXTitledSeparator1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(ComponentPlacement.RELATED)
+                .addComponent(jPanel5, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(ComponentPlacement.RELATED)
+                .addComponent(jPanel4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(14, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-    private void esActionUne(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_esActionUne
+    private void esActionUne(ItemEvent evt) {//GEN-FIRST:event_esActionUne
         esTestName();
     }//GEN-LAST:event_esActionUne
 
-    private void esActionToutes(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_esActionToutes
+    private void esActionToutes(ItemEvent evt) {//GEN-FIRST:event_esActionToutes
         esTestName();
     }//GEN-LAST:event_esActionToutes
 
-    private void actionDetail(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actionDetail
+    private void actionDetail(ActionEvent evt) {//GEN-FIRST:event_actionDetail
 
         //ogrinfo  Ma_Base_de_donnees_Esri.mdb > C:/temp/monFichier.txt
 
@@ -389,7 +407,7 @@ public class ESRIAccessTool extends JPanel implements GDALTool{
         dia.setVisible(true);
     }//GEN-LAST:event_actionDetail
 
-    private void actionChercher(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actionChercher
+    private void actionChercher(ActionEvent evt) {//GEN-FIRST:event_actionChercher
 
         JFileChooser jfc = new JFileChooser();
         jfc.addChoosableFileFilter(FileFilterFactory.createFileFilter(FileFilterFactory.FORMAT.ACCESS_DATABASE));
@@ -407,15 +425,15 @@ public class ESRIAccessTool extends JPanel implements GDALTool{
         }
     }//GEN-LAST:event_actionChercher
 
-    private void esActionLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_esActionLost
+    private void esActionLost(FocusEvent evt) {//GEN-FIRST:event_esActionLost
         esTestName();
     }//GEN-LAST:event_esActionLost
 
-    private void esActionEdit(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_esActionEdit
+    private void esActionEdit(ActionEvent evt) {//GEN-FIRST:event_esActionEdit
         esTestName();
     }//GEN-LAST:event_esActionEdit
 
-    private void esActionChercher(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_esActionChercher
+    private void esActionChercher(ActionEvent evt) {//GEN-FIRST:event_esActionChercher
         JFileChooser jfc = new JFileChooser();
 
 
@@ -464,21 +482,21 @@ public class ESRIAccessTool extends JPanel implements GDALTool{
         esTestName();
     }//GEN-LAST:event_esActionChercher
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JButton chercher;
-    private javax.swing.JButton detail;
-    private javax.swing.JButton es_chercher;
-    private javax.swing.JRadioButton es_jrb_toutes;
-    private javax.swing.JRadioButton es_jrb_une;
-    private javax.swing.JTextField es_nomcouche;
-    private javax.swing.JTextField es_sortie;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private org.jdesktop.swingx.JXTitledSeparator jXTitledSeparator1;
-    private javax.swing.JTextField jtf_base;
-    private javax.swing.JLabel lbl_sortie;
+    private ButtonGroup buttonGroup1;
+    private JButton chercher;
+    private JButton detail;
+    private JButton es_chercher;
+    private JRadioButton es_jrb_toutes;
+    private JRadioButton es_jrb_une;
+    private JTextField es_nomcouche;
+    private JTextField es_sortie;
+    private JLabel jLabel1;
+    private JLabel jLabel5;
+    private JPanel jPanel4;
+    private JPanel jPanel5;
+    private JXTitledSeparator jXTitledSeparator1;
+    private JTextField jtf_base;
+    private JLabel lbl_sortie;
     // End of variables declaration//GEN-END:variables
     
     

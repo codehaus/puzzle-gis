@@ -22,16 +22,32 @@
 package org.puzzle.shell.gui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Component;
+import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.beans.IntrospectionException;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JSplitPane;
+import javax.swing.JTextArea;
+import javax.swing.JToolBar;
+import javax.swing.SwingConstants;
 import org.openide.explorer.propertysheet.PropertySheet;
 import org.openide.nodes.BeanNode;
 import org.openide.nodes.Node;
 import org.openide.util.Exceptions;
-import org.puzzle.puzzlecore.tool.ToolDescriptor;
+import org.openide.util.NbBundle;
+import org.puzzle.core.tool.ToolDescriptor;
 import org.puzzle.shell.misc.runtime.JRuntimePanel;
 import org.puzzle.shell.misc.runtime.ProcessEventListener;
 import org.puzzle.shell.misc.runtime.ProcessObject;
@@ -110,98 +126,98 @@ public class ShellToolPane extends javax.swing.JPanel implements PropertyChangeL
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jSplitPane1 = new javax.swing.JSplitPane();
-        jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        guiExec = new javax.swing.JButton();
-        panBean = new javax.swing.JPanel();
-        jToolBar1 = new javax.swing.JToolBar();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jSplitPane2 = new javax.swing.JSplitPane();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        guiCommand = new javax.swing.JTextArea();
-        panDOS = new javax.swing.JPanel();
+        jSplitPane1 = new JSplitPane();
+        jPanel1 = new JPanel();
+        jPanel2 = new JPanel();
+        guiExec = new JButton();
+        panBean = new JPanel();
+        jToolBar1 = new JToolBar();
+        jButton1 = new JButton();
+        jButton2 = new JButton();
+        jSplitPane2 = new JSplitPane();
+        jScrollPane1 = new JScrollPane();
+        guiCommand = new JTextArea();
+        panDOS = new JPanel();
 
         jSplitPane1.setBorder(null);
         jSplitPane1.setDividerLocation(300);
         jSplitPane1.setDividerSize(8);
 
-        jPanel1.setLayout(new java.awt.BorderLayout());
+        jPanel1.setLayout(new BorderLayout());
 
-        guiExec.setFont(guiExec.getFont().deriveFont(guiExec.getFont().getStyle() | java.awt.Font.BOLD));
-        guiExec.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/puzzle/shell/gui/runprog.png"))); // NOI18N
-        guiExec.setText(org.openide.util.NbBundle.getMessage(ShellToolPane.class, "exec")); // NOI18N
-        guiExec.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        guiExec.setFont(guiExec.getFont().deriveFont(guiExec.getFont().getStyle() | Font.BOLD));
+        guiExec.setIcon(new ImageIcon(getClass().getResource("/org/puzzle/shell/gui/runprog.png"))); // NOI18N
+        guiExec.setText(NbBundle.getMessage(ShellToolPane.class, "exec")); // NOI18N
+        guiExec.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 guiExecActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        GroupLayout jPanel2Layout = new GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(193, Short.MAX_VALUE)
+            jPanel2Layout.createParallelGroup(Alignment.LEADING)
+            .addGroup(Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(187, Short.MAX_VALUE)
                 .addComponent(guiExec)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            jPanel2Layout.createParallelGroup(Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(guiExec)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel1.add(jPanel2, java.awt.BorderLayout.PAGE_END);
+        jPanel1.add(jPanel2, BorderLayout.PAGE_END);
 
-        javax.swing.GroupLayout panBeanLayout = new javax.swing.GroupLayout(panBean);
+        GroupLayout panBeanLayout = new GroupLayout(panBean);
         panBean.setLayout(panBeanLayout);
         panBeanLayout.setHorizontalGroup(
-            panBeanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            panBeanLayout.createParallelGroup(Alignment.LEADING)
             .addGap(0, 300, Short.MAX_VALUE)
         );
         panBeanLayout.setVerticalGroup(
-            panBeanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 233, Short.MAX_VALUE)
+            panBeanLayout.createParallelGroup(Alignment.LEADING)
+            .addGap(0, 222, Short.MAX_VALUE)
         );
 
-        jPanel1.add(panBean, java.awt.BorderLayout.CENTER);
+        jPanel1.add(panBean, BorderLayout.CENTER);
 
         jToolBar1.setFloatable(false);
         jToolBar1.setRollover(true);
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/puzzle/shell/gui/fileexport.png"))); // NOI18N
-        jButton1.setText(org.openide.util.NbBundle.getMessage(ShellToolPane.class, "ShellToolPane.jButton1.text")); // NOI18N
+        jButton1.setIcon(new ImageIcon(getClass().getResource("/org/puzzle/shell/gui/fileexport.png"))); // NOI18N
+        jButton1.setText(NbBundle.getMessage(ShellToolPane.class, "ShellToolPane.jButton1.text")); // NOI18N
         jButton1.setEnabled(false);
         jButton1.setFocusable(false);
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton1.setHorizontalTextPosition(SwingConstants.CENTER);
+        jButton1.setVerticalTextPosition(SwingConstants.BOTTOM);
         jToolBar1.add(jButton1);
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/puzzle/shell/gui/fileopen.png"))); // NOI18N
-        jButton2.setText(org.openide.util.NbBundle.getMessage(ShellToolPane.class, "ShellToolPane.jButton2.text")); // NOI18N
+        jButton2.setIcon(new ImageIcon(getClass().getResource("/org/puzzle/shell/gui/fileopen.png"))); // NOI18N
+        jButton2.setText(NbBundle.getMessage(ShellToolPane.class, "ShellToolPane.jButton2.text")); // NOI18N
         jButton2.setEnabled(false);
         jButton2.setFocusable(false);
-        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton2.setHorizontalTextPosition(SwingConstants.CENTER);
+        jButton2.setVerticalTextPosition(SwingConstants.BOTTOM);
         jToolBar1.add(jButton2);
 
-        jPanel1.add(jToolBar1, java.awt.BorderLayout.PAGE_START);
+        jPanel1.add(jToolBar1, BorderLayout.PAGE_START);
 
         jSplitPane1.setLeftComponent(jPanel1);
 
         jSplitPane2.setBorder(null);
-        jSplitPane2.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
+        jSplitPane2.setOrientation(JSplitPane.VERTICAL_SPLIT);
 
         jScrollPane1.setBorder(null);
 
-        guiCommand.setBackground(new java.awt.Color(0, 0, 0));
+        guiCommand.setBackground(new Color(0, 0, 0));
         guiCommand.setColumns(20);
         guiCommand.setEditable(false);
-        guiCommand.setForeground(new java.awt.Color(255, 255, 255));
+        guiCommand.setForeground(new Color(255, 255, 255));
         guiCommand.setLineWrap(true);
         guiCommand.setRows(3);
         guiCommand.setBorder(null);
@@ -209,25 +225,25 @@ public class ShellToolPane extends javax.swing.JPanel implements PropertyChangeL
 
         jSplitPane2.setTopComponent(jScrollPane1);
 
-        panDOS.setBackground(new java.awt.Color(0, 0, 0));
-        panDOS.setLayout(new java.awt.GridLayout(1, 1));
+        panDOS.setBackground(new Color(0, 0, 0));
+        panDOS.setLayout(new GridLayout(1, 1));
         jSplitPane2.setBottomComponent(panDOS);
 
         jSplitPane1.setRightComponent(jSplitPane2);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        GroupLayout layout = new GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 630, Short.MAX_VALUE)
+            layout.createParallelGroup(Alignment.LEADING)
+            .addComponent(jSplitPane1, GroupLayout.DEFAULT_SIZE, 630, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE)
+            layout.createParallelGroup(Alignment.LEADING)
+            .addComponent(jSplitPane1, GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
-private void guiExecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guiExecActionPerformed
+private void guiExecActionPerformed(ActionEvent evt) {//GEN-FIRST:event_guiExecActionPerformed
     
     if(bean != null){
         ProcessObject process = bean.createProcess();    
@@ -259,18 +275,18 @@ private void guiExecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextArea guiCommand;
-    private javax.swing.JButton guiExec;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSplitPane jSplitPane1;
-    private javax.swing.JSplitPane jSplitPane2;
-    private javax.swing.JToolBar jToolBar1;
-    private javax.swing.JPanel panBean;
-    private javax.swing.JPanel panDOS;
+    private JTextArea guiCommand;
+    private JButton guiExec;
+    private JButton jButton1;
+    private JButton jButton2;
+    private JPanel jPanel1;
+    private JPanel jPanel2;
+    private JScrollPane jScrollPane1;
+    private JSplitPane jSplitPane1;
+    private JSplitPane jSplitPane2;
+    private JToolBar jToolBar1;
+    private JPanel panBean;
+    private JPanel panDOS;
     // End of variables declaration//GEN-END:variables
 
     public String getTitle() {

@@ -73,11 +73,11 @@
                     </run-dependency>
                 </dependency>
                 <dependency>
-                    <code-name-base>org.puzzle.puzzlecore</code-name-base>
+                    <code-name-base>org.puzzle.core</code-name-base>
                     <build-prerequisite/>
                     <compile-dependency/>
                     <run-dependency>
-                        <specification-version>0.0.1.0</specification-version>
+                        <specification-version>0.0.1.2</specification-version>
                     </run-dependency>
                 </dependency>
             </module-dependencies>

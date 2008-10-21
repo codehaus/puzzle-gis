@@ -21,14 +21,30 @@
 
 package org.puzzle.shell.gdal.vector.onefile;
 
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.io.File;
 import java.util.ResourceBundle;
+import javax.swing.BorderFactory;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.LayoutStyle.ComponentPlacement;
 import org.geotools.gui.swing.misc.filter.FileFilterFactory;
 import org.geotools.gui.swing.misc.filter.FileFilterFactory.FORMAT;
+import org.jdesktop.swingx.JXTitledSeparator;
+import org.openide.util.NbBundle;
 import org.puzzle.shell.gdal.ENV;
 import org.puzzle.shell.gdal.GDALTool;
 import org.puzzle.shell.misc.runtime.ProcessObject;
@@ -123,131 +139,131 @@ public class OneFileVectorConvertTool extends JPanel implements GDALTool{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jtf_entree = new javax.swing.JTextField();
-        but_chercher_entree = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        format = new javax.swing.JComboBox();
-        jtf_sortie = new javax.swing.JTextField();
-        but_chercher_sortie = new javax.swing.JButton();
-        jXTitledSeparator1 = new org.jdesktop.swingx.JXTitledSeparator();
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(OneFileVectorConvertTool.class, "files"))); // NOI18N
 
-        jLabel1.setText(org.openide.util.NbBundle.getMessage(OneFileVectorConvertTool.class, "input")); // NOI18N
+        jPanel1 = new JPanel();
+        jLabel1 = new JLabel();
+        jtf_entree = new JTextField();
+        but_chercher_entree = new JButton();
+        jLabel2 = new JLabel();
+        format = new JComboBox();
+        jtf_sortie = new JTextField();
+        but_chercher_sortie = new JButton();
+        jXTitledSeparator1 = new JXTitledSeparator();
 
-        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("org/puzzle/shell/gdal/vector/onefile/Bundle"); // NOI18N
+        jPanel1.setBorder(BorderFactory.createTitledBorder(NbBundle.getMessage(OneFileVectorConvertTool.class, "files"))); // NOI18N
+        jLabel1.setText(NbBundle.getMessage(OneFileVectorConvertTool.class, "input")); // NOI18N
+        ResourceBundle bundle = ResourceBundle.getBundle("org/puzzle/shell/gdal/vector/onefile/Bundle"); // NOI18N
         but_chercher_entree.setText(bundle.getString("...")); // NOI18N
-        but_chercher_entree.setPreferredSize(new java.awt.Dimension(45, 20));
-        but_chercher_entree.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        but_chercher_entree.setPreferredSize(new Dimension(45, 20));
+        but_chercher_entree.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 chercherEntree(evt);
             }
         });
 
         jLabel2.setText(bundle.getString("output")); // NOI18N
 
-        format.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "MicroStation (.dgn)", "Geography Markup Language (.gml)", "Google Earth / Map  (.kml)", "MapInfo Exchange (.mif)", "ESRI Shape (.shp)", "MapInfo  (.tab)" }));
-        format.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        format.setModel(new DefaultComboBoxModel(new String[] { "MicroStation (.dgn)", "Geography Markup Language (.gml)", "Google Earth / Map  (.kml)", "MapInfo Exchange (.mif)", "ESRI Shape (.shp)", "MapInfo  (.tab)" }));
+        format.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 formatChanged(evt);
             }
         });
 
-        jtf_sortie.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jtf_sortie.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 sortieAction(evt);
             }
         });
-        jtf_sortie.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
+        jtf_sortie.addFocusListener(new FocusAdapter() {
+            public void focusLost(FocusEvent evt) {
                 sortieLost(evt);
             }
         });
 
         but_chercher_sortie.setText(bundle.getString("...")); // NOI18N
-        but_chercher_sortie.setPreferredSize(new java.awt.Dimension(45, 20));
-        but_chercher_sortie.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        but_chercher_sortie.setPreferredSize(new Dimension(45, 20));
+        but_chercher_sortie.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 chercherSortie(evt);
             }
         });
 
-        org.jdesktop.layout.GroupLayout jPanel1Layout = new org.jdesktop.layout.GroupLayout(jPanel1);
+        GroupLayout jPanel1Layout = new GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
+
         jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jPanel1Layout.createSequentialGroup()
+            jPanel1Layout.createParallelGroup(Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jLabel1)
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .add(jtf_entree, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(but_chercher_entree, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .add(jLabel2)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 138, Short.MAX_VALUE)
-                        .add(format, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .add(jtf_sortie, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(but_chercher_sortie, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanel1Layout.createParallelGroup(Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addGroup(Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jtf_entree, GroupLayout.DEFAULT_SIZE, 411, Short.MAX_VALUE)
+                        .addPreferredGap(ComponentPlacement.RELATED)
+                        .addComponent(but_chercher_entree, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                    .addGroup(Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(ComponentPlacement.RELATED, 138, Short.MAX_VALUE)
+                        .addComponent(format, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                    .addGroup(Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jtf_sortie, GroupLayout.DEFAULT_SIZE, 411, Short.MAX_VALUE)
+                        .addPreferredGap(ComponentPlacement.RELATED)
+                        .addComponent(but_chercher_sortie, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jPanel1Layout.createSequentialGroup()
-                .add(jLabel1)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(but_chercher_entree, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(jtf_entree, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(format, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(jLabel2))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(but_chercher_sortie, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(jtf_sortie, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+            jPanel1Layout.createParallelGroup(Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jLabel1)
+                .addPreferredGap(ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(Alignment.BASELINE)
+                    .addComponent(but_chercher_entree, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtf_entree, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(Alignment.BASELINE)
+                    .addComponent(format, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addPreferredGap(ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(Alignment.BASELINE)
+                    .addComponent(but_chercher_sortie, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtf_sortie, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
-        jXTitledSeparator1.setTitle(org.openide.util.NbBundle.getMessage(OneFileVectorConvertTool.class, "title")); // NOI18N
-
-        org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
+        jXTitledSeparator1.setTitle(NbBundle.getMessage(OneFileVectorConvertTool.class, "title")); // NOI18N
+        GroupLayout layout = new GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(layout.createSequentialGroup()
+            layout.createParallelGroup(Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jXTitledSeparator1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 429, Short.MAX_VALUE)
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(Alignment.LEADING)
+                    .addComponent(jXTitledSeparator1, GroupLayout.DEFAULT_SIZE, 496, Short.MAX_VALUE)
+                    .addComponent(jPanel1, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(layout.createSequentialGroup()
+            layout.createParallelGroup(Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .add(jXTitledSeparator1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jXTitledSeparator1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(ComponentPlacement.RELATED)
+                .addComponent(jPanel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(13, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void sortieLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_sortieLost
+    private void sortieLost(FocusEvent evt) {//GEN-FIRST:event_sortieLost
         testName();
     }//GEN-LAST:event_sortieLost
 
-    private void sortieAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sortieAction
+    private void sortieAction(ActionEvent evt) {//GEN-FIRST:event_sortieAction
         testName();
     }//GEN-LAST:event_sortieAction
 
-    private void chercherSortie(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chercherSortie
+    private void chercherSortie(ActionEvent evt) {//GEN-FIRST:event_chercherSortie
         JFileChooser jfc = new JFileChooser();
         jfc.addChoosableFileFilter(FileFilterFactory.createFileFilter(FORMAT.MICROSTATION_DGN));
         jfc.addChoosableFileFilter(FileFilterFactory.createFileFilter(FORMAT.AUTOCAD_DWG));
@@ -271,7 +287,7 @@ public class OneFileVectorConvertTool extends JPanel implements GDALTool{
         }
     }//GEN-LAST:event_chercherSortie
 
-    private void chercherEntree(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chercherEntree
+    private void chercherEntree(ActionEvent evt) {//GEN-FIRST:event_chercherEntree
 
         JFileChooser jfc = new JFileChooser();
         jfc.addChoosableFileFilter(FileFilterFactory.createFileFilter(FORMAT.MICROSTATION_DGN));
@@ -296,19 +312,19 @@ public class OneFileVectorConvertTool extends JPanel implements GDALTool{
         }
     }//GEN-LAST:event_chercherEntree
 
-    private void formatChanged(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_formatChanged
+    private void formatChanged(ActionEvent evt) {//GEN-FIRST:event_formatChanged
         testName();
     }//GEN-LAST:event_formatChanged
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton but_chercher_entree;
-    private javax.swing.JButton but_chercher_sortie;
-    private javax.swing.JComboBox format;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JPanel jPanel1;
-    private org.jdesktop.swingx.JXTitledSeparator jXTitledSeparator1;
-    private javax.swing.JTextField jtf_entree;
-    private javax.swing.JTextField jtf_sortie;
+    private JButton but_chercher_entree;
+    private JButton but_chercher_sortie;
+    private JComboBox format;
+    private JLabel jLabel1;
+    private JLabel jLabel2;
+    private JPanel jPanel1;
+    private JXTitledSeparator jXTitledSeparator1;
+    private JTextField jtf_entree;
+    private JTextField jtf_sortie;
     // End of variables declaration//GEN-END:variables
    
     

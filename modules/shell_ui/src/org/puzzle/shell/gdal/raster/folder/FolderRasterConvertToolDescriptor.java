@@ -25,7 +25,7 @@ import java.awt.Component;
 import java.awt.Image;
 import java.beans.BeanInfo;
 import org.openide.util.NbBundle;
-import org.puzzle.puzzlecore.tool.AbstractToolDescriptor;
+import org.puzzle.core.tool.AbstractToolDescriptor;
 import org.puzzle.shell.gdal.ENV;
 import org.puzzle.shell.gdal.GDALProcessWidgetTool;
 import org.puzzle.shell.misc.ShellTreePathConstants;

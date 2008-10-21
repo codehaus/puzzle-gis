@@ -22,7 +22,7 @@
 package org.puzzle.shell.gui;
 
 import java.beans.PropertyChangeListener;
-import org.puzzle.puzzlecore.tool.ToolDescriptor;
+import org.puzzle.core.tool.ToolDescriptor;
 import org.puzzle.shell.misc.runtime.ProcessObject;
 
 /**

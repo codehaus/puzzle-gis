@@ -20,12 +20,29 @@
  */
 package org.puzzle.shell.gdal.raster.mnt;
 
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.io.File;
+import javax.swing.BorderFactory;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.LayoutStyle.ComponentPlacement;
 import org.geotools.gui.swing.misc.filter.FileFilterFactory;
 import org.geotools.gui.swing.misc.filter.FileFilterFactory.FORMAT;
+import org.jdesktop.swingx.JXTitledSeparator;
+import org.openide.util.NbBundle;
 import org.puzzle.shell.gdal.ENV;
 import org.puzzle.shell.gdal.GDALTool;
 import org.puzzle.shell.misc.runtime.ProcessObject;
@@ -120,134 +137,134 @@ public class MntToRasterTool extends javax.swing.JPanel implements GDALTool {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel4 = new javax.swing.JPanel();
-        mr_chercher_entree = new javax.swing.JButton();
-        mr_jtf_sortie = new javax.swing.JTextField();
-        mr_jtf_entree = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        mr_format = new javax.swing.JComboBox();
-        mr_chercher_sortie = new javax.swing.JButton();
-        jXTitledSeparator1 = new org.jdesktop.swingx.JXTitledSeparator();
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(MntToRasterTool.class, "files"))); // NOI18N
 
-        mr_chercher_entree.setText(org.openide.util.NbBundle.getMessage(MntToRasterTool.class, "...")); // NOI18N
-        mr_chercher_entree.setPreferredSize(new java.awt.Dimension(45, 20));
-        mr_chercher_entree.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+
+        jPanel4 = new JPanel();
+        mr_chercher_entree = new JButton();
+        mr_jtf_sortie = new JTextField();
+        mr_jtf_entree = new JTextField();
+        jLabel4 = new JLabel();
+        jLabel5 = new JLabel();
+        mr_format = new JComboBox();
+        mr_chercher_sortie = new JButton();
+        jXTitledSeparator1 = new JXTitledSeparator();
+
+        jPanel4.setBorder(BorderFactory.createTitledBorder(NbBundle.getMessage(MntToRasterTool.class, "files"))); // NOI18N
+        mr_chercher_entree.setText(NbBundle.getMessage(MntToRasterTool.class, "...")); // NOI18N
+        mr_chercher_entree.setPreferredSize(new Dimension(45, 20));
+        mr_chercher_entree.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 mr_rechercher_entree(evt);
             }
         });
 
-        mr_jtf_sortie.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        mr_jtf_sortie.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 mr_sortie_valid(evt);
             }
         });
-        mr_jtf_sortie.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
+        mr_jtf_sortie.addFocusListener(new FocusAdapter() {
+            public void focusLost(FocusEvent evt) {
                 mr_sortielost(evt);
             }
         });
 
-        jLabel4.setText(org.openide.util.NbBundle.getMessage(MntToRasterTool.class, "output")); // NOI18N
-
-        jLabel5.setText(org.openide.util.NbBundle.getMessage(MntToRasterTool.class, "input")); // NOI18N
-
-        mr_format.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ERDAS IMAGE (.img)", "ERMapper Compressed Wavelets (.ecw)", "Joint Photograhic Experts Group (.jpg)", "JPEG2000 Kakadu (.j2k)", "JPEG2000 ERMapper (.jp2)", "Portable Network Graphics (.png)", "GEOTIF (.tif)" }));
-        mr_format.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jLabel4.setText(NbBundle.getMessage(MntToRasterTool.class, "output")); // NOI18N
+        jLabel5.setText(NbBundle.getMessage(MntToRasterTool.class, "input")); // NOI18N
+        mr_format.setModel(new DefaultComboBoxModel(new String[] { "ERDAS IMAGE (.img)", "ERMapper Compressed Wavelets (.ecw)", "Joint Photograhic Experts Group (.jpg)", "JPEG2000 Kakadu (.j2k)", "JPEG2000 ERMapper (.jp2)", "Portable Network Graphics (.png)", "GEOTIF (.tif)" }));
+        mr_format.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 mr_format(evt);
             }
         });
 
-        mr_chercher_sortie.setText(org.openide.util.NbBundle.getMessage(MntToRasterTool.class, "...")); // NOI18N
-        mr_chercher_sortie.setPreferredSize(new java.awt.Dimension(45, 20));
-        mr_chercher_sortie.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        mr_chercher_sortie.setText(NbBundle.getMessage(MntToRasterTool.class, "...")); // NOI18N
+        mr_chercher_sortie.setPreferredSize(new Dimension(45, 20));
+        mr_chercher_sortie.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 mr_rechercher_sortie(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        GroupLayout jPanel4Layout = new GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
+
         jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            jPanel4Layout.createParallelGroup(Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel4Layout.createParallelGroup(Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(mr_jtf_sortie, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(mr_chercher_sortie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(mr_jtf_sortie, GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE)
+                        .addPreferredGap(ComponentPlacement.RELATED)
+                        .addComponent(mr_chercher_sortie, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel5)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
+                        .addComponent(jLabel4, GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
                         .addGap(4, 4, 4)
-                        .addComponent(mr_format, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(mr_format, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(mr_jtf_entree, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(mr_chercher_entree, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(mr_jtf_entree, GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE)
+                        .addPreferredGap(ComponentPlacement.RELATED)
+                        .addComponent(mr_chercher_entree, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            jPanel4Layout.createParallelGroup(Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(mr_chercher_entree, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(mr_jtf_entree, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addPreferredGap(ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(Alignment.BASELINE)
+                    .addComponent(mr_chercher_entree, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mr_jtf_entree, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(mr_format, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(mr_jtf_sortie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(mr_chercher_sortie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(mr_format, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(Alignment.BASELINE)
+                    .addComponent(mr_jtf_sortie, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mr_chercher_sortie, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jXTitledSeparator1.setTitle(org.openide.util.NbBundle.getMessage(MntToRasterTool.class, "mnttoraster")); // NOI18N
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        jXTitledSeparator1.setTitle(NbBundle.getMessage(MntToRasterTool.class, "mnttoraster")); // NOI18N
+        GroupLayout layout = new GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            layout.createParallelGroup(Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jXTitledSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(Alignment.TRAILING)
+                    .addComponent(jPanel4, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jXTitledSeparator1, GroupLayout.DEFAULT_SIZE, 455, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            layout.createParallelGroup(Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jXTitledSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jXTitledSeparator1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(ComponentPlacement.RELATED)
+                .addComponent(jPanel4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(13, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void mr_sortielost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_mr_sortielost
+    private void mr_sortielost(FocusEvent evt) {//GEN-FIRST:event_mr_sortielost
         mr_testName();
     }//GEN-LAST:event_mr_sortielost
 
-    private void mr_sortie_valid(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mr_sortie_valid
+    private void mr_sortie_valid(ActionEvent evt) {//GEN-FIRST:event_mr_sortie_valid
         mr_testName();
     }//GEN-LAST:event_mr_sortie_valid
 
-    private void mr_format(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mr_format
+    private void mr_format(ActionEvent evt) {//GEN-FIRST:event_mr_format
         mr_testName();
     }//GEN-LAST:event_mr_format
 
-    private void mr_rechercher_sortie(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mr_rechercher_sortie
+    private void mr_rechercher_sortie(ActionEvent evt) {//GEN-FIRST:event_mr_rechercher_sortie
 
         JFileChooser jfc = new JFileChooser();
         jfc.addChoosableFileFilter(FileFilterFactory.createFileFilter(FORMAT.ERMAPPER_COMPRESSED_WAVELETS));
@@ -271,7 +288,7 @@ public class MntToRasterTool extends javax.swing.JPanel implements GDALTool {
         }
     }//GEN-LAST:event_mr_rechercher_sortie
 
-    private void mr_rechercher_entree(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mr_rechercher_entree
+    private void mr_rechercher_entree(ActionEvent evt) {//GEN-FIRST:event_mr_rechercher_entree
 
         JFileChooser jfc = new JFileChooser();
         jfc.addChoosableFileFilter(FileFilterFactory.createFileFilter(FORMAT.ESRI_ASCII_GRID));
@@ -291,15 +308,15 @@ public class MntToRasterTool extends javax.swing.JPanel implements GDALTool {
 
     }//GEN-LAST:event_mr_rechercher_entree
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JPanel jPanel4;
-    private org.jdesktop.swingx.JXTitledSeparator jXTitledSeparator1;
-    private javax.swing.JButton mr_chercher_entree;
-    private javax.swing.JButton mr_chercher_sortie;
-    private javax.swing.JComboBox mr_format;
-    private javax.swing.JTextField mr_jtf_entree;
-    private javax.swing.JTextField mr_jtf_sortie;
+    private JLabel jLabel4;
+    private JLabel jLabel5;
+    private JPanel jPanel4;
+    private JXTitledSeparator jXTitledSeparator1;
+    private JButton mr_chercher_entree;
+    private JButton mr_chercher_sortie;
+    private JComboBox mr_format;
+    private JTextField mr_jtf_entree;
+    private JTextField mr_jtf_sortie;
     // End of variables declaration//GEN-END:variables
 
     public JComponent getComponent() {

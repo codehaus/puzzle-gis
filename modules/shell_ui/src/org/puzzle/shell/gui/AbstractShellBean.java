@@ -24,7 +24,7 @@ package org.puzzle.shell.gui;
 import java.awt.Component;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-import org.puzzle.puzzlecore.tool.AbstractToolDescriptor;
+import org.puzzle.core.tool.AbstractToolDescriptor;
 
 
 /**

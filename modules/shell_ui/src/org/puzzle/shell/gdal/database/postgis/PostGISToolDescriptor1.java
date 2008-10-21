@@ -10,7 +10,7 @@ import java.awt.Image;
 import java.beans.BeanInfo;
 import java.util.ResourceBundle;
 import org.openide.util.Utilities;
-import org.puzzle.puzzlecore.tool.AbstractToolDescriptor;
+import org.puzzle.core.tool.AbstractToolDescriptor;
 import org.puzzle.shell.gdal.GDALProcessWidgetTool;
 import org.puzzle.shell.misc.ShellTreePathConstants;
 
