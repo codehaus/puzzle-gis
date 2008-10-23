@@ -21,18 +21,36 @@
 package org.puzzle.core.view;
 
 import java.awt.Image;
+
 import org.geotools.map.MapContext;
 
 /**
+ * A rendering service is a service providing map view components.
  *
  * @author Johann Sorel (Puzzle-GIS)
  */
 public interface RenderingService {
 
-    public Image getIcon();
+    /**
+     * A small image used to symbolize the rendering engine.
+     *
+     * @return Image or nul if none
+     */
+    Image getIcon();
 
-    public String getTitle();
-    
+    /**
+     * The name of the rendering engine.
+     *
+     * @return String, never null.
+     */
+    String getTitle();
+
+    /**
+     * Create a map view window for the provided mapcontext.
+     * 
+     * @param context : mapcontext to display
+     * @return MapView
+     */
     MapView createView(MapContext context);
     
 }

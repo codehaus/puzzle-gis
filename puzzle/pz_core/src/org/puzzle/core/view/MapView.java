@@ -27,14 +27,20 @@ import org.openide.util.lookup.Lookups;
 import org.openide.windows.TopComponent;
 
 /**
+ * A map view is a windows component displaying a map widget.
+ * This component is automaticly registered in the ViewService when opened
+ * and removed when closed.
  *
  * @author Johann Sorel (Puzzle-GIS)
  */
 public abstract class MapView extends TopComponent {
 
+    /**
+     * Map2D widget, is display at the center of the window.
+     */
     protected Map2D map;
     
-    public MapView(Map2D map){
+    public MapView(final Map2D map){
         super();
         
         associateLookup( Lookups.singleton(this));
@@ -44,19 +50,35 @@ public abstract class MapView extends TopComponent {
         add(BorderLayout.CENTER,map.getComponent());
         revalidate();
     }
-    
+
+    /**
+     * Get the map2D widget of this view.
+     *
+     * @return Map2D
+     */
     public Map2D getMap() {
         return map;
     }
 
+    /**
+     * Returns the mapcontext displayed by the map widget.
+     * 
+     * @return MapContext
+     */
     public abstract MapContext getContext();
 
+    /**
+     * {@inheritDoc }
+     */
     @Override
     protected void componentOpened() {
         ViewService.add(this);
         super.componentOpened();
     }
 
+    /**
+     * {@inheritDoc }
+     */
     @Override
     protected void componentClosed() {
         ViewService.remove(this);
@@ -65,11 +87,17 @@ public abstract class MapView extends TopComponent {
         super.componentClosed();
     }
 
+    /**
+     * {@inheritDoc }
+     */
     @Override
     protected void componentActivated() {
         super.componentActivated();
     }
 
+    /**
+     * {@inheritDoc }
+     */
     @Override
     public int getPersistenceType() {
         return PERSISTENCE_NEVER;
