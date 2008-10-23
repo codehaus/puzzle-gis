@@ -21,22 +21,23 @@
 package org.puzzle.core.actions;
 
 import java.util.Collection;
+
 import org.geotools.map.MapContext;
+
 import org.openide.nodes.Node;
 import org.openide.util.HelpCtx;
 import org.openide.util.Lookup;
-import org.openide.util.NbBundle;
 import org.openide.util.actions.CookieAction;
+
 import org.puzzle.core.project.filetype.GISContextDataObject;
 import org.puzzle.core.view.RendererChooser;
 import org.puzzle.core.view.MapView;
 import org.puzzle.core.view.RenderingService;
-import org.puzzle.core.view.ViewService;
 
 /**
  * An action allowing the user to display a context in a map.
  * 
- * @author  Johann Sorel
+ * @author  Johann Sorel (Puzzle-GIS)
  * @author  Thomas Bonavia (comments)
  * 
  * @see     org.openide.util.actions.CookieAction
@@ -90,7 +91,7 @@ public final class ShowMapContext extends CookieAction {
      */
     @Override
     public String getName() {
-        return NbBundle.getMessage(ShowMapContext.class, "CTL_ShowMapContext");
+        return Utilities.getString("showMap");
     }
 
     /**
@@ -103,16 +104,25 @@ public final class ShowMapContext extends CookieAction {
         return new Class[]{GISContextDataObject.class};
     }
 
+    /**
+     * {@inheritDoc }
+     */
     @Override
     protected String iconResource() {
         return "org/puzzle/core/actions/showMap.png";
     }
 
+    /**
+     * {@inheritDoc }
+     */
     @Override
     public HelpCtx getHelpCtx() {
         return HelpCtx.DEFAULT_HELP;
     }
 
+    /**
+     * {@inheritDoc }
+     */
     @Override
     protected boolean asynchronous() {
         return false;

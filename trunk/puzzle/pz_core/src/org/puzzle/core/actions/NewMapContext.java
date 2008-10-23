@@ -26,8 +26,10 @@ import java.util.Enumeration;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.AbstractAction;
+
 import org.netbeans.api.project.Project;
 import org.netbeans.api.project.ui.OpenProjects;
+
 import org.openide.DialogDisplayer;
 import org.openide.NotifyDescriptor;
 import org.openide.filesystems.FileObject;
@@ -35,8 +37,14 @@ import org.openide.loaders.DataFolder;
 import org.openide.loaders.DataObject;
 import org.openide.loaders.DataObjectNotFoundException;
 import org.openide.loaders.TemplateWizard;
+
 import org.puzzle.core.project.GISProject;
 
+/**
+ * Action to create a new map.
+ *
+ * @author Johann Sorel (Puzzle-GIS)
+ */
 public final class NewMapContext extends AbstractAction {
 
     private final GISProject project;
@@ -46,11 +54,13 @@ public final class NewMapContext extends AbstractAction {
     }
     
     public NewMapContext(final GISProject project){
-        super("New map");
+        super(Utilities.getString("newMap"));
         this.project = project;
     }
     
-    
+    /**
+     * {@inheritDoc }
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         final Project candidate;
@@ -63,8 +73,7 @@ public final class NewMapContext extends AbstractAction {
         if(candidate != null && candidate instanceof GISProject) {
             final GISProject gis = (GISProject) candidate;
             TemplateWizard tw = new TemplateWizard();
-            //System.out.println("Template folder = " + tw.getTemplatesFolder().getPrimaryFile().getPath());
-            Enumeration<DataObject> enu = tw.getTemplatesFolder().children();
+            final Enumeration<DataObject> enu = tw.getTemplatesFolder().children();
             DataObject temp = null;
             while (enu.hasMoreElements()) {
                 temp = enu.nextElement();
@@ -90,7 +99,7 @@ public final class NewMapContext extends AbstractAction {
                 }
             }
         } else {
-            NotifyDescriptor d =  new NotifyDescriptor.Message("Main project is not a GIS project", NotifyDescriptor.INFORMATION_MESSAGE);
+            NotifyDescriptor d =  new NotifyDescriptor.Message(Utilities.getString("projectIsNotGIS"), NotifyDescriptor.INFORMATION_MESSAGE);
             DialogDisplayer.getDefault().notify(d);
         }
         

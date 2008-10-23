@@ -30,15 +30,23 @@ import org.openide.DialogDisplayer;
 import org.openide.loaders.DataObject;
 import org.openide.nodes.Node;
 import org.openide.util.HelpCtx;
-import org.openide.util.NbBundle;
 import org.openide.util.actions.CookieAction;
 
 import org.puzzle.core.project.GISProject;
 import org.puzzle.core.project.filetype.GISSourceDataObject;
 import org.puzzle.core.project.source.GISSource;
 
+/**
+ *  Action to show a layer creation wizard, this wizard will query the source
+ *  and add a maplayer is one of the project map context.
+ *
+ * @author Johann Sorel (Puzzle-GIS)
+ */
 public final class ShowLayerWizard extends CookieAction {
 
+    /**
+     * {@inheritDoc }
+     */
     @Override
     protected void performAction(Node[] activatedNodes) {
         final GISSourceDataObject dataObject = (GISSourceDataObject) activatedNodes[0].getLookup().lookup(DataObject.class);
@@ -51,27 +59,39 @@ public final class ShowLayerWizard extends CookieAction {
         if(contexts.size() > 0 && prj != null){
             source.showLayerWizard(contexts, prj);
         }else{
-            final DialogDescriptor desc = new DialogDescriptor("No maps in the project", "Warning", true, null);
+            final DialogDescriptor desc = new DialogDescriptor(Utilities.getString("projectHasNoMap"), Utilities.getString("warning"), true, null);
             DialogDisplayer.getDefault().notify(desc);
         }
         
     }
 
+    /**
+     * {@inheritDoc }
+     */
     @Override
     protected int mode() {
         return CookieAction.MODE_EXACTLY_ONE;
     }
 
+    /**
+     * {@inheritDoc }
+     */
     @Override
     public String getName() {
-        return NbBundle.getMessage(ShowLayerWizard.class, "CTL_ShowLayerWizard");
+        return Utilities.getString("showLayerWizard");
     }
 
+    /**
+     * {@inheritDoc }
+     */
     @Override
     protected Class[] cookieClasses() {
         return new Class[]{DataObject.class};
     }
 
+    /**
+     * {@inheritDoc }
+     */
     @Override
     protected void initialize() {
         super.initialize();
@@ -79,11 +99,17 @@ public final class ShowLayerWizard extends CookieAction {
         putValue("noIconInMenu", Boolean.TRUE);
     }
 
+    /**
+     * {@inheritDoc }
+     */
     @Override
     public HelpCtx getHelpCtx() {
         return HelpCtx.DEFAULT_HELP;
     }
 
+    /**
+     * {@inheritDoc }
+     */
     @Override
     protected boolean asynchronous() {
         return false;
