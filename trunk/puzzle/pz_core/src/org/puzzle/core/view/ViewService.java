@@ -25,6 +25,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
+ * Utility class where you can obtain the list of all map views.
  *
  * @author Johann Sorel (Puzzle-GIS)
  */
@@ -32,14 +33,25 @@ public final class ViewService {
 
     private static final Set<MapView> views = Collections.synchronizedSet(new HashSet<MapView>());
 
+    /**
+     * Get a set of all views.
+     * 
+     * @return immutable set of mapView , never null, can be empty.
+     */
     public static final Set<MapView> getViews(){
         return Collections.unmodifiableSet(views);
     }
 
+    /**
+     * Automaticly called by the mapview when it is opened.
+     */
     static final void add(MapView view){
 
     }
 
+    /**
+     * Automaticly called by the mapview when it is closed.
+     */
     static final void remove(MapView view){
 
     }

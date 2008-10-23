@@ -44,9 +44,10 @@ import org.openide.util.HelpCtx;
 import org.openide.util.Lookup;
 
 /**
- * Panel to choose the Renderer.
+ * Panel to choose the rendering engine.
+ * It can used in a wizard.
  * 
- * @author Johann Sorel
+ * @author Johann Sorel (Puzzle-GIS)
  */
 public class RendererChooser extends JPanel implements WizardDescriptor.Panel {
 
@@ -64,9 +65,12 @@ public class RendererChooser extends JPanel implements WizardDescriptor.Panel {
         
     }
 
+    /**
+     * {@inheritDoc }
+     */
     @Override
     public String getName() {
-        return "Choose renderer";
+        return Utilities.getString("chooseRenderer");
     }
     
     private JPanel createServicePane(RenderingService service){
@@ -95,13 +99,17 @@ public class RendererChooser extends JPanel implements WizardDescriptor.Panel {
         return null;
     }
     
-    
+    /**
+     * Show a wizard to choose the rendering engine and return the resulting
+     * map view.
+     * @return MapView or null if wizard was canceled.
+     */
     public static MapView showChooserDialog(MapContext context){
         final RendererChooser chooser = new RendererChooser();
         final WizardDescriptor wizardDescriptor = new WizardDescriptor(chooser.getPanels());
         // {0} will be replaced by WizardDesriptor.Panel.getComponent().getName()
         wizardDescriptor.setTitleFormat(new MessageFormat("{0}"));
-        wizardDescriptor.setTitle("Choose renderer");
+        wizardDescriptor.setTitle(Utilities.getString("chooseRenderer"));
         Dialog dialog = DialogDisplayer.getDefault().createDialog(wizardDescriptor);
         dialog.setVisible(true);
         dialog.toFront();
@@ -125,67 +133,87 @@ public class RendererChooser extends JPanel implements WizardDescriptor.Panel {
             panels = new WizardDescriptor.Panel[]{
                         this
                     };
-            String[] steps = new String[panels.length];
+            final String[] steps = new String[panels.length];
             for (int i = 0; i < panels.length; i++) {
-                Component c = panels[i].getComponent();
+                final Component c = panels[i].getComponent();
                 // Default step name to component name of panel. Mainly useful
                 // for getting the name of the target chooser to appear in the
                 // list of steps.
                 steps[i] = c.getName();
-                if (c instanceof JComponent) { // assume Swing components
-                    JComponent jc = (JComponent) c;
+                if (c instanceof JComponent) {
+                    final JComponent jc = (JComponent) c;
                     // Sets step number of a component
-                    // TODO if using org.openide.dialogs >= 7.8, can use WizardDescriptor.PROP_*:
-                    jc.putClientProperty("WizardPanel_contentSelectedIndex", new Integer(i));
+                    jc.putClientProperty(WizardDescriptor.PROP_CONTENT_SELECTED_INDEX, new Integer(i));
                     // Sets steps names for a panel
-                    jc.putClientProperty("WizardPanel_contentData", steps);
+                    jc.putClientProperty(WizardDescriptor.PROP_CONTENT_DATA, steps);
                     // Turn on subtitle creation on each step
-                    jc.putClientProperty("WizardPanel_autoWizardStyle", Boolean.TRUE);
+                    jc.putClientProperty(WizardDescriptor.PROP_AUTO_WIZARD_STYLE, Boolean.TRUE);
                     // Show steps on the left side with the image on the background
-                    jc.putClientProperty("WizardPanel_contentDisplayed", Boolean.TRUE);
+                    jc.putClientProperty(WizardDescriptor.PROP_CONTENT_DISPLAYED, Boolean.TRUE);
                     // Turn on numbering of all steps
-                    jc.putClientProperty("WizardPanel_contentNumbered", Boolean.TRUE);
+                    jc.putClientProperty(WizardDescriptor.PROP_CONTENT_NUMBERED, Boolean.TRUE);
                 }
             }
         return panels;
     }
 
+    /**
+     * {@inheritDoc }
+     */
     @Override
     public Component getComponent() {
         return this;
     }
 
+    /**
+     * {@inheritDoc }
+     */
     @Override
     public HelpCtx getHelp() {
         // Show no Help button for this panel:
         return HelpCtx.DEFAULT_HELP;
-    // If you have context help:
-    // return new HelpCtx(SampleWizardPanel1.class);
+        // If you have context help:
+        // return new HelpCtx(SampleWizardPanel1.class);
     }
 
+    /**
+     * {@inheritDoc }
+     */
     @Override
     public boolean isValid() {
         // If it is always OK to press Next or Finish, then:
         return true;
-    // If it depends on some condition (form filled out...), then:
-    // return someCondition();
-    // and when this condition changes (last form field filled in...) then:
-    // fireChangeEvent();
-    // and uncomment the complicated stuff below.
+        // If it depends on some condition (form filled out...), then:
+        // return someCondition();
+        // and when this condition changes (last form field filled in...) then:
+        // fireChangeEvent();
+        // and uncomment the complicated stuff below.
     }
 
+    /**
+     * {@inheritDoc }
+     */
     @Override
     public final void addChangeListener(ChangeListener l) {
     }
 
+    /**
+     * {@inheritDoc }
+     */
     @Override
     public final void removeChangeListener(ChangeListener l) {
     }
-    
+
+    /**
+     * {@inheritDoc }
+     */
     @Override
     public void readSettings(Object settings) {
     }
 
+    /**
+     * {@inheritDoc }
+     */
     @Override
     public void storeSettings(Object settings) {
     }
