@@ -20,6 +20,7 @@
  */
 package org.puzzle.core.actions;
 
+import java.util.Collection;
 import org.geotools.map.MapContext;
 import org.openide.nodes.Node;
 import org.openide.util.HelpCtx;
@@ -29,6 +30,7 @@ import org.openide.util.actions.CookieAction;
 import org.puzzle.core.project.filetype.GISContextDataObject;
 import org.puzzle.core.view.RendererChooser;
 import org.puzzle.core.view.MapView;
+import org.puzzle.core.view.RenderingService;
 import org.puzzle.core.view.ViewService;
 
 /**
@@ -51,18 +53,25 @@ public final class ShowMapContext extends CookieAction {
         if(activatedNodes.length == 0 ) return ;
         
         final GISContextDataObject dataObject = activatedNodes[0].getLookup().lookup(GISContextDataObject.class);
-    
+
         if(dataObject == null) return;
-        
+
         final MapContext context = dataObject.getContext();
         
         if(context != null){
-            final MapView view = RendererChooser.showChooserDialog(context);
-            if(view != null){
-                final ViewService viewService = Lookup.getDefault().lookup(ViewService.class);
-                viewService.add(view);
+            final Collection<? extends RenderingService> services = Lookup.getDefault().lookupAll(RenderingService.class);
+            if(services.isEmpty()){
+                return;
+            }else if(services.size() == 1){
+                //only one service, dont show the renderer chooser
+                final MapView view = services.iterator().next().createView(context);
+                if(view != null && !view.isOpened()) view.open();
+            }else{
+                final MapView view = RendererChooser.showChooserDialog(context);
+                if(view != null && !view.isOpened()) view.open();
+            }
+            
         }
-    }
     }
 
     /**

@@ -185,8 +185,7 @@ public class GISProject implements Project {
         //close existing views using this mapcontext
         final ViewService viewService = Lookup.getDefault().lookup(ViewService.class);
         if(viewService != null){
-            final Collection<? extends MapView> views = viewService.getLookup().lookupAll(MapView.class);
-            for(final MapView view : views){
+            for(final MapView view : ViewService.getViews()){
                 if(view.getContext().equals(context)){
                     SwingUtilities.invokeLater(new Runnable() {
                         @Override

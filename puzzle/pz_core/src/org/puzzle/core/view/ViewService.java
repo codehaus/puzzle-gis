@@ -20,24 +20,28 @@
  */
 package org.puzzle.core.view;
 
-import java.util.Collection;
-import org.openide.util.Lookup;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  *
  * @author Johann Sorel (Puzzle-GIS)
  */
-public interface ViewService extends Lookup.Provider{
+public final class ViewService {
 
-    Collection<? extends MapView> getViews();
+    private static final Set<MapView> views = Collections.synchronizedSet(new HashSet<MapView>());
 
-    void add(MapView view);
+    public static final Set<MapView> getViews(){
+        return Collections.unmodifiableSet(views);
+    }
 
-    void remove(MapView view);
-    
-    void add(MapGroup group);
+    static final void add(MapView view){
 
-    void remove(MapGroup group);
-    
+    }
+
+    static final void remove(MapView view){
+
+    }
     
 }
