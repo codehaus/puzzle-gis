@@ -1,6 +1,22 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ *  Puzzle-GIS - OpenSource mapping program
+ *  http://docs.codehaus.org/display/PUZZLEGIS
+ *  Copyright (C) 2007 Puzzle-GIS
+ *
+ *  GPLv3 + Classpath exception
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 package org.puzzle.core.project;
 
@@ -20,21 +36,29 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 import javax.swing.JComponent;
 import javax.swing.event.ChangeListener;
+
 import org.netbeans.api.project.ProjectManager;
 import org.netbeans.spi.project.ui.support.ProjectChooser;
 import org.netbeans.spi.project.ui.templates.support.Templates;
+
 import org.openide.WizardDescriptor;
 import org.openide.filesystems.FileObject;
 import org.openide.filesystems.FileUtil;
 import org.openide.util.Exceptions;
 import org.openide.util.NbBundle;
 import org.openide.xml.XMLUtil;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
-public class EmptyGISProjectWizardIterator implements WizardDescriptor./*Progress*/InstantiatingIterator {
+/**
+ * GIS project wizard iterator.
+ *
+ * @author Johann Sorel (Puzzle-GIS)
+ */
+public class EmptyGISProjectWizardIterator implements WizardDescriptor.InstantiatingIterator {
 
     private int index;
     private WizardDescriptor.Panel[] panels;
@@ -55,10 +79,11 @@ public class EmptyGISProjectWizardIterator implements WizardDescriptor./*Progres
 
     private String[] createSteps() {
         return new String[]{
-                    NbBundle.getMessage(EmptyGISProjectWizardIterator.class, "LBL_CreateProjectStep")
+                    NbBundle.getMessage(EmptyGISProjectWizardIterator.class, "createProjectStep")
                 };
     }
 
+    @Override
     public Set/*<FileObject>*/ instantiate(/*ProgressHandle handle*/) throws IOException {
         Set<FileObject> resultSet = new LinkedHashSet<FileObject>();
         File dirF = FileUtil.normalizeFile((File) wiz.getProperty("projdir"));
@@ -87,6 +112,7 @@ public class EmptyGISProjectWizardIterator implements WizardDescriptor./*Progres
         return resultSet;
     }
 
+    @Override
     public void initialize(WizardDescriptor wiz) {
         this.wiz = wiz;
         index = 0;
@@ -111,6 +137,7 @@ public class EmptyGISProjectWizardIterator implements WizardDescriptor./*Progres
         }
     }
 
+    @Override
     public void uninitialize(WizardDescriptor wiz) {
         this.wiz.putProperty("projdir", null);
         this.wiz.putProperty("name", null);
@@ -118,19 +145,23 @@ public class EmptyGISProjectWizardIterator implements WizardDescriptor./*Progres
         panels = null;
     }
 
+    @Override
     public String name() {
         return MessageFormat.format("{0} of {1}",
                 new Object[]{new Integer(index + 1), new Integer(panels.length)});
     }
 
+    @Override
     public boolean hasNext() {
         return index < panels.length - 1;
     }
 
+    @Override
     public boolean hasPrevious() {
         return index > 0;
     }
 
+    @Override
     public void nextPanel() {
         if (!hasNext()) {
             throw new NoSuchElementException();
@@ -138,6 +169,7 @@ public class EmptyGISProjectWizardIterator implements WizardDescriptor./*Progres
         index++;
     }
 
+    @Override
     public void previousPanel() {
         if (!hasPrevious()) {
             throw new NoSuchElementException();
@@ -145,14 +177,17 @@ public class EmptyGISProjectWizardIterator implements WizardDescriptor./*Progres
         index--;
     }
 
+    @Override
     public WizardDescriptor.Panel current() {
         return panels[index];
     }
 
     // If nothing unusual changes in the middle of the wizard, simply:
+    @Override
     public final void addChangeListener(ChangeListener l) {
     }
 
+    @Override
     public final void removeChangeListener(ChangeListener l) {
     }
 

@@ -21,6 +21,7 @@
 package org.puzzle.core.project.filetype;
 
 import java.io.IOException;
+
 import org.openide.filesystems.FileObject;
 import org.openide.loaders.DataObjectExistsException;
 import org.openide.loaders.MultiDataObject;
@@ -32,7 +33,7 @@ import org.openide.util.NbBundle;
  * It allows creating {@code GISSourceDataObject} from XML files representing
  * any kind of source.
  * 
- * @author  Johann Sorel
+ * @author  Johann Sorel (Puzzle-GIS)
  * @author  Thomas Bonavia (comments)
  * 
  * @see     org.openide.loaders.UniFileLoader
@@ -57,6 +58,7 @@ public class GISSourceDataLoader extends UniFileLoader {
         getExtensions().addMimeType(REQUIRED_MIME);
     }
 
+    @Override
     protected MultiDataObject createMultiObject(FileObject primaryFile) throws DataObjectExistsException, IOException {
         return new GISSourceDataObject(primaryFile, this);
     }

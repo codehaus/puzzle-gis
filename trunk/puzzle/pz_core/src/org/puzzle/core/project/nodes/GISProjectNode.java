@@ -26,6 +26,7 @@ import javax.swing.ImageIcon;
 
 import org.netbeans.api.project.ProjectInformation;
 import org.netbeans.spi.project.ui.support.CommonProjectActions;
+
 import org.openide.nodes.FilterNode;
 import org.openide.nodes.Node;
 import org.openide.util.ImageUtilities;
@@ -49,8 +50,7 @@ import org.puzzle.core.project.GISProject;
  */
 public class GISProjectNode extends FilterNode{
 
-    private final String ICON_PATH = "org/puzzle/core/project/boussole.png";
-    private final ImageIcon ICON = new ImageIcon(ImageUtilities.loadImage(ICON_PATH, true));
+    private final ImageIcon ICON = new ImageIcon(ImageUtilities.loadImage("org/puzzle/core/project/boussole.png", true));
 
     private final GISProject project;
 

@@ -25,6 +25,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * Information of a GIS Source, this hold the ID and every parameters
+ * needed to save and restore the GISSource.
  *
  * @author Johann Sorel (Puzzle-GIS)
  */
@@ -48,6 +50,9 @@ public final class GISSourceInfo {
         this.parameters = Collections.unmodifiableMap(params);
     }
 
+    /**
+     * Returns the ID of the source, unique in the current project.
+     */
     public int getID(){
         return id;
     }

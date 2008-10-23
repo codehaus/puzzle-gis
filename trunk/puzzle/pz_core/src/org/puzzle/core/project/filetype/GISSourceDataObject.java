@@ -24,8 +24,10 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+
 import org.netbeans.api.project.FileOwnerQuery;
 import org.netbeans.api.project.Project;
+
 import org.openide.filesystems.FileObject;
 import org.openide.loaders.DataObjectExistsException;
 import org.openide.loaders.XMLDataObject;
@@ -34,10 +36,12 @@ import org.openide.nodes.Node;
 import org.openide.util.Lookup;
 import org.openide.text.DataEditorSupport;
 import org.openide.util.Exceptions;
+
 import org.puzzle.core.project.GISProject;
 import org.puzzle.core.project.source.GISSource;
 import org.puzzle.core.project.source.GISSourceInfo;
 import org.puzzle.core.project.source.GISSourceService;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
@@ -49,7 +53,7 @@ import org.xml.sax.SAXException;
  * This class provides special support for understanding and using 
  * sources files.
  * 
- * @author  Johann Sorel
+ * @author  Johann Sorel (Puzzle-GIS)
  * @author  Thomas Bonavia (comments)
  * 
  * @see     org.openide.loaders.XMLDataObject

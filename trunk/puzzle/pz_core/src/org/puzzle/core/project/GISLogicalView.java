@@ -21,10 +21,12 @@
 package org.puzzle.core.project;
 
 import org.netbeans.spi.project.ui.LogicalViewProvider;
+
 import org.openide.loaders.DataObject;
 import org.openide.loaders.DataObjectNotFoundException;
 import org.openide.nodes.Node;
 import org.openide.util.Exceptions;
+
 import org.puzzle.core.project.nodes.GISProjectNode;
 
 /**
@@ -34,7 +36,7 @@ import org.puzzle.core.project.nodes.GISProjectNode;
  * is a great improvment in term of time, because we can reuse a lot of
  * possibilities offered by NetBeans to manage projects.
  * 
- * @author  Johann Sorel
+ * @author  Johann Sorel (Puzzle-GIS)
  * @author  Thomas Bonavia (comments)
  * 
  * @see     org.netbeans.spi.project.ui.LogicalViewProvider

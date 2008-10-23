@@ -22,9 +22,9 @@ package org.puzzle.core.project.source;
 
 import java.util.Map;
 import javax.swing.JPanel;
-import org.puzzle.core.project.source.GISSourceInfo;
 
 /**
+ * Panel to create distant sources.
  *
  * @author Johann Sorel (Puzzle-GIS)
  */

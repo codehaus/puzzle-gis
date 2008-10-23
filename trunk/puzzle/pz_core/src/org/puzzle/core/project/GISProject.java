@@ -85,7 +85,7 @@ import org.puzzle.core.view.ViewService;
  *  <li>documents (reports...).</li>
  * </ul>
  * 
- * @author  Johann Sorel
+ * @author  Johann Sorel (Puzzle-GIS)
  * @author  Thomas Bonavia (comments)
  * 
  * @see     org.netbeans.api.project.Project

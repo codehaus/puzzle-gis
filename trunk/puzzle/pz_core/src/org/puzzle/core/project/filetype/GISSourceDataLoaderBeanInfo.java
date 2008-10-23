@@ -25,9 +25,15 @@ import java.beans.BeanInfo;
 import java.beans.IntrospectionException;
 import java.beans.Introspector;
 import java.beans.SimpleBeanInfo;
+
 import org.openide.loaders.UniFileLoader;
 import org.openide.util.ImageUtilities;
 
+/**
+ * Bean info for GIS source.
+ *
+ * @author Johann Sorel (Puzzle-GIS)
+ */
 public class GISSourceDataLoaderBeanInfo extends SimpleBeanInfo {
 
     @Override

@@ -21,7 +21,6 @@
 package org.puzzle.core.project.source;
 
 import java.util.Map;
-import org.puzzle.core.project.source.SourceCreationPane;
 
 /**
  * This class is a special {@code GISSourceService} dedicated to distant datas,
@@ -37,7 +36,7 @@ import org.puzzle.core.project.source.SourceCreationPane;
  *  <li>...</li>
  * </ul>
  * 
- * @author  Johann Sorel
+ * @author  Johann Sorel (Puzzle-GIS)
  * @author  Thomas Bonavia (comments)
  */
 public interface GISDistantSourceService extends GISSourceService{

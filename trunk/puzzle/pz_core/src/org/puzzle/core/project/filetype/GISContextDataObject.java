@@ -28,6 +28,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import javax.xml.bind.JAXBException;
+
 import org.geotools.data.DefaultQuery;
 import org.geotools.factory.CommonFactoryFinder;
 import org.geotools.map.ContextListener;
@@ -41,8 +42,10 @@ import org.geotools.style.sld.Specification.Filter;
 import org.geotools.style.sld.Specification.StyledLayerDescriptor;
 import org.geotools.style.sld.Specification.SymbologyEncoding;
 import org.geotools.style.sld.XMLUtilities;
+
 import org.netbeans.api.project.FileOwnerQuery;
 import org.netbeans.api.project.Project;
+
 import org.openide.filesystems.FileAlreadyLockedException;
 import org.openide.filesystems.FileLock;
 import org.openide.filesystems.FileObject;
@@ -53,10 +56,12 @@ import org.openide.util.Exceptions;
 import org.openide.util.Lookup;
 import org.openide.text.DataEditorSupport;
 import org.openide.xml.XMLUtil;
+
 import org.puzzle.core.project.source.LayerSource;
 import org.puzzle.core.project.source.PZLayerConstants;
 import org.puzzle.core.project.GISProject;
 import org.puzzle.core.project.source.GISSource;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -70,7 +75,7 @@ import org.xml.sax.SAXException;
  * This class provides special support for understanding and using 
  * contexts files.
  * 
- * @author  Johann Sorel
+ * @author  Johann Sorel (Puzzle-GIS)
  * @author  Thomas Bonavia (comments)
  * 
  * @see     org.openide.loaders.XMLDataObject

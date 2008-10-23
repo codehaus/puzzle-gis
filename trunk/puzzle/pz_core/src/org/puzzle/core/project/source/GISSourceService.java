@@ -23,12 +23,11 @@ package org.puzzle.core.project.source;
 /**
  * This class describe a generic way of managing {@code GISSource}s.
  * 
- * @author  Johann Sorel
+ * @author  Johann Sorel (Puzzle-GIS)
  * @author  Thomas Bonavia (comments)
  */
 public interface GISSourceService {
 
-    
     /**
      * Get the title of the service.
      * @return A {@code String} containing the title.

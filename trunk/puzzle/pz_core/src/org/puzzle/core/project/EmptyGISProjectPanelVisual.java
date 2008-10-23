@@ -1,21 +1,55 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ *  Puzzle-GIS - OpenSource mapping program
+ *  http://docs.codehaus.org/display/PUZZLEGIS
+ *  Copyright (C) 2007 Puzzle-GIS
+ *
+ *  GPLv3 + Classpath exception
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package org.puzzle.core.project;
 
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.Document;
+
 import org.netbeans.spi.project.ui.support.ProjectChooser;
+
 import org.openide.WizardDescriptor;
 import org.openide.WizardValidationException;
+import org.openide.awt.Mnemonics;
 import org.openide.filesystems.FileUtil;
+import org.openide.util.NbBundle;
 
+/**
+ * Swing panel to create a GIS project.
+ *
+ * @author Johann Sorel (Puzzle-GIS)
+ */
 public class EmptyGISProjectPanelVisual extends JPanel implements DocumentListener {
 
     public static final String PROP_PROJECT_NAME = "projectName";
@@ -42,87 +76,86 @@ public class EmptyGISProjectPanelVisual extends JPanel implements DocumentListen
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        projectNameLabel = new javax.swing.JLabel();
-        projectNameTextField = new javax.swing.JTextField();
-        projectLocationLabel = new javax.swing.JLabel();
-        projectLocationTextField = new javax.swing.JTextField();
-        browseButton = new javax.swing.JButton();
-        createdFolderLabel = new javax.swing.JLabel();
-        createdFolderTextField = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
+        projectNameLabel = new JLabel();
+        projectNameTextField = new JTextField();
+        projectLocationLabel = new JLabel();
+        projectLocationTextField = new JTextField();
+        browseButton = new JButton();
+        createdFolderLabel = new JLabel();
+        createdFolderTextField = new JTextField();
+        jLabel1 = new JLabel();
 
-        projectNameLabel.setFont(projectNameLabel.getFont().deriveFont(projectNameLabel.getFont().getStyle() | java.awt.Font.BOLD));
+        projectNameLabel.setFont(projectNameLabel.getFont().deriveFont(projectNameLabel.getFont().getStyle() | Font.BOLD));
         projectNameLabel.setLabelFor(projectNameTextField);
-        org.openide.awt.Mnemonics.setLocalizedText(projectNameLabel, org.openide.util.NbBundle.getMessage(EmptyGISProjectPanelVisual.class, "EmptyGISProjectPanelVisual.projectNameLabel.text")); // NOI18N
 
+        Mnemonics.setLocalizedText(projectNameLabel, NbBundle.getMessage(EmptyGISProjectPanelVisual.class, "projectName")); // NOI18N
         projectLocationLabel.setLabelFor(projectLocationTextField);
-        org.openide.awt.Mnemonics.setLocalizedText(projectLocationLabel, org.openide.util.NbBundle.getMessage(EmptyGISProjectPanelVisual.class, "EmptyGISProjectPanelVisual.projectLocationLabel.text")); // NOI18N
 
-        org.openide.awt.Mnemonics.setLocalizedText(browseButton, org.openide.util.NbBundle.getMessage(EmptyGISProjectPanelVisual.class, "EmptyGISProjectPanelVisual.browseButton.text")); // NOI18N
-        browseButton.setActionCommand(org.openide.util.NbBundle.getMessage(EmptyGISProjectPanelVisual.class, "EmptyGISProjectPanelVisual.browseButton.actionCommand")); // NOI18N
-        browseButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        Mnemonics.setLocalizedText(projectLocationLabel, NbBundle.getMessage(EmptyGISProjectPanelVisual.class, "projectLocation")); // NOI18N
+        Mnemonics.setLocalizedText(browseButton, NbBundle.getMessage(EmptyGISProjectPanelVisual.class, "browse"));
+        browseButton.setActionCommand("BROWSE");
+        browseButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 browseButtonActionPerformed(evt);
             }
         });
 
         createdFolderLabel.setLabelFor(createdFolderTextField);
-        org.openide.awt.Mnemonics.setLocalizedText(createdFolderLabel, org.openide.util.NbBundle.getMessage(EmptyGISProjectPanelVisual.class, "EmptyGISProjectPanelVisual.createdFolderLabel.text")); // NOI18N
 
+        Mnemonics.setLocalizedText(createdFolderLabel, NbBundle.getMessage(EmptyGISProjectPanelVisual.class, "projectFolder")); // NOI18N
         createdFolderTextField.setEditable(false);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/puzzle/core/project/boussole100.png"))); // NOI18N
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel1, org.openide.util.NbBundle.getMessage(EmptyGISProjectPanelVisual.class, "EmptyGISProjectPanelVisual.jLabel1.text")); // NOI18N
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        jLabel1.setIcon(new ImageIcon(getClass().getResource("/org/puzzle/core/project/boussole100.png"))); // NOI18N
+        GroupLayout layout = new GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            layout.createParallelGroup(Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addPreferredGap(ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(Alignment.LEADING)
                             .addComponent(projectLocationLabel)
-                            .addComponent(projectNameTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
+                            .addComponent(projectNameTextField, GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
                             .addComponent(projectNameLabel)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(projectLocationTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(projectLocationTextField, GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
+                                .addPreferredGap(ComponentPlacement.RELATED)
                                 .addComponent(browseButton))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(createdFolderLabel)
                         .addGap(14, 14, 14)
-                        .addComponent(createdFolderTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)))
+                        .addComponent(createdFolderTextField, GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            layout.createParallelGroup(Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(projectNameLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(projectNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(ComponentPlacement.RELATED)
+                        .addComponent(projectNameTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(ComponentPlacement.RELATED)
                         .addComponent(projectLocationLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addPreferredGap(ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(Alignment.BASELINE)
                             .addComponent(browseButton)
-                            .addComponent(projectLocationTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(projectLocationTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(Alignment.BASELINE)
                     .addComponent(createdFolderLabel)
-                    .addComponent(createdFolderTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(createdFolderTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(143, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void browseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browseButtonActionPerformed
+    private void browseButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_browseButtonActionPerformed
         String command = evt.getActionCommand();
         if ("BROWSE".equals(command)) {
             JFileChooser chooser = new JFileChooser();
@@ -147,15 +180,16 @@ public class EmptyGISProjectPanelVisual extends JPanel implements DocumentListen
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton browseButton;
-    private javax.swing.JLabel createdFolderLabel;
-    private javax.swing.JTextField createdFolderTextField;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel projectLocationLabel;
-    private javax.swing.JTextField projectLocationTextField;
-    private javax.swing.JLabel projectNameLabel;
-    private javax.swing.JTextField projectNameTextField;
+    private JButton browseButton;
+    private JLabel createdFolderLabel;
+    private JTextField createdFolderTextField;
+    private JLabel jLabel1;
+    private JLabel projectLocationLabel;
+    private JTextField projectLocationTextField;
+    private JLabel projectNameLabel;
+    private JTextField projectNameTextField;
     // End of variables declaration//GEN-END:variables
+
     @Override
     public void addNotify() {
         super.addNotify();
@@ -235,6 +269,7 @@ public class EmptyGISProjectPanelVisual extends JPanel implements DocumentListen
     }
 
     // Implementation of DocumentListener --------------------------------------
+    @Override
     public void changedUpdate(DocumentEvent e) {
         updateTexts(e);
         if (this.projectNameTextField.getDocument() == e.getDocument()) {
@@ -242,6 +277,7 @@ public class EmptyGISProjectPanelVisual extends JPanel implements DocumentListen
         }
     }
 
+    @Override
     public void insertUpdate(DocumentEvent e) {
         updateTexts(e);
         if (this.projectNameTextField.getDocument() == e.getDocument()) {
@@ -249,6 +285,7 @@ public class EmptyGISProjectPanelVisual extends JPanel implements DocumentListen
         }
     }
 
+    @Override
     public void removeUpdate(DocumentEvent e) {
         updateTexts(e);
         if (this.projectNameTextField.getDocument() == e.getDocument()) {

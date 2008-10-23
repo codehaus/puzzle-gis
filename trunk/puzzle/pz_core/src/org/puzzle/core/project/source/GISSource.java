@@ -23,8 +23,10 @@ package org.puzzle.core.project.source;
 import java.awt.Image;
 import java.util.Collection;
 import java.util.Map;
+
 import org.geotools.map.MapContext;
 import org.geotools.map.MapLayer;
+
 import org.puzzle.core.project.GISProject;
 
 /**
@@ -38,7 +40,7 @@ import org.puzzle.core.project.GISProject;
  *  <li>...</li>
  * </ul>
  *  
- * @author  Johann Sorel
+ * @author  Johann Sorel (Puzzle-GIS)
  * @author  Thomas Bonavia (comments)
  */
 public abstract class GISSource {
