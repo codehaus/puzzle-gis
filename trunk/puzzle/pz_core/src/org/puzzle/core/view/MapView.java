@@ -23,7 +23,6 @@ package org.puzzle.core.view;
 import java.awt.BorderLayout;
 import org.geotools.gui.swing.map.map2d.Map2D;
 import org.geotools.map.MapContext;
-import org.openide.util.Lookup;
 import org.openide.util.lookup.Lookups;
 import org.openide.windows.TopComponent;
 
@@ -54,22 +53,13 @@ public abstract class MapView extends TopComponent {
 
     @Override
     protected void componentOpened() {
-        
-        ViewService v = Lookup.getDefault().lookup(ViewService.class);
-        if (v != null) {
-            v.add(this);
-        }
-        
+        ViewService.add(this);
         super.componentOpened();
     }
 
     @Override
     protected void componentClosed() {
-        ViewService v = Lookup.getDefault().lookup(ViewService.class);
-        if (v != null) {
-            v.remove(this);
-        }
-        
+        ViewService.remove(this);
         map.dispose();
         map = null;
         super.componentClosed();

@@ -42,8 +42,6 @@ import org.openide.DialogDisplayer;
 import org.openide.WizardDescriptor;
 import org.openide.util.HelpCtx;
 import org.openide.util.Lookup;
-import org.puzzle.core.view.MapView;
-import org.puzzle.core.view.RenderingService;
 
 /**
  * Panel to choose the Renderer.
@@ -60,7 +58,7 @@ public class RendererChooser extends JPanel implements WizardDescriptor.Panel {
     private RendererChooser(){
         setLayout(new GridLayout(1, services.size()));
         
-        for(RenderingService service : services){
+        for(final RenderingService service : services){
             add(createServicePane(service));
         }
         
@@ -100,7 +98,7 @@ public class RendererChooser extends JPanel implements WizardDescriptor.Panel {
     
     public static MapView showChooserDialog(MapContext context){
         final RendererChooser chooser = new RendererChooser();
-        WizardDescriptor wizardDescriptor = new WizardDescriptor(chooser.getPanels());
+        final WizardDescriptor wizardDescriptor = new WizardDescriptor(chooser.getPanels());
         // {0} will be replaced by WizardDesriptor.Panel.getComponent().getName()
         wizardDescriptor.setTitleFormat(new MessageFormat("{0}"));
         wizardDescriptor.setTitle("Choose renderer");
