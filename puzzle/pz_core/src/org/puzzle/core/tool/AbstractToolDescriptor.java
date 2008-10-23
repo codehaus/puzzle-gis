@@ -23,31 +23,48 @@ package org.puzzle.core.tool;
 import java.awt.Image;
 
 /**
+ * Abstract class for tools, this implementation provide default paths, description
+ * and no icon for the tool.
  *
  * @author Johann Sorel (Puzzle-GIS)
  */
 public abstract class AbstractToolDescriptor implements ToolDescriptor{
 
+    /**
+     * {@inheritDoc }
+     */
     @Override
     public String getDescription() {
         return "";
     }
 
+    /**
+     * {@inheritDoc }
+     */
     @Override
     public String[] getPath() {
         return EMPTY_STRING_ARRAY;
     }
 
+    /**
+     * {@inheritDoc }
+     */
     @Override
     public String[] getKeyWords() {
         return EMPTY_STRING_ARRAY;
     }
 
+    /**
+     * {@inheritDoc }
+     */
     @Override
     public String[] getCategories() {
         return EMPTY_STRING_ARRAY;
     }
 
+    /**
+     * {@inheritDoc }
+     */
     @Override
     public Image getIcon(int iconType){
         return null;

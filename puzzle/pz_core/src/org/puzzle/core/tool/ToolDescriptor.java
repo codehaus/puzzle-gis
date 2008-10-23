@@ -25,42 +25,44 @@ import java.awt.Component;
 import java.awt.Image;
 
 /**
+ * A Tool Descriptor is a set of informations to classify the tool.
+ * We can have his categories and a treepath that we be used in the Tooltree.
  *
  * @author Johann Sorel (Puzzle-GIS)
  */
 public interface ToolDescriptor {
 
     /**
-     * empty String array
+     * Empty String array, can be used for keywords, path or categories.
      */
     public static final String[] EMPTY_STRING_ARRAY = {};
     
     /**
-     * @return name of the tool
+     * @return name of the tool , never null.
      */
     public String getTitle();
     
     /**
      * short description of the tool
-     * @return String
+     * @return String , never null.
      */
     public String getDescription();
     
     /**
      * used to categorize a widget tool
-     * @return String Path ex: {utilities,convert}
+     * @return String Path ex: {utilities,convert} , never null but can be empty.
      */
     public String[] getPath();
     
     /**
      * Keywords for this tool
-     * @return String[]
+     * @return String[] , never null but can be empty.
      */
     public String[] getKeyWords();
     
     /**
      * Array of string for categories 
-     * @return String[]
+     * @return String[] , never null but can be empty.
      */
     public String[] getCategories();
     
@@ -79,7 +81,7 @@ public interface ToolDescriptor {
      * ICON_COLOR_32x32
      * ICON_MONO_16x16
      * ICON_MONO_32x32
-     * @return
+     * @return Image, can be null if none.
      */
     public Image getIcon(int iconType);
     
