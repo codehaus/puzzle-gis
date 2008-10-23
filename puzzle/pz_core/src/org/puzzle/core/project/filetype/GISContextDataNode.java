@@ -21,6 +21,7 @@
 package org.puzzle.core.project.filetype;
 
 import java.io.IOException;
+
 import org.openide.loaders.DataNode;
 import org.openide.nodes.Children;
 import org.openide.util.Lookup;

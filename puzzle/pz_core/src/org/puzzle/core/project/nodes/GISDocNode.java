@@ -21,6 +21,7 @@
 package org.puzzle.core.project.nodes;
 
 import java.awt.Image;
+
 import org.openide.nodes.FilterNode;
 import org.openide.nodes.Node;
 import org.openide.util.ImageUtilities;
@@ -38,8 +39,7 @@ import org.openide.util.ImageUtilities;
  */
 public class GISDocNode extends FilterNode {
 
-    private final String ICON_PATH = "org/puzzle/core/project/doc.png";
-    private final Image ICON = ImageUtilities.loadImage(ICON_PATH, true);
+    private final Image ICON = ImageUtilities.loadImage("org/puzzle/core/project/doc.png", true);
 
     /**
      * Constructor.
@@ -61,7 +61,7 @@ public class GISDocNode extends FilterNode {
 
     @Override
     public String getDisplayName() {
-        return "Documents";
+        return Utilities.getString("documents");
     }
 
     @Override

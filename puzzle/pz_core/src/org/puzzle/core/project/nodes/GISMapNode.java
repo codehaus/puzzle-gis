@@ -46,8 +46,7 @@ import org.puzzle.core.project.GISProject;
  */
 public class GISMapNode extends FilterNode {
 
-    private final String ICON_PATH = "org/puzzle/core/project/map.png";
-    private final Image ICON = ImageUtilities.loadImage(ICON_PATH, true);
+    private final Image ICON = ImageUtilities.loadImage("org/puzzle/core/project/map.png", true);
 
     /**
      * Constructor.
@@ -69,7 +68,7 @@ public class GISMapNode extends FilterNode {
 
     @Override
     public String getDisplayName() {
-        return "Maps";
+        return Utilities.getString("maps");
     }
 
     @Override

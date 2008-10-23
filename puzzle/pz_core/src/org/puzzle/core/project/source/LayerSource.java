@@ -24,10 +24,9 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.puzzle.core.project.source.GISSource;
-
 /**
- * 
+ * this class holds the parameters to save and restore the map layer.
+ *
  * @author  Johann Sorel (Puzzle-GIS)
  * @author  Thomas Bonavia (comments)
  */
@@ -49,15 +48,25 @@ public final class LayerSource {
         this.source = source;
         if(parameters != null) this.params.putAll(parameters);
     }
-    
+
+    /**
+     * Retuens the ID of the original GIS source.
+     */
     public final int getSourceId(){
         return sourceId;
     }
-    
+
+    /**
+     * Returns the parameters that will be used by the GIS source
+     * to restore the layer.
+     */
     public final Map<String,String> getParameters(){
         return Collections.unmodifiableMap(params);
     }
 
+    /**
+     * Return the original GIS source of this layer.
+     */
     public final GISSource getGISSource(){
         return source;
     }

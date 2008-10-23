@@ -28,7 +28,7 @@ import javax.swing.filechooser.FileFilter;
  * Indeed, files get a number of particular features such as "extension" etc, 
  * which should be handled in a special way.
  * 
- * @author  Johann Sorel
+ * @author  Johann Sorel (Puzzle-GIS)
  * @author  Thomas Bonavia (comments)
  */
 public interface GISFileSourceService extends GISSourceService{

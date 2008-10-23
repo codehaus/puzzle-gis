@@ -22,8 +22,8 @@ package org.puzzle.core.project.filetype;
 
 import java.awt.Image;
 import java.io.IOException;
+
 import org.openide.loaders.DataNode;
-import org.openide.loaders.DataObject;
 import org.openide.nodes.Children;
 import org.openide.util.Lookup;
 
@@ -31,7 +31,7 @@ import org.openide.util.Lookup;
  * This classe provides a {@code org.openide.loaders.DataNode} for the
  * {@link GISSourceDataObject}.
  * 
- * @author  Johann Sorel
+ * @author  Johann Sorel (Puzzle-GIS)
  * @author  Thomas Bonavia (comments)
  * 
  * @see     org.openide.loaders.DataNode

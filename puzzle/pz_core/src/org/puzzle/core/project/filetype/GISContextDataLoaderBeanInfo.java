@@ -28,6 +28,11 @@ import java.beans.SimpleBeanInfo;
 import org.openide.loaders.UniFileLoader;
 import org.openide.util.ImageUtilities;
 
+/**
+ * Bean infos for GIS context
+ *
+ * @author Johann Sorel (Puzzle-GIS)
+ */
 public class GISContextDataLoaderBeanInfo extends SimpleBeanInfo {
 
     @Override

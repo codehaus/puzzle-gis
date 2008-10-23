@@ -21,21 +21,19 @@
 package org.puzzle.core.project.filetype;
 
 import java.io.IOException;
-import org.netbeans.api.project.FileOwnerQuery;
-import org.netbeans.api.project.ui.OpenProjects;
+
 import org.openide.filesystems.FileObject;
 import org.openide.loaders.DataObjectExistsException;
 import org.openide.loaders.MultiDataObject;
 import org.openide.loaders.UniFileLoader;
 import org.openide.util.NbBundle;
-import org.puzzle.core.project.GISProject;
 
 /**
  * This class is a loader for the {@code GISContextDataObject}.
  * It allows creating {@code GISContextDataObject} from XML files representing
  * a {@code MapContext}.
  * 
- * @author  Johann Sorel
+ * @author  Johann Sorel (Puzzle-GIS)
  * @author  Thomas Bonavia  (comments)
  * 
  * @see     org.openide.loaders.UniFileLoader
@@ -60,13 +58,9 @@ public class GISContextDataLoader extends UniFileLoader {
         getExtensions().addMimeType(REQUIRED_MIME);
     }
 
+    @Override
     protected MultiDataObject createMultiObject(FileObject primaryFile) throws DataObjectExistsException, IOException {
-        GISContextDataObject dObject = new GISContextDataObject(primaryFile, this);
-//        GISProject prj = (GISProject)FileOwnerQuery.getOwner(dObject.getPrimaryFile());
-
-//        prj.addContext(dObject.getContext());
-        
-        return dObject;
+        return new GISContextDataObject(primaryFile, this);
     }
 
     @Override
