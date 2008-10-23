@@ -36,20 +36,19 @@ import org.puzzle.core.project.source.GISSourceService;
  * 
  * @author Johann Sorel (Puzzle-GIS)
  */
-public class JFileSourcePane extends javax.swing.JPanel {
+final class JFileSourcePane extends javax.swing.JPanel {
     
     private final Collection<? extends GISSourceService> services;
     
-    public JFileSourcePane() {
+    JFileSourcePane() {
        this(null);
     }
       
     /** 
-     * Creates new form 
-     * @param openPath
-     * @param communPaths 
+     * Creates new form panel, similar to a JFileChooser panel.
+     * @param openPath : default path to open
      */
-    public JFileSourcePane(File openPath) {
+    JFileSourcePane(final File openPath) {
         initComponents();
                 
         services = Lookup.getDefault().lookupAll(GISSourceService.class);
@@ -65,11 +64,17 @@ public class JFileSourcePane extends javax.swing.JPanel {
         gui_choose.setMultiSelectionEnabled(true);
     }
 
-    public void setDirectory(File directory){
+    /**
+     * Go to the given directory.
+     */
+    final void setDirectory(final File directory){
         gui_choose.setCurrentDirectory(directory);
     }
-    
-    public File getDirectory(){
+
+    /**
+     * Get the current directory.
+     */
+   final File getDirectory(){
         return gui_choose.getCurrentDirectory();
     }
     
@@ -101,7 +106,10 @@ public class JFileSourcePane extends javax.swing.JPanel {
     private javax.swing.JFileChooser gui_choose;
     // End of variables declaration//GEN-END:variables
 
-    public Map<String,GISSourceInfo> getSources(){
+    /**
+     * Returns a map of name > GISSourceInfo to create GISSources.
+     */
+    final Map<String,GISSourceInfo> getSources(){
         final Map<String,GISSourceInfo> sources = new HashMap<String, GISSourceInfo>();
         final File[] files = gui_choose.getSelectedFiles();
         

@@ -24,18 +24,23 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Map;
 import java.util.Set;
-
 import javax.swing.AbstractAction;
+
 import org.netbeans.api.project.Project;
 import org.netbeans.api.project.ui.OpenProjects;
+
 import org.openide.DialogDescriptor;
 import org.openide.DialogDisplayer;
 import org.openide.NotifyDescriptor;
 
-import org.puzzle.core.actions.JDistantSourcePane;
 import org.puzzle.core.project.GISProject;
 import org.puzzle.core.project.source.GISSourceInfo;
 
+/**
+ * Action to create new distant sources.
+ *
+ * @author Johann Sorel (Puzzle-GIS)
+ */
 public final class NewDistantSource extends AbstractAction {
 
     private final GISProject project;
@@ -45,10 +50,13 @@ public final class NewDistantSource extends AbstractAction {
     }
 
     public NewDistantSource(final GISProject project){
-        super("New distant source");
+        super(Utilities.getString("newDistantSource"));
         this.project = project;
     }
-    
+
+    /**
+     * {@inheritDoc }
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         final Project candidate;
@@ -75,10 +83,10 @@ public final class NewDistantSource extends AbstractAction {
                 }
             };
 
-            final DialogDescriptor desc = new DialogDescriptor(pane, "Open file", true, lst);
+            final DialogDescriptor desc = new DialogDescriptor(pane, Utilities.getString("open"), true, lst);
             DialogDisplayer.getDefault().notify(desc);
         }else{
-            final NotifyDescriptor d =  new NotifyDescriptor.Message("Main project is not a GIS project", NotifyDescriptor.INFORMATION_MESSAGE);
+            final NotifyDescriptor d =  new NotifyDescriptor.Message(Utilities.getString("projectIsNotGIS"), NotifyDescriptor.INFORMATION_MESSAGE);
             DialogDisplayer.getDefault().notify(d);
         }
     }
