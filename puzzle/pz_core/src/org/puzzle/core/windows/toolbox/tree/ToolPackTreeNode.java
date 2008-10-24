@@ -25,11 +25,11 @@ import org.jdesktop.swingx.treetable.AbstractMutableTreeTableNode;
 
 /**
  * 
- * @author johann sorel
+ * @author johann sorel (Puzzle-GIS)
  */
 final class ToolPackTreeNode extends AbstractMutableTreeTableNode{
     
-    private String name ="";
+    private final String name;
     
     /**
      * Creates a new instance of ContextTreeNode
@@ -44,10 +44,12 @@ final class ToolPackTreeNode extends AbstractMutableTreeTableNode{
         return name;
     }
     
+    @Override
     public Object getValueAt(int arg0) {
         return name;
     }
 
+    @Override
     public int getColumnCount() {
         return 1;
     }

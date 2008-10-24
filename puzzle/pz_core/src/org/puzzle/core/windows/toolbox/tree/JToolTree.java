@@ -23,20 +23,20 @@ package org.puzzle.core.windows.toolbox.tree;
 
 import java.awt.BorderLayout;
 import java.awt.ComponentOrientation;
-
 import javax.swing.JComponent;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
+
 import org.puzzle.core.tool.ToolDescriptor;
 
 
 /**
+ * Tool tree, simply display tools using there provided paths.
  * 
- * @author Johann Sorel
+ * @author Johann Sorel (Puzzle-GIS)
  */
 public class JToolTree extends JComponent{
 
-    
     protected final TreeTable treetable;
     
     public JToolTree(){
@@ -44,7 +44,7 @@ public class JToolTree extends JComponent{
         treetable = new TreeTable(this);
         
         //the tree view
-        JScrollPane pane = new JScrollPane(treetable);
+        final JScrollPane pane = new JScrollPane(treetable);
         pane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         pane.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
         

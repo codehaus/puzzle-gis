@@ -29,14 +29,16 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 import org.geotools.gui.swing.icon.IconBundle;
+
 import org.jdesktop.swingx.renderer.CellContext;
 import org.jdesktop.swingx.renderer.ComponentProvider;
+
 import org.puzzle.core.tool.ToolDescriptor;
 
 /**
  * Provider for ContextTree to render TreeColumn
  * 
- * @author johann sorel
+ * @author Johann Sorel (Puzzle-GIS)
  */
 public final class ToolTreeNodeProvider extends ComponentProvider<JLabel> {
 
@@ -60,10 +62,10 @@ public final class ToolTreeNodeProvider extends ComponentProvider<JLabel> {
 
     @Override
     protected void format(CellContext arg0) {
-        Object node = arg0.getValue();
+        final Object node = arg0.getValue();
         if (node instanceof ToolTreeNode) {
-            ToolTreeNode nod = (ToolTreeNode) node;
-            ToolDescriptor tool = ((WeakReference<ToolDescriptor>) nod.getUserObject()).get();
+            final ToolTreeNode nod = (ToolTreeNode) node;
+            final ToolDescriptor tool = ((WeakReference<ToolDescriptor>) nod.getUserObject()).get();
 
             if (tool != null) {
                 rendererComponent.setFont(new Font("Arial", Font.PLAIN, 9));
@@ -79,7 +81,7 @@ public final class ToolTreeNodeProvider extends ComponentProvider<JLabel> {
                 rendererComponent.setText("no tool");
             }
         } else if (node instanceof ToolPackTreeNode) {
-            ToolPackTreeNode nod = (ToolPackTreeNode) node;
+            final ToolPackTreeNode nod = (ToolPackTreeNode) node;
             rendererComponent.setFont(new Font("Arial", Font.PLAIN, 9));
             rendererComponent.setIcon(ICON_TOOLPACK);
             rendererComponent.setText(nod.getTitle());

@@ -24,7 +24,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.lang.ref.WeakReference;
 import java.util.Map;
-
 import java.util.WeakHashMap;
 import javax.swing.event.EventListenerList;
 import javax.swing.tree.TreePath;
@@ -35,12 +34,13 @@ import org.jdesktop.swingx.treetable.AbstractMutableTreeTableNode;
 import org.jdesktop.swingx.treetable.DefaultTreeTableModel;
 import org.jdesktop.swingx.treetable.MutableTreeTableNode;
 import org.jdesktop.swingx.treetable.TreeTableNode;
-import org.openide.util.NbBundle;
+
 import org.puzzle.core.tool.ToolDescriptor;
 
 /**
- *
- * @author johann sorel
+ * Tool tree.
+ * 
+ * @author johann sorel (Puzzle-GIS)
  */
 public final class TreeTable extends JXTreeTable implements MouseListener {
 
@@ -61,8 +61,8 @@ public final class TreeTable extends JXTreeTable implements MouseListener {
 
         setTreeCellRenderer(new DefaultTreeRenderer(new ToolTreeNodeProvider(frame)));
 
-        String name = NbBundle.getMessage(TreeTable.class, "tools");
-        getColumnModel().getColumn(0).setHeaderValue(name);
+//        String name = Utilities.getString("tools");
+        getColumnModel().getColumn(0).setHeaderValue(null);
 
         root = (ToolPackTreeNode) getTreeTableModel().getRoot();
 
@@ -188,6 +188,7 @@ public final class TreeTable extends JXTreeTable implements MouseListener {
         return tools.keySet().toArray(EMPTY_TREETOOLDESCRIPTOR_ARRAY);
     }
 
+    @Override
     public void mouseClicked(MouseEvent e) {
         int nb = e.getClickCount();
         if (nb == 2) {
@@ -203,15 +204,19 @@ public final class TreeTable extends JXTreeTable implements MouseListener {
         }
     }
 
+    @Override
     public void mousePressed(MouseEvent e) {
     }
 
+    @Override
     public void mouseReleased(MouseEvent e) {
     }
 
+    @Override
     public void mouseEntered(MouseEvent e) {
     }
 
+    @Override
     public void mouseExited(MouseEvent e) {
     }
 

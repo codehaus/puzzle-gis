@@ -27,6 +27,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Logger;
+
 import org.geotools.gui.swing.contexttree.JContextTree;
 import org.geotools.gui.swing.contexttree.JContextTreePopup;
 import org.geotools.gui.swing.contexttree.column.VisibleTreeTableColumn;
@@ -48,6 +49,7 @@ import org.geotools.gui.swing.propertyedit.PropertyPane;
 import org.geotools.gui.swing.propertyedit.filterproperty.JCQLPropertyPanel;
 import org.geotools.gui.swing.propertyedit.styleproperty.JSimpleStylePanel;
 import org.geotools.map.MapContext;
+
 import org.openide.util.ImageUtilities;
 import org.openide.util.Lookup;
 import org.openide.util.LookupEvent;
@@ -56,10 +58,12 @@ import org.openide.util.NbBundle;
 import org.openide.util.Utilities;
 import org.openide.windows.TopComponent;
 import org.openide.windows.WindowManager;
+
 import org.puzzle.core.project.filetype.GISContextDataObject;
 
 /**
- * Top component which displays something.
+ * Top component which displays the context detail view.
+ * 
  * @author : Johann Sorel (Puzzle-GIS)
  */
 final class ContextTreeTopComponent extends TopComponent implements LookupListener{
@@ -69,14 +73,13 @@ final class ContextTreeTopComponent extends TopComponent implements LookupListen
 
     private JContextTree tree = null;
     private static ContextTreeTopComponent instance;
-    static final String ICON_PATH = "org/puzzle/core/project/map.png";
     private static final String PREFERRED_ID = "ContextTreeTopComponent";
 
     private ContextTreeTopComponent() {
         initComponents();
-        setName(NbBundle.getMessage(ContextTreeTopComponent.class, "CTL_ContextTreeTopComponent"));
-        setToolTipText(NbBundle.getMessage(ContextTreeTopComponent.class, "HINT_ContextTreeTopComponent"));
-        setIcon(ImageUtilities.loadImage(ICON_PATH, true));
+        setName(NbBundle.getMessage(ContextTreeTopComponent.class, "contextTree"));
+        setToolTipText(NbBundle.getMessage(ContextTreeTopComponent.class, "contextTreeHint"));
+        setIcon(ImageUtilities.loadImage("org/puzzle/core/project/map.png", true));
 
     }
 
