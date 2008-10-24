@@ -34,12 +34,13 @@ import org.openide.windows.TopComponent;
 public class ContextTreeAction extends AbstractAction {
 
     public ContextTreeAction() {
-        super(NbBundle.getMessage(ContextTreeAction.class, "CTL_ContextTreeAction"));
-        putValue(SMALL_ICON, new ImageIcon(ImageUtilities.loadImage(ContextTreeTopComponent.ICON_PATH, true)));
+        super(NbBundle.getMessage(ContextTreeAction.class, "contextTree"));
+        putValue(SMALL_ICON, new ImageIcon(ImageUtilities.loadImage("org/puzzle/core/project/map.png", true)));
     }
 
+    @Override
     public void actionPerformed(ActionEvent evt) {
-        TopComponent win = ContextTreeTopComponent.findInstance();
+        final TopComponent win = ContextTreeTopComponent.findInstance();
         win.open();
         win.requestActive();
     }

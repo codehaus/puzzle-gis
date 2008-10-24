@@ -23,12 +23,11 @@ package org.puzzle.core.windows.toolbox.tree;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.openide.util.NbBundle;
-
 
 /**
+ * tree path for tool.
  *
- * @author johann sorel
+ * @author johann sorel (Puzzle-GIS)
  */
 class DefaultToolTreePath implements ToolTreePath{
 
@@ -36,8 +35,8 @@ class DefaultToolTreePath implements ToolTreePath{
     
     private final List<String> paths = new ArrayList<String>();
     
-    DefaultToolTreePath(ToolTreePath father, String i18nKey){
-        String myPath = NbBundle.getMessage(DefaultToolTreePath.class, i18nKey);
+    DefaultToolTreePath(final ToolTreePath father, final String i18nKey){
+        final String myPath = Utilities.getString(i18nKey);
         
         if(father != null){
             paths.addAll(((DefaultToolTreePath)father).getInerPath());
@@ -49,7 +48,6 @@ class DefaultToolTreePath implements ToolTreePath{
         return paths;
     }
     
-    
     /**
      * get the Sting array of this path
      * @return String[]
@@ -59,5 +57,4 @@ class DefaultToolTreePath implements ToolTreePath{
         return paths.toArray(EMPTY_STRING_ARRAY);        
     }
     
-           
 }

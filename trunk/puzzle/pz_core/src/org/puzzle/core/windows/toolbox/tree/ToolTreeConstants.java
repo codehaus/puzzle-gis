@@ -24,7 +24,8 @@ package org.puzzle.core.windows.toolbox.tree;
 import java.lang.ref.WeakReference;
 
 /**
- *
+ * Tool tree constants.
+ * 
  * @author Johann Sorel (Puzzle-GIS)
  */
 public class ToolTreeConstants {

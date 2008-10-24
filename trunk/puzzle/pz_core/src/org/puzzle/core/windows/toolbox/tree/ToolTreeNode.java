@@ -24,12 +24,13 @@ package org.puzzle.core.windows.toolbox.tree;
 import org.jdesktop.swingx.treetable.AbstractMutableTreeTableNode;
 
 /**
- * 
- * @author johann sorel
+ * Tool node.
+ *
+ * @author Johann Sorel (Puzzle-GIS)
  */
 final class ToolTreeNode extends AbstractMutableTreeTableNode{
     
-    private String name ="";
+    private final String name;
     
     /**
      * Creates a new instance of ContextTreeNode

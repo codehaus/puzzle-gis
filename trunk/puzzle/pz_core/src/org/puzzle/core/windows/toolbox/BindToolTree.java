@@ -21,25 +21,25 @@
 package org.puzzle.core.windows.toolbox;
 
 import java.util.Collection;
-import java.util.Iterator;
+
 import org.openide.DialogDescriptor;
 import org.openide.DialogDisplayer;
 import org.openide.util.Lookup;
 import org.openide.util.LookupEvent;
 import org.openide.util.LookupListener;
+
 import org.puzzle.core.windows.toolbox.tree.JToolTree;
 import org.puzzle.core.windows.toolbox.tree.ToolTreeListener;
 import org.puzzle.core.tool.ToolDescriptor;
 
 /**
- * @author johann sorel
+ * @author Johann Sorel (Puzzle-GIS)
  */
 public class BindToolTree extends JToolTree implements LookupListener {
 
-    private Lookup.Result<ToolDescriptor> result = null;
+    private final Lookup.Result<ToolDescriptor> result;
 
     public BindToolTree() {
-
         result = Lookup.getDefault().lookupResult(ToolDescriptor.class);
         result.addLookupListener(this);
         reload(null);
@@ -49,10 +49,10 @@ public class BindToolTree extends JToolTree implements LookupListener {
             @Override
             public void treeToolActivated(ToolDescriptor tool) {
                 
-                Object close = "Close";
-                Object[] objs = new Object[]{close};
+                final Object close = Utilities.getString("close");
+                final Object[] objs = new Object[]{close};
                 
-                DialogDescriptor desc = new DialogDescriptor(tool.getComponent(), tool.getTitle(), false, objs, close,DialogDescriptor.DEFAULT_ALIGN,null, null);
+                final DialogDescriptor desc = new DialogDescriptor(tool.getComponent(), tool.getTitle(), false, objs, close,DialogDescriptor.DEFAULT_ALIGN,null, null);
                 desc.setClosingOptions(objs);
                 DialogDisplayer.getDefault().notify(desc);
                 
@@ -63,28 +63,25 @@ public class BindToolTree extends JToolTree implements LookupListener {
     
     
     private void reload(LookupEvent lookupEvent) {
-        ToolDescriptor[] contexts = getTreeToolDescriptors();
-
-        Collection<? extends ToolDescriptor> c = null;
+        final ToolDescriptor[] contexts = getTreeToolDescriptors();
+        final Collection<? extends ToolDescriptor> c;
 
         if (lookupEvent == null) {
             c = result.allInstances();
         } else {
-            Lookup.Result<? extends ToolDescriptor> r = (Lookup.Result<? extends ToolDescriptor>) lookupEvent.getSource();
+            final Lookup.Result<? extends ToolDescriptor> r = (Lookup.Result<? extends ToolDescriptor>) lookupEvent.getSource();
             c = r.allInstances();
         }
 
         //remove tools non in the lookup
-        for (ToolDescriptor tool : contexts) {
+        for (final ToolDescriptor tool : contexts) {
             if (!c.contains(tool)) {
                 treetable.removeWeakTools();
             }
         }
 
         //add new tools
-        Iterator<? extends ToolDescriptor> ite = c.iterator();
-        while (ite.hasNext()) {
-            ToolDescriptor tool = ite.next();
+        for(final ToolDescriptor tool : c){
             addTool(tool);
         }
     }

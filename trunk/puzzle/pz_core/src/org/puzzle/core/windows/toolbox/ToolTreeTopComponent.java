@@ -1,33 +1,51 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ *  Puzzle-GIS - OpenSource mapping program
+ *  http://docs.codehaus.org/display/PUZZLEGIS
+ *  Copyright (C) 2007-2008 Puzzle-GIS
+ *  
+ *  GPLv3 + Classpath exception
+ *  
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *  
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *  
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 package org.puzzle.core.windows.toolbox;
 
 import java.awt.BorderLayout;
 import java.io.Serializable;
 import java.util.logging.Logger;
+
 import org.openide.util.ImageUtilities;
-import org.openide.util.NbBundle;
 import org.openide.windows.TopComponent;
 import org.openide.windows.WindowManager;
+
 import org.puzzle.core.windows.toolbox.tree.JToolTree;
 
 /**
- * Top component which displays something.
+ * Top component which displays the tool tree.
+ * 
+ * @author Johann Sorel (Geomatys)
  */
 final class ToolTreeTopComponent extends TopComponent {
 
     private JToolTree tree = null;
     private static ToolTreeTopComponent instance;
-    static final String ICON_PATH = "org/puzzle/core/windows/toolbox/tool.png";
     private static final String PREFERRED_ID = "ToolTreeTopComponent";
 
     private ToolTreeTopComponent() {
         initComponents();
-        setName(NbBundle.getMessage(ToolTreeTopComponent.class, "CTL_ToolTreeTopComponent"));
-        setToolTipText(NbBundle.getMessage(ToolTreeTopComponent.class, "HINT_ToolTreeTopComponent"));
-        setIcon(ImageUtilities.loadImage(ICON_PATH, true));
+        setName(Utilities.getString("toolTree"));
+        setToolTipText(Utilities.getString("toolTreeHint"));
+        setIcon(ImageUtilities.loadImage("org/puzzle/core/windows/toolbox/tool.png", true));
     }
 
     /** This method is called from within the constructor to
