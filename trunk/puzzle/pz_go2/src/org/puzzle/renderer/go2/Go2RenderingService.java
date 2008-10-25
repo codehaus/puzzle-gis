@@ -1,28 +1,45 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ *  Puzzle-GIS - OpenSource mapping program
+ *  http://docs.codehaus.org/display/PUZZLEGIS
+ *  Copyright (C) 2007-2008 Puzzle-GIS
+ *
+ *  GPLv3 + Classpath exception
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package org.puzzle.renderer.go2;
 
 import java.awt.Image;
 import java.io.IOException;
+
 import org.geotools.gui.swing.go.J2DMapVolatile;
 import org.geotools.map.MapContext;
+
 import org.opengis.referencing.operation.TransformException;
 import org.openide.util.Exceptions;
-import org.openide.util.Utilities;
+import org.openide.util.ImageUtilities;
+
+import org.openide.util.NbBundle;
 import org.puzzle.core.view.MapView;
 import org.puzzle.core.view.RenderingService;
 
 /**
+ * Rendering service for the Go2 engine.
  *
- * @author Johann Sorel
+ * @author Johann Sorel (Puzzle-GIS)
  */
 public class Go2RenderingService implements RenderingService{
-
-    private static final String IMAGE_ICON_BASE = "org/puzzle/renderer/go2/go2.png";
-    private static final String TITLE = "Go2 renderer";
     
     @Override
     public MapView createView(MapContext context) {
@@ -43,12 +60,12 @@ public class Go2RenderingService implements RenderingService{
 
     @Override
     public Image getIcon() {
-        return Utilities.loadImage(IMAGE_ICON_BASE);
+        return ImageUtilities.loadImage("org/puzzle/renderer/go2/go2.png");
     }
 
     @Override
     public String getTitle() {
-        return TITLE;
+        return NbBundle.getMessage(Go2RenderingService.class, "title");
     }
 
 }
