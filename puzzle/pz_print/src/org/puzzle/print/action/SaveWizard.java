@@ -22,6 +22,7 @@ package org.puzzle.print.action;
 
 import java.awt.Component;
 import java.awt.Dialog;
+import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -36,23 +37,32 @@ import java.util.Collection;
 import java.util.List;
 import javax.imageio.ImageIO;
 import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JFileChooser;
+import javax.swing.JLabel;
+import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.EventListenerList;
 
 import org.geotools.gui.swing.misc.filter.FileFilterFactory;
 import org.geotools.gui.swing.misc.filter.FileFilterFactory.FORMAT;
-import org.jdesktop.swingx.combobox.ListComboBoxModel;
+
 import org.openide.DialogDisplayer;
 import org.openide.WizardDescriptor;
 import org.openide.util.Exceptions;
 import org.openide.util.HelpCtx;
+import org.openide.util.NbBundle;
+
 import org.puzzle.core.view.MapView;
 
 /**
- *
+ * Wizard to choose the view to save.
+ * 
  * @author Johann Sorel (Puzzle-GIS)
  */
 public class SaveWizard extends javax.swing.JPanel implements WizardDescriptor.Panel {
@@ -70,7 +80,7 @@ public class SaveWizard extends javax.swing.JPanel implements WizardDescriptor.P
             lstViews.add(view.getDisplayName());
         }
 
-        ComboBoxModel model = new ListComboBoxModel(lstViews);
+        ComboBoxModel model = new DefaultComboBoxModel(lstViews.toArray());
         guiView.setModel(model);
         guiFileChooser.setMultiSelectionEnabled(false);
         guiFileChooser.addChoosableFileFilter(FileFilterFactory.createFileFilter(FORMAT.PORTABLE_NETWORK_GRAPHICS));
@@ -93,18 +103,18 @@ public class SaveWizard extends javax.swing.JPanel implements WizardDescriptor.P
     }
 
     private void save(){
-        System.out.println("here");
         final int index = guiView.getSelectedIndex();
 
         if(index != -1 && file != null){
             List lst = new ArrayList(views);
             MapView view = (MapView) lst.get(index);
             Image img = view.getMap().getCanvas().getSnapShot();
-            BufferedImage bi = new BufferedImage(img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_ARGB);
-            bi.getGraphics().drawImage(img, 0, 0, null);
-            System.out.println(file);
+            final BufferedImage bi = new BufferedImage(img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_ARGB);
+            final Graphics g = bi.getGraphics();
+            g.drawImage(img, 0, 0, null);
+            g.dispose();
             try {
-                ImageIO.write(bi, "image/png", file);
+                ImageIO.write(bi, "png", file);
             } catch (IOException ex) {
                 Exceptions.printStackTrace(ex);
             }
@@ -114,7 +124,7 @@ public class SaveWizard extends javax.swing.JPanel implements WizardDescriptor.P
 
     @Override
     public String getName() {
-        return "Export view as image.";
+        return NbBundle.getMessage(SaveWizard.class, "exportImage");
     }
     
     public static void showChooserDialog(final Collection views){
@@ -122,7 +132,7 @@ public class SaveWizard extends javax.swing.JPanel implements WizardDescriptor.P
         WizardDescriptor wizardDescriptor = new WizardDescriptor(chooser.getPanels());
         // {0} will be replaced by WizardDesriptor.Panel.getComponent().getName()
         wizardDescriptor.setTitleFormat(new MessageFormat("{0}"));
-        wizardDescriptor.setTitle("Export view as image.");
+        wizardDescriptor.setTitle(NbBundle.getMessage(SaveWizard.class, "exportImage"));
         Dialog dialog = DialogDisplayer.getDefault().createDialog(wizardDescriptor);
         dialog.setVisible(true);
         dialog.toFront();
@@ -229,45 +239,45 @@ public class SaveWizard extends javax.swing.JPanel implements WizardDescriptor.P
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        guiView = new javax.swing.JComboBox();
-        guiFileChooser = new javax.swing.JFileChooser();
 
-        jLabel1.setText(org.openide.util.NbBundle.getMessage(SaveWizard.class, "SaveWizard.jLabel1.text")); // NOI18N
+        jLabel1 = new JLabel();
+        guiView = new JComboBox();
+        guiFileChooser = new JFileChooser();
 
+        jLabel1.setText(NbBundle.getMessage(SaveWizard.class, "view")); // NOI18N
         guiFileChooser.setAcceptAllFileFilterUsed(false);
         guiFileChooser.setControlButtonsAreShown(false);
-        guiFileChooser.setDialogType(javax.swing.JFileChooser.SAVE_DIALOG);
+        guiFileChooser.setDialogType(JFileChooser.SAVE_DIALOG);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        GroupLayout layout = new GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            layout.createParallelGroup(Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(ComponentPlacement.RELATED)
                 .addComponent(guiView, 0, 427, Short.MAX_VALUE)
                 .addContainerGap())
-            .addComponent(guiFileChooser, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+            .addComponent(guiFileChooser, GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            layout.createParallelGroup(Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(guiView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(guiFileChooser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(guiView, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(ComponentPlacement.RELATED)
+                .addComponent(guiFileChooser, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JFileChooser guiFileChooser;
-    private javax.swing.JComboBox guiView;
-    private javax.swing.JLabel jLabel1;
+    private JFileChooser guiFileChooser;
+    private JComboBox guiView;
+    private JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 
 }

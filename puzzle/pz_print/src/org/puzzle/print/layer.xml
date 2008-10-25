@@ -6,7 +6,7 @@
             <file name="org-puzzle-print-action-ExportImage.instance">
                 <attr name="SystemFileSystem.localizingBundle" stringvalue="org.puzzle.print.Bundle"/>
                 <attr name="delegate" newvalue="org.puzzle.print.action.ExportImage"/>
-                <attr name="displayName" bundlevalue="org.puzzle.print.action.Bundle#CTL_ExportImage"/>
+                <attr name="displayName" bundlevalue="org.puzzle.print.action.Bundle#exportImage"/>
                 <attr name="iconBase" stringvalue="org/puzzle/print/action/saveimage.png"/>
                 <attr name="instanceCreate" methodvalue="org.openide.awt.Actions.alwaysEnabled"/>
                 <attr name="noIconInMenu" stringvalue="false"/>

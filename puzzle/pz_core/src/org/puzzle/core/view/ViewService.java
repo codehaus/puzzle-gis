@@ -45,15 +45,15 @@ public final class ViewService {
     /**
      * Automaticly called by the mapview when it is opened.
      */
-    static final void add(MapView view){
-
+    static final void add(final MapView view){
+        views.add(view);
     }
 
     /**
      * Automaticly called by the mapview when it is closed.
      */
-    static final void remove(MapView view){
-
+    static final void remove(final MapView view){
+        views.remove(view);
     }
     
 }
