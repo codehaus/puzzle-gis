@@ -26,8 +26,12 @@ import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.filechooser.FileFilter;
+
 import org.geotools.gui.swing.misc.filter.FileFilterFactory;
+
 import org.openide.util.Exceptions;
+import org.openide.util.NbBundle;
+
 import org.puzzle.core.project.source.GISFileSourceService;
 import org.puzzle.core.project.source.GISSource;
 import org.puzzle.core.project.source.GISSourceInfo;
@@ -41,7 +45,6 @@ import org.puzzle.core.project.source.GISSourceInfo;
  * @see     org.puzzle.core.project.source.GISFileSourceService
  */
 public class WorldImageSourceService implements GISFileSourceService{
-    private static final String TITLE = "WorldImage";
     private static final String SERVICE_ID = "SingleWorldImage";
     
     /** {@inheritDoc} */
@@ -53,7 +56,7 @@ public class WorldImageSourceService implements GISFileSourceService{
     /** {@inheritDoc} */
     @Override
     public String getTitle() {
-        return TITLE;
+        return NbBundle.getMessage(WorldImageSourceService.class, "worldTitle");
     }
 
     /** {@inheritDoc} */
