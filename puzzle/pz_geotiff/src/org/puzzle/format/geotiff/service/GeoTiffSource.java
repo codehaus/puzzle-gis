@@ -25,28 +25,28 @@ import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
 import java.text.MessageFormat;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JComponent;
+
 import org.geotools.coverage.grid.GridCoverage2D;
 import org.geotools.data.DataSourceException;
 import org.geotools.factory.CommonFactoryFinder;
-import org.geotools.feature.SchemaException;
 import org.geotools.gce.geotiff.GeoTiffReader;
 import org.geotools.map.MapContext;
 import org.geotools.map.MapLayer;
 import org.geotools.map.MapLayerBuilder;
 import org.geotools.style.MutableStyle;
 import org.geotools.style.RandomStyleFactory;
-import org.opengis.referencing.operation.TransformException;
+
 import org.openide.DialogDisplayer;
 import org.openide.WizardDescriptor;
-import org.openide.util.Utilities;
+import org.openide.util.ImageUtilities;
+import org.openide.util.NbBundle;
+
 import org.puzzle.core.project.source.LayerSource;
 import org.puzzle.core.project.source.PZLayerConstants;
 import org.puzzle.core.project.GISProject;
@@ -58,12 +58,11 @@ import org.puzzle.core.project.source.GISSourceInfo;
  * a {@link org.puzzle.core.project.GISProject}.
  * 
  * @author  Thomas Bonavia
+ * @author  Johann Sorel (Puzzle-GIS)
  * 
  * @see     org.puzzle.core.project.source.GISSource
  */
 public class GeoTiffSource extends GISSource{
-
-    private static final String IMAGE_ICON_BASE = "org/puzzle/format/geotiff/geotiff.png";
     
     private final String name;
     private GridCoverage2D gc2d = null;
@@ -72,9 +71,7 @@ public class GeoTiffSource extends GISSource{
      * Constructor.
      * Initializes a {@code GeoTiffSource} from the Geotiff file.
      * @param geotiff       The geotiff file.
-     * @param serviceName   The name of the service to use to manage this source.
-     * @param id            The ID of the source.
-     * @param parameters    The parameters (from the XML file).
+     * @param info          save/restore informations.
      */
     GeoTiffSource(final GISSourceInfo info,File geotiff){
         super(info);
@@ -112,7 +109,7 @@ public class GeoTiffSource extends GISSource{
     /** {@inheritDoc } */
     @Override
     public Image getIcon(int type) {
-        return Utilities.loadImage(IMAGE_ICON_BASE);
+        return ImageUtilities.loadImage("org/puzzle/format/geotiff/geotiff.png");
     }
 
     /** {@inheritDoc } */
@@ -127,7 +124,7 @@ public class GeoTiffSource extends GISSource{
         WizardDescriptor wizardDescriptor = new WizardDescriptor(pans);
         // {0} will be replaced by WizardDesriptor.Panel.getComponent().getName()
         wizardDescriptor.setTitleFormat(new MessageFormat("{0}"));
-        wizardDescriptor.setTitle("Create a Shapefile layer from source");
+        wizardDescriptor.setTitle(NbBundle.getMessage(GeoTiffSource.class, "createLayer"));
         DialogDisplayer.getDefault().notify(wizardDescriptor);
         
         boolean cancelled = wizardDescriptor.getValue() != WizardDescriptor.FINISH_OPTION;
