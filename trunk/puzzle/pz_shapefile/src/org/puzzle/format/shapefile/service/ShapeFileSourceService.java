@@ -29,16 +29,17 @@ import javax.swing.filechooser.FileFilter;
 
 import org.geotools.gui.swing.misc.filter.FileFilterFactory;
 
+import org.openide.util.NbBundle;
 import org.puzzle.core.project.source.GISFileSourceService;
 import org.puzzle.core.project.source.GISSource;
 import org.puzzle.core.project.source.GISSourceInfo;
 
 /**
- *
- * @author  Johann Sorel
+ * Shapefile sourcre creation service.
+ * 
+ * @author Johann Sorel (Puzzle-GIS)
  */
 public class ShapeFileSourceService implements GISFileSourceService{
-    private static final String TITLE = "Shapefile";
     private static final String SERVICE_ID = "SingleShapeFile";
     
     @Override
@@ -85,6 +86,6 @@ public class ShapeFileSourceService implements GISFileSourceService{
     
     @Override
     public String getTitle() {
-        return TITLE;
+        return NbBundle.getMessage(ShapeFileSourceService.class, "shapeTitle");
     }
 }

@@ -25,13 +25,12 @@ import java.awt.Component;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
-import java.net.URI;
 import java.text.MessageFormat;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Map;
 import javax.swing.JComponent;
-import org.apache.commons.collections.map.SingletonMap;
+
 import org.geotools.data.DataStore;
 import org.geotools.data.DataStoreFinder;
 import org.geotools.data.FeatureSource;
@@ -41,12 +40,16 @@ import org.geotools.map.MapLayer;
 import org.geotools.map.MapLayerBuilder;
 import org.geotools.style.MutableStyle;
 import org.geotools.style.RandomStyleFactory;
+
 import org.opengis.feature.simple.SimpleFeature;
 import org.opengis.feature.simple.SimpleFeatureType;
+
 import org.openide.DialogDisplayer;
 import org.openide.WizardDescriptor;
 import org.openide.util.Exceptions;
-import org.openide.util.Utilities;
+import org.openide.util.ImageUtilities;
+
+import org.openide.util.NbBundle;
 import org.puzzle.core.project.source.LayerSource;
 import org.puzzle.core.project.source.PZLayerConstants;
 import org.puzzle.core.project.GISProject;
@@ -54,13 +57,12 @@ import org.puzzle.core.project.source.GISSource;
 import org.puzzle.core.project.source.GISSourceInfo;
 
 /**
+ * Shapefile source object.
  *
- * @author  Johann Sorel
+ * @author Johann Sorel (Puzzle-GIS)
  */
 public class ShapeFileSource extends GISSource{
 
-    private static final String IMAGE_ICON_BASE = "org/puzzle/format/shapefile/shapefile.png";
-    
     private final String name;
     private FeatureSource<SimpleFeatureType,SimpleFeature> featureSource = null;
     
@@ -70,7 +72,7 @@ public class ShapeFileSource extends GISSource{
         this.name = shapefile.getName();
         DataStore store = null;
         try {
-            store = DataStoreFinder.getDataStore(new SingletonMap("url",shapefile.toURI().toURL()));
+            store = DataStoreFinder.getDataStore(Collections.singletonMap("url",shapefile.toURI().toURL()));
         } catch (IOException ex) {
             Exceptions.printStackTrace(ex);
         }
@@ -96,7 +98,7 @@ public class ShapeFileSource extends GISSource{
 
     @Override
     public Image getIcon(int type) {
-        return Utilities.loadImage(IMAGE_ICON_BASE);
+        return ImageUtilities.loadImage("org/puzzle/format/shapefile/shapefile.png");
     }
 
     @Override
@@ -109,7 +111,7 @@ public class ShapeFileSource extends GISSource{
         WizardDescriptor wizardDescriptor = new WizardDescriptor(getPanels(contexts, project));
         // {0} will be replaced by WizardDesriptor.Panel.getComponent().getName()
         wizardDescriptor.setTitleFormat(new MessageFormat("{0}"));
-        wizardDescriptor.setTitle("Create a Shapefile layer from source");
+        wizardDescriptor.setTitle(NbBundle.getMessage(ShapeFileSource.class, "createLayer"));
         DialogDisplayer.getDefault().notify(wizardDescriptor);
         
         boolean cancelled = wizardDescriptor.getValue() != WizardDescriptor.FINISH_OPTION;

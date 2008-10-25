@@ -23,7 +23,7 @@ package org.puzzle.format.shapefile.tool;
 /**
  * Supported field types for shapefiles.
  * 
- * @author Johann Sorel
+ * @author Johann Sorel (Puzzle-GIS)
  */
 enum FieldType {
     INTEGER,

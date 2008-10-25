@@ -25,12 +25,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.table.AbstractTableModel;
+import org.openide.util.NbBundle;
 
 
 /**
  * TableModel for fields edition in the shapefile creation tool.
  * 
- * @author johann sorel
+ * @author Johann Sorel
  */
 class ShapeAttModel extends AbstractTableModel{
 
@@ -39,6 +40,7 @@ class ShapeAttModel extends AbstractTableModel{
     /**
      * {@inheritDoc }
      */
+    @Override
     public int getRowCount() {
         return datas.size();
     }
@@ -46,6 +48,7 @@ class ShapeAttModel extends AbstractTableModel{
     /**
      * {@inheritDoc }
      */
+    @Override
     public int getColumnCount() {        
         return 2;
     }
@@ -56,9 +59,9 @@ class ShapeAttModel extends AbstractTableModel{
     @Override
     public String getColumnName(int columnIndex) {
         if(columnIndex == 0){
-            return "Name";
+            return NbBundle.getMessage(ShapeAttModel.class, "name");
         }else{
-            return "Type";
+            return NbBundle.getMessage(ShapeAttModel.class, "type");
         }
     }
 
@@ -97,6 +100,7 @@ class ShapeAttModel extends AbstractTableModel{
     /**
      * {@inheritDoc }
      */
+    @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         if(columnIndex == 0){
             return datas.get(rowIndex).getName();
