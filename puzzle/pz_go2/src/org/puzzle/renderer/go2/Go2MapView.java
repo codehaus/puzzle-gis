@@ -29,8 +29,9 @@ import org.geotools.map.MapContext;
 import org.puzzle.core.view.MapView;
 
 /**
+ * Map view using the GO2 Rendering engine.
  *
- * @author Johann Sorel
+ * @author Johann Sorel (Puzzle-GIS)
  */
 public class Go2MapView extends MapView{
 
