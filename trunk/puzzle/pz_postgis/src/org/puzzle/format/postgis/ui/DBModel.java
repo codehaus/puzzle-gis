@@ -22,7 +22,6 @@ package org.puzzle.format.postgis.ui;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.swing.event.TableModelListener;
 import javax.swing.table.TableModel;
 
@@ -85,32 +84,43 @@ public class DBModel implements TableModel{
         return datas;
     }
     
+    @Override
     public int getColumnCount(){
         return 1;
     }
     
+    @Override
     public Class getColumnClass(int i){
         return String.class;
     }
     
+    @Override
     public String getColumnName(int column) {
         return "";
     }
     
+    @Override
     public int getRowCount() {
         return datas.size();
     }
     
+    @Override
     public boolean isCellEditable(int rowIndex, int columnIndex) {
         return false;
     }
     
+    @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         return datas.get(rowIndex);
     }
             
+    @Override
     public void setValueAt(Object aValue, int rowIndex, int columnIndex) {}
+
+    @Override
     public void addTableModelListener(TableModelListener l) {}
+
+    @Override
     public void removeTableModelListener(TableModelListener l) {}
     
 }

@@ -22,12 +22,12 @@ package org.puzzle.format.postgis.ui;
 
 import java.util.HashMap;
 import java.util.Map;
-
 import javax.swing.JTable;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.TableModel;
 
 import org.geotools.data.DataAccessFactory.Param;
+import org.openide.util.NbBundle;
 
 /**
  * Keys model
@@ -101,9 +101,9 @@ public class KeyModel implements TableModel {
     @Override
     public String getColumnName(int column) {
         if (column == 0) {
-            return "key";
+            return NbBundle.getMessage(KeyModel.class, "key");
         } else {
-            return "value";
+            return NbBundle.getMessage(KeyModel.class, "value");
         }
     }
 

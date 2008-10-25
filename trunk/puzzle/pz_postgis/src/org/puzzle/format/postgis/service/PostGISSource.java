@@ -23,8 +23,8 @@ package org.puzzle.format.postgis.service;
 
 import java.awt.Image;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Map;
+
 import org.geotools.data.FeatureSource;
 import org.geotools.factory.CommonFactoryFinder;
 import org.geotools.map.MapContext;
@@ -32,35 +32,33 @@ import org.geotools.map.MapLayer;
 import org.geotools.map.MapLayerBuilder;
 import org.geotools.style.MutableStyle;
 import org.geotools.style.RandomStyleFactory;
-import org.openide.WizardDescriptor;
-import org.openide.util.Utilities;
+
+import org.openide.util.ImageUtilities;
+
 import org.puzzle.core.project.source.LayerSource;
 import org.puzzle.core.project.source.PZLayerConstants;
 import org.puzzle.core.project.GISProject;
 import org.puzzle.core.project.source.GISSource;
 
 /**
+ * PostGIS source object.
  *
- * @author  Johann Sorel
+ * @author Johann Sorel (Puzzle-GIS)
  */
 public class PostGISSource extends GISSource{
 
-    private static final String IMAGE_ICON_BASE = "org/puzzle/format/postgis/postgres.png";
-    
     private final int id;
     private final Map<String,String> parameters;
     private final String name;
     private final String serviceName;
     private FeatureSource featureSource = null;
     
-    
     PostGISSource(String serviceName,int id, Map<String,String> parameters){
         super(null);
         this.id = id;
-        this.name = "hahaha";
+        this.name = "name";
         this.serviceName = serviceName;
         this.parameters = parameters;
-                
     }
     
     @Override
@@ -77,7 +75,7 @@ public class PostGISSource extends GISSource{
 
     @Override
     public Image getIcon(int type) {
-        return Utilities.loadImage(IMAGE_ICON_BASE);
+        return ImageUtilities.loadImage("org/puzzle/format/postgis/postgres.png");
     }
 
     @Override

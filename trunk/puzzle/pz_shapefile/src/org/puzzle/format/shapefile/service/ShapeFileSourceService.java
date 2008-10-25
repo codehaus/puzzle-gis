@@ -30,6 +30,7 @@ import javax.swing.filechooser.FileFilter;
 import org.geotools.gui.swing.misc.filter.FileFilterFactory;
 
 import org.openide.util.NbBundle;
+
 import org.puzzle.core.project.source.GISFileSourceService;
 import org.puzzle.core.project.source.GISSource;
 import org.puzzle.core.project.source.GISSourceInfo;
