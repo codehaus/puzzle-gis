@@ -35,7 +35,7 @@ import javax.swing.table.TableCellEditor;
 /**
  * Cell editor for ShapeFile creation field table.
  * 
- * @author Johann Sorel
+ * @author Johann Sorel (Puzzle-GIS)
  */
 class TypeEditor implements TableCellEditor{
 
@@ -53,6 +53,7 @@ class TypeEditor implements TableCellEditor{
     /**
      * {@inheritDoc }
      */
+    @Override
     public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {        
         box.setSelectedItem(value);
         return box;
@@ -61,6 +62,7 @@ class TypeEditor implements TableCellEditor{
     /**
      * {@inheritDoc }
      */
+    @Override
     public Object getCellEditorValue() {
         return box.getSelectedItem();
     }
@@ -68,6 +70,7 @@ class TypeEditor implements TableCellEditor{
     /**
      * {@inheritDoc }
      */
+    @Override
     public boolean isCellEditable(EventObject anEvent) {
         return true;
     }
@@ -75,6 +78,7 @@ class TypeEditor implements TableCellEditor{
     /**
      * {@inheritDoc }
      */
+    @Override
     public boolean shouldSelectCell(EventObject anEvent) {
         return true;
     }
@@ -82,6 +86,7 @@ class TypeEditor implements TableCellEditor{
     /**
      * {@inheritDoc }
      */
+    @Override
     public boolean stopCellEditing() {
         CellEditorListener[] lst = LISTENERS.getListeners(CellEditorListener.class);
         
@@ -95,6 +100,7 @@ class TypeEditor implements TableCellEditor{
     /**
      * {@inheritDoc }
      */
+    @Override
     public void cancelCellEditing() {
         CellEditorListener[] lst = LISTENERS.getListeners(CellEditorListener.class);
         
@@ -106,6 +112,7 @@ class TypeEditor implements TableCellEditor{
     /**
      * {@inheritDoc }
      */
+    @Override
     public void addCellEditorListener(CellEditorListener l) {
         LISTENERS.add(CellEditorListener.class, l);
     }
@@ -113,6 +120,7 @@ class TypeEditor implements TableCellEditor{
     /**
      * {@inheritDoc }
      */
+    @Override
     public void removeCellEditorListener(CellEditorListener l) {
         LISTENERS.remove(CellEditorListener.class, l);
     }

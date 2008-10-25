@@ -20,15 +20,29 @@
  */
 package org.puzzle.format.shapefile.tool;
 
+import java.awt.Component;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.Collections;
 import java.util.Date;
 import java.util.Map;
+import javax.swing.BorderFactory;
+import javax.swing.ButtonGroup;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JButton;
 import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.SwingConstants;
 
 import org.geotools.data.DataUtilities;
 import org.geotools.data.FileDataStoreFactorySpi;
@@ -38,14 +52,19 @@ import org.geotools.feature.SchemaException;
 import org.geotools.gui.swing.crschooser.JCRSChooser;
 import org.geotools.referencing.crs.DefaultGeographicCRS;
 
+import org.jdesktop.swingx.JXTable;
+import org.jdesktop.swingx.JXTitledSeparator;
+
 import org.opengis.feature.simple.SimpleFeatureType;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
+
+import org.openide.util.NbBundle;
 
 
 /**
  * Widget Panel to create ShapeFiles.
  * 
- * @author Johann Sorel
+ * @author Johann Sorel (Puzzle-GIS)
  */
 public class ShapeCreationTool extends JPanel {
 
@@ -134,155 +153,156 @@ public class ShapeCreationTool extends JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        grp_geom = new javax.swing.ButtonGroup();
-        jLabel1 = new javax.swing.JLabel();
-        jXTitledSeparator1 = new org.jdesktop.swingx.JXTitledSeparator();
-        gui_jtf_name = new javax.swing.JTextField();
-        gui_but_create = new javax.swing.JButton();
-        gui_but_file = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        gui_tab = new org.jdesktop.swingx.JXTable();
-        gui_but_add = new javax.swing.JButton();
-        gui_but_up = new javax.swing.JButton();
-        gui_but_down = new javax.swing.JButton();
-        gui_but_delete = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
-        gui_jrb_point = new javax.swing.JRadioButton();
-        gui_jrb_multipoint = new javax.swing.JRadioButton();
-        gui_jrb_multiline = new javax.swing.JRadioButton();
-        gui_jrb_multipolygon = new javax.swing.JRadioButton();
-        gui_but_crs = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        gui_jtf_crs = new javax.swing.JTextField();
 
-        jLabel1.setText(org.openide.util.NbBundle.getMessage(ShapeCreationTool.class, "file")); // NOI18N
 
-        jXTitledSeparator1.setTitle(org.openide.util.NbBundle.getMessage(ShapeCreationTool.class, "shapefile_creation")); // NOI18N
+        grp_geom = new ButtonGroup();
+        jLabel1 = new JLabel();
+        jXTitledSeparator1 = new JXTitledSeparator();
+        gui_jtf_name = new JTextField();
+        gui_but_create = new JButton();
+        gui_but_file = new JButton();
+        jPanel2 = new JPanel();
+        jScrollPane1 = new JScrollPane();
+        gui_tab = new JXTable();
+        gui_but_add = new JButton();
+        gui_but_up = new JButton();
+        gui_but_down = new JButton();
+        gui_but_delete = new JButton();
+        jPanel1 = new JPanel();
+        gui_jrb_point = new JRadioButton();
+        gui_jrb_multipoint = new JRadioButton();
+        gui_jrb_multiline = new JRadioButton();
+        gui_jrb_multipolygon = new JRadioButton();
+        gui_but_crs = new JButton();
+        jLabel2 = new JLabel();
+        gui_jtf_crs = new JTextField();
 
+        jLabel1.setText(NbBundle.getMessage(ShapeCreationTool.class, "file")); // NOI18N
+        jXTitledSeparator1.setTitle(NbBundle.getMessage(ShapeCreationTool.class, "shapefile_creation")); // NOI18N
         gui_jtf_name.setEditable(false);
-        gui_jtf_name.setText(org.openide.util.NbBundle.getMessage(ShapeCreationTool.class, "default")); // NOI18N
 
-        gui_but_create.setText(org.openide.util.NbBundle.getMessage(ShapeCreationTool.class, "create")); // NOI18N
-        gui_but_create.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+
+        gui_jtf_name.setText(NbBundle.getMessage(ShapeCreationTool.class, "default")); // NOI18N
+        gui_but_create.setText(NbBundle.getMessage(ShapeCreationTool.class, "create")); // NOI18N
+        gui_but_create.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 gui_but_createActionPerformed(evt);
             }
         });
 
-        gui_but_file.setText(org.openide.util.NbBundle.getMessage(ShapeCreationTool.class, "...")); // NOI18N
-        gui_but_file.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        gui_but_file.setText(NbBundle.getMessage(ShapeCreationTool.class, "...")); // NOI18N
+        gui_but_file.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 gui_but_fileActionPerformed(evt);
             }
         });
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(ShapeCreationTool.class, "attributs"))); // NOI18N
-
+        jPanel2.setBorder(BorderFactory.createTitledBorder(NbBundle.getMessage(ShapeCreationTool.class, "attributs"))); // NOI18N
         gui_tab.setModel(model);
         jScrollPane1.setViewportView(gui_tab);
 
-        gui_but_add.setText(org.openide.util.NbBundle.getMessage(ShapeCreationTool.class, "add")); // NOI18N
-        gui_but_add.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        gui_but_add.setText(NbBundle.getMessage(ShapeCreationTool.class, "add")); // NOI18N
+        gui_but_add.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 gui_but_addActionPerformed(evt);
             }
         });
 
-        gui_but_up.setText(org.openide.util.NbBundle.getMessage(ShapeCreationTool.class, "up")); // NOI18N
-        gui_but_up.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        gui_but_up.setText(NbBundle.getMessage(ShapeCreationTool.class, "up")); // NOI18N
+        gui_but_up.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 gui_but_upActionPerformed(evt);
             }
         });
 
-        gui_but_down.setText(org.openide.util.NbBundle.getMessage(ShapeCreationTool.class, "down")); // NOI18N
-        gui_but_down.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        gui_but_down.setText(NbBundle.getMessage(ShapeCreationTool.class, "down")); // NOI18N
+        gui_but_down.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 gui_but_downActionPerformed(evt);
             }
         });
 
-        gui_but_delete.setText(org.openide.util.NbBundle.getMessage(ShapeCreationTool.class, "delete")); // NOI18N
-        gui_but_delete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        gui_but_delete.setText(NbBundle.getMessage(ShapeCreationTool.class, "delete")); // NOI18N
+        gui_but_delete.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 gui_but_deleteActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        GroupLayout jPanel2Layout = new GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
+
         jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            jPanel2Layout.createParallelGroup(Alignment.LEADING)
+            .addGroup(Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
+                .addPreferredGap(ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(Alignment.LEADING)
                     .addComponent(gui_but_add)
                     .addComponent(gui_but_up)
                     .addComponent(gui_but_down)
                     .addComponent(gui_but_delete)))
         );
 
-        jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {gui_but_add, gui_but_delete, gui_but_down, gui_but_up});
+        jPanel2Layout.linkSize(SwingConstants.HORIZONTAL, new Component[] {gui_but_add, gui_but_delete, gui_but_down, gui_but_up});
 
         jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            jPanel2Layout.createParallelGroup(Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addComponent(gui_but_add)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(ComponentPlacement.RELATED)
                 .addComponent(gui_but_delete)
                 .addGap(24, 24, 24)
                 .addComponent(gui_but_up)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(ComponentPlacement.RELATED)
                 .addComponent(gui_but_down)
-                .addContainerGap(82, Short.MAX_VALUE))
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 286, Short.MAX_VALUE)
+                .addContainerGap(119, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 287, Short.MAX_VALUE)
         );
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(ShapeCreationTool.class, "geometry"))); // NOI18N
-
+        jPanel1.setBorder(BorderFactory.createTitledBorder(NbBundle.getMessage(ShapeCreationTool.class, "geometry"))); // NOI18N
         grp_geom.add(gui_jrb_point);
         gui_jrb_point.setSelected(true);
-        gui_jrb_point.setText(org.openide.util.NbBundle.getMessage(ShapeCreationTool.class, "point")); // NOI18N
-        gui_jrb_point.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        gui_jrb_point.setText(NbBundle.getMessage(ShapeCreationTool.class, "point")); // NOI18N
+        gui_jrb_point.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 gui_jrb_pointActionPerformed(evt);
             }
         });
 
         grp_geom.add(gui_jrb_multipoint);
-        gui_jrb_multipoint.setText(org.openide.util.NbBundle.getMessage(ShapeCreationTool.class, "multipoint")); // NOI18N
-        gui_jrb_multipoint.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        gui_jrb_multipoint.setText(NbBundle.getMessage(ShapeCreationTool.class, "multipoint")); // NOI18N
+        gui_jrb_multipoint.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 gui_jrb_multipointActionPerformed(evt);
             }
         });
 
         grp_geom.add(gui_jrb_multiline);
-        gui_jrb_multiline.setText(org.openide.util.NbBundle.getMessage(ShapeCreationTool.class, "multiline")); // NOI18N
-        gui_jrb_multiline.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        gui_jrb_multiline.setText(NbBundle.getMessage(ShapeCreationTool.class, "multiline")); // NOI18N
+        gui_jrb_multiline.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 gui_jrb_multilineActionPerformed(evt);
             }
         });
 
         grp_geom.add(gui_jrb_multipolygon);
-        gui_jrb_multipolygon.setText(org.openide.util.NbBundle.getMessage(ShapeCreationTool.class, "multipolygon")); // NOI18N
-        gui_jrb_multipolygon.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        gui_jrb_multipolygon.setText(NbBundle.getMessage(ShapeCreationTool.class, "multipolygon")); // NOI18N
+        gui_jrb_multipolygon.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 gui_jrb_multipolygonActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        GroupLayout jPanel1Layout = new GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
+
         jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            jPanel1Layout.createParallelGroup(Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(Alignment.LEADING)
                     .addComponent(gui_jrb_point)
                     .addComponent(gui_jrb_multipoint)
                     .addComponent(gui_jrb_multiline)
@@ -290,92 +310,91 @@ public class ShapeCreationTool extends JPanel {
                 .addContainerGap(40, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            jPanel1Layout.createParallelGroup(Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(gui_jrb_point)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(ComponentPlacement.RELATED)
                 .addComponent(gui_jrb_multipoint)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(ComponentPlacement.RELATED)
                 .addComponent(gui_jrb_multiline)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(ComponentPlacement.RELATED)
                 .addComponent(gui_jrb_multipolygon)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        gui_but_crs.setText(org.openide.util.NbBundle.getMessage(ShapeCreationTool.class, "list")); // NOI18N
-        gui_but_crs.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        gui_but_crs.setText(NbBundle.getMessage(ShapeCreationTool.class, "list")); // NOI18N
+        gui_but_crs.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 gui_but_crsActionPerformed(evt);
             }
         });
 
-        jLabel2.setText(org.openide.util.NbBundle.getMessage(ShapeCreationTool.class, "crs")); // NOI18N
-
+        jLabel2.setText(NbBundle.getMessage(ShapeCreationTool.class, "crs")); // NOI18N
         gui_jtf_crs.setEditable(false);
         gui_jtf_crs.setText("EPSG:4326");
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        GroupLayout layout = new GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            layout.createParallelGroup(Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jXTitledSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 551, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(Alignment.LEADING)
+                    .addComponent(jXTitledSeparator1, GroupLayout.DEFAULT_SIZE, 551, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(gui_jtf_name, javax.swing.GroupLayout.DEFAULT_SIZE, 447, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(ComponentPlacement.RELATED)
+                        .addComponent(gui_jtf_name, GroupLayout.DEFAULT_SIZE, 461, Short.MAX_VALUE)
+                        .addPreferredGap(ComponentPlacement.RELATED)
                         .addComponent(gui_but_file))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jPanel2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup(Alignment.TRAILING)
                             .addComponent(gui_but_create)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jPanel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(gui_jtf_crs, javax.swing.GroupLayout.DEFAULT_SIZE, 434, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(ComponentPlacement.RELATED)
+                        .addComponent(gui_jtf_crs, GroupLayout.DEFAULT_SIZE, 445, Short.MAX_VALUE)
+                        .addPreferredGap(ComponentPlacement.RELATED)
                         .addComponent(gui_but_crs)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            layout.createParallelGroup(Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jXTitledSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jXTitledSeparator1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(gui_but_file)
-                    .addComponent(gui_jtf_name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(gui_jtf_name, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(gui_but_crs)
-                    .addComponent(gui_jtf_crs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(gui_jtf_crs, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 116, Short.MAX_VALUE)
+                        .addComponent(jPanel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(ComponentPlacement.RELATED, 162, Short.MAX_VALUE)
                         .addComponent(gui_but_create))
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
-    private void gui_but_createActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gui_but_createActionPerformed
+    private void gui_but_createActionPerformed(ActionEvent evt) {//GEN-FIRST:event_gui_but_createActionPerformed
         createShape(gui_jtf_name.getText());
     }//GEN-LAST:event_gui_but_createActionPerformed
 
-    private void gui_but_addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gui_but_addActionPerformed
+    private void gui_but_addActionPerformed(ActionEvent evt) {//GEN-FIRST:event_gui_but_addActionPerformed
         model.addAttribut();
     }//GEN-LAST:event_gui_but_addActionPerformed
 
-    private void gui_but_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gui_but_deleteActionPerformed
+    private void gui_but_deleteActionPerformed(ActionEvent evt) {//GEN-FIRST:event_gui_but_deleteActionPerformed
 
         int selected = gui_tab.getSelectionModel().getMinSelectionIndex();
         if (selected >= 0) {
@@ -385,7 +404,7 @@ public class ShapeCreationTool extends JPanel {
         
     }//GEN-LAST:event_gui_but_deleteActionPerformed
 
-    private void gui_but_upActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gui_but_upActionPerformed
+    private void gui_but_upActionPerformed(ActionEvent evt) {//GEN-FIRST:event_gui_but_upActionPerformed
         int selected = gui_tab.getSelectionModel().getMinSelectionIndex();
         if (selected >= 0) {
             Field data = model.getDataAt(selected);
@@ -393,7 +412,7 @@ public class ShapeCreationTool extends JPanel {
         }
     }//GEN-LAST:event_gui_but_upActionPerformed
 
-    private void gui_but_downActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gui_but_downActionPerformed
+    private void gui_but_downActionPerformed(ActionEvent evt) {//GEN-FIRST:event_gui_but_downActionPerformed
         int selected = gui_tab.getSelectionModel().getMinSelectionIndex();
         if (selected >= 0) {
             Field data = model.getDataAt(selected);
@@ -401,23 +420,23 @@ public class ShapeCreationTool extends JPanel {
         }
     }//GEN-LAST:event_gui_but_downActionPerformed
 
-    private void gui_jrb_pointActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gui_jrb_pointActionPerformed
+    private void gui_jrb_pointActionPerformed(ActionEvent evt) {//GEN-FIRST:event_gui_jrb_pointActionPerformed
         geotype = "Point";
     }//GEN-LAST:event_gui_jrb_pointActionPerformed
 
-    private void gui_jrb_multipointActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gui_jrb_multipointActionPerformed
+    private void gui_jrb_multipointActionPerformed(ActionEvent evt) {//GEN-FIRST:event_gui_jrb_multipointActionPerformed
         geotype = "MultiPoint";
     }//GEN-LAST:event_gui_jrb_multipointActionPerformed
 
-    private void gui_jrb_multilineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gui_jrb_multilineActionPerformed
+    private void gui_jrb_multilineActionPerformed(ActionEvent evt) {//GEN-FIRST:event_gui_jrb_multilineActionPerformed
         geotype = "MultiLineString";
     }//GEN-LAST:event_gui_jrb_multilineActionPerformed
 
-    private void gui_jrb_multipolygonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gui_jrb_multipolygonActionPerformed
+    private void gui_jrb_multipolygonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_gui_jrb_multipolygonActionPerformed
         geotype = "MultiPolygon";
     }//GEN-LAST:event_gui_jrb_multipolygonActionPerformed
 
-    private void gui_but_crsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gui_but_crsActionPerformed
+    private void gui_but_crsActionPerformed(ActionEvent evt) {//GEN-FIRST:event_gui_but_crsActionPerformed
         JCRSChooser jcrs = new JCRSChooser(null, true);
         jcrs.setCRS(crs);
         JCRSChooser.ACTION act = jcrs.showDialog();
@@ -430,7 +449,7 @@ public class ShapeCreationTool extends JPanel {
                 
     }//GEN-LAST:event_gui_but_crsActionPerformed
 
-    private void gui_but_fileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gui_but_fileActionPerformed
+    private void gui_but_fileActionPerformed(ActionEvent evt) {//GEN-FIRST:event_gui_but_fileActionPerformed
         JFileChooser jfc = new JFileChooser(file);
         int act = jfc.showSaveDialog(null);
 
@@ -459,26 +478,26 @@ public class ShapeCreationTool extends JPanel {
     }//GEN-LAST:event_gui_but_fileActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.ButtonGroup grp_geom;
-    private javax.swing.JButton gui_but_add;
-    private javax.swing.JButton gui_but_create;
-    private javax.swing.JButton gui_but_crs;
-    private javax.swing.JButton gui_but_delete;
-    private javax.swing.JButton gui_but_down;
-    private javax.swing.JButton gui_but_file;
-    private javax.swing.JButton gui_but_up;
-    private javax.swing.JRadioButton gui_jrb_multiline;
-    private javax.swing.JRadioButton gui_jrb_multipoint;
-    private javax.swing.JRadioButton gui_jrb_multipolygon;
-    private javax.swing.JRadioButton gui_jrb_point;
-    private javax.swing.JTextField gui_jtf_crs;
-    private javax.swing.JTextField gui_jtf_name;
-    private org.jdesktop.swingx.JXTable gui_tab;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private org.jdesktop.swingx.JXTitledSeparator jXTitledSeparator1;
+    private ButtonGroup grp_geom;
+    private JButton gui_but_add;
+    private JButton gui_but_create;
+    private JButton gui_but_crs;
+    private JButton gui_but_delete;
+    private JButton gui_but_down;
+    private JButton gui_but_file;
+    private JButton gui_but_up;
+    private JRadioButton gui_jrb_multiline;
+    private JRadioButton gui_jrb_multipoint;
+    private JRadioButton gui_jrb_multipolygon;
+    private JRadioButton gui_jrb_point;
+    private JTextField gui_jtf_crs;
+    private JTextField gui_jtf_name;
+    private JXTable gui_tab;
+    private JLabel jLabel1;
+    private JLabel jLabel2;
+    private JPanel jPanel1;
+    private JPanel jPanel2;
+    private JScrollPane jScrollPane1;
+    private JXTitledSeparator jXTitledSeparator1;
     // End of variables declaration//GEN-END:variables
 }

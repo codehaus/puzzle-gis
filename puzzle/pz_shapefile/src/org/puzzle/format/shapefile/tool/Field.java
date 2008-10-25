@@ -23,7 +23,7 @@ package org.puzzle.format.shapefile.tool;
 /**
  * A single field for a shapefile creation.
  * 
- * @author Johann Sorel
+ * @author Johann Sorel (Puzzle-GIS)
  */
 class Field {
     private String name = "name";

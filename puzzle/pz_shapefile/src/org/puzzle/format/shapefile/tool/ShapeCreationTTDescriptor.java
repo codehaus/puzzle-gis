@@ -22,7 +22,9 @@
 package org.puzzle.format.shapefile.tool;
 
 import java.awt.Component;
+
 import org.openide.util.NbBundle;
+
 import org.puzzle.core.windows.toolbox.tree.ToolTreeConstants;
 import org.puzzle.core.tool.AbstractToolDescriptor;
 
@@ -30,7 +32,7 @@ import org.puzzle.core.tool.AbstractToolDescriptor;
 /**
  * Widget Tool descriptor for shapefile creation tool, this is used in the ToolBox tree.
  * 
- * @author Johann Sorel
+ * @author Johann Sorel (Puzzle-GIS)
  */
 public class ShapeCreationTTDescriptor extends AbstractToolDescriptor{
     
@@ -41,6 +43,7 @@ public class ShapeCreationTTDescriptor extends AbstractToolDescriptor{
     /**
      * {@inheritDoc }
      */
+    @Override
     public String getTitle() {
         return title;
     }
@@ -56,6 +59,7 @@ public class ShapeCreationTTDescriptor extends AbstractToolDescriptor{
     /**
      * {@inheritDoc }
      */
+    @Override
     public Component getComponent() {
         return new ShapeCreationTool();
     }

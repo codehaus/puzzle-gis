@@ -1,19 +1,50 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ *  Puzzle-GIS - OpenSource mapping program
+ *  http://docs.codehaus.org/display/PUZZLEGIS
+ *  Copyright (C) 2007-2008 Puzzle-GIS
+ *
+ *  GPLv3 + Classpath exception
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package org.puzzle.format.shapefile.service;
 
 import java.awt.Component;
-import java.util.ArrayList;
+import java.awt.Font;
 import java.util.Collection;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListCellRenderer;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
-import org.geotools.map.MapContext;
-import org.jdesktop.swingx.combobox.ListComboBoxModel;
+import javax.swing.JSeparator;
+import javax.swing.JTextField;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
+import org.geotools.map.MapContext;
+
+import org.openide.awt.Mnemonics;
+import org.openide.util.NbBundle;
+
+/**
+ * layer creation wizard panel
+ *
+ * @author Johann Sorel (Puzzle-GIS)
+ */
 final class LayerCreationVisualPanel extends JPanel {
 
     private final Collection<? extends MapContext> contexts;
@@ -23,7 +54,7 @@ final class LayerCreationVisualPanel extends JPanel {
         this.contexts = contexts;
         initComponents();
 
-        guiContexts.setModel( new ListComboBoxModel(new ArrayList<MapContext>(contexts)) );
+        guiContexts.setModel( new DefaultComboBoxModel(contexts.toArray()) );
         guiContexts.setRenderer(new DefaultListCellRenderer() {
 
             @Override
@@ -49,7 +80,7 @@ final class LayerCreationVisualPanel extends JPanel {
 
     @Override
     public String getName() {
-        return "Create layer";
+        return NbBundle.getMessage(LayerCreationVisualPanel.class, "createLayer");
     }
 
     /** This method is called from within the constructor to
@@ -60,61 +91,58 @@ final class LayerCreationVisualPanel extends JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        guiContexts = new javax.swing.JComboBox();
-        jLabel2 = new javax.swing.JLabel();
-        guiTitle = new javax.swing.JTextField();
-        jSeparator1 = new javax.swing.JSeparator();
 
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel1, org.openide.util.NbBundle.getMessage(LayerCreationVisualPanel.class, "contexts")); // NOI18N
 
-        guiContexts.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jLabel1 = new JLabel();
+        guiContexts = new JComboBox();
+        jLabel2 = new JLabel();
+        guiTitle = new JTextField();
+        jSeparator1 = new JSeparator();
+        Mnemonics.setLocalizedText(jLabel1, NbBundle.getMessage(LayerCreationVisualPanel.class, "map"));
+        guiContexts.setModel(new DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jLabel2.setFont(jLabel2.getFont().deriveFont(jLabel2.getFont().getStyle() | java.awt.Font.BOLD));
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel2, org.openide.util.NbBundle.getMessage(LayerCreationVisualPanel.class, "title")); // NOI18N
-
-        guiTitle.setText(org.openide.util.NbBundle.getMessage(LayerCreationVisualPanel.class, "LayerCreationVisualPanel.guiTitle.text")); // NOI18N
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        jLabel2.setFont(jLabel2.getFont().deriveFont(jLabel2.getFont().getStyle() | Font.BOLD));
+        Mnemonics.setLocalizedText(jLabel2, NbBundle.getMessage(LayerCreationVisualPanel.class, "title"));
+        GroupLayout layout = new GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            layout.createParallelGroup(Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(Alignment.LEADING)
+                    .addComponent(jSeparator1, GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(guiContexts, 0, 335, Short.MAX_VALUE))
+                        .addPreferredGap(ComponentPlacement.RELATED)
+                        .addComponent(guiContexts, 0, 367, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(guiTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)))
+                        .addPreferredGap(ComponentPlacement.RELATED)
+                        .addComponent(guiTitle, GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            layout.createParallelGroup(Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(guiContexts, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(guiContexts, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, GroupLayout.PREFERRED_SIZE, 10, GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(guiTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(guiTitle, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(182, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox guiContexts;
-    private javax.swing.JTextField guiTitle;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JSeparator jSeparator1;
+    private JComboBox guiContexts;
+    private JTextField guiTitle;
+    private JLabel jLabel1;
+    private JLabel jLabel2;
+    private JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
 }
 

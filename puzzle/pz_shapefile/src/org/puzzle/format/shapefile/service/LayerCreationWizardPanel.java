@@ -1,17 +1,41 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ *  Puzzle-GIS - OpenSource mapping program
+ *  http://docs.codehaus.org/display/PUZZLEGIS
+ *  Copyright (C) 2007-2008 Puzzle-GIS
+ *
+ *  GPLv3 + Classpath exception
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 package org.puzzle.format.shapefile.service;
 
 import java.awt.Component;
 import java.util.Collection;
 import javax.swing.event.ChangeListener;
+
 import org.geotools.map.MapContext;
+
 import org.openide.WizardDescriptor;
 import org.openide.util.HelpCtx;
+
 import org.puzzle.core.project.GISProject;
 
+/**
+ * Map layer creation wizard panel.
+ *
+ * @author Johann Sorel (Puzzle-GIS)
+ */
 class LayerCreationWizardPanel implements WizardDescriptor.Panel {
 
     private final Collection<? extends MapContext> contexts;
@@ -64,29 +88,6 @@ class LayerCreationWizardPanel implements WizardDescriptor.Panel {
     @Override
     public final void removeChangeListener(ChangeListener l) {
     }
-    /*
-    private final Set<ChangeListener> listeners = new HashSet<ChangeListener>(1); // or can use ChangeSupport in NB 6.0
-    public final void addChangeListener(ChangeListener l) {
-    synchronized (listeners) {
-    listeners.add(l);
-    }
-    }
-    public final void removeChangeListener(ChangeListener l) {
-    synchronized (listeners) {
-    listeners.remove(l);
-    }
-    }
-    protected final void fireChangeEvent() {
-    Iterator<ChangeListener> it;
-    synchronized (listeners) {
-    it = new HashSet<ChangeListener>(listeners).iterator();
-    }
-    ChangeEvent ev = new ChangeEvent(this);
-    while (it.hasNext()) {
-    it.next().stateChanged(ev);
-    }
-    }
-     */
 
     // You can use a settings object to keep track of state. Normally the
     // settings object will be the WizardDescriptor, so you can use
