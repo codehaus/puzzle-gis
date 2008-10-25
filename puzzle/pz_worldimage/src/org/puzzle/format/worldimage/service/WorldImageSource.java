@@ -26,7 +26,6 @@ import java.io.File;
 import java.io.IOException;
 import java.text.MessageFormat;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Map;
 import javax.swing.JComponent;
 
@@ -40,10 +39,12 @@ import org.geotools.style.MutableStyle;
 import org.geotools.style.RandomStyleFactory;
 
 import org.opengis.referencing.operation.NoninvertibleTransformException;
+
 import org.openide.DialogDisplayer;
 import org.openide.WizardDescriptor;
 import org.openide.util.Exceptions;
-import org.openide.util.Utilities;
+import org.openide.util.ImageUtilities;
+import org.openide.util.NbBundle;
 
 import org.puzzle.core.project.source.LayerSource;
 import org.puzzle.core.project.source.PZLayerConstants;
@@ -67,7 +68,7 @@ import org.puzzle.core.project.source.GISSourceInfo;
 public class WorldImageSource extends GISSource{
 
     private static final File CACHE_FOLDER = new File("tileCache");
-    private static final String IMAGE_ICON_BASE = "org/puzzle/format/worldimage/worldimage.png";
+
     static{
         CACHE_FOLDER.mkdirs();
     }
@@ -116,7 +117,7 @@ public class WorldImageSource extends GISSource{
     /** {@inheritDoc } */
     @Override
     public Image getIcon(int type) {
-        return Utilities.loadImage(IMAGE_ICON_BASE);
+        return ImageUtilities.loadImage("org/puzzle/format/worldimage/worldimage.png");
     }
 
     /** {@inheritDoc } */
@@ -130,7 +131,7 @@ public class WorldImageSource extends GISSource{
         WizardDescriptor wizardDescriptor = new WizardDescriptor(getPanels(contexts, project));
         // {0} will be replaced by WizardDesriptor.Panel.getComponent().getName()
         wizardDescriptor.setTitleFormat(new MessageFormat("{0}"));
-        wizardDescriptor.setTitle("Create a Shapefile layer from source");
+        wizardDescriptor.setTitle(NbBundle.getMessage(WorldImageSource.class, "createLayer"));
         DialogDisplayer.getDefault().notify(wizardDescriptor);
         
         boolean cancelled = wizardDescriptor.getValue() != WizardDescriptor.FINISH_OPTION;
