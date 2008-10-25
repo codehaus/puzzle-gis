@@ -22,6 +22,8 @@ package org.puzzle.format.postgis.service;
 
 import java.util.Map;
 
+import org.openide.util.NbBundle;
+
 import org.puzzle.core.project.source.SourceCreationPane;
 import org.puzzle.core.project.source.GISDistantSourceService;
 import org.puzzle.core.project.source.GISSource;
@@ -29,16 +31,17 @@ import org.puzzle.core.project.source.GISSourceInfo;
 import org.puzzle.format.postgis.ui.JPostGISDataPanel;
 
 /**
- *
- * @author  Johann Sorel (Puzzle-GIS)
+ * PostGIS source service.
+ * 
+ * @author Johann Sorel (Puzzle-GIS)
  */
 public class PostGISSourceService implements GISDistantSourceService{
 
-    private static final String TITLE = "PostGIS";
+    private static final String SERVICE_ID = "PostGIS";
     
     @Override
     public String getIdentifier(){
-        return "PostGIS";
+        return SERVICE_ID;
     }
     
     @Override
@@ -58,7 +61,7 @@ public class PostGISSourceService implements GISDistantSourceService{
 
     @Override
     public String getTitle() {
-        return TITLE;
+        return NbBundle.getMessage(PostGISSourceService.class, "postgisTitle");
     }
 
     @Override
