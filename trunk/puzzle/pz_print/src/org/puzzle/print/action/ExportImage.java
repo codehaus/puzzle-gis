@@ -22,22 +22,30 @@ package org.puzzle.print.action;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Collection;
+import java.util.Set;
+
 import org.openide.DialogDisplayer;
 import org.openide.NotifyDescriptor;
-import org.openide.util.Lookup;
+
+import org.openide.util.NbBundle;
+import org.puzzle.core.view.MapView;
 import org.puzzle.core.view.ViewService;
 
+/**
+ * Save view action.
+ *
+ * @author Johann Sorel (Puzzle-GIS)
+ */
 public final class ExportImage implements ActionListener {
 
     @Override
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(final ActionEvent e) {
         
-        final ViewService service = Lookup.getDefault().lookup(ViewService.class);
-        final Collection views = service.getViews();
+        final Set<MapView> views = ViewService.getViews();
 
         if(views.isEmpty()){
-            final NotifyDescriptor d =  new NotifyDescriptor.Message("No avaible views.", NotifyDescriptor.ERROR_MESSAGE);
+            final NotifyDescriptor d =  new NotifyDescriptor.Message(
+                    NbBundle.getMessage(ExportImage.class, "noView"), NotifyDescriptor.ERROR_MESSAGE);
             DialogDisplayer.getDefault().notify(d);
         }else{
             SaveWizard.showChooserDialog(views);
