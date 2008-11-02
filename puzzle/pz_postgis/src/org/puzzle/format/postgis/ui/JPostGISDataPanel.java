@@ -31,7 +31,7 @@ import org.geotools.data.FeatureSource;
 import org.geotools.data.postgis.PostgisDataStoreFactory;
 import org.geotools.factory.CommonFactoryFinder;
 import org.geotools.map.MapLayer;
-import org.geotools.map.MapLayerBuilder;
+import org.geotools.map.MapBuilder;
 import org.geotools.style.MutableStyle;
 import org.geotools.style.RandomStyleFactory;
 
@@ -463,7 +463,7 @@ public class JPostGISDataPanel extends SourceCreationPane {
                     FeatureSource<SimpleFeatureType, SimpleFeature> fs = store.getFeatureSource(name);
                     MutableStyle style = rsf.createRandomVectorStyle(fs);
 
-                    MapLayerBuilder mlb = new MapLayerBuilder();
+                    MapBuilder mlb = new MapBuilder();
                     MapLayer layer = mlb.create(fs, style);
                     layer.setDescription(CommonFactoryFinder.getStyleFactory(null).createDescription("postgis - " + name, ""));
                     layers.add(layer);

@@ -24,6 +24,7 @@ import java.beans.PropertyChangeEvent;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Collection;
+import java.util.EventObject;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -46,6 +47,10 @@ import org.geotools.style.sld.XMLUtilities;
 import org.netbeans.api.project.FileOwnerQuery;
 import org.netbeans.api.project.Project;
 
+import org.openide.DialogDisplayer;
+import org.openide.NotifyDescriptor;
+import org.openide.NotifyDescriptor.Confirmation;
+import org.openide.cookies.SaveCookie;
 import org.openide.filesystems.FileAlreadyLockedException;
 import org.openide.filesystems.FileLock;
 import org.openide.filesystems.FileObject;
@@ -94,7 +99,10 @@ public class GISContextDataObject extends XMLDataObject {
     private static final String TAG_LAYER_QUERY = "filter";
     
     private final DefaultContextListener contextListener = new DefaultContextListener();
+    private final Document dom;
+
     private MapContext context = null;
+
 
     /**
      * Constructor.
@@ -107,15 +115,11 @@ public class GISContextDataObject extends XMLDataObject {
      */
     public GISContextDataObject(FileObject pf, GISContextDataLoader loader) throws DataObjectExistsException, IOException {
         super(pf, loader);
-        
-//        Project prj = FileOwnerQuery.getOwner(pf);
-//        if(prj != null && prj instanceof GISProject){
-//            GISProject gisprj = (GISProject) prj;
-//            gisprj.addContext(getContext());
-//        }
-        
+
         CookieSet cookies = getCookieSet();
         cookies.add((org.openide.nodes.Node.Cookie) DataEditorSupport.create(this, getPrimaryEntry(), cookies));
+
+        dom = getDOM();
     }
 
     @Override
@@ -140,7 +144,7 @@ public class GISContextDataObject extends XMLDataObject {
     public MapContext getContext(){
         
         if(context == null){
-            context = parseContext(getDOM());
+            context = parseContext(dom);
             context.addContextListener(contextListener);
         }
         
@@ -285,7 +289,7 @@ public class GISContextDataObject extends XMLDataObject {
     
     
     private void DOMremoveLayer(final int index){
-        final Document doc = getDOM();
+        final Document doc = dom;
         final Node root = doc.getElementsByTagName(TAG_LAYERS).item(0);
         final NodeList children = root.getChildNodes();
         int onLayer = -1;
@@ -305,12 +309,11 @@ public class GISContextDataObject extends XMLDataObject {
         DOMsave(doc);
     }
     
-    private void DOMupdateLayer(final MapLayer layer, int index){
-        final Document doc = getDOM();
+    private void DOMupdateLayer(final MapLayer layer, final int index, final EventObject event){
+        final Document doc = dom;
         final Node root = doc.getElementsByTagName(TAG_LAYERS).item(0);
         final NodeList children = root.getChildNodes();
         int onLayer = -1;
-        
         for(int i = 0, n = children.getLength(); i < n; i++) {
             final Node child = children.item(i);
             final String name = child.getNodeName();
@@ -319,24 +322,28 @@ public class GISContextDataObject extends XMLDataObject {
             }
             if(onLayer == index){
                 //we are on the layer to update
-                DOMencodeLayer(doc,layer,child);
+                DOMencodeLayer(doc,layer,child,event);
                 break;
             }
         }
-        
         DOMsave(doc);
     }
 
-    private Node DOMencodeLayer(final Document doc,final MapLayer layer, final Node layerNode){
-        
-        //clear all store informations
-        final NodeList children = layerNode.getChildNodes();
-        for(int i=children.getLength()-1 ; i>=0; i--){
-            layerNode.removeChild(children.item(i));
+    private Node DOMencodeLayer(final Document doc,final MapLayer layer, final Node layerNode, final EventObject event){
+
+        final LayerSource source = (LayerSource) layer.getUserPropertie(PZLayerConstants.KEY_LAYER_INFO);
+        if (source == null){
+            //can not save this layer
+            return layerNode;
         }
-        
-        //check if we can save the layer and store the new values
-        if (layer.getUserPropertie(PZLayerConstants.KEY_LAYER_INFO) != null) {
+
+        if(event == null || !(event instanceof PropertyChangeEvent)){
+            //no provided event save everything
+            //clear all store informations
+            final NodeList children = layerNode.getChildNodes();
+            for(int i=children.getLength()-1 ; i>=0; i--){
+                layerNode.removeChild(children.item(i));
+            }
 
             //store layer title
             final String title = layer.getDescription().getTitle().toString();
@@ -345,7 +352,6 @@ public class GISContextDataObject extends XMLDataObject {
             layerNode.appendChild(layerTitle);
 
             //store layer source
-            final LayerSource source = (LayerSource) layer.getUserPropertie(PZLayerConstants.KEY_LAYER_INFO);
             final int id = source.getSourceId();
             final Map<String, String> params = source.getParameters();
             final Element layerSource = doc.createElement(TAG_LAYER_SOURCE);
@@ -380,18 +386,21 @@ public class GISContextDataObject extends XMLDataObject {
             }
 
             //store layer style
+            //todo this is slow, try to avoid it
             try {
                 new XMLUtilities().writeStyle(layerNode, layer.getStyle(), StyledLayerDescriptor.V_1_1_0);
             } catch (JAXBException ex) {
                 Exceptions.printStackTrace(ex);
             }
+        }else{
+            final PropertyChangeEvent propEvent = (PropertyChangeEvent) event;
         }
 
         return layerNode;
     }
 
     private void DOMencodeLayers(){
-        final Document doc = getDOM();
+        final Document doc = dom;
         final Node root = doc.getElementsByTagName(TAG_LAYERS).item(0);
         
         //we clear the layers list
@@ -404,14 +413,42 @@ public class GISContextDataObject extends XMLDataObject {
         //create layer nodes
         for(final MapLayer layer : context.layers()){
             final Element layerNode = doc.createElement(TAG_LAYER);
-            DOMencodeLayer(doc, layer, layerNode);
+            DOMencodeLayer(doc, layer, layerNode,null);
             root.appendChild(layerNode);
         }
 
         DOMsave(doc);
     }
         
-    private void DOMsave(Document doc){
+
+    private class DefaultContextListener implements ContextListener{
+
+        @Override
+        public void propertyChange(PropertyChangeEvent evt) {
+            DOMencodeLayers();
+        }
+
+        @Override
+        public void layerChange(CollectionChangeEvent<MapLayer> evt) {
+
+            switch(evt.getType()){
+                case CollectionChangeEvent.ITEM_ADDED :
+                    DOMencodeLayers();
+                    break;
+                case CollectionChangeEvent.ITEM_CHANGED :
+                    //assume there is only one layer change
+                    DOMupdateLayer(evt.getItems().iterator().next(), (int)evt.getRange().getMinimum(),evt.getChangeEvent() );
+                    break;
+                case CollectionChangeEvent.ITEM_REMOVED :
+                    //assume there is only one layer added
+                    DOMremoveLayer( (int)evt.getRange().getMinimum() );
+                    break;
+            }
+        }
+
+    }
+
+    private void DOMsave(Document doc) {
         try {
             final OutputStream output = getPrimaryFile().getOutputStream(FileLock.NONE);
             XMLUtil.write(doc, output, "UTF-8");
@@ -422,32 +459,6 @@ public class GISContextDataObject extends XMLDataObject {
         } catch (IOException ex) {
             Exceptions.printStackTrace(ex);
         }
-    }
-    
-    private class DefaultContextListener implements ContextListener{
-
-        @Override
-        public void propertyChange(PropertyChangeEvent evt) {
-            DOMencodeLayers();
-        }
-
-        @Override
-        public void layerChange(CollectionChangeEvent<MapLayer> evt) {
-            switch(evt.getType()){
-                case CollectionChangeEvent.ITEM_ADDED :
-                    DOMencodeLayers();
-                    break;
-                case CollectionChangeEvent.ITEM_CHANGED :
-                    //assume there is only one layer change
-                    DOMupdateLayer(evt.getItems().iterator().next(), (int)evt.getRange().getMinimum() );
-                    break;
-                case CollectionChangeEvent.ITEM_REMOVED :
-                    //assume there is only one layer added
-                    DOMremoveLayer( (int)evt.getRange().getMinimum() );
-                    break;
-            }
-        }
-
     }
 
 }
