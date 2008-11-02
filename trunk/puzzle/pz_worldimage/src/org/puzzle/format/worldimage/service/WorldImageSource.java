@@ -34,7 +34,7 @@ import org.geotools.coverage.wi.WorldImageFactory;
 import org.geotools.factory.CommonFactoryFinder;
 import org.geotools.map.MapContext;
 import org.geotools.map.MapLayer;
-import org.geotools.map.MapLayerBuilder;
+import org.geotools.map.MapBuilder;
 import org.geotools.style.MutableStyle;
 import org.geotools.style.RandomStyleFactory;
 
@@ -107,7 +107,7 @@ public class WorldImageSource extends GISSource{
     public MapLayer createLayer(Map<String, String> parameters) {
         final MutableStyle style = new RandomStyleFactory().createRasterStyle();
         final LayerSource source = new LayerSource(getInfo().getID(), parameters,this);
-        final MapLayerBuilder builder = new MapLayerBuilder();
+        final MapBuilder builder = new MapBuilder();
         final MapLayer layer = builder.create(reader, style, name);
         layer.setUserPropertie(PZLayerConstants.KEY_LAYER_INFO, source);
         layer.setDescription(CommonFactoryFinder.getStyleFactory(null).createDescription(name,"") );        

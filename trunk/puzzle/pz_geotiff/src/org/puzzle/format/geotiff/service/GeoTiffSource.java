@@ -38,7 +38,7 @@ import org.geotools.factory.CommonFactoryFinder;
 import org.geotools.gce.geotiff.GeoTiffReader;
 import org.geotools.map.MapContext;
 import org.geotools.map.MapLayer;
-import org.geotools.map.MapLayerBuilder;
+import org.geotools.map.MapBuilder;
 import org.geotools.style.MutableStyle;
 import org.geotools.style.RandomStyleFactory;
 
@@ -98,7 +98,7 @@ public class GeoTiffSource extends GISSource{
         if(parameters == null)parameters = Collections.emptyMap();
         final LayerSource source = new LayerSource(getInfo().getID(), parameters,this);
 
-        final MapLayerBuilder builder = new MapLayerBuilder();
+        final MapBuilder builder = new MapBuilder();
         final MapLayer layer = builder.create(gc2d, style, name);
         layer.setUserPropertie(PZLayerConstants.KEY_LAYER_INFO, source);
         layer.setDescription(CommonFactoryFinder.getStyleFactory(null).createDescription(name,"") );

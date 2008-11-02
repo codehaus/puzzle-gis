@@ -37,7 +37,7 @@ import org.geotools.data.FeatureSource;
 import org.geotools.factory.CommonFactoryFinder;
 import org.geotools.map.MapContext;
 import org.geotools.map.MapLayer;
-import org.geotools.map.MapLayerBuilder;
+import org.geotools.map.MapBuilder;
 import org.geotools.style.MutableStyle;
 import org.geotools.style.RandomStyleFactory;
 
@@ -89,7 +89,7 @@ public class ShapeFileSource extends GISSource{
         final MutableStyle style = new RandomStyleFactory().createRandomVectorStyle(featureSource);
         if(parameters == null) parameters = Collections.emptyMap();
         final LayerSource source = new LayerSource(getInfo().getID(), parameters,this);
-        final MapLayerBuilder builder = new MapLayerBuilder();
+        final MapBuilder builder = new MapBuilder();
         final MapLayer layer = builder.create(featureSource, style);
         layer.setUserPropertie(PZLayerConstants.KEY_LAYER_INFO, source);
         layer.setDescription(CommonFactoryFinder.getStyleFactory(null).createDescription(name,"") );
