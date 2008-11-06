@@ -25,6 +25,8 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.netbeans.api.progress.ProgressHandle;
+import org.netbeans.api.progress.ProgressHandleFactory;
 import org.netbeans.api.project.FileOwnerQuery;
 import org.netbeans.api.project.Project;
 
@@ -73,17 +75,8 @@ public class GISSourceDataObject extends XMLDataObject {
      */
     public GISSourceDataObject(FileObject pf, GISSourceDataLoader loader) throws DataObjectExistsException, IOException {
         super(pf, loader);
-        CookieSet cookies = getCookieSet();
+        final CookieSet cookies = getCookieSet();
         cookies.add((Node.Cookie) DataEditorSupport.create(this, getPrimaryEntry(), cookies));
-
-//        Project project = FileOwnerQuery.getOwner(getPrimaryFile());
-//        if(project instanceof GISProject){
-//            GISProject prj = (GISProject)project;
-//            GISSource src = getSource();
-//            if(src != null){
-//                prj.addGISSource(src);
-//            }
-//        }
         
     }
 
@@ -97,6 +90,10 @@ public class GISSourceDataObject extends XMLDataObject {
     public GISSource getSource(){
 
         if(source == null){
+
+            ProgressHandle handle = ProgressHandleFactory.createHandle(Utilities.getString("loadingSource") +" : " + getName());
+            handle.start(100);
+            handle.switchToIndeterminate();
 
             //try to read the xml file
             Document gisDoc = null;
@@ -152,6 +149,7 @@ public class GISSourceDataObject extends XMLDataObject {
 
             }
 
+            handle.finish();
         }
 
         return source;

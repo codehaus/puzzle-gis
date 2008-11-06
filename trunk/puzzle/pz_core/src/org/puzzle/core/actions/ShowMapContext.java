@@ -22,6 +22,7 @@ package org.puzzle.core.actions;
 
 import java.util.Collection;
 
+import javax.swing.SwingUtilities;
 import org.geotools.map.MapContext;
 
 import org.openide.nodes.Node;
@@ -50,29 +51,51 @@ public final class ShowMapContext extends CookieAction {
      * @param   activatedNodes  The currently activated nodes.
      */
     @Override
-    protected void performAction(Node[] activatedNodes) {
+    protected void performAction(final Node[] activatedNodes) {
         if(activatedNodes.length == 0 ) return ;
         
         final GISContextDataObject dataObject = activatedNodes[0].getLookup().lookup(GISContextDataObject.class);
 
         if(dataObject == null) return;
 
-        final MapContext context = dataObject.getContext();
-        
-        if(context != null){
-            final Collection<? extends RenderingService> services = Lookup.getDefault().lookupAll(RenderingService.class);
-            if(services.isEmpty()){
-                return;
-            }else if(services.size() == 1){
-                //only one service, dont show the renderer chooser
-                final MapView view = services.iterator().next().createView(context);
-                if(view != null && !view.isOpened()) view.open();
-            }else{
-                final MapView view = RendererChooser.showChooserDialog(context);
-                if(view != null && !view.isOpened()) view.open();
+        new Thread(){
+            public void run(){
+                final MapContext context = dataObject.getContext();
+
+                if(context != null){
+                    final Collection<? extends RenderingService> services = Lookup.getDefault().lookupAll(RenderingService.class);
+                    if(services.isEmpty()){
+                        return;
+                    }else if(services.size() == 1){
+                        //only one service, dont show the renderer chooser
+                        SwingUtilities.invokeLater(new Runnable() {
+
+                            @Override
+                            public void run() {
+                                final MapView view = services.iterator().next().createView(context);
+                                if(view != null && !view.isOpened()) view.open();
+                            }
+                        });
+                        
+                    }else{
+
+                        SwingUtilities.invokeLater(new Runnable() {
+
+                            @Override
+                            public void run() {
+                                final MapView view = RendererChooser.showChooserDialog(context);
+                        if(view != null && !view.isOpened()) view.open();
+                            }
+                        });
+                        
+                    }
+
+                }
+
+
             }
-            
-        }
+        }.start();
+
     }
 
     /**
