@@ -22,6 +22,7 @@ package org.puzzle.core.actions;
 
 import java.util.Collection;
 
+import javax.swing.SwingUtilities;
 import org.geotools.map.MapContext;
 
 import org.netbeans.api.project.FileOwnerQuery;
@@ -50,18 +51,37 @@ public final class ShowLayerWizard extends CookieAction {
     @Override
     protected void performAction(Node[] activatedNodes) {
         final GISSourceDataObject dataObject = (GISSourceDataObject) activatedNodes[0].getLookup().lookup(DataObject.class);
-        final GISSource source = dataObject.getSource();
-        
         final GISProject prj = (GISProject) FileOwnerQuery.getOwner(dataObject.getPrimaryFile());
+
+        new Thread(){
+
+            public void run(){
+                final GISSource source = dataObject.getSource();
+                final Collection<MapContext> contexts = prj.getContexts();
+
+                if(contexts.size() > 0 && prj != null){
+                    SwingUtilities.invokeLater(new Runnable() {
+
+                        @Override
+                        public void run() {
+                            source.showLayerWizard(contexts, prj);
+                        }
+                    });
+
+                }else{
+                    SwingUtilities.invokeLater(new Runnable() {
+
+                        @Override
+                        public void run() {
+                            final DialogDescriptor desc = new DialogDescriptor(Utilities.getString("projectHasNoMap"), Utilities.getString("warning"), true, null);
+                            DialogDisplayer.getDefault().notify(desc);
+                        }
+                    });
+                }
+            }
+
+        }.start();
         
-        final Collection<MapContext> contexts = prj.getContexts();
-        
-        if(contexts.size() > 0 && prj != null){
-            source.showLayerWizard(contexts, prj);
-        }else{
-            final DialogDescriptor desc = new DialogDescriptor(Utilities.getString("projectHasNoMap"), Utilities.getString("warning"), true, null);
-            DialogDisplayer.getDefault().notify(desc);
-        }
         
     }
 

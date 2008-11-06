@@ -44,13 +44,11 @@ import org.geotools.style.sld.Specification.StyledLayerDescriptor;
 import org.geotools.style.sld.Specification.SymbologyEncoding;
 import org.geotools.style.sld.XMLUtilities;
 
+import org.netbeans.api.progress.ProgressHandle;
+import org.netbeans.api.progress.ProgressHandleFactory;
 import org.netbeans.api.project.FileOwnerQuery;
 import org.netbeans.api.project.Project;
 
-import org.openide.DialogDisplayer;
-import org.openide.NotifyDescriptor;
-import org.openide.NotifyDescriptor.Confirmation;
-import org.openide.cookies.SaveCookie;
 import org.openide.filesystems.FileAlreadyLockedException;
 import org.openide.filesystems.FileLock;
 import org.openide.filesystems.FileObject;
@@ -132,8 +130,6 @@ public class GISContextDataObject extends XMLDataObject {
         super.dispose();
     }
 
-    
-    
     /**
      * This method is used to retrieve the {@code MapContext} associated with
      * the {@code GISContextDataObject}. If not context is currently associated,
@@ -144,8 +140,18 @@ public class GISContextDataObject extends XMLDataObject {
     public MapContext getContext(){
         
         if(context == null){
+            ProgressHandle handle = ProgressHandleFactory.createHandle(Utilities.getString("loadingContext"));
+            handle.start(100);
+            handle.switchToIndeterminate();
+            // at this point the task is finished and removed from status bar
+            // it's not realy necessary to count all the way to the limit, finish can be called earlier.
+            // however it has to be called at the end of the processing.
+
+
+
             context = parseContext(dom);
             context.addContextListener(contextListener);
+            handle.finish();
         }
         
         return context;
