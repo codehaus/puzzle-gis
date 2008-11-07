@@ -56,7 +56,7 @@ public class RendererChooser extends JPanel implements WizardDescriptor.Panel {
     private final Map<JRadioButton,RenderingService> link = new HashMap<JRadioButton, RenderingService>();
     private boolean flagok = false;
     
-    private RendererChooser(){
+    public RendererChooser(){
         setLayout(new GridLayout(1, services.size()));
         
         for(final RenderingService service : services){
@@ -104,7 +104,7 @@ public class RendererChooser extends JPanel implements WizardDescriptor.Panel {
      * map view.
      * @return MapView or null if wizard was canceled.
      */
-    public static MapView showChooserDialog(MapContext context){
+    public void showChooserDialog(){
         final RendererChooser chooser = new RendererChooser();
         final WizardDescriptor wizardDescriptor = new WizardDescriptor(chooser.getPanels());
         // {0} will be replaced by WizardDesriptor.Panel.getComponent().getName()
@@ -118,7 +118,6 @@ public class RendererChooser extends JPanel implements WizardDescriptor.Panel {
            chooser.flagok = true;
         }
         
-        return chooser.getView(context);
     }
         
     
