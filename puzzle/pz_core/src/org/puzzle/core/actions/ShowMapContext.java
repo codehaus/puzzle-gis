@@ -25,6 +25,8 @@ import java.util.Collection;
 import javax.swing.SwingUtilities;
 import org.geotools.map.MapContext;
 
+import org.netbeans.api.progress.ProgressHandle;
+import org.netbeans.api.progress.ProgressHandleFactory;
 import org.openide.nodes.Node;
 import org.openide.util.HelpCtx;
 import org.openide.util.Lookup;
@@ -83,8 +85,10 @@ public final class ShowMapContext extends CookieAction {
 
                             @Override
                             public void run() {
-                                final MapView view = RendererChooser.showChooserDialog(context);
-                        if(view != null && !view.isOpened()) view.open();
+                                final RendererChooser rc = new RendererChooser();
+                                rc.showChooserDialog();
+                                final MapView view = rc.getView(context);
+                                if(view != null && !view.isOpened()) view.open();
                             }
                         });
                         
