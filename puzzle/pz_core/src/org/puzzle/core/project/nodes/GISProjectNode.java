@@ -90,8 +90,8 @@ public class GISProjectNode extends FilterNode{
     @Override
     public Action[] getActions(boolean arg0) {
         return new Action[]{
-            CommonProjectActions.closeProjectAction(),
-            CommonProjectActions.setAsMainProjectAction()
+            CommonProjectActions.setAsMainProjectAction(),
+            CommonProjectActions.closeProjectAction()
         };
     }
 

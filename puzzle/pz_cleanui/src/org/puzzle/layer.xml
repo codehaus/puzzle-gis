@@ -5,9 +5,7 @@
         <file name="Build_hidden"/>
         <file name="Clipboard_hidden"/>
         <file name="Edit_hidden"/>
-        <folder name="File">
-            <file name="org-netbeans-modules-project-ui-NewFile.shadow_hidden"/>
-        </folder>
+        <file name="QuickSearch_hidden"/>
         <file name="UndoRedo_hidden"/>
     </folder>
     <folder name="Menu">
