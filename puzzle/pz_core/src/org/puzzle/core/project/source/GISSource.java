@@ -81,12 +81,5 @@ public abstract class GISSource {
      * @return  A new {@code Image} representing the icon.
      */
      public abstract Image getIcon(int type);
-    
-    /**
-     * Get the title of the {@code GISSource}. It makes sense to give to the
-     * source the name of its data, but it is not an obligation !
-     * @return  A {@code String} containing the name of the {@code GISSource}.
-     */
-     public abstract String getTitle();
-     
+         
 }

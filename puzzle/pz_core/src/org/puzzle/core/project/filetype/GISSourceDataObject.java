@@ -45,6 +45,7 @@ import org.puzzle.core.project.source.GISSourceInfo;
 import org.puzzle.core.project.source.GISSourceService;
 
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
@@ -127,12 +128,12 @@ public class GISSourceDataObject extends XMLDataObject {
                 final Map<String,String> parameters = new HashMap<String,String>();
 
                 for(int i=0, n = urls.getLength(); i<n; i++){
-                    org.w3c.dom.Node paramsNode = urls.item(i);
-                    final NodeList params = paramsNode.getChildNodes();
+                    org.w3c.dom.Element paramsNode = (Element) urls.item(i);
+                    final NodeList params = paramsNode.getElementsByTagName("parameter");
 
                     for(int j=0, l=params.getLength(); j<l; j++){
-                        final org.w3c.dom.Node singleParam = params.item(j);
-                        final String key = singleParam.getNodeName();
+                        final org.w3c.dom.Element singleParam = (Element) params.item(j);
+                        final String key = singleParam.getAttribute("name");
                         final String value = singleParam.getTextContent();
                         if(key != null && value != null){
                             parameters.put(key, value);

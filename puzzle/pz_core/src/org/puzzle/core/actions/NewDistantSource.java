@@ -77,6 +77,7 @@ public final class NewDistantSource extends AbstractAction {
                         final Map<String,GISSourceInfo> sources = pane.getSources();
                         final Set<String> names = sources.keySet();
                         for (final String name : names) {
+                            System.out.println("one register" + name);
                             gis.registerSource(name,sources.get(name));
                         }
                     }
