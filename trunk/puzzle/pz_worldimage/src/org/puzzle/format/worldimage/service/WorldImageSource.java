@@ -110,7 +110,7 @@ public class WorldImageSource extends GISSource{
         final MapBuilder builder = new MapBuilder();
         final MapLayer layer = builder.create(reader, style, name);
         layer.setUserPropertie(PZLayerConstants.KEY_LAYER_INFO, source);
-        layer.setDescription(CommonFactoryFinder.getStyleFactory(null).createDescription(name,"") );        
+        layer.setDescription(CommonFactoryFinder.getStyleFactory(null).createDescription(name,"") );
         return layer;
     }
 
@@ -121,11 +121,6 @@ public class WorldImageSource extends GISSource{
     }
 
     /** {@inheritDoc } */
-    @Override
-    public String getTitle() {
-        return name;
-    }
-
     @Override
     public void showLayerWizard(Collection<? extends MapContext> contexts, GISProject project) {
         WizardDescriptor wizardDescriptor = new WizardDescriptor(getPanels(contexts, project));

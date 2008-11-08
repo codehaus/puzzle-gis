@@ -385,10 +385,10 @@ public class GISProject implements Project {
             final Set<String> keys = parameters.keySet();
 
             for (final String key : keys) {
-                final org.w3c.dom.Element paramNode = gisDoc.createElement(key);
+                final org.w3c.dom.Element paramNode = gisDoc.createElement("parameter");
                 final String value = parameters.get(key);
 //                paramNode.setNodeValue(key);
-//                paramNode.setAttribute(key, value);
+                paramNode.setAttribute("name", key);
                 paramNode.setTextContent(value);
                 parametersNode.appendChild(paramNode);
             }

@@ -114,11 +114,6 @@ public class GeoTiffSource extends GISSource{
 
     /** {@inheritDoc } */
     @Override
-    public String getTitle() {
-        return name;
-    }
-
-    @Override
     public void showLayerWizard(Collection<? extends MapContext> contexts, GISProject project) {
         WizardDescriptor.Panel<WizardDescriptor>[] pans = getPanels(contexts, project);
         WizardDescriptor wizardDescriptor = new WizardDescriptor(pans);

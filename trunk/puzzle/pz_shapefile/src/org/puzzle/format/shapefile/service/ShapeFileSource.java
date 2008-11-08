@@ -83,7 +83,10 @@ public class ShapeFileSource extends GISSource{
         }
         
     }
-    
+
+    /**
+     * {@inheritDoc }
+     */
     @Override
     public MapLayer createLayer(Map<String, String> parameters) {
         final MutableStyle style = new RandomStyleFactory().createRandomVectorStyle(featureSource);
@@ -96,16 +99,17 @@ public class ShapeFileSource extends GISSource{
         return layer;
     }
 
+    /**
+     * {@inheritDoc }
+     */
     @Override
     public Image getIcon(int type) {
         return ImageUtilities.loadImage("org/puzzle/format/shapefile/shapefile.png");
     }
 
-    @Override
-    public String getTitle() {
-        return name;
-    }
-
+    /**
+     * {@inheritDoc }
+     */
     @Override
     public void showLayerWizard(Collection<? extends MapContext> contexts, GISProject project) {
         WizardDescriptor wizardDescriptor = new WizardDescriptor(getPanels(contexts, project));

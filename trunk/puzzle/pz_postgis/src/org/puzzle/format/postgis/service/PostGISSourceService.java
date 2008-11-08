@@ -37,13 +37,19 @@ import org.puzzle.format.postgis.ui.JPostGISDataPanel;
  */
 public class PostGISSourceService implements GISDistantSourceService{
 
-    private static final String SERVICE_ID = "PostGIS";
-    
+    public static final String SERVICE_ID = "PostGIS";
+
+    /**
+     * {@inheritDoc }
+     */
     @Override
     public String getIdentifier(){
         return SERVICE_ID;
     }
-    
+
+    /**
+     * {@inheritDoc }
+     */
     @Override
     public GISSource restoreSource(final GISSourceInfo info) throws IllegalArgumentException{
 //        final String url = parameters.get("url");
@@ -51,19 +57,28 @@ public class PostGISSourceService implements GISDistantSourceService{
 //        if(url == null) throw new IllegalArgumentException("missing parameter url");
 //
 //        GISSource postgisSource = new PostGISSource(getIdentifier(),id,parameters);
-        return null;
+        return new PostGISSource(info);
     }
 
+    /**
+     * {@inheritDoc }
+     */
     @Override
     public GISSource createSource(Map parameters) throws IllegalArgumentException {
         return null;
     }
 
+    /**
+     * {@inheritDoc }
+     */
     @Override
     public String getTitle() {
         return NbBundle.getMessage(PostGISSourceService.class, "postgisTitle");
     }
 
+    /**
+     * {@inheritDoc }
+     */
     @Override
     public SourceCreationPane createPanel() {
         return new JPostGISDataPanel();
