@@ -477,8 +477,7 @@ public class JPostGISDataPanel extends SourceCreationPane {
                     FeatureSource<SimpleFeatureType, SimpleFeature> fs = store.getFeatureSource(name);
                     MutableStyle style = rsf.createRandomVectorStyle(fs);
 
-                    MapBuilder mlb = new MapBuilder();
-                    MapLayer layer = mlb.create(fs, style);
+                    MapLayer layer = MapBuilder.getInstance().createFeatureLayer(fs, style);
                     layer.setDescription(CommonFactoryFinder.getStyleFactory(null).createDescription("postgis - " + name, ""));
                     layers.add(layer);
                 } catch (IOException ex) {

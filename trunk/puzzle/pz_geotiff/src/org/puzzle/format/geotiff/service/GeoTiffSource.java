@@ -98,8 +98,7 @@ public class GeoTiffSource extends GISSource{
         if(parameters == null)parameters = Collections.emptyMap();
         final LayerSource source = new LayerSource(getInfo().getID(), parameters,this);
 
-        final MapBuilder builder = new MapBuilder();
-        final MapLayer layer = builder.create(gc2d, style, name);
+        final MapLayer layer = MapBuilder.getInstance().createCoverageLayer(gc2d, style, name);
         layer.setUserPropertie(PZLayerConstants.KEY_LAYER_INFO, source);
         layer.setDescription(CommonFactoryFinder.getStyleFactory(null).createDescription(name,"") );
         

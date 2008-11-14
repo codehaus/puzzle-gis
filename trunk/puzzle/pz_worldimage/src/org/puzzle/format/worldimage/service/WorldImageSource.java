@@ -107,8 +107,7 @@ public class WorldImageSource extends GISSource{
     public MapLayer createLayer(Map<String, String> parameters) {
         final MutableStyle style = new RandomStyleFactory().createRasterStyle();
         final LayerSource source = new LayerSource(getInfo().getID(), parameters,this);
-        final MapBuilder builder = new MapBuilder();
-        final MapLayer layer = builder.create(reader, style, name);
+        final MapLayer layer = MapBuilder.getInstance().createCoverageLayer(reader, style, name);
         layer.setUserPropertie(PZLayerConstants.KEY_LAYER_INFO, source);
         layer.setDescription(CommonFactoryFinder.getStyleFactory(null).createDescription(name,"") );
         return layer;
