@@ -92,8 +92,7 @@ public class ShapeFileSource extends GISSource{
         final MutableStyle style = new RandomStyleFactory().createRandomVectorStyle(featureSource);
         if(parameters == null) parameters = Collections.emptyMap();
         final LayerSource source = new LayerSource(getInfo().getID(), parameters,this);
-        final MapBuilder builder = new MapBuilder();
-        final MapLayer layer = builder.create(featureSource, style);
+        final MapLayer layer = MapBuilder.getInstance().createFeatureLayer(featureSource, style);
         layer.setUserPropertie(PZLayerConstants.KEY_LAYER_INFO, source);
         layer.setDescription(CommonFactoryFinder.getStyleFactory(null).createDescription(name,"") );
         return layer;

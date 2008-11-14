@@ -33,7 +33,7 @@ import javax.xml.bind.JAXBException;
 import org.geotools.data.DefaultQuery;
 import org.geotools.factory.CommonFactoryFinder;
 import org.geotools.map.ContextListener;
-import org.geotools.map.DefaultMapContext;
+import org.geotools.map.MapBuilder;
 import org.geotools.map.MapContext;
 import org.geotools.map.MapLayer;
 import org.geotools.referencing.crs.DefaultGeographicCRS;
@@ -185,7 +185,7 @@ public class GISContextDataObject extends XMLDataObject {
     }
     
     private MapContext parseContext(Document gisDoc) {
-        context = new DefaultMapContext(DefaultGeographicCRS.WGS84);
+        context = MapBuilder.getInstance().createContext(DefaultGeographicCRS.WGS84);
         context.setDescription( CommonFactoryFinder.getStyleFactory(null).createDescription(getPrimaryFile().getName().replaceAll(".xml", ""),"") );
         
         if (gisDoc != null) {
