@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
 AutoUpdate-Show-In-Client: true
-OpenIDE-Module: apache.commons
+OpenIDE-Module: apache.commons/1
+OpenIDE-Module-Implementation-Version: 0
 OpenIDE-Module-Localizing-Bundle: apache/commons/Bundle.properties
-OpenIDE-Module-Specification-Version: 1.0.1
