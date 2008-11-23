@@ -15,6 +15,14 @@
                     </run-dependency>
                 </dependency>
                 <dependency>
+                    <code-name-base>org.netbeans.swing.outline</code-name-base>
+                    <build-prerequisite/>
+                    <compile-dependency/>
+                    <run-dependency>
+                        <specification-version>1.1.1</specification-version>
+                    </run-dependency>
+                </dependency>
+                <dependency>
                     <code-name-base>org.opengis</code-name-base>
                     <build-prerequisite/>
                     <compile-dependency/>
@@ -130,25 +138,6 @@
                 <package>opendap.dap.parser</package>
                 <package>opendap.util</package>
                 <package>org.apache.html.dom</package>
-                <package>org.apache.log4j</package>
-                <package>org.apache.log4j.chainsaw</package>
-                <package>org.apache.log4j.config</package>
-                <package>org.apache.log4j.helpers</package>
-                <package>org.apache.log4j.jdbc</package>
-                <package>org.apache.log4j.jmx</package>
-                <package>org.apache.log4j.lf5</package>
-                <package>org.apache.log4j.lf5.util</package>
-                <package>org.apache.log4j.lf5.viewer</package>
-                <package>org.apache.log4j.lf5.viewer.categoryexplorer</package>
-                <package>org.apache.log4j.lf5.viewer.configure</package>
-                <package>org.apache.log4j.net</package>
-                <package>org.apache.log4j.nt</package>
-                <package>org.apache.log4j.or</package>
-                <package>org.apache.log4j.or.jms</package>
-                <package>org.apache.log4j.or.sax</package>
-                <package>org.apache.log4j.spi</package>
-                <package>org.apache.log4j.varia</package>
-                <package>org.apache.log4j.xml</package>
                 <package>org.apache.wml</package>
                 <package>org.apache.wml.dom</package>
                 <package>org.apache.xerces.dom</package>
@@ -254,9 +243,10 @@
                 <package>org.geotools.data.wms.xml</package>
                 <package>org.geotools.display.array</package>
                 <package>org.geotools.display.canvas</package>
-                <package>org.geotools.display.canvas.event</package>
                 <package>org.geotools.display.canvas.control</package>
+                <package>org.geotools.display.canvas.event</package>
                 <package>org.geotools.display.canvas.map</package>
+                <package>org.geotools.display.canvas.web</package>
                 <package>org.geotools.display.event</package>
                 <package>org.geotools.display.exception</package>
                 <package>org.geotools.display.geom</package>
@@ -292,7 +282,6 @@
                 <package>org.geotools.gce.geotiff.IIOMetadataAdpaters.utils</package>
                 <package>org.geotools.gce.geotiff.IIOMetadataAdpaters.utils.codes</package>
                 <package>org.geotools.gce.geotiff.crs_adapters</package>
-                <package>org.geotools.gce.image</package>
                 <package>org.geotools.geometry</package>
                 <package>org.geotools.geometry.array</package>
                 <package>org.geotools.geometry.coordinatesequence</package>
@@ -332,6 +321,7 @@
                 <package>org.geotools.gui.swing.datachooser</package>
                 <package>org.geotools.gui.swing.datachooser.model</package>
                 <package>org.geotools.gui.swing.debug</package>
+                <package>org.geotools.gui.swing.debug.jasper</package>
                 <package>org.geotools.gui.swing.event</package>
                 <package>org.geotools.gui.swing.filter</package>
                 <package>org.geotools.gui.swing.go</package>
@@ -346,14 +336,15 @@
                 <package>org.geotools.gui.swing.misc</package>
                 <package>org.geotools.gui.swing.misc.Render</package>
                 <package>org.geotools.gui.swing.misc.filter</package>
+                <package>org.geotools.gui.swing.outlinetree</package>
+                <package>org.geotools.gui.swing.outlinetree.popup</package>
                 <package>org.geotools.gui.swing.propertyedit</package>
                 <package>org.geotools.gui.swing.propertyedit.filterproperty</package>
                 <package>org.geotools.gui.swing.propertyedit.model</package>
                 <package>org.geotools.gui.swing.propertyedit.styleproperty</package>
                 <package>org.geotools.gui.swing.referencing</package>
-                <package>org.geotools.gui.swing.service</package>
+                <package>org.geotools.gui.swing.report</package>
                 <package>org.geotools.gui.swing.style</package>
-                <package>org.geotools.gui.swing.style.editor</package>
                 <package>org.geotools.gui.swing.table</package>
                 <package>org.geotools.gui.swing.tree</package>
                 <package>org.geotools.image</package>
@@ -383,7 +374,6 @@
                 <package>org.geotools.internal.jaxb.v110.sld</package>
                 <package>org.geotools.io</package>
                 <package>org.geotools.map</package>
-                <package>org.geotools.map.event</package>
                 <package>org.geotools.math</package>
                 <package>org.geotools.measure</package>
                 <package>org.geotools.metadata</package>
@@ -398,6 +388,7 @@
                 <package>org.geotools.metadata.iso.maintenance</package>
                 <package>org.geotools.metadata.iso.quality</package>
                 <package>org.geotools.metadata.iso.spatial</package>
+                <package>org.geotools.metadata.note</package>
                 <package>org.geotools.metadata.sql</package>
                 <package>org.geotools.nature</package>
                 <package>org.geotools.ows</package>
@@ -414,10 +405,7 @@
                 <package>org.geotools.referencing.operation.matrix</package>
                 <package>org.geotools.referencing.operation.projection</package>
                 <package>org.geotools.referencing.operation.transform</package>
-                <package>org.geotools.referencing.piecewise</package>
                 <package>org.geotools.referencing.wkt</package>
-                <package>org.geotools.renderer</package>
-                <package>org.geotools.renderer.i18n</package>
                 <package>org.geotools.renderer.style</package>
                 <package>org.geotools.resources</package>
                 <package>org.geotools.resources.coverage</package>
@@ -433,8 +421,7 @@
                 <package>org.geotools.style</package>
                 <package>org.geotools.style.function</package>
                 <package>org.geotools.style.sld</package>
-                <package>org.geotools.styling</package>
-                <package>org.geotools.text.filter</package>
+                <package>org.geotools.tool.store</package>
                 <package>org.geotools.util</package>
                 <package>org.geotools.util.logging</package>
                 <package>org.geotools.wfs</package>
@@ -512,67 +499,6 @@
                 <package>org.jdom.output</package>
                 <package>org.jdom.transform</package>
                 <package>org.jdom.xpath</package>
-                <package>org.opengis.annotation</package>
-                <package>org.opengis.coverage</package>
-                <package>org.opengis.coverage.grid</package>
-                <package>org.opengis.coverage.grid.quadrilateral</package>
-                <package>org.opengis.coverage.processing</package>
-                <package>org.opengis.display.canvas</package>
-                <package>org.opengis.display.primitive</package>
-                <package>org.opengis.display.renderer</package>
-                <package>org.opengis.feature</package>
-                <package>org.opengis.feature.simple</package>
-                <package>org.opengis.feature.type</package>
-                <package>org.opengis.filter</package>
-                <package>org.opengis.filter.capability</package>
-                <package>org.opengis.filter.expression</package>
-                <package>org.opengis.filter.identity</package>
-                <package>org.opengis.filter.sort</package>
-                <package>org.opengis.filter.spatial</package>
-                <package>org.opengis.geometry</package>
-                <package>org.opengis.geometry.aggregate</package>
-                <package>org.opengis.geometry.complex</package>
-                <package>org.opengis.geometry.coordinate</package>
-                <package>org.opengis.geometry.primitive</package>
-                <package>org.opengis.go</package>
-                <package>org.opengis.go.display</package>
-                <package>org.opengis.go.display.canvas</package>
-                <package>org.opengis.go.display.canvas.map2d</package>
-                <package>org.opengis.go.display.canvas.map2d.web</package>
-                <package>org.opengis.go.display.canvas.web</package>
-                <package>org.opengis.go.display.event</package>
-                <package>org.opengis.go.display.primitive</package>
-                <package>org.opengis.go.display.primitive.store</package>
-                <package>org.opengis.go.display.style</package>
-                <package>org.opengis.go.display.style.event</package>
-                <package>org.opengis.go.spatial</package>
-                <package>org.opengis.layer</package>
-                <package>org.opengis.layer.source</package>
-                <package>org.opengis.metadata</package>
-                <package>org.opengis.metadata.citation</package>
-                <package>org.opengis.metadata.constraint</package>
-                <package>org.opengis.metadata.content</package>
-                <package>org.opengis.metadata.distribution</package>
-                <package>org.opengis.metadata.extent</package>
-                <package>org.opengis.metadata.identification</package>
-                <package>org.opengis.metadata.lineage</package>
-                <package>org.opengis.metadata.maintenance</package>
-                <package>org.opengis.metadata.quality</package>
-                <package>org.opengis.metadata.spatial</package>
-                <package>org.opengis.parameter</package>
-                <package>org.opengis.referencing</package>
-                <package>org.opengis.referencing.crs</package>
-                <package>org.opengis.referencing.cs</package>
-                <package>org.opengis.referencing.datum</package>
-                <package>org.opengis.referencing.operation</package>
-                <package>org.opengis.sld</package>
-                <package>org.opengis.style</package>
-                <package>org.opengis.style.portrayal</package>
-                <package>org.opengis.temporal</package>
-                <package>org.opengis.util</package>
-                <package>org.opengis.webservice</package>
-                <package>org.opengis.webservice.capability</package>
-                <package>org.opengis.webservice.feature</package>
                 <package>org.picocontainer</package>
                 <package>org.picocontainer.alternatives</package>
                 <package>org.picocontainer.defaults</package>

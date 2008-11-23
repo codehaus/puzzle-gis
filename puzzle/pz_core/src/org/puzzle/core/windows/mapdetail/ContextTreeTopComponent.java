@@ -28,19 +28,12 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Logger;
 
-import org.geotools.gui.swing.contexttree.JContextTree;
-import org.geotools.gui.swing.contexttree.JContextTreePopup;
-import org.geotools.gui.swing.contexttree.column.VisibleTreeTableColumn;
-import org.geotools.gui.swing.contexttree.popup.ContextActiveItem;
-import org.geotools.gui.swing.contexttree.popup.CopyItem;
-import org.geotools.gui.swing.contexttree.popup.CutItem;
-import org.geotools.gui.swing.contexttree.popup.DeleteItem;
-import org.geotools.gui.swing.contexttree.popup.DuplicateItem;
-import org.geotools.gui.swing.contexttree.popup.LayerFeatureItem;
-import org.geotools.gui.swing.contexttree.popup.LayerPropertyItem;
-import org.geotools.gui.swing.contexttree.popup.LayerVisibleItem;
-import org.geotools.gui.swing.contexttree.popup.PasteItem;
 import org.geotools.gui.swing.contexttree.popup.SeparatorItem;
+import org.geotools.gui.swing.outlinetree.JContextOutLine;
+import org.geotools.gui.swing.outlinetree.popup.DeleteItem;
+import org.geotools.gui.swing.outlinetree.popup.JContextOutLinePopup;
+import org.geotools.gui.swing.outlinetree.popup.LayerFeatureItem;
+import org.geotools.gui.swing.outlinetree.popup.LayerPropertyItem;
 import org.geotools.gui.swing.propertyedit.LayerCRSPropertyPanel;
 import org.geotools.gui.swing.propertyedit.LayerFilterPropertyPanel;
 import org.geotools.gui.swing.propertyedit.LayerGeneralPanel;
@@ -48,7 +41,6 @@ import org.geotools.gui.swing.propertyedit.LayerStylePropertyPanel;
 import org.geotools.gui.swing.propertyedit.PropertyPane;
 import org.geotools.gui.swing.propertyedit.filterproperty.JCQLPropertyPanel;
 import org.geotools.gui.swing.propertyedit.styleproperty.JSimpleStylePanel;
-import org.geotools.map.MapContext;
 
 import org.openide.util.ImageUtilities;
 import org.openide.util.Lookup;
@@ -71,7 +63,7 @@ final class ContextTreeTopComponent extends TopComponent implements LookupListen
     private Lookup.Result result = null;
 
 
-    private JContextTree tree = null;
+    private JContextOutLine tree = null;
     private static ContextTreeTopComponent instance;
     private static final String PREFERRED_ID = "ContextTreeTopComponent";
 
@@ -83,25 +75,15 @@ final class ContextTreeTopComponent extends TopComponent implements LookupListen
 
     }
 
-    public JContextTree getContextTree() {
+    public JContextOutLine getContextTree() {
 
-        final JContextTree tree = new JContextTree();
+        final JContextOutLine tree = new JContextOutLine();
 
-        tree.addColumn(new VisibleTreeTableColumn());
-
-        JContextTreePopup popupMenu = tree.getPopupMenu();
-        popupMenu.addItem(new LayerVisibleItem());
-        popupMenu.addItem(new SeparatorItem());
-        popupMenu.addItem(new LayerFeatureItem());
-        popupMenu.addItem(new ContextActiveItem(tree));
-        popupMenu.addItem(new SeparatorItem());
-        popupMenu.addItem(new CutItem(tree));
-        popupMenu.addItem(new CopyItem(tree));
-        popupMenu.addItem(new PasteItem(tree));
-        popupMenu.addItem(new DuplicateItem(tree));
-        popupMenu.addItem(new SeparatorItem());
-        popupMenu.addItem(new DeleteItem(tree));
-        popupMenu.addItem(new SeparatorItem());
+        JContextOutLinePopup popupMenu = tree.getPopupMenu();
+        popupMenu.controls().add(new LayerFeatureItem());
+        popupMenu.controls().add(new SeparatorItem());
+        popupMenu.controls().add(new DeleteItem(tree));
+        popupMenu.controls().add(new SeparatorItem());
 
         LayerPropertyItem property = new LayerPropertyItem();
         List<PropertyPane> lstproperty = new ArrayList<PropertyPane>();
@@ -119,7 +101,7 @@ final class ContextTreeTopComponent extends TopComponent implements LookupListen
         lstproperty.add(styles);
 
         property.setPropertyPanels(lstproperty);
-        popupMenu.addItem(property);
+        popupMenu.controls().add(property);
 
         tree.revalidate();
 
@@ -229,18 +211,20 @@ final class ContextTreeTopComponent extends TopComponent implements LookupListen
         final Lookup.Result r = (Lookup.Result) lookupEvent.getSource();
         final Collection c = r.allInstances();
         if (!c.isEmpty()) {
-            
-            final MapContext[] contexts = tree.getContexts();
-            //remove contexts non in the lookup
-            for (final MapContext context : contexts) {
-                tree.removeContext(context);
-            }
 
-            final Iterator ite = c.iterator();
-            while(ite.hasNext()){
-                final GISContextDataObject da = (GISContextDataObject) ite.next();
-                tree.addContext(da.getContext());
-            }
+            new Thread(){
+
+                public void run(){
+
+                    final Iterator ite = c.iterator();
+                    while(ite.hasNext()){
+                        final GISContextDataObject da = (GISContextDataObject) ite.next();
+                        tree.setContext(da.getContext());
+                    }
+                }
+
+            }.start();
+            
             
         }
     }
