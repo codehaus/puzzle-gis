@@ -1,4 +1,4 @@
 Manifest-Version: 1.0
 OpenIDE-Module: org.puzzle.analyze
+OpenIDE-Module-Implementation-Version: 0
 OpenIDE-Module-Localizing-Bundle: org/puzzle/analyze/Bundle.properties
-OpenIDE-Module-Specification-Version: 0.0.1.0

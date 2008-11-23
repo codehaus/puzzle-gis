@@ -55,7 +55,9 @@
                     </run-dependency>
                 </dependency>
             </module-dependencies>
-            <public-packages/>
+            <public-packages>
+                <package>org.puzzle.print.action</package>
+            </public-packages>
         </data>
     </configuration>
 </project>

@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-OpenIDE-Module: org.puzzle.driver.postgis
+OpenIDE-Module: org.puzzle.driver.postgis/1
+OpenIDE-Module-Implementation-Version: 0
 OpenIDE-Module-Localizing-Bundle: org/puzzle/driver/postgis/Bundle.properties
-OpenIDE-Module-Specification-Version: 1.0
 
