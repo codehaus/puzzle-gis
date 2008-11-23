@@ -46,7 +46,7 @@ import org.puzzle.core.project.GISProject;
  */
 public class GISMapNode extends FilterNode {
 
-    private final Image ICON = ImageUtilities.loadImage("org/puzzle/core/project/map.png", true);
+    private final Image ICON = ImageUtilities.loadImage("org/puzzle/core/project/map.png");
 
     /**
      * Constructor.

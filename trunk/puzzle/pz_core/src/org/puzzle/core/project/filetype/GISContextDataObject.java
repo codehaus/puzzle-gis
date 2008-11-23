@@ -95,12 +95,10 @@ public class GISContextDataObject extends XMLDataObject {
     private static final String TAG_LAYER_STYLE = "sld:UserStyle";
     private static final String TAG_LAYER_VISIBLE = "visible";
     private static final String TAG_LAYER_QUERY = "filter";
-    
     private final DefaultContextListener contextListener = new DefaultContextListener();
-    private final Document dom;
-
+    private final SavingThread saver = new SavingThread();
     private MapContext context = null;
-
+    private boolean needSave = false;
 
     /**
      * Constructor.
@@ -113,17 +111,16 @@ public class GISContextDataObject extends XMLDataObject {
      */
     public GISContextDataObject(FileObject pf, GISContextDataLoader loader) throws DataObjectExistsException, IOException {
         super(pf, loader);
-
+        saver.start();
         CookieSet cookies = getCookieSet();
         cookies.add((org.openide.nodes.Node.Cookie) DataEditorSupport.create(this, getPrimaryEntry(), cookies));
 
-        dom = getDOM();
     }
 
     @Override
     public void dispose() {
         Project prj = FileOwnerQuery.getOwner(getPrimaryFile());
-        if(prj != null && prj instanceof GISProject){
+        if (prj != null && prj instanceof GISProject) {
             GISProject gisprj = (GISProject) prj;
             gisprj.removeContext(getContext());
         }
@@ -137,9 +134,9 @@ public class GISContextDataObject extends XMLDataObject {
      * XML document.
      * @return  The {@code MapContext} associated.
      */
-    public MapContext getContext(){
-        
-        if(context == null){
+    public MapContext getContext() {
+
+        if (context == null) {
             ProgressHandle handle = ProgressHandleFactory.createHandle(Utilities.getString("loadingContext"));
             handle.start(100);
             handle.switchToIndeterminate();
@@ -149,14 +146,14 @@ public class GISContextDataObject extends XMLDataObject {
 
 
 
-            context = parseContext(dom);
+            context = parseContext(getDOM());
             context.addContextListener(contextListener);
             handle.finish();
         }
-        
+
         return context;
     }
-    
+
     @Override
     protected org.openide.nodes.Node createNodeDelegate() {
         return new GISContextDataNode(this, getLookup());
@@ -178,16 +175,16 @@ public class GISContextDataObject extends XMLDataObject {
         }
         return doc;
     }
-    
-    private Collection<? extends GISSource> getGISSources(){
+
+    private Collection<? extends GISSource> getGISSources() {
         GISProject prj = (GISProject) FileOwnerQuery.getOwner(getPrimaryFile());
         return prj.getGISSources();
     }
-    
+
     private MapContext parseContext(Document gisDoc) {
         context = MapBuilder.getInstance().createContext(DefaultGeographicCRS.WGS84);
-        context.setDescription( CommonFactoryFinder.getStyleFactory(null).createDescription(getPrimaryFile().getName().replaceAll(".xml", ""),"") );
-        
+        context.setDescription(CommonFactoryFinder.getStyleFactory(null).createDescription(getPrimaryFile().getName().replaceAll(".xml", ""), ""));
+
         if (gisDoc != null) {
 
             final NodeList layerNodes = gisDoc.getElementsByTagName(TAG_LAYER);
@@ -201,37 +198,37 @@ public class GISContextDataObject extends XMLDataObject {
 
         return context;
     }
-    
-    private MapLayer parseLayer(Node node){
+
+    private MapLayer parseLayer(Node node) {
         MapLayer layer = null;
         int id = 0;
-        Map<String,String> params = null;
+        Map<String, String> params = null;
         String title = "";
         MutableStyle style = CommonFactoryFinder.getStyleFactory(null).createStyle();
         DefaultQuery query = new DefaultQuery();
         boolean visible = true;
-                
+
         final NodeList elements = node.getChildNodes();
         for (int j = 0, m = elements.getLength(); j < m; j++) {
             final Node elementNode = elements.item(j);
             final String elementName = elementNode.getNodeName();
-            
-            if(TAG_LAYER_SOURCE.equals(elementName)){
+
+            if (TAG_LAYER_SOURCE.equals(elementName)) {
                 id = parseSourceId(elementNode);
                 params = parseSourceParams(elementNode);
-            }else if(TAG_LAYER_TITLE.equals(elementName)) {
+            } else if (TAG_LAYER_TITLE.equals(elementName)) {
                 title = elementNode.getTextContent();
-            }else if(TAG_LAYER_STYLE.equals(elementName)){
+            } else if (TAG_LAYER_STYLE.equals(elementName)) {
                 try {
                     style = new XMLUtilities().readStyle(elementNode, SymbologyEncoding.V_1_1_0);
                 } catch (JAXBException ex) {
                     Exceptions.printStackTrace(ex);
                 }
-            }else if(TAG_LAYER_VISIBLE.equals(elementName)){
+            } else if (TAG_LAYER_VISIBLE.equals(elementName)) {
                 visible = Boolean.parseBoolean(elementNode.getTextContent());
-            }else if(TAG_LAYER_QUERY.equals(elementName)){
+            } else if (TAG_LAYER_QUERY.equals(elementName)) {
                 try {
-                    query.setFilter( new XMLUtilities().readFilter(elementNode, Filter.V_1_1_0) );
+                    query.setFilter(new XMLUtilities().readFilter(elementNode, Filter.V_1_1_0));
                 } catch (JAXBException ex) {
                     Exceptions.printStackTrace(ex);
                 }
@@ -244,7 +241,7 @@ public class GISContextDataObject extends XMLDataObject {
             for (GISSource src : sources) {
                 if (src.getInfo().getID() == id) {
                     layer = src.createLayer(params);
-                    layer.setDescription( CommonFactoryFinder.getStyleFactory(null).createDescription(title,"") );
+                    layer.setDescription(CommonFactoryFinder.getStyleFactory(null).createDescription(title, ""));
                     layer.setStyle(style);
                     layer.setVisible(visible);
                     layer.setQuery(query);
@@ -254,14 +251,14 @@ public class GISContextDataObject extends XMLDataObject {
 
         return layer;
     }
-    
-    private int parseSourceId(Node sourceNode){
+
+    private int parseSourceId(Node sourceNode) {
         int id = 0;
         NodeList elements = sourceNode.getChildNodes();
-        for(int i = 0, n = elements.getLength(); i < n; i++) {
+        for (int i = 0, n = elements.getLength(); i < n; i++) {
             Node elementNode = elements.item(i);
             String elementName = elementNode.getNodeName();
-            
+
             if (TAG_LAYER_SOURCE_ID.equals(elementName)) {
                 id = Integer.valueOf(elementNode.getTextContent());
                 break;
@@ -270,19 +267,19 @@ public class GISContextDataObject extends XMLDataObject {
 
         return id;
     }
-    
-    private Map<String,String> parseSourceParams(Node sourceNode){
-        Map<String,String> parameters = new HashMap<String, String>();
+
+    private Map<String, String> parseSourceParams(Node sourceNode) {
+        Map<String, String> parameters = new HashMap<String, String>();
         NodeList elements = sourceNode.getChildNodes();
-        for(int i = 0, n = elements.getLength(); i < n; i++) {
+        for (int i = 0, n = elements.getLength(); i < n; i++) {
             Node elementNode = elements.item(i);
             String elementName = elementNode.getNodeName();
-            
+
             if (TAG_LAYER_SOURCE_PARAMS.equals(elementName)) {
                 NodeList params = elementNode.getChildNodes();
-                for(int j = 0, m = params.getLength(); j < m; j++) {
+                for (int j = 0, m = params.getLength(); j < m; j++) {
                     Node paramNode = params.item(j);
-                    if(paramNode instanceof Element){
+                    if (paramNode instanceof Element) {
                         parameters.put(paramNode.getNodeName(), paramNode.getTextContent());
                     }
                 }
@@ -292,21 +289,20 @@ public class GISContextDataObject extends XMLDataObject {
 
         return parameters;
     }
-    
-    
-    private void DOMremoveLayer(final int index){
-        final Document doc = dom;
+
+    private void DOMremoveLayer(final int index) {
+        final Document doc = getDOM();
         final Node root = doc.getElementsByTagName(TAG_LAYERS).item(0);
         final NodeList children = root.getChildNodes();
         int onLayer = -1;
-        
-        for(int i = 0, n = children.getLength(); i < n; i++) {
+
+        for (int i = 0, n = children.getLength(); i < n; i++) {
             final Node child = children.item(i);
             final String name = child.getNodeName();
-            if(name.equals(TAG_LAYER)){
+            if (name.equals(TAG_LAYER)) {
                 onLayer++;
             }
-            if(onLayer == index){
+            if (onLayer == index) {
                 root.removeChild(child);
                 break;
             }
@@ -314,40 +310,40 @@ public class GISContextDataObject extends XMLDataObject {
 
         DOMsave(doc);
     }
-    
-    private void DOMupdateLayer(final MapLayer layer, final int index, final EventObject event){
-        final Document doc = dom;
+
+    private void DOMupdateLayer(final MapLayer layer, final int index, final EventObject event) {
+        final Document doc = getDOM();
         final Node root = doc.getElementsByTagName(TAG_LAYERS).item(0);
         final NodeList children = root.getChildNodes();
         int onLayer = -1;
-        for(int i = 0, n = children.getLength(); i < n; i++) {
+        for (int i = 0, n = children.getLength(); i < n; i++) {
             final Node child = children.item(i);
             final String name = child.getNodeName();
-            if(name.equals(TAG_LAYER)){
+            if (name.equals(TAG_LAYER)) {
                 onLayer++;
             }
-            if(onLayer == index){
+            if (onLayer == index) {
                 //we are on the layer to update
-                DOMencodeLayer(doc,layer,child,event);
+                DOMencodeLayer(doc, layer, child, event);
                 break;
             }
         }
         DOMsave(doc);
     }
 
-    private Node DOMencodeLayer(final Document doc,final MapLayer layer, final Node layerNode, final EventObject event){
+    private Node DOMencodeLayer(final Document doc, final MapLayer layer, final Node layerNode, final EventObject event) {
 
         final LayerSource source = (LayerSource) layer.getUserPropertie(PZLayerConstants.KEY_LAYER_INFO);
-        if (source == null){
+        if (source == null) {
             //can not save this layer
             return layerNode;
         }
 
-        if(event == null || !(event instanceof PropertyChangeEvent)){
+        if (event == null || !(event instanceof PropertyChangeEvent)) {
             //no provided event save everything
             //clear all store informations
             final NodeList children = layerNode.getChildNodes();
-            for(int i=children.getLength()-1 ; i>=0; i--){
+            for (int i = children.getLength() - 1; i >= 0; i--) {
                 layerNode.removeChild(children.item(i));
             }
 
@@ -379,10 +375,10 @@ public class GISContextDataObject extends XMLDataObject {
             layerNode.appendChild(visibleNode);
 
             //store features filter
-            if(layer.getQuery() != null && layer.getQuery().getFilter() != null){
+            if (layer.getQuery() != null && layer.getQuery().getFilter() != null) {
                 final org.opengis.filter.Filter filter = layer.getQuery().getFilter();
-                if(!filter.equals(org.opengis.filter.Filter.INCLUDE ) &&
-                   !filter.equals(org.opengis.filter.Filter.EXCLUDE )){
+                if (!filter.equals(org.opengis.filter.Filter.INCLUDE) &&
+                        !filter.equals(org.opengis.filter.Filter.EXCLUDE)) {
                     try {
                         new XMLUtilities().writeFilter(layerNode, layer.getQuery().getFilter(), Filter.V_1_1_0);
                     } catch (JAXBException ex) {
@@ -398,60 +394,72 @@ public class GISContextDataObject extends XMLDataObject {
             } catch (JAXBException ex) {
                 Exceptions.printStackTrace(ex);
             }
-        }else{
+        } else {
             final PropertyChangeEvent propEvent = (PropertyChangeEvent) event;
         }
 
         return layerNode;
     }
 
-    private void DOMencodeLayers(){
-        final Document doc = dom;
+    private synchronized void DOMencodeLayers() {
+        final Document doc = getDOM();
         final Node root = doc.getElementsByTagName(TAG_LAYERS).item(0);
-        
+
         //we clear the layers list
         //TODO avoid doing so by using a more accurate listener method
         final NodeList children = root.getChildNodes();
-        for(int i=children.getLength()-1 ; i>=0; i--){
+        for (int i = children.getLength() - 1; i >= 0; i--) {
             root.removeChild(children.item(i));
         }
-        
+
         //create layer nodes
-        for(final MapLayer layer : context.layers()){
+        for (final MapLayer layer : context.layers()) {
             final Element layerNode = doc.createElement(TAG_LAYER);
-            DOMencodeLayer(doc, layer, layerNode,null);
+            DOMencodeLayer(doc, layer, layerNode, null);
             root.appendChild(layerNode);
         }
 
         DOMsave(doc);
     }
-        
 
-    private class DefaultContextListener implements ContextListener{
+    private class DefaultContextListener implements ContextListener {
 
         @Override
         public void propertyChange(PropertyChangeEvent evt) {
-            DOMencodeLayers();
+            setNeedSave(true);
+//            DOMencodeLayers();
         }
 
         @Override
         public void layerChange(CollectionChangeEvent<MapLayer> evt) {
+            setNeedSave(true);
+//            switch(evt.getType()){
+//                case CollectionChangeEvent.ITEM_ADDED :
+//                    DOMencodeLayers();
+//                    break;
+//                case CollectionChangeEvent.ITEM_CHANGED :
+//                    //assume there is only one layer change
+//                    DOMupdateLayer(evt.getItems().iterator().next(), (int)evt.getRange().getMinimum(),evt.getChangeEvent() );
+//                    break;
+//                case CollectionChangeEvent.ITEM_REMOVED :
+//                    //assume there is only one layer added
+//                    DOMremoveLayer( (int)evt.getRange().getMinimum() );
+//                    break;
+//            }
+        }
+    }
 
-            switch(evt.getType()){
-                case CollectionChangeEvent.ITEM_ADDED :
-                    DOMencodeLayers();
-                    break;
-                case CollectionChangeEvent.ITEM_CHANGED :
-                    //assume there is only one layer change
-                    DOMupdateLayer(evt.getItems().iterator().next(), (int)evt.getRange().getMinimum(),evt.getChangeEvent() );
-                    break;
-                case CollectionChangeEvent.ITEM_REMOVED :
-                    //assume there is only one layer added
-                    DOMremoveLayer( (int)evt.getRange().getMinimum() );
-                    break;
-            }
+    private void setNeedSave(boolean b) {
+        needSave = b;
+        if (needSave) {
+            saver.wake();
         }
 
+
+    }
+
+    private boolean needSaving() {
+        return needSave;
     }
 
     private void DOMsave(Document doc) {
@@ -466,5 +474,43 @@ public class GISContextDataObject extends XMLDataObject {
             Exceptions.printStackTrace(ex);
         }
     }
+
+    private class SavingThread extends Thread {
+
+        private boolean dispose = false;
+
+        public void dispose(){
+            dispose = true;
+            wake();
+        }
+
+        @Override
+        public void run() {
+
+            while (!dispose) {
+
+                while (needSaving()) {
+
+                    setNeedSave(false);
+                    DOMencodeLayers();
+                }
+
+                block();
+            }
+        }
+
+        public synchronized void wake() {
+            notifyAll();
+        }
+
+        private synchronized void block() {
+            try {
+                wait();
+            } catch (InterruptedException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+
 
 }
