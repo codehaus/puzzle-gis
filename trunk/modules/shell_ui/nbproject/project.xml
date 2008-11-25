@@ -81,7 +81,22 @@
                     </run-dependency>
                 </dependency>
             </module-dependencies>
-            <public-packages/>
+            <public-packages>
+                <package>org.puzzle.shell.gdal</package>
+                <package>org.puzzle.shell.gdal.bean</package>
+                <package>org.puzzle.shell.gdal.database.esriaccess</package>
+                <package>org.puzzle.shell.gdal.database.postgis</package>
+                <package>org.puzzle.shell.gdal.raster.folder</package>
+                <package>org.puzzle.shell.gdal.raster.mnt</package>
+                <package>org.puzzle.shell.gdal.raster.onefile</package>
+                <package>org.puzzle.shell.gdal.vector.folder</package>
+                <package>org.puzzle.shell.gdal.vector.onefile</package>
+                <package>org.puzzle.shell.gui</package>
+                <package>org.puzzle.shell.gui.config</package>
+                <package>org.puzzle.shell.misc</package>
+                <package>org.puzzle.shell.misc.runtime</package>
+                <package>org.puzzle.shell.misc.runtime.tabletool</package>
+            </public-packages>
         </data>
     </configuration>
 </project>
