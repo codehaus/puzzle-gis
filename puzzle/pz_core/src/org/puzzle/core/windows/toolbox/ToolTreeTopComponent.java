@@ -24,11 +24,12 @@ import java.awt.BorderLayout;
 import java.io.Serializable;
 import java.util.logging.Logger;
 
+import javax.swing.JScrollPane;
 import org.openide.util.ImageUtilities;
 import org.openide.windows.TopComponent;
 import org.openide.windows.WindowManager;
 
-import org.puzzle.core.windows.toolbox.tree.JToolTree;
+import org.puzzle.core.windows.toolbox.tree.Tree;
 
 /**
  * Top component which displays the tool tree.
@@ -37,7 +38,7 @@ import org.puzzle.core.windows.toolbox.tree.JToolTree;
  */
 final class ToolTreeTopComponent extends TopComponent {
 
-    private JToolTree tree = null;
+    private Tree tree = null;
     private static ToolTreeTopComponent instance;
     private static final String PREFERRED_ID = "ToolTreeTopComponent";
 
@@ -104,7 +105,7 @@ final class ToolTreeTopComponent extends TopComponent {
             tree = new BindToolTree();
         }
 
-        add(BorderLayout.CENTER, tree);
+        add(BorderLayout.CENTER, new JScrollPane(tree));
         revalidate();
     }
 

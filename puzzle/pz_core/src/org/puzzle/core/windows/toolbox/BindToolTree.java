@@ -28,14 +28,14 @@ import org.openide.util.Lookup;
 import org.openide.util.LookupEvent;
 import org.openide.util.LookupListener;
 
-import org.puzzle.core.windows.toolbox.tree.JToolTree;
 import org.puzzle.core.windows.toolbox.tree.ToolTreeListener;
 import org.puzzle.core.tool.ToolDescriptor;
+import org.puzzle.core.windows.toolbox.tree.Tree;
 
 /**
  * @author Johann Sorel (Puzzle-GIS)
  */
-public class BindToolTree extends JToolTree implements LookupListener {
+public class BindToolTree extends Tree implements LookupListener {
 
     private final Lookup.Result<ToolDescriptor> result;
 
@@ -76,7 +76,7 @@ public class BindToolTree extends JToolTree implements LookupListener {
         //remove tools non in the lookup
         for (final ToolDescriptor tool : contexts) {
             if (!c.contains(tool)) {
-                treetable.removeWeakTools();
+                removeWeakTools();
             }
         }
 
