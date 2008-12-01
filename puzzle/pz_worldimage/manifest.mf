@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
 OpenIDE-Module: org.puzzle.format.worldimageformat
-OpenIDE-Module-Implementation-Version: 0
+OpenIDE-Module-Implementation-Version: 11
 OpenIDE-Module-Localizing-Bundle: org/puzzle/format/worldimage/Bundle.properties
 
