@@ -190,8 +190,10 @@ public class GISContextDataObject extends XMLDataObject {
             final NodeList layerNodes = gisDoc.getElementsByTagName(TAG_LAYER);
             for (int i = 0, n = layerNodes.getLength(); i < n; i++) {
                 final MapLayer layer = parseLayer(layerNodes.item(i));
-                context.layers().add(layer);
-                context.setCoordinateReferenceSystem(layer.getBounds().getCoordinateReferenceSystem());
+                if(layer != null){
+                    context.layers().add(layer);
+                    context.setCoordinateReferenceSystem(layer.getBounds().getCoordinateReferenceSystem());
+                }
 
             }
         }

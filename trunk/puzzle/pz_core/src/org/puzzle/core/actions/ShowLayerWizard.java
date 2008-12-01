@@ -36,6 +36,7 @@ import org.openide.util.actions.CookieAction;
 import org.puzzle.core.project.GISProject;
 import org.puzzle.core.project.filetype.GISSourceDataObject;
 import org.puzzle.core.project.source.GISSource;
+import org.puzzle.core.project.source.JLayerChooserWizard;
 
 /**
  *  Action to show a layer creation wizard, this wizard will query the source
@@ -64,7 +65,7 @@ public final class ShowLayerWizard extends CookieAction {
 
                         @Override
                         public void run() {
-                            source.showLayerWizard(contexts, prj);
+                            JLayerChooserWizard.showChooserDialog(contexts, source);
                         }
                     });
 

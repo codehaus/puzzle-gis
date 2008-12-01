@@ -21,13 +21,10 @@
 package org.puzzle.core.project.source;
 
 import java.awt.Image;
-import java.util.Collection;
 import java.util.Map;
 
-import org.geotools.map.MapContext;
 import org.geotools.map.MapLayer;
 
-import org.puzzle.core.project.GISProject;
 
 /**
  * This interface allows to create some GIS "sources".<br>
@@ -67,13 +64,12 @@ public abstract class GISSource {
     public abstract MapLayer createLayer(Map<String,String> parameters);
     
     /**
-     * create a wizard to see all possible layers.
-     * Exemple : a database source displays all available GIS layers.
+     * Create a swing component that will be used to create layers from this source.
      * 
-     * @param contexts
-     * @param project
+     * @param monitor
+     * @return JLayerChooser
      */
-    public abstract void showLayerWizard(Collection<? extends MapContext> contexts, GISProject project);
+    public abstract JLayerChooser createChooser(LayerChooserMonitor monitor);
     
     /**
      * Get the icon to use for each kind of {@code GISSource}.

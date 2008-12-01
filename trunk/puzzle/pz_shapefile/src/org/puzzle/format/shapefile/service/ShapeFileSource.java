@@ -21,21 +21,16 @@
 
 package org.puzzle.format.shapefile.service;
 
-import java.awt.Component;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
-import java.text.MessageFormat;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Map;
-import javax.swing.JComponent;
 
 import org.geotools.data.DataStore;
 import org.geotools.data.DataStoreFinder;
 import org.geotools.data.FeatureSource;
 import org.geotools.factory.CommonFactoryFinder;
-import org.geotools.map.MapContext;
 import org.geotools.map.MapLayer;
 import org.geotools.map.MapBuilder;
 import org.geotools.style.MutableStyle;
@@ -44,15 +39,13 @@ import org.geotools.style.RandomStyleFactory;
 import org.opengis.feature.simple.SimpleFeature;
 import org.opengis.feature.simple.SimpleFeatureType;
 
-import org.openide.DialogDisplayer;
-import org.openide.WizardDescriptor;
 import org.openide.util.Exceptions;
 import org.openide.util.ImageUtilities;
 
-import org.openide.util.NbBundle;
+import org.puzzle.core.project.source.JLayerChooser;
+import org.puzzle.core.project.source.LayerChooserMonitor;
 import org.puzzle.core.project.source.LayerSource;
 import org.puzzle.core.project.source.PZLayerConstants;
-import org.puzzle.core.project.GISProject;
 import org.puzzle.core.project.source.GISSource;
 import org.puzzle.core.project.source.GISSourceInfo;
 
@@ -63,13 +56,18 @@ import org.puzzle.core.project.source.GISSourceInfo;
  */
 public class ShapeFileSource extends GISSource{
 
-    private final String name;
+    private String name;
     private FeatureSource<SimpleFeatureType,SimpleFeature> featureSource = null;
     
     
     ShapeFileSource(final GISSourceInfo info, final File shapefile){
         super(info);
         this.name = shapefile.getName();
+
+        if(name.endsWith(".shp") || name.endsWith(".SHP")){
+            name = name.substring(0, name.length()-4);
+        }
+
         DataStore store = null;
         try {
             store = DataStoreFinder.getDataStore(Collections.singletonMap("url",shapefile.toURI().toURL()));
@@ -110,53 +108,10 @@ public class ShapeFileSource extends GISSource{
      * {@inheritDoc }
      */
     @Override
-    public void showLayerWizard(Collection<? extends MapContext> contexts, GISProject project) {
-        WizardDescriptor wizardDescriptor = new WizardDescriptor(getPanels(contexts, project));
-        // {0} will be replaced by WizardDesriptor.Panel.getComponent().getName()
-        wizardDescriptor.setTitleFormat(new MessageFormat("{0}"));
-        wizardDescriptor.setTitle(NbBundle.getMessage(ShapeFileSource.class, "createLayer"));
-        DialogDisplayer.getDefault().notify(wizardDescriptor);
-        
-        boolean cancelled = wizardDescriptor.getValue() != WizardDescriptor.FINISH_OPTION;
-        if (!cancelled) {
-            MapContext context = ((LayerCreationVisualPanel)panels[0].getComponent()).getContext();
-            String title = ((LayerCreationVisualPanel)panels[0].getComponent()).getTitle();
-            MapLayer layer = createLayer(null);
-            layer.setDescription(CommonFactoryFinder.getStyleFactory(null).createDescription(title,"") );
-            context.layers().add(layer);
-        }
-        
-    }
-
-    private WizardDescriptor.Panel[] panels;
-    
-    private WizardDescriptor.Panel[] getPanels(Collection<? extends MapContext> contexts, GISProject project) {
-            panels = new WizardDescriptor.Panel[]{
-                        new LayerCreationWizardPanel(contexts,project)
-                    };
-            String[] steps = new String[panels.length];
-            for (int i = 0; i < panels.length; i++) {
-                Component c = panels[i].getComponent();
-                // Default step name to component name of panel. Mainly useful
-                // for getting the name of the target chooser to appear in the
-                // list of steps.
-                steps[i] = c.getName();
-                if (c instanceof JComponent) { // assume Swing components
-                    JComponent jc = (JComponent) c;
-                    // Sets step number of a component
-                    // TODO if using org.openide.dialogs >= 7.8, can use WizardDescriptor.PROP_*:
-                    jc.putClientProperty(WizardDescriptor.PROP_CONTENT_SELECTED_INDEX, new Integer(i));
-                    // Sets steps names for a panel
-                    jc.putClientProperty(WizardDescriptor.PROP_CONTENT_DATA, steps);
-                    // Turn on subtitle creation on each step
-                    jc.putClientProperty(WizardDescriptor.PROP_AUTO_WIZARD_STYLE, Boolean.TRUE);
-                    // Show steps on the left side with the image on the background
-                    jc.putClientProperty(WizardDescriptor.PROP_CONTENT_DISPLAYED, Boolean.TRUE);
-                    // Turn on numbering of all steps
-                    jc.putClientProperty(WizardDescriptor.PROP_CONTENT_NUMBERED, Boolean.TRUE);
-                }
-            }
-        return panels;
+    public JLayerChooser createChooser(LayerChooserMonitor monitor) {
+        MapLayer layer = MapBuilder.getInstance().createFeatureLayer(featureSource, new RandomStyleFactory().createRandomVectorStyle(featureSource));
+        layer.setDescription( CommonFactoryFinder.getStyleFactory(null).createDescription(name, name));
+        return new LayerCreationComponent(monitor, layer);
     }
     
 }
