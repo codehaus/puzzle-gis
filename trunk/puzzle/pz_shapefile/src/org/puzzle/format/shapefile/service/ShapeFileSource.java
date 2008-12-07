@@ -109,9 +109,7 @@ public class ShapeFileSource extends GISSource{
      */
     @Override
     public JLayerChooser createChooser(LayerChooserMonitor monitor) {
-        MapLayer layer = MapBuilder.getInstance().createFeatureLayer(featureSource, new RandomStyleFactory().createRandomVectorStyle(featureSource));
-        layer.setDescription( CommonFactoryFinder.getStyleFactory(null).createDescription(name, name));
-        return new LayerCreationComponent(monitor, layer);
+        return new LayerCreationComponent(monitor, this, name);
     }
     
 }

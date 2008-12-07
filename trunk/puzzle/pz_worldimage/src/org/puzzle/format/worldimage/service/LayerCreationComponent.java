@@ -27,6 +27,7 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import org.geotools.factory.CommonFactoryFinder;
 import org.geotools.map.MapLayer;
 import org.openide.util.NbBundle;
 import org.puzzle.core.project.source.JLayerChooser;
@@ -38,15 +39,15 @@ import org.puzzle.core.project.source.LayerChooserMonitor;
  */
 public class LayerCreationComponent extends JLayerChooser {
 
-    private final MapLayer layer;
+    private final WorldImageSource source;
 
     /** Creates new form LayerCreationComponent */
-    public LayerCreationComponent(LayerChooserMonitor monitor, MapLayer layer) {
+    public LayerCreationComponent(LayerChooserMonitor monitor, WorldImageSource source, String name) {
         super(monitor);
-        this.layer = layer;
+        this.source = source;
         initComponents();
         monitor.setReady(true);
-        guiTitle.setText(layer.getDescription().getTitle().toString());
+        guiTitle.setText(name);
     }
 
     /** This method is called from within the constructor to
@@ -63,7 +64,7 @@ public class LayerCreationComponent extends JLayerChooser {
         guiTitle = new JTextField();
 
         jLabel2.setFont(jLabel2.getFont().deriveFont(jLabel2.getFont().getStyle() | Font.BOLD));
-        jLabel2.setText(NbBundle.getMessage(LayerCreationComponent.class, "map")); // NOI18N
+        jLabel2.setText(NbBundle.getMessage(LayerCreationComponent.class, "title")); // NOI18N
         GroupLayout layout = new GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -72,7 +73,7 @@ public class LayerCreationComponent extends JLayerChooser {
                 .addContainerGap()
                 .addComponent(jLabel2)
                 .addPreferredGap(ComponentPlacement.RELATED)
-                .addComponent(guiTitle, GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE)
+                .addComponent(guiTitle, GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -91,6 +92,8 @@ public class LayerCreationComponent extends JLayerChooser {
      */
     @Override
     public MapLayer[] getLayers() {
+        MapLayer layer = source.createLayer(null);
+        layer.setDescription(CommonFactoryFinder.getStyleFactory(null).createDescription(guiTitle.getText(),"") );
         return new MapLayer[]{layer};
     }
 
