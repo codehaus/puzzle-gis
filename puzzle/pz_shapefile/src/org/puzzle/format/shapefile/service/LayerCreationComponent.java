@@ -27,10 +27,14 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import org.geotools.factory.CommonFactoryFinder;
 import org.geotools.map.MapLayer;
 import org.openide.util.NbBundle;
+import org.puzzle.core.project.source.GISSource;
 import org.puzzle.core.project.source.JLayerChooser;
 import org.puzzle.core.project.source.LayerChooserMonitor;
+import org.puzzle.core.project.source.LayerSource;
+import org.puzzle.core.project.source.PZLayerConstants;
 
 /**
  *
@@ -38,15 +42,15 @@ import org.puzzle.core.project.source.LayerChooserMonitor;
  */
 public class LayerCreationComponent extends JLayerChooser {
 
-    private final MapLayer layer;
+    private final ShapeFileSource source;
 
     /** Creates new form LayerCreationComponent */
-    public LayerCreationComponent(LayerChooserMonitor monitor, MapLayer layer) {
+    public LayerCreationComponent(LayerChooserMonitor monitor, ShapeFileSource source,String basename) {
         super(monitor);
-        this.layer = layer;
+        this.source = source;
         initComponents();
         monitor.setReady(true);
-        guiTitle.setText(layer.getDescription().getTitle().toString());
+        guiTitle.setText(basename);
     }
 
     /** This method is called from within the constructor to
@@ -91,6 +95,8 @@ public class LayerCreationComponent extends JLayerChooser {
      */
     @Override
     public MapLayer[] getLayers() {
+        MapLayer layer = source.createLayer(null);
+        layer.setDescription(CommonFactoryFinder.getStyleFactory(null).createDescription(guiTitle.getText(),"") );
         return new MapLayer[]{layer};
     }
 

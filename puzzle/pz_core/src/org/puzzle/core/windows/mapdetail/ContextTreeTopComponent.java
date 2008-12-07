@@ -28,6 +28,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Logger;
 
+import javax.swing.JScrollPane;
 import org.geotools.gui.swing.contexttree.popup.SeparatorItem;
 import org.geotools.gui.swing.outlinetree.JContextOutLine;
 import org.geotools.gui.swing.outlinetree.popup.DeleteItem;
@@ -167,7 +168,7 @@ final class ContextTreeTopComponent extends TopComponent implements LookupListen
             tree = getContextTree();
         }
 
-        add(BorderLayout.CENTER, tree);
+        add(BorderLayout.CENTER, new JScrollPane(tree));
 
         requestActive();
     }

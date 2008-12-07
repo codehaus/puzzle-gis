@@ -187,6 +187,15 @@
             <artifactId>gt-widgets-swing-pending</artifactId>
             <version>${geotools.version}</version>
         </dependency>
+
+    <!-- =====================OTHER================================== -->
+
+        <dependency>
+            <groupId>crimson</groupId>
+            <artifactId>crimson</artifactId>
+            <version>1.1.3</version>
+        </dependency>
+
     </dependencies>
 
 
@@ -301,6 +310,19 @@
                             <fileset dir="${GT_BINARY}" casesensitive="yes">
                               <patternset id="geotools">
                                 <include name="bufr.jar"/>
+                                <include name="batik-awt-util.jar"/>
+                                <include name="batik-bridge.jar"/>
+                                <include name="batik-css.jar"/>
+                                <include name="batik-dom.jar"/>
+                                <include name="batik-ext.jar"/>
+                                <include name="batik-gui-util.jar"/>
+                                <include name="batik-gvt.jar"/>
+                                <include name="batik-parser.jar"/>
+                                <include name="batik-script.jar"/>
+                                <include name="batik-svg-dom.jar"/>
+                                <include name="batik-transcoder.jar"/>
+                                <include name="batik-util.jar"/>
+                                <include name="batik-xml.jar"/>
                                 <include name="common.jar"/>
                                 <include name="ecore.jar"/>
                                 <include name="gnu-regexp.jar"/>
@@ -351,8 +373,10 @@
                                 <include name="timingframework.jar"/>
                                 <include name="vecmath.jar"/>
                                 <include name="xercesImpl.jar"/>
+                                <include name="xalan.jar"/>
                                 <include name="xml-apis.jar"/>
                                 <include name="xml-apis-xerces.jar"/>
+                                <include name="xmlParserAPIs.jar"/>
                                 <include name="xpp3.jar"/>
                                 <include name="xsd.jar"/>
                               </patternset>

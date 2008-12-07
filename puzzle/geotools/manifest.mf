@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
 AutoUpdate-Show-In-Client: true
 OpenIDE-Module: org.geotools
-OpenIDE-Module-Implementation-Version: 0
+OpenIDE-Module-Implementation-Version: 11
 OpenIDE-Module-Localizing-Bundle: org/geotools/Bundle.properties

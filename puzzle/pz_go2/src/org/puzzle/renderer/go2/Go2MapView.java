@@ -21,11 +21,16 @@
 package org.puzzle.renderer.go2;
 
 import java.awt.BorderLayout;
+import javax.swing.JPanel;
 import org.geotools.gui.swing.go.J2DMapVolatile;
+import org.geotools.gui.swing.go.control.JConfigBar;
 import org.geotools.gui.swing.go.control.JCoordinateBar;
 import org.geotools.gui.swing.go.control.JNavigationBar;
 import org.geotools.gui.swing.go.decoration.JNavigationDecoration;
+import org.geotools.gui.swing.go.decoration.JNorthArrowDecoration;
 import org.geotools.map.MapContext;
+import org.openide.util.ImageUtilities;
+import org.openide.util.Utilities;
 import org.puzzle.core.view.MapView;
 
 /**
@@ -37,14 +42,22 @@ public class Go2MapView extends MapView{
 
     private final JNavigationBar navBar = new JNavigationBar();
     private final JCoordinateBar coordBar = new JCoordinateBar();
+    private final JConfigBar configBar = new JConfigBar();
     private final JNavigationDecoration boussole = new JNavigationDecoration();
+
     
     public Go2MapView(J2DMapVolatile map){
         super(map);
         navBar.setMap(map);
         coordBar.setMap(map);
+        configBar.setMap(map);
+        
+        JPanel north = new JPanel(new BorderLayout(0,0));
+        north.add(BorderLayout.CENTER,navBar);
+        north.add(BorderLayout.EAST,configBar);
         navBar.setFloatable(false);
-        add(BorderLayout.NORTH,navBar);
+        configBar.setFloatable(false);
+        add(BorderLayout.NORTH,north);
         add(BorderLayout.SOUTH,coordBar);
 
         map.addDecoration(boussole);

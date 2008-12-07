@@ -23,10 +23,12 @@ package org.puzzle.core.project.filetype;
 import java.beans.PropertyChangeEvent;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.EventObject;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import javax.xml.bind.JAXBException;
 
@@ -415,7 +417,8 @@ public class GISContextDataObject extends XMLDataObject {
         }
 
         //create layer nodes
-        for (final MapLayer layer : context.layers()) {
+        final List<MapLayer> layers = new ArrayList<MapLayer>(context.layers());
+        for (final MapLayer layer : layers) {
             final Element layerNode = doc.createElement(TAG_LAYER);
             DOMencodeLayer(doc, layer, layerNode, null);
             root.appendChild(layerNode);

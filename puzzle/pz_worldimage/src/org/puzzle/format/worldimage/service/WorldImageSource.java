@@ -118,7 +118,7 @@ public class WorldImageSource extends GISSource{
      */
     @Override
     public JLayerChooser createChooser(LayerChooserMonitor monitor) {
-        return new LayerCreationComponent(monitor, createLayer(null));
+        return new LayerCreationComponent(monitor, this,name);
     }
     
 }
