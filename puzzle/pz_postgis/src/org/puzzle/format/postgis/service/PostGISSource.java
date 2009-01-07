@@ -126,4 +126,14 @@ public class PostGISSource extends GISSource{
         return new LayerCreationComponent(monitor, store, this);
     }
 
+    @Override
+    public void unload() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void load() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
 }

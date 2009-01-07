@@ -20,10 +20,14 @@
  */
 package org.puzzle.core.project.filetype;
 
+import java.awt.Image;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.io.IOException;
 
 import org.openide.loaders.DataNode;
 import org.openide.nodes.Children;
+import org.openide.util.ImageUtilities;
 import org.openide.util.Lookup;
 
 /**
@@ -37,6 +41,8 @@ import org.openide.util.Lookup;
  */
 public class GISContextDataNode extends DataNode {
 
+    private static final Image IMAGE_LOADED = ImageUtilities.loadImage("org/puzzle/core/project/filetype/context_loaded.png");
+
     private static final String IMAGE_ICON_BASE = "org/puzzle/core/project/filetype/locale.png";
 
     /**
@@ -44,9 +50,20 @@ public class GISContextDataNode extends DataNode {
      * Creates the node from the {@code GISsourceDataObject}.
      * @param obj   The {@code GISSourceDataObject} used.
      */
-    public GISContextDataNode(GISContextDataObject obj) {
+     GISContextDataNode(GISContextDataObject obj, Lookup lookup) {
         super(obj, Children.LEAF);
         setIconBaseWithExtension(IMAGE_ICON_BASE);
+
+        obj.addPropertyChangeListener(new PropertyChangeListener() {
+
+            @Override
+            public void propertyChange(PropertyChangeEvent evt) {
+                if(evt.getPropertyName().equals(GISContextDataObject.STATE_PROPERTY)){
+                    fireIconChange();
+                }
+            }
+        });
+
     }
 
     @Override
@@ -64,6 +81,17 @@ public class GISContextDataNode extends DataNode {
     }
 
     @Override
+    public Image getIcon(int arg0) {
+        Image img = super.getIcon(arg0);
+
+        if(getDataObject().getState() == GISContextState.LOADED){
+            img = ImageUtilities.mergeImages(img, IMAGE_LOADED, 6, 0);
+        }
+
+        return img;
+    }
+
+    @Override
     public void destroy() throws IOException {
         getDataObject().dispose();
         super.destroy();
@@ -72,11 +100,6 @@ public class GISContextDataNode extends DataNode {
     @Override
     public GISContextDataObject getDataObject() {
         return (GISContextDataObject)super.getDataObject();
-    }
-    
-    GISContextDataNode(GISContextDataObject obj, Lookup lookup) {
-        super(obj, Children.LEAF);
-        setIconBaseWithExtension(IMAGE_ICON_BASE);
     }
 
 }

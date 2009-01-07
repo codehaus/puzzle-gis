@@ -87,6 +87,8 @@ import org.xml.sax.SAXException;
  */
 public class GISContextDataObject extends XMLDataObject {
 
+    public static final String STATE_PROPERTY = "state";
+
     private static final String TAG_CONTEXT_CRS = "Crs";
     private static final String TAG_LAYERS = "Layers";
     private static final String TAG_LAYER = "Layer";
@@ -102,6 +104,8 @@ public class GISContextDataObject extends XMLDataObject {
     private MapContext context = null;
     private boolean needSave = false;
 
+    private GISContextState state = GISContextState.UNLOADED;
+
     /**
      * Constructor.
      * This contructor creates a {@code GISContextDataObject} and make it
@@ -116,7 +120,6 @@ public class GISContextDataObject extends XMLDataObject {
         saver.start();
         CookieSet cookies = getCookieSet();
         cookies.add((org.openide.nodes.Node.Cookie) DataEditorSupport.create(this, getPrimaryEntry(), cookies));
-
     }
 
     @Override
@@ -129,6 +132,18 @@ public class GISContextDataObject extends XMLDataObject {
         super.dispose();
     }
 
+    private void setState(GISContextState state){
+        if(state == null) throw new NullPointerException("State can not be null.");
+
+        final GISContextState oldState = this.state;
+        this.state = state;
+        firePropertyChange(STATE_PROPERTY, oldState, this.state);
+    }
+
+    public GISContextState getState(){
+        return state;
+    }
+
     /**
      * This method is used to retrieve the {@code MapContext} associated with
      * the {@code GISContextDataObject}. If not context is currently associated,
@@ -139,18 +154,17 @@ public class GISContextDataObject extends XMLDataObject {
     public MapContext getContext() {
 
         if (context == null) {
-            ProgressHandle handle = ProgressHandleFactory.createHandle(Utilities.getString("loadingContext"));
+            ProgressHandle handle = ProgressHandleFactory.createHandle(Utilities.getString("loadingContext") +" : " + getPrimaryFile().getName().replaceAll(".xml", ""));
             handle.start(100);
             handle.switchToIndeterminate();
             // at this point the task is finished and removed from status bar
             // it's not realy necessary to count all the way to the limit, finish can be called earlier.
             // however it has to be called at the end of the processing.
 
-
-
             context = parseContext(getDOM());
             context.addContextListener(contextListener);
             handle.finish();
+            setState(GISContextState.LOADED);
         }
 
         return context;
