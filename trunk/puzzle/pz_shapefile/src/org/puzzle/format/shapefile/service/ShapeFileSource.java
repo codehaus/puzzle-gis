@@ -48,6 +48,7 @@ import org.puzzle.core.project.source.LayerSource;
 import org.puzzle.core.project.source.PZLayerConstants;
 import org.puzzle.core.project.source.GISSource;
 import org.puzzle.core.project.source.GISSourceInfo;
+import org.puzzle.core.project.source.GISSourceState;
 
 /**
  * Shapefile source object.
@@ -57,29 +58,19 @@ import org.puzzle.core.project.source.GISSourceInfo;
 public class ShapeFileSource extends GISSource{
 
     private String name;
+    private final File shapefile;
     private FeatureSource<SimpleFeatureType,SimpleFeature> featureSource = null;
     
     
     ShapeFileSource(final GISSourceInfo info, final File shapefile){
         super(info);
+        this.shapefile = shapefile;
         this.name = shapefile.getName();
 
         if(name.endsWith(".shp") || name.endsWith(".SHP")){
             name = name.substring(0, name.length()-4);
         }
 
-        DataStore store = null;
-        try {
-            store = DataStoreFinder.getDataStore(Collections.singletonMap("url",shapefile.toURI().toURL()));
-        } catch (IOException ex) {
-            Exceptions.printStackTrace(ex);
-        }
-        try {
-            featureSource = store.getFeatureSource(store.getTypeNames()[0]);
-        } catch (IOException ex) {
-            Exceptions.printStackTrace(ex);
-        }
-        
     }
 
     /**
@@ -87,13 +78,18 @@ public class ShapeFileSource extends GISSource{
      */
     @Override
     public MapLayer createLayer(Map<String, String> parameters) {
-        final MutableStyle style = new RandomStyleFactory().createRandomVectorStyle(featureSource);
-        if(parameters == null) parameters = Collections.emptyMap();
-        final LayerSource source = new LayerSource(getInfo().getID(), parameters,this);
-        final MapLayer layer = MapBuilder.getInstance().createFeatureLayer(featureSource, style);
-        layer.setUserPropertie(PZLayerConstants.KEY_LAYER_INFO, source);
-        layer.setDescription(CommonFactoryFinder.getStyleFactory(null).createDescription(name,"") );
-        return layer;
+        load();
+        if(featureSource != null){
+            final MutableStyle style = new RandomStyleFactory().createRandomVectorStyle(featureSource);
+            if(parameters == null) parameters = Collections.emptyMap();
+            final LayerSource source = new LayerSource(getInfo().getID(), parameters,this);
+            final MapLayer layer = MapBuilder.getInstance().createFeatureLayer(featureSource, style);
+            layer.setUserPropertie(PZLayerConstants.KEY_LAYER_INFO, source);
+            layer.setDescription(CommonFactoryFinder.getStyleFactory(null).createDescription(name,"") );
+            return layer;
+        }else{
+            return MapBuilder.getInstance().createEmptyMapLayer();
+        }
     }
 
     /**
@@ -110,6 +106,35 @@ public class ShapeFileSource extends GISSource{
     @Override
     public JLayerChooser createChooser(LayerChooserMonitor monitor) {
         return new LayerCreationComponent(monitor, this, name);
+    }
+
+    @Override
+    public void unload() {
+        featureSource = null;
+        setState(GISSourceState.UNLOADED);
+    }
+
+    @Override
+    public void load() {
+        if(featureSource != null) return;
+
+        DataStore store = null;
+        try {
+            store = DataStoreFinder.getDataStore(Collections.singletonMap("url",shapefile.toURI().toURL()));
+        } catch (IOException ex) {
+            setState(GISSourceState.LOADING_ERROR);
+            Exceptions.printStackTrace(ex);
+            return;
+        }
+        try {
+            featureSource = store.getFeatureSource(store.getTypeNames()[0]);
+        } catch (IOException ex) {
+            setState(GISSourceState.LOADING_ERROR);
+            Exceptions.printStackTrace(ex);
+            return;
+        }
+
+        setState(GISSourceState.LOADED);
     }
     
 }

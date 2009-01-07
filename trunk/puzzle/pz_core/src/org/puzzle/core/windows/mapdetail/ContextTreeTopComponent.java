@@ -41,6 +41,7 @@ import org.geotools.gui.swing.propertyedit.LayerGeneralPanel;
 import org.geotools.gui.swing.propertyedit.LayerStylePropertyPanel;
 import org.geotools.gui.swing.propertyedit.PropertyPane;
 import org.geotools.gui.swing.propertyedit.filterproperty.JCQLPropertyPanel;
+import org.geotools.gui.swing.propertyedit.styleproperty.JAdvancedStylePanel;
 import org.geotools.gui.swing.propertyedit.styleproperty.JSimpleStylePanel;
 
 import org.openide.util.ImageUtilities;
@@ -97,7 +98,7 @@ final class ContextTreeTopComponent extends TopComponent implements LookupListen
 
         LayerStylePropertyPanel styles = new LayerStylePropertyPanel();
         styles.addPropertyPanel(new JSimpleStylePanel());
-//        styles.addPropertyPanel(new JAdvancedStylePanel());
+        styles.addPropertyPanel(new JAdvancedStylePanel());
 //        styles.addPropertyPanel(new JXMLStylePanel());
         lstproperty.add(styles);
 
@@ -117,7 +118,7 @@ final class ContextTreeTopComponent extends TopComponent implements LookupListen
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setLayout(new java.awt.BorderLayout());
+        setLayout(new BorderLayout());
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables

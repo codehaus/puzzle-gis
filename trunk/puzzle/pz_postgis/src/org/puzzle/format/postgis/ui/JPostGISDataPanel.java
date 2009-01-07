@@ -29,6 +29,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.swing.BorderFactory;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
@@ -36,7 +38,9 @@ import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
+import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SpinnerNumberModel;
+import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 import org.geotools.data.DataStore;
 import org.geotools.data.DataStoreFinder;
@@ -48,8 +52,6 @@ import org.geotools.map.MapBuilder;
 import org.geotools.style.MutableStyle;
 import org.geotools.style.RandomStyleFactory;
 
-import org.jdesktop.layout.GroupLayout;
-import org.jdesktop.layout.LayoutStyle;
 import org.jdesktop.swingx.JXTable;
 import org.jdesktop.swingx.JXTitledPanel;
 import org.opengis.feature.simple.SimpleFeature;
@@ -233,8 +235,8 @@ public class JPostGISDataPanel extends SourceCreationPane {
         jLabel4.setText(NbBundle.getBundle(JPostGISDataPanel.class).getString("database")); // NOI18N
         jLabel5.setText(NbBundle.getBundle(JPostGISDataPanel.class).getString("user")); // NOI18N
         jLabel6.setText(NbBundle.getBundle(JPostGISDataPanel.class).getString("password")); // NOI18N
-        GroupLayout jXTitledPanel1Layout = new GroupLayout(jXTitledPanel1.getContentContainer());
-        jXTitledPanel1.getContentContainer().setLayout(jXTitledPanel1Layout);
+        GroupLayout jXTitledPanel1Layout = new GroupLayout(jXTitledPanel1);
+        jXTitledPanel1.setLayout(jXTitledPanel1Layout);
 
 
 
@@ -244,63 +246,63 @@ public class JPostGISDataPanel extends SourceCreationPane {
 
 
         jXTitledPanel1Layout.setHorizontalGroup(
-            jXTitledPanel1Layout.createParallelGroup(GroupLayout.LEADING)
-            .add(jXTitledPanel1Layout.createSequentialGroup()
+            jXTitledPanel1Layout.createParallelGroup(Alignment.LEADING)
+            .addGroup(jXTitledPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .add(jXTitledPanel1Layout.createParallelGroup(GroupLayout.LEADING)
-                    .add(jXTitledPanel1Layout.createSequentialGroup()
-                        .add(jLabel1)
-                        .addPreferredGap(LayoutStyle.RELATED)
-                        .add(jtf_host, GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE))
-                    .add(jXTitledPanel1Layout.createSequentialGroup()
-                        .add(jLabel2)
-                        .addPreferredGap(LayoutStyle.RELATED)
-                        .add(jtf_port, GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE))
-                    .add(jXTitledPanel1Layout.createSequentialGroup()
-                        .add(jLabel3)
-                        .addPreferredGap(LayoutStyle.RELATED)
-                        .add(jtf_schema, GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE))
-                    .add(jXTitledPanel1Layout.createSequentialGroup()
-                        .add(jLabel4)
-                        .addPreferredGap(LayoutStyle.RELATED)
-                        .add(jtf_database, GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE))
-                    .add(jXTitledPanel1Layout.createSequentialGroup()
-                        .add(jLabel5)
-                        .addPreferredGap(LayoutStyle.RELATED)
-                        .add(jtf_user, GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE))
-                    .add(jXTitledPanel1Layout.createSequentialGroup()
-                        .add(jLabel6)
-                        .addPreferredGap(LayoutStyle.RELATED)
-                        .add(jtf_password, GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)))
+                .addGroup(jXTitledPanel1Layout.createParallelGroup(Alignment.LEADING)
+                    .addGroup(jXTitledPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(ComponentPlacement.RELATED)
+                        .addComponent(jtf_host, GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE))
+                    .addGroup(jXTitledPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(ComponentPlacement.RELATED)
+                        .addComponent(jtf_port, GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE))
+                    .addGroup(jXTitledPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(ComponentPlacement.RELATED)
+                        .addComponent(jtf_schema, GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE))
+                    .addGroup(jXTitledPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(ComponentPlacement.RELATED)
+                        .addComponent(jtf_database, GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE))
+                    .addGroup(jXTitledPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(ComponentPlacement.RELATED)
+                        .addComponent(jtf_user, GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE))
+                    .addGroup(jXTitledPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addPreferredGap(ComponentPlacement.RELATED)
+                        .addComponent(jtf_password, GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jXTitledPanel1Layout.setVerticalGroup(
-            jXTitledPanel1Layout.createParallelGroup(GroupLayout.LEADING)
-            .add(jXTitledPanel1Layout.createSequentialGroup()
+            jXTitledPanel1Layout.createParallelGroup(Alignment.LEADING)
+            .addGroup(jXTitledPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .add(jXTitledPanel1Layout.createParallelGroup(GroupLayout.BASELINE)
-                    .add(jLabel1)
-                    .add(jtf_host, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(LayoutStyle.RELATED)
-                .add(jXTitledPanel1Layout.createParallelGroup(GroupLayout.BASELINE)
-                    .add(jLabel2)
-                    .add(jtf_port, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(LayoutStyle.RELATED)
-                .add(jXTitledPanel1Layout.createParallelGroup(GroupLayout.BASELINE)
-                    .add(jLabel3)
-                    .add(jtf_schema, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(LayoutStyle.RELATED)
-                .add(jXTitledPanel1Layout.createParallelGroup(GroupLayout.BASELINE)
-                    .add(jLabel4)
-                    .add(jtf_database, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(LayoutStyle.RELATED)
-                .add(jXTitledPanel1Layout.createParallelGroup(GroupLayout.BASELINE)
-                    .add(jLabel5)
-                    .add(jtf_user, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(LayoutStyle.RELATED)
-                .add(jXTitledPanel1Layout.createParallelGroup(GroupLayout.BASELINE)
-                    .add(jLabel6)
-                    .add(jtf_password, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                .addGroup(jXTitledPanel1Layout.createParallelGroup(Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jtf_host, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(ComponentPlacement.RELATED)
+                .addGroup(jXTitledPanel1Layout.createParallelGroup(Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jtf_port, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(ComponentPlacement.RELATED)
+                .addGroup(jXTitledPanel1Layout.createParallelGroup(Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jtf_schema, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(ComponentPlacement.RELATED)
+                .addGroup(jXTitledPanel1Layout.createParallelGroup(Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jtf_database, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(ComponentPlacement.RELATED)
+                .addGroup(jXTitledPanel1Layout.createParallelGroup(Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jtf_user, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(ComponentPlacement.RELATED)
+                .addGroup(jXTitledPanel1Layout.createParallelGroup(Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(jtf_password, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -317,84 +319,84 @@ public class JPostGISDataPanel extends SourceCreationPane {
         chk_loose.setText(NbBundle.getBundle(JPostGISDataPanel.class).getString("loose_bbox")); // NOI18N
         chk_estimated.setText(NbBundle.getBundle(JPostGISDataPanel.class).getString("estimated_extend")); // NOI18N
         jLabel13.setText(NbBundle.getBundle(JPostGISDataPanel.class).getString("namespace")); // NOI18N
-        GroupLayout jXTitledPanel2Layout = new GroupLayout(jXTitledPanel2.getContentContainer());
-        jXTitledPanel2.getContentContainer().setLayout(jXTitledPanel2Layout);
+        GroupLayout jXTitledPanel2Layout = new GroupLayout(jXTitledPanel2);
+        jXTitledPanel2.setLayout(jXTitledPanel2Layout);
         jXTitledPanel2Layout.setHorizontalGroup(
-            jXTitledPanel2Layout.createParallelGroup(GroupLayout.LEADING)
-            .add(jXTitledPanel2Layout.createSequentialGroup()
+            jXTitledPanel2Layout.createParallelGroup(Alignment.LEADING)
+            .addGroup(jXTitledPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .add(jXTitledPanel2Layout.createParallelGroup(GroupLayout.LEADING)
-                    .add(chk_estimated)
-                    .add(chk_loose)
-                    .add(chk_wkb)
-                    .add(jXTitledPanel2Layout.createParallelGroup(GroupLayout.LEADING, false)
-                        .add(jXTitledPanel2Layout.createSequentialGroup()
-                            .add(jLabel7)
-                            .addPreferredGap(LayoutStyle.RELATED)
-                            .add(jsp_max_connects, GroupLayout.PREFERRED_SIZE, 71, GroupLayout.PREFERRED_SIZE))
-                        .add(jXTitledPanel2Layout.createSequentialGroup()
-                            .add(jLabel8)
-                            .addPreferredGap(LayoutStyle.RELATED)
-                            .add(jsp_min_connects)))
-                    .add(chk_validate)
-                    .add(jXTitledPanel2Layout.createSequentialGroup()
-                        .add(jLabel13)
-                        .addPreferredGap(LayoutStyle.RELATED)
-                        .add(jtf_namespace, GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)))
+                .addGroup(jXTitledPanel2Layout.createParallelGroup(Alignment.LEADING)
+                    .addComponent(chk_estimated)
+                    .addComponent(chk_loose)
+                    .addComponent(chk_wkb)
+                    .addGroup(jXTitledPanel2Layout.createParallelGroup(Alignment.LEADING, false)
+                        .addGroup(jXTitledPanel2Layout.createSequentialGroup()
+                            .addComponent(jLabel7)
+                            .addPreferredGap(ComponentPlacement.RELATED)
+                            .addComponent(jsp_max_connects, GroupLayout.PREFERRED_SIZE, 71, GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jXTitledPanel2Layout.createSequentialGroup()
+                            .addComponent(jLabel8)
+                            .addPreferredGap(ComponentPlacement.RELATED)
+                            .addComponent(jsp_min_connects)))
+                    .addComponent(chk_validate)
+                    .addGroup(jXTitledPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel13)
+                        .addPreferredGap(ComponentPlacement.RELATED)
+                        .addComponent(jtf_namespace, GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jXTitledPanel2Layout.setVerticalGroup(
-            jXTitledPanel2Layout.createParallelGroup(GroupLayout.LEADING)
-            .add(jXTitledPanel2Layout.createSequentialGroup()
+            jXTitledPanel2Layout.createParallelGroup(Alignment.LEADING)
+            .addGroup(jXTitledPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .add(jXTitledPanel2Layout.createParallelGroup(GroupLayout.BASELINE)
-                    .add(jLabel7)
-                    .add(jsp_max_connects, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(LayoutStyle.RELATED)
-                .add(jXTitledPanel2Layout.createParallelGroup(GroupLayout.BASELINE)
-                    .add(jLabel8)
-                    .add(jsp_min_connects, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(LayoutStyle.RELATED)
-                .add(chk_validate)
-                .addPreferredGap(LayoutStyle.RELATED)
-                .add(chk_wkb)
-                .addPreferredGap(LayoutStyle.RELATED)
-                .add(chk_loose)
-                .addPreferredGap(LayoutStyle.RELATED)
-                .add(chk_estimated)
-                .addPreferredGap(LayoutStyle.RELATED)
-                .add(jXTitledPanel2Layout.createParallelGroup(GroupLayout.BASELINE)
-                    .add(jLabel13)
-                    .add(jtf_namespace, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                .addGroup(jXTitledPanel2Layout.createParallelGroup(Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(jsp_max_connects, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(ComponentPlacement.RELATED)
+                .addGroup(jXTitledPanel2Layout.createParallelGroup(Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(jsp_min_connects, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(ComponentPlacement.RELATED)
+                .addComponent(chk_validate)
+                .addPreferredGap(ComponentPlacement.RELATED)
+                .addComponent(chk_wkb)
+                .addPreferredGap(ComponentPlacement.RELATED)
+                .addComponent(chk_loose)
+                .addPreferredGap(ComponentPlacement.RELATED)
+                .addComponent(chk_estimated)
+                .addPreferredGap(ComponentPlacement.RELATED)
+                .addGroup(jXTitledPanel2Layout.createParallelGroup(Alignment.BASELINE)
+                    .addComponent(jLabel13)
+                    .addComponent(jtf_namespace, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         GroupLayout layout = new GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(GroupLayout.LEADING)
-            .add(layout.createSequentialGroup()
-                .add(layout.createParallelGroup(GroupLayout.TRAILING, false)
-                    .add(GroupLayout.LEADING, jXTitledPanel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .add(GroupLayout.LEADING, jXTitledPanel2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(LayoutStyle.RELATED)
-                .add(layout.createParallelGroup(GroupLayout.LEADING)
-                    .add(jScrollPane1, GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
-                    .add(but_refresh, GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)))
+            layout.createParallelGroup(Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(Alignment.TRAILING, false)
+                    .addComponent(jXTitledPanel1, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jXTitledPanel2, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(Alignment.LEADING)
+                    .addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
+                    .addComponent(but_refresh, GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)))
         );
 
-        layout.linkSize(new Component[] {jXTitledPanel1, jXTitledPanel2}, GroupLayout.HORIZONTAL);
+        layout.linkSize(SwingConstants.HORIZONTAL, new Component[] {jXTitledPanel1, jXTitledPanel2});
 
         layout.setVerticalGroup(
-            layout.createParallelGroup(GroupLayout.LEADING)
-            .add(layout.createSequentialGroup()
-                .add(but_refresh)
-                .addPreferredGap(LayoutStyle.RELATED)
-                .add(jScrollPane1, GroupLayout.DEFAULT_SIZE, 434, Short.MAX_VALUE))
-            .add(layout.createSequentialGroup()
-                .add(jXTitledPanel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(LayoutStyle.RELATED)
-                .add(jXTitledPanel2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+            layout.createParallelGroup(Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(but_refresh)
+                .addPreferredGap(ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 434, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jXTitledPanel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(ComponentPlacement.RELATED)
+                .addComponent(jXTitledPanel2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
     private void actionRefresh(ActionEvent evt) {//GEN-FIRST:event_actionRefresh
@@ -464,32 +466,6 @@ public class JPostGISDataPanel extends SourceCreationPane {
     private JXTable tab_table;
     // End of variables declaration//GEN-END:variables
     
-    public MapLayer[] getLayers() {
-        ArrayList<MapLayer> layers = new ArrayList<MapLayer>();
-        RandomStyleFactory rsf = new RandomStyleFactory();
-
-        if (store != null) {
-
-            for (int i = 0; i < tab_table.getSelectedRows().length; i++) {
-                try {
-                    DBModel model = (DBModel) tab_table.getModel();
-                    String name = (String) model.getValueAt(tab_table.getSelectedRows()[i], 0);
-                    FeatureSource<SimpleFeatureType, SimpleFeature> fs = store.getFeatureSource(name);
-                    MutableStyle style = rsf.createRandomVectorStyle(fs);
-
-                    MapLayer layer = MapBuilder.getInstance().createFeatureLayer(fs, style);
-                    layer.setDescription(CommonFactoryFinder.getStyleFactory(null).createDescription("postgis - " + name, ""));
-                    layers.add(layer);
-                } catch (IOException ex) {
-                    System.out.println(ex);
-                }
-            }
-
-        }
-
-        return layers.toArray(new MapLayer[layers.size()]);
-    }
-
     public Map<String,GISSourceInfo> createSources() {
         final Map<String,String> params = new HashMap<String,String>();
         params.put(PostgisDataStoreFactory.HOST.key, jtf_host.getText());

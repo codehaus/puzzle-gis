@@ -112,4 +112,14 @@ public class GeoTiffSource extends GISSource{
     public JLayerChooser createChooser(LayerChooserMonitor monitor) {
         return new LayerCreationComponent(monitor, this,name);
     }
+
+    @Override
+    public void unload() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void load() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 }

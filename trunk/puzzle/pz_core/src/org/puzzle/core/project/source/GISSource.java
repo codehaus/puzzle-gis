@@ -21,6 +21,8 @@
 package org.puzzle.core.project.source;
 
 import java.awt.Image;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.util.Map;
 
 import org.geotools.map.MapLayer;
@@ -42,7 +44,12 @@ import org.geotools.map.MapLayer;
  */
 public abstract class GISSource {
 
+    public static final String STATE_PROPERTY = "state";
+
+    protected final PropertyChangeSupport propertySupport = new PropertyChangeSupport(this);
+
     private final GISSourceInfo info;
+    private GISSourceState state = GISSourceState.UNLOADED;
     
     protected GISSource(final GISSourceInfo info){
         if(info == null || info.getID() < 0){
@@ -54,7 +61,23 @@ public abstract class GISSource {
     public final GISSourceInfo getInfo(){
         return info;
     }
+
+    public GISSourceState getState() {
+        return state;
+    }
+
+    protected void setState(final GISSourceState state){
+        if(state == null) throw new NullPointerException("state can not be null");
+
+        final GISSourceState oldState = this.state;
+        this.state = state;
+        propertySupport.firePropertyChange(STATE_PROPERTY, oldState, this.state);
+    }
     
+    public abstract void unload();
+
+    public abstract void load();
+
     /**
      * Creates a new {@code MapLayer} from the data represented
      * by the {@code GISSource}.
@@ -77,5 +100,20 @@ public abstract class GISSource {
      * @return  A new {@code Image} representing the icon.
      */
      public abstract Image getIcon(int type);
-         
+
+     public void addPropertyChangeListener(PropertyChangeListener listener){
+         propertySupport.addPropertyChangeListener(listener);
+     }
+
+     public void addPropertyChangeListener(String propName, PropertyChangeListener listener){
+         propertySupport.addPropertyChangeListener(propName,listener);
+     }
+
+     public void removePropertyChangeListener(PropertyChangeListener listener){
+         propertySupport.removePropertyChangeListener(listener);
+     }
+     public void removePropertyChangeListener(String propName, PropertyChangeListener listener){
+         propertySupport.removePropertyChangeListener(propName,listener);
+     }
+     
 }

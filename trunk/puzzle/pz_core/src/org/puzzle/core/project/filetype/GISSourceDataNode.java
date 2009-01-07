@@ -21,11 +21,16 @@
 package org.puzzle.core.project.filetype;
 
 import java.awt.Image;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.io.IOException;
 
 import org.openide.loaders.DataNode;
 import org.openide.nodes.Children;
+import org.openide.util.ImageUtilities;
 import org.openide.util.Lookup;
+import org.puzzle.core.project.source.GISSource;
+import org.puzzle.core.project.source.GISSourceState;
 
 /**
  * This classe provides a {@code org.openide.loaders.DataNode} for the
@@ -38,6 +43,9 @@ import org.openide.util.Lookup;
  */
 public class GISSourceDataNode extends DataNode {
 
+    private static final Image IMAGE_LOADED = ImageUtilities.loadImage("org/puzzle/core/project/filetype/source_loaded.png");
+    private static final Image IMAGE_UNLOADED = ImageUtilities.loadImage("org/puzzle/core/project/filetype/source_unloaded.png");
+    private static final Image IMAGE_ERROR = ImageUtilities.loadImage("org/puzzle/core/project/filetype/source_error.png");
     private static final String IMAGE_ICON_BASE = "org/puzzle/core/project/filetype/signal-1.png";
     
     /**
@@ -45,12 +53,20 @@ public class GISSourceDataNode extends DataNode {
      * Creates the node from the {@code GISContextDataObject}.
      * @param obj   The {@code GISContextDataObject} used.
      */
-    public GISSourceDataNode(GISSourceDataObject obj) {
-        super(obj, Children.LEAF);
+    GISSourceDataNode(GISSourceDataObject obj, Lookup lookup) {
+        super(obj, Children.LEAF, lookup);
+
+        obj.getSource().addPropertyChangeListener(GISSource.STATE_PROPERTY, new PropertyChangeListener() {
+
+            @Override
+            public void propertyChange(PropertyChangeEvent evt) {
+                fireIconChange();
+            }
+        });
+
         setIconBaseWithExtension(IMAGE_ICON_BASE);
-        
     }
-    
+
     @Override
     public String getHtmlDisplayName() {
         String str = super.getHtmlDisplayName();
@@ -64,7 +80,16 @@ public class GISSourceDataNode extends DataNode {
         if(getDataObject() != null && getDataObject() instanceof GISSourceDataObject){
             GISSourceDataObject data = getDataObject();
             if(data.getSource() != null){
-                img = data.getSource().getIcon(arg0);
+                final GISSource source = data.getSource();
+                img = source.getIcon(arg0);
+
+                if(source.getState() == GISSourceState.LOADED){
+                    img = ImageUtilities.mergeImages(img, IMAGE_LOADED, 8, 0);
+                }else if(source.getState() == GISSourceState.UNLOADED){
+                    img = ImageUtilities.mergeImages(img, IMAGE_UNLOADED, 8, 0);
+                }else{
+                    img = ImageUtilities.mergeImages(img, IMAGE_ERROR, 8, 0);
+                }
             }
         }
         if(img != null) return img;
@@ -76,16 +101,12 @@ public class GISSourceDataNode extends DataNode {
         return (GISSourceDataObject) super.getDataObject();
     }
 
-    
-    
     @Override
     public void destroy() throws IOException {
         getDataObject().dispose();
         super.destroy();
     }
 
-    
-    
     @Override
     public String getDisplayName() {
         String str = super.getDisplayName();
@@ -93,21 +114,4 @@ public class GISSourceDataNode extends DataNode {
         return str;
     }
     
-    GISSourceDataNode(GISSourceDataObject obj, Lookup lookup) {
-        super(obj, Children.LEAF, lookup);
-        setIconBaseWithExtension(IMAGE_ICON_BASE);
-    }
-    
-//    /** Creates a property sheet. */
-//    @Override
-//    protected Sheet createSheet() {
-//        Sheet s = super.createSheet();
-//        Sheet.Set ss = s.get(Sheet.PROPERTIES);
-//        if (ss == null) {
-//            ss = Sheet.createPropertiesSet();
-//            s.put(ss);
-//        }
-//        // TODO add some relevant properties: ss.put(...)
-//        return s;
-//    }
 }
