@@ -37,6 +37,7 @@ import org.geotools.map.MapBuilder;
 import org.geotools.style.MutableStyle;
 import org.geotools.style.RandomStyleFactory;
 
+import org.openide.util.Exceptions;
 import org.openide.util.ImageUtilities;
 
 import org.puzzle.core.project.source.JLayerChooser;
@@ -46,6 +47,7 @@ import org.puzzle.core.project.source.PZLayerConstants;
 import org.puzzle.core.project.GISProject;
 import org.puzzle.core.project.source.GISSource;
 import org.puzzle.core.project.source.GISSourceInfo;
+import org.puzzle.core.project.source.GISSourceState;
 
 /**
  * This is a {@code GISSource} used to reference a Geotiff file in
@@ -59,6 +61,7 @@ import org.puzzle.core.project.source.GISSourceInfo;
 public class GeoTiffSource extends GISSource{
     
     private final String name;
+    private final File geotiff;
     private GridCoverage2D gc2d = null;
 
     /**
@@ -67,35 +70,32 @@ public class GeoTiffSource extends GISSource{
      * @param geotiff       The geotiff file.
      * @param info          save/restore informations.
      */
-    GeoTiffSource(final GISSourceInfo info,File geotiff){
+    GeoTiffSource(final GISSourceInfo info, File geotiff){
         super(info);
+        this.geotiff = geotiff;
         this.name = geotiff.getName();
         
-        GeoTiffReader reader;
-        try {
-            reader = new GeoTiffReader(geotiff);
-            gc2d = (GridCoverage2D)reader.read(null);
-        } catch (DataSourceException ex) {
-            Logger.getLogger(GeoTiffSource.class.getName()).log(Level.SEVERE,
-                    "Unable to read "+geotiff.getName(),ex);
-        } catch (IOException ioe){
-            Logger.getLogger(GeoTiffSource.class.getName()).log(Level.SEVERE,
-                    "Unable to read "+geotiff.getName(),ioe);
-        }
-
     }
     
     /** {@inheritDoc } */
     @Override
     public MapLayer createLayer(Map<String, String> parameters) {
-        final MutableStyle style = new RandomStyleFactory().createRasterStyle();
         if(parameters == null)parameters = Collections.emptyMap();
-        final LayerSource source = new LayerSource(getInfo().getID(), parameters,this);
+        load();
 
-        final MapLayer layer = MapBuilder.getInstance().createCoverageLayer(gc2d, style, name);
+        final MapLayer layer;
+
+        if(gc2d != null){
+            final MutableStyle style = new RandomStyleFactory().createRasterStyle();
+            layer = MapBuilder.getInstance().createCoverageLayer(gc2d, style, name);
+        }else{
+            layer = MapBuilder.getInstance().createEmptyMapLayer();
+        }
+
+        final LayerSource source = new LayerSource(getInfo().getID(), parameters,this);
         layer.setUserPropertie(PZLayerConstants.KEY_LAYER_INFO, source);
         layer.setDescription(CommonFactoryFinder.getStyleFactory(null).createDescription(name,"") );
-        
+
         return layer;
     }
 
@@ -113,13 +113,36 @@ public class GeoTiffSource extends GISSource{
         return new LayerCreationComponent(monitor, this,name);
     }
 
+    /**
+     * {@inheritDoc }
+     */
     @Override
     public void unload() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        gc2d = null;
+        setState(GISSourceState.UNLOADED);
     }
 
+    /**
+     * {@inheritDoc }
+     */
     @Override
     public void load() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        if(gc2d != null) return;
+
+        GeoTiffReader reader;
+        try {
+            reader = new GeoTiffReader(geotiff);
+            gc2d = (GridCoverage2D)reader.read(null);
+        } catch (DataSourceException ex) {
+            setState(GISSourceState.LOADING_ERROR);
+            Exceptions.printStackTrace(ex);
+            return;
+        } catch (IOException ex){
+            setState(GISSourceState.LOADING_ERROR);
+            Exceptions.printStackTrace(ex);
+            return;
+        }
+        
+        setState(GISSourceState.LOADED);
     }
 }

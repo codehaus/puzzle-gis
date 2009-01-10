@@ -78,18 +78,23 @@ public class ShapeFileSource extends GISSource{
      */
     @Override
     public MapLayer createLayer(Map<String, String> parameters) {
+        if(parameters == null) parameters = Collections.emptyMap();
         load();
+
+        final MapLayer layer;
+
         if(featureSource != null){
             final MutableStyle style = new RandomStyleFactory().createRandomVectorStyle(featureSource);
-            if(parameters == null) parameters = Collections.emptyMap();
-            final LayerSource source = new LayerSource(getInfo().getID(), parameters,this);
-            final MapLayer layer = MapBuilder.getInstance().createFeatureLayer(featureSource, style);
-            layer.setUserPropertie(PZLayerConstants.KEY_LAYER_INFO, source);
-            layer.setDescription(CommonFactoryFinder.getStyleFactory(null).createDescription(name,"") );
-            return layer;
+            layer = MapBuilder.getInstance().createFeatureLayer(featureSource, style);
         }else{
-            return MapBuilder.getInstance().createEmptyMapLayer();
+            layer = MapBuilder.getInstance().createEmptyMapLayer();
         }
+
+        final LayerSource source = new LayerSource(getInfo().getID(), parameters,this);
+        layer.setUserPropertie(PZLayerConstants.KEY_LAYER_INFO, source);
+        layer.setDescription(CommonFactoryFinder.getStyleFactory(null).createDescription(name,"") );
+
+        return layer;
     }
 
     /**
