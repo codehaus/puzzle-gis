@@ -27,6 +27,7 @@ import java.util.Map;
 
 import org.geotools.data.wms.WebMapServer;
 import org.geotools.factory.CommonFactoryFinder;
+import org.geotools.map.MapBuilder;
 import org.geotools.map.MapLayer;
 import org.geotools.map.WMSMapLayer;
 
@@ -62,17 +63,20 @@ public class WMSSource extends GISSource{
     @Override
     public MapLayer createLayer(Map<String, String> parameters) {
         load();
+
+        final String featureName = parameters.get(LAYERS_PROP);
+        final MapLayer layer;
         if(server != null){
-            final String featureName = parameters.get(LAYERS_PROP);
-            //"Bathymetry,Countries"
-            final WMSMapLayer layer = new WMSMapLayer(server,featureName);
-            final LayerSource source = new LayerSource(getInfo().getID(), parameters,this);
-            layer.setUserPropertie(PZLayerConstants.KEY_LAYER_INFO, source);
-            layer.setDescription(CommonFactoryFinder.getStyleFactory(null).createDescription(featureName,"") );
-            return layer;
+            layer = new WMSMapLayer(server,featureName);
+        }else{
+            layer = MapBuilder.getInstance().createEmptyMapLayer();
         }
 
-        return null;
+        final LayerSource source = new LayerSource(getInfo().getID(), parameters,this);
+        layer.setUserPropertie(PZLayerConstants.KEY_LAYER_INFO, source);
+        layer.setDescription(CommonFactoryFinder.getStyleFactory(null).createDescription(featureName,"") );
+
+        return layer;
     }
 
     /**
@@ -105,23 +109,23 @@ public class WMSSource extends GISSource{
      */
     @Override
     public void load() {
-        
-        if(server == null){
-            final Map<String,String> infosParams = getInfo().getParameters();
-            final String url = infosParams.get(WMSSourceService.URL_PROP);
-            final String version = infosParams.get(WMSSourceService.VERSION_PROP);
+        if(server != null) return;
 
-            WebMapServer temp = null;
-            try {
-                temp = new WebMapServer(new URL(url),version);
-            } catch (Exception ex) {
-                setState(GISSourceState.LOADING_ERROR);
-                Exceptions.printStackTrace(ex);
-                return;
-            }
-            server = temp;
-            setState(GISSourceState.LOADED);
+        final Map<String,String> infosParams = getInfo().getParameters();
+        final String url = infosParams.get(WMSSourceService.URL_PROP);
+        final String version = infosParams.get(WMSSourceService.VERSION_PROP);
+
+        WebMapServer temp = null;
+        try {
+            temp = new WebMapServer(new URL(url),version);
+        } catch (Exception ex) {
+            setState(GISSourceState.LOADING_ERROR);
+            Exceptions.printStackTrace(ex);
+            return;
         }
+        server = temp;
+        setState(GISSourceState.LOADED);
+        
 
     }
 

@@ -45,6 +45,7 @@ import org.puzzle.core.project.source.PZLayerConstants;
 import org.puzzle.core.project.GISProject;
 import org.puzzle.core.project.source.GISSource;
 import org.puzzle.core.project.source.GISSourceInfo;
+import org.puzzle.core.project.source.GISSourceState;
 
 /**
  * This is a {@code GISSource} used to reference a World Image file in
@@ -66,7 +67,8 @@ public class WorldImageSource extends GISSource{
     static{
         CACHE_FOLDER.mkdirs();
     }
-    
+
+    private final File worldImage;
     private final String name;
     private CoverageReader reader = null;
 
@@ -80,34 +82,35 @@ public class WorldImageSource extends GISSource{
      */
     public WorldImageSource(final GISSourceInfo info, final File worldImage) {
         super(info);
+        this.worldImage = worldImage;
         this.name = worldImage.getName();
-
-        final WorldImageFactory factory = new WorldImageFactory();
-        final File cache = new File(CACHE_FOLDER.getAbsolutePath() + File.separator + name);
-        cache.mkdirs();
-
-        try {
-            reader = factory.createMosaicReader(worldImage, 512, cache);
-        } catch (IOException ex) {
-            Exceptions.printStackTrace(ex);
-        } catch (NoninvertibleTransformException ex) {
-            Exceptions.printStackTrace(ex);
-        }
-        
     }
     
-    /** {@inheritDoc } */
+    /** 
+     * {@inheritDoc }
+     */
     @Override
     public MapLayer createLayer(Map<String, String> parameters) {
-        final MutableStyle style = new RandomStyleFactory().createRasterStyle();
+        load();
+
+        final MapLayer layer;
+        if(reader != null){
+            final MutableStyle style = new RandomStyleFactory().createRasterStyle();
+            layer = MapBuilder.getInstance().createCoverageLayer(reader, style, name);
+        }else{
+            layer = MapBuilder.getInstance().createEmptyMapLayer();
+        }
+
         final LayerSource source = new LayerSource(getInfo().getID(), parameters,this);
-        final MapLayer layer = MapBuilder.getInstance().createCoverageLayer(reader, style, name);
         layer.setUserPropertie(PZLayerConstants.KEY_LAYER_INFO, source);
         layer.setDescription(CommonFactoryFinder.getStyleFactory(null).createDescription(name,"") );
+
         return layer;
     }
 
-    /** {@inheritDoc } */
+    /** 
+     * {@inheritDoc }
+     */
     @Override
     public Image getIcon(int type) {
         return ImageUtilities.loadImage("org/puzzle/format/worldimage/worldimage.png");
@@ -121,14 +124,39 @@ public class WorldImageSource extends GISSource{
         return new LayerCreationComponent(monitor, this,name);
     }
 
+    /**
+     * {@inheritDoc }
+     */
     @Override
     public void unload() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        reader = null;
+        setState(GISSourceState.UNLOADED);
     }
 
+    /**
+     * {@inheritDoc }
+     */
     @Override
     public void load() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        if(reader != null) return;
+
+        final WorldImageFactory factory = new WorldImageFactory();
+        final File cache = new File(CACHE_FOLDER.getAbsolutePath() + File.separator + name);
+        cache.mkdirs();
+
+        try {
+            reader = factory.createMosaicReader(worldImage, 512, cache);
+        } catch (IOException ex) {
+            setState(GISSourceState.LOADING_ERROR);
+            Exceptions.printStackTrace(ex);
+            return;
+        } catch (NoninvertibleTransformException ex) {
+            setState(GISSourceState.LOADING_ERROR);
+            Exceptions.printStackTrace(ex);
+            return;
+        }
+
+        setState(GISSourceState.LOADED);
     }
     
 }

@@ -40,6 +40,7 @@ import org.openide.util.ImageUtilities;
 
 import org.puzzle.core.project.source.GISSource;
 import org.puzzle.core.project.source.GISSourceInfo;
+import org.puzzle.core.project.source.GISSourceState;
 import org.puzzle.core.project.source.JLayerChooser;
 import org.puzzle.core.project.source.LayerChooserMonitor;
 import org.puzzle.core.project.source.LayerSource;
@@ -56,36 +57,10 @@ public class PostGISSource extends GISSource{
 
     public static final String FEATURETYPENAME_PROP = "featuretype";
 
-    private final DataStore store;
+    private DataStore store = null;
     
     PostGISSource(final GISSourceInfo info){
         super(info);
-
-        final Map<String,String> infosParams = info.getParameters();
-        final Map<String,Object> params = new HashMap<String,Object>();
-        params.put(DBTYPE.key,          DBTYPE.sample);
-        params.put(HOST.key,            infosParams.get(HOST.key));
-        params.put(PORT.key,            infosParams.get(PORT.key));
-        params.put(SCHEMA.key,          infosParams.get(SCHEMA.key));
-        params.put(DATABASE.key,        infosParams.get(DATABASE.key));
-        params.put(USER.key,            infosParams.get(USER.key));
-        params.put(PASSWD.key,          infosParams.get(PASSWD.key));
-        params.put(MAXCONN.key,         Integer.valueOf(infosParams.get(MAXCONN.key)));
-        params.put(MINCONN.key,         Integer.valueOf(infosParams.get(MINCONN.key)));
-        params.put(NAMESPACE.key,       infosParams.get(NAMESPACE.key));
-        params.put(VALIDATECONN.key,    Boolean.valueOf(infosParams.get(VALIDATECONN.key)));
-        params.put(ESTIMATEDEXTENT.key, Boolean.valueOf(infosParams.get(ESTIMATEDEXTENT.key)));
-        params.put(LOOSEBBOX.key,       Boolean.valueOf(infosParams.get(LOOSEBBOX.key)));
-        params.put(WKBENABLED.key,      Boolean.valueOf(infosParams.get(WKBENABLED.key)));
-        
-        DataStore temp = null;
-        try {
-            temp = DataStoreFinder.getDataStore(params);
-        } catch (IOException ex) {
-            Exceptions.printStackTrace(ex);
-        }
-        store = temp;
-
     }
 
     /**
@@ -93,21 +68,29 @@ public class PostGISSource extends GISSource{
      */
     @Override
     public MapLayer createLayer(Map<String, String> parameters) {
+        load();
 
-        try{
-            final String featureName = parameters.get(FEATURETYPENAME_PROP);
-            final FeatureSource featureSource = store.getFeatureSource(featureName);
+        final String featureName = parameters.get(FEATURETYPENAME_PROP);
 
-            final MutableStyle style = new RandomStyleFactory().createRandomVectorStyle(featureSource);
-            final LayerSource source = new LayerSource(getInfo().getID(), parameters,this);
-            final MapLayer layer = MapBuilder.getInstance().createFeatureLayer(featureSource, style);
-            layer.setUserPropertie(PZLayerConstants.KEY_LAYER_INFO, source);
-            layer.setDescription(CommonFactoryFinder.getStyleFactory(null).createDescription(featureName,"") );
-            return layer;
-        }catch(IOException ex){
-            System.out.println(ex);
+        MapLayer layer;
+        if(store != null){
+            try{
+                final FeatureSource featureSource = store.getFeatureSource(featureName);
+                final MutableStyle style = new RandomStyleFactory().createRandomVectorStyle(featureSource);
+                layer = MapBuilder.getInstance().createFeatureLayer(featureSource, style);
+            }catch(IOException ex){
+                layer = MapBuilder.getInstance().createEmptyMapLayer();
+                Exceptions.printStackTrace(ex);
+            }
+        }else{
+            layer = MapBuilder.getInstance().createEmptyMapLayer();
         }
-        return null;
+
+        final LayerSource source = new LayerSource(getInfo().getID(), parameters,this);
+        layer.setUserPropertie(PZLayerConstants.KEY_LAYER_INFO, source);
+        layer.setDescription(CommonFactoryFinder.getStyleFactory(null).createDescription(featureName,"") );
+
+        return layer;
     }
 
     /**
@@ -128,12 +111,40 @@ public class PostGISSource extends GISSource{
 
     @Override
     public void unload() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        store = null;
+        setState(GISSourceState.UNLOADED);
     }
 
     @Override
     public void load() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        if(store != null) return;
+
+        final Map<String,String> infosParams = getInfo().getParameters();
+        final Map<String,Object> params = new HashMap<String,Object>();
+        params.put(DBTYPE.key,          DBTYPE.sample);
+        params.put(HOST.key,            infosParams.get(HOST.key));
+        params.put(PORT.key,            infosParams.get(PORT.key));
+        params.put(SCHEMA.key,          infosParams.get(SCHEMA.key));
+        params.put(DATABASE.key,        infosParams.get(DATABASE.key));
+        params.put(USER.key,            infosParams.get(USER.key));
+        params.put(PASSWD.key,          infosParams.get(PASSWD.key));
+        params.put(MAXCONN.key,         Integer.valueOf(infosParams.get(MAXCONN.key)));
+        params.put(MINCONN.key,         Integer.valueOf(infosParams.get(MINCONN.key)));
+        params.put(NAMESPACE.key,       infosParams.get(NAMESPACE.key));
+        params.put(VALIDATECONN.key,    Boolean.valueOf(infosParams.get(VALIDATECONN.key)));
+        params.put(ESTIMATEDEXTENT.key, Boolean.valueOf(infosParams.get(ESTIMATEDEXTENT.key)));
+        params.put(LOOSEBBOX.key,       Boolean.valueOf(infosParams.get(LOOSEBBOX.key)));
+        params.put(WKBENABLED.key,      Boolean.valueOf(infosParams.get(WKBENABLED.key)));
+
+        try {
+            store = DataStoreFinder.getDataStore(params);
+        } catch (IOException ex) {
+            setState(GISSourceState.LOADING_ERROR);
+            Exceptions.printStackTrace(ex);
+            return;
+        }
+
+        setState(GISSourceState.LOADED);
     }
 
 }
