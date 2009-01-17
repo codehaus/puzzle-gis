@@ -42,13 +42,14 @@ import org.opengis.feature.simple.SimpleFeatureType;
 import org.openide.util.Exceptions;
 import org.openide.util.ImageUtilities;
 
-import org.puzzle.core.project.source.JLayerChooser;
-import org.puzzle.core.project.source.LayerChooserMonitor;
+import org.puzzle.core.project.source.capabilities.JLayerChooser;
+import org.puzzle.core.project.source.capabilities.LayerChooserMonitor;
 import org.puzzle.core.project.source.LayerSource;
 import org.puzzle.core.project.source.PZLayerConstants;
 import org.puzzle.core.project.source.GISSource;
 import org.puzzle.core.project.source.GISSourceInfo;
 import org.puzzle.core.project.source.GISSourceState;
+import org.puzzle.core.project.source.capabilities.LayerCreation;
 
 /**
  * Shapefile source object.
@@ -71,31 +72,11 @@ public class ShapeFileSource extends GISSource{
             name = name.substring(0, name.length()-4);
         }
 
+        content.add(new ShapeFileLayerCreation());
+
     }
 
-    /**
-     * {@inheritDoc }
-     */
-    @Override
-    public MapLayer createLayer(Map<String, String> parameters) {
-        if(parameters == null) parameters = Collections.emptyMap();
-        load();
-
-        final MapLayer layer;
-
-        if(featureSource != null){
-            final MutableStyle style = new RandomStyleFactory().createRandomVectorStyle(featureSource);
-            layer = MapBuilder.getInstance().createFeatureLayer(featureSource, style);
-        }else{
-            layer = MapBuilder.getInstance().createEmptyMapLayer();
-        }
-
-        final LayerSource source = new LayerSource(getInfo().getID(), parameters,this);
-        layer.setUserPropertie(PZLayerConstants.KEY_LAYER_INFO, source);
-        layer.setDescription(CommonFactoryFinder.getStyleFactory(null).createDescription(name,"") );
-
-        return layer;
-    }
+    
 
     /**
      * {@inheritDoc }
@@ -105,13 +86,7 @@ public class ShapeFileSource extends GISSource{
         return ImageUtilities.loadImage("org/puzzle/format/shapefile/shapefile.png");
     }
 
-    /**
-     * {@inheritDoc }
-     */
-    @Override
-    public JLayerChooser createChooser(LayerChooserMonitor monitor) {
-        return new LayerCreationComponent(monitor, this, name);
-    }
+    
 
     @Override
     public void unload() {
@@ -141,5 +116,41 @@ public class ShapeFileSource extends GISSource{
 
         setState(GISSourceState.LOADED);
     }
-    
+
+    private class ShapeFileLayerCreation implements LayerCreation{
+
+        /**
+         * {@inheritDoc }
+         */
+        @Override
+        public MapLayer createLayer(Map<String, String> parameters) {
+            if(parameters == null) parameters = Collections.emptyMap();
+            load();
+
+            final MapLayer layer;
+
+            if(featureSource != null){
+                final MutableStyle style = new RandomStyleFactory().createRandomVectorStyle(featureSource);
+                layer = MapBuilder.getInstance().createFeatureLayer(featureSource, style);
+            }else{
+                layer = MapBuilder.getInstance().createEmptyMapLayer();
+            }
+
+            final LayerSource source = new LayerSource(getInfo().getID(), parameters,ShapeFileSource.this);
+            layer.setUserPropertie(PZLayerConstants.KEY_LAYER_INFO, source);
+            layer.setDescription(CommonFactoryFinder.getStyleFactory(null).createDescription(name,"") );
+
+            return layer;
+        }
+
+        /**
+         * {@inheritDoc }
+         */
+        @Override
+        public JLayerChooser createChooser(LayerChooserMonitor monitor) {
+            return new LayerCreationComponent(monitor, ShapeFileSource.this, name);
+        }
+    }
+
+
 }

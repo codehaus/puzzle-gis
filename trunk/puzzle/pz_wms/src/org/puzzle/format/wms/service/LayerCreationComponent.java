@@ -43,8 +43,9 @@ import org.geotools.factory.CommonFactoryFinder;
 import org.geotools.map.MapLayer;
 import org.jdesktop.swingx.JXTable;
 import org.openide.util.NbBundle;
-import org.puzzle.core.project.source.JLayerChooser;
-import org.puzzle.core.project.source.LayerChooserMonitor;
+import org.puzzle.core.project.source.capabilities.JLayerChooser;
+import org.puzzle.core.project.source.capabilities.LayerChooserMonitor;
+import org.puzzle.core.project.source.capabilities.LayerCreation;
 import org.puzzle.format.wms.ui.DBModel;
 
 /**
@@ -197,7 +198,7 @@ public class LayerCreationComponent extends JLayerChooser {
         String title = guiTitle.getText();
         String type = getType();
         if(type != null){
-            MapLayer layer = source.createLayer(Collections.singletonMap(WMSSource.LAYERS_PROP, type));
+            MapLayer layer = source.getLookup().lookup(LayerCreation.class).createLayer(Collections.singletonMap(WMSSource.LAYERS_PROP, type));
             layer.setDescription(CommonFactoryFinder.getStyleFactory(null).createDescription(title,"") );
             return new MapLayer[]{layer};
         }

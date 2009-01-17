@@ -23,9 +23,10 @@ package org.puzzle.core.project.source;
 import java.awt.Image;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-import java.util.Map;
 
-import org.geotools.map.MapLayer;
+import org.openide.util.Lookup;
+import org.openide.util.lookup.AbstractLookup;
+import org.openide.util.lookup.InstanceContent;
 
 
 /**
@@ -47,6 +48,8 @@ public abstract class GISSource {
     public static final String STATE_PROPERTY = "state";
 
     protected final PropertyChangeSupport propertySupport = new PropertyChangeSupport(this);
+    protected final InstanceContent content = new InstanceContent();
+    protected final Lookup lookup;
 
     private final GISSourceInfo info;
     private GISSourceState state = GISSourceState.UNLOADED;
@@ -56,6 +59,8 @@ public abstract class GISSource {
             throw new IllegalArgumentException("SourceInfo can not be null or have an invalid ID number");
         }
         this.info = info;
+
+        lookup = new AbstractLookup(content);
     }
     
     public final GISSourceInfo getInfo(){
@@ -78,22 +83,10 @@ public abstract class GISSource {
 
     public abstract void load();
 
-    /**
-     * Creates a new {@code MapLayer} from the data represented
-     * by the {@code GISSource}.
-     * @param   parameters A set of parameters used to create the layer.
-     * @return  A new {@code PuzzleLayerConstants}.
-     */
-    public abstract MapLayer createLayer(Map<String,String> parameters);
-    
-    /**
-     * Create a swing component that will be used to create layers from this source.
-     * 
-     * @param monitor
-     * @return JLayerChooser
-     */
-    public abstract JLayerChooser createChooser(LayerChooserMonitor monitor);
-    
+    public Lookup getLookup(){
+        return lookup;
+    }
+
     /**
      * Get the icon to use for each kind of {@code GISSource}.
      * @param   type The type of icon to use (allows to define multiple icons).

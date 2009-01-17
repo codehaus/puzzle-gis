@@ -67,6 +67,7 @@ import org.puzzle.core.project.source.PZLayerConstants;
 import org.puzzle.core.project.GISProject;
 import org.puzzle.core.project.source.GISSource;
 
+import org.puzzle.core.project.source.capabilities.LayerCreation;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -258,7 +259,8 @@ public class GISContextDataObject extends XMLDataObject {
             Collection<? extends GISSource> sources = getGISSources();
             for (GISSource src : sources) {
                 if (src.getInfo().getID() == id) {
-                    layer = src.createLayer(params);
+                    LayerCreation lc = src.getLookup().lookup(LayerCreation.class);
+                    layer = lc.createLayer(params);
                     layer.setDescription(CommonFactoryFinder.getStyleFactory(null).createDescription(title, ""));
                     layer.setStyle(style);
                     layer.setVisible(visible);

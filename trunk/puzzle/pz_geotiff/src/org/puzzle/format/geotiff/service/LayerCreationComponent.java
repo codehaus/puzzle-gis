@@ -30,8 +30,9 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import org.geotools.factory.CommonFactoryFinder;
 import org.geotools.map.MapLayer;
 import org.openide.util.NbBundle;
-import org.puzzle.core.project.source.JLayerChooser;
-import org.puzzle.core.project.source.LayerChooserMonitor;
+import org.puzzle.core.project.source.capabilities.JLayerChooser;
+import org.puzzle.core.project.source.capabilities.LayerChooserMonitor;
+import org.puzzle.core.project.source.capabilities.LayerCreation;
 
 /**
  *
@@ -39,10 +40,10 @@ import org.puzzle.core.project.source.LayerChooserMonitor;
  */
 public class LayerCreationComponent extends JLayerChooser {
 
-    private final GeoTiffSource source;
+    private final LayerCreation source;
 
     /** Creates new form LayerCreationComponent */
-    public LayerCreationComponent(LayerChooserMonitor monitor, GeoTiffSource source, String basename) {
+    LayerCreationComponent(LayerChooserMonitor monitor, LayerCreation source, String basename) {
         super(monitor);
         this.source = source;
         initComponents();

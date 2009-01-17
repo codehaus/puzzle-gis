@@ -39,6 +39,7 @@ import org.openide.util.Lookup;
 import org.openide.text.DataEditorSupport;
 import org.openide.util.Exceptions;
 
+import org.openide.util.lookup.ProxyLookup;
 import org.puzzle.core.project.GISProject;
 import org.puzzle.core.project.source.GISSource;
 import org.puzzle.core.project.source.GISSourceInfo;
@@ -78,7 +79,6 @@ public class GISSourceDataObject extends XMLDataObject {
         super(pf, loader);
         final CookieSet cookies = getCookieSet();
         cookies.add((Node.Cookie) DataEditorSupport.create(this, getPrimaryEntry(), cookies));
-        
     }
 
     /**
@@ -179,7 +179,8 @@ public class GISSourceDataObject extends XMLDataObject {
 
     @Override
     public Lookup getLookup() {
-        return getCookieSet().getLookup();
+        return new ProxyLookup(getCookieSet().getLookup(),getSource().getLookup());
+//        return getCookieSet().getLookup();
     }
 
     /**

@@ -38,7 +38,9 @@ public class ToolTreeConstants {
     public final ToolTreePath DATABASE = new DefaultToolTreePath(null,"database");
     public final ToolTreePath DATABASE_CONVERT = new DefaultToolTreePath(DATABASE,"convert");
     public final ToolTreePath DATABASE_CREATE = new DefaultToolTreePath(DATABASE,"create");
-    
+
+    public final ToolTreePath CONVERT = new DefaultToolTreePath(null,"convert");
+
     public final ToolTreePath FILE = new DefaultToolTreePath(null,"file");
     public final ToolTreePath FILE_CONVERT = new DefaultToolTreePath(FILE,"convert");
     public final ToolTreePath FILE_CREATE = new DefaultToolTreePath(FILE,"create");

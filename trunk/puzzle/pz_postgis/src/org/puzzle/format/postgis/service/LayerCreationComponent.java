@@ -39,8 +39,9 @@ import org.geotools.factory.CommonFactoryFinder;
 import org.geotools.map.MapLayer;
 import org.jdesktop.swingx.JXTable;
 import org.openide.util.NbBundle;
-import org.puzzle.core.project.source.JLayerChooser;
-import org.puzzle.core.project.source.LayerChooserMonitor;
+import org.puzzle.core.project.source.capabilities.JLayerChooser;
+import org.puzzle.core.project.source.capabilities.LayerChooserMonitor;
+import org.puzzle.core.project.source.capabilities.LayerCreation;
 import org.puzzle.format.postgis.ui.DBModel;
 
 /**
@@ -53,7 +54,7 @@ public class LayerCreationComponent extends JLayerChooser {
     private final PostGISSource source;
 
     /** Creates new form LayerCreationComponent */
-    public LayerCreationComponent(final LayerChooserMonitor monitor, DataStore store, PostGISSource source) {
+    LayerCreationComponent(final LayerChooserMonitor monitor, DataStore store, PostGISSource source) {
         super(monitor);
         this.store = store;
         this.source = source;
@@ -156,7 +157,7 @@ public class LayerCreationComponent extends JLayerChooser {
         String title = guiTitle.getText();
         String type = getType();
         if(type != null){
-            MapLayer layer = source.createLayer(Collections.singletonMap(PostGISSource.FEATURETYPENAME_PROP, type));
+            MapLayer layer = source.getLookup().lookup(LayerCreation.class).createLayer(Collections.singletonMap(PostGISSource.FEATURETYPENAME_PROP, type));
             layer.setDescription(CommonFactoryFinder.getStyleFactory(null).createDescription(title,"") );
             return new MapLayer[]{layer};
         }

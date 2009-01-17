@@ -31,12 +31,12 @@ import org.openide.DialogDisplayer;
 import org.openide.loaders.DataObject;
 import org.openide.nodes.Node;
 import org.openide.util.HelpCtx;
-import org.openide.util.actions.CookieAction;
+import org.openide.util.Lookup;
+import org.openide.util.actions.NodeAction;
 
 import org.puzzle.core.project.GISProject;
-import org.puzzle.core.project.filetype.GISSourceDataObject;
-import org.puzzle.core.project.source.GISSource;
-import org.puzzle.core.project.source.JLayerChooserWizard;
+import org.puzzle.core.project.source.capabilities.JLayerChooserWizard;
+import org.puzzle.core.project.source.capabilities.LayerCreation;
 
 /**
  *  Action to show a layer creation wizard, this wizard will query the source
@@ -44,20 +44,20 @@ import org.puzzle.core.project.source.JLayerChooserWizard;
  *
  * @author Johann Sorel (Puzzle-GIS)
  */
-public final class ShowLayerWizard extends CookieAction {
+public final class ShowLayerWizard extends NodeAction {
 
     /**
      * {@inheritDoc }
      */
     @Override
-    protected void performAction(Node[] activatedNodes) {
-        final GISSourceDataObject dataObject = (GISSourceDataObject) activatedNodes[0].getLookup().lookup(DataObject.class);
+    protected void performAction(final Node[] activatedNodes) {
+        final DataObject dataObject = activatedNodes[0].getLookup().lookup(DataObject.class);
         final GISProject prj = (GISProject) FileOwnerQuery.getOwner(dataObject.getPrimaryFile());
 
         new Thread(){
 
             public void run(){
-                final GISSource source = dataObject.getSource();
+                final LayerCreation creation = activatedNodes[0].getLookup().lookup(LayerCreation.class);
                 final Collection<MapContext> contexts = prj.getContexts();
 
                 if(contexts.size() > 0 && prj != null){
@@ -65,7 +65,7 @@ public final class ShowLayerWizard extends CookieAction {
 
                         @Override
                         public void run() {
-                            JLayerChooserWizard.showChooserDialog(contexts, source);
+                            JLayerChooserWizard.showChooserDialog(contexts, creation);
                         }
                     });
 
@@ -90,26 +90,10 @@ public final class ShowLayerWizard extends CookieAction {
      * {@inheritDoc }
      */
     @Override
-    protected int mode() {
-        return CookieAction.MODE_EXACTLY_ONE;
-    }
-
-    /**
-     * {@inheritDoc }
-     */
-    @Override
     public String getName() {
         return Utilities.getString("showLayerWizard");
     }
-
-    /**
-     * {@inheritDoc }
-     */
-    @Override
-    protected Class[] cookieClasses() {
-        return new Class[]{DataObject.class};
-    }
-
+   
     /**
      * {@inheritDoc }
      */
@@ -135,5 +119,19 @@ public final class ShowLayerWizard extends CookieAction {
     protected boolean asynchronous() {
         return false;
     }
+
+    @Override
+    protected boolean enable(Node[] activatedNodes) {
+        if(activatedNodes == null || activatedNodes.length != 1) return false;
+
+        Lookup lk = activatedNodes[0].getLookup();
+
+        if(lk.lookup(LayerCreation.class) == null) return false;
+
+        DataObject obj = lk.lookup(DataObject.class);
+        return ( obj != null && FileOwnerQuery.getOwner(obj.getPrimaryFile()) instanceof GISProject) ;
+    }
+
+
 }
 

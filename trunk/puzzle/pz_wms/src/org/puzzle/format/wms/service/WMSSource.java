@@ -37,10 +37,11 @@ import org.openide.util.ImageUtilities;
 import org.puzzle.core.project.source.GISSource;
 import org.puzzle.core.project.source.GISSourceInfo;
 import org.puzzle.core.project.source.GISSourceState;
-import org.puzzle.core.project.source.JLayerChooser;
-import org.puzzle.core.project.source.LayerChooserMonitor;
+import org.puzzle.core.project.source.capabilities.JLayerChooser;
+import org.puzzle.core.project.source.capabilities.LayerChooserMonitor;
 import org.puzzle.core.project.source.LayerSource;
 import org.puzzle.core.project.source.PZLayerConstants;
+import org.puzzle.core.project.source.capabilities.LayerCreation;
 
 /**
  * PostGIS source object.
@@ -55,28 +56,7 @@ public class WMSSource extends GISSource{
     
     WMSSource(final GISSourceInfo info){
         super(info);
-    }
-
-    /**
-     * {@inheritDoc }
-     */
-    @Override
-    public MapLayer createLayer(Map<String, String> parameters) {
-        load();
-
-        final String featureName = parameters.get(LAYERS_PROP);
-        final MapLayer layer;
-        if(server != null){
-            layer = new WMSMapLayer(server,featureName);
-        }else{
-            layer = MapBuilder.getInstance().createEmptyMapLayer();
-        }
-
-        final LayerSource source = new LayerSource(getInfo().getID(), parameters,this);
-        layer.setUserPropertie(PZLayerConstants.KEY_LAYER_INFO, source);
-        layer.setDescription(CommonFactoryFinder.getStyleFactory(null).createDescription(featureName,"") );
-
-        return layer;
+        content.add(new WMSLayerCreation());
     }
 
     /**
@@ -85,14 +65,6 @@ public class WMSSource extends GISSource{
     @Override
     public Image getIcon(int type) {
         return ImageUtilities.loadImage("org/puzzle/format/wms/wms.png");
-    }
-
-    /**
-     * {@inheritDoc }
-     */
-    @Override
-    public JLayerChooser createChooser(LayerChooserMonitor monitor) {
-        return new LayerCreationComponent(monitor, server, this);
     }
 
     /**
@@ -127,6 +99,39 @@ public class WMSSource extends GISSource{
         setState(GISSourceState.LOADED);
         
 
+    }
+
+    private class WMSLayerCreation implements LayerCreation{
+
+        /**
+         * {@inheritDoc }
+         */
+        @Override
+        public MapLayer createLayer(Map<String, String> parameters) {
+            load();
+
+            final String featureName = parameters.get(LAYERS_PROP);
+            final MapLayer layer;
+            if(server != null){
+                layer = new WMSMapLayer(server,featureName);
+            }else{
+                layer = MapBuilder.getInstance().createEmptyMapLayer();
+            }
+
+            final LayerSource source = new LayerSource(getInfo().getID(), parameters,WMSSource.this);
+            layer.setUserPropertie(PZLayerConstants.KEY_LAYER_INFO, source);
+            layer.setDescription(CommonFactoryFinder.getStyleFactory(null).createDescription(featureName,"") );
+
+            return layer;
+        }
+
+        /**
+         * {@inheritDoc }
+         */
+        @Override
+        public JLayerChooser createChooser(LayerChooserMonitor monitor) {
+            return new LayerCreationComponent(monitor, server, WMSSource.this);
+        }
     }
 
 }

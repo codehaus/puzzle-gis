@@ -41,11 +41,12 @@ import org.openide.util.ImageUtilities;
 import org.puzzle.core.project.source.GISSource;
 import org.puzzle.core.project.source.GISSourceInfo;
 import org.puzzle.core.project.source.GISSourceState;
-import org.puzzle.core.project.source.JLayerChooser;
-import org.puzzle.core.project.source.LayerChooserMonitor;
+import org.puzzle.core.project.source.capabilities.JLayerChooser;
+import org.puzzle.core.project.source.capabilities.LayerChooserMonitor;
 import org.puzzle.core.project.source.LayerSource;
 import org.puzzle.core.project.source.PZLayerConstants;
 
+import org.puzzle.core.project.source.capabilities.LayerCreation;
 import static org.geotools.data.postgis.PostgisDataStoreFactory.*;
 
 /**
@@ -61,36 +62,7 @@ public class PostGISSource extends GISSource{
     
     PostGISSource(final GISSourceInfo info){
         super(info);
-    }
-
-    /**
-     * {@inheritDoc }
-     */
-    @Override
-    public MapLayer createLayer(Map<String, String> parameters) {
-        load();
-
-        final String featureName = parameters.get(FEATURETYPENAME_PROP);
-
-        MapLayer layer;
-        if(store != null){
-            try{
-                final FeatureSource featureSource = store.getFeatureSource(featureName);
-                final MutableStyle style = new RandomStyleFactory().createRandomVectorStyle(featureSource);
-                layer = MapBuilder.getInstance().createFeatureLayer(featureSource, style);
-            }catch(IOException ex){
-                layer = MapBuilder.getInstance().createEmptyMapLayer();
-                Exceptions.printStackTrace(ex);
-            }
-        }else{
-            layer = MapBuilder.getInstance().createEmptyMapLayer();
-        }
-
-        final LayerSource source = new LayerSource(getInfo().getID(), parameters,this);
-        layer.setUserPropertie(PZLayerConstants.KEY_LAYER_INFO, source);
-        layer.setDescription(CommonFactoryFinder.getStyleFactory(null).createDescription(featureName,"") );
-
-        return layer;
+        content.add(new PostGISLayerCreation());
     }
 
     /**
@@ -101,13 +73,6 @@ public class PostGISSource extends GISSource{
         return ImageUtilities.loadImage("org/puzzle/format/postgis/postgres.png");
     }
 
-    /**
-     * {@inheritDoc }
-     */
-    @Override
-    public JLayerChooser createChooser(LayerChooserMonitor monitor) {
-        return new LayerCreationComponent(monitor, store, this);
-    }
 
     @Override
     public void unload() {
@@ -145,6 +110,47 @@ public class PostGISSource extends GISSource{
         }
 
         setState(GISSourceState.LOADED);
+    }
+
+    private class PostGISLayerCreation implements LayerCreation{
+
+        /**
+         * {@inheritDoc }
+         */
+        @Override
+        public MapLayer createLayer(Map<String, String> parameters) {
+            load();
+
+            final String featureName = parameters.get(FEATURETYPENAME_PROP);
+
+            MapLayer layer;
+            if(store != null){
+                try{
+                    final FeatureSource featureSource = store.getFeatureSource(featureName);
+                    final MutableStyle style = new RandomStyleFactory().createRandomVectorStyle(featureSource);
+                    layer = MapBuilder.getInstance().createFeatureLayer(featureSource, style);
+                }catch(IOException ex){
+                    layer = MapBuilder.getInstance().createEmptyMapLayer();
+                    Exceptions.printStackTrace(ex);
+                }
+            }else{
+                layer = MapBuilder.getInstance().createEmptyMapLayer();
+            }
+
+            final LayerSource source = new LayerSource(getInfo().getID(), parameters,PostGISSource.this);
+            layer.setUserPropertie(PZLayerConstants.KEY_LAYER_INFO, source);
+            layer.setDescription(CommonFactoryFinder.getStyleFactory(null).createDescription(featureName,"") );
+
+            return layer;
+        }
+
+        /**
+         * {@inheritDoc }
+         */
+        @Override
+        public JLayerChooser createChooser(LayerChooserMonitor monitor) {
+            return new LayerCreationComponent(monitor, store, PostGISSource.this);
+        }
     }
 
 }
