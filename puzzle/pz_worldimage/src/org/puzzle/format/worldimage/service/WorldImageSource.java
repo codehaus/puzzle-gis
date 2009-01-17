@@ -38,14 +38,15 @@ import org.opengis.referencing.operation.NoninvertibleTransformException;
 import org.openide.util.Exceptions;
 import org.openide.util.ImageUtilities;
 
-import org.puzzle.core.project.source.JLayerChooser;
-import org.puzzle.core.project.source.LayerChooserMonitor;
+import org.puzzle.core.project.source.capabilities.JLayerChooser;
+import org.puzzle.core.project.source.capabilities.LayerChooserMonitor;
 import org.puzzle.core.project.source.LayerSource;
 import org.puzzle.core.project.source.PZLayerConstants;
 import org.puzzle.core.project.GISProject;
 import org.puzzle.core.project.source.GISSource;
 import org.puzzle.core.project.source.GISSourceInfo;
 import org.puzzle.core.project.source.GISSourceState;
+import org.puzzle.core.project.source.capabilities.LayerCreation;
 
 /**
  * This is a {@code GISSource} used to reference a World Image file in
@@ -84,28 +85,7 @@ public class WorldImageSource extends GISSource{
         super(info);
         this.worldImage = worldImage;
         this.name = worldImage.getName();
-    }
-    
-    /** 
-     * {@inheritDoc }
-     */
-    @Override
-    public MapLayer createLayer(Map<String, String> parameters) {
-        load();
-
-        final MapLayer layer;
-        if(reader != null){
-            final MutableStyle style = new RandomStyleFactory().createRasterStyle();
-            layer = MapBuilder.getInstance().createCoverageLayer(reader, style, name);
-        }else{
-            layer = MapBuilder.getInstance().createEmptyMapLayer();
-        }
-
-        final LayerSource source = new LayerSource(getInfo().getID(), parameters,this);
-        layer.setUserPropertie(PZLayerConstants.KEY_LAYER_INFO, source);
-        layer.setDescription(CommonFactoryFinder.getStyleFactory(null).createDescription(name,"") );
-
-        return layer;
+        content.add(new  WorldImageLayerCreation());
     }
 
     /** 
@@ -114,14 +94,6 @@ public class WorldImageSource extends GISSource{
     @Override
     public Image getIcon(int type) {
         return ImageUtilities.loadImage("org/puzzle/format/worldimage/worldimage.png");
-    }
-
-    /**
-     * {@inheritDoc }
-     */
-    @Override
-    public JLayerChooser createChooser(LayerChooserMonitor monitor) {
-        return new LayerCreationComponent(monitor, this,name);
     }
 
     /**
@@ -158,5 +130,38 @@ public class WorldImageSource extends GISSource{
 
         setState(GISSourceState.LOADED);
     }
-    
+
+    private class WorldImageLayerCreation implements LayerCreation{
+
+        /**
+         * {@inheritDoc }
+         */
+        @Override
+        public MapLayer createLayer(Map<String, String> parameters) {
+            load();
+
+            final MapLayer layer;
+            if(reader != null){
+                final MutableStyle style = new RandomStyleFactory().createRasterStyle();
+                layer = MapBuilder.getInstance().createCoverageLayer(reader, style, WorldImageSource.this.name);
+            }else{
+                layer = MapBuilder.getInstance().createEmptyMapLayer();
+            }
+
+            final LayerSource source = new LayerSource(getInfo().getID(), parameters,WorldImageSource.this);
+            layer.setUserPropertie(PZLayerConstants.KEY_LAYER_INFO, source);
+            layer.setDescription(CommonFactoryFinder.getStyleFactory(null).createDescription(name,"") );
+
+            return layer;
+        }
+
+        /**
+         * {@inheritDoc }
+         */
+        @Override
+        public JLayerChooser createChooser(LayerChooserMonitor monitor) {
+            return new LayerCreationComponent(monitor, WorldImageSource.this, WorldImageSource.this.name);
+        }
+    }
+
 }

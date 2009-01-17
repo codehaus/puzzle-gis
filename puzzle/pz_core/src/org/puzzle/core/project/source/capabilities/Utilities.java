@@ -18,7 +18,7 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.puzzle.core.project.source;
+package org.puzzle.core.project.source.capabilities;
 
 import java.util.ResourceBundle;
 
@@ -28,7 +28,7 @@ import java.util.ResourceBundle;
  */
 final class Utilities {
 
-    private static final ResourceBundle BUNDLE = ResourceBundle.getBundle("org/puzzle/core/project/source/Bundle");
+    private static final ResourceBundle BUNDLE = ResourceBundle.getBundle("org/puzzle/core/project/source/capabilities/Bundle");
 
     static final String getString(final String key){
         return BUNDLE.getString(key);

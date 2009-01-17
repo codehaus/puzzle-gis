@@ -19,18 +19,32 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.puzzle.core.project.source;
+package org.puzzle.core.project.source.capabilities;
+
+import org.puzzle.core.project.source.*;
+import javax.swing.JPanel;
+import org.geotools.map.MapLayer;
 
 /**
- * A monitor for layer chooser component.
- *
+ * Swing component usd to select layer from the GISSource.
+ * 
  * @author Johann Sorel (Puzzle-GIS)
  */
-public interface LayerChooserMonitor {
+public abstract class JLayerChooser extends JPanel {
 
-    /**
-     * @param ready true if the layer selection is ready.
-     */
-    void setReady(boolean ready);
+    private final LayerChooserMonitor monitor;
+
+    protected JLayerChooser(LayerChooserMonitor monitor){
+        if(monitor == null){
+            throw new NullPointerException("monitor can not be null");
+        }
+        this.monitor = monitor;
+    }
+
+    public LayerChooserMonitor getMonitor(){
+        return monitor;
+    }
+
+    public abstract MapLayer[] getLayers();
 
 }

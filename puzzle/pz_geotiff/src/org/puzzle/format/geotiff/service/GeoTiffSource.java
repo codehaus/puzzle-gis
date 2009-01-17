@@ -25,9 +25,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import org.geotools.coverage.grid.GridCoverage2D;
 import org.geotools.data.DataSourceException;
 import org.geotools.factory.CommonFactoryFinder;
@@ -40,14 +37,15 @@ import org.geotools.style.RandomStyleFactory;
 import org.openide.util.Exceptions;
 import org.openide.util.ImageUtilities;
 
-import org.puzzle.core.project.source.JLayerChooser;
-import org.puzzle.core.project.source.LayerChooserMonitor;
+import org.puzzle.core.project.source.capabilities.JLayerChooser;
+import org.puzzle.core.project.source.capabilities.LayerChooserMonitor;
 import org.puzzle.core.project.source.LayerSource;
 import org.puzzle.core.project.source.PZLayerConstants;
 import org.puzzle.core.project.GISProject;
 import org.puzzle.core.project.source.GISSource;
 import org.puzzle.core.project.source.GISSourceInfo;
 import org.puzzle.core.project.source.GISSourceState;
+import org.puzzle.core.project.source.capabilities.LayerCreation;
 
 /**
  * This is a {@code GISSource} used to reference a Geotiff file in
@@ -74,43 +72,15 @@ public class GeoTiffSource extends GISSource{
         super(info);
         this.geotiff = geotiff;
         this.name = geotiff.getName();
+
+        content.add(new GeoTiffLayerCreation());
         
     }
     
     /** {@inheritDoc } */
     @Override
-    public MapLayer createLayer(Map<String, String> parameters) {
-        if(parameters == null)parameters = Collections.emptyMap();
-        load();
-
-        final MapLayer layer;
-
-        if(gc2d != null){
-            final MutableStyle style = new RandomStyleFactory().createRasterStyle();
-            layer = MapBuilder.getInstance().createCoverageLayer(gc2d, style, name);
-        }else{
-            layer = MapBuilder.getInstance().createEmptyMapLayer();
-        }
-
-        final LayerSource source = new LayerSource(getInfo().getID(), parameters,this);
-        layer.setUserPropertie(PZLayerConstants.KEY_LAYER_INFO, source);
-        layer.setDescription(CommonFactoryFinder.getStyleFactory(null).createDescription(name,"") );
-
-        return layer;
-    }
-
-    /** {@inheritDoc } */
-    @Override
     public Image getIcon(int type) {
         return ImageUtilities.loadImage("org/puzzle/format/geotiff/geotiff.png");
-    }
-
-    /**
-     * {@inheritDoc }
-     */
-    @Override
-    public JLayerChooser createChooser(LayerChooserMonitor monitor) {
-        return new LayerCreationComponent(monitor, this,name);
     }
 
     /**
@@ -144,5 +114,38 @@ public class GeoTiffSource extends GISSource{
         }
         
         setState(GISSourceState.LOADED);
+    }
+
+    private class GeoTiffLayerCreation implements LayerCreation{
+
+        /** {@inheritDoc } */
+        @Override
+        public MapLayer createLayer(Map<String, String> parameters) {
+            if(parameters == null)parameters = Collections.emptyMap();
+            load();
+
+            final MapLayer layer;
+
+            if(gc2d != null){
+                final MutableStyle style = new RandomStyleFactory().createRasterStyle();
+                layer = MapBuilder.getInstance().createCoverageLayer(gc2d, style, name);
+            }else{
+                layer = MapBuilder.getInstance().createEmptyMapLayer();
+            }
+
+            final LayerSource source = new LayerSource(getInfo().getID(), parameters,GeoTiffSource.this);
+            layer.setUserPropertie(PZLayerConstants.KEY_LAYER_INFO, source);
+            layer.setDescription(CommonFactoryFinder.getStyleFactory(null).createDescription(name,"") );
+
+            return layer;
+        }
+
+        /**
+         * {@inheritDoc }
+         */
+        @Override
+        public JLayerChooser createChooser(LayerChooserMonitor monitor) {
+            return new LayerCreationComponent(monitor, this,name);
+        }
     }
 }

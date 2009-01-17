@@ -30,11 +30,9 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import org.geotools.factory.CommonFactoryFinder;
 import org.geotools.map.MapLayer;
 import org.openide.util.NbBundle;
-import org.puzzle.core.project.source.GISSource;
-import org.puzzle.core.project.source.JLayerChooser;
-import org.puzzle.core.project.source.LayerChooserMonitor;
-import org.puzzle.core.project.source.LayerSource;
-import org.puzzle.core.project.source.PZLayerConstants;
+import org.puzzle.core.project.source.capabilities.JLayerChooser;
+import org.puzzle.core.project.source.capabilities.LayerChooserMonitor;
+import org.puzzle.core.project.source.capabilities.LayerCreation;
 
 /**
  *
@@ -45,7 +43,7 @@ public class LayerCreationComponent extends JLayerChooser {
     private final ShapeFileSource source;
 
     /** Creates new form LayerCreationComponent */
-    public LayerCreationComponent(LayerChooserMonitor monitor, ShapeFileSource source,String basename) {
+    LayerCreationComponent(LayerChooserMonitor monitor, ShapeFileSource source,String basename) {
         super(monitor);
         this.source = source;
         initComponents();
@@ -95,7 +93,7 @@ public class LayerCreationComponent extends JLayerChooser {
      */
     @Override
     public MapLayer[] getLayers() {
-        MapLayer layer = source.createLayer(null);
+        MapLayer layer = source.getLookup().lookup(LayerCreation.class).createLayer(null);
         layer.setDescription(CommonFactoryFinder.getStyleFactory(null).createDescription(guiTitle.getText(),"") );
         return new MapLayer[]{layer};
     }

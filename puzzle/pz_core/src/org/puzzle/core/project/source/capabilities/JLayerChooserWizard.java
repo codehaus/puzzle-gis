@@ -19,7 +19,7 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package org.puzzle.core.project.source;
+package org.puzzle.core.project.source.capabilities;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
@@ -47,6 +47,7 @@ import org.openide.DialogDisplayer;
 import org.openide.WizardDescriptor;
 import org.openide.util.HelpCtx;
 import org.openide.util.NbBundle;
+import org.puzzle.core.project.source.GISSource;
 
 /**
  *
@@ -111,7 +112,7 @@ public class JLayerChooserWizard extends JPanel implements WizardDescriptor.Pane
         toolbar.setRollover(true);
 
         jLabel1.setFont(jLabel1.getFont().deriveFont(jLabel1.getFont().getStyle() | Font.BOLD));
-        jLabel1.setText(NbBundle.getMessage(JLayerChooserWizard.class, "map")); // NOI18N
+        jLabel1.setText(Utilities.getString("map")); // NOI18N
         toolbar.add(jLabel1);
 
         guiContexts.setModel(new DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -133,9 +134,9 @@ public class JLayerChooserWizard extends JPanel implements WizardDescriptor.Pane
      * map view.
      * @return MapView or null if wizard was canceled.
      */
-    public static void showChooserDialog(final Collection<MapContext> contexts, final GISSource source){
+    public static void showChooserDialog(final Collection<MapContext> contexts, final LayerCreation lc){
         final JLayerChooserWizard chooser = new JLayerChooserWizard(contexts);
-        final JLayerChooser comp = source.createChooser(chooser);
+        final JLayerChooser comp = lc.createChooser(chooser);
         chooser.setChooser(comp);
         final WizardDescriptor wizardDescriptor = new WizardDescriptor(chooser.getPanels());
         // {0} will be replaced by WizardDesriptor.Panel.getComponent().getName()
