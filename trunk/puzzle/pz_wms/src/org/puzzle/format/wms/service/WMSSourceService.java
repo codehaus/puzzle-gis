@@ -23,8 +23,8 @@ package org.puzzle.format.wms.service;
 import org.openide.util.NbBundle;
 
 import org.puzzle.core.project.source.AbstractGISSourceService;
-import org.puzzle.core.project.source.SourceCreationPane;
-import org.puzzle.core.project.source.DistantSourceCreation;
+import org.puzzle.core.project.source.capabilities.SourceCreationPane;
+import org.puzzle.core.project.source.capabilities.DistantSourceCreation;
 import org.puzzle.core.project.source.GISSource;
 import org.puzzle.core.project.source.GISSourceInfo;
 import org.puzzle.format.wms.ui.JWMSDataPanel;

@@ -25,10 +25,10 @@ import java.util.Map;
 
 import org.openide.util.Lookup;
 
-import org.puzzle.core.project.source.DistantSourceCreation;
+import org.puzzle.core.project.source.capabilities.DistantSourceCreation;
 import org.puzzle.core.project.source.GISSourceInfo;
 import org.puzzle.core.project.source.GISSourceService;
-import org.puzzle.core.project.source.SourceCreationPane;
+import org.puzzle.core.project.source.capabilities.SourceCreationPane;
 
 /**
  * Distant generic chooser. This will call all GISDistantSourceService

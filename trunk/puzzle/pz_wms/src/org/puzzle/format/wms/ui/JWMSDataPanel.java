@@ -45,7 +45,7 @@ import org.jdesktop.swingx.JXTitledPanel;
 
 import org.openide.util.Exceptions;
 import org.openide.util.NbBundle;
-import org.puzzle.core.project.source.SourceCreationPane;
+import org.puzzle.core.project.source.capabilities.SourceCreationPane;
 import org.puzzle.core.project.source.GISSourceInfo;
 import org.puzzle.format.wms.service.WMSSourceService;
 

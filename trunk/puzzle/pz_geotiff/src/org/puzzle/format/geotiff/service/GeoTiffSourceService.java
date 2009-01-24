@@ -33,7 +33,7 @@ import org.openide.util.Exceptions;
 import org.openide.util.NbBundle;
 
 import org.puzzle.core.project.source.AbstractGISSourceService;
-import org.puzzle.core.project.source.FileSourceCreation;
+import org.puzzle.core.project.source.capabilities.FileSourceCreation;
 import org.puzzle.core.project.source.GISSource;
 import org.puzzle.core.project.source.GISSourceInfo;
 
