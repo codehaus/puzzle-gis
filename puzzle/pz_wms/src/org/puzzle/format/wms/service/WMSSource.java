@@ -40,7 +40,6 @@ import org.puzzle.core.project.source.GISSourceState;
 import org.puzzle.core.project.source.capabilities.JLayerChooser;
 import org.puzzle.core.project.source.capabilities.LayerChooserMonitor;
 import org.puzzle.core.project.source.LayerSource;
-import org.puzzle.core.project.source.PZLayerConstants;
 import org.puzzle.core.project.source.capabilities.LayerCreation;
 
 /**
@@ -119,7 +118,7 @@ public class WMSSource extends GISSource{
             }
 
             final LayerSource source = new LayerSource(getInfo().getID(), parameters,WMSSource.this);
-            layer.setUserPropertie(PZLayerConstants.KEY_LAYER_INFO, source);
+            layer.setUserPropertie(LayerSource.KEY_LAYER_INFO, source);
             layer.setDescription(CommonFactoryFinder.getStyleFactory(null).createDescription(featureName,"") );
 
             return layer;

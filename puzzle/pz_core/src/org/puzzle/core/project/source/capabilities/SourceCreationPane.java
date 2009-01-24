@@ -1,7 +1,7 @@
 /*
  *  Puzzle-GIS - OpenSource mapping program
  *  http://docs.codehaus.org/display/PUZZLEGIS
- *  Copyright (C) 2007 Puzzle-GIS
+ *  Copyright (C) 2007-2008 Puzzle-GIS
  *  
  *  GPLv3 + Classpath exception
  *  
@@ -18,20 +18,19 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.puzzle.core.project.source;
+package org.puzzle.core.project.source.capabilities;
+
+import org.puzzle.core.project.source.*;
+import java.util.Map;
+import javax.swing.JPanel;
 
 /**
- * Key constants used it MapLayer UserProperties.
+ * Panel to create distant sources.
  *
- * @author  Johann Sorel (Puzzle-GIS)
- * @author  Thomas Bonavia (comments)
+ * @author Johann Sorel (Puzzle-GIS)
  */
-public class PZLayerConstants{
+public abstract class SourceCreationPane extends JPanel{
 
-    /**
-     * Key providing the saving information of this layer.
-     * should be a Layersource object.
-     */
-    public static final String KEY_LAYER_INFO = "pz_layer_source_info";
+    public abstract Map<String,GISSourceInfo> createSources();
 
 }

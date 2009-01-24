@@ -32,6 +32,12 @@ import java.util.Map;
  */
 public final class LayerSource {
 
+    /**
+     * Key providing the saving information of this layer.
+     * should be a Layersource object.
+     */
+    public static final String KEY_LAYER_INFO = "pz_layer_source_info";
+
     private final int sourceId;
     private final Map<String,String> params = new HashMap<String, String>();
     private final GISSource source;

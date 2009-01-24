@@ -27,7 +27,7 @@ import java.util.Map;
 
 import org.openide.util.Lookup;
 
-import org.puzzle.core.project.source.FileSourceCreation;
+import org.puzzle.core.project.source.capabilities.FileSourceCreation;
 import org.puzzle.core.project.source.GISSourceInfo;
 import org.puzzle.core.project.source.GISSourceService;
 

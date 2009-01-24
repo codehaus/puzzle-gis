@@ -32,7 +32,7 @@ import org.geotools.gui.swing.misc.filter.FileFilterFactory;
 import org.openide.util.NbBundle;
 
 import org.puzzle.core.project.source.AbstractGISSourceService;
-import org.puzzle.core.project.source.FileSourceCreation;
+import org.puzzle.core.project.source.capabilities.FileSourceCreation;
 import org.puzzle.core.project.source.GISSource;
 import org.puzzle.core.project.source.GISSourceInfo;
 import org.puzzle.core.project.source.capabilities.FeatureStoreConversion;
