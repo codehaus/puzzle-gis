@@ -24,7 +24,7 @@ import org.openide.util.NbBundle;
 
 import org.puzzle.core.project.source.AbstractGISSourceService;
 import org.puzzle.core.project.source.SourceCreationPane;
-import org.puzzle.core.project.source.GISDistantSourceService;
+import org.puzzle.core.project.source.DistantSourceCreation;
 import org.puzzle.core.project.source.GISSource;
 import org.puzzle.core.project.source.GISSourceInfo;
 import org.puzzle.core.project.source.capabilities.FeatureStoreConversion;
@@ -37,7 +37,7 @@ import org.puzzle.format.postgis.ui.JPostGISDataPanel;
  * 
  * @author Johann Sorel (Puzzle-GIS)
  */
-public class PostGISSourceService extends AbstractGISSourceService implements GISDistantSourceService{
+public class PostGISSourceService extends AbstractGISSourceService implements DistantSourceCreation{
 
     public static final String SERVICE_ID = "PostGIS";
 

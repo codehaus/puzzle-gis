@@ -32,7 +32,7 @@ import org.geotools.gui.swing.misc.filter.FileFilterFactory;
 import org.openide.util.NbBundle;
 
 import org.puzzle.core.project.source.AbstractGISSourceService;
-import org.puzzle.core.project.source.GISFileSourceService;
+import org.puzzle.core.project.source.FileSourceCreation;
 import org.puzzle.core.project.source.GISSource;
 import org.puzzle.core.project.source.GISSourceInfo;
 import org.puzzle.core.project.source.capabilities.FeatureStoreConversion;
@@ -44,7 +44,7 @@ import org.puzzle.core.project.source.capabilities.JImportPane;
  * 
  * @author Johann Sorel (Puzzle-GIS)
  */
-public class ShapeFileSourceService extends AbstractGISSourceService implements GISFileSourceService{
+public class ShapeFileSourceService extends AbstractGISSourceService implements FileSourceCreation{
     private static final String SERVICE_ID = "SingleShapeFile";
 
     public ShapeFileSourceService(){

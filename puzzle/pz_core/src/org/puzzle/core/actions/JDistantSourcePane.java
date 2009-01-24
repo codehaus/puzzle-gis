@@ -25,7 +25,7 @@ import java.util.Map;
 
 import org.openide.util.Lookup;
 
-import org.puzzle.core.project.source.GISDistantSourceService;
+import org.puzzle.core.project.source.DistantSourceCreation;
 import org.puzzle.core.project.source.GISSourceInfo;
 import org.puzzle.core.project.source.GISSourceService;
 import org.puzzle.core.project.source.SourceCreationPane;
@@ -47,7 +47,7 @@ final class JDistantSourcePane extends javax.swing.JPanel {
 
         for (final GISSourceService service : services) {
 
-            GISDistantSourceService distant = service.getLookup().lookup(GISDistantSourceService.class);
+            DistantSourceCreation distant = service.getLookup().lookup(DistantSourceCreation.class);
 
             if (distant != null) {
                 final SourceCreationPane panel = distant.createPanel();

@@ -37,7 +37,7 @@ package org.puzzle.core.project.source;
  * @author  Johann Sorel (Puzzle-GIS)
  * @author  Thomas Bonavia (comments)
  */
-public interface GISDistantSourceService{
+public interface DistantSourceCreation{
     /**
      * Creates a {@code sourceCreationPane} to allow the user entering informations
      * needed to retrieve distant datas. This {@code SourceCreationPane} is a graphical
