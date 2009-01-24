@@ -31,18 +31,27 @@ import org.geotools.gui.swing.misc.filter.FileFilterFactory;
 
 import org.openide.util.NbBundle;
 
+import org.puzzle.core.project.source.AbstractGISSourceService;
 import org.puzzle.core.project.source.GISFileSourceService;
 import org.puzzle.core.project.source.GISSource;
 import org.puzzle.core.project.source.GISSourceInfo;
+import org.puzzle.core.project.source.capabilities.FeatureStoreConversion;
+import org.puzzle.core.project.source.capabilities.JExportPane;
+import org.puzzle.core.project.source.capabilities.JImportPane;
 
 /**
  * Shapefile sourcre creation service.
  * 
  * @author Johann Sorel (Puzzle-GIS)
  */
-public class ShapeFileSourceService implements GISFileSourceService{
+public class ShapeFileSourceService extends AbstractGISSourceService implements GISFileSourceService{
     private static final String SERVICE_ID = "SingleShapeFile";
-    
+
+    public ShapeFileSourceService(){
+        super();
+        content.add(new ShapeConverter());
+    }
+
     @Override
     public String getIdentifier(){
         return SERVICE_ID;
@@ -89,4 +98,19 @@ public class ShapeFileSourceService implements GISFileSourceService{
     public String getTitle() {
         return NbBundle.getMessage(ShapeFileSourceService.class, "shapeTitle");
     }
+
+    private class ShapeConverter implements FeatureStoreConversion{
+
+        @Override
+        public JImportPane createImportPane() {
+            return new JShapeImportPane();
+        }
+
+        @Override
+        public JExportPane createExportPane() {
+            return new JShapeExportPane();
+        }
+
+    }
+
 }

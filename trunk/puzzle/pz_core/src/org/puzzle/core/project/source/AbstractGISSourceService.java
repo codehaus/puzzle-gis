@@ -1,7 +1,7 @@
 /*
  *  Puzzle-GIS - OpenSource mapping program
  *  http://docs.codehaus.org/display/PUZZLEGIS
- *  Copyright (C) 2007 Puzzle-GIS
+ *  Copyright (C) 2007-2008 Puzzle-GIS
  *
  *  GPLv3 + Classpath exception
  *
@@ -18,32 +18,28 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+package org.puzzle.core.project.source;
 
-package org.puzzle.core.project.source.capabilities;
-
-import javax.swing.JPanel;
-import org.geotools.map.MapLayer;
+import org.openide.util.Lookup;
+import org.openide.util.lookup.AbstractLookup;
+import org.openide.util.lookup.InstanceContent;
 
 /**
- * Swing component usd to select layer from the GISSource.
- * 
  * @author Johann Sorel (Puzzle-GIS)
  */
-public abstract class JLayerChooser extends JPanel {
+public abstract class AbstractGISSourceService implements GISSourceService{
 
-    private final LayerChooserMonitor monitor;
+    protected final InstanceContent content = new InstanceContent();
+    protected final Lookup lookup;
 
-    protected JLayerChooser(LayerChooserMonitor monitor){
-        if(monitor == null){
-            throw new NullPointerException("monitor can not be null");
-        }
-        this.monitor = monitor;
+    protected AbstractGISSourceService(){
+        content.add(this);
+        lookup = new AbstractLookup(content);
     }
 
-    public LayerChooserMonitor getMonitor(){
-        return monitor;
+    @Override
+    public Lookup getLookup() {
+        return lookup;
     }
-
-    public abstract MapLayer[] getLayers();
 
 }

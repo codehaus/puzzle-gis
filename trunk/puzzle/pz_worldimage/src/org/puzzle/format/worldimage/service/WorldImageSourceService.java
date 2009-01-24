@@ -32,6 +32,7 @@ import org.geotools.gui.swing.misc.filter.FileFilterFactory;
 import org.openide.util.Exceptions;
 import org.openide.util.NbBundle;
 
+import org.puzzle.core.project.source.AbstractGISSourceService;
 import org.puzzle.core.project.source.GISFileSourceService;
 import org.puzzle.core.project.source.GISSource;
 import org.puzzle.core.project.source.GISSourceInfo;
@@ -44,7 +45,7 @@ import org.puzzle.core.project.source.GISSourceInfo;
  * 
  * @see     org.puzzle.core.project.source.GISFileSourceService
  */
-public class WorldImageSourceService implements GISFileSourceService{
+public class WorldImageSourceService extends AbstractGISSourceService implements GISFileSourceService{
     private static final String SERVICE_ID = "SingleWorldImage";
     
     /** {@inheritDoc} */

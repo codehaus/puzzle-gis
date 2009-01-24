@@ -31,7 +31,7 @@ import javax.swing.filechooser.FileFilter;
  * @author  Johann Sorel (Puzzle-GIS)
  * @author  Thomas Bonavia (comments)
  */
-public interface GISFileSourceService extends GISSourceService{
+public interface GISFileSourceService{
     /**
      * Creates a {@code FileFilter} corresponding to the data file to handle.
      * @return  A new {@code FileFilter}.

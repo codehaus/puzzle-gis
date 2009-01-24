@@ -92,21 +92,23 @@ public abstract class GISSource {
      * @param   type The type of icon to use (allows to define multiple icons).
      * @return  A new {@code Image} representing the icon.
      */
-     public abstract Image getIcon(int type);
+    public abstract Image getIcon(int type);
 
-     public void addPropertyChangeListener(PropertyChangeListener listener){
+    public void addPropertyChangeListener(PropertyChangeListener listener){
          propertySupport.addPropertyChangeListener(listener);
      }
 
-     public void addPropertyChangeListener(String propName, PropertyChangeListener listener){
+    public void addPropertyChangeListener(String propName, PropertyChangeListener listener){
          propertySupport.addPropertyChangeListener(propName,listener);
      }
 
-     public void removePropertyChangeListener(PropertyChangeListener listener){
+    public void removePropertyChangeListener(PropertyChangeListener listener){
          propertySupport.removePropertyChangeListener(listener);
      }
-     public void removePropertyChangeListener(String propName, PropertyChangeListener listener){
+
+    public void removePropertyChangeListener(String propName, PropertyChangeListener listener){
          propertySupport.removePropertyChangeListener(propName,listener);
      }
-     
+
+ 
 }

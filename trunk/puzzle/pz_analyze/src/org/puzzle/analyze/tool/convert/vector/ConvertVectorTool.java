@@ -21,6 +21,28 @@
 
 package org.puzzle.analyze.tool.convert.vector;
 
+import java.awt.BorderLayout;
+import java.awt.Component;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import javax.swing.DefaultListCellRenderer;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import org.geotools.data.FeatureSource;
+import org.jdesktop.swingx.combobox.ListComboBoxModel;
+import org.opengis.feature.simple.SimpleFeature;
+import org.opengis.feature.simple.SimpleFeatureType;
+import org.openide.DialogDisplayer;
+import org.openide.NotifyDescriptor;
+import org.openide.util.Exceptions;
+import org.openide.util.Lookup;
+import org.puzzle.core.project.source.GISSourceService;
+import org.puzzle.core.project.source.capabilities.FeatureStoreConversion;
+import org.puzzle.core.project.source.capabilities.JExportPane;
+import org.puzzle.core.project.source.capabilities.JImportPane;
+
 /**
  * Generique conversion tool, using the registered sources.
  *
@@ -28,9 +50,26 @@ package org.puzzle.analyze.tool.convert.vector;
  */
 public class ConvertVectorTool extends javax.swing.JPanel {
 
+    private JImportPane in = null;
+    private JExportPane out = null;
+
     /** Creates new form ConvertVectorTool */
     public ConvertVectorTool() {
         initComponents();
+
+        final Collection<? extends GISSourceService> services = Lookup.getDefault().lookupAll(GISSourceService.class);
+        final List<GISSourceService> converters = new ArrayList<GISSourceService>();
+
+        for (final GISSourceService service : services) {
+            FeatureStoreConversion converter = service.getLookup().lookup(FeatureStoreConversion.class);
+            if(converter != null) converters.add(service);
+        }
+
+        guiInputBox.setModel(new ListComboBoxModel<GISSourceService>(converters));
+        guiInputBox.setRenderer(new ServiceRenderer());
+        guiOutputBox.setModel(new ListComboBoxModel<GISSourceService>(converters));
+        guiOutputBox.setRenderer(new ServiceRenderer());
+
     }
 
     /** This method is called from within the constructor to
@@ -42,20 +81,202 @@ public class ConvertVectorTool extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+        jPanel1 = new javax.swing.JPanel();
+        guiInPanel = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        guiInputBox = new javax.swing.JComboBox();
+        jSeparator1 = new javax.swing.JSeparator();
+        jSeparator4 = new javax.swing.JSeparator();
+        guiOutPanel = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
+        jSeparator2 = new javax.swing.JSeparator();
+        jLabel2 = new javax.swing.JLabel();
+        guiOutputBox = new javax.swing.JComboBox();
+        jSeparator3 = new javax.swing.JSeparator();
+        jPanel2 = new javax.swing.JPanel();
+        guiConvert = new javax.swing.JButton();
+
+        setLayout(new java.awt.BorderLayout());
+
+        jPanel1.setLayout(new java.awt.GridLayout(1, 2));
+
+        guiInPanel.setLayout(new java.awt.BorderLayout());
+
+        jLabel1.setText(Utilities.getString("input")); // NOI18N
+
+        guiInputBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                guiInputBoxActionPerformed(evt);
+            }
+        });
+
+        jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(guiInputBox, 0, 154, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(guiInputBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
         );
+
+        guiInPanel.add(jPanel3, java.awt.BorderLayout.PAGE_START);
+
+        jSeparator4.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        guiInPanel.add(jSeparator4, java.awt.BorderLayout.EAST);
+
+        jPanel1.add(guiInPanel);
+
+        guiOutPanel.setLayout(new java.awt.BorderLayout());
+
+        jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
+
+        jLabel2.setText(Utilities.getString("output")); // NOI18N
+
+        guiOutputBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                guiOutputBoxActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(guiOutputBox, 0, 143, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jSeparator2, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(guiOutputBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        guiOutPanel.add(jPanel4, java.awt.BorderLayout.PAGE_START);
+
+        jSeparator3.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        guiOutPanel.add(jSeparator3, java.awt.BorderLayout.WEST);
+
+        jPanel1.add(guiOutPanel);
+
+        add(jPanel1, java.awt.BorderLayout.CENTER);
+
+        guiConvert.setText(Utilities.getString("convert")); // NOI18N
+        guiConvert.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                guiConvertActionPerformed(evt);
+            }
+        });
+        jPanel2.add(guiConvert);
+
+        add(jPanel2, java.awt.BorderLayout.PAGE_END);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void guiInputBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guiInputBoxActionPerformed
+        if(in != null){
+            guiInPanel.remove(in);
+        }
+
+        GISSourceService service = (GISSourceService) guiInputBox.getSelectedItem();
+        FeatureStoreConversion converter = service.getLookup().lookup(FeatureStoreConversion.class);
+        in = converter.createImportPane();
+
+        guiInPanel.add(BorderLayout.CENTER,in);
+        guiInPanel.revalidate();
+        guiInPanel.repaint();
+    }//GEN-LAST:event_guiInputBoxActionPerformed
+
+    private void guiOutputBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guiOutputBoxActionPerformed
+        if(out != null){
+            guiOutPanel.remove(out);
+        }
+
+        GISSourceService service = (GISSourceService) guiOutputBox.getSelectedItem();
+        FeatureStoreConversion converter = service.getLookup().lookup(FeatureStoreConversion.class);
+        out = converter.createExportPane();
+
+        guiOutPanel.add(BorderLayout.CENTER,out);
+        guiOutPanel.revalidate();
+        guiOutPanel.repaint();
+    }//GEN-LAST:event_guiOutputBoxActionPerformed
+
+    private void guiConvertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guiConvertActionPerformed
+
+        if(in != null &&out != null){
+            FeatureSource<SimpleFeatureType,SimpleFeature> fs = in.getSource();
+            try {
+                out.recordSource(fs);
+            } catch (IOException ex) {
+                Exceptions.printStackTrace(ex);
+            }
+        }else{
+            final NotifyDescriptor d =  new NotifyDescriptor.Message(Utilities.getString("misconfig"), NotifyDescriptor.INFORMATION_MESSAGE);
+            DialogDisplayer.getDefault().notify(d);
+        }
+
+}//GEN-LAST:event_guiConvertActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton guiConvert;
+    private javax.swing.JPanel guiInPanel;
+    private javax.swing.JComboBox guiInputBox;
+    private javax.swing.JPanel guiOutPanel;
+    private javax.swing.JComboBox guiOutputBox;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
     // End of variables declaration//GEN-END:variables
+
+    public class ServiceRenderer extends DefaultListCellRenderer{
+
+        @Override
+        public Component getListCellRendererComponent(JList arg0, Object value, int arg2, boolean arg3, boolean arg4) {
+            final JLabel lbl = (JLabel) super.getListCellRendererComponent(arg0, value, arg2, arg3, arg4);
+
+            if(value instanceof GISSourceService){
+                GISSourceService service = (GISSourceService) value;
+                lbl.setText(service.getTitle());
+            }
+
+            return lbl;
+        }
+
+
+
+    }
 
 }

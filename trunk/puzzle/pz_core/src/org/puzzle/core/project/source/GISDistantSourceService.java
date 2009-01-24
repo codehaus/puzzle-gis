@@ -20,8 +20,6 @@
  */
 package org.puzzle.core.project.source;
 
-import java.util.Map;
-
 /**
  * This class is a special {@code GISSourceService} dedicated to distant datas,
  * such as tables in a database.
@@ -39,7 +37,7 @@ import java.util.Map;
  * @author  Johann Sorel (Puzzle-GIS)
  * @author  Thomas Bonavia (comments)
  */
-public interface GISDistantSourceService extends GISSourceService{
+public interface GISDistantSourceService{
     /**
      * Creates a {@code sourceCreationPane} to allow the user entering informations
      * needed to retrieve distant datas. This {@code SourceCreationPane} is a graphical
@@ -48,13 +46,4 @@ public interface GISDistantSourceService extends GISSourceService{
      */
     SourceCreationPane createPanel();
     
-    /**
-     * Creates the {@code GISSource} to associated with the distant data
-     * described by the {@code parameters} entered by the user in the 
-     * {@code DataPanel}.
-     * @param   parameters  The parameters describing the distant data.
-     * @return  A new {@code GISSource} associated with the distant data.
-     * @throws  java.lang.IllegalArgumentException
-     */
-    GISSource createSource(Map parameters) throws IllegalArgumentException;
 }
