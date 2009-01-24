@@ -20,6 +20,8 @@
  */
 package org.puzzle.core.project.source;
 
+import org.openide.util.Lookup;
+
 /**
  * This class describe a generic way of managing {@code GISSource}s.
  * 
@@ -39,6 +41,8 @@ public interface GISSourceService {
      * @return A {@code String} containing the id.
      */
     String getIdentifier();
+
+    public Lookup getLookup();
     
     /**
      * Rebuild the {@code GISSource} from the parameters of the XML file.

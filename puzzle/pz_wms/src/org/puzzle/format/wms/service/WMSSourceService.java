@@ -20,10 +20,9 @@
  */
 package org.puzzle.format.wms.service;
 
-import java.util.Map;
-
 import org.openide.util.NbBundle;
 
+import org.puzzle.core.project.source.AbstractGISSourceService;
 import org.puzzle.core.project.source.SourceCreationPane;
 import org.puzzle.core.project.source.GISDistantSourceService;
 import org.puzzle.core.project.source.GISSource;
@@ -35,7 +34,7 @@ import org.puzzle.format.wms.ui.JWMSDataPanel;
  * 
  * @author Johann Sorel (Puzzle-GIS)
  */
-public class WMSSourceService implements GISDistantSourceService{
+public class WMSSourceService extends AbstractGISSourceService implements GISDistantSourceService{
 
     public static final String SERVICE_ID = "WebMapServer";
     public static final String URL_PROP = "url";
@@ -60,14 +59,6 @@ public class WMSSourceService implements GISDistantSourceService{
 //
 //        GISSource postgisSource = new PostGISSource(getIdentifier(),id,parameters);
         return new WMSSource(info);
-    }
-
-    /**
-     * {@inheritDoc }
-     */
-    @Override
-    public GISSource createSource(Map parameters) throws IllegalArgumentException {
-        return null;
     }
 
     /**

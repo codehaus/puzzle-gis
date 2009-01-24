@@ -1,7 +1,7 @@
 /*
  *  Puzzle-GIS - OpenSource mapping program
  *  http://docs.codehaus.org/display/PUZZLEGIS
- *  Copyright (C) 2007 Puzzle-GIS
+ *  Copyright (C) 2007-2008 Puzzle-GIS
  *
  *  GPLv3 + Classpath exception
  *
@@ -18,32 +18,20 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+package org.puzzle.analyze.tool.convert.vector;
 
-package org.puzzle.core.project.source.capabilities;
-
-import javax.swing.JPanel;
-import org.geotools.map.MapLayer;
+import java.util.ResourceBundle;
 
 /**
- * Swing component usd to select layer from the GISSource.
- * 
+ * I18N for this package
  * @author Johann Sorel (Puzzle-GIS)
  */
-public abstract class JLayerChooser extends JPanel {
+final class Utilities {
 
-    private final LayerChooserMonitor monitor;
+    private static final ResourceBundle BUNDLE = ResourceBundle.getBundle("org/puzzle/analyze/tool/convert/vector/Bundle");
 
-    protected JLayerChooser(LayerChooserMonitor monitor){
-        if(monitor == null){
-            throw new NullPointerException("monitor can not be null");
-        }
-        this.monitor = monitor;
+    static final String getString(final String key){
+        return BUNDLE.getString(key);
     }
-
-    public LayerChooserMonitor getMonitor(){
-        return monitor;
-    }
-
-    public abstract MapLayer[] getLayers();
 
 }

@@ -47,10 +47,11 @@ final class JDistantSourcePane extends javax.swing.JPanel {
 
         for (final GISSourceService service : services) {
 
-            if (service instanceof GISDistantSourceService) {
-                final GISDistantSourceService distantService = (GISDistantSourceService) service;
-                final SourceCreationPane panel = distantService.createPanel();
-                guiTabPane.add(distantService.getTitle(), panel);
+            GISDistantSourceService distant = service.getLookup().lookup(GISDistantSourceService.class);
+
+            if (distant != null) {
+                final SourceCreationPane panel = distant.createPanel();
+                guiTabPane.add(service.getTitle(), panel);
             }
         }
     }

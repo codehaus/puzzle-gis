@@ -54,8 +54,10 @@ final class JFileSourcePane extends javax.swing.JPanel {
         services = Lookup.getDefault().lookupAll(GISSourceService.class);
         
         for(final GISSourceService service : services){
-            if(service instanceof GISFileSourceService)
-                gui_choose.addChoosableFileFilter( ((GISFileSourceService)service).createFilter());
+
+            final GISFileSourceService fileService = service.getLookup().lookup(GISFileSourceService.class);
+            if(fileService != null)
+                gui_choose.addChoosableFileFilter( fileService.createFilter());
         }
         
         if(openPath != null){
@@ -117,12 +119,16 @@ final class JFileSourcePane extends javax.swing.JPanel {
         for(final File f : files){
             
             for(final GISSourceService service : services){
+
+                final GISFileSourceService fileService = service.getLookup().lookup(GISFileSourceService.class);
+                if(fileService == null) continue;
+
                 if( ! (service instanceof GISFileSourceService)) continue;
                 GISSourceInfo source = null;
                 
                 try{
-                    if(((GISFileSourceService)service).isValidFile(f)){
-                        source = ((GISFileSourceService)service).createSourceInfo(f);
+                    if(fileService.isValidFile(f)){
+                        source = fileService.createSourceInfo(f);
                     }
                 }catch(IllegalArgumentException ex){
                     ex.printStackTrace();
