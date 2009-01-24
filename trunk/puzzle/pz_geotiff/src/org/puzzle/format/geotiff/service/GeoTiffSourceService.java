@@ -33,7 +33,7 @@ import org.openide.util.Exceptions;
 import org.openide.util.NbBundle;
 
 import org.puzzle.core.project.source.AbstractGISSourceService;
-import org.puzzle.core.project.source.GISFileSourceService;
+import org.puzzle.core.project.source.FileSourceCreation;
 import org.puzzle.core.project.source.GISSource;
 import org.puzzle.core.project.source.GISSourceInfo;
 
@@ -46,7 +46,7 @@ import org.puzzle.core.project.source.GISSourceInfo;
  * 
  * @see     org.puzzle.core.project.source.GISFileSourceService
  */
-public class GeoTiffSourceService extends AbstractGISSourceService implements GISFileSourceService{
+public class GeoTiffSourceService extends AbstractGISSourceService implements FileSourceCreation{
     private static final String SERVICE_ID = "SingleGeoTiff";
     
     /** {@inheritDoc} */

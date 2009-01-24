@@ -27,7 +27,7 @@ import java.util.Map;
 
 import org.openide.util.Lookup;
 
-import org.puzzle.core.project.source.GISFileSourceService;
+import org.puzzle.core.project.source.FileSourceCreation;
 import org.puzzle.core.project.source.GISSourceInfo;
 import org.puzzle.core.project.source.GISSourceService;
 
@@ -55,7 +55,7 @@ final class JFileSourcePane extends javax.swing.JPanel {
         
         for(final GISSourceService service : services){
 
-            final GISFileSourceService fileService = service.getLookup().lookup(GISFileSourceService.class);
+            final FileSourceCreation fileService = service.getLookup().lookup(FileSourceCreation.class);
             if(fileService != null)
                 gui_choose.addChoosableFileFilter( fileService.createFilter());
         }
@@ -120,10 +120,10 @@ final class JFileSourcePane extends javax.swing.JPanel {
             
             for(final GISSourceService service : services){
 
-                final GISFileSourceService fileService = service.getLookup().lookup(GISFileSourceService.class);
+                final FileSourceCreation fileService = service.getLookup().lookup(FileSourceCreation.class);
                 if(fileService == null) continue;
 
-                if( ! (service instanceof GISFileSourceService)) continue;
+                if( ! (service instanceof FileSourceCreation)) continue;
                 GISSourceInfo source = null;
                 
                 try{
