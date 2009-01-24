@@ -382,6 +382,9 @@
                               </patternset>
                             </fileset>
                         </copy>
+
+                        <delete dir="${GT_BINARY}"/>
+
                         <echo>=&gt; Done !</echo>
                         
                     </tasks>
