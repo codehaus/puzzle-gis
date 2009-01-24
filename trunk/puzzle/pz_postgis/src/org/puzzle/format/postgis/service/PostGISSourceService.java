@@ -20,8 +20,6 @@
  */
 package org.puzzle.format.postgis.service;
 
-import java.util.Map;
-
 import org.openide.util.NbBundle;
 
 import org.puzzle.core.project.source.AbstractGISSourceService;
@@ -29,6 +27,9 @@ import org.puzzle.core.project.source.SourceCreationPane;
 import org.puzzle.core.project.source.GISDistantSourceService;
 import org.puzzle.core.project.source.GISSource;
 import org.puzzle.core.project.source.GISSourceInfo;
+import org.puzzle.core.project.source.capabilities.FeatureStoreConversion;
+import org.puzzle.core.project.source.capabilities.JExportPane;
+import org.puzzle.core.project.source.capabilities.JImportPane;
 import org.puzzle.format.postgis.ui.JPostGISDataPanel;
 
 /**
@@ -39,6 +40,11 @@ import org.puzzle.format.postgis.ui.JPostGISDataPanel;
 public class PostGISSourceService extends AbstractGISSourceService implements GISDistantSourceService{
 
     public static final String SERVICE_ID = "PostGIS";
+
+    public PostGISSourceService(){
+        super();
+        content.add(new PostGISConverter());
+    }
 
     /**
      * {@inheritDoc }
@@ -53,11 +59,6 @@ public class PostGISSourceService extends AbstractGISSourceService implements GI
      */
     @Override
     public GISSource restoreSource(final GISSourceInfo info) throws IllegalArgumentException{
-//        final String url = parameters.get("url");
-//
-//        if(url == null) throw new IllegalArgumentException("missing parameter url");
-//
-//        GISSource postgisSource = new PostGISSource(getIdentifier(),id,parameters);
         return new PostGISSource(info);
     }
 
@@ -77,4 +78,19 @@ public class PostGISSourceService extends AbstractGISSourceService implements GI
     public SourceCreationPane createPanel() {
         return new JPostGISDataPanel();
     }
+
+    private class PostGISConverter implements FeatureStoreConversion{
+
+        @Override
+        public JImportPane createImportPane() {
+            return new JPostGisImportPane();
+        }
+
+        @Override
+        public JExportPane createExportPane() {
+            return new JPostGisExportPane();
+        }
+
+    }
+
 }

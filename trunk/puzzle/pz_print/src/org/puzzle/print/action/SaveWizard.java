@@ -68,17 +68,16 @@ import org.puzzle.core.view.MapView;
  */
 public class SaveWizard extends javax.swing.JPanel implements WizardDescriptor.Panel {
 
-    private final Collection views;
+    private final Collection<MapView> views;
     private final List<String> lstViews;
     private File file = null;
     
-    private SaveWizard(final Collection views){
+    private SaveWizard(final Collection<MapView> views){
         initComponents();
         this.views = views;
         lstViews = new ArrayList<String>();
-        for(Object v : views){
-            MapView view = (MapView) v;
-            lstViews.add(view.getDisplayName());
+        for(MapView v : views){
+            lstViews.add(v.getDisplayName());
         }
 
         ComboBoxModel model = new DefaultComboBoxModel(lstViews.toArray());
@@ -107,8 +106,8 @@ public class SaveWizard extends javax.swing.JPanel implements WizardDescriptor.P
         final int index = guiView.getSelectedIndex();
 
         if(index != -1 && file != null){
-            List lst = new ArrayList(views);
-            MapView view = (MapView) lst.get(index);
+            List<MapView> lst = new ArrayList<MapView>(views);
+            MapView view = lst.get(index);
             Image img = view.getMap().getCanvas().getSnapShot();
             final BufferedImage bi = new BufferedImage(img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_ARGB);
             final Graphics g = bi.getGraphics();
@@ -128,7 +127,7 @@ public class SaveWizard extends javax.swing.JPanel implements WizardDescriptor.P
         return NbBundle.getMessage(SaveWizard.class, "exportImage");
     }
     
-    public static void showChooserDialog(final Collection views){
+    public static void showChooserDialog(final Collection<MapView> views){
         final SaveWizard chooser = new SaveWizard(views);
         WizardDescriptor wizardDescriptor = new WizardDescriptor(chooser.getPanels());
         // {0} will be replaced by WizardDesriptor.Panel.getComponent().getName()
@@ -145,16 +144,15 @@ public class SaveWizard extends javax.swing.JPanel implements WizardDescriptor.P
         
     }
         
-    private WizardDescriptor.Panel[] panels;
+    private WizardDescriptor.Panel<org.openide.WizardDescriptor>[] panels;
 
     /**
      * Initialize panels representing individual wizard's steps and sets
      * various properties for them influencing wizard appearance.
      */
-    private WizardDescriptor.Panel[] getPanels() {
-        panels = new WizardDescriptor.Panel[]{
-                    this
-                };
+    private WizardDescriptor.Panel<org.openide.WizardDescriptor>[] getPanels() {
+        panels = new WizardDescriptor.Panel[1];
+        panels[0] = this;
         String[] steps = new String[panels.length];
         for (int i = 0; i < panels.length; i++) {
             Component c = panels[i].getComponent();

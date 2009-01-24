@@ -24,7 +24,6 @@ import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -44,18 +43,10 @@ import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 import org.geotools.data.DataStore;
 import org.geotools.data.DataStoreFinder;
-import org.geotools.data.FeatureSource;
 import org.geotools.data.postgis.PostgisDataStoreFactory;
-import org.geotools.factory.CommonFactoryFinder;
-import org.geotools.map.MapLayer;
-import org.geotools.map.MapBuilder;
-import org.geotools.style.MutableStyle;
-import org.geotools.style.RandomStyleFactory;
 
 import org.jdesktop.swingx.JXTable;
 import org.jdesktop.swingx.JXTitledPanel;
-import org.opengis.feature.simple.SimpleFeature;
-import org.opengis.feature.simple.SimpleFeatureType;
 
 import org.openide.util.Exceptions;
 import org.openide.util.NbBundle;
@@ -117,7 +108,7 @@ public class JPostGISDataPanel extends SourceCreationPane {
         return params;
     }
 
-    public void setProperties(Map map) {
+    private void setProperties(Map map) {
 
         if(map == null){
             throw new NullPointerException();

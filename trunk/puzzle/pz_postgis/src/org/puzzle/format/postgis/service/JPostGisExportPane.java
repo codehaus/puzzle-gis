@@ -18,43 +18,36 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.puzzle.format.shapefile.service;
+package org.puzzle.format.postgis.service;
 
-import java.io.File;
+import java.awt.BorderLayout;
 import java.io.IOException;
-import java.io.Serializable;
-import java.util.Collections;
-import java.util.Map;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.JFileChooser;
-import javax.swing.filechooser.FileFilter;
+import org.geotools.data.DataStore;
+import org.geotools.data.DataStoreFinder;
 import org.geotools.data.DefaultTransaction;
 import org.geotools.data.FeatureSource;
 import org.geotools.data.FeatureStore;
-import org.geotools.data.FileDataStoreFactorySpi;
-import org.geotools.data.shapefile.ShapefileDataStore;
-import org.geotools.data.shapefile.ShapefileDataStoreFactory;
-import org.geotools.gui.swing.misc.filter.FileFilterFactory;
 import org.opengis.feature.simple.SimpleFeature;
 import org.opengis.feature.simple.SimpleFeatureType;
 import org.puzzle.core.project.source.capabilities.JExportPane;
+import org.puzzle.format.postgis.ui.JPostGISconfigPanel;
 
 /**
  * @author Johann Sorel (Puzzle-GIS)
  */
-public class JShapeExportPane extends JExportPane {
+public class JPostGisExportPane extends JExportPane {
+
+    private final JPostGISconfigPanel guiConfig = new JPostGISconfigPanel();
 
     /** Creates new form JShapeExportPane */
-    public JShapeExportPane() {
+    public JPostGisExportPane() {
         initComponents();
 
-        FileFilter filter = FileFilterFactory.createFileFilter(FileFilterFactory.FORMAT.ESRI_SHAPEFILE);
+        add(BorderLayout.CENTER,guiConfig);
+    }
 
-        guiChooser.addChoosableFileFilter(filter);
-        guiChooser.setAcceptAllFileFilterUsed(false);
-        guiChooser.setMultiSelectionEnabled(false);
-        guiChooser.setFileFilter(filter);
+    private DataStore getDataStore() throws IOException{
+        return DataStoreFinder.getDataStore(guiConfig.getParams());
     }
 
     /** This method is called from within the constructor to
@@ -66,48 +59,20 @@ public class JShapeExportPane extends JExportPane {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        guiChooser = new JFileChooser();
-
-        guiChooser.setControlButtonsAreShown(false);
-        guiChooser.setDialogType(JFileChooser.SAVE_DIALOG);
-
-        GroupLayout layout = new GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(Alignment.LEADING)
-            .addComponent(guiChooser, GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(Alignment.LEADING)
-            .addComponent(guiChooser, GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
-        );
+        setLayout(new BorderLayout());
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private JFileChooser guiChooser;
     // End of variables declaration//GEN-END:variables
 
     @Override
     public void recordSource(FeatureSource<SimpleFeatureType,SimpleFeature> source) throws IOException {
 
-        File file = guiChooser.getSelectedFile();
-
-        // Create the DataStoreFactory
-        FileDataStoreFactorySpi factory = new ShapefileDataStoreFactory();
-
-        // Create a Map object used by our DataStore Factory
-        // NOTE: file.toURI().toURL() is used because file.toURL() is deprecated
-        Map<String, Serializable> map = Collections.singletonMap("url", (Serializable) file.toURI().toURL());
-
-        // Create the ShapefileDataStore from our factory based on our Map object
-        ShapefileDataStore myData = (ShapefileDataStore) factory.createNewDataStore(map);
+        DataStore myData = getDataStore();
 
         // Create the Shapefile (empty at this point)
         myData.createSchema(source.getSchema());
 
-        // Tell the DataStore what type of Coordinate Reference System (CRS) to use
-        myData.forceSchemaCRS(source.getSchema().getCoordinateReferenceSystem());
-
-        FeatureSource<SimpleFeatureType,SimpleFeature> featureTarget = myData.getFeatureSource(myData.getTypeNames()[0]);
+        FeatureSource<SimpleFeatureType,SimpleFeature> featureTarget = myData.getFeatureSource(source.getName());
 
         if (featureTarget instanceof FeatureStore) {
             FeatureStore<SimpleFeatureType, SimpleFeature> store = (FeatureStore<SimpleFeatureType, SimpleFeature>) featureTarget;
@@ -133,11 +98,6 @@ public class JShapeExportPane extends JExportPane {
             throw new IOException("You don't have permission to write in this DataStore.");
         }
 
-
-
         myData.dispose();
-
-
-
     }
 }

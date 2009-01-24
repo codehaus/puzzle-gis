@@ -67,7 +67,7 @@ public class KeyModel implements TableModel {
 
     public Map getProperties() {
 
-        Map config = new HashMap();
+        Map<String,Object> config = new HashMap<String,Object>();
         
         for(int i=0;i<param.length;i++){
             config.put(param[i].key, value[i]);
@@ -76,7 +76,7 @@ public class KeyModel implements TableModel {
         return config;
     }
     
-    public void parse(Map map){
+    public void parse(Map<String,Object> map){
         
         for(int i=0;i<getRowCount();i++){            
             Object key = getValueAt(i, 0);            
