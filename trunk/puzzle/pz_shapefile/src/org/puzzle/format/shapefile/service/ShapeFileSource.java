@@ -44,7 +44,7 @@ import org.openide.util.ImageUtilities;
 
 import org.puzzle.core.project.source.capabilities.JLayerChooser;
 import org.puzzle.core.project.source.capabilities.LayerChooserMonitor;
-import org.puzzle.core.project.source.LayerSource;
+import org.puzzle.core.project.source.GISLayerSource;
 import org.puzzle.core.project.source.GISSource;
 import org.puzzle.core.project.source.GISSourceInfo;
 import org.puzzle.core.project.source.GISSourceState;
@@ -135,8 +135,8 @@ public class ShapeFileSource extends GISSource{
                 layer = MapBuilder.getInstance().createEmptyMapLayer();
             }
 
-            final LayerSource source = new LayerSource(getInfo().getID(), parameters,ShapeFileSource.this);
-            layer.setUserPropertie(LayerSource.KEY_LAYER_INFO, source);
+            final GISLayerSource source = new GISLayerSource(getInfo().getID(), parameters,ShapeFileSource.this);
+            layer.setUserPropertie(GISLayerSource.KEY_LAYER_INFO, source);
             layer.setDescription(CommonFactoryFinder.getStyleFactory(null).createDescription(name,"") );
 
             return layer;

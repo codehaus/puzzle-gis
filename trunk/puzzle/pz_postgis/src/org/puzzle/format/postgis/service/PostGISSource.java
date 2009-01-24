@@ -45,7 +45,7 @@ import org.puzzle.core.project.source.GISSourceInfo;
 import org.puzzle.core.project.source.GISSourceState;
 import org.puzzle.core.project.source.capabilities.JLayerChooser;
 import org.puzzle.core.project.source.capabilities.LayerChooserMonitor;
-import org.puzzle.core.project.source.LayerSource;
+import org.puzzle.core.project.source.GISLayerSource;
 
 import org.puzzle.core.project.source.capabilities.LayerCreation;
 import static org.geotools.data.postgis.PostgisDataStoreFactory.*;
@@ -138,8 +138,8 @@ public class PostGISSource extends GISSource{
                 layer = MapBuilder.getInstance().createEmptyMapLayer();
             }
 
-            final LayerSource source = new LayerSource(getInfo().getID(), parameters,PostGISSource.this);
-            layer.setUserPropertie(LayerSource.KEY_LAYER_INFO, source);
+            final GISLayerSource source = new GISLayerSource(getInfo().getID(), parameters,PostGISSource.this);
+            layer.setUserPropertie(GISLayerSource.KEY_LAYER_INFO, source);
             layer.setDescription(CommonFactoryFinder.getStyleFactory(null).createDescription(featureName,"") );
 
             return layer;
