@@ -47,7 +47,7 @@ import javax.swing.SwingConstants;
 import org.geotools.data.DataUtilities;
 import org.geotools.data.FileDataStoreFactorySpi;
 import org.geotools.data.shapefile.ShapefileDataStore;
-import org.geotools.data.shapefile.indexed.IndexedShapefileDataStoreFactory;
+import org.geotools.data.shapefile.ShapefileDataStoreFactory;
 import org.geotools.feature.SchemaException;
 import org.geotools.gui.swing.crschooser.JCRSChooser;
 import org.geotools.referencing.crs.DefaultGeographicCRS;
@@ -88,7 +88,7 @@ public class ShapeCreationTool extends JPanel {
     private void createShape(String name) {
         try {
             // Create the DataStoreFactory
-            FileDataStoreFactorySpi factory = new IndexedShapefileDataStoreFactory();
+            FileDataStoreFactorySpi factory = new ShapefileDataStoreFactory();
 
             // Create a Map object used by our DataStore Factory
             // NOTE: file.toURI().toURL() is used because file.toURL() is deprecated

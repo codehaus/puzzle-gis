@@ -35,6 +35,8 @@ import org.geotools.map.MapLayer;
 import org.geotools.style.MutableStyle;
 import org.geotools.style.RandomStyleFactory;
 
+import org.opengis.feature.simple.SimpleFeature;
+import org.opengis.feature.simple.SimpleFeatureType;
 import org.openide.util.Exceptions;
 import org.openide.util.ImageUtilities;
 
@@ -126,7 +128,7 @@ public class PostGISSource extends GISSource{
             MapLayer layer;
             if(store != null){
                 try{
-                    final FeatureSource featureSource = store.getFeatureSource(featureName);
+                    final FeatureSource<SimpleFeatureType,SimpleFeature> featureSource = store.getFeatureSource(featureName);
                     final MutableStyle style = new RandomStyleFactory().createRandomVectorStyle(featureSource);
                     layer = MapBuilder.getInstance().createFeatureLayer(featureSource, style);
                 }catch(IOException ex){

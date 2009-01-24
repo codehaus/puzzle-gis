@@ -22,10 +22,10 @@ package org.puzzle.format.postgis.ui;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JTable;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.TableModel;
 
-import org.jdesktop.swingx.JXTable;
 
 /**
  * DataBase model
@@ -36,12 +36,12 @@ public class DBModel implements TableModel{
     
     
     private ArrayList<String> datas = new ArrayList<String>();
-    private JXTable tab;
+    private JTable tab;
     
     /** Creates a new instance of BasicTableModel 
      * @param tab 
      */
-    public DBModel(JXTable tab) {
+    public DBModel(JTable tab) {
         super();
         this.tab = tab;
         init();
