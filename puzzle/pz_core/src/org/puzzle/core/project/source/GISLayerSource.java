@@ -30,7 +30,7 @@ import java.util.Map;
  * @author  Johann Sorel (Puzzle-GIS)
  * @author  Thomas Bonavia (comments)
  */
-public final class LayerSource {
+public final class GISLayerSource {
 
     /**
      * Key providing the saving information of this layer.
@@ -42,7 +42,7 @@ public final class LayerSource {
     private final Map<String,String> params = new HashMap<String, String>();
     private final GISSource source;
     
-    public LayerSource(int sourceId, Map<String,String> parameters, GISSource source){
+    public GISLayerSource(int sourceId, Map<String,String> parameters, GISSource source){
         if(sourceId <=0){
             throw new NullPointerException("SourceID can not be null");
         }

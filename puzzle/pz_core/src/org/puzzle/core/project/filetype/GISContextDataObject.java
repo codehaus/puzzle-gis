@@ -62,7 +62,7 @@ import org.openide.util.Lookup;
 import org.openide.text.DataEditorSupport;
 import org.openide.xml.XMLUtil;
 
-import org.puzzle.core.project.source.LayerSource;
+import org.puzzle.core.project.source.GISLayerSource;
 import org.puzzle.core.project.GISProject;
 import org.puzzle.core.project.source.GISSource;
 
@@ -352,7 +352,7 @@ public class GISContextDataObject extends XMLDataObject {
 
     private Node DOMencodeLayer(final Document doc, final MapLayer layer, final Node layerNode, final EventObject event) {
 
-        final LayerSource source = (LayerSource) layer.getUserPropertie(LayerSource.KEY_LAYER_INFO);
+        final GISLayerSource source = (GISLayerSource) layer.getUserPropertie(GISLayerSource.KEY_LAYER_INFO);
         if (source == null) {
             //can not save this layer
             return layerNode;
