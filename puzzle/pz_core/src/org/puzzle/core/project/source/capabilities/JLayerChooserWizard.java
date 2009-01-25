@@ -46,11 +46,9 @@ import org.geotools.map.MapLayer;
 import org.openide.DialogDisplayer;
 import org.openide.WizardDescriptor;
 import org.openide.util.HelpCtx;
-import org.openide.util.NbBundle;
-import org.puzzle.core.project.source.GISSource;
+import org.openide.util.ImageUtilities;
 
 /**
- *
  * @author Johann Sorel (Puzzle-GIS)
  */
 public class JLayerChooserWizard extends JPanel implements WizardDescriptor.Panel, LayerChooserMonitor {
@@ -59,8 +57,6 @@ public class JLayerChooserWizard extends JPanel implements WizardDescriptor.Pane
     private final Collection<? extends MapContext> contexts;
     private boolean valid = false;
 
-
-    /** Creates new form JLayerChooserWizard */
     JLayerChooserWizard(Collection<MapContext> contexts) {
         this.contexts = contexts;
         initComponents();
@@ -82,6 +78,11 @@ public class JLayerChooserWizard extends JPanel implements WizardDescriptor.Pane
 
         guiContexts.setSelectedItem(contexts.iterator().next());
 
+    }
+
+    @Override
+    public String getName() {
+        return Utilities.getString("chooselayer");
     }
 
     public void setChooser(JComponent component){
@@ -141,7 +142,7 @@ public class JLayerChooserWizard extends JPanel implements WizardDescriptor.Pane
         final WizardDescriptor wizardDescriptor = new WizardDescriptor(chooser.getPanels());
         // {0} will be replaced by WizardDesriptor.Panel.getComponent().getName()
         wizardDescriptor.setTitleFormat(new MessageFormat("{0}"));
-        wizardDescriptor.setTitle(Utilities.getString("chooseLayer"));
+        wizardDescriptor.setTitle(Utilities.getString("chooselayer"));
         Dialog dialog = DialogDisplayer.getDefault().createDialog(wizardDescriptor);
         dialog.setVisible(true);
         dialog.toFront();
@@ -187,7 +188,7 @@ public class JLayerChooserWizard extends JPanel implements WizardDescriptor.Pane
                     // Show steps on the left side with the image on the background
                     jc.putClientProperty(WizardDescriptor.PROP_CONTENT_DISPLAYED, Boolean.TRUE);
                     // Turn on numbering of all steps
-                    jc.putClientProperty(WizardDescriptor.PROP_CONTENT_NUMBERED, Boolean.TRUE);
+                    jc.putClientProperty(WizardDescriptor.PROP_CONTENT_NUMBERED, Boolean.FALSE);
                 }
             }
         return panels;
