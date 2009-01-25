@@ -113,12 +113,12 @@
     <linearGradient
        id="linearGradient5051">
       <stop
-         style="stop-color:#021613;stop-opacity:1;"
+         style="stop-color:#000000;stop-opacity:1;"
          offset="0"
          id="stop5053" />
       <stop
          id="stop5059"
-         offset="0.25"
+         offset="0.18589647"
          style="stop-color:#003944;stop-opacity:1;" />
       <stop
          id="stop5055"
@@ -576,10 +576,10 @@
        inkscape:collect="always"
        xlink:href="#linearGradient5051"
        id="linearGradient19276"
-       x1="2017.835"
-       y1="685.26672"
-       x2="2263.3142"
-       y2="-87.024567"
+       x1="2116.0229"
+       y1="597.18384"
+       x2="2116.9089"
+       y2="-64.697304"
        gradientUnits="userSpaceOnUse"
        gradientTransform="matrix(0.8085581,0,0,0.3174797,296.85902,-66.517434)" />
     <linearGradient
@@ -1019,7 +1019,7 @@
        y2="175.42666" />
   </defs>
   <sodipodi:namedview
-     inkscape:window-height="972"
+     inkscape:window-height="967"
      inkscape:window-width="1680"
      inkscape:pageshadow="2"
      inkscape:pageopacity="0.0"
@@ -1030,23 +1030,23 @@
      bordercolor="#666666"
      pagecolor="#ffffff"
      id="base"
-     inkscape:zoom="0.7053726"
-     inkscape:cx="1799.2397"
-     inkscape:cy="375.94674"
+     inkscape:zoom="1.4107452"
+     inkscape:cx="2017.7908"
+     inkscape:cy="536.34011"
      inkscape:window-x="0"
-     inkscape:window-y="28"
+     inkscape:window-y="30"
      inkscape:current-layer="svg3432"
      showgrid="false" />
   <rect
-     style="opacity:1;fill:url(#linearGradient19276);fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.30399385;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+     style="opacity:1;fill:url(#linearGradient19276);fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.30399385000000001;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
      id="rect6510"
      width="774.88196"
      height="197.3213"
      x="1633.4091"
      y="-74.396988"
      inkscape:export-filename="/home/eclesia/dev/puzzle/graphics/puzzle_update_screen34.png"
-     inkscape:export-xdpi="52.245522"
-     inkscape:export-ydpi="52.245522" />
+     inkscape:export-xdpi="46.440464"
+     inkscape:export-ydpi="46.440464" />
   <g
      id="g4785"
      transform="matrix(1.0206063,-5.0280759e-2,5.0280759e-2,1.0206063,-65.24101,-44.925037)">
