@@ -54,7 +54,7 @@ public class TransformUtils {
         final FeatureSource<SimpleFeatureType, SimpleFeature> featureTarget = target.getFeatureSource(target.getTypeNames()[0]);
 
         if (featureTarget instanceof FeatureStore) {
-            FeatureStore<SimpleFeatureType, SimpleFeature> store = (FeatureStore) featureTarget;
+            FeatureStore<SimpleFeatureType, SimpleFeature> store = (FeatureStore<SimpleFeatureType, SimpleFeature>) featureTarget;
 
             DefaultTransaction transaction = new DefaultTransaction();
             store.setTransaction(transaction);
