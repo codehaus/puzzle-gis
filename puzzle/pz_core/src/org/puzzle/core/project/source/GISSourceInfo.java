@@ -46,7 +46,7 @@ public final class GISSourceInfo {
         this.serviceName = serviceName;
 
         //make a defensive copy immutable
-        final Map<String,String> params = new HashMap(parameters);
+        final Map<String,String> params = new HashMap<String,String>(parameters);
         this.parameters = Collections.unmodifiableMap(params);
     }
 
