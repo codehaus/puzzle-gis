@@ -29,9 +29,9 @@ import javax.swing.AbstractAction;
 import org.netbeans.api.project.Project;
 import org.netbeans.api.project.ui.OpenProjects;
 
-import org.openide.DialogDescriptor;
 import org.openide.DialogDisplayer;
 import org.openide.NotifyDescriptor;
+import org.openide.WizardDescriptor;
 
 import org.puzzle.core.project.GISProject;
 import org.puzzle.core.project.source.GISSourceInfo;
@@ -73,8 +73,7 @@ public final class NewFileSource extends AbstractAction {
 
                 @Override
                 public void actionPerformed(ActionEvent e) {
-
-                    if (e.getActionCommand().equalsIgnoreCase("ok")) {
+                    if (e.getActionCommand().equalsIgnoreCase("Finish")) {
                         pane.setVisible(false);
                         final Map<String,GISSourceInfo> sources = pane.getSources();
                         final Set<String> names = sources.keySet();
@@ -85,13 +84,14 @@ public final class NewFileSource extends AbstractAction {
                 }
             };
 
-            final DialogDescriptor desc = new DialogDescriptor(pane, Utilities.getString("openFile"), true, lst);
-            DialogDisplayer.getDefault().notify(desc);
+            final WizardDescriptor wdesc = WizardUtilities.createSimplewWizard(pane, Utilities.getString("openFile"));
+            wdesc.setButtonListener(lst);
+            DialogDisplayer.getDefault().notify(wdesc);
         }else{
             final NotifyDescriptor d =  new NotifyDescriptor.Message(Utilities.getString("projectIsNotGIS"), NotifyDescriptor.INFORMATION_MESSAGE);
             DialogDisplayer.getDefault().notify(d);
         }
         
-        
     }
+
 }
