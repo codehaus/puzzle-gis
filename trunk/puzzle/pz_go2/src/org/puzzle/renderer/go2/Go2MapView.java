@@ -26,8 +26,7 @@ import org.geotools.gui.swing.go.J2DMapVolatile;
 import org.geotools.gui.swing.go.control.JConfigBar;
 import org.geotools.gui.swing.go.control.JCoordinateBar;
 import org.geotools.gui.swing.go.control.JNavigationBar;
-import org.geotools.gui.swing.go.decoration.JNavigationDecoration;
-import org.geotools.gui.swing.go.decoration.JNorthArrowDecoration;
+import org.geotools.gui.swing.go.decoration.JClassicNavigationDecoration;
 import org.geotools.map.MapContext;
 import org.openide.util.ImageUtilities;
 import org.openide.util.Utilities;
@@ -43,7 +42,7 @@ public class Go2MapView extends MapView{
     private final JNavigationBar navBar = new JNavigationBar();
     private final JCoordinateBar coordBar = new JCoordinateBar();
     private final JConfigBar configBar = new JConfigBar();
-    private final JNavigationDecoration boussole = new JNavigationDecoration();
+    private final JClassicNavigationDecoration boussole = new JClassicNavigationDecoration();
 
     
     public Go2MapView(J2DMapVolatile map){

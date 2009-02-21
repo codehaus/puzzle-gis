@@ -28,13 +28,11 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Logger;
 
-import javax.swing.JScrollPane;
-import org.geotools.gui.swing.contexttree.popup.SeparatorItem;
-import org.geotools.gui.swing.outlinetree.JContextOutLine;
-import org.geotools.gui.swing.outlinetree.popup.DeleteItem;
-import org.geotools.gui.swing.outlinetree.popup.JContextOutLinePopup;
-import org.geotools.gui.swing.outlinetree.popup.LayerFeatureItem;
-import org.geotools.gui.swing.outlinetree.popup.LayerPropertyItem;
+import org.geotools.gui.swing.maptree.JContextTree;
+import org.geotools.gui.swing.maptree.menu.DeleteItem;
+import org.geotools.gui.swing.maptree.menu.LayerFeatureItem;
+import org.geotools.gui.swing.maptree.menu.LayerPropertyItem;
+import org.geotools.gui.swing.maptree.menu.SeparatorItem;
 import org.geotools.gui.swing.propertyedit.LayerCRSPropertyPanel;
 import org.geotools.gui.swing.propertyedit.LayerFilterPropertyPanel;
 import org.geotools.gui.swing.propertyedit.LayerGeneralPanel;
@@ -65,7 +63,7 @@ final class ContextTreeTopComponent extends TopComponent implements LookupListen
     private Lookup.Result result = null;
 
 
-    private JContextOutLine tree = null;
+    private JContextTree tree = null;
     private static ContextTreeTopComponent instance;
     private static final String PREFERRED_ID = "ContextTreeTopComponent";
 
@@ -77,15 +75,14 @@ final class ContextTreeTopComponent extends TopComponent implements LookupListen
 
     }
 
-    public JContextOutLine getContextTree() {
+    public JContextTree getContextTree() {
 
-        final JContextOutLine tree = new JContextOutLine();
+        final JContextTree tree = new JContextTree();
 
-        JContextOutLinePopup popupMenu = tree.getPopupMenu();
-        popupMenu.controls().add(new LayerFeatureItem());
-        popupMenu.controls().add(new SeparatorItem());
-        popupMenu.controls().add(new DeleteItem(tree));
-        popupMenu.controls().add(new SeparatorItem());
+        tree.controls().add(new LayerFeatureItem());
+        tree.controls().add(new SeparatorItem());
+        tree.controls().add(new DeleteItem(tree));
+        tree.controls().add(new SeparatorItem());
 
         LayerPropertyItem property = new LayerPropertyItem();
         List<PropertyPane> lstproperty = new ArrayList<PropertyPane>();
@@ -103,7 +100,7 @@ final class ContextTreeTopComponent extends TopComponent implements LookupListen
         lstproperty.add(styles);
 
         property.setPropertyPanels(lstproperty);
-        popupMenu.controls().add(property);
+        tree.controls().add(property);
 
         tree.revalidate();
 
@@ -169,7 +166,7 @@ final class ContextTreeTopComponent extends TopComponent implements LookupListen
             tree = getContextTree();
         }
 
-        add(BorderLayout.CENTER, new JScrollPane(tree));
+        add(BorderLayout.CENTER, tree);
 
         requestActive();
     }

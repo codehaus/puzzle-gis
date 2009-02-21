@@ -78,17 +78,23 @@ public class GISSourceNode extends FilterNode {
 
     @Override
     public Action[] getActions(boolean arg0) {
+        Action[] actions = super.getActions(arg0);
+
         final DataObject obj = getLookup().lookup(DataObject.class);
         final Project proj = FileOwnerQuery.getOwner(obj.getPrimaryFile());
         
         if(proj != null && proj instanceof GISProject){
-            return new Action[]{
-                new NewFileSource((GISProject)proj),
-                new NewDistantSource((GISProject)proj)
-            };
-        }else{
-            return new Action[0];
+            Action[] temp = actions;
+            actions = new Action[actions.length+2];
+            actions[0] = new NewFileSource((GISProject)proj);
+            actions[1] = new NewDistantSource((GISProject)proj);
+            for (int i = 0; i < temp.length; i++) {
+                actions[i+2] = temp[i];
+
+            }
         }
+
+        return actions;
     }
 
 }

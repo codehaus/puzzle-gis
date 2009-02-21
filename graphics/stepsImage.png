@@ -15,7 +15,7 @@
    id="svg2"
    sodipodi:version="0.32"
    inkscape:version="0.46"
-   sodipodi:docname="stepsImage.svg"
+   sodipodi:docname="stepsImage.png"
    inkscape:output_extension="org.inkscape.output.svg.inkscape">
   <metadata
      id="metadata24">
@@ -275,9 +275,9 @@
      height="437.50912"
      x="-48.760124"
      y="4.0219202"
-     inkscape:export-filename="/home/eclesia/dev/puzzle/trunk/puzzle/pz_core/src/org/puzzle/core/project/steps.png"
-     inkscape:export-xdpi="65.649239"
-     inkscape:export-ydpi="65.649239" />
+     inkscape:export-filename="/home/eclesia/dev/puzzle/graphics/stepsImage.png"
+     inkscape:export-xdpi="71.584206"
+     inkscape:export-ydpi="71.584206" />
   <rect
      width="524.05078"
      height="525.11597"

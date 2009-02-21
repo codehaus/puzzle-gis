@@ -78,16 +78,22 @@ public class GISMapNode extends FilterNode {
 
     @Override
     public Action[] getActions(boolean arg0) {
-        final DataObject obj = getLookup().lookup(DataObject.class);
-        final Project project = FileOwnerQuery.getOwner(obj.getPrimaryFile());
+        Action[] actions = super.getActions(arg0);
 
-        if (project instanceof GISProject) {
-            return new Action[]{
-                new NewMapContext( (GISProject)project)
-            };
-        }else{
-            return new Action[0];
+        final DataObject obj = getLookup().lookup(DataObject.class);
+        final Project proj = FileOwnerQuery.getOwner(obj.getPrimaryFile());
+
+        if(proj != null && proj instanceof GISProject){
+            Action[] temp = actions;
+            actions = new Action[actions.length+1];
+            actions[0] = new NewMapContext( (GISProject)proj);
+            for (int i = 0; i < temp.length; i++) {
+                actions[i+1] = temp[i];
+
+            }
         }
+
+        return actions;
     }
 
 }

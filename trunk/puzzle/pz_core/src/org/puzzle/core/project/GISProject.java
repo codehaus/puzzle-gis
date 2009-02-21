@@ -55,6 +55,7 @@ import org.netbeans.api.project.Project;
 import org.netbeans.api.project.ProjectInformation;
 import org.netbeans.spi.project.ActionProvider;
 import org.netbeans.spi.project.ProjectState;
+import org.netbeans.spi.project.ui.CustomizerProvider;
 import org.netbeans.spi.project.ui.LogicalViewProvider;
 import org.openide.filesystems.FileObject;
 import org.openide.filesystems.FileUtil;
@@ -128,6 +129,7 @@ public class GISProject implements Project {
         lookUpContent.add(loadProperties());
         lookUpContent.add(new Info());
         lookUpContent.add(logicalView);
+        
     }
 
     private List<Integer> alreadyGiven = new ArrayList<Integer>();

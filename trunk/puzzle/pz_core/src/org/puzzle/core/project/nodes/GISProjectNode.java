@@ -21,14 +21,23 @@
 package org.puzzle.core.project.nodes;
 
 import java.awt.Image;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.Action;
 import javax.swing.ImageIcon;
 
 import org.netbeans.api.project.ProjectInformation;
 import org.netbeans.spi.project.ui.support.CommonProjectActions;
 
+import org.openide.filesystems.FileObject;
+import org.openide.loaders.DataObject;
+import org.openide.loaders.DataObjectNotFoundException;
+import org.openide.nodes.AbstractNode;
+import org.openide.nodes.Children;
 import org.openide.nodes.FilterNode;
+import org.openide.nodes.Index.ArrayChildren;
 import org.openide.nodes.Node;
+import org.openide.util.Exceptions;
 import org.openide.util.ImageUtilities;
 import org.openide.util.Lookup;
 import org.openide.util.lookup.Lookups;
@@ -66,8 +75,7 @@ public class GISProjectNode extends FilterNode{
                     //The projects system wants the project in the Node's lookup.
                     //NewAction and friends want the original Node's lookup.
                     //Make a merge of both
-                    new ProxyLookup (new Lookup[] { Lookups.singleton(project),
-                    node.getLookup() }));
+                    Lookups.singleton(project));
         this.project = project;
     }
 
@@ -96,3 +104,42 @@ public class GISProjectNode extends FilterNode{
     }
 
 }
+
+class GISProjectNodeFilter extends FilterNode.Children{
+
+    private final GISProject project;
+
+    public GISProjectNodeFilter(Node original,GISProject project){
+        super(original);
+        this.project = project;
+    }
+
+    @Override
+    protected Node copyNode(Node node) {
+        final DataObject dob = node.getLookup().lookup (DataObject.class);
+        final FileObject file = dob.getPrimaryFile();
+
+        if(file.equals(project.getSourceFolder(true))){
+            return new GISSourceNode(node);
+        }else if(file.equals(project.getMapFolder(true))){
+            return new GISMapNode(node);
+        }else if(file.equals(project.getDocFolder(true))){
+            return new GISDocNode(node);
+        }else{
+            return new FilterNode(node);
+        }
+    }
+
+
+    protected Node[] createNodes(Node node) {
+        final String name = node.getName();
+        if(name.equals("gisproject")){
+            return new Node[0];
+        }else{
+            return super.createNodes(node);
+        }
+    }
+
+}
+
+
