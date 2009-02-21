@@ -17,8 +17,8 @@
                 <package>org.opengis.coverage.grid.quadrilateral</package>
                 <package>org.opengis.coverage.processing</package>
                 <package>org.opengis.display.canvas</package>
+                <package>org.opengis.display.container</package>
                 <package>org.opengis.display.primitive</package>
-                <package>org.opengis.display.renderer</package>
                 <package>org.opengis.feature</package>
                 <package>org.opengis.feature.simple</package>
                 <package>org.opengis.feature.type</package>

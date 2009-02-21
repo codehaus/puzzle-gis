@@ -100,14 +100,16 @@ public class ShapeFileSource extends GISSource{
         DataStore store = null;
         try {
             store = DataStoreFinder.getDataStore(Collections.singletonMap("url",shapefile.toURI().toURL()));
-        } catch (IOException ex) {
+        } catch (Exception ex) {
+            //we can not trust the underlying datastore, they sometime throw nullpointer errors
             setState(GISSourceState.LOADING_ERROR);
             Exceptions.printStackTrace(ex);
             return;
         }
         try {
             featureSource = store.getFeatureSource(store.getTypeNames()[0]);
-        } catch (IOException ex) {
+        } catch (Exception ex) {
+            //we can not trust the underlying datastore, they sometime throw nullpointer errors
             setState(GISSourceState.LOADING_ERROR);
             Exceptions.printStackTrace(ex);
             return;

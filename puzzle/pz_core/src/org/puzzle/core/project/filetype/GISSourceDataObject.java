@@ -179,8 +179,13 @@ public class GISSourceDataObject extends XMLDataObject {
 
     @Override
     public Lookup getLookup() {
-        return new ProxyLookup(getCookieSet().getLookup(),getSource().getLookup());
-//        return getCookieSet().getLookup();
+        GISSource source = getSource();
+        if(source == null){
+            return getCookieSet().getLookup();
+        }else{
+            return new ProxyLookup(getCookieSet().getLookup(),source.getLookup());
+        }
+        
     }
 
     /**

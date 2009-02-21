@@ -56,13 +56,16 @@ public class GISSourceDataNode extends DataNode {
     GISSourceDataNode(GISSourceDataObject obj, Lookup lookup) {
         super(obj, Children.LEAF, lookup);
 
-        obj.getSource().addPropertyChangeListener(GISSource.STATE_PROPERTY, new PropertyChangeListener() {
+        GISSource source = obj.getSource();
+        if(source != null){
+            obj.getSource().addPropertyChangeListener(GISSource.STATE_PROPERTY, new PropertyChangeListener() {
 
-            @Override
-            public void propertyChange(PropertyChangeEvent evt) {
-                fireIconChange();
-            }
-        });
+                @Override
+                public void propertyChange(PropertyChangeEvent evt) {
+                    fireIconChange();
+                }
+            });
+        }
 
         setIconBaseWithExtension(IMAGE_ICON_BASE);
     }

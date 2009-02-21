@@ -178,9 +178,6 @@
                 <package>org.apache.batik.parser</package>
                 <package>org.apache.batik.script</package>
                 <package>org.apache.batik.script.rhino</package>
-                <package>org.apache.batik.swing</package>
-                <package>org.apache.batik.swing.gvt</package>
-                <package>org.apache.batik.swing.svg</package>
                 <package>org.apache.batik.transcoder</package>
                 <package>org.apache.batik.transcoder.image</package>
                 <package>org.apache.batik.transcoder.image.resources</package>
@@ -195,10 +192,6 @@
                 <package>org.apache.batik.util.io</package>
                 <package>org.apache.batik.util.resources</package>
                 <package>org.apache.batik.xml</package>
-                <package>org.apache.crimson.jaxp</package>
-                <package>org.apache.crimson.parser</package>
-                <package>org.apache.crimson.tree</package>
-                <package>org.apache.crimson.util</package>
                 <package>org.apache.html.dom</package>
                 <package>org.apache.wml</package>
                 <package>org.apache.wml.dom</package>
@@ -332,17 +325,19 @@
                 <package>org.geotools.data.wms.xml</package>
                 <package>org.geotools.display.array</package>
                 <package>org.geotools.display.canvas</package>
+                <package>org.geotools.display.canvas.container</package>
                 <package>org.geotools.display.canvas.control</package>
                 <package>org.geotools.display.canvas.event</package>
                 <package>org.geotools.display.canvas.map</package>
                 <package>org.geotools.display.canvas.web</package>
+                <package>org.geotools.display.container</package>
+                <package>org.geotools.display.container.statefull</package>
+                <package>org.geotools.display.container.stateless</package>
                 <package>org.geotools.display.event</package>
                 <package>org.geotools.display.exception</package>
                 <package>org.geotools.display.geom</package>
                 <package>org.geotools.display.primitive</package>
                 <package>org.geotools.display.renderer</package>
-                <package>org.geotools.display.renderer.statefull</package>
-                <package>org.geotools.display.renderer.stateless</package>
                 <package>org.geotools.display.service</package>
                 <package>org.geotools.display.style</package>
                 <package>org.geotools.display.style.j2d</package>
@@ -350,6 +345,7 @@
                 <package>org.geotools.display.style.legend</package>
                 <package>org.geotools.display.style.northarrow</package>
                 <package>org.geotools.display.style.raster</package>
+                <package>org.geotools.display.style.renderer</package>
                 <package>org.geotools.display.style.scalebar</package>
                 <package>org.geotools.factory</package>
                 <package>org.geotools.feature</package>
@@ -413,11 +409,11 @@
                 <package>org.geotools.gui.swing.contexttree.popup</package>
                 <package>org.geotools.gui.swing.contexttree.renderer</package>
                 <package>org.geotools.gui.swing.crschooser</package>
-                <package>org.geotools.gui.swing.datachooser</package>
-                <package>org.geotools.gui.swing.datachooser.model</package>
                 <package>org.geotools.gui.swing.debug</package>
                 <package>org.geotools.gui.swing.debug.cost</package>
+                <package>org.geotools.gui.swing.debug.erase</package>
                 <package>org.geotools.gui.swing.debug.jasper</package>
+                <package>org.geotools.gui.swing.debug.jfreechart</package>
                 <package>org.geotools.gui.swing.event</package>
                 <package>org.geotools.gui.swing.filter</package>
                 <package>org.geotools.gui.swing.go</package>
@@ -425,21 +421,21 @@
                 <package>org.geotools.gui.swing.go.decoration</package>
                 <package>org.geotools.gui.swing.go.extractor</package>
                 <package>org.geotools.gui.swing.go.handler</package>
-                <package>org.geotools.gui.swing.icon</package>
                 <package>org.geotools.gui.swing.image</package>
                 <package>org.geotools.gui.swing.map.map2d</package>
                 <package>org.geotools.gui.swing.map.map2d.decoration</package>
+                <package>org.geotools.gui.swing.maptree</package>
+                <package>org.geotools.gui.swing.maptree.menu</package>
                 <package>org.geotools.gui.swing.misc</package>
                 <package>org.geotools.gui.swing.misc.Render</package>
                 <package>org.geotools.gui.swing.misc.filter</package>
-                <package>org.geotools.gui.swing.outlinetree</package>
-                <package>org.geotools.gui.swing.outlinetree.popup</package>
                 <package>org.geotools.gui.swing.propertyedit</package>
                 <package>org.geotools.gui.swing.propertyedit.filterproperty</package>
                 <package>org.geotools.gui.swing.propertyedit.model</package>
                 <package>org.geotools.gui.swing.propertyedit.styleproperty</package>
                 <package>org.geotools.gui.swing.referencing</package>
                 <package>org.geotools.gui.swing.report</package>
+                <package>org.geotools.gui.swing.resource</package>
                 <package>org.geotools.gui.swing.style</package>
                 <package>org.geotools.gui.swing.table</package>
                 <package>org.geotools.gui.swing.tree</package>
@@ -513,6 +509,7 @@
                 <package>org.geotools.resources.jaxb.code</package>
                 <package>org.geotools.resources.jaxb.metadata</package>
                 <package>org.geotools.resources.jaxb.primitive</package>
+                <package>org.geotools.resources.jaxb.referencing</package>
                 <package>org.geotools.resources.jaxb.uom</package>
                 <package>org.geotools.sld</package>
                 <package>org.geotools.style</package>
@@ -553,7 +550,6 @@
                 <package>org.jdesktop.animation.timing.interpolation</package>
                 <package>org.jdesktop.animation.timing.triggers</package>
                 <package>org.jdesktop.beans</package>
-                <package>org.jdesktop.layout</package>
                 <package>org.jdesktop.swingx</package>
                 <package>org.jdesktop.swingx.action</package>
                 <package>org.jdesktop.swingx.auth</package>
@@ -564,11 +560,11 @@
                 <package>org.jdesktop.swingx.color</package>
                 <package>org.jdesktop.swingx.combobox</package>
                 <package>org.jdesktop.swingx.decorator</package>
-                <package>org.jdesktop.swingx.editors</package>
                 <package>org.jdesktop.swingx.error</package>
                 <package>org.jdesktop.swingx.event</package>
                 <package>org.jdesktop.swingx.geom</package>
                 <package>org.jdesktop.swingx.graphics</package>
+                <package>org.jdesktop.swingx.hyperlink</package>
                 <package>org.jdesktop.swingx.icon</package>
                 <package>org.jdesktop.swingx.image</package>
                 <package>org.jdesktop.swingx.multislider</package>
@@ -582,8 +578,11 @@
                 <package>org.jdesktop.swingx.plaf.metal</package>
                 <package>org.jdesktop.swingx.plaf.misc</package>
                 <package>org.jdesktop.swingx.plaf.motif</package>
+                <package>org.jdesktop.swingx.plaf.nimbus</package>
                 <package>org.jdesktop.swingx.plaf.windows</package>
                 <package>org.jdesktop.swingx.renderer</package>
+                <package>org.jdesktop.swingx.rollover</package>
+                <package>org.jdesktop.swingx.search</package>
                 <package>org.jdesktop.swingx.table</package>
                 <package>org.jdesktop.swingx.tips</package>
                 <package>org.jdesktop.swingx.tree</package>
