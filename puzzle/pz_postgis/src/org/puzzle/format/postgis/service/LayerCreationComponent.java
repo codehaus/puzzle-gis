@@ -24,25 +24,24 @@ package org.puzzle.format.postgis.service;
 import java.awt.Font;
 import java.io.IOException;
 import java.util.Collections;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import javax.swing.table.DefaultTableModel;
 import org.geotools.data.DataStore;
 import org.geotools.factory.CommonFactoryFinder;
 import org.geotools.map.MapLayer;
-import org.jdesktop.swingx.JXTable;
 import org.openide.util.NbBundle;
 import org.puzzle.core.project.source.capabilities.JLayerChooser;
 import org.puzzle.core.project.source.capabilities.LayerChooserMonitor;
 import org.puzzle.core.project.source.capabilities.LayerCreation;
-import org.puzzle.format.postgis.ui.DBModel;
 
 /**
  *
@@ -60,25 +59,23 @@ public class LayerCreationComponent extends JLayerChooser {
         this.source = source;
         initComponents();
 
-        tab_table.setTableHeader(null);
-        tab_table.setModel(new DBModel(tab_table));
+        guiLayerList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
         if (store != null) {
-            ((DBModel) tab_table.getModel()).clean();
             try {
-                ((DBModel) tab_table.getModel()).add(store.getTypeNames());
+                guiLayerList.setModel(new DefaultComboBoxModel(store.getTypeNames()));
             } catch (IOException ex) {
                 System.out.println(ex);
             }
         }
 
-        tab_table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        tab_table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+        guiLayerList.addListSelectionListener(new ListSelectionListener() {
 
             @Override
             public void valueChanged(ListSelectionEvent e) {
-                if(tab_table.getSelectedRow() != -1){
-                    guiTitle.setText(tab_table.getValueAt(tab_table.getSelectedRow(), 0).toString());
+                Object selection = guiLayerList.getSelectedValue();
+                if(selection != null){
+                    guiTitle.setText(selection.toString());
                     monitor.setReady(true);
                 }
             }
@@ -87,8 +84,9 @@ public class LayerCreationComponent extends JLayerChooser {
     }
 
     private String getType(){
-        if(tab_table.getSelectedRow() != -1){
-             return tab_table.getValueAt(tab_table.getSelectedRow(), 0).toString();
+        Object selection = guiLayerList.getSelectedValue();
+        if(selection != null){
+             return selection.toString();
         }else{
             return null;
         }
@@ -107,20 +105,12 @@ public class LayerCreationComponent extends JLayerChooser {
 
         jLabel2 = new JLabel();
         guiTitle = new JTextField();
-        jScrollPane1 = new JScrollPane();
-        tab_table = new JXTable();
+        jsp = new JScrollPane();
+        guiLayerList = new JList();
 
         jLabel2.setFont(jLabel2.getFont().deriveFont(jLabel2.getFont().getStyle() | Font.BOLD));
         jLabel2.setText(NbBundle.getMessage(LayerCreationComponent.class, "title")); // NOI18N
-        tab_table.setModel(new DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-
-            }
-        ));
-        jScrollPane1.setViewportView(tab_table);
+        jsp.setViewportView(guiLayerList);
 
         GroupLayout layout = new GroupLayout(this);
         this.setLayout(layout);
@@ -129,11 +119,11 @@ public class LayerCreationComponent extends JLayerChooser {
             .addGroup(Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(Alignment.TRAILING)
-                    .addComponent(jScrollPane1, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 309, Short.MAX_VALUE)
+                    .addComponent(jsp, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(ComponentPlacement.RELATED)
-                        .addComponent(guiTitle, GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE)))
+                        .addComponent(guiTitle, GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -144,7 +134,7 @@ public class LayerCreationComponent extends JLayerChooser {
                     .addComponent(jLabel2)
                     .addComponent(guiTitle, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
+                .addComponent(jsp, GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -166,10 +156,10 @@ public class LayerCreationComponent extends JLayerChooser {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private JList guiLayerList;
     private JTextField guiTitle;
     private JLabel jLabel2;
-    private JScrollPane jScrollPane1;
-    private JXTable tab_table;
+    private JScrollPane jsp;
     // End of variables declaration//GEN-END:variables
 
 }

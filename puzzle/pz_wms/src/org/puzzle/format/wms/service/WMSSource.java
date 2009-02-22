@@ -129,6 +129,7 @@ public class WMSSource extends GISSource{
          */
         @Override
         public JLayerChooser createChooser(LayerChooserMonitor monitor) {
+            load();
             return new LayerCreationComponent(monitor, server, WMSSource.this);
         }
     }

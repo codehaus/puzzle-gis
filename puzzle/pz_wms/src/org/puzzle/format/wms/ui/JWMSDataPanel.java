@@ -28,21 +28,20 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.table.DefaultTableModel;
 import org.geotools.data.wms.WebMapServer;
 
 import org.geotools.data.wms.backend.AbstractWMSCapabilities;
-import org.jdesktop.swingx.JXTable;
 import org.jdesktop.swingx.JXTitledPanel;
 
+import org.jdesktop.swingx.combobox.ListComboBoxModel;
 import org.openide.util.Exceptions;
 import org.openide.util.NbBundle;
 import org.puzzle.core.project.source.capabilities.SourceCreationPane;
@@ -68,9 +67,6 @@ public class JWMSDataPanel extends SourceCreationPane {
 
         setProperties(params);
 
-        tab_table.setTableHeader(null);
-        tab_table.setModel(new DBModel(tab_table));
-
     }
 
     public Map getProperties() {
@@ -95,7 +91,6 @@ public class JWMSDataPanel extends SourceCreationPane {
     private void refreshTable() {
 
         if (server != null) {
-            ((DBModel) tab_table.getModel()).clean();
             try {
                 final AbstractWMSCapabilities capa = server.getJaxbCapabilities();
                 final List<String> layerNames = new ArrayList<String>();
@@ -115,9 +110,9 @@ public class JWMSDataPanel extends SourceCreationPane {
                     }
                 }
 
-                ((DBModel) tab_table.getModel()).add(layerNames.toArray(new String[layerNames.size()]));
+                guiLayerList.setModel(new ListComboBoxModel(layerNames));
             } catch (Exception ex) {
-                System.out.println(ex);
+                Exceptions.printStackTrace(ex);
             }
         }
 
@@ -132,8 +127,6 @@ public class JWMSDataPanel extends SourceCreationPane {
     private void initComponents() {
 
         but_refresh = new JButton();
-        jScrollPane1 = new JScrollPane();
-        tab_table = new JXTable();
         jXTitledPanel1 = new JXTitledPanel();
         jLabel1 = new JLabel();
         jtf_url = new JTextField();
@@ -141,6 +134,8 @@ public class JWMSDataPanel extends SourceCreationPane {
         jtf_version = new JTextField();
         jLabel3 = new JLabel();
         jtf_name = new JTextField();
+        jScrollPane1 = new JScrollPane();
+        guiLayerList = new JList();
 
         but_refresh.setText(NbBundle.getBundle(JWMSDataPanel.class).getString("test")); // NOI18N
         but_refresh.addActionListener(new ActionListener() {
@@ -149,17 +144,7 @@ public class JWMSDataPanel extends SourceCreationPane {
             }
         });
 
-        tab_table.setModel(new DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-
-            }
-        ));
-        jScrollPane1.setViewportView(tab_table);
-
-        jXTitledPanel1.setBorder(BorderFactory.createEtchedBorder());
+        jXTitledPanel1.setBorder(null);
         jXTitledPanel1.setTitle("null");
 
 
@@ -178,15 +163,15 @@ public class JWMSDataPanel extends SourceCreationPane {
                     .addGroup(jXTitledPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(ComponentPlacement.RELATED)
-                        .addComponent(jtf_url, GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE))
+                        .addComponent(jtf_url, GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE))
                     .addGroup(jXTitledPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(ComponentPlacement.RELATED)
-                        .addComponent(jtf_version, GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE))
+                        .addComponent(jtf_version, GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE))
                     .addGroup(jXTitledPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(ComponentPlacement.RELATED)
-                        .addComponent(jtf_name, GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE)))
+                        .addComponent(jtf_name, GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jXTitledPanel1Layout.setVerticalGroup(
@@ -207,6 +192,8 @@ public class JWMSDataPanel extends SourceCreationPane {
                 .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jScrollPane1.setViewportView(guiLayerList);
+
         GroupLayout layout = new GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -215,18 +202,19 @@ public class JWMSDataPanel extends SourceCreationPane {
                 .addComponent(jXTitledPanel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(Alignment.LEADING)
-                    .addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
-                    .addComponent(but_refresh, GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)))
+                    .addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
+                    .addComponent(but_refresh, GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(but_refresh)
-                .addPreferredGap(ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jXTitledPanel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(99, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(but_refresh)
+                        .addPreferredGap(ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE))
+                    .addComponent(jXTitledPanel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
     private void actionRefresh(ActionEvent evt) {//GEN-FIRST:event_actionRefresh
@@ -256,6 +244,7 @@ public class JWMSDataPanel extends SourceCreationPane {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private JButton but_refresh;
+    private JList guiLayerList;
     private JLabel jLabel1;
     private JLabel jLabel2;
     private JLabel jLabel3;
@@ -264,7 +253,6 @@ public class JWMSDataPanel extends SourceCreationPane {
     private JTextField jtf_name;
     private JTextField jtf_url;
     private JTextField jtf_version;
-    private JXTable tab_table;
     // End of variables declaration//GEN-END:variables
     
     public Map<String,GISSourceInfo> createSources() {

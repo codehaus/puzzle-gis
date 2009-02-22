@@ -150,6 +150,7 @@ public class PostGISSource extends GISSource{
          */
         @Override
         public JLayerChooser createChooser(LayerChooserMonitor monitor) {
+            load();
             return new LayerCreationComponent(monitor, store, PostGISSource.this);
         }
     }
