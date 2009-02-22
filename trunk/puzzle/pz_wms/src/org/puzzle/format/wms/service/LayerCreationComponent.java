@@ -21,32 +21,33 @@
 
 package org.puzzle.format.wms.service;
 
+import java.awt.Component;
 import java.awt.Font;
-import java.io.IOException;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ListSelectionModel;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
-import javax.swing.table.DefaultTableModel;
-import org.geotools.data.DataStore;
+import javax.swing.SwingConstants;
 import org.geotools.data.wms.WebMapServer;
 import org.geotools.data.wms.backend.AbstractWMSCapabilities;
 import org.geotools.factory.CommonFactoryFinder;
 import org.geotools.map.MapLayer;
-import org.jdesktop.swingx.JXTable;
+import org.jdesktop.swingx.combobox.ListComboBoxModel;
+import org.openide.util.Exceptions;
 import org.openide.util.NbBundle;
 import org.puzzle.core.project.source.capabilities.JLayerChooser;
 import org.puzzle.core.project.source.capabilities.LayerChooserMonitor;
 import org.puzzle.core.project.source.capabilities.LayerCreation;
-import org.puzzle.format.wms.ui.DBModel;
 
 /**
  *
@@ -56,6 +57,8 @@ public class LayerCreationComponent extends JLayerChooser {
 
     private final WebMapServer server;
     private final WMSSource source;
+    private final List<String> possibleLayers = new ArrayList<String>();
+    private final List<String> selectedLayers = new ArrayList<String>();
 
     /** Creates new form LayerCreationComponent */
     public LayerCreationComponent(final LayerChooserMonitor monitor, WebMapServer store, WMSSource source) {
@@ -64,77 +67,57 @@ public class LayerCreationComponent extends JLayerChooser {
         this.source = source;
         initComponents();
 
-        tab_table.setTableHeader(null);
-        tab_table.setModel(new DBModel(tab_table));
-        
         if (server != null) {
-            ((DBModel) tab_table.getModel()).clean();
+            possibleLayers.clear();
             try {
                 final AbstractWMSCapabilities capa = server.getJaxbCapabilities();
-                final List<String> layerNames = new ArrayList<String>();
-
 
                 if(capa instanceof org.geotools.data.wms.backend.v130.WMSCapabilities){
                     org.geotools.data.wms.backend.v130.WMSCapabilities cp13 =
                             (org.geotools.data.wms.backend.v130.WMSCapabilities) capa;
                     for(org.geotools.data.wms.backend.v130.Layer layer : cp13.getCapability().getLayer().getLayer()){
-                        layerNames.add(layer.getName());
+                        possibleLayers.add(layer.getName());
                     }
                 }else if(capa instanceof org.geotools.data.wms.backend.v111.WMT_MS_Capabilities){
                     org.geotools.data.wms.backend.v111.WMT_MS_Capabilities cp11 =
                             (org.geotools.data.wms.backend.v111.WMT_MS_Capabilities) capa;
                     for(org.geotools.data.wms.backend.v111.Layer layer : cp11.getCapability().getLayer().getLayer()){
-                        layerNames.add(layer.getName());
+                        possibleLayers.add(layer.getName());
                     }
                 }
 
-                ((DBModel) tab_table.getModel()).add(layerNames.toArray(new String[layerNames.size()]));
+
             } catch (Exception ex) {
-                System.out.println(ex);
+                Exceptions.printStackTrace(ex);
             }
         }
 
-        tab_table.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-        tab_table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-
-            @Override
-            public void valueChanged(ListSelectionEvent e) {
-                int[] rows = tab_table.getSelectedRows();
-                if(rows.length > 0){
-                    String name = "";
-                    for(int row : rows){
-                        name += tab_table.getValueAt(row, 0).toString();
-
-                        if(row != rows[rows.length-1]){
-                            name += ",";
-                        }
-                    }
-
-                    guiTitle.setText(name);
-                    monitor.setReady(true);
-                }
-            }
-        });
+        guiLstData.setModel(new ListComboBoxModel<String>(possibleLayers));
+        guiLstSelected.setModel(new ListComboBoxModel<String>(selectedLayers));
+        
+        guiLstData.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        guiLstSelected.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
     }
 
-    private String getType(){
-        int[] rows = tab_table.getSelectedRows();
-        if(rows.length > 0){
-            String name = "";
-            for(int row : rows){
-                name += tab_table.getValueAt(row, 0).toString();
+    private String getLayerNames(){
 
-                if(row != rows[rows.length-1]){
-                    name += ",";
-                }
+        if(!selectedLayers.isEmpty()){
+            String name = "";
+            for(Object obj : selectedLayers){
+                name += obj.toString() + ',';
             }
-            return name;
+
+            System.out.println(name);
+            return name.substring(0, name.length()-1);
         }else{
             return null;
         }
     }
 
+    private void check(){
+        getMonitor().setReady(!selectedLayers.isEmpty());
+    }
 
     /** This method is called from within the constructor to
      * initialize the form.
@@ -148,35 +131,99 @@ public class LayerCreationComponent extends JLayerChooser {
 
         jLabel2 = new JLabel();
         guiTitle = new JTextField();
+        jButton1 = new JButton();
+        jButton2 = new JButton();
+        jButton3 = new JButton();
+        jButton4 = new JButton();
+        jButton5 = new JButton();
+        jButton6 = new JButton();
         jScrollPane1 = new JScrollPane();
-        tab_table = new JXTable();
+        guiLstData = new JList();
+        jsp2 = new JScrollPane();
+        guiLstSelected = new JList();
 
         jLabel2.setFont(jLabel2.getFont().deriveFont(jLabel2.getFont().getStyle() | Font.BOLD));
         jLabel2.setText(NbBundle.getMessage(LayerCreationComponent.class, "title")); // NOI18N
-        tab_table.setModel(new DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-
+        jButton1.setText(">>");
+        jButton1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                addAll(evt);
             }
-        ));
-        jScrollPane1.setViewportView(tab_table);
+        });
+
+        jButton2.setText(">");
+        jButton2.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                addSelected(evt);
+            }
+        });
+
+        jButton3.setText("<");
+        jButton3.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                removeSelected(evt);
+            }
+        });
+
+        jButton4.setText("<<");
+        jButton4.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                removeAll(evt);
+            }
+        });
+
+        jButton5.setText("up");
+        jButton5.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                moveUp(evt);
+            }
+        });
+
+        jButton6.setText("down");
+        jButton6.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                moveDown(evt);
+            }
+        });
+
+        jScrollPane1.setViewportView(guiLstData);
+
+        jsp2.setViewportView(guiLstSelected);
 
         GroupLayout layout = new GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(Alignment.LEADING)
-            .addGroup(Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(Alignment.TRAILING)
-                    .addComponent(jScrollPane1, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 309, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 138, GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(Alignment.LEADING)
+                            .addComponent(jButton4)
+                            .addComponent(jButton3)
+                            .addComponent(jButton2)
+                            .addComponent(jButton1))
+                        .addPreferredGap(ComponentPlacement.UNRELATED)
+                        .addComponent(jsp2, GroupLayout.PREFERRED_SIZE, 169, GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(Alignment.LEADING)
+                            .addComponent(jButton6)
+                            .addComponent(jButton5)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(ComponentPlacement.RELATED)
-                        .addComponent(guiTitle, GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)))
+                        .addComponent(guiTitle, GroupLayout.DEFAULT_SIZE, 402, Short.MAX_VALUE)))
                 .addContainerGap())
         );
+
+        layout.linkSize(SwingConstants.HORIZONTAL, new Component[] {jButton1, jButton2, jButton3, jButton4});
+
+        layout.linkSize(SwingConstants.HORIZONTAL, new Component[] {jButton5, jButton6});
+
+        layout.linkSize(SwingConstants.HORIZONTAL, new Component[] {jScrollPane1, jsp2});
+
         layout.setVerticalGroup(
             layout.createParallelGroup(Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -185,10 +232,84 @@ public class LayerCreationComponent extends JLayerChooser {
                     .addComponent(jLabel2)
                     .addComponent(guiTitle, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(Alignment.LEADING)
+                    .addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addPreferredGap(ComponentPlacement.RELATED)
+                        .addComponent(jButton2)
+                        .addPreferredGap(ComponentPlacement.RELATED)
+                        .addComponent(jButton3)
+                        .addPreferredGap(ComponentPlacement.RELATED)
+                        .addComponent(jButton4))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton5)
+                        .addPreferredGap(ComponentPlacement.RELATED)
+                        .addComponent(jButton6))
+                    .addComponent(jsp2, GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void addAll(ActionEvent evt) {//GEN-FIRST:event_addAll
+        selectedLayers.clear();
+        selectedLayers.addAll(possibleLayers);
+        guiLstSelected.setModel(new ListComboBoxModel<String>(selectedLayers));
+        check();
+    }//GEN-LAST:event_addAll
+
+    private void addSelected(ActionEvent evt) {//GEN-FIRST:event_addSelected
+        Object[] selections = guiLstData.getSelectedValues();
+        for(Object obj : selections){
+            if(!selectedLayers.contains(obj.toString())){
+                selectedLayers.add(obj.toString());
+            }
+        }
+        guiLstSelected.setModel(new ListComboBoxModel<String>(selectedLayers));
+        check();
+    }//GEN-LAST:event_addSelected
+
+    private void removeSelected(ActionEvent evt) {//GEN-FIRST:event_removeSelected
+        Object[] selections = guiLstSelected.getSelectedValues();
+        for(Object obj : selections){
+            selectedLayers.remove(obj.toString());
+        }
+        guiLstSelected.setModel(new ListComboBoxModel<String>(selectedLayers));
+        check();
+    }//GEN-LAST:event_removeSelected
+
+    private void removeAll(ActionEvent evt) {//GEN-FIRST:event_removeAll
+        selectedLayers.clear();
+        guiLstSelected.setModel(new ListComboBoxModel<String>(selectedLayers));
+        check();
+    }//GEN-LAST:event_removeAll
+
+    private void moveUp(ActionEvent evt) {//GEN-FIRST:event_moveUp
+        Object obj = guiLstSelected.getSelectedValue();
+        if(obj != null){
+            int index = selectedLayers.indexOf(obj);
+            if(index != 0){
+                selectedLayers.remove(obj);
+                selectedLayers.add(index-1, obj.toString());
+                guiLstSelected.setModel(new ListComboBoxModel<String>(selectedLayers));
+                guiLstSelected.setSelectedValue(obj, true);
+            }
+        }
+    }//GEN-LAST:event_moveUp
+
+    private void moveDown(ActionEvent evt) {//GEN-FIRST:event_moveDown
+        Object obj = guiLstSelected.getSelectedValue();
+        if(obj != null){
+            int index = selectedLayers.indexOf(obj);
+            if(index != selectedLayers.size()-1){
+                selectedLayers.remove(obj.toString());
+                selectedLayers.add(index+1, obj.toString());
+                guiLstSelected.setModel(new ListComboBoxModel<String>(selectedLayers));
+                guiLstSelected.setSelectedValue(obj, true);
+            }
+        }
+        guiLstSelected.setModel(new ListComboBoxModel<String>(selectedLayers));
+    }//GEN-LAST:event_moveDown
 
     /**
      * {@inheritDoc }
@@ -196,7 +317,7 @@ public class LayerCreationComponent extends JLayerChooser {
     @Override
     public MapLayer[] getLayers() {
         String title = guiTitle.getText();
-        String type = getType();
+        String type = getLayerNames();
         if(type != null){
             MapLayer layer = source.getLookup().lookup(LayerCreation.class).createLayer(Collections.singletonMap(WMSSource.LAYERS_PROP, type));
             layer.setDescription(CommonFactoryFinder.getStyleFactory(null).createDescription(title,"") );
@@ -207,10 +328,18 @@ public class LayerCreationComponent extends JLayerChooser {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private JList guiLstData;
+    private JList guiLstSelected;
     private JTextField guiTitle;
+    private JButton jButton1;
+    private JButton jButton2;
+    private JButton jButton3;
+    private JButton jButton4;
+    private JButton jButton5;
+    private JButton jButton6;
     private JLabel jLabel2;
     private JScrollPane jScrollPane1;
-    private JXTable tab_table;
+    private JScrollPane jsp2;
     // End of variables declaration//GEN-END:variables
 
 }

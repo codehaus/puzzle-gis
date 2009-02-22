@@ -24,7 +24,9 @@ import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
 import javax.swing.AbstractAction;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
+import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import org.geotools.data.DataStore;
@@ -34,7 +36,6 @@ import org.opengis.feature.simple.SimpleFeature;
 import org.opengis.feature.simple.SimpleFeatureType;
 import org.openide.util.Exceptions;
 import org.puzzle.core.project.source.capabilities.JImportPane;
-import org.puzzle.format.postgis.ui.JDatastoreList;
 import org.puzzle.format.postgis.ui.JPostGISconfigPanel;
 
 /**
@@ -43,7 +44,7 @@ import org.puzzle.format.postgis.ui.JPostGISconfigPanel;
 public class JPostGisImportPane extends JImportPane {
 
     private final JPostGISconfigPanel guiConfig = new JPostGISconfigPanel();
-    private final JDatastoreList guiList = new JDatastoreList();
+    private final JList guiLayerList = new JList();
 
     /** Creates new form JShapeImportPane */
     public JPostGisImportPane() {
@@ -54,7 +55,7 @@ public class JPostGisImportPane extends JImportPane {
             @Override
             public void actionPerformed(ActionEvent arg0) {
                 try {
-                    guiList.setDataStore(getDataStore());
+                    guiLayerList.setModel(new DefaultComboBoxModel(getDataStore().getTypeNames()));
                 } catch (IOException ex) {
                     Exceptions.printStackTrace(ex);
                 }
@@ -63,7 +64,7 @@ public class JPostGisImportPane extends JImportPane {
 
         final JPanel guiEast = new JPanel(new BorderLayout());
         guiEast.add(BorderLayout.NORTH,guiSearch);
-        guiEast.add(BorderLayout.CENTER,new JScrollPane(guiList));
+        guiEast.add(BorderLayout.CENTER,new JScrollPane(guiLayerList));
 
         add(BorderLayout.CENTER,guiConfig);
         add(BorderLayout.EAST,guiEast);
@@ -102,7 +103,7 @@ public class JPostGisImportPane extends JImportPane {
         
         FeatureSource<SimpleFeatureType,SimpleFeature> featureSource = null;
         try {
-            featureSource = store.getFeatureSource(guiList.getSelected());
+            featureSource = store.getFeatureSource(guiLayerList.getSelectedValue().toString());
         } catch (IOException ex) {
             Exceptions.printStackTrace(ex);
             return null;

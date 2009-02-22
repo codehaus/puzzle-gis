@@ -27,12 +27,13 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.swing.BorderFactory;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
@@ -40,12 +41,10 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
-import javax.swing.table.DefaultTableModel;
 import org.geotools.data.DataStore;
 import org.geotools.data.DataStoreFinder;
 import org.geotools.data.postgis.PostgisDataStoreFactory;
 
-import org.jdesktop.swingx.JXTable;
 import org.jdesktop.swingx.JXTitledPanel;
 
 import org.openide.util.Exceptions;
@@ -99,9 +98,6 @@ public class JPostGISDataPanel extends SourceCreationPane {
 //        chk_loose.setToolTipText(PostgisDataStoreFactory.LOOSEBBOX.description.toString());
 //        chk_wkb.setToolTipText(PostgisDataStoreFactory.WKBENABLED.description.toString());
 
-        tab_table.setTableHeader(null);
-        tab_table.setModel(new DBModel(tab_table));
-
     }
 
     public Map getProperties() {
@@ -148,9 +144,8 @@ public class JPostGISDataPanel extends SourceCreationPane {
     private void refreshTable() {
 
         if (store != null) {
-            ((DBModel) tab_table.getModel()).clean();
             try {
-                ((DBModel) tab_table.getModel()).add(store.getTypeNames());
+                guiLayerList.setModel(new DefaultComboBoxModel(store.getTypeNames()));
             } catch (IOException ex) {
                 System.out.println(ex);
             }
@@ -167,8 +162,6 @@ public class JPostGISDataPanel extends SourceCreationPane {
     private void initComponents() {
 
         but_refresh = new JButton();
-        jScrollPane1 = new JScrollPane();
-        tab_table = new JXTable();
         jXTitledPanel1 = new JXTitledPanel();
         jLabel1 = new JLabel();
         jtf_host = new JTextField();
@@ -193,6 +186,8 @@ public class JPostGISDataPanel extends SourceCreationPane {
         chk_estimated = new JCheckBox();
         jLabel13 = new JLabel();
         jtf_namespace = new JTextField();
+        jScrollPane1 = new JScrollPane();
+        guiLayerList = new JList();
 
         but_refresh.setText(NbBundle.getBundle(JPostGISDataPanel.class).getString("test")); // NOI18N
         but_refresh.addActionListener(new ActionListener() {
@@ -201,15 +196,7 @@ public class JPostGISDataPanel extends SourceCreationPane {
             }
         });
 
-        tab_table.setModel(new DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-
-            }
-        ));
-        jScrollPane1.setViewportView(tab_table);
+        jXTitledPanel1.setBorder(null);
 
 
 
@@ -217,8 +204,6 @@ public class JPostGISDataPanel extends SourceCreationPane {
 
 
 
-
-        jXTitledPanel1.setBorder(BorderFactory.createEtchedBorder());
         jXTitledPanel1.setTitle(NbBundle.getBundle(JPostGISDataPanel.class).getString("connection")); // NOI18N
         jLabel1.setText(NbBundle.getBundle(JPostGISDataPanel.class).getString("host")); // NOI18N
         jLabel2.setText(NbBundle.getBundle(JPostGISDataPanel.class).getString("port")); // NOI18N
@@ -228,14 +213,6 @@ public class JPostGISDataPanel extends SourceCreationPane {
         jLabel6.setText(NbBundle.getBundle(JPostGISDataPanel.class).getString("password")); // NOI18N
         GroupLayout jXTitledPanel1Layout = new GroupLayout(jXTitledPanel1);
         jXTitledPanel1.setLayout(jXTitledPanel1Layout);
-
-
-
-
-
-
-
-
         jXTitledPanel1Layout.setHorizontalGroup(
             jXTitledPanel1Layout.createParallelGroup(Alignment.LEADING)
             .addGroup(jXTitledPanel1Layout.createSequentialGroup()
@@ -244,27 +221,27 @@ public class JPostGISDataPanel extends SourceCreationPane {
                     .addGroup(jXTitledPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(ComponentPlacement.RELATED)
-                        .addComponent(jtf_host, GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE))
+                        .addComponent(jtf_host, GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE))
                     .addGroup(jXTitledPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(ComponentPlacement.RELATED)
-                        .addComponent(jtf_port, GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE))
+                        .addComponent(jtf_port, GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE))
                     .addGroup(jXTitledPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(ComponentPlacement.RELATED)
-                        .addComponent(jtf_schema, GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE))
+                        .addComponent(jtf_schema, GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE))
                     .addGroup(jXTitledPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(ComponentPlacement.RELATED)
-                        .addComponent(jtf_database, GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE))
+                        .addComponent(jtf_database, GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE))
                     .addGroup(jXTitledPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addPreferredGap(ComponentPlacement.RELATED)
-                        .addComponent(jtf_user, GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE))
+                        .addComponent(jtf_user, GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE))
                     .addGroup(jXTitledPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addPreferredGap(ComponentPlacement.RELATED)
-                        .addComponent(jtf_password, GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)))
+                        .addComponent(jtf_password, GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jXTitledPanel1Layout.setVerticalGroup(
@@ -297,7 +274,15 @@ public class JPostGISDataPanel extends SourceCreationPane {
                 .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jXTitledPanel2.setBorder(BorderFactory.createEtchedBorder());
+        jXTitledPanel2.setBorder(null);
+
+
+
+
+
+
+
+
         jXTitledPanel2.setTitle(NbBundle.getBundle(JPostGISDataPanel.class).getString("advanced")); // NOI18N
         jLabel7.setText(NbBundle.getBundle(JPostGISDataPanel.class).getString("max_connects")); // NOI18N
         jLabel8.setText(NbBundle.getBundle(JPostGISDataPanel.class).getString("min_connects")); // NOI18N
@@ -333,7 +318,7 @@ public class JPostGISDataPanel extends SourceCreationPane {
                     .addGroup(jXTitledPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel13)
                         .addPreferredGap(ComponentPlacement.RELATED)
-                        .addComponent(jtf_namespace, GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)))
+                        .addComponent(jtf_namespace, GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jXTitledPanel2Layout.setVerticalGroup(
@@ -362,6 +347,8 @@ public class JPostGISDataPanel extends SourceCreationPane {
                 .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jScrollPane1.setViewportView(guiLayerList);
+
         GroupLayout layout = new GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -372,8 +359,8 @@ public class JPostGISDataPanel extends SourceCreationPane {
                     .addComponent(jXTitledPanel2, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(Alignment.LEADING)
-                    .addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
-                    .addComponent(but_refresh, GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)))
+                    .addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
+                    .addComponent(but_refresh, GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)))
         );
 
         layout.linkSize(SwingConstants.HORIZONTAL, new Component[] {jXTitledPanel1, jXTitledPanel2});
@@ -381,13 +368,16 @@ public class JPostGISDataPanel extends SourceCreationPane {
         layout.setVerticalGroup(
             layout.createParallelGroup(Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(but_refresh)
-                .addPreferredGap(ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 434, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jXTitledPanel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(ComponentPlacement.RELATED)
-                .addComponent(jXTitledPanel2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(but_refresh)
+                        .addPreferredGap(ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 392, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jXTitledPanel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(ComponentPlacement.RELATED)
+                        .addComponent(jXTitledPanel2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
     private void actionRefresh(ActionEvent evt) {//GEN-FIRST:event_actionRefresh
@@ -433,6 +423,7 @@ public class JPostGISDataPanel extends SourceCreationPane {
     private JCheckBox chk_loose;
     private JCheckBox chk_validate;
     private JCheckBox chk_wkb;
+    private JList guiLayerList;
     private JLabel jLabel1;
     private JLabel jLabel13;
     private JLabel jLabel2;
@@ -454,7 +445,6 @@ public class JPostGISDataPanel extends SourceCreationPane {
     private JTextField jtf_port;
     private JTextField jtf_schema;
     private JTextField jtf_user;
-    private JXTable tab_table;
     // End of variables declaration//GEN-END:variables
     
     public Map<String,GISSourceInfo> createSources() {
