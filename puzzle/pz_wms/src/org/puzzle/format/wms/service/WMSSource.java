@@ -114,7 +114,7 @@ public class WMSSource extends GISSource{
             if(server != null){
                 layer = new WMSMapLayer(server,featureName);
             }else{
-                layer = MapBuilder.getInstance().createEmptyMapLayer();
+                layer = MapBuilder.createEmptyMapLayer();
             }
 
             final GISLayerSource source = new GISLayerSource(getInfo().getID(), parameters,WMSSource.this);

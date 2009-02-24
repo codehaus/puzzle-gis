@@ -129,13 +129,13 @@ public class PostGISSource extends GISSource{
                 try{
                     final FeatureSource<SimpleFeatureType,SimpleFeature> featureSource = store.getFeatureSource(featureName);
                     final MutableStyle style = new RandomStyleFactory().createRandomVectorStyle(featureSource);
-                    layer = MapBuilder.getInstance().createFeatureLayer(featureSource, style);
+                    layer = MapBuilder.createFeatureLayer(featureSource, style);
                 }catch(IOException ex){
-                    layer = MapBuilder.getInstance().createEmptyMapLayer();
+                    layer = MapBuilder.createEmptyMapLayer();
                     Exceptions.printStackTrace(ex);
                 }
             }else{
-                layer = MapBuilder.getInstance().createEmptyMapLayer();
+                layer = MapBuilder.createEmptyMapLayer();
             }
 
             final GISLayerSource source = new GISLayerSource(getInfo().getID(), parameters,PostGISSource.this);

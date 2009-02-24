@@ -142,9 +142,9 @@ public class WorldImageSource extends GISSource{
             final MapLayer layer;
             if(reader != null){
                 final MutableStyle style = new RandomStyleFactory().createRasterStyle();
-                layer = MapBuilder.getInstance().createCoverageLayer(reader, style, WorldImageSource.this.name);
+                layer = MapBuilder.createCoverageLayer(reader, style, WorldImageSource.this.name);
             }else{
-                layer = MapBuilder.getInstance().createEmptyMapLayer();
+                layer = MapBuilder.createEmptyMapLayer();
             }
 
             final GISLayerSource source = new GISLayerSource(getInfo().getID(), parameters,WorldImageSource.this);
