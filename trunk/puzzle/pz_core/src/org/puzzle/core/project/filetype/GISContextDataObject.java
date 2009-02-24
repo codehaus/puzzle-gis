@@ -198,7 +198,7 @@ public class GISContextDataObject extends XMLDataObject {
     }
 
     private MapContext parseContext(Document gisDoc) {
-        context = MapBuilder.getInstance().createContext(DefaultGeographicCRS.WGS84);
+        context = MapBuilder.createContext(DefaultGeographicCRS.WGS84);
         context.setDescription(CommonFactoryFinder.getStyleFactory(null).createDescription(getPrimaryFile().getName().replaceAll(".xml", ""), ""));
 
         if (gisDoc != null) {

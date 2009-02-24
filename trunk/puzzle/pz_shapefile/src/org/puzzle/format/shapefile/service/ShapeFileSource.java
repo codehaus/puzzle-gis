@@ -23,7 +23,6 @@ package org.puzzle.format.shapefile.service;
 
 import java.awt.Image;
 import java.io.File;
-import java.io.IOException;
 import java.util.Collections;
 import java.util.Map;
 
@@ -75,8 +74,6 @@ public class ShapeFileSource extends GISSource{
 
     }
 
-    
-
     /**
      * {@inheritDoc }
      */
@@ -84,8 +81,6 @@ public class ShapeFileSource extends GISSource{
     public Image getIcon(int type) {
         return ImageUtilities.loadImage("org/puzzle/format/shapefile/shapefile.png");
     }
-
-    
 
     @Override
     public void unload() {
@@ -132,9 +127,9 @@ public class ShapeFileSource extends GISSource{
 
             if(featureSource != null){
                 final MutableStyle style = new RandomStyleFactory().createRandomVectorStyle(featureSource);
-                layer = MapBuilder.getInstance().createFeatureLayer(featureSource, style);
+                layer = MapBuilder.createFeatureLayer(featureSource, style);
             }else{
-                layer = MapBuilder.getInstance().createEmptyMapLayer();
+                layer = MapBuilder.createEmptyMapLayer();
             }
 
             final GISLayerSource source = new GISLayerSource(getInfo().getID(), parameters,ShapeFileSource.this);
