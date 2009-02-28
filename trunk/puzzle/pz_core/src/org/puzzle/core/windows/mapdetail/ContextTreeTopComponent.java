@@ -21,6 +21,7 @@
 package org.puzzle.core.windows.mapdetail;
 
 import java.awt.BorderLayout;
+import java.awt.Rectangle;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -28,6 +29,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Logger;
 
+import javax.swing.ScrollPaneConstants;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import org.geotools.gui.swing.maptree.JContextTree;
 import org.geotools.gui.swing.maptree.menu.DeleteItem;
 import org.geotools.gui.swing.maptree.menu.LayerFeatureItem;
@@ -103,6 +107,16 @@ final class ContextTreeTopComponent extends TopComponent implements LookupListen
         tree.controls().add(property);
 
         tree.revalidate();
+        tree.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+
+//        tree.getViewport().addChangeListener(new ChangeListener() {
+//
+//            @Override
+//            public void stateChanged(ChangeEvent e) {
+//                System.out.println("hophop");
+//                tree.scrollRectToVisible(new Rectangle(0,0,1,1));
+//            }
+//        });
 
         return tree;
     }
