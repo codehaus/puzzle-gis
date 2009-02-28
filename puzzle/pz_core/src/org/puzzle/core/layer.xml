@@ -42,6 +42,8 @@
                 <attr name="noIconInMenu" stringvalue="false"/>
             </file>
             <file name="org-puzzle-core-actions-ShowLayerWizard.instance"/>
+            <file name="org-puzzle-core-actions-LoadSource.instance"/>
+            <file name="org-puzzle-core-actions-UnLoadSource.instance"/>
         </folder>
         <folder name="Window">
             <file name="org-puzzle-core-windows-mapdetail-ContextTreeAction.instance"/>
@@ -113,6 +115,18 @@
                     <file name="org-puzzle-core-project-action-source-ShowLayerWizard.shadow">
                         <attr name="originalFile" stringvalue="Actions/Puzzle/org-puzzle-core-actions-ShowLayerWizard.instance"/>
                         <attr name="position" intvalue="0"/>
+                    </file>
+                    <file name="sep-5.instance">
+                        <attr name="instanceClass" stringvalue="javax.swing.JSeparator"/>
+                        <attr name="position" intvalue="10"/>
+                    </file>
+                    <file name="org-puzzle-core-project-action-source-LoadSource.shadow">
+                        <attr name="originalFile" stringvalue="Actions/Puzzle/org-puzzle-core-actions-LoadSource.instance"/>
+                        <attr name="position" intvalue="50"/>
+                    </file>
+                    <file name="org-puzzle-core-project-action-source-UnLoadSource.shadow">
+                        <attr name="originalFile" stringvalue="Actions/Puzzle/org-puzzle-core-actions-UnLoadSource.instance"/>
+                        <attr name="position" intvalue="60"/>
                     </file>
                     <file name="sep-1.instance">
                         <attr name="instanceClass" stringvalue="javax.swing.JSeparator"/>

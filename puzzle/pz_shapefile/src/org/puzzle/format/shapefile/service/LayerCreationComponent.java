@@ -22,6 +22,7 @@
 package org.puzzle.format.shapefile.service;
 
 import java.awt.Font;
+import java.awt.Graphics;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
@@ -45,11 +46,19 @@ public class LayerCreationComponent extends JLayerChooser {
     /** Creates new form LayerCreationComponent */
     LayerCreationComponent(LayerChooserMonitor monitor, ShapeFileSource source,String basename) {
         super(monitor);
+
         this.source = source;
         initComponents();
-        monitor.setReady(true);
         guiTitle.setText(basename);
     }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        getMonitor().setReady(true);
+    }
+
+
 
     /** This method is called from within the constructor to
      * initialize the form.

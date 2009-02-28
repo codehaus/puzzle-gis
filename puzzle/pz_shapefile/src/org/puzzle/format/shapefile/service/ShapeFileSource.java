@@ -144,6 +144,7 @@ public class ShapeFileSource extends GISSource{
          */
         @Override
         public JLayerChooser createChooser(LayerChooserMonitor monitor) {
+            load();
             return new LayerCreationComponent(monitor, ShapeFileSource.this, name);
         }
     }

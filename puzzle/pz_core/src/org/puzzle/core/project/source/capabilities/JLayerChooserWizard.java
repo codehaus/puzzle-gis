@@ -46,7 +46,6 @@ import org.geotools.map.MapLayer;
 import org.openide.DialogDisplayer;
 import org.openide.WizardDescriptor;
 import org.openide.util.HelpCtx;
-import org.openide.util.ImageUtilities;
 
 /**
  * @author Johann Sorel (Puzzle-GIS)
@@ -267,6 +266,5 @@ public class JLayerChooserWizard extends JPanel implements WizardDescriptor.Pane
         valid = ready;
         fireChangeEvent();
     }
-
 
 }
