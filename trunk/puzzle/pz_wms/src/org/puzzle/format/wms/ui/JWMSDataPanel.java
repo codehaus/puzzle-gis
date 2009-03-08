@@ -110,7 +110,7 @@ public class JWMSDataPanel extends SourceCreationPane {
                     }
                 }
 
-                guiLayerList.setModel(new ListComboBoxModel(layerNames));
+                guiLayerList.setModel(new ListComboBoxModel<String>(layerNames));
             } catch (Exception ex) {
                 Exceptions.printStackTrace(ex);
             }

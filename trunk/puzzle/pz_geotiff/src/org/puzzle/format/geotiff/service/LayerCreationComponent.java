@@ -94,7 +94,7 @@ public class LayerCreationComponent extends JLayerChooser {
     @Override
     public MapLayer[] getLayers() {
         MapLayer layer = source.createLayer(null);
-        layer.setDescription(CommonFactoryFinder.getStyleFactory(null).createDescription(guiTitle.getText(),"") );
+        layer.setDescription(CommonFactoryFinder.getStyleFactory(null).description(guiTitle.getText(),"") );
         return new MapLayer[]{layer};
     }
 

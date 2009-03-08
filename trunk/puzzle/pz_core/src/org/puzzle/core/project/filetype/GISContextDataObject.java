@@ -199,7 +199,7 @@ public class GISContextDataObject extends XMLDataObject {
 
     private MapContext parseContext(Document gisDoc) {
         context = MapBuilder.createContext(DefaultGeographicCRS.WGS84);
-        context.setDescription(CommonFactoryFinder.getStyleFactory(null).createDescription(getPrimaryFile().getName().replaceAll(".xml", ""), ""));
+        context.setDescription(CommonFactoryFinder.getStyleFactory(null).description(getPrimaryFile().getName().replaceAll(".xml", ""), ""));
 
         if (gisDoc != null) {
 
@@ -222,7 +222,7 @@ public class GISContextDataObject extends XMLDataObject {
         int id = 0;
         Map<String, String> params = null;
         String title = "";
-        MutableStyle style = CommonFactoryFinder.getStyleFactory(null).createStyle();
+        MutableStyle style = CommonFactoryFinder.getStyleFactory(null).style();
         DefaultQuery query = new DefaultQuery();
         boolean visible = true;
 
@@ -260,7 +260,7 @@ public class GISContextDataObject extends XMLDataObject {
                 if (src.getInfo().getID() == id) {
                     LayerCreation lc = src.getLookup().lookup(LayerCreation.class);
                     layer = lc.createLayer(params);
-                    layer.setDescription(CommonFactoryFinder.getStyleFactory(null).createDescription(title, ""));
+                    layer.setDescription(CommonFactoryFinder.getStyleFactory(null).description(title, ""));
                     layer.setStyle(style);
                     layer.setVisible(visible);
                     layer.setQuery(query);

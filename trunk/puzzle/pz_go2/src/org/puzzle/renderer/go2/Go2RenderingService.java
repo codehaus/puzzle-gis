@@ -45,7 +45,7 @@ public class Go2RenderingService implements RenderingService{
     public MapView createView(MapContext context) {
         
         J2DMapVolatile map = new J2DMapVolatile();
-        map.getRenderer().setContext(context);
+        map.getContainer().setContext(context);
         
         Go2MapView view = new Go2MapView(map);
         view.setDisplayName(context.getDescription().getTitle().toString() + " - Go2");

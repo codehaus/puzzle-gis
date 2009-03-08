@@ -320,7 +320,7 @@ public class LayerCreationComponent extends JLayerChooser {
         String type = getLayerNames();
         if(type != null){
             MapLayer layer = source.getLookup().lookup(LayerCreation.class).createLayer(Collections.singletonMap(WMSSource.LAYERS_PROP, type));
-            layer.setDescription(CommonFactoryFinder.getStyleFactory(null).createDescription(title,"") );
+            layer.setDescription(CommonFactoryFinder.getStyleFactory(null).description(title,"") );
             return new MapLayer[]{layer};
         }
 

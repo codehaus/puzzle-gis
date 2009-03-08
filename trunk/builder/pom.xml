@@ -277,6 +277,7 @@
                             <fileset dir="${GT_BINARY}" casesensitive="yes">
                               <patternset id="geoapi">
                                 <include name="geoapi.jar"/>
+                                <include name="geoapi-pending.jar"/>
                                 <include name="jsr-275.jar"/>
                               </patternset>
                             </fileset>

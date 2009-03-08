@@ -27,8 +27,8 @@ import java.awt.event.MouseEvent;
 import java.beans.BeanInfo;
 import java.lang.ref.WeakReference;
 import java.util.Map;
-import java.util.ResourceBundle;
 import java.util.WeakHashMap;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JTree;
@@ -40,6 +40,7 @@ import javax.swing.tree.TreePath;
 import javax.swing.tree.TreeSelectionModel;
 
 import org.geotools.gui.swing.resource.IconBundle;
+import org.openide.util.ImageUtilities;
 import org.puzzle.core.tool.ToolDescriptor;
 
 /**
@@ -48,10 +49,6 @@ import org.puzzle.core.tool.ToolDescriptor;
  * @author johann sorel (Puzzle-GIS)
  */
 public class Tree extends JTree {
-
-    static{
-        IconBundle.getInstance().addBundle(ResourceBundle.getBundle("/org/puzzle/core/windows/toolbox/tree/IconBundle"));
-    }
 
     protected final ToolDescriptor[] EMPTY_TREETOOLDESCRIPTOR_ARRAY = {};
     protected final EventListenerList LISTENERS = new EventListenerList();
@@ -247,8 +244,8 @@ public class Tree extends JTree {
 
     private class ToolCellRenderer extends DefaultTreeCellRenderer{
 
-        private final ImageIcon ICON_TOOL     = IconBundle.getInstance().getIcon("16_tool");
-        private final ImageIcon ICON_TOOLPACK = IconBundle.getInstance().getIcon("16_toolpack");
+        private final Icon ICON_TOOL     = ImageUtilities.image2Icon(ImageUtilities.loadImage("/org/puzzle/core/windows/toolbox/tree/tool.png"));
+        private final Icon ICON_TOOLPACK = ImageUtilities.image2Icon(ImageUtilities.loadImage("/org/puzzle/core/windows/toolbox/tree/tools.png"));
 
         /**
          * {@inheritDoc }
