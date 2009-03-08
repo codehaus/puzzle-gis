@@ -21,15 +21,17 @@
 package org.puzzle.renderer.go2;
 
 import java.awt.BorderLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import javax.swing.JPanel;
+
 import org.geotools.gui.swing.go.J2DMapVolatile;
 import org.geotools.gui.swing.go.control.JConfigBar;
 import org.geotools.gui.swing.go.control.JCoordinateBar;
+import org.geotools.gui.swing.go.control.JInformationBar;
 import org.geotools.gui.swing.go.control.JNavigationBar;
 import org.geotools.gui.swing.go.decoration.JClassicNavigationDecoration;
 import org.geotools.map.MapContext;
-import org.openide.util.ImageUtilities;
-import org.openide.util.Utilities;
 import org.puzzle.core.view.MapView;
 
 /**
@@ -40,6 +42,7 @@ import org.puzzle.core.view.MapView;
 public class Go2MapView extends MapView{
 
     private final JNavigationBar navBar = new JNavigationBar();
+    private final JInformationBar infoBar = new JInformationBar();
     private final JCoordinateBar coordBar = new JCoordinateBar();
     private final JConfigBar configBar = new JConfigBar();
     private final JClassicNavigationDecoration boussole = new JClassicNavigationDecoration();
@@ -48,13 +51,34 @@ public class Go2MapView extends MapView{
     public Go2MapView(J2DMapVolatile map){
         super(map);
         navBar.setMap(map);
+        infoBar.setMap(map);
         coordBar.setMap(map);
         configBar.setMap(map);
+
+
+        JPanel north = new JPanel(new GridBagLayout());
+        GridBagConstraints constraints = new GridBagConstraints();
+
+        constraints = new GridBagConstraints();
+        constraints.fill = GridBagConstraints.BOTH;
+        constraints.anchor = GridBagConstraints.WEST;
+        constraints.weightx = 0.0;
+        north.add(navBar,constraints);
         
-        JPanel north = new JPanel(new BorderLayout(0,0));
-        north.add(BorderLayout.CENTER,navBar);
-        north.add(BorderLayout.EAST,configBar);
+        constraints = new GridBagConstraints();
+        constraints.fill = GridBagConstraints.BOTH;
+        constraints.anchor = GridBagConstraints.WEST;
+        constraints.weightx = 1.0;
+        north.add(infoBar,constraints);
+        
+        constraints = new GridBagConstraints();
+        constraints.fill = GridBagConstraints.BOTH;
+        constraints.anchor = GridBagConstraints.EAST;
+        constraints.weightx = 0.0;
+        north.add(configBar,constraints);
+        
         navBar.setFloatable(false);
+        infoBar.setFloatable(false);
         configBar.setFloatable(false);
         add(BorderLayout.NORTH,north);
         add(BorderLayout.SOUTH,coordBar);
@@ -70,7 +94,7 @@ public class Go2MapView extends MapView{
 
     @Override
     public MapContext getContext() {
-        return getMap().getRenderer().getContext();
+        return getMap().getContainer().getContext();
     }
     
     

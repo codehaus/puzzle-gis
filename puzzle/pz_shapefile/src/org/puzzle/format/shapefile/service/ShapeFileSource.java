@@ -134,7 +134,7 @@ public class ShapeFileSource extends GISSource{
 
             final GISLayerSource source = new GISLayerSource(getInfo().getID(), parameters,ShapeFileSource.this);
             layer.setUserPropertie(GISLayerSource.KEY_LAYER_INFO, source);
-            layer.setDescription(CommonFactoryFinder.getStyleFactory(null).createDescription(name,"") );
+            layer.setDescription(CommonFactoryFinder.getStyleFactory(null).description(name,"") );
 
             return layer;
         }

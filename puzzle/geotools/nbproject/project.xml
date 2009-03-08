@@ -325,7 +325,6 @@
                 <package>org.geotools.data.wms.xml</package>
                 <package>org.geotools.display.array</package>
                 <package>org.geotools.display.canvas</package>
-                <package>org.geotools.display.canvas.container</package>
                 <package>org.geotools.display.canvas.control</package>
                 <package>org.geotools.display.canvas.event</package>
                 <package>org.geotools.display.canvas.map</package>
@@ -333,7 +332,6 @@
                 <package>org.geotools.display.container</package>
                 <package>org.geotools.display.container.statefull</package>
                 <package>org.geotools.display.container.stateless</package>
-                <package>org.geotools.display.event</package>
                 <package>org.geotools.display.exception</package>
                 <package>org.geotools.display.geom</package>
                 <package>org.geotools.display.primitive</package>
@@ -410,7 +408,6 @@
                 <package>org.geotools.gui.swing.contexttree.renderer</package>
                 <package>org.geotools.gui.swing.crschooser</package>
                 <package>org.geotools.gui.swing.debug</package>
-                <package>org.geotools.gui.swing.debug.cost</package>
                 <package>org.geotools.gui.swing.debug.erase</package>
                 <package>org.geotools.gui.swing.debug.jasper</package>
                 <package>org.geotools.gui.swing.debug.jfreechart</package>
@@ -418,9 +415,12 @@
                 <package>org.geotools.gui.swing.filter</package>
                 <package>org.geotools.gui.swing.go</package>
                 <package>org.geotools.gui.swing.go.control</package>
+                <package>org.geotools.gui.swing.go.control.creation</package>
+                <package>org.geotools.gui.swing.go.control.information</package>
+                <package>org.geotools.gui.swing.go.control.navigation</package>
+                <package>org.geotools.gui.swing.go.control.selection</package>
                 <package>org.geotools.gui.swing.go.decoration</package>
                 <package>org.geotools.gui.swing.go.extractor</package>
-                <package>org.geotools.gui.swing.go.handler</package>
                 <package>org.geotools.gui.swing.image</package>
                 <package>org.geotools.gui.swing.map.map2d</package>
                 <package>org.geotools.gui.swing.map.map2d.decoration</package>
@@ -438,6 +438,7 @@
                 <package>org.geotools.gui.swing.resource</package>
                 <package>org.geotools.gui.swing.style</package>
                 <package>org.geotools.gui.swing.table</package>
+                <package>org.geotools.gui.swing.timeline</package>
                 <package>org.geotools.gui.swing.tree</package>
                 <package>org.geotools.image</package>
                 <package>org.geotools.image.io</package>

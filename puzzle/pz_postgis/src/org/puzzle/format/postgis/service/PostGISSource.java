@@ -140,7 +140,7 @@ public class PostGISSource extends GISSource{
 
             final GISLayerSource source = new GISLayerSource(getInfo().getID(), parameters,PostGISSource.this);
             layer.setUserPropertie(GISLayerSource.KEY_LAYER_INFO, source);
-            layer.setDescription(CommonFactoryFinder.getStyleFactory(null).createDescription(featureName,"") );
+            layer.setDescription(CommonFactoryFinder.getStyleFactory(null).description(featureName,"") );
 
             return layer;
         }

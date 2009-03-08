@@ -148,7 +148,7 @@ public class LayerCreationComponent extends JLayerChooser {
         String type = getType();
         if(type != null){
             MapLayer layer = source.getLookup().lookup(LayerCreation.class).createLayer(Collections.singletonMap(PostGISSource.FEATURETYPENAME_PROP, type));
-            layer.setDescription(CommonFactoryFinder.getStyleFactory(null).createDescription(title,"") );
+            layer.setDescription(CommonFactoryFinder.getStyleFactory(null).description(title,"") );
             return new MapLayer[]{layer};
         }
 
