@@ -25,7 +25,17 @@
   <!--     GeoTools, Geomatys and maven repositories     -->
   <!-- =========================================================== -->
     <repositories>
-        <repository>
+	<repository>
+            <id>geoapi</id>
+            <name>geotidy</name>
+            <url>http://geotidy.geomatys.fr/repository</url>
+        </repository>
+	<repository>
+            <id>geomessy</id>
+            <name>geomessy</name>
+            <url>http://maven.geomatys.fr/repository</url>
+        </repository>
+        <!--<repository>
             <id>puzzle</id>
             <name>Other projects</name>
             <url>http://repository.codehaus.org/org/codehaus/puzzle-gis</url>
@@ -42,7 +52,7 @@
             <id>geotools</id>
             <name>Geotools repository</name>
             <url>http://maven.geotools.fr/repository</url>
-        </repository>
+        </repository>-->
     </repositories>
 
    <!-- =========================================================== -->

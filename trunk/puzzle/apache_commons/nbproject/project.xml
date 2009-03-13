@@ -114,14 +114,6 @@
                 <binary-origin>release/modules/ext/commons-collections.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/commons-httpclient.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/commons-httpclient.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/commons-codec.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/commons-codec.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
                 <runtime-relative-path>ext/log4j.jar</runtime-relative-path>
                 <binary-origin>release/modules/ext/log4j.jar</binary-origin>
             </class-path-extension>

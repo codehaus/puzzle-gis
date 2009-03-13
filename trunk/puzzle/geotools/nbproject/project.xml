@@ -803,10 +803,10 @@
                 <runtime-relative-path>ext/jaxb-impl.jar</runtime-relative-path>
                 <binary-origin>release/modules/ext/jaxb-impl.jar</binary-origin>
             </class-path-extension>
-            <class-path-extension>
+            <!--<class-path-extension>
                 <runtime-relative-path>ext/gnu-regexp.jar</runtime-relative-path>
                 <binary-origin>release/modules/ext/gnu-regexp.jar</binary-origin>
-            </class-path-extension>
+            </class-path-extension>-->
             <class-path-extension>
                 <runtime-relative-path>ext/gt-jdbc.jar</runtime-relative-path>
                 <binary-origin>release/modules/ext/gt-jdbc.jar</binary-origin>
@@ -936,16 +936,8 @@
                 <binary-origin>release/modules/ext/gt-graph.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/bufr.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/bufr.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
                 <runtime-relative-path>ext/gt-data.jar</runtime-relative-path>
                 <binary-origin>release/modules/ext/gt-data.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/grib.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/grib.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
                 <runtime-relative-path>ext/gt-wfs.jar</runtime-relative-path>
