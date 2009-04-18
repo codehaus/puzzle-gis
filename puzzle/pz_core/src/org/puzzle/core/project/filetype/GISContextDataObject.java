@@ -60,6 +60,9 @@ import org.openide.nodes.CookieSet;
 import org.openide.util.Exceptions;
 import org.openide.util.Lookup;
 import org.openide.text.DataEditorSupport;
+import org.openide.util.lookup.AbstractLookup;
+import org.openide.util.lookup.InstanceContent;
+import org.openide.util.lookup.ProxyLookup;
 import org.openide.xml.XMLUtil;
 
 import org.puzzle.core.project.source.GISLayerSource;
@@ -67,6 +70,11 @@ import org.puzzle.core.project.GISProject;
 import org.puzzle.core.project.source.GISSource;
 
 import org.puzzle.core.project.source.capabilities.LayerCreation;
+import org.puzzle.core.project.view.GISView;
+import org.puzzle.core.project.view.GISViewInfo;
+import org.puzzle.core.view.RenderingService;
+import org.puzzle.core.view.ViewComponent;
+import org.puzzle.core.view.ViewService;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -99,8 +107,13 @@ public class GISContextDataObject extends XMLDataObject {
     private static final String TAG_LAYER_STYLE = "sld:UserStyle";
     private static final String TAG_LAYER_VISIBLE = "visible";
     private static final String TAG_LAYER_QUERY = "filter";
+
+    private final List<GISView> views = new ArrayList<GISView>();
     private final DefaultContextListener contextListener = new DefaultContextListener();
     private final SavingThread saver = new SavingThread();
+    private final InstanceContent content = new InstanceContent();
+    private final Lookup lookup = new AbstractLookup(content);
+
     private MapContext context = null;
     private boolean needSave = false;
 
@@ -120,6 +133,25 @@ public class GISContextDataObject extends XMLDataObject {
         saver.start();
         CookieSet cookies = getCookieSet();
         cookies.add((org.openide.nodes.Node.Cookie) DataEditorSupport.create(this, getPrimaryEntry(), cookies));
+
+//        new Thread(){
+//
+//            @Override
+//            public void run() {
+//                while(true){
+//                    try {
+//                        sleep(5000);
+//                    } catch (InterruptedException ex) {
+//                        Exceptions.printStackTrace(ex);
+//                    }
+//                    addView(new GISView(GISContextDataObject.this, new GISViewInfo(-1, "gnegne", new HashMap<String, String>())));
+//                }
+//            }
+//
+//        }.start();
+
+//        addView(new GISView(this, new GISViewInfo(-1, "gnegne", new HashMap<String, String>())));
+
     }
 
     @Override
@@ -170,6 +202,29 @@ public class GISContextDataObject extends XMLDataObject {
         return context;
     }
 
+    public void createView(RenderingService service){
+        final GISViewInfo info = new GISViewInfo((int)(Math.random()*1000), service.getIdentifier(), new HashMap<String, String>());
+        final GISView view = new GISView(this, info);
+        view.setTitle(getContext().getDescription().getTitle().toString() + " - "+ service.getTitle());
+        addView(view);
+        ViewComponent comp = view.getComponent();
+        if(comp != null && !comp.isOpened()) comp.open();
+
+    }
+
+    public void addView(GISView view){
+        content.add(view);
+        setNeedSave(true);
+    }
+
+    public void removeView(GISView view){
+        if(view.isDisplayed()){
+            view.getComponent().close();
+        }
+        content.remove(view);
+        setNeedSave(true);
+    }
+
     @Override
     protected org.openide.nodes.Node createNodeDelegate() {
         return new GISContextDataNode(this, getLookup());
@@ -177,7 +232,7 @@ public class GISContextDataObject extends XMLDataObject {
 
     @Override
     public Lookup getLookup() {
-        return getCookieSet().getLookup();
+        return new ProxyLookup(getCookieSet().getLookup(),lookup);
     }
 
     private Document getDOM() {
@@ -442,6 +497,10 @@ public class GISContextDataObject extends XMLDataObject {
         DOMsave(doc);
     }
 
+    private synchronized void DOMencodeViews(){
+        
+    }
+
     private class DefaultContextListener implements ContextListener {
 
         @Override
@@ -475,7 +534,6 @@ public class GISContextDataObject extends XMLDataObject {
             saver.wake();
         }
 
-
     }
 
     private boolean needSaving() {
@@ -508,13 +566,11 @@ public class GISContextDataObject extends XMLDataObject {
         public void run() {
 
             while (!dispose) {
-
                 while (needSaving()) {
-
                     setNeedSave(false);
                     DOMencodeLayers();
+                    DOMencodeViews();
                 }
-
                 block();
             }
         }
@@ -531,6 +587,5 @@ public class GISContextDataObject extends XMLDataObject {
             }
         }
     }
-
 
 }

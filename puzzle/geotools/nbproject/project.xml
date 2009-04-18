@@ -48,6 +48,24 @@
                 </dependency>
             </module-dependencies>
             <public-packages>
+                <package>com.lowagie.text</package>
+                <package>com.lowagie.text.factories</package>
+                <package>com.lowagie.text.html</package>
+                <package>com.lowagie.text.html.simpleparser</package>
+                <package>com.lowagie.text.pdf</package>
+                <package>com.lowagie.text.pdf.codec</package>
+                <package>com.lowagie.text.pdf.codec.wmf</package>
+                <package>com.lowagie.text.pdf.collection</package>
+                <package>com.lowagie.text.pdf.crypto</package>
+                <package>com.lowagie.text.pdf.events</package>
+                <package>com.lowagie.text.pdf.fonts</package>
+                <package>com.lowagie.text.pdf.hyphenation</package>
+                <package>com.lowagie.text.pdf.interfaces</package>
+                <package>com.lowagie.text.pdf.internal</package>
+                <package>com.lowagie.text.xml</package>
+                <package>com.lowagie.text.xml.simpleparser</package>
+                <package>com.lowagie.text.xml.xmp</package>
+                <package>com.lowagie.tools</package>
                 <package>com.sun.istack</package>
                 <package>com.sun.xml.bind</package>
                 <package>com.sun.xml.bind.annotation</package>
@@ -114,7 +132,6 @@
                 <package>com.vividsolutions.jts.precision</package>
                 <package>com.vividsolutions.jts.simplify</package>
                 <package>com.vividsolutions.jts.util</package>
-                <package>gnu.regexp</package>
                 <package>javax.vecmath</package>
                 <package>javax.xml</package>
                 <package>javax.xml.bind</package>
@@ -343,6 +360,7 @@
                 <package>org.geotools.display.exception</package>
                 <package>org.geotools.display.geom</package>
                 <package>org.geotools.display.primitive</package>
+                <package>org.geotools.display.primitive.jts</package>
                 <package>org.geotools.display.renderer</package>
                 <package>org.geotools.display.service</package>
                 <package>org.geotools.display.style</package>
@@ -416,7 +434,6 @@
                 <package>org.geotools.gui.swing.contexttree.renderer</package>
                 <package>org.geotools.gui.swing.crschooser</package>
                 <package>org.geotools.gui.swing.debug</package>
-                <package>org.geotools.gui.swing.debug.erase</package>
                 <package>org.geotools.gui.swing.debug.jasper</package>
                 <package>org.geotools.gui.swing.debug.jfreechart</package>
                 <package>org.geotools.gui.swing.event</package>
@@ -509,6 +526,15 @@
                 <package>org.geotools.referencing.wkt</package>
                 <package>org.geotools.renderer.style</package>
                 <package>org.geotools.renderer.svg</package>
+                <package>org.geotools.report</package>
+                <package>org.geotools.report.attribut.context</package>
+                <package>org.geotools.report.attribut.context.title</package>
+                <package>org.geotools.report.graphic</package>
+                <package>org.geotools.report.graphic.legend</package>
+                <package>org.geotools.report.graphic.map</package>
+                <package>org.geotools.report.graphic.northarrow</package>
+                <package>org.geotools.report.graphic.scalebar</package>
+                <package>org.geotools.report.simple.string</package>
                 <package>org.geotools.resources</package>
                 <package>org.geotools.resources.coverage</package>
                 <package>org.geotools.resources.geometry</package>
@@ -664,10 +690,6 @@
                 <package>thredds.util.net</package>
                 <package>thredds.wcs</package>
                 <package>ucar.atd.dorade</package>
-                <package>ucar.bufr</package>
-                <package>ucar.grib</package>
-                <package>ucar.grib.grib1</package>
-                <package>ucar.grib.grib2</package>
                 <package>ucar.ma2</package>
                 <package>ucar.nc2</package>
                 <package>ucar.nc2.adde</package>
@@ -768,6 +790,14 @@
                 <binary-origin>release/modules/ext/netcdf.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
+                <runtime-relative-path>ext/itext.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/itext.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/jasperreport.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/jasperreport.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
                 <runtime-relative-path>ext/jts.jar</runtime-relative-path>
                 <binary-origin>release/modules/ext/jts.jar</binary-origin>
             </class-path-extension>
@@ -858,6 +888,10 @@
             <class-path-extension>
                 <runtime-relative-path>ext/gt-render.jar</runtime-relative-path>
                 <binary-origin>release/modules/ext/gt-render.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/gt-jasperreport.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gt-jasperreport.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
                 <runtime-relative-path>ext/jdom.jar</runtime-relative-path>

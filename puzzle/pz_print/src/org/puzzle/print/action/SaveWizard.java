@@ -59,7 +59,7 @@ import org.openide.util.Exceptions;
 import org.openide.util.HelpCtx;
 import org.openide.util.NbBundle;
 
-import org.puzzle.core.view.MapView;
+import org.puzzle.core.view.ViewComponent;
 
 /**
  * Wizard to choose the view to save.
@@ -68,15 +68,15 @@ import org.puzzle.core.view.MapView;
  */
 public class SaveWizard extends javax.swing.JPanel implements WizardDescriptor.Panel {
 
-    private final Collection<MapView> views;
+    private final Collection<ViewComponent> views;
     private final List<String> lstViews;
     private File file = null;
     
-    private SaveWizard(final Collection<MapView> views){
+    private SaveWizard(final Collection<ViewComponent> views){
         initComponents();
         this.views = views;
         lstViews = new ArrayList<String>();
-        for(MapView v : views){
+        for(ViewComponent v : views){
             lstViews.add(v.getDisplayName());
         }
 
@@ -106,8 +106,8 @@ public class SaveWizard extends javax.swing.JPanel implements WizardDescriptor.P
         final int index = guiView.getSelectedIndex();
 
         if(index != -1 && file != null){
-            List<MapView> lst = new ArrayList<MapView>(views);
-            MapView view = lst.get(index);
+            List<ViewComponent> lst = new ArrayList<ViewComponent>(views);
+            ViewComponent view = lst.get(index);
             Image img = view.getMap().getCanvas().getSnapShot();
             final BufferedImage bi = new BufferedImage(img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_ARGB);
             final Graphics g = bi.getGraphics();
@@ -127,7 +127,7 @@ public class SaveWizard extends javax.swing.JPanel implements WizardDescriptor.P
         return NbBundle.getMessage(SaveWizard.class, "exportImage");
     }
     
-    public static void showChooserDialog(final Collection<MapView> views){
+    public static void showChooserDialog(final Collection<ViewComponent> views){
         final SaveWizard chooser = new SaveWizard(views);
         WizardDescriptor wizardDescriptor = new WizardDescriptor(chooser.getPanels());
         // {0} will be replaced by WizardDesriptor.Panel.getComponent().getName()

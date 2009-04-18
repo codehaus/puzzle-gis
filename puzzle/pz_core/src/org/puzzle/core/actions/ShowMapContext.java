@@ -22,19 +22,19 @@ package org.puzzle.core.actions;
 
 import java.util.Collection;
 
+import java.util.HashMap;
 import javax.swing.SwingUtilities;
 import org.geotools.map.MapContext;
 
-import org.netbeans.api.progress.ProgressHandle;
-import org.netbeans.api.progress.ProgressHandleFactory;
 import org.openide.nodes.Node;
 import org.openide.util.HelpCtx;
 import org.openide.util.Lookup;
 import org.openide.util.actions.CookieAction;
 
 import org.puzzle.core.project.filetype.GISContextDataObject;
+import org.puzzle.core.project.view.GISViewInfo;
 import org.puzzle.core.view.RendererChooser;
-import org.puzzle.core.view.MapView;
+import org.puzzle.core.view.ViewComponent;
 import org.puzzle.core.view.RenderingService;
 
 /**
@@ -74,8 +74,7 @@ public final class ShowMapContext extends CookieAction {
 
                             @Override
                             public void run() {
-                                final MapView view = services.iterator().next().createView(context);
-                                if(view != null && !view.isOpened()) view.open();
+                                dataObject.createView(services.iterator().next());
                             }
                         });
                         
@@ -87,8 +86,7 @@ public final class ShowMapContext extends CookieAction {
                             public void run() {
                                 final RendererChooser rc = new RendererChooser();
                                 rc.showChooserDialog();
-                                final MapView view = rc.getView(context);
-                                if(view != null && !view.isOpened()) view.open();
+                                dataObject.createView(rc.getSelectedService());
                             }
                         });
                         
@@ -101,6 +99,7 @@ public final class ShowMapContext extends CookieAction {
         }.start();
 
     }
+
 
     /**
      * Specify the enable mode of the action.<br>

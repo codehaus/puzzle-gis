@@ -37,7 +37,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.event.ChangeListener;
-import org.geotools.map.MapContext;
 import org.openide.DialogDisplayer;
 import org.openide.WizardDescriptor;
 import org.openide.util.HelpCtx;
@@ -81,17 +80,18 @@ public class RendererChooser extends JPanel implements WizardDescriptor.Panel {
         pane.add(BorderLayout.WEST,label);
         pane.add(BorderLayout.CENTER,radio);
         link.put(radio, service);
+        radio.setSelected(true);
         return pane;        
     }    
     
-    public MapView getView(MapContext context){
+    public RenderingService getSelectedService(){
         
         if(flagok){
             Set<JRadioButton> radios = link.keySet();
 
             for(JRadioButton radio : radios){
                 if(radio.isSelected()){
-                    return link.get(radio).createView(context);
+                    return link.get(radio);
                 }
             }
         }

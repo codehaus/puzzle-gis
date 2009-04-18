@@ -21,17 +21,15 @@
 package org.puzzle.core.windows.mapdetail;
 
 import java.awt.BorderLayout;
-import java.awt.Rectangle;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Logger;
-
 import javax.swing.ScrollPaneConstants;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
+
+import javax.swing.SwingUtilities;
 import org.geotools.gui.swing.maptree.JContextTree;
 import org.geotools.gui.swing.maptree.menu.DeleteItem;
 import org.geotools.gui.swing.maptree.menu.LayerFeatureItem;
@@ -45,6 +43,7 @@ import org.geotools.gui.swing.propertyedit.PropertyPane;
 import org.geotools.gui.swing.propertyedit.filterproperty.JCQLPropertyPanel;
 import org.geotools.gui.swing.propertyedit.styleproperty.JAdvancedStylePanel;
 import org.geotools.gui.swing.propertyedit.styleproperty.JSimpleStylePanel;
+import org.geotools.map.MapContext;
 
 import org.openide.util.ImageUtilities;
 import org.openide.util.Lookup;
@@ -73,7 +72,7 @@ final class ContextTreeTopComponent extends TopComponent implements LookupListen
 
     private ContextTreeTopComponent() {
         initComponents();
-        setName(NbBundle.getMessage(ContextTreeTopComponent.class, "contextTree"));
+        setDisplayName(NbBundle.getMessage(ContextTreeTopComponent.class, "contextTree"));
         setToolTipText(NbBundle.getMessage(ContextTreeTopComponent.class, "contextTreeHint"));
         setIcon(ImageUtilities.loadImage("org/puzzle/core/project/map.png", true));
 
@@ -232,12 +231,22 @@ final class ContextTreeTopComponent extends TopComponent implements LookupListen
                     final Iterator ite = c.iterator();
                     while(ite.hasNext()){
                         final GISContextDataObject da = (GISContextDataObject) ite.next();
-                        tree.setContext(da.getContext());
+                        final MapContext candidate = da.getContext();
+                        if(candidate != tree.getContext()){
+                            tree.setContext(candidate);
+
+                            SwingUtilities.invokeLater(new Runnable() {
+                                @Override
+                                public void run() {
+                                    setDisplayName(NbBundle.getMessage(ContextTreeTopComponent.class, "contextTree")
+                                    +" - "+ candidate.getDescription().getTitle());
+                                }
+                            });
+                        }
                     }
                 }
 
             }.start();
-            
             
         }
     }
