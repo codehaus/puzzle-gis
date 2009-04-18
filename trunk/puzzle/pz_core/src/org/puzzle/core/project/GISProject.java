@@ -72,7 +72,7 @@ import org.puzzle.core.project.filetype.GISContextDataObject;
 import org.puzzle.core.project.filetype.GISSourceDataObject;
 import org.puzzle.core.project.source.GISSource;
 import org.puzzle.core.project.source.GISSourceInfo;
-import org.puzzle.core.view.MapView;
+import org.puzzle.core.view.ViewComponent;
 import org.puzzle.core.view.ViewService;
 
 /**
@@ -186,7 +186,7 @@ public class GISProject implements Project {
         //close existing views using this mapcontext
         final ViewService viewService = Lookup.getDefault().lookup(ViewService.class);
         if(viewService != null){
-            for(final MapView view : ViewService.getViews()){
+            for(final ViewComponent view : ViewService.getViews()){
                 if(view.getContext().equals(context)){
                     SwingUtilities.invokeLater(new Runnable() {
                         @Override

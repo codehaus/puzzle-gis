@@ -28,7 +28,9 @@ import org.geotools.map.MapContext;
 import org.openide.util.ImageUtilities;
 import org.openide.util.NbBundle;
 
-import org.puzzle.core.view.MapView;
+import org.puzzle.core.project.view.GISView;
+import org.puzzle.core.project.view.GISViewInfo;
+import org.puzzle.core.view.ViewComponent;
 import org.puzzle.core.view.RenderingService;
 
 /**
@@ -38,18 +40,9 @@ import org.puzzle.core.view.RenderingService;
  */
 public class Go2RenderingService implements RenderingService{
 
-    public Go2RenderingService(){
-    }
+    private static final String ID = "GO2";
 
-    @Override
-    public MapView createView(MapContext context) {
-        
-        J2DMapVolatile map = new J2DMapVolatile();
-        map.getContainer().setContext(context);
-        
-        Go2MapView view = new Go2MapView(map);
-        view.setDisplayName(context.getDescription().getTitle().toString() + " - Go2");
-        return view;
+    public Go2RenderingService(){
     }
 
     @Override
@@ -60,6 +53,21 @@ public class Go2RenderingService implements RenderingService{
     @Override
     public String getTitle() {
         return NbBundle.getMessage(Go2RenderingService.class, "title");
+    }
+
+    @Override
+    public String getIdentifier() {
+        return ID;
+    }
+
+    @Override
+    public ViewComponent restoreView(MapContext context, GISView info) {
+        J2DMapVolatile map = new J2DMapVolatile();
+        map.getContainer().setContext(context);
+
+        Go2MapView view = new Go2MapView(map);
+        view.setDisplayName(info.getTitle());
+        return view;
     }
 
 }

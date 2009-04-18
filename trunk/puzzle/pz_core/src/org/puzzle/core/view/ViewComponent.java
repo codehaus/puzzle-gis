@@ -25,6 +25,7 @@ import org.geotools.gui.swing.map.map2d.Map2D;
 import org.geotools.map.MapContext;
 import org.openide.util.lookup.Lookups;
 import org.openide.windows.TopComponent;
+import org.puzzle.core.project.view.GISView;
 
 /**
  * A map view is a windows component displaying a map widget.
@@ -33,14 +34,15 @@ import org.openide.windows.TopComponent;
  *
  * @author Johann Sorel (Puzzle-GIS)
  */
-public abstract class MapView extends TopComponent {
+public abstract class ViewComponent extends TopComponent {
 
     /**
      * Map2D widget, is display at the center of the window.
      */
-    protected Map2D map;
+    protected final Map2D map;
+
     
-    public MapView(final Map2D map){
+    public ViewComponent(final Map2D map){
         super();
         
         associateLookup( Lookups.singleton(this));
@@ -83,7 +85,6 @@ public abstract class MapView extends TopComponent {
     protected void componentClosed() {
         ViewService.remove(this);
         map.dispose();
-        map = null;
         super.componentClosed();
     }
 

@@ -31,28 +31,28 @@ import java.util.Set;
  */
 public final class ViewService {
 
-    private static final Set<MapView> views = Collections.synchronizedSet(new HashSet<MapView>());
+    private static final Set<ViewComponent> views = Collections.synchronizedSet(new HashSet<ViewComponent>());
 
     /**
      * Get a set of all views.
      * 
      * @return immutable set of mapView , never null, can be empty.
      */
-    public static final Set<MapView> getViews(){
+    public static final Set<ViewComponent> getViews(){
         return Collections.unmodifiableSet(views);
     }
 
     /**
      * Automaticly called by the mapview when it is opened.
      */
-    static final void add(final MapView view){
+    static final void add(final ViewComponent view){
         views.add(view);
     }
 
     /**
      * Automaticly called by the mapview when it is closed.
      */
-    static final void remove(final MapView view){
+    static final void remove(final ViewComponent view){
         views.remove(view);
     }
     

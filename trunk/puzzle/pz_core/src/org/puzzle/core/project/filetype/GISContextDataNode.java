@@ -25,10 +25,17 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.IOException;
 
+import java.util.Collection;
+import java.util.HashMap;
 import org.openide.loaders.DataNode;
 import org.openide.nodes.Children;
+import org.openide.nodes.Node;
 import org.openide.util.ImageUtilities;
 import org.openide.util.Lookup;
+import org.openide.util.LookupEvent;
+import org.openide.util.LookupListener;
+import org.puzzle.core.project.view.GISView;
+import org.puzzle.core.project.view.GISViewInfo;
 
 /**
  * This classe provides a {@code org.openide.loaders.DataNode} for the
@@ -51,7 +58,7 @@ public class GISContextDataNode extends DataNode {
      * @param obj   The {@code GISSourceDataObject} used.
      */
      GISContextDataNode(GISContextDataObject obj, Lookup lookup) {
-        super(obj, Children.LEAF);
+        super(obj, new ViewChildren(obj));
         setIconBaseWithExtension(IMAGE_ICON_BASE);
 
         obj.addPropertyChangeListener(new PropertyChangeListener() {
@@ -100,6 +107,35 @@ public class GISContextDataNode extends DataNode {
     @Override
     public GISContextDataObject getDataObject() {
         return (GISContextDataObject)super.getDataObject();
+    }
+
+
+    static class ViewChildren extends Children.Array implements LookupListener{
+
+        private Lookup.Result<GISView> result = null;
+
+        public ViewChildren(GISContextDataObject obj) {
+            result = obj.getLookup().lookupResult(GISView.class);
+            result.addLookupListener(this);
+            parse(result);
+        }
+
+        private void parse(Lookup.Result<GISView> r){
+            final Collection<? extends GISView> c = r.allInstances();
+            remove(getNodes());
+            if (!c.isEmpty()) {
+                for(GISView view : c){
+                    add(new Node[]{new GISContextViewNode(view)});
+                }
+            }
+        }
+
+        @Override
+        public void resultChanged(LookupEvent lookupEvent) {
+            final Lookup.Result<GISView> r = (Lookup.Result<GISView>) lookupEvent.getSource();
+            parse(r);
+        }
+
     }
 
 }

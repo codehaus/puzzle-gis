@@ -28,7 +28,7 @@ import org.openide.DialogDisplayer;
 import org.openide.NotifyDescriptor;
 
 import org.openide.util.NbBundle;
-import org.puzzle.core.view.MapView;
+import org.puzzle.core.view.ViewComponent;
 import org.puzzle.core.view.ViewService;
 
 /**
@@ -41,7 +41,7 @@ public final class ExportImage implements ActionListener {
     @Override
     public void actionPerformed(final ActionEvent e) {
         
-        final Set<MapView> views = ViewService.getViews();
+        final Set<ViewComponent> views = ViewService.getViews();
 
         if(views.isEmpty()){
             final NotifyDescriptor d =  new NotifyDescriptor.Message(

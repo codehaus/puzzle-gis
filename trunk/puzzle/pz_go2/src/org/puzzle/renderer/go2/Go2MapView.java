@@ -32,14 +32,14 @@ import org.geotools.gui.swing.go.control.JInformationBar;
 import org.geotools.gui.swing.go.control.JNavigationBar;
 import org.geotools.gui.swing.go.decoration.JClassicNavigationDecoration;
 import org.geotools.map.MapContext;
-import org.puzzle.core.view.MapView;
+import org.puzzle.core.view.ViewComponent;
 
 /**
  * Map view using the GO2 Rendering engine.
  *
  * @author Johann Sorel (Puzzle-GIS)
  */
-public class Go2MapView extends MapView{
+public class Go2MapView extends ViewComponent{
 
     private final JNavigationBar navBar = new JNavigationBar();
     private final JInformationBar infoBar = new JInformationBar();

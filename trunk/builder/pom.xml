@@ -88,6 +88,11 @@
         </dependency>
         <dependency>
             <groupId>org.geotools</groupId>
+            <artifactId>gt-jasperreport</artifactId>
+            <version>${geotools.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.geotools</groupId>
             <artifactId>gt-main</artifactId>
             <version>${geotools.version}</version>
         </dependency>
@@ -351,6 +356,7 @@
                                 <include name="gt-graph.jar"/>
                                 <include name="gt-image.jar"/>
                                 <include name="gt-jdbc.jar"/>
+                                <include name="gt-jasperreport.jar"/>
                                 <include name="gt-main.jar"/>
                                 <include name="gt-metadata.jar"/>
                                 <include name="gt-postgis.jar"/>
@@ -367,6 +373,8 @@
                                 <include name="gt-xml.jar"/>
                                 <include name="gt-xsd-wfs.jar"/>
                                 <include name="hsqldb.jar"/>
+                                <include name="itext.jar"/>
+                                <include name="jasperreports.jar"/>
                                 <include name="jaxb-api.jar"/>
                                 <include name="jaxb-impl.jar"/>
                                 <include name="jdom.jar"/>
