@@ -25,7 +25,6 @@ import org.geotools.gui.swing.map.map2d.Map2D;
 import org.geotools.map.MapContext;
 import org.openide.util.lookup.Lookups;
 import org.openide.windows.TopComponent;
-import org.puzzle.core.project.view.GISView;
 
 /**
  * A map view is a windows component displaying a map widget.
@@ -74,7 +73,6 @@ public abstract class ViewComponent extends TopComponent {
      */
     @Override
     protected void componentOpened() {
-        ViewService.add(this);
         super.componentOpened();
     }
 
@@ -83,7 +81,6 @@ public abstract class ViewComponent extends TopComponent {
      */
     @Override
     protected void componentClosed() {
-        ViewService.remove(this);
         super.componentClosed();
     }
 

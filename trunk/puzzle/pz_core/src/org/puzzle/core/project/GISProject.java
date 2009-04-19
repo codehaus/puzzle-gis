@@ -55,7 +55,6 @@ import org.netbeans.api.project.Project;
 import org.netbeans.api.project.ProjectInformation;
 import org.netbeans.spi.project.ActionProvider;
 import org.netbeans.spi.project.ProjectState;
-import org.netbeans.spi.project.ui.CustomizerProvider;
 import org.netbeans.spi.project.ui.LogicalViewProvider;
 import org.openide.filesystems.FileObject;
 import org.openide.filesystems.FileUtil;
@@ -73,7 +72,6 @@ import org.puzzle.core.project.filetype.GISSourceDataObject;
 import org.puzzle.core.project.source.GISSource;
 import org.puzzle.core.project.source.GISSourceInfo;
 import org.puzzle.core.view.ViewComponent;
-import org.puzzle.core.view.ViewService;
 
 /**
  * This class is the project. the project allow to manage the
@@ -175,33 +173,7 @@ public class GISProject implements Project {
     public Lookup getLookup() {
         return lookUp;
     }
-        
-    /**
-     * Remove a {@code MapContext}, will remove it from the lookup, close all related view and
-      * remove it from the contextservice.
-     * @param map   The {@code MapContext} to add to the project's {@code Lookup}.
-     */
-    public void removeContext(MapContext context) {
-
-        //close existing views using this mapcontext
-        final ViewService viewService = Lookup.getDefault().lookup(ViewService.class);
-        if(viewService != null){
-            for(final ViewComponent view : ViewService.getViews()){
-                if(view.getContext().equals(context)){
-                    SwingUtilities.invokeLater(new Runnable() {
-                        @Override
-                        public void run() {
-                            view.close();
-                        }
-                    });
-                }
-            }
-        }
-        
-        //finally remove context from project
-//        contexts.remove(context);
-    }
-    
+            
     public Collection<MapContext> getContexts() {
         final Collection<MapContext> contexts = new ArrayList<MapContext>();
        findContext(getMapFolder(true), contexts);
