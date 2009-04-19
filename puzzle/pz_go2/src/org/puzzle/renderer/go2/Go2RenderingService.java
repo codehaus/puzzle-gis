@@ -78,7 +78,7 @@ public class Go2RenderingService implements RenderingService{
         map.getContainer().setContext(context);
         
         try {
-            map.getCanvas().setObjectiveCRS(CRS.decode("CRS:84"));
+            map.getCanvas().setObjectiveCRS(CRS.decode("EPSG:3395"));
         } catch (Exception ex) {
             Exceptions.printStackTrace(ex);
         }

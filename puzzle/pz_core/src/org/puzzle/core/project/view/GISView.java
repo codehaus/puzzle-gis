@@ -66,11 +66,11 @@ public class GISView {
 
     }
 
-    public ViewComponent getComponent() {
+    public ViewComponent getComponent(boolean create) {
 
         ViewComponent comp = null;
 
-        if(compRef == null ){
+        if(compRef == null && create){
             final Collection<? extends RenderingService> services = Lookup.getDefault().lookupAll(RenderingService.class);
             for(RenderingService service : services){
                 String id = service.getIdentifier();
@@ -84,7 +84,7 @@ public class GISView {
         }else{
             comp = compRef.get();
 
-            if(comp == null){
+            if(comp == null && create){
                 final Collection<? extends RenderingService> services = Lookup.getDefault().lookupAll(RenderingService.class);
                 for(RenderingService service : services){
                     String id = service.getIdentifier();

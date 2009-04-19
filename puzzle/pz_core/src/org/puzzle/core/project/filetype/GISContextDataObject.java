@@ -37,7 +37,6 @@ import org.geotools.style.CollectionChangeEvent;
 import org.netbeans.api.progress.ProgressHandle;
 import org.netbeans.api.progress.ProgressHandleFactory;
 import org.netbeans.api.project.FileOwnerQuery;
-import org.netbeans.api.project.Project;
 
 import org.openide.filesystems.FileAlreadyLockedException;
 import org.openide.filesystems.FileLock;
@@ -115,10 +114,9 @@ public class GISContextDataObject extends XMLDataObject {
 
     @Override
     public void dispose() {
-        Project prj = FileOwnerQuery.getOwner(getPrimaryFile());
-        if (prj != null && prj instanceof GISProject) {
-            GISProject gisprj = (GISProject) prj;
-            gisprj.removeContext(getContext());
+        //close all views
+        for(GISView view : getLookup().lookupAll(GISView.class)){
+            removeView(view);
         }
         super.dispose();
     }
@@ -182,14 +180,17 @@ public class GISContextDataObject extends XMLDataObject {
         content.add(view);
 
         if(open){
-            ViewComponent comp = view.getComponent();
+            ViewComponent comp = view.getComponent(true);
             if(comp != null && !comp.isOpened()) comp.open();
         }
     }
 
     public void removeView(GISView view){
         if(view.isDisplayed()){
-            view.getComponent().close();
+            ViewComponent comp = view.getComponent(false);
+            if(comp != null){
+                comp.close();
+            }
         }
         content.remove(view);
         setNeedViewSave(true);

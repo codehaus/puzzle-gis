@@ -105,7 +105,7 @@ public class GISContextViewNode extends AbstractNode{
         @Override
         public void actionPerformed(ActionEvent e) {
             System.out.println("called");
-            ViewComponent comp = view.getComponent();
+            ViewComponent comp = view.getComponent(true);
             if(!comp.isOpened()){
                 comp.open();
             }

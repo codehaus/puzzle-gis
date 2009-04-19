@@ -20,16 +20,18 @@
  */
 package org.puzzle.print.action;
 
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Set;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+import javax.swing.JFileChooser;
 
-import org.openide.DialogDisplayer;
-import org.openide.NotifyDescriptor;
-
-import org.openide.util.NbBundle;
+import org.openide.util.Exceptions;
+import org.openide.util.Utilities;
 import org.puzzle.core.view.ViewComponent;
-import org.puzzle.core.view.ViewService;
 
 /**
  * Save view action.
@@ -40,16 +42,28 @@ public final class ExportImage implements ActionListener {
 
     @Override
     public void actionPerformed(final ActionEvent e) {
-        
-        final Set<ViewComponent> views = ViewService.getViews();
 
-        if(views.isEmpty()){
-            final NotifyDescriptor d =  new NotifyDescriptor.Message(
-                    NbBundle.getMessage(ExportImage.class, "noView"), NotifyDescriptor.ERROR_MESSAGE);
-            DialogDisplayer.getDefault().notify(d);
-        }else{
-            SaveWizard.showChooserDialog(views);
+        ViewComponent view = Utilities.actionsGlobalContext().lookup(ViewComponent.class);
+
+        if(view != null){
+            Image img = view.getMap().getCanvas().getSnapShot();
+            final BufferedImage bi = new BufferedImage(img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_ARGB);
+            final Graphics g = bi.getGraphics();
+            g.drawImage(img, 0, 0, null);
+            g.dispose();
+
+            JFileChooser chooser = new JFileChooser();
+            int choice = chooser.showSaveDialog(null);
+
+            if(choice == JFileChooser.APPROVE_OPTION){
+                try {
+                    ImageIO.write(bi, "png", chooser.getSelectedFile());
+                } catch (IOException ex) {
+                    Exceptions.printStackTrace(ex);
+                }
+            }
         }
+
             
     }
 }
