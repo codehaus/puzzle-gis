@@ -22,14 +22,24 @@ package org.puzzle.renderer.go2;
 
 import java.awt.Image;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+
 import org.geotools.gui.swing.go.J2DMapVolatile;
 import org.geotools.map.MapContext;
+import org.geotools.referencing.CRS;
+import org.geotools.referencing.operation.matrix.AffineTransform2D;
 
+import org.opengis.referencing.FactoryException;
+import org.opengis.referencing.NoSuchAuthorityCodeException;
+import org.opengis.referencing.crs.CoordinateReferenceSystem;
+import org.opengis.referencing.operation.TransformException;
+
+import org.openide.util.Exceptions;
 import org.openide.util.ImageUtilities;
 import org.openide.util.NbBundle;
 
 import org.puzzle.core.project.view.GISView;
-import org.puzzle.core.project.view.GISViewInfo;
 import org.puzzle.core.view.ViewComponent;
 import org.puzzle.core.view.RenderingService;
 
@@ -41,6 +51,8 @@ import org.puzzle.core.view.RenderingService;
 public class Go2RenderingService implements RenderingService{
 
     private static final String ID = "GO2";
+    private static final String MATRIX_PARAMETER = "Matrix";
+    private static final String CRS_PARAMETER = "Crs";
 
     public Go2RenderingService(){
     }
@@ -61,13 +73,84 @@ public class Go2RenderingService implements RenderingService{
     }
 
     @Override
-    public ViewComponent restoreView(MapContext context, GISView info) {
-        J2DMapVolatile map = new J2DMapVolatile();
+    public ViewComponent restoreView(MapContext context, final GISView view) {
+        final J2DMapVolatile map = new J2DMapVolatile();
         map.getContainer().setContext(context);
+        
+        try {
+            map.getCanvas().setObjectiveCRS(CRS.decode("CRS:84"));
+        } catch (Exception ex) {
+            Exceptions.printStackTrace(ex);
+        }
 
-        Go2MapView view = new Go2MapView(map);
-        view.setDisplayName(info.getTitle());
-        return view;
+
+        final String strCrs = view.getInfo().parameters().get(CRS_PARAMETER);
+        final String matrix = view.getInfo().parameters().get(MATRIX_PARAMETER);
+
+        //restore the crs parameters if available
+        if(strCrs != null && !strCrs.trim().isEmpty()){
+
+            try {
+                CoordinateReferenceSystem crs = CRS.decode(strCrs);
+                map.getCanvas().setObjectiveCRS(crs);
+            } catch (NoSuchAuthorityCodeException ex) {
+                Exceptions.printStackTrace(ex);
+            } catch (FactoryException ex) {
+                Exceptions.printStackTrace(ex);
+            } catch (TransformException ex) {
+                Exceptions.printStackTrace(ex);
+            }
+        }
+
+        //restore the matrix parameters if available
+        if(matrix != null && !matrix.trim().isEmpty()){
+
+            String[] splits = matrix.split(";");
+
+            final AffineTransform2D trs = new AffineTransform2D();
+            trs.setTransform(
+                    Double.valueOf(splits[0]),
+                    Double.valueOf(splits[1]),
+                    Double.valueOf(splits[2]),
+                    Double.valueOf(splits[3]),
+                    Double.valueOf(splits[4]),
+                    Double.valueOf(splits[5]));
+//            try {
+                map.getCanvas().getController().transform(trs);
+//            } catch (TransformException ex) {
+//                Exceptions.printStackTrace(ex);
+//            }
+        }
+
+
+        map.getCanvas().addPropertyChangeListener(new PropertyChangeListener() {
+
+            @Override
+            public void propertyChange(PropertyChangeEvent evt) {
+                final AffineTransform2D trs = map.getCanvas().getController().getTransform();
+                final double[] matrix = new double[6];
+                trs.getMatrix(matrix);
+
+                final StringBuilder sb = new StringBuilder();
+                int i=0;
+                for(i=0;i<5;i++){
+                    sb.append(matrix[i]).append(';');
+                }
+                sb.append(matrix[i]);
+
+                view.getInfo().parameters().put(MATRIX_PARAMETER, sb.toString());
+                try {
+                    view.getInfo().parameters().put(CRS_PARAMETER, CRS.lookupIdentifier(map.getCanvas().getObjectiveCRS(), true));
+                } catch (FactoryException ex) {
+                    Exceptions.printStackTrace(ex);
+                }
+            }
+        });
+
+
+        Go2MapView viewComponent = new Go2MapView(map);
+        viewComponent.setDisplayName(view.getTitle());
+        return viewComponent;
     }
 
 }

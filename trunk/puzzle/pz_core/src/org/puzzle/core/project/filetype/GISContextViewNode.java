@@ -21,11 +21,15 @@
 package org.puzzle.core.project.filetype;
 
 import java.awt.Image;
+import java.awt.event.ActionEvent;
 import java.io.IOException;
+import javax.swing.AbstractAction;
+import javax.swing.Action;
 import org.openide.nodes.AbstractNode;
 import org.openide.nodes.Children;
 import org.openide.util.ImageUtilities;
 import org.puzzle.core.project.view.GISView;
+import org.puzzle.core.view.ViewComponent;
 
 /**
  *
@@ -82,6 +86,33 @@ public class GISContextViewNode extends AbstractNode{
     public void destroy() throws IOException {
         view.getContext().removeView(view);
         super.destroy();
+    }
+
+    @Override
+    public Action[] getActions(boolean context) {
+        return new Action[]{
+            new ShowAction()
+        };
+    }
+
+
+    private class ShowAction extends AbstractAction{
+
+        public ShowAction() {
+            super(Utilities.getString("showView"));
+        }
+        
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            System.out.println("called");
+            ViewComponent comp = view.getComponent();
+            if(!comp.isOpened()){
+                comp.open();
+            }
+            comp.requestActive();
+            comp.requestVisible();
+        }
+
     }
 
 }

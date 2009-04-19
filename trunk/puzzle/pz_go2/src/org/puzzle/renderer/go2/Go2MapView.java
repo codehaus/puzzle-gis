@@ -21,10 +21,12 @@
 package org.puzzle.renderer.go2;
 
 import java.awt.BorderLayout;
+import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import javax.swing.JPanel;
 
+import javax.swing.SwingUtilities;
 import org.geotools.gui.swing.go.J2DMapVolatile;
 import org.geotools.gui.swing.go.control.JConfigBar;
 import org.geotools.gui.swing.go.control.JCoordinateBar;
@@ -46,6 +48,7 @@ public class Go2MapView extends ViewComponent{
     private final JCoordinateBar coordBar = new JCoordinateBar();
     private final JConfigBar configBar = new JConfigBar();
     private final JClassicNavigationDecoration boussole = new JClassicNavigationDecoration();
+    private boolean firstPaint = true;
 
     
     public Go2MapView(J2DMapVolatile map){
@@ -96,6 +99,23 @@ public class Go2MapView extends ViewComponent{
     public MapContext getContext() {
         return getMap().getContainer().getContext();
     }
-    
-    
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+
+        if(firstPaint){
+            firstPaint = false;
+
+            SwingUtilities.invokeLater(new Runnable() {
+
+                @Override
+                public void run() {
+                    map.getCanvas().getController().repaint();
+                }
+            });
+        }
+
+    }
+
 }

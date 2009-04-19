@@ -20,7 +20,8 @@
  */
 package org.puzzle.core.project.view;
 
-import java.util.Collections;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -32,22 +33,58 @@ import java.util.Map;
  */
 public final class GISViewInfo {
 
+    public static final String TITLE_PROPERTY = "title";
+    public static final String PARAMETERS_PROPERTY = "parameters";
+
     public static final int UNREGISTERED_ID = -1;
 
+    private final PropertyChangeSupport support = new PropertyChangeSupport(this);
     private final int id;
     private final String serviceName;
-    private final Map<String,String> parameters;
+    private final Map<String,String> parameters = new HashMap<String, String>(){
 
-    public GISViewInfo(int id, String serviceName, Map<String, String> parameters) {
+        @Override
+        public String put(String key, String value) {
+            Map<String,String> old = new HashMap<String, String>(parameters);
+            String put = super.put(key, value);
+            support.firePropertyChange(PARAMETERS_PROPERTY, old, parameters);
+            return put;
+        }
+
+        @Override
+        public void clear() {
+            Map<String,String> old = new HashMap<String, String>(parameters);
+            super.clear();
+            support.firePropertyChange(PARAMETERS_PROPERTY, old, parameters);
+        }
+
+        @Override
+        public void putAll(Map<? extends String, ? extends String> m) {
+            Map<String,String> old = new HashMap<String, String>(parameters);
+            super.putAll(m);
+            support.firePropertyChange(PARAMETERS_PROPERTY, old, parameters);
+        }
+
+        @Override
+        public String remove(Object key) {
+            Map<String,String> old = new HashMap<String, String>(parameters);
+            String rm = super.remove(key);
+            support.firePropertyChange(PARAMETERS_PROPERTY, old, parameters);
+            return rm;
+        }
+        
+    };
+
+    private String title = "";
+
+    public GISViewInfo(int id, String serviceName, String title, Map<String, String> parameters) {
         if(serviceName == null){
             throw new NullPointerException("Service name can not be null");
         }
         this.id = id;
         this.serviceName = serviceName;
-
-        //make a defensive copy immutable
-        final Map<String,String> params = new HashMap<String,String>(parameters);
-        this.parameters = Collections.unmodifiableMap(params);
+        this.title = title;
+        this.parameters.putAll(parameters);
     }
 
     /**
@@ -70,8 +107,26 @@ public final class GISViewInfo {
      * This parameters are retrieved from the XML context.
      * @return A {@code Map} containing all parameters.
      */
-    public Map<String,String> getParameters(){
+    public Map<String,String> parameters(){
         return parameters;
     }
-    
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        String old = this.title;
+        this.title = title;
+        support.firePropertyChange(TITLE_PROPERTY, old, title);
+    }
+
+    public void addPropertyChangeListener(PropertyChangeListener listener){
+        support.addPropertyChangeListener(listener);
+    }
+
+    public void removePropertyChangeListener(PropertyChangeListener listener){
+        support.removePropertyChangeListener(listener);
+    }
+
 }

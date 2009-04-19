@@ -261,7 +261,13 @@ public class JWMSDataPanel extends SourceCreationPane {
         params.put(WMSSourceService.VERSION_PROP, jtf_version.getText());
         final GISSourceInfo info = new GISSourceInfo(-1, WMSSourceService.SERVICE_ID, params);
         final Map<String,GISSourceInfo> sources = new HashMap<String, GISSourceInfo>();
-        sources.put(jtf_name.getText(), info);
+
+        String name = jtf_name.getText();
+        if(name.trim().isEmpty()){
+            name = "noname";
+        }
+
+        sources.put(name, info);
         return sources;
     }
 }
