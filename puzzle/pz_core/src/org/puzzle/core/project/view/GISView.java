@@ -20,6 +20,7 @@
  */
 package org.puzzle.core.project.view;
 
+import java.lang.ref.SoftReference;
 import java.util.Collection;
 import javax.swing.SwingUtilities;
 import org.openide.util.Lookup;
@@ -35,8 +36,7 @@ public class GISView {
 
     private final GISContextDataObject contextData;
     private final GISViewInfo info;
-    private ViewComponent component;
-    private String title = "";
+    private SoftReference<ViewComponent> compRef;
 
     public GISView(GISContextDataObject context, GISViewInfo info) {
         this.contextData = context;
@@ -44,18 +44,22 @@ public class GISView {
     }
 
     public String getTitle(){
-        return title;
+        return info.getTitle();
     }
 
     public void setTitle(final String title){
-        this.title = title;
+        info.setTitle(title);
 
-        if(component != null){
+        if(compRef != null){
+            final ViewComponent comp = compRef.get();
+
+            if(comp == null) return;
+
             SwingUtilities.invokeLater(new Runnable() {
 
                 @Override
                 public void run() {
-                    component.setDisplayName(title);
+                    comp.setDisplayName(title);
                 }
             });
         }
@@ -63,23 +67,42 @@ public class GISView {
     }
 
     public ViewComponent getComponent() {
-        if(component == null){
+
+        ViewComponent comp = null;
+
+        if(compRef == null ){
             final Collection<? extends RenderingService> services = Lookup.getDefault().lookupAll(RenderingService.class);
             for(RenderingService service : services){
                 String id = service.getIdentifier();
                 if(id.equals(info.getServiceName())){
                     //this is the correct rendering engine
-                    component = service.restoreView(contextData.getContext(), this);
+                    comp = service.restoreView(contextData.getContext(), this);
+                    compRef = new SoftReference<ViewComponent>(comp);
                     break;
+                }
+            }
+        }else{
+            comp = compRef.get();
+
+            if(comp == null){
+                final Collection<? extends RenderingService> services = Lookup.getDefault().lookupAll(RenderingService.class);
+                for(RenderingService service : services){
+                    String id = service.getIdentifier();
+                    if(id.equals(info.getServiceName())){
+                        //this is the correct rendering engine
+                        comp = service.restoreView(contextData.getContext(), this);
+                        compRef = new SoftReference<ViewComponent>(comp);
+                        break;
+                    }
                 }
             }
         }
 
-        return component;
+        return comp;
     }
 
     public boolean isDisplayed(){
-        return component != null;
+        return compRef != null;
     }
 
     public GISContextDataObject getContext() {

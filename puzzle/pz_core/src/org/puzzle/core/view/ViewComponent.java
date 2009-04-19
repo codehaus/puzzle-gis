@@ -84,7 +84,6 @@ public abstract class ViewComponent extends TopComponent {
     @Override
     protected void componentClosed() {
         ViewService.remove(this);
-        map.dispose();
         super.componentClosed();
     }
 

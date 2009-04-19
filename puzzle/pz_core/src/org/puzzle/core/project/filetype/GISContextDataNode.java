@@ -24,9 +24,8 @@ import java.awt.Image;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.IOException;
-
 import java.util.Collection;
-import java.util.HashMap;
+
 import org.openide.loaders.DataNode;
 import org.openide.nodes.Children;
 import org.openide.nodes.Node;
@@ -35,7 +34,6 @@ import org.openide.util.Lookup;
 import org.openide.util.LookupEvent;
 import org.openide.util.LookupListener;
 import org.puzzle.core.project.view.GISView;
-import org.puzzle.core.project.view.GISViewInfo;
 
 /**
  * This classe provides a {@code org.openide.loaders.DataNode} for the
