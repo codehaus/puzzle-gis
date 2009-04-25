@@ -21,15 +21,18 @@
 package org.puzzle.core.project.filetype;
 
 import java.awt.Image;
-import java.awt.event.ActionEvent;
 import java.io.IOException;
-import javax.swing.AbstractAction;
+import java.util.List;
 import javax.swing.Action;
+
 import org.openide.nodes.AbstractNode;
 import org.openide.nodes.Children;
 import org.openide.util.ImageUtilities;
+import org.openide.util.Lookup;
+import org.openide.util.actions.SystemAction;
+import org.openide.util.lookup.AbstractLookup;
+import org.openide.util.lookup.InstanceContent;
 import org.puzzle.core.project.view.GISView;
-import org.puzzle.core.view.ViewComponent;
 
 /**
  *
@@ -41,7 +44,7 @@ public class GISContextViewNode extends AbstractNode{
     private final GISView view;
 
     public GISContextViewNode(GISView view) {
-        super(Children.LEAF);
+        super(Children.LEAF, createLookup(view));
         super.setName(view.getTitle());
         this.view = view;
     }
@@ -89,30 +92,20 @@ public class GISContextViewNode extends AbstractNode{
     }
 
     @Override
-    public Action[] getActions(boolean context) {
-        return new Action[]{
-            new ShowAction()
-        };
+    public Action[] getActions(boolean context) {        
+        final List<? extends Action> actions = org.openide.util.Utilities.actionsForPath("Loaders/text/giscontextview/Actions");
+        return actions.toArray(new Action[actions.size()]);
     }
 
+    @Override
+    public SystemAction getDefaultAction() {
+        return (SystemAction) getActions(false)[0];
+    }
 
-    private class ShowAction extends AbstractAction{
-
-        public ShowAction() {
-            super(Utilities.getString("showView"));
-        }
-        
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            System.out.println("called");
-            ViewComponent comp = view.getComponent(true);
-            if(!comp.isOpened()){
-                comp.open();
-            }
-            comp.requestActive();
-            comp.requestVisible();
-        }
-
+    private static Lookup createLookup(GISView view){
+        InstanceContent content = new InstanceContent();
+        content.add(view);
+        return new AbstractLookup(content);
     }
 
 }

@@ -40,9 +40,9 @@ import org.puzzle.core.view.ViewComponent;
  *
  * @author Johann Sorel (Puzzle-GIS)
  */
-public final class ExportImage extends CookieAction{
+public final class ExportJasper extends CookieAction{
 
-    public ExportImage() {}
+    public ExportJasper() {}
 
     @Override
     protected int mode() {
@@ -93,7 +93,7 @@ public final class ExportImage extends CookieAction{
 
     @Override
     public String getName() {
-        return Utilities.getString("exportImage");
+        return Utilities.getString("exportJasper");
     }
 
     @Override

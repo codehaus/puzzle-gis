@@ -3,22 +3,28 @@
 <filesystem>
     <folder name="Actions">
         <folder name="Puzzle">
-            <file name="org-puzzle-print-action-ExportImage.instance">
-                <attr name="SystemFileSystem.localizingBundle" stringvalue="org.puzzle.print.Bundle"/>
-                <attr name="delegate" newvalue="org.puzzle.print.action.ExportImage"/>
-                <attr name="displayName" bundlevalue="org.puzzle.print.action.Bundle#exportImage"/>
-                <attr name="iconBase" stringvalue="org/puzzle/print/action/saveimage.png"/>
-                <attr name="instanceCreate" methodvalue="org.openide.awt.Actions.alwaysEnabled"/>
-                <attr name="noIconInMenu" stringvalue="false"/>
-            </file>
+            <file name="org-puzzle-print-action-ExportImage.instance" />
+            <file name="org-puzzle-print-action-ExportJasper.instance" />
         </folder>
     </folder>
-    <folder name="Toolbars">
-        <folder name="GISPrint">
-            <attr name="position" intvalue="130"/>
-            <file name="org-puzzle-print-action-ExportImage.shadow">
-                <attr name="originalFile" stringvalue="Actions/Puzzle/org-puzzle-print-action-ExportImage.instance"/>
-            </file>
+    <folder name="Loaders">
+        <folder name="text">
+            <folder name="giscontextview">
+                <folder name="Actions">
+                    <file name="sep-1.instance">
+                        <attr name="instanceClass" stringvalue="javax.swing.JSeparator"/>
+                        <attr name="position" intvalue="100"/>
+                    </file>
+                    <file name="org-puzzle-print-action-ExportImage.shadow">
+                        <attr name="originalFile" stringvalue="Actions/Puzzle/org-puzzle-print-action-ExportImage.instance"/>
+                        <attr name="position" intvalue="200"/>
+                    </file>
+                    <file name="org-puzzle-print-action-ExportJasper.shadow">
+                        <attr name="originalFile" stringvalue="Actions/Puzzle/org-puzzle-print-action-ExportJasper.instance"/>
+                        <attr name="position" intvalue="300"/>
+                    </file>
+                </folder>
+            </folder>
         </folder>
     </folder>
 </filesystem>
