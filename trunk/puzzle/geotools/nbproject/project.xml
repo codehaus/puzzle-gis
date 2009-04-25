@@ -173,6 +173,51 @@
                 <package>net.opengis.ows11.validation</package>
                 <package>net.opengis.wfs</package>
                 <package>net.opengis.wfs.impl</package>
+                <package>net.sf.jasperreports.ant</package>
+                <package>net.sf.jasperreports.charts</package>
+                <package>net.sf.jasperreports.charts.base</package>
+                <package>net.sf.jasperreports.charts.design</package>
+                <package>net.sf.jasperreports.charts.fill</package>
+                <package>net.sf.jasperreports.charts.util</package>
+                <package>net.sf.jasperreports.charts.xml</package>
+                <package>net.sf.jasperreports.compilers</package>
+                <package>net.sf.jasperreports.crosstabs</package>
+                <package>net.sf.jasperreports.crosstabs.base</package>
+                <package>net.sf.jasperreports.crosstabs.design</package>
+                <package>net.sf.jasperreports.crosstabs.fill</package>
+                <package>net.sf.jasperreports.crosstabs.fill.calculation</package>
+                <package>net.sf.jasperreports.crosstabs.xml</package>
+                <package>net.sf.jasperreports.engine</package>
+                <package>net.sf.jasperreports.engine.base</package>
+                <package>net.sf.jasperreports.engine.component</package>
+                <package>net.sf.jasperreports.engine.convert</package>
+                <package>net.sf.jasperreports.engine.data</package>
+                <package>net.sf.jasperreports.engine.design</package>
+                <package>net.sf.jasperreports.engine.design.events</package>
+                <package>net.sf.jasperreports.engine.export</package>
+                <package>net.sf.jasperreports.engine.export.data</package>
+                <package>net.sf.jasperreports.engine.export.draw</package>
+                <package>net.sf.jasperreports.engine.export.legacy</package>
+                <package>net.sf.jasperreports.engine.export.oasis</package>
+                <package>net.sf.jasperreports.engine.export.oasis.zip</package>
+                <package>net.sf.jasperreports.engine.export.xmlss</package>
+                <package>net.sf.jasperreports.engine.fill</package>
+                <package>net.sf.jasperreports.engine.print</package>
+                <package>net.sf.jasperreports.engine.query</package>
+                <package>net.sf.jasperreports.engine.util</package>
+                <package>net.sf.jasperreports.engine.util.xml</package>
+                <package>net.sf.jasperreports.engine.xml</package>
+                <package>net.sf.jasperreports.extensions</package>
+                <package>net.sf.jasperreports.j2ee.servlets</package>
+                <package>net.sf.jasperreports.olap</package>
+                <package>net.sf.jasperreports.olap.mapping</package>
+                <package>net.sf.jasperreports.olap.mondrian</package>
+                <package>net.sf.jasperreports.olap.result</package>
+                <package>net.sf.jasperreports.olap.xmla</package>
+                <package>net.sf.jasperreports.renderers</package>
+                <package>net.sf.jasperreports.swing</package>
+                <package>net.sf.jasperreports.view</package>
+                <package>net.sf.jasperreports.view.save</package>
                 <package>opendap.dap</package>
                 <package>opendap.dap.Server</package>
                 <package>opendap.dap.XMLparser</package>
@@ -317,11 +362,27 @@
                 <package>org.eclipse.emf.ecore.xml.type.impl</package>
                 <package>org.eclipse.emf.ecore.xml.type.internal</package>
                 <package>org.eclipse.emf.ecore.xml.type.util</package>
+                <package>org.eclipse.jdt.core.compiler</package>
+                <package>org.eclipse.jdt.internal.compiler</package>
+                <package>org.eclipse.jdt.internal.compiler.ast</package>
+                <package>org.eclipse.jdt.internal.compiler.batch</package>
+                <package>org.eclipse.jdt.internal.compiler.classfmt</package>
+                <package>org.eclipse.jdt.internal.compiler.codegen</package>
+                <package>org.eclipse.jdt.internal.compiler.env</package>
+                <package>org.eclipse.jdt.internal.compiler.flow</package>
+                <package>org.eclipse.jdt.internal.compiler.impl</package>
+                <package>org.eclipse.jdt.internal.compiler.lookup</package>
+                <package>org.eclipse.jdt.internal.compiler.parser</package>
+                <package>org.eclipse.jdt.internal.compiler.parser.diagnose</package>
+                <package>org.eclipse.jdt.internal.compiler.problem</package>
+                <package>org.eclipse.jdt.internal.compiler.util</package>
+                <package>org.eclipse.jdt.internal.core.util</package>
                 <package>org.eclipse.xsd</package>
                 <package>org.eclipse.xsd.ecore</package>
                 <package>org.eclipse.xsd.impl</package>
                 <package>org.eclipse.xsd.impl.type</package>
                 <package>org.eclipse.xsd.util</package>
+                <package>org.geotools</package>
                 <package>org.geotools.axis</package>
                 <package>org.geotools.console</package>
                 <package>org.geotools.coverage</package>
@@ -646,6 +707,8 @@
                 <package>org.jdom.output</package>
                 <package>org.jdom.transform</package>
                 <package>org.jdom.xpath</package>
+                <package>org.netbeans.swing.etable</package>
+                <package>org.netbeans.swing.outline</package>
                 <package>org.picocontainer</package>
                 <package>org.picocontainer.alternatives</package>
                 <package>org.picocontainer.defaults</package>
@@ -671,6 +734,7 @@
                 <package>org.w3c.dom.traversal</package>
                 <package>org.w3c.dom.views</package>
                 <package>org.w3c.dom.xpath</package>
+                <package>org.w3c.tools.codec</package>
                 <package>org.xml.sax</package>
                 <package>org.xml.sax.ext</package>
                 <package>org.xml.sax.helpers</package>
@@ -810,8 +874,8 @@
                 <binary-origin>release/modules/ext/itext.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/jasperreport.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/jasperreport.jar</binary-origin>
+                <runtime-relative-path>ext/jasperreports.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/jasperreports.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
                 <runtime-relative-path>ext/jts.jar</runtime-relative-path>
@@ -1024,6 +1088,14 @@
             <class-path-extension>
                 <runtime-relative-path>ext/xalan.jar</runtime-relative-path>
                 <binary-origin>release/modules/ext/xalan.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/jdt-compiler.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/jdt-compiler.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/org-netbeans-swing-outline.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/org-netbeans-swing-outline.jar</binary-origin>
             </class-path-extension>
         </data>
     </configuration>

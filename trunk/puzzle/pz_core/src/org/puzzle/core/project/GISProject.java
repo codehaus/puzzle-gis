@@ -173,15 +173,37 @@ public class GISProject implements Project {
     public Lookup getLookup() {
         return lookUp;
     }
-            
+
+    public Collection<FileObject> getFiles(String suffix){
+        final Collection<FileObject> files = new ArrayList<FileObject>();
+        findFiles(getDocFolder(true), files,suffix);
+        return files;
+    }
+
+    private void findFiles(FileObject file, Collection<FileObject> files, String suffix) {
+
+        System.out.println(file.getName());
+        System.out.println(file.getNameExt());
+
+        if (file.isFolder()) {
+            FileObject[] childs = file.getChildren();
+            for (FileObject obj : childs) {
+                findFiles(obj, files,suffix);
+            }
+        }else if(file.getNameExt().endsWith(suffix)){
+            files.add(file);
+        }
+
+    }
+
     public Collection<MapContext> getContexts() {
         final Collection<MapContext> contexts = new ArrayList<MapContext>();
-       findContext(getMapFolder(true), contexts);
+        findContext(getMapFolder(true), contexts);
         return Collections.unmodifiableCollection(contexts);
     }
       
     private void findContext(FileObject file, Collection<MapContext> contexts){
-         DataObject data = null;
+        DataObject data = null;
         try {
             data = DataObject.find(file);
         } catch (DataObjectNotFoundException ex) {

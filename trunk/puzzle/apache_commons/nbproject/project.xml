@@ -20,11 +20,6 @@
                 <package>org.apache.commons.beanutils.converters</package>
                 <package>org.apache.commons.beanutils.locale</package>
                 <package>org.apache.commons.beanutils.locale.converters</package>
-                <package>org.apache.commons.codec</package>
-                <package>org.apache.commons.codec.binary</package>
-                <package>org.apache.commons.codec.digest</package>
-                <package>org.apache.commons.codec.language</package>
-                <package>org.apache.commons.codec.net</package>
                 <package>org.apache.commons.collections</package>
                 <package>org.apache.commons.collections.bag</package>
                 <package>org.apache.commons.collections.bidimap</package>
@@ -40,14 +35,12 @@
                 <package>org.apache.commons.dbcp</package>
                 <package>org.apache.commons.dbcp.cpdsadapter</package>
                 <package>org.apache.commons.dbcp.datasources</package>
-                <package>org.apache.commons.httpclient</package>
-                <package>org.apache.commons.httpclient.auth</package>
-                <package>org.apache.commons.httpclient.cookie</package>
-                <package>org.apache.commons.httpclient.methods</package>
-                <package>org.apache.commons.httpclient.methods.multipart</package>
-                <package>org.apache.commons.httpclient.params</package>
-                <package>org.apache.commons.httpclient.protocol</package>
-                <package>org.apache.commons.httpclient.util</package>
+                <package>org.apache.commons.digester</package>
+                <package>org.apache.commons.digester.parser</package>
+                <package>org.apache.commons.digester.plugins</package>
+                <package>org.apache.commons.digester.plugins.strategies</package>
+                <package>org.apache.commons.digester.substitution</package>
+                <package>org.apache.commons.digester.xmlrules</package>
                 <package>org.apache.commons.jocl</package>
                 <package>org.apache.commons.jxpath</package>
                 <package>org.apache.commons.jxpath.functions</package>
@@ -112,6 +105,10 @@
             <class-path-extension>
                 <runtime-relative-path>ext/commons-collections.jar</runtime-relative-path>
                 <binary-origin>release/modules/ext/commons-collections.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/commons-digester.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/commons-digester.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
                 <runtime-relative-path>ext/log4j.jar</runtime-relative-path>

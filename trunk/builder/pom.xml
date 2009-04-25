@@ -271,6 +271,7 @@
                                 <include name="commons-codec.jar"/>
                                 <include name="commons-collections.jar"/>
                                 <include name="commons-dbcp.jar"/>
+                                <include name="commons-digester.jar"/>
                                 <include name="commons-httpclient.jar"/>
                                 <include name="commons-jxpath.jar"/>
                                 <include name="commons-logging.jar"/>
