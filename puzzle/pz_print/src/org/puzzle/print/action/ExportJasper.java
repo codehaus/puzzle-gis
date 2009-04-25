@@ -22,16 +22,28 @@ package org.puzzle.print.action;
 
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Shape;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
 import javax.imageio.ImageIO;
 import javax.swing.JFileChooser;
-
 import javax.swing.SwingUtilities;
+
+import net.sf.jasperreports.engine.JRException;
+import org.geotools.geometry.GeneralEnvelope;
+import org.netbeans.api.project.FileOwnerQuery;
+import org.netbeans.api.project.Project;
+import org.opengis.geometry.Envelope;
+import org.openide.filesystems.FileObject;
+import org.openide.filesystems.FileUtil;
 import org.openide.nodes.Node;
 import org.openide.util.Exceptions;
 import org.openide.util.HelpCtx;
 import org.openide.util.actions.CookieAction;
+import org.puzzle.core.project.GISProject;
 import org.puzzle.core.project.view.GISView;
 import org.puzzle.core.view.ViewComponent;
 
@@ -60,8 +72,17 @@ public final class ExportJasper extends CookieAction{
         if(activatedNodes.length == 0 ) return ;
 
         final GISView view = activatedNodes[0].getLookup().lookup(GISView.class);
+        if(view == null ) return;
+        final Project project = FileOwnerQuery.getOwner(view.getContext().getPrimaryFile());               
+        if(project == null || !(project instanceof GISProject) ) return;
 
-        if(view == null) return;
+        final Collection<FileObject> jasperFiles = ((GISProject)project).getFiles("jrxml");
+//        final Collection<File> files = new ArrayList<File>();
+//
+//        for(FileObject obj : jasperFiles){
+//            files.add(FileUtil.toFile(obj));
+//            System.out.println(FileUtil.toFile(obj));
+//        }
 
         SwingUtilities.invokeLater(new Runnable() {
             @Override
@@ -69,24 +90,19 @@ public final class ExportJasper extends CookieAction{
                 final ViewComponent viewcomp = view.getComponent(false);
 
                 if(viewcomp != null){
-                    Image img = viewcomp.getMap().getCanvas().getSnapShot();
-                    final BufferedImage bi = new BufferedImage(img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_ARGB);
-                    final Graphics g = bi.getGraphics();
-                    g.drawImage(img, 0, 0, null);
-                    g.dispose();
+//                    Image img = viewcomp.getMap().getCanvas().getSnapShot();
 
-                    JFileChooser chooser = new JFileChooser();
-                    int choice = chooser.showSaveDialog(null);
-
-                    if(choice == JFileChooser.APPROVE_OPTION){
-                        try {
-                            ImageIO.write(bi, "png", chooser.getSelectedFile());
-                        } catch (IOException ex) {
-                            Exceptions.printStackTrace(ex);
-                        }
+                    try {
+                        Shape shap = view.getComponent(true).getMap().getCanvas().getObjectiveBounds();
+                        GeneralEnvelope env = new GeneralEnvelope(shap.getBounds2D());
+                        env.setCoordinateReferenceSystem(view.getComponent(true).getMap().getCanvas().getObjectiveCRS());
+                        JJasperDialog dia = new JJasperDialog(jasperFiles,view.getContext().getContext(),env);
+                    } catch (Exception ex) {
+                        Exceptions.printStackTrace(ex);
                     }
+
                 }
-         }
+            }
         });
 
     }
