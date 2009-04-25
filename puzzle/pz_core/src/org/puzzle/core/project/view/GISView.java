@@ -70,15 +70,17 @@ public class GISView {
 
         ViewComponent comp = null;
 
-        if(compRef == null && create){
-            final Collection<? extends RenderingService> services = Lookup.getDefault().lookupAll(RenderingService.class);
-            for(RenderingService service : services){
-                String id = service.getIdentifier();
-                if(id.equals(info.getServiceName())){
-                    //this is the correct rendering engine
-                    comp = service.restoreView(contextData.getContext(), this);
-                    compRef = new SoftReference<ViewComponent>(comp);
-                    break;
+        if(compRef == null){
+            if(create){
+                final Collection<? extends RenderingService> services = Lookup.getDefault().lookupAll(RenderingService.class);
+                for(RenderingService service : services){
+                    String id = service.getIdentifier();
+                    if(id.equals(info.getServiceName())){
+                        //this is the correct rendering engine
+                        comp = service.restoreView(contextData.getContext(), this);
+                        compRef = new SoftReference<ViewComponent>(comp);
+                        break;
+                    }
                 }
             }
         }else{

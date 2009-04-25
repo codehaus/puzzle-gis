@@ -17,6 +17,7 @@
     <folder name="Actions">
         <folder name="Puzzle">
             <file name="org-puzzle-core-actions-ShowMapContext.instance"/>
+            <file name="org-puzzle-core-actions-ShowView.instance"/>
             <file name="org-puzzle-core-actions-NewDistantSource.instance">
                 <attr name="SystemFileSystem.localizingBundle" stringvalue="org.puzzle.core.Bundle"/>
                 <attr name="delegate" newvalue="org.puzzle.core.actions.NewDistantSource"/>
@@ -82,6 +83,14 @@
                         <attr name="position" intvalue="600"/>
                     </file>
                     </folder>
+            </folder>
+            <folder name="giscontextview">
+                <folder name="Actions">
+                    <file name="org-puzzle-core-actions-ShowView.shadow">
+                        <attr name="originalFile" stringvalue="Actions/Puzzle/org-puzzle-core-actions-ShowView.instance"/>
+                        <attr name="position" intvalue="0"/>
+                    </file>
+                </folder>
             </folder>
             <folder name="gissource+xml">
                 <folder name="Actions">
