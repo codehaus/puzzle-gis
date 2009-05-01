@@ -25,7 +25,7 @@ import java.util.List;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.TableModel;
 
-import org.geotools.map.MapLayer;
+import org.geotoolkit.map.MapLayer;
 import org.jdesktop.swingx.JXTable;
 
 /**

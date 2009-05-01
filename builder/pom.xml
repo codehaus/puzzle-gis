@@ -16,7 +16,7 @@
   <!--     Dependencies optionals, replace version number for GT dependencies     -->
   <!-- =========================================================== -->
     <properties>
-        <geotools.version>2.9-SNAPSHOT</geotools.version>
+        <geotoolkit.version>SNAPSHOT</geotoolkit.version>
     </properties>
     <description>Maven module to download and dispatch the latest jars needed by puzzle.</description>
 
@@ -25,34 +25,21 @@
   <!--     GeoTools, Geomatys and maven repositories     -->
   <!-- =========================================================== -->
     <repositories>
-	<repository>
+        <repository>
+            <id>geotoolkit</id>
+            <name>geotoolkit</name>
+            <url>http://maven.geotoolkit.org/</url>
+        </repository>
+        <!--repository>
             <id>geoapi</id>
             <name>geotidy</name>
             <url>http://geotidy.geomatys.fr/repository</url>
         </repository>
-	<repository>
+        <repository>
             <id>geomessy</id>
             <name>geomessy</name>
             <url>http://maven.geomatys.fr/repository</url>
-        </repository>
-        <!--<repository>
-            <id>puzzle</id>
-            <name>Other projects</name>
-            <url>http://repository.codehaus.org/org/codehaus/puzzle-gis</url>
-        </repository>
-        <repository>
-            <id>refractions</id>
-            <name>Refractions Research Maven 2 Repository</name>
-            <url>http://lists.refractions.net/m2</url>
-        </repository>
-        <repository>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-            <id>geotools</id>
-            <name>Geotools repository</name>
-            <url>http://maven.geotools.fr/repository</url>
-        </repository>-->
+        </repository-->
     </repositories>
 
    <!-- =========================================================== -->
@@ -60,8 +47,64 @@
   <!-- =========================================================== -->
 
     <dependencies>
-  <!-- =====================MODULE LIBRARY====================================== -->
+
         <dependency>
+            <groupId>org.apache.derby</groupId>
+            <artifactId>derby</artifactId>
+            <version>10.4.2.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.geotoolkit</groupId>
+            <artifactId>geotk-coverage</artifactId>
+            <version>${geotoolkit.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.geotoolkit</groupId>
+            <artifactId>geotk-coverageio</artifactId>
+            <version>${geotoolkit.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.geotoolkit</groupId>
+            <artifactId>geotk-display</artifactId>
+            <version>${geotoolkit.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.geotoolkit</groupId>
+            <artifactId>geotk-metadata</artifactId>
+            <version>${geotoolkit.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.geotoolkit</groupId>
+            <artifactId>geotk-referencing</artifactId>
+            <version>${geotoolkit.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.geotoolkit</groupId>
+            <artifactId>geotk-utility</artifactId>
+            <version>${geotoolkit.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.geotoolkit</groupId>
+            <artifactId>geotk-widgets-swing</artifactId>
+            <version>${geotoolkit.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.geotoolkit.pending</groupId>
+            <artifactId>geotk-widgets-swing-pending</artifactId>
+            <version>${geotoolkit.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.geotools</groupId>
+            <artifactId>gtm-geotiff</artifactId>
+            <version>2.6-SNAPSHOT</version>
+        </dependency>
+
+
+  <!-- =====================MODULE LIBRARY====================================== -->
+        <!--dependency>
             <groupId>org.geotools</groupId>
             <artifactId>gt-api</artifactId>
             <version>${geotools.version}</version>
@@ -120,10 +163,10 @@
             <groupId>org.geotools</groupId>
             <artifactId>gt-xml</artifactId>
             <version>${geotools.version}</version>
-        </dependency>
+        </dependency-->
 
     <!-- =====================MODULE PLUGIN====================================== -->
-        <dependency>
+        <!--dependency>
             <groupId>org.geotools</groupId>
             <artifactId>gt-epsg-hsql</artifactId>
             <version>${geotools.version}</version>
@@ -167,17 +210,17 @@
             <groupId>org.geotools</groupId>
             <artifactId>gt-wms</artifactId>
             <version>${geotools.version}</version>
-        </dependency>
+        </dependency-->
 
 	<!-- =====================MODULE EXTENSION================================== -->
-        <dependency>
+        <!--dependency>
             <groupId>org.geotools</groupId>
             <artifactId>gt-widgets-swing</artifactId>
             <version>${geotools.version}</version>
-        </dependency>
+        </dependency-->
 
 	<!-- =====================MODULE UNSUPPORTED================================== -->
-        <dependency>
+        <!--dependency>
             <groupId>org.geotools</groupId>
             <artifactId>gt-coverageio</artifactId>
             <version>${geotools.version}</version>
@@ -201,15 +244,15 @@
             <groupId>org.geotools</groupId>
             <artifactId>gt-widgets-swing-pending</artifactId>
             <version>${geotools.version}</version>
-        </dependency>
+        </dependency-->
 
     <!-- =====================OTHER================================== -->
 
-        <dependency>
+        <!--dependency>
             <groupId>crimson</groupId>
             <artifactId>crimson</artifactId>
             <version>1.1.3</version>
-        </dependency>
+        </dependency-->
 
     </dependencies>
 
@@ -268,15 +311,12 @@
                             <fileset dir="${GT_BINARY}" casesensitive="yes">
                               <patternset id="apache">
                                 <include name="commons-beanutils.jar"/>
-                                <include name="commons-codec.jar"/>
                                 <include name="commons-collections.jar"/>
                                 <include name="commons-dbcp.jar"/>
                                 <include name="commons-digester.jar"/>
-                                <include name="commons-httpclient.jar"/>
-                                <include name="commons-jxpath.jar"/>
+                                <include name="commons-io.jar"/>
                                 <include name="commons-logging.jar"/>
                                 <include name="commons-pool.jar"/>
-                                <include name="log4j.jar"/>
                               </patternset>
                             </fileset>
                         </copy>
@@ -326,79 +366,74 @@
                         <copy todir="${PUZZLE_GT_MODULE}">
                             <fileset dir="${GT_BINARY}" casesensitive="yes">
                               <patternset id="geotools">
-                                <include name="bufr.jar"/>
+                                <include name="avalon-framework-api.jar"/>
+                                <include name="avalon-framework-impl.jar"/>
+                                <include name="batik-anim.jar"/>
                                 <include name="batik-awt-util.jar"/>
                                 <include name="batik-bridge.jar"/>
                                 <include name="batik-css.jar"/>
                                 <include name="batik-dom.jar"/>
                                 <include name="batik-ext.jar"/>
-                                <include name="batik-gui-util.jar"/>
                                 <include name="batik-gvt.jar"/>
                                 <include name="batik-parser.jar"/>
                                 <include name="batik-script.jar"/>
                                 <include name="batik-svg-dom.jar"/>
+                                <include name="batik-svggen.jar"/>
                                 <include name="batik-transcoder.jar"/>
                                 <include name="batik-util.jar"/>
                                 <include name="batik-xml.jar"/>
-                                <include name="common.jar"/>
-                                <include name="ecore.jar"/>
-                                <include name="gnu-regexp.jar"/>
-                                <include name="grib.jar"/>
-                                <include name="gt-api.jar"/>
-                                <include name="gt-coverage.jar"/>
-                                <include name="gt-coverageio.jar"/>
-                                <include name="gt-coverageio-netcdf.jar"/>
-                                <include name="gt-cql.jar"/>
-                                <include name="gt-data.jar"/>
-                                <include name="gt-display.jar"/>
-                                <include name="gt-epsg-hsql.jar"/>
-                                <include name="gt-geotiff.jar"/>
-                                <include name="gt-go2.jar"/>
-                                <include name="gt-graph.jar"/>
-                                <include name="gt-image.jar"/>
-                                <include name="gt-jdbc.jar"/>
-                                <include name="gt-jasperreport.jar"/>
-                                <include name="gt-main.jar"/>
-                                <include name="gt-metadata.jar"/>
-                                <include name="gt-postgis.jar"/>
-                                <include name="gt-referencing3D.jar"/>
-                                <include name="gt-referencing.jar"/>
-                                <include name="gt-render.jar"/>
-                                <include name="gt-shapefile.jar"/>
-                                <include name="gt-sld.jar"/>
-                                <include name="gt-style.jar"/>
-                                <include name="gt-wfs.jar"/>
-                                <include name="gt-widgets-swing.jar"/>
-                                <include name="gt-widgets-swing-pending.jar"/>
-                                <include name="gt-wms.jar"/>
-                                <include name="gt-xml.jar"/>
-                                <include name="gt-xsd-wfs.jar"/>
-                                <include name="hsqldb.jar"/>
+                                <include name="bcmail-jdk14.jar"/>
+                                <include name="bcprov-jdk14.jar"/>
+                                <include name="derby.jar"/>
+                                <include name="fop.jar"/>
+                                <include name="geotk-coverage.jar"/>
+                                <include name="geotk-coverageio.jar"/>
+                                <include name="geotk-display.jar"/>
+                                <include name="geotk-engine-core.jar"/>
+                                <include name="geotk-go2.jar"/>
+                                <include name="geotk-go2-style-extension.jar"/>
+                                <include name="geotk-jasperreport.jar"/>
+                                <include name="geotk-metadata.jar"/>
+                                <include name="geotk-referencing.jar"/>
+                                <include name="geotk-render.jar"/>
+                                <include name="geotk-style.jar"/>
+                                <include name="geotk-utility.jar"/>
+                                <include name="geotk-widgets-swing.jar"/>
+                                <include name="geotk-widgets-swing-pending.jar"/>
+                                <include name="geotk-wms.jar"/>
+                                <include name="geotk-world-image.jar"/>
+                                <include name="geotk-xml-gml.jar"/>
+                                <include name="geotk-xml-ogc.jar"/>
+                                <include name="geotk-xml-se.jar"/>
+                                <include name="geotk-xml-sld.jar"/>
+                                <include name="geotk-xml-wms.jar"/>
+                                <include name="gtm-api.jar"/>
+                                <include name="gtm-coverage.jar"/>
+                                <include name="gtm-coverageio.jar"/>
+                                <include name="gtm-cql.jar"/>
+                                <include name="gtm-geotiff.jar"/>
+                                <include name="gtm-jdbc.jar"/>
+                                <include name="gtm-main.jar"/>
+                                <include name="gtm-metadata.jar"/>
+                                <include name="gtm-postgis.jar"/>
+                                <include name="gtm-referencing.jar"/>
+                                <include name="gtm-shapefile.jar"/>
                                 <include name="itext.jar"/>
                                 <include name="jasperreports.jar"/>
-                                <include name="jaxb-api.jar"/>
-                                <include name="jaxb-impl.jar"/>
+                                <include name="jcommon.jar"/>
                                 <include name="jdom.jar"/>
+                                <include name="jdtcore.jar"/>
+                                <include name="jfreechart.jar"/>
                                 <include name="jlfgr.jar"/>
                                 <include name="jts.jar"/>
-                                <include name="net.opengis.ows.jar"/>
-                                <include name="net.opengis.wfs.jar"/>
-                                <include name="netcdf.jar"/>
-                                <include name="org.w3.xlink.jar"/>
-                                <include name="picocontainer.jar"/>
-                                <include name="slf4j-api.jar"/>
-                                <include name="slf4j-jdk14.jar"/>
-                                <include name="swing-layout.jar"/>
+                                <include name="org-netbeans-swing-outline.jar"/>
                                 <include name="swingx.jar"/>
                                 <include name="timingframework.jar"/>
                                 <include name="vecmath.jar"/>
-                                <include name="xercesImpl.jar"/>
                                 <include name="xalan.jar"/>
                                 <include name="xml-apis.jar"/>
-                                <include name="xml-apis-xerces.jar"/>
-                                <include name="xmlParserAPIs.jar"/>
-                                <include name="xpp3.jar"/>
-                                <include name="xsd.jar"/>
+                                <include name="xml-apis-ext.jar"/>
+                                <include name="xmlgraphics-commons.jar"/>
                               </patternset>
                             </fileset>
                         </copy>

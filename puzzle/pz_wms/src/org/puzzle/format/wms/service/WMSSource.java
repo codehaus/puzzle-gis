@@ -25,11 +25,12 @@ import java.awt.Image;
 import java.net.URL;
 import java.util.Map;
 
-import org.geotools.data.wms.WebMapServer;
+import org.geotoolkit.wms.WebMapServer;
 import org.geotools.factory.CommonFactoryFinder;
-import org.geotools.map.MapBuilder;
-import org.geotools.map.MapLayer;
-import org.geotools.map.WMSMapLayer;
+import org.geotoolkit.map.MapBuilder;
+import org.geotoolkit.map.MapLayer;
+import org.geotoolkit.style.DefaultStyleFactory;
+import org.geotoolkit.wms.map.WMSMapLayer;
 
 import org.openide.util.Exceptions;
 import org.openide.util.ImageUtilities;
@@ -119,7 +120,7 @@ public class WMSSource extends GISSource{
 
             final GISLayerSource source = new GISLayerSource(getInfo().getID(), parameters,WMSSource.this);
             layer.setUserPropertie(GISLayerSource.KEY_LAYER_INFO, source);
-            layer.setDescription(CommonFactoryFinder.getStyleFactory(null).description(featureName,"") );
+            layer.setDescription(new DefaultStyleFactory().description(featureName,"") );
 
             return layer;
         }

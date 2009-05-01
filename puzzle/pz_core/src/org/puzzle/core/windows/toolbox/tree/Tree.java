@@ -39,7 +39,7 @@ import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreePath;
 import javax.swing.tree.TreeSelectionModel;
 
-import org.geotools.gui.swing.resource.IconBundle;
+import org.geotoolkit.gui.swing.resource.IconBundle;
 import org.openide.util.ImageUtilities;
 import org.puzzle.core.tool.ToolDescriptor;
 

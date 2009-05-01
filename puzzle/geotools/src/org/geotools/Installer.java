@@ -4,9 +4,27 @@
  */
 package org.geotools;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.URL;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.util.Properties;
-import org.apache.log4j.PropertyConfigurator;
+import javax.sql.DataSource;
+import org.geotoolkit.factory.AuthorityFactoryFinder;
+import org.geotoolkit.referencing.CRS;
+import org.geotoolkit.referencing.factory.epsg.ThreadedEpsgFactory;
+import org.opengis.referencing.FactoryException;
+import org.opengis.referencing.NoSuchAuthorityCodeException;
+import org.opengis.referencing.crs.CoordinateReferenceSystem;
+import org.openide.filesystems.FileUtil;
 import org.openide.modules.ModuleInstall;
+import org.openide.util.Exceptions;
 
 /**
  * Manages a module's lifecycle. Remember that an installer is optional and
@@ -16,27 +34,68 @@ public class Installer extends ModuleInstall {
 
     @Override
     public void restored() {
-        //I made several tryes to avoid having the log4j.xml classpath error,
-        //looks like this logging api doesn't provide any other way to configure itself
-        //without config file. that's really annoying.
 
-//        Properties properties = new Properties();
-//
-//        // Set root logger level to DEBUG and its only appender to A1.
-//        // log4j.rootLogger=DEBUG, A1
-//        properties.put("log4j.rootLogger", "DEBUG, A1");
-//
-//
-//        // A1 is set to be a ConsoleAppender.
-//        // log4j.appender.A1=org.apache.log4j.ConsoleAppender
-//        properties.put("log4j.appender.A1", "org.apache.log4j.ConsoleAppender");
-//
-//        // A1 uses PatternLayout.
-//        // log4j.appender.A1.layout=org.apache.log4j.PatternLayout
-//        // log4j.appender.A1.layout.ConversionPattern=%-4r [%t] %-5p %c %x - %m%n
-//        properties.put("log4j.appender.A1.layout", "org.apache.log4j.PatternLayout");
-//        properties.put("log4j.appender.A1.layout.ConversionPattern", "%-4r [%t] %-5p %c %x - %m%n");
-//
-//        PropertyConfigurator.configure(properties);
+        //register the EPSG database
+
+        String driver = "org.apache.derby.jdbc.EmbeddedDriver";
+        String url = "jdbc:derby:"+System.getProperty("user.home").replace(File.separatorChar, '/') +"/.puzzle/derbyepsg";
+        String user = "puzzle";
+        String password = "puzzlepass";
+
+        Properties props = new Properties();
+        props.put("user", user);
+        props.put("password", password);
+
+        try{
+            Connection conn = DriverManager.getConnection(url, props);
+            System.out.println("DB is valid, use it");
+        }catch(Exception ex){
+            System.out.println("Create EPSG DB");
+            try {
+//                FileUtil.getArchiveFile(arg0)
+                Class.forName(driver).newInstance();
+                InputStream scriptpath0 = Installer.class.getResourceAsStream("/org/geotools/EPSG_v6_18.mdb_Data_PostgreSQL.sql");
+                InputStream scriptpath1 = Installer.class.getResourceAsStream("/org/geotools/EPSG_v6_18.mdb_FKeys_PostgreSQL.sql");
+                InputStream scriptpath2 = Installer.class.getResourceAsStream("/org/geotools/EPSG_v6_18.mdb_Tables_PostgreSQL.sql");
+
+                String temppath = System.getProperty("java.io.tmpdir") + File.separator + "scriptSQL";
+                File tempFolder = new File(temppath);
+                tempFolder.mkdirs();
+
+                copyFile(tempFolder, scriptpath0,"EPSG_v6_18.mdb_Data_PostgreSQL.sql");
+                copyFile(tempFolder, scriptpath1,"EPSG_v6_18.mdb_FKeys_PostgreSQL.sql");
+                copyFile(tempFolder, scriptpath2,"EPSG_v6_18.mdb_Tables_PostgreSQL.sql");
+
+                EpsgScriptRunner.createDerby(url, tempFolder.getPath(), user, password);
+            } catch (Exception ex1) {
+                Exceptions.printStackTrace(ex1);
+            }
+        }finally {
+            System.out.println("registerDB");
+            DataSource source = new DefaultDataSource(url,props);
+            ThreadedEpsgFactory factory = new ThreadedEpsgFactory(source);
+            AuthorityFactoryFinder.addAuthorityFactory(factory);
+        }
+
     }
+
+    private static void copyFile(File folder, InputStream in, String name){
+
+        try {
+            File f2 = new File(folder.getPath() + "/" + name);
+            OutputStream out = new FileOutputStream(f2);
+
+            byte[] buf = new byte[1024];
+            int len;
+            while ((len = in.read(buf)) > 0) {
+                out.write(buf, 0, len);
+            }
+            in.close();
+            out.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+    }
+
 }

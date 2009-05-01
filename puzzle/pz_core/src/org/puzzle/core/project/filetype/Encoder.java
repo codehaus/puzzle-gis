@@ -33,15 +33,16 @@ import javax.xml.bind.JAXBException;
 
 import org.geotools.data.DefaultQuery;
 import org.geotools.factory.CommonFactoryFinder;
-import org.geotools.map.MapBuilder;
-import org.geotools.map.MapContext;
-import org.geotools.map.MapLayer;
-import org.geotools.referencing.crs.DefaultGeographicCRS;
-import org.geotools.style.MutableStyle;
-import org.geotools.style.sld.Specification.Filter;
-import org.geotools.style.sld.Specification.StyledLayerDescriptor;
-import org.geotools.style.sld.Specification.SymbologyEncoding;
-import org.geotools.style.sld.XMLUtilities;
+import org.geotoolkit.map.MapBuilder;
+import org.geotoolkit.map.MapContext;
+import org.geotoolkit.map.MapLayer;
+import org.geotoolkit.referencing.crs.DefaultGeographicCRS;
+import org.geotoolkit.style.MutableStyle;
+import org.geotoolkit.style.DefaultStyleFactory;
+import org.geotoolkit.sld.xml.Specification.Filter;
+import org.geotoolkit.sld.xml.Specification.StyledLayerDescriptor;
+import org.geotoolkit.sld.xml.Specification.SymbologyEncoding;
+import org.geotoolkit.sld.xml.XMLUtilities;
 
 import org.openide.util.Exceptions;
 
@@ -81,7 +82,7 @@ public class Encoder {
 
     public static MapContext parseContext(Document gisDoc,String name, Collection<? extends GISSource> sources) {
         MapContext context = MapBuilder.createContext(DefaultGeographicCRS.WGS84);
-        context.setDescription(CommonFactoryFinder.getStyleFactory(null).description(name, ""));
+        context.setDescription(new DefaultStyleFactory().description(name, ""));
 
         if (gisDoc != null) {
 
@@ -120,7 +121,7 @@ public class Encoder {
         int id = 0;
         Map<String, String> params = null;
         String title = "";
-        MutableStyle style = CommonFactoryFinder.getStyleFactory(null).style();
+        MutableStyle style = new DefaultStyleFactory().style();
         DefaultQuery query = new DefaultQuery();
         boolean visible = true;
 
@@ -157,7 +158,7 @@ public class Encoder {
                 if (src.getInfo().getID() == id) {
                     LayerCreation lc = src.getLookup().lookup(LayerCreation.class);
                     layer = lc.createLayer(params);
-                    layer.setDescription(CommonFactoryFinder.getStyleFactory(null).description(title, ""));
+                    layer.setDescription(new DefaultStyleFactory().description(title, ""));
                     layer.setStyle(style);
                     layer.setVisible(visible);
                     layer.setQuery(query);

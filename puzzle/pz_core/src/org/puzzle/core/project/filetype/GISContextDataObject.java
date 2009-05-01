@@ -29,10 +29,10 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 
-import org.geotools.map.ContextListener;
-import org.geotools.map.MapContext;
-import org.geotools.map.MapLayer;
-import org.geotools.style.CollectionChangeEvent;
+import org.geotoolkit.map.ContextListener;
+import org.geotoolkit.map.MapContext;
+import org.geotoolkit.map.MapLayer;
+import org.geotoolkit.style.CollectionChangeEvent;
 
 import org.netbeans.api.progress.ProgressHandle;
 import org.netbeans.api.progress.ProgressHandleFactory;

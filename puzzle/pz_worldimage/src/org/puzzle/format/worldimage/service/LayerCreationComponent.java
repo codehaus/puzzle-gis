@@ -28,7 +28,8 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import org.geotools.factory.CommonFactoryFinder;
-import org.geotools.map.MapLayer;
+import org.geotoolkit.map.MapLayer;
+import org.geotoolkit.style.DefaultStyleFactory;
 import org.openide.util.NbBundle;
 import org.puzzle.core.project.source.capabilities.JLayerChooser;
 import org.puzzle.core.project.source.capabilities.LayerChooserMonitor;
@@ -94,7 +95,7 @@ public class LayerCreationComponent extends JLayerChooser {
     @Override
     public MapLayer[] getLayers() {
         MapLayer layer = source.getLookup().lookup(LayerCreation.class).createLayer(null);
-        layer.setDescription(CommonFactoryFinder.getStyleFactory(null).description(guiTitle.getText(),"") );
+        layer.setDescription(new DefaultStyleFactory().description(guiTitle.getText(),"") );
         return new MapLayer[]{layer};
     }
 

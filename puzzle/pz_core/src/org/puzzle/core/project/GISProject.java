@@ -48,8 +48,8 @@ import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import org.geotools.map.MapContext;
-import org.geotools.map.MapLayer;
+import org.geotoolkit.map.MapContext;
+import org.geotoolkit.map.MapLayer;
 
 import org.netbeans.api.project.Project;
 import org.netbeans.api.project.ProjectInformation;

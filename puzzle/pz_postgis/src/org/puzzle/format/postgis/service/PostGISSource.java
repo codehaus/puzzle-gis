@@ -30,10 +30,11 @@ import org.geotools.data.DataStore;
 import org.geotools.data.DataStoreFinder;
 import org.geotools.data.FeatureSource;
 import org.geotools.factory.CommonFactoryFinder;
-import org.geotools.map.MapBuilder;
-import org.geotools.map.MapLayer;
-import org.geotools.style.MutableStyle;
-import org.geotools.style.RandomStyleFactory;
+import org.geotoolkit.map.MapBuilder;
+import org.geotoolkit.map.MapLayer;
+import org.geotoolkit.style.DefaultStyleFactory;
+import org.geotoolkit.style.MutableStyle;
+import org.geotoolkit.util.RandomStyleFactory;
 
 import org.opengis.feature.simple.SimpleFeature;
 import org.opengis.feature.simple.SimpleFeatureType;
@@ -140,7 +141,7 @@ public class PostGISSource extends GISSource{
 
             final GISLayerSource source = new GISLayerSource(getInfo().getID(), parameters,PostGISSource.this);
             layer.setUserPropertie(GISLayerSource.KEY_LAYER_INFO, source);
-            layer.setDescription(CommonFactoryFinder.getStyleFactory(null).description(featureName,"") );
+            layer.setDescription(new DefaultStyleFactory().description(featureName,"") );
 
             return layer;
         }

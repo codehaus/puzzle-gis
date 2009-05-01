@@ -27,13 +27,13 @@ import java.awt.GridBagLayout;
 import javax.swing.JPanel;
 
 import javax.swing.SwingUtilities;
-import org.geotools.gui.swing.go.J2DMapVolatile;
-import org.geotools.gui.swing.go.control.JConfigBar;
-import org.geotools.gui.swing.go.control.JCoordinateBar;
-import org.geotools.gui.swing.go.control.JInformationBar;
-import org.geotools.gui.swing.go.control.JNavigationBar;
-import org.geotools.gui.swing.go.decoration.JClassicNavigationDecoration;
-import org.geotools.map.MapContext;
+import org.geotoolkit.gui.swing.go.J2DMapVolatile;
+import org.geotoolkit.gui.swing.go.control.JConfigBar;
+import org.geotoolkit.gui.swing.go.control.JCoordinateBar;
+import org.geotoolkit.gui.swing.go.control.JInformationBar;
+import org.geotoolkit.gui.swing.go.control.JNavigationBar;
+import org.geotoolkit.gui.swing.go.decoration.JClassicNavigationDecoration;
+import org.geotoolkit.map.MapContext;
 import org.puzzle.core.view.ViewComponent;
 
 /**

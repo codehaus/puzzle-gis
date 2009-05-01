@@ -35,7 +35,7 @@ import org.geotools.data.FeatureStore;
 import org.geotools.data.FileDataStoreFactorySpi;
 import org.geotools.data.shapefile.ShapefileDataStore;
 import org.geotools.data.shapefile.ShapefileDataStoreFactory;
-import org.geotools.gui.swing.misc.filter.FileFilterFactory;
+import org.geotoolkit.gui.swing.misc.filter.FileFilterFactory;
 import org.opengis.feature.simple.SimpleFeature;
 import org.opengis.feature.simple.SimpleFeatureType;
 import org.puzzle.core.project.source.capabilities.JExportPane;
