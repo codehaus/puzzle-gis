@@ -22,7 +22,7 @@ package org.puzzle.core.view;
 
 import java.awt.Image;
 
-import org.geotools.map.MapContext;
+import org.geotoolkit.map.MapContext;
 import org.puzzle.core.project.view.GISView;
 
 /**

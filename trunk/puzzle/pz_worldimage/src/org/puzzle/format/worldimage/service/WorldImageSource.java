@@ -26,12 +26,13 @@ import java.io.IOException;
 import java.util.Map;
 
 import org.geotools.coverage.io.CoverageReader;
-import org.geotools.coverage.wi.WorldImageFactory;
+import org.geotoolkit.coverage.wi.WorldImageFactory;
 import org.geotools.factory.CommonFactoryFinder;
-import org.geotools.map.MapLayer;
-import org.geotools.map.MapBuilder;
-import org.geotools.style.MutableStyle;
-import org.geotools.style.RandomStyleFactory;
+import org.geotoolkit.map.MapLayer;
+import org.geotoolkit.map.MapBuilder;
+import org.geotoolkit.style.DefaultStyleFactory;
+import org.geotoolkit.style.MutableStyle;
+import org.geotoolkit.util.RandomStyleFactory;
 
 import org.opengis.referencing.operation.NoninvertibleTransformException;
 
@@ -149,7 +150,7 @@ public class WorldImageSource extends GISSource{
 
             final GISLayerSource source = new GISLayerSource(getInfo().getID(), parameters,WorldImageSource.this);
             layer.setUserPropertie(GISLayerSource.KEY_LAYER_INFO, source);
-            layer.setDescription(CommonFactoryFinder.getStyleFactory(null).description(name,"") );
+            layer.setDescription(new DefaultStyleFactory().description(name,"") );
 
             return layer;
         }

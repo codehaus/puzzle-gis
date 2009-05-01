@@ -39,6 +39,14 @@
                     </run-dependency>
                 </dependency>
                 <dependency>
+                    <code-name-base>org.openide.filesystems</code-name-base>
+                    <build-prerequisite/>
+                    <compile-dependency/>
+                    <run-dependency>
+                        <specification-version>7.13.1.1.1</specification-version>
+                    </run-dependency>
+                </dependency>
+                <dependency>
                     <code-name-base>org.openide.modules</code-name-base>
                     <build-prerequisite/>
                     <compile-dependency/>
@@ -64,6 +72,7 @@
                 </dependency>
             </module-dependencies>
             <public-packages>
+                <package>com.keypoint</package>
                 <package>com.lowagie.text</package>
                 <package>com.lowagie.text.factories</package>
                 <package>com.lowagie.text.html</package>
@@ -82,34 +91,6 @@
                 <package>com.lowagie.text.xml.simpleparser</package>
                 <package>com.lowagie.text.xml.xmp</package>
                 <package>com.lowagie.tools</package>
-                <package>com.sun.istack</package>
-                <package>com.sun.xml.bind</package>
-                <package>com.sun.xml.bind.annotation</package>
-                <package>com.sun.xml.bind.api</package>
-                <package>com.sun.xml.bind.api.impl</package>
-                <package>com.sun.xml.bind.marshaller</package>
-                <package>com.sun.xml.bind.unmarshaller</package>
-                <package>com.sun.xml.bind.util</package>
-                <package>com.sun.xml.bind.v2</package>
-                <package>com.sun.xml.bind.v2.bytecode</package>
-                <package>com.sun.xml.bind.v2.model.annotation</package>
-                <package>com.sun.xml.bind.v2.model.core</package>
-                <package>com.sun.xml.bind.v2.model.impl</package>
-                <package>com.sun.xml.bind.v2.model.nav</package>
-                <package>com.sun.xml.bind.v2.model.runtime</package>
-                <package>com.sun.xml.bind.v2.runtime</package>
-                <package>com.sun.xml.bind.v2.runtime.output</package>
-                <package>com.sun.xml.bind.v2.runtime.property</package>
-                <package>com.sun.xml.bind.v2.runtime.reflect</package>
-                <package>com.sun.xml.bind.v2.runtime.reflect.opt</package>
-                <package>com.sun.xml.bind.v2.runtime.unmarshaller</package>
-                <package>com.sun.xml.bind.v2.schemagen</package>
-                <package>com.sun.xml.bind.v2.schemagen.episode</package>
-                <package>com.sun.xml.bind.v2.schemagen.xmlschema</package>
-                <package>com.sun.xml.bind.v2.util</package>
-                <package>com.sun.xml.txw2</package>
-                <package>com.sun.xml.txw2.annotation</package>
-                <package>com.sun.xml.txw2.output</package>
                 <package>com.vividsolutions.jts</package>
                 <package>com.vividsolutions.jts.algorithm</package>
                 <package>com.vividsolutions.jts.algorithm.locate</package>
@@ -148,14 +129,9 @@
                 <package>com.vividsolutions.jts.precision</package>
                 <package>com.vividsolutions.jts.simplify</package>
                 <package>com.vividsolutions.jts.util</package>
+                <package>java_cup.runtime</package>
                 <package>javax.vecmath</package>
                 <package>javax.xml</package>
-                <package>javax.xml.bind</package>
-                <package>javax.xml.bind.annotation</package>
-                <package>javax.xml.bind.annotation.adapters</package>
-                <package>javax.xml.bind.attachment</package>
-                <package>javax.xml.bind.helpers</package>
-                <package>javax.xml.bind.util</package>
                 <package>javax.xml.datatype</package>
                 <package>javax.xml.namespace</package>
                 <package>javax.xml.parsers</package>
@@ -165,14 +141,6 @@
                 <package>javax.xml.transform.stream</package>
                 <package>javax.xml.validation</package>
                 <package>javax.xml.xpath</package>
-                <package>net.opengis.ows10</package>
-                <package>net.opengis.ows10.impl</package>
-                <package>net.opengis.ows11</package>
-                <package>net.opengis.ows11.impl</package>
-                <package>net.opengis.ows11.util</package>
-                <package>net.opengis.ows11.validation</package>
-                <package>net.opengis.wfs</package>
-                <package>net.opengis.wfs.impl</package>
                 <package>net.sf.jasperreports.ant</package>
                 <package>net.sf.jasperreports.charts</package>
                 <package>net.sf.jasperreports.charts.base</package>
@@ -218,12 +186,21 @@
                 <package>net.sf.jasperreports.swing</package>
                 <package>net.sf.jasperreports.view</package>
                 <package>net.sf.jasperreports.view.save</package>
-                <package>opendap.dap</package>
-                <package>opendap.dap.Server</package>
-                <package>opendap.dap.XMLparser</package>
-                <package>opendap.dap.parser</package>
-                <package>opendap.util</package>
+                <package>org.apache.avalon.framework</package>
+                <package>org.apache.avalon.framework.activity</package>
+                <package>org.apache.avalon.framework.availability</package>
+                <package>org.apache.avalon.framework.component</package>
+                <package>org.apache.avalon.framework.configuration</package>
+                <package>org.apache.avalon.framework.container</package>
+                <package>org.apache.avalon.framework.context</package>
+                <package>org.apache.avalon.framework.logger</package>
+                <package>org.apache.avalon.framework.parameters</package>
+                <package>org.apache.avalon.framework.service</package>
+                <package>org.apache.avalon.framework.thread</package>
                 <package>org.apache.batik</package>
+                <package>org.apache.batik.anim</package>
+                <package>org.apache.batik.anim.timing</package>
+                <package>org.apache.batik.anim.values</package>
                 <package>org.apache.batik.bridge</package>
                 <package>org.apache.batik.bridge.svg12</package>
                 <package>org.apache.batik.css.dom</package>
@@ -235,19 +212,19 @@
                 <package>org.apache.batik.css.engine.value.svg12</package>
                 <package>org.apache.batik.css.parser</package>
                 <package>org.apache.batik.dom</package>
+                <package>org.apache.batik.dom.anim</package>
                 <package>org.apache.batik.dom.events</package>
                 <package>org.apache.batik.dom.svg</package>
                 <package>org.apache.batik.dom.svg12</package>
                 <package>org.apache.batik.dom.traversal</package>
                 <package>org.apache.batik.dom.util</package>
+                <package>org.apache.batik.dom.xbl</package>
                 <package>org.apache.batik.ext.awt</package>
                 <package>org.apache.batik.ext.awt.color</package>
                 <package>org.apache.batik.ext.awt.font</package>
                 <package>org.apache.batik.ext.awt.g2d</package>
                 <package>org.apache.batik.ext.awt.geom</package>
                 <package>org.apache.batik.ext.awt.image</package>
-                <package>org.apache.batik.ext.awt.image.codec</package>
-                <package>org.apache.batik.ext.awt.image.codec.tiff</package>
                 <package>org.apache.batik.ext.awt.image.renderable</package>
                 <package>org.apache.batik.ext.awt.image.rendered</package>
                 <package>org.apache.batik.ext.awt.image.spi</package>
@@ -264,6 +241,10 @@
                 <package>org.apache.batik.parser</package>
                 <package>org.apache.batik.script</package>
                 <package>org.apache.batik.script.rhino</package>
+                <package>org.apache.batik.script.rhino.svg12</package>
+                <package>org.apache.batik.svggen</package>
+                <package>org.apache.batik.svggen.font</package>
+                <package>org.apache.batik.svggen.font.table</package>
                 <package>org.apache.batik.transcoder</package>
                 <package>org.apache.batik.transcoder.image</package>
                 <package>org.apache.batik.transcoder.image.resources</package>
@@ -273,14 +254,173 @@
                 <package>org.apache.batik.transcoder.wmf</package>
                 <package>org.apache.batik.transcoder.wmf.tosvg</package>
                 <package>org.apache.batik.util</package>
-                <package>org.apache.batik.util.gui</package>
-                <package>org.apache.batik.util.gui.resource</package>
                 <package>org.apache.batik.util.io</package>
                 <package>org.apache.batik.util.resources</package>
                 <package>org.apache.batik.xml</package>
-                <package>org.apache.html.dom</package>
-                <package>org.apache.wml</package>
-                <package>org.apache.wml.dom</package>
+                <package>org.apache.bcel</package>
+                <package>org.apache.bcel.classfile</package>
+                <package>org.apache.bcel.generic</package>
+                <package>org.apache.bcel.util</package>
+                <package>org.apache.bcel.verifier</package>
+                <package>org.apache.bcel.verifier.exc</package>
+                <package>org.apache.bcel.verifier.statics</package>
+                <package>org.apache.bcel.verifier.structurals</package>
+                <package>org.apache.derby.authentication</package>
+                <package>org.apache.derby.catalog</package>
+                <package>org.apache.derby.catalog.types</package>
+                <package>org.apache.derby.database</package>
+                <package>org.apache.derby.diag</package>
+                <package>org.apache.derby.iapi.db</package>
+                <package>org.apache.derby.iapi.error</package>
+                <package>org.apache.derby.iapi.jdbc</package>
+                <package>org.apache.derby.iapi.security</package>
+                <package>org.apache.derby.iapi.services.cache</package>
+                <package>org.apache.derby.iapi.services.classfile</package>
+                <package>org.apache.derby.iapi.services.compiler</package>
+                <package>org.apache.derby.iapi.services.context</package>
+                <package>org.apache.derby.iapi.services.crypto</package>
+                <package>org.apache.derby.iapi.services.daemon</package>
+                <package>org.apache.derby.iapi.services.diag</package>
+                <package>org.apache.derby.iapi.services.i18n</package>
+                <package>org.apache.derby.iapi.services.info</package>
+                <package>org.apache.derby.iapi.services.io</package>
+                <package>org.apache.derby.iapi.services.jmx</package>
+                <package>org.apache.derby.iapi.services.loader</package>
+                <package>org.apache.derby.iapi.services.locks</package>
+                <package>org.apache.derby.iapi.services.memory</package>
+                <package>org.apache.derby.iapi.services.monitor</package>
+                <package>org.apache.derby.iapi.services.property</package>
+                <package>org.apache.derby.iapi.services.stream</package>
+                <package>org.apache.derby.iapi.services.timer</package>
+                <package>org.apache.derby.iapi.services.uuid</package>
+                <package>org.apache.derby.iapi.sql</package>
+                <package>org.apache.derby.iapi.sql.compile</package>
+                <package>org.apache.derby.iapi.sql.conn</package>
+                <package>org.apache.derby.iapi.sql.depend</package>
+                <package>org.apache.derby.iapi.sql.dictionary</package>
+                <package>org.apache.derby.iapi.sql.execute</package>
+                <package>org.apache.derby.iapi.store.access</package>
+                <package>org.apache.derby.iapi.store.access.conglomerate</package>
+                <package>org.apache.derby.iapi.store.access.xa</package>
+                <package>org.apache.derby.iapi.store.raw</package>
+                <package>org.apache.derby.iapi.store.raw.data</package>
+                <package>org.apache.derby.iapi.store.raw.log</package>
+                <package>org.apache.derby.iapi.store.raw.xact</package>
+                <package>org.apache.derby.iapi.store.replication.master</package>
+                <package>org.apache.derby.iapi.store.replication.slave</package>
+                <package>org.apache.derby.iapi.tools.i18n</package>
+                <package>org.apache.derby.iapi.types</package>
+                <package>org.apache.derby.iapi.util</package>
+                <package>org.apache.derby.impl.db</package>
+                <package>org.apache.derby.impl.io</package>
+                <package>org.apache.derby.impl.jdbc</package>
+                <package>org.apache.derby.impl.jdbc.authentication</package>
+                <package>org.apache.derby.impl.load</package>
+                <package>org.apache.derby.impl.services.bytecode</package>
+                <package>org.apache.derby.impl.services.cache</package>
+                <package>org.apache.derby.impl.services.daemon</package>
+                <package>org.apache.derby.impl.services.jce</package>
+                <package>org.apache.derby.impl.services.jmx</package>
+                <package>org.apache.derby.impl.services.jmxnone</package>
+                <package>org.apache.derby.impl.services.locks</package>
+                <package>org.apache.derby.impl.services.monitor</package>
+                <package>org.apache.derby.impl.services.reflect</package>
+                <package>org.apache.derby.impl.services.stream</package>
+                <package>org.apache.derby.impl.services.timer</package>
+                <package>org.apache.derby.impl.services.uuid</package>
+                <package>org.apache.derby.impl.sql</package>
+                <package>org.apache.derby.impl.sql.catalog</package>
+                <package>org.apache.derby.impl.sql.compile</package>
+                <package>org.apache.derby.impl.sql.conn</package>
+                <package>org.apache.derby.impl.sql.depend</package>
+                <package>org.apache.derby.impl.sql.execute</package>
+                <package>org.apache.derby.impl.sql.execute.rts</package>
+                <package>org.apache.derby.impl.store.access</package>
+                <package>org.apache.derby.impl.store.access.btree</package>
+                <package>org.apache.derby.impl.store.access.btree.index</package>
+                <package>org.apache.derby.impl.store.access.conglomerate</package>
+                <package>org.apache.derby.impl.store.access.heap</package>
+                <package>org.apache.derby.impl.store.access.sort</package>
+                <package>org.apache.derby.impl.store.raw</package>
+                <package>org.apache.derby.impl.store.raw.data</package>
+                <package>org.apache.derby.impl.store.raw.log</package>
+                <package>org.apache.derby.impl.store.raw.xact</package>
+                <package>org.apache.derby.impl.store.replication</package>
+                <package>org.apache.derby.impl.store.replication.buffer</package>
+                <package>org.apache.derby.impl.store.replication.master</package>
+                <package>org.apache.derby.impl.store.replication.net</package>
+                <package>org.apache.derby.impl.store.replication.slave</package>
+                <package>org.apache.derby.impl.tools.sysinfo</package>
+                <package>org.apache.derby.io</package>
+                <package>org.apache.derby.jdbc</package>
+                <package>org.apache.derby.mbeans</package>
+                <package>org.apache.derby.osgi</package>
+                <package>org.apache.derby.security</package>
+                <package>org.apache.derby.shared.common.error</package>
+                <package>org.apache.derby.tools</package>
+                <package>org.apache.derby.vti</package>
+                <package>org.apache.fop</package>
+                <package>org.apache.fop.apps</package>
+                <package>org.apache.fop.area</package>
+                <package>org.apache.fop.area.inline</package>
+                <package>org.apache.fop.cli</package>
+                <package>org.apache.fop.datatypes</package>
+                <package>org.apache.fop.fo</package>
+                <package>org.apache.fop.fo.expr</package>
+                <package>org.apache.fop.fo.extensions</package>
+                <package>org.apache.fop.fo.extensions.destination</package>
+                <package>org.apache.fop.fo.extensions.svg</package>
+                <package>org.apache.fop.fo.extensions.xmp</package>
+                <package>org.apache.fop.fo.flow</package>
+                <package>org.apache.fop.fo.pagination</package>
+                <package>org.apache.fop.fo.pagination.bookmarks</package>
+                <package>org.apache.fop.fo.properties</package>
+                <package>org.apache.fop.fonts</package>
+                <package>org.apache.fop.fonts.apps</package>
+                <package>org.apache.fop.fonts.autodetect</package>
+                <package>org.apache.fop.fonts.base14</package>
+                <package>org.apache.fop.fonts.truetype</package>
+                <package>org.apache.fop.fonts.type1</package>
+                <package>org.apache.fop.hyphenation</package>
+                <package>org.apache.fop.image</package>
+                <package>org.apache.fop.image.analyser</package>
+                <package>org.apache.fop.layoutmgr</package>
+                <package>org.apache.fop.layoutmgr.inline</package>
+                <package>org.apache.fop.layoutmgr.list</package>
+                <package>org.apache.fop.layoutmgr.table</package>
+                <package>org.apache.fop.pdf</package>
+                <package>org.apache.fop.render</package>
+                <package>org.apache.fop.render.afp</package>
+                <package>org.apache.fop.render.afp.exceptions</package>
+                <package>org.apache.fop.render.afp.extensions</package>
+                <package>org.apache.fop.render.afp.fonts</package>
+                <package>org.apache.fop.render.afp.modca</package>
+                <package>org.apache.fop.render.afp.tools</package>
+                <package>org.apache.fop.render.awt</package>
+                <package>org.apache.fop.render.awt.viewer</package>
+                <package>org.apache.fop.render.bitmap</package>
+                <package>org.apache.fop.render.java2d</package>
+                <package>org.apache.fop.render.pcl</package>
+                <package>org.apache.fop.render.pcl.extensions</package>
+                <package>org.apache.fop.render.pdf</package>
+                <package>org.apache.fop.render.print</package>
+                <package>org.apache.fop.render.ps</package>
+                <package>org.apache.fop.render.ps.extensions</package>
+                <package>org.apache.fop.render.rtf</package>
+                <package>org.apache.fop.render.rtf.rtflib.exceptions</package>
+                <package>org.apache.fop.render.rtf.rtflib.rtfdoc</package>
+                <package>org.apache.fop.render.rtf.rtflib.tools</package>
+                <package>org.apache.fop.render.txt</package>
+                <package>org.apache.fop.render.txt.border</package>
+                <package>org.apache.fop.render.xml</package>
+                <package>org.apache.fop.servlet</package>
+                <package>org.apache.fop.svg</package>
+                <package>org.apache.fop.text.linebreak</package>
+                <package>org.apache.fop.tools</package>
+                <package>org.apache.fop.tools.anttasks</package>
+                <package>org.apache.fop.traits</package>
+                <package>org.apache.fop.util</package>
+                <package>org.apache.regexp</package>
                 <package>org.apache.xalan</package>
                 <package>org.apache.xalan.client</package>
                 <package>org.apache.xalan.extensions</package>
@@ -293,47 +433,47 @@
                 <package>org.apache.xalan.trace</package>
                 <package>org.apache.xalan.transformer</package>
                 <package>org.apache.xalan.xslt</package>
-                <package>org.apache.xerces.dom</package>
-                <package>org.apache.xerces.dom.events</package>
-                <package>org.apache.xerces.dom3.as</package>
-                <package>org.apache.xerces.impl</package>
-                <package>org.apache.xerces.impl.dtd</package>
-                <package>org.apache.xerces.impl.dtd.models</package>
-                <package>org.apache.xerces.impl.dv</package>
-                <package>org.apache.xerces.impl.dv.dtd</package>
-                <package>org.apache.xerces.impl.dv.util</package>
-                <package>org.apache.xerces.impl.dv.xs</package>
-                <package>org.apache.xerces.impl.io</package>
-                <package>org.apache.xerces.impl.msg</package>
-                <package>org.apache.xerces.impl.validation</package>
-                <package>org.apache.xerces.impl.xpath</package>
-                <package>org.apache.xerces.impl.xpath.regex</package>
-                <package>org.apache.xerces.impl.xs</package>
-                <package>org.apache.xerces.impl.xs.identity</package>
-                <package>org.apache.xerces.impl.xs.models</package>
-                <package>org.apache.xerces.impl.xs.opti</package>
-                <package>org.apache.xerces.impl.xs.traversers</package>
-                <package>org.apache.xerces.impl.xs.util</package>
-                <package>org.apache.xerces.jaxp</package>
-                <package>org.apache.xerces.jaxp.datatype</package>
-                <package>org.apache.xerces.jaxp.validation</package>
-                <package>org.apache.xerces.parsers</package>
-                <package>org.apache.xerces.util</package>
-                <package>org.apache.xerces.xinclude</package>
-                <package>org.apache.xerces.xni</package>
-                <package>org.apache.xerces.xni.grammars</package>
-                <package>org.apache.xerces.xni.parser</package>
-                <package>org.apache.xerces.xpointer</package>
-                <package>org.apache.xerces.xs</package>
-                <package>org.apache.xerces.xs.datatypes</package>
+                <package>org.apache.xalan.xsltc</package>
+                <package>org.apache.xalan.xsltc.cmdline</package>
+                <package>org.apache.xalan.xsltc.cmdline.getopt</package>
+                <package>org.apache.xalan.xsltc.compiler</package>
+                <package>org.apache.xalan.xsltc.compiler.util</package>
+                <package>org.apache.xalan.xsltc.dom</package>
+                <package>org.apache.xalan.xsltc.runtime</package>
+                <package>org.apache.xalan.xsltc.runtime.output</package>
+                <package>org.apache.xalan.xsltc.trax</package>
+                <package>org.apache.xalan.xsltc.util</package>
                 <package>org.apache.xml.dtm</package>
                 <package>org.apache.xml.dtm.ref</package>
                 <package>org.apache.xml.dtm.ref.dom2dtm</package>
                 <package>org.apache.xml.dtm.ref.sax2dtm</package>
-                <package>org.apache.xml.serialize</package>
+                <package>org.apache.xml.res</package>
+                <package>org.apache.xml.serializer</package>
                 <package>org.apache.xml.utils</package>
                 <package>org.apache.xml.utils.res</package>
                 <package>org.apache.xmlcommons</package>
+                <package>org.apache.xmlgraphics.fonts</package>
+                <package>org.apache.xmlgraphics.image</package>
+                <package>org.apache.xmlgraphics.image.codec.png</package>
+                <package>org.apache.xmlgraphics.image.codec.tiff</package>
+                <package>org.apache.xmlgraphics.image.codec.util</package>
+                <package>org.apache.xmlgraphics.image.rendered</package>
+                <package>org.apache.xmlgraphics.image.writer</package>
+                <package>org.apache.xmlgraphics.image.writer.imageio</package>
+                <package>org.apache.xmlgraphics.image.writer.internal</package>
+                <package>org.apache.xmlgraphics.java2d</package>
+                <package>org.apache.xmlgraphics.java2d.ps</package>
+                <package>org.apache.xmlgraphics.ps</package>
+                <package>org.apache.xmlgraphics.ps.dsc</package>
+                <package>org.apache.xmlgraphics.ps.dsc.events</package>
+                <package>org.apache.xmlgraphics.ps.dsc.tools</package>
+                <package>org.apache.xmlgraphics.util</package>
+                <package>org.apache.xmlgraphics.util.i18n</package>
+                <package>org.apache.xmlgraphics.util.io</package>
+                <package>org.apache.xmlgraphics.xmp</package>
+                <package>org.apache.xmlgraphics.xmp.merge</package>
+                <package>org.apache.xmlgraphics.xmp.schemas</package>
+                <package>org.apache.xmlgraphics.xmp.schemas.pdf</package>
                 <package>org.apache.xpath</package>
                 <package>org.apache.xpath.axes</package>
                 <package>org.apache.xpath.compiler</package>
@@ -343,26 +483,98 @@
                 <package>org.apache.xpath.operations</package>
                 <package>org.apache.xpath.patterns</package>
                 <package>org.apache.xpath.res</package>
-                <package>org.eclipse.emf.common</package>
-                <package>org.eclipse.emf.common.archive</package>
-                <package>org.eclipse.emf.common.command</package>
-                <package>org.eclipse.emf.common.notify</package>
-                <package>org.eclipse.emf.common.notify.impl</package>
-                <package>org.eclipse.emf.common.util</package>
-                <package>org.eclipse.emf.ecore</package>
-                <package>org.eclipse.emf.ecore.impl</package>
-                <package>org.eclipse.emf.ecore.plugin</package>
-                <package>org.eclipse.emf.ecore.resource</package>
-                <package>org.eclipse.emf.ecore.resource.impl</package>
-                <package>org.eclipse.emf.ecore.util</package>
-                <package>org.eclipse.emf.ecore.xml.namespace</package>
-                <package>org.eclipse.emf.ecore.xml.namespace.impl</package>
-                <package>org.eclipse.emf.ecore.xml.namespace.util</package>
-                <package>org.eclipse.emf.ecore.xml.type</package>
-                <package>org.eclipse.emf.ecore.xml.type.impl</package>
-                <package>org.eclipse.emf.ecore.xml.type.internal</package>
-                <package>org.eclipse.emf.ecore.xml.type.util</package>
+                <package>org.bouncycastle</package>
+                <package>org.bouncycastle.asn1</package>
+                <package>org.bouncycastle.asn1.cmp</package>
+                <package>org.bouncycastle.asn1.cms</package>
+                <package>org.bouncycastle.asn1.cryptopro</package>
+                <package>org.bouncycastle.asn1.esf</package>
+                <package>org.bouncycastle.asn1.ess</package>
+                <package>org.bouncycastle.asn1.gnu</package>
+                <package>org.bouncycastle.asn1.iana</package>
+                <package>org.bouncycastle.asn1.icao</package>
+                <package>org.bouncycastle.asn1.isismtt</package>
+                <package>org.bouncycastle.asn1.isismtt.ocsp</package>
+                <package>org.bouncycastle.asn1.isismtt.x509</package>
+                <package>org.bouncycastle.asn1.kisa</package>
+                <package>org.bouncycastle.asn1.microsoft</package>
+                <package>org.bouncycastle.asn1.misc</package>
+                <package>org.bouncycastle.asn1.mozilla</package>
+                <package>org.bouncycastle.asn1.nist</package>
+                <package>org.bouncycastle.asn1.ntt</package>
+                <package>org.bouncycastle.asn1.ocsp</package>
+                <package>org.bouncycastle.asn1.oiw</package>
+                <package>org.bouncycastle.asn1.pkcs</package>
+                <package>org.bouncycastle.asn1.sec</package>
+                <package>org.bouncycastle.asn1.smime</package>
+                <package>org.bouncycastle.asn1.teletrust</package>
+                <package>org.bouncycastle.asn1.tsp</package>
+                <package>org.bouncycastle.asn1.util</package>
+                <package>org.bouncycastle.asn1.x500</package>
+                <package>org.bouncycastle.asn1.x509</package>
+                <package>org.bouncycastle.asn1.x509.qualified</package>
+                <package>org.bouncycastle.asn1.x509.sigi</package>
+                <package>org.bouncycastle.asn1.x9</package>
+                <package>org.bouncycastle.cms</package>
+                <package>org.bouncycastle.crypto</package>
+                <package>org.bouncycastle.crypto.agreement</package>
+                <package>org.bouncycastle.crypto.agreement.kdf</package>
+                <package>org.bouncycastle.crypto.digests</package>
+                <package>org.bouncycastle.crypto.encodings</package>
+                <package>org.bouncycastle.crypto.engines</package>
+                <package>org.bouncycastle.crypto.examples</package>
+                <package>org.bouncycastle.crypto.generators</package>
+                <package>org.bouncycastle.crypto.io</package>
+                <package>org.bouncycastle.crypto.macs</package>
+                <package>org.bouncycastle.crypto.modes</package>
+                <package>org.bouncycastle.crypto.paddings</package>
+                <package>org.bouncycastle.crypto.params</package>
+                <package>org.bouncycastle.crypto.prng</package>
+                <package>org.bouncycastle.crypto.signers</package>
+                <package>org.bouncycastle.crypto.tls</package>
+                <package>org.bouncycastle.crypto.util</package>
+                <package>org.bouncycastle.i18n</package>
+                <package>org.bouncycastle.i18n.filter</package>
+                <package>org.bouncycastle.jce</package>
+                <package>org.bouncycastle.jce.examples</package>
+                <package>org.bouncycastle.jce.exception</package>
+                <package>org.bouncycastle.jce.interfaces</package>
+                <package>org.bouncycastle.jce.netscape</package>
+                <package>org.bouncycastle.jce.provider</package>
+                <package>org.bouncycastle.jce.provider.symmetric</package>
+                <package>org.bouncycastle.jce.spec</package>
+                <package>org.bouncycastle.mail.smime</package>
+                <package>org.bouncycastle.mail.smime.examples</package>
+                <package>org.bouncycastle.mail.smime.handlers</package>
+                <package>org.bouncycastle.mail.smime.util</package>
+                <package>org.bouncycastle.mail.smime.validator</package>
+                <package>org.bouncycastle.math.ec</package>
+                <package>org.bouncycastle.mozilla</package>
+                <package>org.bouncycastle.ocsp</package>
+                <package>org.bouncycastle.openssl</package>
+                <package>org.bouncycastle.sasn1</package>
+                <package>org.bouncycastle.sasn1.cms</package>
+                <package>org.bouncycastle.util</package>
+                <package>org.bouncycastle.util.encoders</package>
+                <package>org.bouncycastle.util.test</package>
+                <package>org.bouncycastle.voms</package>
+                <package>org.bouncycastle.x509</package>
+                <package>org.bouncycastle.x509.examples</package>
+                <package>org.bouncycastle.x509.extension</package>
+                <package>org.bouncycastle.x509.util</package>
+                <package>org.eclipse.jdt.core</package>
                 <package>org.eclipse.jdt.core.compiler</package>
+                <package>org.eclipse.jdt.core.dom</package>
+                <package>org.eclipse.jdt.core.dom.rewrite</package>
+                <package>org.eclipse.jdt.core.eval</package>
+                <package>org.eclipse.jdt.core.formatter</package>
+                <package>org.eclipse.jdt.core.jdom</package>
+                <package>org.eclipse.jdt.core.search</package>
+                <package>org.eclipse.jdt.core.util</package>
+                <package>org.eclipse.jdt.internal.codeassist</package>
+                <package>org.eclipse.jdt.internal.codeassist.complete</package>
+                <package>org.eclipse.jdt.internal.codeassist.impl</package>
+                <package>org.eclipse.jdt.internal.codeassist.select</package>
                 <package>org.eclipse.jdt.internal.compiler</package>
                 <package>org.eclipse.jdt.internal.compiler.ast</package>
                 <package>org.eclipse.jdt.internal.compiler.batch</package>
@@ -376,23 +588,200 @@
                 <package>org.eclipse.jdt.internal.compiler.parser.diagnose</package>
                 <package>org.eclipse.jdt.internal.compiler.problem</package>
                 <package>org.eclipse.jdt.internal.compiler.util</package>
+                <package>org.eclipse.jdt.internal.core</package>
+                <package>org.eclipse.jdt.internal.core.builder</package>
+                <package>org.eclipse.jdt.internal.core.dom.rewrite</package>
+                <package>org.eclipse.jdt.internal.core.eval</package>
+                <package>org.eclipse.jdt.internal.core.hierarchy</package>
+                <package>org.eclipse.jdt.internal.core.index</package>
+                <package>org.eclipse.jdt.internal.core.jdom</package>
+                <package>org.eclipse.jdt.internal.core.search</package>
+                <package>org.eclipse.jdt.internal.core.search.indexing</package>
+                <package>org.eclipse.jdt.internal.core.search.matching</package>
+                <package>org.eclipse.jdt.internal.core.search.processing</package>
                 <package>org.eclipse.jdt.internal.core.util</package>
-                <package>org.eclipse.xsd</package>
-                <package>org.eclipse.xsd.ecore</package>
-                <package>org.eclipse.xsd.impl</package>
-                <package>org.eclipse.xsd.impl.type</package>
-                <package>org.eclipse.xsd.util</package>
+                <package>org.eclipse.jdt.internal.eval</package>
+                <package>org.eclipse.jdt.internal.formatter</package>
+                <package>org.eclipse.jdt.internal.formatter.align</package>
+                <package>org.eclipse.jdt.internal.formatter.comment</package>
+                <package>org.eclipse.jdt.internal.formatter.old</package>
+                <package>org.geotoolkit.console</package>
+                <package>org.geotoolkit.coverage</package>
+                <package>org.geotoolkit.coverage.grid</package>
+                <package>org.geotoolkit.coverage.processing</package>
+                <package>org.geotoolkit.coverage.processing.operation</package>
+                <package>org.geotoolkit.coverage.wi</package>
+                <package>org.geotoolkit.display.axis</package>
+                <package>org.geotoolkit.display.canvas</package>
+                <package>org.geotoolkit.display.canvas.control</package>
+                <package>org.geotoolkit.display.canvas.event</package>
+                <package>org.geotoolkit.display.container</package>
+                <package>org.geotoolkit.display.exception</package>
+                <package>org.geotoolkit.display.primitive</package>
+                <package>org.geotoolkit.display.shape</package>
+                <package>org.geotoolkit.display2d.array</package>
+                <package>org.geotoolkit.display2d.canvas</package>
+                <package>org.geotoolkit.display2d.canvas.web</package>
+                <package>org.geotoolkit.display2d.container</package>
+                <package>org.geotoolkit.display2d.container.statefull</package>
+                <package>org.geotoolkit.display2d.container.stateless</package>
+                <package>org.geotoolkit.display2d.ext.legend</package>
+                <package>org.geotoolkit.display2d.ext.northarrow</package>
+                <package>org.geotoolkit.display2d.ext.scalebar</package>
+                <package>org.geotoolkit.display2d.ext.vectorfield</package>
+                <package>org.geotoolkit.display2d.geom</package>
+                <package>org.geotoolkit.display2d.primitive</package>
+                <package>org.geotoolkit.display2d.primitive.jts</package>
+                <package>org.geotoolkit.display2d.service</package>
+                <package>org.geotoolkit.display2d.style</package>
+                <package>org.geotoolkit.display2d.style.j2d</package>
+                <package>org.geotoolkit.display2d.style.raster</package>
+                <package>org.geotoolkit.display2d.style.renderer</package>
+                <package>org.geotoolkit.factory</package>
+                <package>org.geotoolkit.filter</package>
+                <package>org.geotoolkit.geometry</package>
+                <package>org.geotoolkit.geometry.array</package>
+                <package>org.geotoolkit.gml.xml</package>
+                <package>org.geotoolkit.gml.xml.v212</package>
+                <package>org.geotoolkit.gml.xml.v311</package>
+                <package>org.geotoolkit.gml.xml.v311modified</package>
+                <package>org.geotoolkit.gui.headless</package>
+                <package>org.geotoolkit.gui.swing</package>
+                <package>org.geotoolkit.gui.swing.contexttree</package>
+                <package>org.geotoolkit.gui.swing.contexttree.column</package>
+                <package>org.geotoolkit.gui.swing.contexttree.node</package>
+                <package>org.geotoolkit.gui.swing.contexttree.popup</package>
+                <package>org.geotoolkit.gui.swing.contexttree.renderer</package>
+                <package>org.geotoolkit.gui.swing.crschooser</package>
+                <package>org.geotoolkit.gui.swing.debug</package>
+                <package>org.geotoolkit.gui.swing.debug.jasper</package>
+                <package>org.geotoolkit.gui.swing.debug.jfreechart</package>
+                <package>org.geotoolkit.gui.swing.event</package>
+                <package>org.geotoolkit.gui.swing.filter</package>
+                <package>org.geotoolkit.gui.swing.go</package>
+                <package>org.geotoolkit.gui.swing.go.control</package>
+                <package>org.geotoolkit.gui.swing.go.control.creation</package>
+                <package>org.geotoolkit.gui.swing.go.control.information</package>
+                <package>org.geotoolkit.gui.swing.go.control.navigation</package>
+                <package>org.geotoolkit.gui.swing.go.control.selection</package>
+                <package>org.geotoolkit.gui.swing.go.decoration</package>
+                <package>org.geotoolkit.gui.swing.go.extractor</package>
+                <package>org.geotoolkit.gui.swing.image</package>
+                <package>org.geotoolkit.gui.swing.map.map2d</package>
+                <package>org.geotoolkit.gui.swing.map.map2d.decoration</package>
+                <package>org.geotoolkit.gui.swing.maptree</package>
+                <package>org.geotoolkit.gui.swing.maptree.menu</package>
+                <package>org.geotoolkit.gui.swing.misc</package>
+                <package>org.geotoolkit.gui.swing.misc.Render</package>
+                <package>org.geotoolkit.gui.swing.misc.filter</package>
+                <package>org.geotoolkit.gui.swing.propertyedit</package>
+                <package>org.geotoolkit.gui.swing.propertyedit.filterproperty</package>
+                <package>org.geotoolkit.gui.swing.propertyedit.model</package>
+                <package>org.geotoolkit.gui.swing.propertyedit.styleproperty</package>
+                <package>org.geotoolkit.gui.swing.referencing</package>
+                <package>org.geotoolkit.gui.swing.report</package>
+                <package>org.geotoolkit.gui.swing.resource</package>
+                <package>org.geotoolkit.gui.swing.style</package>
+                <package>org.geotoolkit.gui.swing.timeline</package>
+                <package>org.geotoolkit.gui.swing.tree</package>
+                <package>org.geotoolkit.image</package>
+                <package>org.geotoolkit.image.io</package>
+                <package>org.geotoolkit.image.io.metadata</package>
+                <package>org.geotoolkit.image.io.mosaic</package>
+                <package>org.geotoolkit.image.io.stream</package>
+                <package>org.geotoolkit.image.io.text</package>
+                <package>org.geotoolkit.image.jai</package>
+                <package>org.geotoolkit.internal</package>
+                <package>org.geotoolkit.internal.coverage</package>
+                <package>org.geotoolkit.internal.image</package>
+                <package>org.geotoolkit.internal.image.io</package>
+                <package>org.geotoolkit.internal.image.jai</package>
+                <package>org.geotoolkit.internal.io</package>
+                <package>org.geotoolkit.internal.jaxb</package>
+                <package>org.geotoolkit.internal.jaxb.code</package>
+                <package>org.geotoolkit.internal.jaxb.metadata</package>
+                <package>org.geotoolkit.internal.jaxb.primitive</package>
+                <package>org.geotoolkit.internal.jaxb.referencing</package>
+                <package>org.geotoolkit.internal.jaxb.text</package>
+                <package>org.geotoolkit.internal.jaxb.uom</package>
+                <package>org.geotoolkit.internal.jdbc</package>
+                <package>org.geotoolkit.internal.referencing</package>
+                <package>org.geotoolkit.internal.swing</package>
+                <package>org.geotoolkit.io</package>
+                <package>org.geotoolkit.io.wkt</package>
+                <package>org.geotoolkit.lang</package>
+                <package>org.geotoolkit.map</package>
+                <package>org.geotoolkit.math</package>
+                <package>org.geotoolkit.measure</package>
+                <package>org.geotoolkit.metadata</package>
+                <package>org.geotoolkit.metadata.iso</package>
+                <package>org.geotoolkit.metadata.iso.citation</package>
+                <package>org.geotoolkit.metadata.iso.constraint</package>
+                <package>org.geotoolkit.metadata.iso.content</package>
+                <package>org.geotoolkit.metadata.iso.distribution</package>
+                <package>org.geotoolkit.metadata.iso.extent</package>
+                <package>org.geotoolkit.metadata.iso.identification</package>
+                <package>org.geotoolkit.metadata.iso.lineage</package>
+                <package>org.geotoolkit.metadata.iso.maintenance</package>
+                <package>org.geotoolkit.metadata.iso.quality</package>
+                <package>org.geotoolkit.metadata.iso.spatial</package>
+                <package>org.geotoolkit.naming</package>
+                <package>org.geotoolkit.ogc.xml</package>
+                <package>org.geotoolkit.ogc.xml.v100</package>
+                <package>org.geotoolkit.ogc.xml.v110</package>
+                <package>org.geotoolkit.ogc.xml.v110modified</package>
+                <package>org.geotoolkit.parameter</package>
+                <package>org.geotoolkit.referencing</package>
+                <package>org.geotoolkit.referencing.crs</package>
+                <package>org.geotoolkit.referencing.cs</package>
+                <package>org.geotoolkit.referencing.datum</package>
+                <package>org.geotoolkit.referencing.factory</package>
+                <package>org.geotoolkit.referencing.factory.epsg</package>
+                <package>org.geotoolkit.referencing.factory.web</package>
+                <package>org.geotoolkit.referencing.operation</package>
+                <package>org.geotoolkit.referencing.operation.builder</package>
+                <package>org.geotoolkit.referencing.operation.matrix</package>
+                <package>org.geotoolkit.referencing.operation.projection</package>
+                <package>org.geotoolkit.referencing.operation.provider</package>
+                <package>org.geotoolkit.referencing.operation.transform</package>
+                <package>org.geotoolkit.renderer.style</package>
+                <package>org.geotoolkit.renderer.svg</package>
+                <package>org.geotoolkit.report</package>
+                <package>org.geotoolkit.report.attribut.context</package>
+                <package>org.geotoolkit.report.attribut.context.title</package>
+                <package>org.geotoolkit.report.graphic</package>
+                <package>org.geotoolkit.report.graphic.legend</package>
+                <package>org.geotoolkit.report.graphic.map</package>
+                <package>org.geotoolkit.report.graphic.northarrow</package>
+                <package>org.geotoolkit.report.graphic.scalebar</package>
+                <package>org.geotoolkit.report.simple.string</package>
+                <package>org.geotoolkit.resources</package>
+                <package>org.geotoolkit.se.xml.v110</package>
+                <package>org.geotoolkit.sld</package>
+                <package>org.geotoolkit.sld.xml</package>
+                <package>org.geotoolkit.sld.xml.v100</package>
+                <package>org.geotoolkit.sld.xml.v110</package>
+                <package>org.geotoolkit.style</package>
+                <package>org.geotoolkit.style.function</package>
+                <package>org.geotoolkit.util</package>
+                <package>org.geotoolkit.util.collection</package>
+                <package>org.geotoolkit.util.converter</package>
+                <package>org.geotoolkit.util.logging</package>
+                <package>org.geotoolkit.wms</package>
+                <package>org.geotoolkit.wms.map</package>
+                <package>org.geotoolkit.wms.v111</package>
+                <package>org.geotoolkit.wms.v130</package>
+                <package>org.geotoolkit.wms.xml</package>
+                <package>org.geotoolkit.wms.xml.v111</package>
+                <package>org.geotoolkit.wms.xml.v130</package>
+                <package>org.geotoolkit.xml</package>
                 <package>org.geotools</package>
-                <package>org.geotools.axis</package>
-                <package>org.geotools.console</package>
-                <package>org.geotools.coverage</package>
                 <package>org.geotools.coverage.grid</package>
                 <package>org.geotools.coverage.grid.io</package>
                 <package>org.geotools.coverage.grid.io.imageio</package>
                 <package>org.geotools.coverage.io</package>
                 <package>org.geotools.coverage.processing</package>
                 <package>org.geotools.coverage.processing.operation</package>
-                <package>org.geotools.coverage.wi</package>
                 <package>org.geotools.data</package>
                 <package>org.geotools.data.collection</package>
                 <package>org.geotools.data.crs</package>
@@ -417,37 +806,6 @@
                 <package>org.geotools.data.shapefile.shp.xml</package>
                 <package>org.geotools.data.store</package>
                 <package>org.geotools.data.view</package>
-                <package>org.geotools.data.wfs</package>
-                <package>org.geotools.data.wms</package>
-                <package>org.geotools.data.wms.backend</package>
-                <package>org.geotools.data.wms.backend.v111</package>
-                <package>org.geotools.data.wms.backend.v130</package>
-                <package>org.geotools.data.wms.request</package>
-                <package>org.geotools.data.wms.response</package>
-                <package>org.geotools.data.wms.xml</package>
-                <package>org.geotools.display.array</package>
-                <package>org.geotools.display.canvas</package>
-                <package>org.geotools.display.canvas.control</package>
-                <package>org.geotools.display.canvas.event</package>
-                <package>org.geotools.display.canvas.map</package>
-                <package>org.geotools.display.canvas.web</package>
-                <package>org.geotools.display.container</package>
-                <package>org.geotools.display.container.statefull</package>
-                <package>org.geotools.display.container.stateless</package>
-                <package>org.geotools.display.exception</package>
-                <package>org.geotools.display.geom</package>
-                <package>org.geotools.display.primitive</package>
-                <package>org.geotools.display.primitive.jts</package>
-                <package>org.geotools.display.renderer</package>
-                <package>org.geotools.display.service</package>
-                <package>org.geotools.display.style</package>
-                <package>org.geotools.display.style.j2d</package>
-                <package>org.geotools.display.style.label</package>
-                <package>org.geotools.display.style.legend</package>
-                <package>org.geotools.display.style.northarrow</package>
-                <package>org.geotools.display.style.raster</package>
-                <package>org.geotools.display.style.renderer</package>
-                <package>org.geotools.display.style.scalebar</package>
                 <package>org.geotools.factory</package>
                 <package>org.geotools.feature</package>
                 <package>org.geotools.feature.collection</package>
@@ -466,8 +824,8 @@
                 <package>org.geotools.filter.spatial</package>
                 <package>org.geotools.filter.text.commons</package>
                 <package>org.geotools.filter.text.cql2</package>
+                <package>org.geotools.filter.text.ecql</package>
                 <package>org.geotools.filter.text.generated.parsers</package>
-                <package>org.geotools.filter.text.txt</package>
                 <package>org.geotools.filter.visitor</package>
                 <package>org.geotools.gce.geotiff</package>
                 <package>org.geotools.gce.geotiff.IIOMetadataAdpaters</package>
@@ -475,79 +833,13 @@
                 <package>org.geotools.gce.geotiff.IIOMetadataAdpaters.utils.codes</package>
                 <package>org.geotools.gce.geotiff.crs_adapters</package>
                 <package>org.geotools.geometry</package>
-                <package>org.geotools.geometry.array</package>
                 <package>org.geotools.geometry.coordinatesequence</package>
                 <package>org.geotools.geometry.jts</package>
                 <package>org.geotools.geometry.jts.coordinatesequence</package>
                 <package>org.geotools.geometry.text</package>
                 <package>org.geotools.gml</package>
                 <package>org.geotools.gml.producer</package>
-                <package>org.geotools.graph.build</package>
-                <package>org.geotools.graph.build.basic</package>
-                <package>org.geotools.graph.build.feature</package>
-                <package>org.geotools.graph.build.line</package>
-                <package>org.geotools.graph.build.opt</package>
-                <package>org.geotools.graph.build.polygon</package>
-                <package>org.geotools.graph.io</package>
-                <package>org.geotools.graph.io.standard</package>
-                <package>org.geotools.graph.path</package>
-                <package>org.geotools.graph.structure</package>
-                <package>org.geotools.graph.structure.basic</package>
-                <package>org.geotools.graph.structure.line</package>
-                <package>org.geotools.graph.structure.opt</package>
-                <package>org.geotools.graph.traverse</package>
-                <package>org.geotools.graph.traverse.basic</package>
-                <package>org.geotools.graph.traverse.standard</package>
-                <package>org.geotools.graph.util</package>
-                <package>org.geotools.graph.util.delaunay</package>
-                <package>org.geotools.graph.util.geom</package>
-                <package>org.geotools.graph.util.graph</package>
-                <package>org.geotools.gui.headless</package>
-                <package>org.geotools.gui.swing</package>
-                <package>org.geotools.gui.swing.contexttree</package>
-                <package>org.geotools.gui.swing.contexttree.column</package>
-                <package>org.geotools.gui.swing.contexttree.node</package>
-                <package>org.geotools.gui.swing.contexttree.popup</package>
-                <package>org.geotools.gui.swing.contexttree.renderer</package>
-                <package>org.geotools.gui.swing.crschooser</package>
-                <package>org.geotools.gui.swing.debug</package>
-                <package>org.geotools.gui.swing.debug.jasper</package>
-                <package>org.geotools.gui.swing.debug.jfreechart</package>
-                <package>org.geotools.gui.swing.event</package>
-                <package>org.geotools.gui.swing.filter</package>
-                <package>org.geotools.gui.swing.go</package>
-                <package>org.geotools.gui.swing.go.control</package>
-                <package>org.geotools.gui.swing.go.control.creation</package>
-                <package>org.geotools.gui.swing.go.control.information</package>
-                <package>org.geotools.gui.swing.go.control.navigation</package>
-                <package>org.geotools.gui.swing.go.control.selection</package>
-                <package>org.geotools.gui.swing.go.decoration</package>
-                <package>org.geotools.gui.swing.go.extractor</package>
-                <package>org.geotools.gui.swing.image</package>
-                <package>org.geotools.gui.swing.map.map2d</package>
-                <package>org.geotools.gui.swing.map.map2d.decoration</package>
-                <package>org.geotools.gui.swing.maptree</package>
-                <package>org.geotools.gui.swing.maptree.menu</package>
-                <package>org.geotools.gui.swing.misc</package>
-                <package>org.geotools.gui.swing.misc.Render</package>
-                <package>org.geotools.gui.swing.misc.filter</package>
-                <package>org.geotools.gui.swing.propertyedit</package>
-                <package>org.geotools.gui.swing.propertyedit.filterproperty</package>
-                <package>org.geotools.gui.swing.propertyedit.model</package>
-                <package>org.geotools.gui.swing.propertyedit.styleproperty</package>
-                <package>org.geotools.gui.swing.referencing</package>
-                <package>org.geotools.gui.swing.report</package>
-                <package>org.geotools.gui.swing.resource</package>
-                <package>org.geotools.gui.swing.style</package>
-                <package>org.geotools.gui.swing.table</package>
-                <package>org.geotools.gui.swing.timeline</package>
-                <package>org.geotools.gui.swing.tree</package>
                 <package>org.geotools.image</package>
-                <package>org.geotools.image.io</package>
-                <package>org.geotools.image.io.metadata</package>
-                <package>org.geotools.image.io.mosaic</package>
-                <package>org.geotools.image.io.netcdf</package>
-                <package>org.geotools.image.io.stream</package>
                 <package>org.geotools.image.io.text</package>
                 <package>org.geotools.image.jai</package>
                 <package>org.geotools.image.palette</package>
@@ -560,104 +852,16 @@
                 <package>org.geotools.index.rtree.database.mysql</package>
                 <package>org.geotools.index.rtree.fs</package>
                 <package>org.geotools.index.rtree.memory</package>
-                <package>org.geotools.internal.jaxb.v100.gml</package>
-                <package>org.geotools.internal.jaxb.v100.ogc</package>
-                <package>org.geotools.internal.jaxb.v100.sld</package>
-                <package>org.geotools.internal.jaxb.v110.gml</package>
-                <package>org.geotools.internal.jaxb.v110.ogc</package>
-                <package>org.geotools.internal.jaxb.v110.se</package>
-                <package>org.geotools.internal.jaxb.v110.sld</package>
-                <package>org.geotools.io</package>
-                <package>org.geotools.map</package>
-                <package>org.geotools.math</package>
-                <package>org.geotools.measure</package>
-                <package>org.geotools.metadata</package>
-                <package>org.geotools.metadata.iso</package>
-                <package>org.geotools.metadata.iso.citation</package>
-                <package>org.geotools.metadata.iso.constraint</package>
-                <package>org.geotools.metadata.iso.content</package>
-                <package>org.geotools.metadata.iso.distribution</package>
-                <package>org.geotools.metadata.iso.extent</package>
-                <package>org.geotools.metadata.iso.identification</package>
-                <package>org.geotools.metadata.iso.lineage</package>
-                <package>org.geotools.metadata.iso.maintenance</package>
-                <package>org.geotools.metadata.iso.quality</package>
-                <package>org.geotools.metadata.iso.spatial</package>
-                <package>org.geotools.metadata.note</package>
                 <package>org.geotools.metadata.sql</package>
-                <package>org.geotools.nature</package>
                 <package>org.geotools.ows</package>
-                <package>org.geotools.parameter</package>
-                <package>org.geotools.referencing</package>
-                <package>org.geotools.referencing.crs</package>
-                <package>org.geotools.referencing.cs</package>
                 <package>org.geotools.referencing.datum</package>
-                <package>org.geotools.referencing.factory</package>
-                <package>org.geotools.referencing.factory.epsg</package>
-                <package>org.geotools.referencing.factory.wms</package>
-                <package>org.geotools.referencing.operation</package>
                 <package>org.geotools.referencing.operation.builder</package>
-                <package>org.geotools.referencing.operation.matrix</package>
-                <package>org.geotools.referencing.operation.projection</package>
-                <package>org.geotools.referencing.operation.transform</package>
-                <package>org.geotools.referencing.wkt</package>
-                <package>org.geotools.renderer.style</package>
-                <package>org.geotools.renderer.svg</package>
-                <package>org.geotools.report</package>
-                <package>org.geotools.report.attribut.context</package>
-                <package>org.geotools.report.attribut.context.title</package>
-                <package>org.geotools.report.graphic</package>
-                <package>org.geotools.report.graphic.legend</package>
-                <package>org.geotools.report.graphic.map</package>
-                <package>org.geotools.report.graphic.northarrow</package>
-                <package>org.geotools.report.graphic.scalebar</package>
-                <package>org.geotools.report.simple.string</package>
                 <package>org.geotools.resources</package>
                 <package>org.geotools.resources.coverage</package>
-                <package>org.geotools.resources.geometry</package>
-                <package>org.geotools.resources.i18n</package>
                 <package>org.geotools.resources.image</package>
-                <package>org.geotools.resources.jaxb</package>
-                <package>org.geotools.resources.jaxb.code</package>
-                <package>org.geotools.resources.jaxb.metadata</package>
-                <package>org.geotools.resources.jaxb.primitive</package>
-                <package>org.geotools.resources.jaxb.referencing</package>
-                <package>org.geotools.resources.jaxb.uom</package>
-                <package>org.geotools.sld</package>
-                <package>org.geotools.style</package>
-                <package>org.geotools.style.function</package>
-                <package>org.geotools.style.sld</package>
                 <package>org.geotools.tool.store</package>
                 <package>org.geotools.util</package>
-                <package>org.geotools.util.logging</package>
-                <package>org.geotools.wfs</package>
-                <package>org.geotools.wfs.bindings</package>
-                <package>org.geotools.wfs.protocol</package>
-                <package>org.geotools.wfs.v_1_0_0.data</package>
-                <package>org.geotools.wfs.v_1_1_0.data</package>
-                <package>org.geotools.xml</package>
-                <package>org.geotools.xml.filter</package>
-                <package>org.geotools.xml.gml</package>
-                <package>org.geotools.xml.handlers</package>
-                <package>org.geotools.xml.handlers.xsi</package>
-                <package>org.geotools.xml.schema</package>
-                <package>org.geotools.xml.schema.impl</package>
                 <package>org.geotools.xml.transform</package>
-                <package>org.geotools.xml.wfs</package>
-                <package>org.geotools.xml.xLink</package>
-                <package>org.geotools.xml.xsi</package>
-                <package>org.hsqldb</package>
-                <package>org.hsqldb.index</package>
-                <package>org.hsqldb.jdbc</package>
-                <package>org.hsqldb.lib</package>
-                <package>org.hsqldb.lib.java</package>
-                <package>org.hsqldb.persist</package>
-                <package>org.hsqldb.resources</package>
-                <package>org.hsqldb.rowio</package>
-                <package>org.hsqldb.scriptio</package>
-                <package>org.hsqldb.store</package>
-                <package>org.hsqldb.types</package>
-                <package>org.hsqldb.util</package>
                 <package>org.jdesktop.animation.timing</package>
                 <package>org.jdesktop.animation.timing.interpolation</package>
                 <package>org.jdesktop.animation.timing.triggers</package>
@@ -707,18 +911,61 @@
                 <package>org.jdom.output</package>
                 <package>org.jdom.transform</package>
                 <package>org.jdom.xpath</package>
+                <package>org.jfree</package>
+                <package>org.jfree.base</package>
+                <package>org.jfree.base.config</package>
+                <package>org.jfree.base.log</package>
+                <package>org.jfree.base.modules</package>
+                <package>org.jfree.chart</package>
+                <package>org.jfree.chart.annotations</package>
+                <package>org.jfree.chart.axis</package>
+                <package>org.jfree.chart.block</package>
+                <package>org.jfree.chart.demo</package>
+                <package>org.jfree.chart.editor</package>
+                <package>org.jfree.chart.encoders</package>
+                <package>org.jfree.chart.entity</package>
+                <package>org.jfree.chart.event</package>
+                <package>org.jfree.chart.imagemap</package>
+                <package>org.jfree.chart.labels</package>
+                <package>org.jfree.chart.needle</package>
+                <package>org.jfree.chart.plot</package>
+                <package>org.jfree.chart.plot.dial</package>
+                <package>org.jfree.chart.renderer</package>
+                <package>org.jfree.chart.renderer.category</package>
+                <package>org.jfree.chart.renderer.xy</package>
+                <package>org.jfree.chart.resources</package>
+                <package>org.jfree.chart.servlet</package>
+                <package>org.jfree.chart.title</package>
+                <package>org.jfree.chart.urls</package>
+                <package>org.jfree.chart.util</package>
+                <package>org.jfree.data</package>
+                <package>org.jfree.data.category</package>
+                <package>org.jfree.data.contour</package>
+                <package>org.jfree.data.function</package>
+                <package>org.jfree.data.gantt</package>
+                <package>org.jfree.data.general</package>
+                <package>org.jfree.data.io</package>
+                <package>org.jfree.data.jdbc</package>
+                <package>org.jfree.data.resources</package>
+                <package>org.jfree.data.statistics</package>
+                <package>org.jfree.data.time</package>
+                <package>org.jfree.data.time.ohlc</package>
+                <package>org.jfree.data.xml</package>
+                <package>org.jfree.data.xy</package>
+                <package>org.jfree.date</package>
+                <package>org.jfree.io</package>
+                <package>org.jfree.layout</package>
+                <package>org.jfree.resources</package>
+                <package>org.jfree.text</package>
+                <package>org.jfree.threads</package>
+                <package>org.jfree.ui</package>
+                <package>org.jfree.ui.about</package>
+                <package>org.jfree.ui.about.resources</package>
+                <package>org.jfree.ui.action</package>
+                <package>org.jfree.ui.tabbedui</package>
+                <package>org.jfree.util</package>
                 <package>org.netbeans.swing.etable</package>
                 <package>org.netbeans.swing.outline</package>
-                <package>org.picocontainer</package>
-                <package>org.picocontainer.alternatives</package>
-                <package>org.picocontainer.defaults</package>
-                <package>org.picocontainer.monitors</package>
-                <package>org.slf4j</package>
-                <package>org.slf4j.helpers</package>
-                <package>org.slf4j.impl</package>
-                <package>org.slf4j.spi</package>
-                <package>org.w3.xlink</package>
-                <package>org.w3.xlink.impl</package>
                 <package>org.w3c.css.sac</package>
                 <package>org.w3c.css.sac.helpers</package>
                 <package>org.w3c.dom</package>
@@ -738,77 +985,19 @@
                 <package>org.xml.sax</package>
                 <package>org.xml.sax.ext</package>
                 <package>org.xml.sax.helpers</package>
-                <package>org.xmlpull.mxp1</package>
-                <package>org.xmlpull.mxp1_serializer</package>
-                <package>org.xmlpull.v1</package>
-                <package>org.xmlpull.v1.builder</package>
-                <package>org.xmlpull.v1.builder.adapter</package>
-                <package>org.xmlpull.v1.builder.impl</package>
-                <package>org.xmlpull.v1.dom2_builder</package>
-                <package>org.xmlpull.v1.parser_pool</package>
-                <package>org.xmlpull.v1.sax2</package>
-                <package>org.xmlpull.v1.util</package>
-                <package>org.xmlpull.v1.wrapper</package>
-                <package>org.xmlpull.v1.wrapper.classic</package>
-                <package>thredds.catalog</package>
-                <package>thredds.catalog.crawl</package>
-                <package>thredds.catalog.dl</package>
-                <package>thredds.catalog.parser.jdom</package>
-                <package>thredds.catalog.query</package>
-                <package>thredds.cataloggen</package>
-                <package>thredds.cataloggen.catalogrefexpander</package>
-                <package>thredds.cataloggen.config</package>
-                <package>thredds.cataloggen.datasetenhancer</package>
-                <package>thredds.cataloggen.inserter</package>
-                <package>thredds.crawlabledataset</package>
-                <package>thredds.crawlabledataset.filter</package>
-                <package>thredds.crawlabledataset.sorter</package>
-                <package>thredds.datamodel.gis</package>
-                <package>thredds.datatype</package>
-                <package>thredds.dqc</package>
-                <package>thredds.util</package>
-                <package>thredds.util.net</package>
-                <package>thredds.wcs</package>
-                <package>ucar.atd.dorade</package>
-                <package>ucar.ma2</package>
-                <package>ucar.nc2</package>
-                <package>ucar.nc2.adde</package>
-                <package>ucar.nc2.dataset</package>
-                <package>ucar.nc2.dataset.conv</package>
-                <package>ucar.nc2.dataset.grid</package>
-                <package>ucar.nc2.dataset.transform</package>
-                <package>ucar.nc2.dods</package>
-                <package>ucar.nc2.dt</package>
-                <package>ucar.nc2.dt.fmr</package>
-                <package>ucar.nc2.dt.fmrc</package>
-                <package>ucar.nc2.dt.grid</package>
-                <package>ucar.nc2.dt.image</package>
-                <package>ucar.nc2.dt.point</package>
-                <package>ucar.nc2.dt.point.decode</package>
-                <package>ucar.nc2.dt.radial</package>
-                <package>ucar.nc2.dt.trajectory</package>
-                <package>ucar.nc2.geotiff</package>
-                <package>ucar.nc2.iosp.bufr</package>
-                <package>ucar.nc2.iosp.cinrad</package>
-                <package>ucar.nc2.iosp.dmsp</package>
-                <package>ucar.nc2.iosp.dorade</package>
-                <package>ucar.nc2.iosp.gini</package>
-                <package>ucar.nc2.iosp.grib</package>
-                <package>ucar.nc2.iosp.nexrad2</package>
-                <package>ucar.nc2.iosp.nids</package>
-                <package>ucar.nc2.ncml</package>
-                <package>ucar.nc2.thredds</package>
-                <package>ucar.nc2.units</package>
-                <package>ucar.nc2.util</package>
-                <package>ucar.unidata.geoloc</package>
-                <package>ucar.unidata.geoloc.projection</package>
-                <package>ucar.unidata.geoloc.vertical</package>
-                <package>ucar.unidata.io</package>
-                <package>ucar.unidata.io.bzip2</package>
-                <package>ucar.unidata.io.http</package>
-                <package>ucar.unidata.util</package>
-                <package>ucar.units</package>
             </public-packages>
+            <class-path-extension>
+                <runtime-relative-path>ext/avalon-framework-api.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/avalon-framework-api.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/avalon-framework-impl.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/avalon-framework-impl.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/batik-anim.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/batik-anim.jar</binary-origin>
+            </class-path-extension>
             <class-path-extension>
                 <runtime-relative-path>ext/batik-awt-util.jar</runtime-relative-path>
                 <binary-origin>release/modules/ext/batik-awt-util.jar</binary-origin>
@@ -830,10 +1019,6 @@
                 <binary-origin>release/modules/ext/batik-ext.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/batik-gui-util.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/batik-gui-util.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
                 <runtime-relative-path>ext/batik-gvt.jar</runtime-relative-path>
                 <binary-origin>release/modules/ext/batik-gvt.jar</binary-origin>
             </class-path-extension>
@@ -850,6 +1035,10 @@
                 <binary-origin>release/modules/ext/batik-svg-dom.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
+                <runtime-relative-path>ext/batik-svggen.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/batik-svggen.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
                 <runtime-relative-path>ext/batik-transcoder.jar</runtime-relative-path>
                 <binary-origin>release/modules/ext/batik-transcoder.jar</binary-origin>
             </class-path-extension>
@@ -862,12 +1051,148 @@
                 <binary-origin>release/modules/ext/batik-xml.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/xmlParserAPIs.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/xmlParserAPIs.jar</binary-origin>
+                <runtime-relative-path>ext/bcmail-jdk14.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/bcmail-jdk14.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/netcdf.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/netcdf.jar</binary-origin>
+                <runtime-relative-path>ext/bcprov-jdk14.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/bcprov-jdk14.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/derby.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/derby.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/fop.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/fop.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/geotk-coverage.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/geotk-coverage.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/geotk-coverageio.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/geotk-coverageio.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/geotk-display.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/geotk-display.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/geotk-engine-core.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/geotk-engine-core.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/geotk-go2.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/geotk-go2.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/geotk-go2-style-extension.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/geotk-go2-style-extension.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/geotk-jasperreport.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/geotk-jasperreport.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/geotk-metadata.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/geotk-metadata.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/geotk-referencing.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/geotk-referencing.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/geotk-render.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/geotk-render.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/geotk-style.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/geotk-style.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/geotk-utility.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/geotk-utility.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/geotk-widgets-swing.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/geotk-widgets-swing.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/geotk-widgets-swing-pending.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/geotk-widgets-swing-pending.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/geotk-wms.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/geotk-wms.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/geotk-world-image.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/geotk-world-image.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/geotk-xml-gml.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/geotk-xml-gml.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/geotk-xml-ogc.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/geotk-xml-ogc.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/geotk-xml-se.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/geotk-xml-se.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/geotk-xml-sld.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/geotk-xml-sld.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/geotk-xml-wms.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/geotk-xml-wms.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/gtm-api.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gtm-api.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/gtm-coverage.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gtm-coverage.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/gtm-coverageio.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gtm-coverageio.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/gtm-cql.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gtm-cql.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/gtm-geotiff.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gtm-geotiff.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/gtm-jdbc.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gtm-jdbc.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/gtm-main.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gtm-main.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/gtm-metadata.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gtm-metadata.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/gtm-postgis.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gtm-postgis.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/gtm-referencing.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gtm-referencing.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/gtm-shapefile.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gtm-shapefile.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
                 <runtime-relative-path>ext/itext.jar</runtime-relative-path>
@@ -878,28 +1203,32 @@
                 <binary-origin>release/modules/ext/jasperreports.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
+                <runtime-relative-path>ext/jcommon.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/jcommon.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/jdom.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/jdom.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/jdtcore.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/jdtcore.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/jfreechart.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/jfreechart.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/jlfgr.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/jlfgr.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
                 <runtime-relative-path>ext/jts.jar</runtime-relative-path>
                 <binary-origin>release/modules/ext/jts.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/xml-apis-xerces.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/xml-apis-xerces.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gt-epsg-hsql.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt-epsg-hsql.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gt-image.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt-image.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/xsd.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/xsd.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/hsqldb.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/hsqldb.jar</binary-origin>
+                <runtime-relative-path>ext/org-netbeans-swing-outline.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/org-netbeans-swing-outline.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
                 <runtime-relative-path>ext/swingx.jar</runtime-relative-path>
@@ -910,192 +1239,24 @@
                 <binary-origin>release/modules/ext/timingframework.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/gt-display.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt-display.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/picocontainer.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/picocontainer.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/jaxb-impl.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/jaxb-impl.jar</binary-origin>
-            </class-path-extension>
-            <!--<class-path-extension>
-                <runtime-relative-path>ext/gnu-regexp.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gnu-regexp.jar</binary-origin>
-            </class-path-extension>-->
-            <class-path-extension>
-                <runtime-relative-path>ext/gt-jdbc.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt-jdbc.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gt-sld.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt-sld.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gt-style.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt-style.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/slf4j-api.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/slf4j-api.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gt-widgets-swing-pending.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt-widgets-swing-pending.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gt-geotiff.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt-geotiff.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gt-coverageio.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt-coverageio.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gt-referencing3D.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt-referencing3D.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gt-main.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt-main.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/xpp3.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/xpp3.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gt-render.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt-render.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gt-jasperreport.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt-jasperreport.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/jdom.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/jdom.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gt-api.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt-api.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/jlfgr.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/jlfgr.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gt-metadata.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt-metadata.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gt-go2.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt-go2.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gt-referencing.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt-referencing.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gt-shapefile.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt-shapefile.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/jaxb-api.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/jaxb-api.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gt-postgis.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt-postgis.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
                 <runtime-relative-path>ext/vecmath.jar</runtime-relative-path>
                 <binary-origin>release/modules/ext/vecmath.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/common.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/common.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/org.w3.xlink.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/org.w3.xlink.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gt-xml.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt-xml.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gt-wms.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt-wms.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/net.opengis.wfs.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/net.opengis.wfs.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gt-xsd-wfs.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt-xsd-wfs.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/xercesImpl.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/xercesImpl.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/net.opengis.ows.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/net.opengis.ows.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/ecore.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/ecore.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gt-cql.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt-cql.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gt-graph.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt-graph.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gt-data.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt-data.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gt-wfs.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt-wfs.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gt-coverageio-netcdf.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt-coverageio-netcdf.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gt-coverage.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt-coverage.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gt-widgets-swing.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gt-widgets-swing.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/xml-apis.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/xml-apis.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/slf4j-jdk14.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/slf4j-jdk14.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
                 <runtime-relative-path>ext/xalan.jar</runtime-relative-path>
                 <binary-origin>release/modules/ext/xalan.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/jdt-compiler.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/jdt-compiler.jar</binary-origin>
+                <runtime-relative-path>ext/xml-apis.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/xml-apis.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/org-netbeans-swing-outline.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/org-netbeans-swing-outline.jar</binary-origin>
+                <runtime-relative-path>ext/xml-apis-ext.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/xml-apis-ext.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/xmlgraphics-commons.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/xmlgraphics-commons.jar</binary-origin>
             </class-path-extension>
         </data>
     </configuration>

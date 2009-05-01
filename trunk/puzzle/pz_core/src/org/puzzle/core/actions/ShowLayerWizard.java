@@ -23,7 +23,7 @@ package org.puzzle.core.actions;
 import java.util.Collection;
 
 import javax.swing.SwingUtilities;
-import org.geotools.map.MapContext;
+import org.geotoolkit.map.MapContext;
 
 import org.netbeans.api.project.FileOwnerQuery;
 import org.openide.DialogDescriptor;

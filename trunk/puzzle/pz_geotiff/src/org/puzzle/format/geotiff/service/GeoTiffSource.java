@@ -25,14 +25,15 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.Map;
-import org.geotools.coverage.grid.GridCoverage2D;
+import org.geotoolkit.coverage.grid.GridCoverage2D;
 import org.geotools.data.DataSourceException;
 import org.geotools.factory.CommonFactoryFinder;
 import org.geotools.gce.geotiff.GeoTiffReader;
-import org.geotools.map.MapLayer;
-import org.geotools.map.MapBuilder;
-import org.geotools.style.MutableStyle;
-import org.geotools.style.RandomStyleFactory;
+import org.geotoolkit.map.MapLayer;
+import org.geotoolkit.map.MapBuilder;
+import org.geotoolkit.style.DefaultStyleFactory;
+import org.geotoolkit.style.MutableStyle;
+import org.geotoolkit.util.RandomStyleFactory;
 
 import org.openide.util.Exceptions;
 import org.openide.util.ImageUtilities;
@@ -134,7 +135,7 @@ public class GeoTiffSource extends GISSource{
 
             final GISLayerSource source = new GISLayerSource(getInfo().getID(), parameters,GeoTiffSource.this);
             layer.setUserPropertie(GISLayerSource.KEY_LAYER_INFO, source);
-            layer.setDescription(CommonFactoryFinder.getStyleFactory(null).description(name,"") );
+            layer.setDescription(new DefaultStyleFactory().description(name,"") );
 
             return layer;
         }

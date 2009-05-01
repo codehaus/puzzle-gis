@@ -38,10 +38,11 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
-import org.geotools.data.wms.WebMapServer;
-import org.geotools.data.wms.backend.AbstractWMSCapabilities;
+import org.geotoolkit.wms.WebMapServer;
+import org.geotoolkit.wms.xml.AbstractWMSCapabilities;
 import org.geotools.factory.CommonFactoryFinder;
-import org.geotools.map.MapLayer;
+import org.geotoolkit.map.MapLayer;
+import org.geotoolkit.style.DefaultStyleFactory;
 import org.jdesktop.swingx.combobox.ListComboBoxModel;
 import org.openide.util.Exceptions;
 import org.openide.util.NbBundle;
@@ -70,18 +71,18 @@ public class LayerCreationComponent extends JLayerChooser {
         if (server != null) {
             possibleLayers.clear();
             try {
-                final AbstractWMSCapabilities capa = server.getJaxbCapabilities();
+                final AbstractWMSCapabilities capa = server.getCapabilities();
 
-                if(capa instanceof org.geotools.data.wms.backend.v130.WMSCapabilities){
-                    org.geotools.data.wms.backend.v130.WMSCapabilities cp13 =
-                            (org.geotools.data.wms.backend.v130.WMSCapabilities) capa;
-                    for(org.geotools.data.wms.backend.v130.Layer layer : cp13.getCapability().getLayer().getLayer()){
+                if(capa instanceof org.geotoolkit.wms.xml.v130.WMSCapabilities){
+                    org.geotoolkit.wms.xml.v130.WMSCapabilities cp13 =
+                            (org.geotoolkit.wms.xml.v130.WMSCapabilities) capa;
+                    for(org.geotoolkit.wms.xml.v130.Layer layer : cp13.getCapability().getLayer().getLayer()){
                         possibleLayers.add(layer.getName());
                     }
-                }else if(capa instanceof org.geotools.data.wms.backend.v111.WMT_MS_Capabilities){
-                    org.geotools.data.wms.backend.v111.WMT_MS_Capabilities cp11 =
-                            (org.geotools.data.wms.backend.v111.WMT_MS_Capabilities) capa;
-                    for(org.geotools.data.wms.backend.v111.Layer layer : cp11.getCapability().getLayer().getLayer()){
+                }else if(capa instanceof org.geotoolkit.wms.xml.v111.WMT_MS_Capabilities){
+                    org.geotoolkit.wms.xml.v111.WMT_MS_Capabilities cp11 =
+                            (org.geotoolkit.wms.xml.v111.WMT_MS_Capabilities) capa;
+                    for(org.geotoolkit.wms.xml.v111.Layer layer : cp11.getCapability().getLayer().getLayer()){
                         possibleLayers.add(layer.getName());
                     }
                 }
@@ -320,7 +321,7 @@ public class LayerCreationComponent extends JLayerChooser {
         String type = getLayerNames();
         if(type != null){
             MapLayer layer = source.getLookup().lookup(LayerCreation.class).createLayer(Collections.singletonMap(WMSSource.LAYERS_PROP, type));
-            layer.setDescription(CommonFactoryFinder.getStyleFactory(null).description(title,"") );
+            layer.setDescription(new DefaultStyleFactory().description(title,"") );
             return new MapLayer[]{layer};
         }
 

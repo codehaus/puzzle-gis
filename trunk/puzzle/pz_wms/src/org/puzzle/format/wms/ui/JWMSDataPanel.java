@@ -36,9 +36,9 @@ import javax.swing.JList;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import org.geotools.data.wms.WebMapServer;
+import org.geotoolkit.wms.WebMapServer;
 
-import org.geotools.data.wms.backend.AbstractWMSCapabilities;
+import org.geotoolkit.wms.xml.AbstractWMSCapabilities;
 import org.jdesktop.swingx.JXTitledPanel;
 
 import org.jdesktop.swingx.combobox.ListComboBoxModel;
@@ -92,20 +92,20 @@ public class JWMSDataPanel extends SourceCreationPane {
 
         if (server != null) {
             try {
-                final AbstractWMSCapabilities capa = server.getJaxbCapabilities();
+                final AbstractWMSCapabilities capa = server.getCapabilities();
                 final List<String> layerNames = new ArrayList<String>();
 
 
-                if(capa instanceof org.geotools.data.wms.backend.v130.WMSCapabilities){
-                    org.geotools.data.wms.backend.v130.WMSCapabilities cp13 =
-                            (org.geotools.data.wms.backend.v130.WMSCapabilities) capa;
-                    for(org.geotools.data.wms.backend.v130.Layer layer : cp13.getCapability().getLayer().getLayer()){
+                if(capa instanceof org.geotoolkit.wms.xml.v130.WMSCapabilities){
+                    org.geotoolkit.wms.xml.v130.WMSCapabilities cp13 =
+                            (org.geotoolkit.wms.xml.v130.WMSCapabilities) capa;
+                    for(org.geotoolkit.wms.xml.v130.Layer layer : cp13.getCapability().getLayer().getLayer()){
                         layerNames.add(layer.getName());
                     }
-                }else if(capa instanceof org.geotools.data.wms.backend.v111.WMT_MS_Capabilities){
-                    org.geotools.data.wms.backend.v111.WMT_MS_Capabilities cp11 =
-                            (org.geotools.data.wms.backend.v111.WMT_MS_Capabilities) capa;
-                    for(org.geotools.data.wms.backend.v111.Layer layer : cp11.getCapability().getLayer().getLayer()){
+                }else if(capa instanceof org.geotoolkit.wms.xml.v111.WMT_MS_Capabilities){
+                    org.geotoolkit.wms.xml.v111.WMT_MS_Capabilities cp11 =
+                            (org.geotoolkit.wms.xml.v111.WMT_MS_Capabilities) capa;
+                    for(org.geotoolkit.wms.xml.v111.Layer layer : cp11.getCapability().getLayer().getLayer()){
                         layerNames.add(layer.getName());
                     }
                 }

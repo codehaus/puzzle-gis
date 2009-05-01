@@ -22,14 +22,16 @@ package org.puzzle.renderer.go2;
 
 import java.awt.Image;
 
+import java.awt.geom.AffineTransform;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-import org.geotools.gui.swing.go.J2DMapVolatile;
-import org.geotools.map.MapContext;
-import org.geotools.referencing.CRS;
-import org.geotools.referencing.operation.matrix.AffineTransform2D;
+import org.geotoolkit.gui.swing.go.J2DMapVolatile;
+import org.geotoolkit.map.MapContext;
+import org.geotoolkit.referencing.CRS;
 
+import org.geotoolkit.referencing.operation.matrix.AffineMatrix3;
+import org.geotoolkit.referencing.operation.transform.AffineTransform2D;
 import org.opengis.referencing.FactoryException;
 import org.opengis.referencing.NoSuchAuthorityCodeException;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
@@ -77,15 +79,35 @@ public class Go2RenderingService implements RenderingService{
         final J2DMapVolatile map = new J2DMapVolatile();
         map.getContainer().setContext(context);
         
-        try {
-            map.getCanvas().setObjectiveCRS(CRS.decode("EPSG:3395"));
-        } catch (Exception ex) {
-            Exceptions.printStackTrace(ex);
-        }
+//        try {
+//            map.getCanvas().setObjectiveCRS(CRS.decode("EPSG:3395"));
+//        } catch (Exception ex) {
+//            Exceptions.printStackTrace(ex);
+//        }
 
 
         final String strCrs = view.getInfo().parameters().get(CRS_PARAMETER);
         final String matrix = view.getInfo().parameters().get(MATRIX_PARAMETER);
+
+        //restore the matrix parameters if available
+        if(matrix != null && !matrix.trim().isEmpty()){
+
+            String[] splits = matrix.split(";");
+
+            final AffineMatrix3 trs = new AffineMatrix3();
+            trs.setTransform(
+                    Double.valueOf(splits[0]),
+                    Double.valueOf(splits[1]),
+                    Double.valueOf(splits[2]),
+                    Double.valueOf(splits[3]),
+                    Double.valueOf(splits[4]),
+                    Double.valueOf(splits[5]));
+//            try {
+                map.getCanvas().getController().transform(trs);
+//            } catch (TransformException ex) {
+//                Exceptions.printStackTrace(ex);
+//            }
+        }
 
         //restore the crs parameters if available
         if(strCrs != null && !strCrs.trim().isEmpty()){
@@ -102,32 +124,14 @@ public class Go2RenderingService implements RenderingService{
             }
         }
 
-        //restore the matrix parameters if available
-        if(matrix != null && !matrix.trim().isEmpty()){
-
-            String[] splits = matrix.split(";");
-
-            final AffineTransform2D trs = new AffineTransform2D();
-            trs.setTransform(
-                    Double.valueOf(splits[0]),
-                    Double.valueOf(splits[1]),
-                    Double.valueOf(splits[2]),
-                    Double.valueOf(splits[3]),
-                    Double.valueOf(splits[4]),
-                    Double.valueOf(splits[5]));
-//            try {
-                map.getCanvas().getController().transform(trs);
-//            } catch (TransformException ex) {
-//                Exceptions.printStackTrace(ex);
-//            }
-        }
+        
 
 
         map.getCanvas().addPropertyChangeListener(new PropertyChangeListener() {
 
             @Override
             public void propertyChange(PropertyChangeEvent evt) {
-                final AffineTransform2D trs = map.getCanvas().getController().getTransform();
+                final AffineMatrix3 trs = map.getCanvas().getController().getTransform();
                 final double[] matrix = new double[6];
                 trs.getMatrix(matrix);
 

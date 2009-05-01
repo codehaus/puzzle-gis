@@ -40,8 +40,8 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.EventListenerList;
 
-import org.geotools.map.MapContext;
-import org.geotools.map.MapLayer;
+import org.geotoolkit.map.MapContext;
+import org.geotoolkit.map.MapLayer;
 
 import org.openide.DialogDisplayer;
 import org.openide.WizardDescriptor;

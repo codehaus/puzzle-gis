@@ -22,7 +22,7 @@
 package org.puzzle.core.project.source.capabilities;
 
 import javax.swing.JPanel;
-import org.geotools.map.MapLayer;
+import org.geotoolkit.map.MapLayer;
 
 /**
  * Swing component usd to select layer from the GISSource.

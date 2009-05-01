@@ -21,7 +21,7 @@
 package org.puzzle.core.project.source.capabilities;
 
 import java.util.Map;
-import org.geotools.map.MapLayer;
+import org.geotoolkit.map.MapLayer;
 
 /**
  * @author Johann Sorel (Puzzle-GIS)

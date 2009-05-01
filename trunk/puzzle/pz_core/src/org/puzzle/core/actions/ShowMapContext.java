@@ -24,7 +24,7 @@ import java.util.Collection;
 
 import java.util.HashMap;
 import javax.swing.SwingUtilities;
-import org.geotools.map.MapContext;
+import org.geotoolkit.map.MapContext;
 
 import org.openide.nodes.Node;
 import org.openide.util.HelpCtx;

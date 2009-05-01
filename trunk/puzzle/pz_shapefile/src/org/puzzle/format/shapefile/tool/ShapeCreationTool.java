@@ -49,8 +49,8 @@ import org.geotools.data.FileDataStoreFactorySpi;
 import org.geotools.data.shapefile.ShapefileDataStore;
 import org.geotools.data.shapefile.ShapefileDataStoreFactory;
 import org.geotools.feature.SchemaException;
-import org.geotools.gui.swing.crschooser.JCRSChooser;
-import org.geotools.referencing.crs.DefaultGeographicCRS;
+import org.geotoolkit.gui.swing.crschooser.JCRSChooser;
+import org.geotoolkit.referencing.crs.DefaultGeographicCRS;
 
 import org.jdesktop.swingx.JXTable;
 import org.jdesktop.swingx.JXTitledSeparator;

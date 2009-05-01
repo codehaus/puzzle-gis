@@ -23,7 +23,7 @@
               <Component id="guiView" pref="446" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
-          <Component id="guiFileChooser" alignment="0" pref="500" max="32767" attributes="0"/>
+          <Component id="guiFileChooser" alignment="0" pref="519" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">

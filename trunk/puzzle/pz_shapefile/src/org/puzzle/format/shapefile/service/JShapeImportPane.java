@@ -30,7 +30,7 @@ import javax.swing.filechooser.FileFilter;
 import org.geotools.data.DataStore;
 import org.geotools.data.DataStoreFinder;
 import org.geotools.data.FeatureSource;
-import org.geotools.gui.swing.misc.filter.FileFilterFactory;
+import org.geotoolkit.gui.swing.misc.filter.FileFilterFactory;
 import org.opengis.feature.simple.SimpleFeature;
 import org.opengis.feature.simple.SimpleFeatureType;
 import org.openide.util.Exceptions;

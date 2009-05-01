@@ -37,7 +37,8 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import org.geotools.data.DataStore;
 import org.geotools.factory.CommonFactoryFinder;
-import org.geotools.map.MapLayer;
+import org.geotoolkit.map.MapLayer;
+import org.geotoolkit.style.DefaultStyleFactory;
 import org.openide.util.NbBundle;
 import org.puzzle.core.project.source.capabilities.JLayerChooser;
 import org.puzzle.core.project.source.capabilities.LayerChooserMonitor;
@@ -148,7 +149,7 @@ public class LayerCreationComponent extends JLayerChooser {
         String type = getType();
         if(type != null){
             MapLayer layer = source.getLookup().lookup(LayerCreation.class).createLayer(Collections.singletonMap(PostGISSource.FEATURETYPENAME_PROP, type));
-            layer.setDescription(CommonFactoryFinder.getStyleFactory(null).description(title,"") );
+            layer.setDescription(new DefaultStyleFactory().description(title,"") );
             return new MapLayer[]{layer};
         }
 

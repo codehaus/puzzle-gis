@@ -33,7 +33,7 @@ import javax.swing.JFileChooser;
 import javax.swing.SwingUtilities;
 
 import net.sf.jasperreports.engine.JRException;
-import org.geotools.geometry.GeneralEnvelope;
+import org.geotoolkit.geometry.GeneralEnvelope;
 import org.netbeans.api.project.FileOwnerQuery;
 import org.netbeans.api.project.Project;
 import org.opengis.geometry.Envelope;

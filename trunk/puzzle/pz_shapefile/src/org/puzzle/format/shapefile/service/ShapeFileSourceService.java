@@ -27,7 +27,7 @@ import java.util.HashMap;
 import java.util.Map;
 import javax.swing.filechooser.FileFilter;
 
-import org.geotools.gui.swing.misc.filter.FileFilterFactory;
+import org.geotoolkit.gui.swing.misc.filter.FileFilterFactory;
 
 import org.openide.util.NbBundle;
 
