@@ -42,20 +42,6 @@
                 <package>org.opengis.geometry.complex</package>
                 <package>org.opengis.geometry.coordinate</package>
                 <package>org.opengis.geometry.primitive</package>
-                <package>org.opengis.go</package>
-                <package>org.opengis.go.display</package>
-                <package>org.opengis.go.display.canvas</package>
-                <package>org.opengis.go.display.canvas.map2d</package>
-                <package>org.opengis.go.display.canvas.map2d.web</package>
-                <package>org.opengis.go.display.canvas.web</package>
-                <package>org.opengis.go.display.event</package>
-                <package>org.opengis.go.display.primitive</package>
-                <package>org.opengis.go.display.primitive.store</package>
-                <package>org.opengis.go.display.style</package>
-                <package>org.opengis.go.display.style.event</package>
-                <package>org.opengis.go.spatial</package>
-                <package>org.opengis.layer</package>
-                <package>org.opengis.layer.source</package>
                 <package>org.opengis.metadata</package>
                 <package>org.opengis.metadata.citation</package>
                 <package>org.opengis.metadata.constraint</package>
@@ -67,6 +53,9 @@
                 <package>org.opengis.metadata.maintenance</package>
                 <package>org.opengis.metadata.quality</package>
                 <package>org.opengis.metadata.spatial</package>
+                <package>org.opengis.observation</package>
+                <package>org.opengis.observation.coverage</package>
+                <package>org.opengis.observation.sampling</package>
                 <package>org.opengis.parameter</package>
                 <package>org.opengis.referencing</package>
                 <package>org.opengis.referencing.crs</package>
