@@ -1083,6 +1083,10 @@
                 <binary-origin>release/modules/ext/geotk-engine-core.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
+                <runtime-relative-path>ext/geotk-geometry.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/geotk-geometry.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
                 <runtime-relative-path>ext/geotk-go2.jar</runtime-relative-path>
                 <binary-origin>release/modules/ext/geotk-go2.jar</binary-origin>
             </class-path-extension>

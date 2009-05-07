@@ -250,4 +250,50 @@
             </folder>
         </folder>
     </folder>
+    <folder name="Puzzle">
+        <folder name="Engine">
+        </folder>
+        <folder name="ContextTree">
+            <folder name="Actions">
+                <file name="org-puzzle-core-contexttree-LayerFeatureItem.instance">
+                    <attr name="instanceCreate" newvalue="org.puzzle.core.contexttree.LayerFeatureItem"/>
+                    <attr name="position" intvalue="100"/>
+                </file>
+                <file name="org-puzzle-core-contexttree-SeparatorItem.instance">
+                    <attr name="instanceCreate" newvalue="org.puzzle.core.contexttree.SeparatorItem"/>
+                    <attr name="position" intvalue="200"/>
+                </file>
+                <file name="org-puzzle-core-contexttree-DeleteItem.instance">
+                    <attr name="instanceCreate" newvalue="org.puzzle.core.contexttree.DeleteItem"/>
+                    <attr name="position" intvalue="300"/>
+                </file>
+            </folder>
+            <folder name="PropertyPanels">
+                <file name="org-puzzle-core-contexttree-LayerGeneralPanel.instance">
+                    <attr name="instanceCreate" newvalue="org.puzzle.core.contexttree.LayerGeneralPanel"/>
+                    <attr name="position" intvalue="100"/>
+                </file>
+                <file name="org-puzzle-core-contexttree-LayerCRSPropertyPanel.instance">
+                    <attr name="instanceCreate" newvalue="org.puzzle.core.contexttree.LayerCRSPropertyPanel"/>
+                    <attr name="position" intvalue="200"/>
+                </file>
+            </folder>
+            <folder name="FilterPanels">
+                <file name="org-puzzle-core-contexttree-JCQLPropertyPanel.instance">
+                    <attr name="instanceCreate" newvalue="org.puzzle.core.contexttree.JCQLPropertyPanel"/>
+                    <attr name="position" intvalue="100"/>
+                </file>
+            </folder>
+            <folder name="StylePanels">
+                <file name="org-puzzle-core-contexttree-JSimpleStylePanel.instance">
+                    <attr name="instanceCreate" newvalue="org.puzzle.core.contexttree.JSimpleStylePanel"/>
+                    <attr name="position" intvalue="100"/>
+                </file>
+                <file name="org-puzzle-core-contexttree-JAdvancedStylePanel.instance">
+                    <attr name="instanceCreate" newvalue="org.puzzle.core.contexttree.JAdvancedStylePanel"/>
+                    <attr name="position" intvalue="200"/>
+                </file>
+            </folder>
+        </folder>
+    </folder>
 </filesystem>

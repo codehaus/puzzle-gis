@@ -28,21 +28,15 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Logger;
 import javax.swing.ScrollPaneConstants;
-
 import javax.swing.SwingUtilities;
+
 import org.geotoolkit.gui.swing.maptree.JContextTree;
-import org.geotoolkit.gui.swing.maptree.menu.DeleteItem;
-import org.geotoolkit.gui.swing.maptree.menu.LayerFeatureItem;
+import org.geotoolkit.gui.swing.maptree.TreePopupItem;
 import org.geotoolkit.gui.swing.maptree.menu.LayerPropertyItem;
 import org.geotoolkit.gui.swing.maptree.menu.SeparatorItem;
-import org.geotoolkit.gui.swing.propertyedit.LayerCRSPropertyPanel;
 import org.geotoolkit.gui.swing.propertyedit.LayerFilterPropertyPanel;
-import org.geotoolkit.gui.swing.propertyedit.LayerGeneralPanel;
 import org.geotoolkit.gui.swing.propertyedit.LayerStylePropertyPanel;
 import org.geotoolkit.gui.swing.propertyedit.PropertyPane;
-import org.geotoolkit.gui.swing.propertyedit.filterproperty.JCQLPropertyPanel;
-import org.geotoolkit.gui.swing.propertyedit.styleproperty.JAdvancedStylePanel;
-import org.geotoolkit.gui.swing.propertyedit.styleproperty.JSimpleStylePanel;
 import org.geotoolkit.map.MapContext;
 
 import org.openide.util.ImageUtilities;
@@ -51,6 +45,7 @@ import org.openide.util.LookupEvent;
 import org.openide.util.LookupListener;
 import org.openide.util.NbBundle;
 import org.openide.util.Utilities;
+import org.openide.util.lookup.Lookups;
 import org.openide.windows.TopComponent;
 import org.openide.windows.WindowManager;
 
@@ -65,7 +60,6 @@ final class ContextTreeTopComponent extends TopComponent implements LookupListen
 
     private Lookup.Result result = null;
 
-
     private JContextTree tree = null;
     private static ContextTreeTopComponent instance;
     private static final String PREFERRED_ID = "ContextTreeTopComponent";
@@ -79,43 +73,55 @@ final class ContextTreeTopComponent extends TopComponent implements LookupListen
     }
 
     public JContextTree getContextTree() {
-
         final JContextTree tree = new JContextTree();
 
-        tree.controls().add(new LayerFeatureItem());
-        tree.controls().add(new SeparatorItem());
-        tree.controls().add(new DeleteItem(tree));
-        tree.controls().add(new SeparatorItem());
+        //search available popup menu items
+        Lookup lk = Lookups.forPath("/Puzzle/ContextTree/Actions");
+        for(TreePopupItem item : lk.lookupAll(TreePopupItem.class)){
+            tree.controls().add(item);
+        }
 
-        LayerPropertyItem property = new LayerPropertyItem();
-        List<PropertyPane> lstproperty = new ArrayList<PropertyPane>();
-        lstproperty.add(new LayerGeneralPanel());
-        lstproperty.add(new LayerCRSPropertyPanel());
+        final List<PropertyPane> configPanes = new ArrayList<PropertyPane>();
+        
+        //search available property panels
+        lk = Lookups.forPath("/Puzzle/ContextTree/PropertyPanels");
+        configPanes.addAll( lk.lookupAll(PropertyPane.class));
 
-        LayerFilterPropertyPanel filters = new LayerFilterPropertyPanel();
-        filters.addPropertyPanel(new JCQLPropertyPanel());
-        lstproperty.add(filters);
+        //search filter panels
+        lk = Lookups.forPath("/Puzzle/ContextTree/FilterPanels");
+        Collection<? extends PropertyPane> candidates = lk.lookupAll(PropertyPane.class);
+        if(!candidates.isEmpty()){
+            LayerFilterPropertyPanel filters = new LayerFilterPropertyPanel();
+            for(PropertyPane item : candidates){
+                filters.addPropertyPanel(item);
+            }
+            configPanes.add(filters);
+        }
 
-        LayerStylePropertyPanel styles = new LayerStylePropertyPanel();
-        styles.addPropertyPanel(new JSimpleStylePanel());
-        styles.addPropertyPanel(new JAdvancedStylePanel());
-//        styles.addPropertyPanel(new JXMLStylePanel());
-        lstproperty.add(styles);
+        //search style panels
+        lk = Lookups.forPath("/Puzzle/ContextTree/StylePanels");
+        candidates = lk.lookupAll(PropertyPane.class);
+        if(!candidates.isEmpty()){
+            LayerStylePropertyPanel styles = new LayerStylePropertyPanel();
+            for(PropertyPane item : candidates){
+                styles.addPropertyPanel(item);
+            }
+            configPanes.add(styles);
+        }
 
-        property.setPropertyPanels(lstproperty);
-        tree.controls().add(property);
+        //add property popup item id we have some property panels
+        if(!configPanes.isEmpty()){
+            if(!tree.controls().isEmpty()){
+                tree.controls().add(new SeparatorItem());
+            }
+
+            LayerPropertyItem property = new LayerPropertyItem();
+            property.setPropertyPanels(configPanes);
+            tree.controls().add(property);
+        }
 
         tree.revalidate();
         tree.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-
-//        tree.getViewport().addChangeListener(new ChangeListener() {
-//
-//            @Override
-//            public void stateChanged(ChangeEvent e) {
-//                System.out.println("hophop");
-//                tree.scrollRectToVisible(new Rectangle(0,0,1,1));
-//            }
-//        });
 
         return tree;
     }

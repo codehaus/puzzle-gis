@@ -21,19 +21,27 @@
 package org.puzzle.renderer.go2;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import javax.swing.JComponent;
 import javax.swing.JPanel;
 
+import javax.swing.JToolBar;
 import javax.swing.SwingUtilities;
 import org.geotoolkit.gui.swing.go.J2DMapVolatile;
 import org.geotoolkit.gui.swing.go.control.JConfigBar;
 import org.geotoolkit.gui.swing.go.control.JCoordinateBar;
 import org.geotoolkit.gui.swing.go.control.JInformationBar;
 import org.geotoolkit.gui.swing.go.control.JNavigationBar;
+import org.geotoolkit.gui.swing.go.control.MapControlBar;
 import org.geotoolkit.gui.swing.go.decoration.JClassicNavigationDecoration;
+import org.geotoolkit.gui.swing.map.map2d.decoration.MapDecoration;
 import org.geotoolkit.map.MapContext;
+import org.openide.util.Exceptions;
+import org.openide.util.Lookup;
+import org.openide.util.lookup.Lookups;
 import org.puzzle.core.view.ViewComponent;
 
 /**
@@ -53,27 +61,59 @@ public class Go2MapView extends ViewComponent{
     
     public Go2MapView(J2DMapVolatile map){
         super(map);
-        navBar.setMap(map);
-        infoBar.setMap(map);
-        coordBar.setMap(map);
-        configBar.setMap(map);
 
-
-        JPanel north = new JPanel(new GridBagLayout());
+        final JPanel north = new JPanel(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
 
-        constraints = new GridBagConstraints();
-        constraints.fill = GridBagConstraints.BOTH;
-        constraints.anchor = GridBagConstraints.WEST;
-        constraints.weightx = 0.0;
-        north.add(navBar,constraints);
-        
+        //search available toolbars
+        Lookup lk = Lookups.forPath("/Puzzle/Engine/Go2/ToolBar");
+        for(MapControlBar item : lk.lookupAll(MapControlBar.class)){
+            try {
+                //TODO find a better solution, store only the class reference in layer.xml
+                //we must copy this item since we may have several maps at the same time
+                item = item.getClass().newInstance();
+            } catch (InstantiationException ex) {
+                Exceptions.printStackTrace(ex);
+            } catch (IllegalAccessException ex) {
+                Exceptions.printStackTrace(ex);
+            }
+            constraints = new GridBagConstraints();
+            constraints.fill = GridBagConstraints.BOTH;
+            constraints.anchor = GridBagConstraints.WEST;
+            constraints.weightx = 0.0;
+            item.setMap(map);
+            Component comp = item.getComponent();
+            if(comp instanceof JToolBar){
+                ((JToolBar)comp).setFloatable(false);
+            }
+            north.add(comp,constraints);
+        }
+
+        //search available decorations
+        lk = Lookups.forPath("/Puzzle/Engine/Go2/Decoration");
+        for(MapDecoration item : lk.lookupAll(MapDecoration.class)){
+            try {
+                //TODO find a better solution, store only the class reference in layer.xml
+                //we must copy this item since we may have several maps at the same time
+                item = item.getClass().newInstance();
+            } catch (InstantiationException ex) {
+                Exceptions.printStackTrace(ex);
+            } catch (IllegalAccessException ex) {
+                Exceptions.printStackTrace(ex);
+            }
+            map.addDecoration(item);
+        }
+
+        //a an empty component to fill space, like glue
         constraints = new GridBagConstraints();
         constraints.fill = GridBagConstraints.BOTH;
         constraints.anchor = GridBagConstraints.WEST;
         constraints.weightx = 1.0;
-        north.add(infoBar,constraints);
-        
+        north.add(new JComponent() {},constraints);
+
+        coordBar.setMap(map);
+        configBar.setMap(map);
+
         constraints = new GridBagConstraints();
         constraints.fill = GridBagConstraints.BOTH;
         constraints.anchor = GridBagConstraints.EAST;
@@ -85,8 +125,6 @@ public class Go2MapView extends ViewComponent{
         configBar.setFloatable(false);
         add(BorderLayout.NORTH,north);
         add(BorderLayout.SOUTH,coordBar);
-
-        map.addDecoration(boussole);
 
     }
 

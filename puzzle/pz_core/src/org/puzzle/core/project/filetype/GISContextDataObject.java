@@ -29,6 +29,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.swing.SwingUtilities;
 import org.geotoolkit.map.ContextListener;
 import org.geotoolkit.map.MapContext;
 import org.geotoolkit.map.MapLayer;
@@ -187,9 +188,14 @@ public class GISContextDataObject extends XMLDataObject {
 
     public void removeView(GISView view){
         if(view.isDisplayed()){
-            ViewComponent comp = view.getComponent(false);
+            final ViewComponent comp = view.getComponent(false);
             if(comp != null){
-                comp.close();
+                SwingUtilities.invokeLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        comp.close();
+                    }
+                });
             }
         }
         content.remove(view);

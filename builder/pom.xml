@@ -30,19 +30,9 @@
             <name>geotoolkit</name>
             <url>http://maven.geotoolkit.org/</url>
         </repository>
-        <!--repository>
-            <id>geoapi</id>
-            <name>geotidy</name>
-            <url>http://geotidy.geomatys.fr/repository</url>
-        </repository>
-        <repository>
-            <id>geomessy</id>
-            <name>geomessy</name>
-            <url>http://maven.geomatys.fr/repository</url>
-        </repository-->
     </repositories>
 
-   <!-- =========================================================== -->
+  <!-- =========================================================== -->
   <!--     Dependencies to be inherited by all modules.            -->
   <!-- =========================================================== -->
 
@@ -101,158 +91,6 @@
             <artifactId>gtm-geotiff</artifactId>
             <version>2.6-SNAPSHOT</version>
         </dependency>
-
-
-  <!-- =====================MODULE LIBRARY====================================== -->
-        <!--dependency>
-            <groupId>org.geotools</groupId>
-            <artifactId>gt-api</artifactId>
-            <version>${geotools.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.geotools</groupId>
-            <artifactId>gt-coverage</artifactId>
-            <version>${geotools.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.geotools</groupId>
-            <artifactId>gt-cql</artifactId>
-            <version>${geotools.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.geotools</groupId>
-            <artifactId>gt-data</artifactId>
-            <version>${geotools.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.geotools</groupId>
-            <artifactId>gt-jdbc</artifactId>
-            <version>${geotools.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.geotools</groupId>
-            <artifactId>gt-jasperreport</artifactId>
-            <version>${geotools.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.geotools</groupId>
-            <artifactId>gt-main</artifactId>
-            <version>${geotools.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.geotools</groupId>
-            <artifactId>gt-metadata</artifactId>
-            <version>${geotools.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.geotools</groupId>
-            <artifactId>gt-referencing</artifactId>
-            <version>${geotools.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.geotools</groupId>
-            <artifactId>gt-render</artifactId>
-            <version>${geotools.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.geotools</groupId>
-            <artifactId>gt-style</artifactId>
-            <version>${geotools.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.geotools</groupId>
-            <artifactId>gt-xml</artifactId>
-            <version>${geotools.version}</version>
-        </dependency-->
-
-    <!-- =====================MODULE PLUGIN====================================== -->
-        <!--dependency>
-            <groupId>org.geotools</groupId>
-            <artifactId>gt-epsg-hsql</artifactId>
-            <version>${geotools.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.geotools</groupId>
-            <artifactId>gt-geotiff</artifactId>
-            <version>${geotools.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.geotools</groupId>
-            <artifactId>gt-image</artifactId>
-            <version>${geotools.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.geotools</groupId>
-            <artifactId>gt-postgis</artifactId>
-            <version>${geotools.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.geotools</groupId>
-            <artifactId>gt-referencing3D</artifactId>
-            <version>${geotools.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.geotools</groupId>
-            <artifactId>gt-shapefile</artifactId>
-            <version>${geotools.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.geotools</groupId>
-            <artifactId>gt-sld</artifactId>
-            <version>${geotools.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.geotools</groupId>
-            <artifactId>gt-wfs</artifactId>
-            <version>${geotools.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.geotools</groupId>
-            <artifactId>gt-wms</artifactId>
-            <version>${geotools.version}</version>
-        </dependency-->
-
-	<!-- =====================MODULE EXTENSION================================== -->
-        <!--dependency>
-            <groupId>org.geotools</groupId>
-            <artifactId>gt-widgets-swing</artifactId>
-            <version>${geotools.version}</version>
-        </dependency-->
-
-	<!-- =====================MODULE UNSUPPORTED================================== -->
-        <!--dependency>
-            <groupId>org.geotools</groupId>
-            <artifactId>gt-coverageio</artifactId>
-            <version>${geotools.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.geotools</groupId>
-            <artifactId>gt-coverageio-netcdf</artifactId>
-            <version>${geotools.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.geotools</groupId>
-            <artifactId>gt-display</artifactId>
-            <version>${geotools.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.geotools</groupId>
-            <artifactId>gt-go2</artifactId>
-            <version>${geotools.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.geotools</groupId>
-            <artifactId>gt-widgets-swing-pending</artifactId>
-            <version>${geotools.version}</version>
-        </dependency-->
-
-    <!-- =====================OTHER================================== -->
-
-        <!--dependency>
-            <groupId>crimson</groupId>
-            <artifactId>crimson</artifactId>
-            <version>1.1.3</version>
-        </dependency-->
 
     </dependencies>
 
@@ -390,6 +228,7 @@
                                 <include name="geotk-coverageio.jar"/>
                                 <include name="geotk-display.jar"/>
                                 <include name="geotk-engine-core.jar"/>
+                                <include name="geotk-geometry.jar"/>
                                 <include name="geotk-go2.jar"/>
                                 <include name="geotk-go2-style-extension.jar"/>
                                 <include name="geotk-jasperreport.jar"/>
