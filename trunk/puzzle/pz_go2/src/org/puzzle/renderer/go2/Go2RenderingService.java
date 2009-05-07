@@ -21,17 +21,14 @@
 package org.puzzle.renderer.go2;
 
 import java.awt.Image;
-
-import java.awt.geom.AffineTransform;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 import org.geotoolkit.gui.swing.go.J2DMapVolatile;
 import org.geotoolkit.map.MapContext;
 import org.geotoolkit.referencing.CRS;
-
 import org.geotoolkit.referencing.operation.matrix.AffineMatrix3;
-import org.geotoolkit.referencing.operation.transform.AffineTransform2D;
+
 import org.opengis.referencing.FactoryException;
 import org.opengis.referencing.NoSuchAuthorityCodeException;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
