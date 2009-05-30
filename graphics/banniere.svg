@@ -35,6 +35,52 @@
   <defs
      id="defs3435">
     <linearGradient
+       id="linearGradient4854">
+      <stop
+         id="stop4856"
+         offset="0"
+         style="stop-color:#ffff00;stop-opacity:1;" />
+      <stop
+         id="stop4858"
+         offset="1"
+         style="stop-color:#ff9f00;stop-opacity:1;" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient4801">
+      <stop
+         id="stop4803"
+         offset="0"
+         style="stop-color:#ffa100;stop-opacity:1;" />
+      <stop
+         id="stop4805"
+         offset="1"
+         style="stop-color:#ffff00;stop-opacity:0;" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient4781">
+      <stop
+         style="stop-color:#000000;stop-opacity:1;"
+         offset="0"
+         id="stop4783" />
+      <stop
+         style="stop-color:#000000;stop-opacity:0;"
+         offset="1"
+         id="stop4785" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient4757">
+      <stop
+         style="stop-color:#ffffff;stop-opacity:1;"
+         offset="0"
+         id="stop4759" />
+      <stop
+         style="stop-color:#ffffff;stop-opacity:0;"
+         offset="1"
+         id="stop4761" />
+    </linearGradient>
+    <linearGradient
        id="linearGradient4226">
       <stop
          id="stop4228"
@@ -1471,9 +1517,59 @@
          stdDeviation="12.30942"
          id="feGaussianBlur3833" />
     </filter>
+    <filter
+       inkscape:collect="always"
+       id="filter4789"
+       x="-0.063343402"
+       width="1.1266868"
+       y="-0.23696194"
+       height="1.4739239">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="13.252013"
+         id="feGaussianBlur4791" />
+    </filter>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4781"
+       id="linearGradient4830"
+       gradientUnits="userSpaceOnUse"
+       x1="2380.4424"
+       y1="243.00736"
+       x2="2784.865"
+       y2="243.00736" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4801"
+       id="linearGradient4832"
+       gradientUnits="userSpaceOnUse"
+       x1="2566.7864"
+       y1="245.80753"
+       x2="2787.3264"
+       y2="245.80753" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4757"
+       id="linearGradient4834"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1.1614588,0,0,0.9640606,-403.71066,8.8341796)"
+       x1="2557.5571"
+       y1="245.80753"
+       x2="2747.439"
+       y2="245.80753" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4854"
+       id="linearGradient4852"
+       x1="2687.3894"
+       y1="246.87492"
+       x2="2802.5977"
+       y2="246.87492"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.6164312,0,0,0.6164312,945.41504,282.53751)" />
   </defs>
   <sodipodi:namedview
-     inkscape:window-height="965"
+     inkscape:window-height="967"
      inkscape:window-width="1680"
      inkscape:pageshadow="2"
      inkscape:pageopacity="0.0"
@@ -1485,8 +1581,8 @@
      pagecolor="#ffffff"
      id="base"
      inkscape:zoom="0.7053726"
-     inkscape:cx="2147.0922"
-     inkscape:cy="411.21995"
+     inkscape:cx="2170.6864"
+     inkscape:cy="460.23794"
      inkscape:window-x="0"
      inkscape:window-y="30"
      inkscape:current-layer="svg3432"
@@ -2018,5 +2114,53 @@
          d="M 133.799,450.637 C 215.196,455.841 340.225,447.741 343.184,409.222 C 343.184,409.222 337.496,423.824 275.908,435.41 C 206.427,448.491 120.711,446.968 69.892,438.577 C 69.892,438.577 80.303,447.194 133.799,450.637 L 133.799,450.637 z"
          clip-rule="evenodd" />
     </g>
+  </g>
+  <g
+     id="g4821"
+     transform="translate(-22,6)">
+    <rect
+       transform="matrix(0.2934545,0,0,0.664986,1800.6221,94.58741)"
+       y="203.80618"
+       x="2400.9746"
+       height="78.402359"
+       width="363.35812"
+       id="rect3962"
+       style="opacity:0.5;fill:none;fill-opacity:1;fill-rule:evenodd;stroke:url(#linearGradient4830);stroke-width:88.00125885;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;filter:url(#filter4789)" />
+    <rect
+       y="217.56259"
+       x="2507.9688"
+       height="56.489876"
+       width="260.20255"
+       id="rect2730"
+       style="fill:url(#linearGradient4832);fill-opacity:1;fill-rule:evenodd;stroke:url(#linearGradient4834);stroke-width:38.31046295;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <text
+       id="text3598"
+       y="230.90793"
+       x="2671.7087"
+       style="font-size:36.33615494px;font-style:normal;font-weight:normal;text-align:center;writing-mode:lr-tb;text-anchor:middle;fill:#4b4a4b;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       xml:space="preserve"><tspan
+         id="tspan3602"
+         y="230.90793"
+         x="2671.7087"
+         sodipodi:role="line">Work in</tspan></text>
+    <image
+       y="203.65454"
+       x="2499.1562"
+       id="image4740"
+       height="85.812691"
+       width="85.812691"
+       sodipodi:absref="/media/SATA2_7200/dev/crystal_project/crystal_project/128x128/apps/utilities.png"
+       xlink:href="/media/SATA2_7200/dev/crystal_project/crystal_project/128x128/apps/utilities.png" />
+    <text
+       id="text4813"
+       y="284.57816"
+       x="2674.1399"
+       style="font-size:36.33615494px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;writing-mode:lr-tb;text-anchor:middle;fill:#4b4a4b;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Serif;-inkscape-font-specification:Bitstream Vera Serif"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Bitstream Vera Sans;-inkscape-font-specification:Bitstream Vera Sans"
+         id="tspan4815"
+         y="284.57816"
+         x="2674.1399"
+         sodipodi:role="line">Progress</tspan></text>
   </g>
 </svg>

@@ -37,7 +37,6 @@
   <!-- =========================================================== -->
 
     <dependencies>
-
         <dependency>
             <groupId>org.apache.derby</groupId>
             <artifactId>derby</artifactId>
@@ -71,6 +70,11 @@
         </dependency>
         <dependency>
             <groupId>org.geotoolkit</groupId>
+            <artifactId>geotk-epsg</artifactId>
+            <version>${geotoolkit.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.geotoolkit</groupId>
             <artifactId>geotk-utility</artifactId>
             <version>${geotoolkit.version}</version>
         </dependency>
@@ -82,13 +86,43 @@
 
         <dependency>
             <groupId>org.geotoolkit.pending</groupId>
+            <artifactId>geotk-go3</artifactId>
+            <version>${geotoolkit.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.geotoolkit.pending</groupId>
+            <artifactId>geotk-wms</artifactId>
+            <version>${geotoolkit.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.geotoolkit.pending</groupId>
+            <artifactId>geotk-world-image</artifactId>
+            <version>${geotoolkit.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.geotoolkit.pending</groupId>
             <artifactId>geotk-widgets-swing-pending</artifactId>
+            <version>${geotoolkit.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.geotoolkit.pending</groupId>
+            <artifactId>geotk-filter</artifactId>
             <version>${geotoolkit.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.geotools</groupId>
             <artifactId>gtm-geotiff</artifactId>
+            <version>2.6-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.geotools</groupId>
+            <artifactId>gtm-shapefile</artifactId>
             <version>2.6-SNAPSHOT</version>
         </dependency>
 
@@ -136,6 +170,7 @@
                         <property name="PUZZLE_GEOAPI_MODULE" value="../puzzle/geoapi/release/modules/ext" />
                         <property name="PUZZLE_POSTGIS_MODULE" value="../puzzle/driver_postgis/release/modules/ext" />
                         <property name="PUZZLE_GT_MODULE" value="../puzzle/geotools/release/modules/ext" />
+                        <property name="PUZZLE_GO3_MODULE" value="../puzzle/pz_go3/release/modules/ext" />
                         <property name="PUZZLE_APACHE_MODULE" value="../puzzle/apache_commons/release/modules/ext" />
 
 
@@ -228,6 +263,7 @@
                                 <include name="geotk-coverageio.jar"/>
                                 <include name="geotk-display.jar"/>
                                 <include name="geotk-engine-core.jar"/>
+                                <include name="geotk-filter.jar"/>
                                 <include name="geotk-geometry.jar"/>
                                 <include name="geotk-go2.jar"/>
                                 <include name="geotk-go2-style-extension.jar"/>
@@ -277,7 +313,31 @@
                             </fileset>
                         </copy>
 
-                        <delete dir="${GT_BINARY}"/>
+                        <echo>=&gt; DISPATCHING GO3 JARS -------------------------------------</echo>
+                        <echo>=&gt; Deleting existing jars</echo>
+                        <delete>
+                            <fileset dir="${PUZZLE_GO3_MODULE}" includes="*.jar" />
+                        </delete>
+                        <echo>=&gt; Copying new jars</echo>
+                        <copy todir="${PUZZLE_GO3_MODULE}">
+                            <fileset dir="${GT_BINARY}" casesensitive="yes">
+                              <patternset id="go3">
+                                <include name="aopalliance.jar"/>
+                                <include name="ardor3d-animations.jar"/>
+                                <include name="ardor3d-awt.jar"/>
+                                <include name="ardor3d-collada.jar"/>
+                                <include name="ardor3d-core.jar"/>
+                                <include name="ardor3d-effects.jar"/>
+                                <include name="ardor3d-lwjgl.jar"/>
+                                <include name="geotk-go3.jar"/>
+                                <include name="google-collections.jar"/>
+                                <include name="guice.jar"/>
+                              </patternset>
+                            </fileset>
+                        </copy>
+                        <echo>=&gt; Done !</echo>
+
+                        <!--delete dir="${GT_BINARY}"/-->
 
                         <echo>=&gt; Done !</echo>
                         

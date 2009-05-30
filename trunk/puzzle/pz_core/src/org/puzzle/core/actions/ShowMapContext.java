@@ -77,7 +77,7 @@ public final class ShowMapContext extends CookieAction {
                                 dataObject.createView(services.iterator().next());
                             }
                         });
-                        
+
                     }else{
 
                         SwingUtilities.invokeLater(new Runnable() {

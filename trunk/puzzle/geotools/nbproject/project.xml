@@ -619,7 +619,7 @@
                 <package>org.geotoolkit.display.exception</package>
                 <package>org.geotoolkit.display.primitive</package>
                 <package>org.geotoolkit.display.shape</package>
-                <package>org.geotoolkit.display2d.array</package>
+                <package>org.geotoolkit.display2d</package>
                 <package>org.geotoolkit.display2d.canvas</package>
                 <package>org.geotoolkit.display2d.canvas.web</package>
                 <package>org.geotoolkit.display2d.container</package>
@@ -629,8 +629,8 @@
                 <package>org.geotoolkit.display2d.ext.northarrow</package>
                 <package>org.geotoolkit.display2d.ext.scalebar</package>
                 <package>org.geotoolkit.display2d.ext.vectorfield</package>
-                <package>org.geotoolkit.display2d.geom</package>
                 <package>org.geotoolkit.display2d.primitive</package>
+                <package>org.geotoolkit.display2d.primitive.iso</package>
                 <package>org.geotoolkit.display2d.primitive.jts</package>
                 <package>org.geotoolkit.display2d.service</package>
                 <package>org.geotoolkit.display2d.style</package>
@@ -639,6 +639,16 @@
                 <package>org.geotoolkit.display2d.style.renderer</package>
                 <package>org.geotoolkit.factory</package>
                 <package>org.geotoolkit.filter</package>
+                <package>org.geotoolkit.filter.accessor</package>
+                <package>org.geotoolkit.filter.adapter</package>
+                <package>org.geotoolkit.filter.binarycomparison</package>
+                <package>org.geotoolkit.filter.binaryexpression</package>
+                <package>org.geotoolkit.filter.binarylogic</package>
+                <package>org.geotoolkit.filter.binaryspatial</package>
+                <package>org.geotoolkit.filter.capability</package>
+                <package>org.geotoolkit.filter.function</package>
+                <package>org.geotoolkit.filter.identity</package>
+                <package>org.geotoolkit.filter.sort</package>
                 <package>org.geotoolkit.geometry</package>
                 <package>org.geotoolkit.geometry.array</package>
                 <package>org.geotoolkit.gml.xml</package>
@@ -653,9 +663,6 @@
                 <package>org.geotoolkit.gui.swing.contexttree.popup</package>
                 <package>org.geotoolkit.gui.swing.contexttree.renderer</package>
                 <package>org.geotoolkit.gui.swing.crschooser</package>
-                <package>org.geotoolkit.gui.swing.debug</package>
-                <package>org.geotoolkit.gui.swing.debug.jasper</package>
-                <package>org.geotoolkit.gui.swing.debug.jfreechart</package>
                 <package>org.geotoolkit.gui.swing.event</package>
                 <package>org.geotoolkit.gui.swing.filter</package>
                 <package>org.geotoolkit.gui.swing.go</package>
@@ -706,10 +713,13 @@
                 <package>org.geotoolkit.internal.jaxb.uom</package>
                 <package>org.geotoolkit.internal.jdbc</package>
                 <package>org.geotoolkit.internal.referencing</package>
+                <package>org.geotoolkit.internal.rmi</package>
                 <package>org.geotoolkit.internal.swing</package>
                 <package>org.geotoolkit.io</package>
                 <package>org.geotoolkit.io.wkt</package>
                 <package>org.geotoolkit.lang</package>
+                <package>org.geotoolkit.legacy.array</package>
+                <package>org.geotoolkit.legacy.geom</package>
                 <package>org.geotoolkit.map</package>
                 <package>org.geotoolkit.math</package>
                 <package>org.geotoolkit.measure</package>
@@ -776,9 +786,9 @@
                 <package>org.geotoolkit.wms.xml.v130</package>
                 <package>org.geotoolkit.xml</package>
                 <package>org.geotools</package>
-                <package>org.geotools.coverage.grid</package>
                 <package>org.geotools.coverage.grid.io</package>
                 <package>org.geotools.coverage.grid.io.imageio</package>
+                <package>org.geotools.coverage.grid.io.imageio.geotiff.codes</package>
                 <package>org.geotools.coverage.io</package>
                 <package>org.geotools.coverage.processing</package>
                 <package>org.geotools.coverage.processing.operation</package>
@@ -1081,6 +1091,14 @@
             <class-path-extension>
                 <runtime-relative-path>ext/geotk-engine-core.jar</runtime-relative-path>
                 <binary-origin>release/modules/ext/geotk-engine-core.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/geotk-epsg.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/geotk-epsg.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/geotk-filter.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/geotk-filter.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
                 <runtime-relative-path>ext/geotk-geometry.jar</runtime-relative-path>
