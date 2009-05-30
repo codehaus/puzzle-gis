@@ -17,6 +17,7 @@
   <!-- =========================================================== -->
     <properties>
         <geotoolkit.version>SNAPSHOT</geotoolkit.version>
+        <geomodif.version>2.6-SNAPSHOT</geomodif.version>
     </properties>
     <description>Maven module to download and dispatch the latest jars needed by puzzle.</description>
 
@@ -89,41 +90,46 @@
             <artifactId>geotk-go3</artifactId>
             <version>${geotoolkit.version}</version>
         </dependency>
-
+        <dependency>
+            <groupId>org.geotoolkit.pending</groupId>
+            <artifactId>geotk-filter</artifactId>
+            <version>${geotoolkit.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.geotoolkit.pending</groupId>
+            <artifactId>geotk-jtswrapper</artifactId>
+            <version>${geotoolkit.version}</version>
+        </dependency>
         <dependency>
             <groupId>org.geotoolkit.pending</groupId>
             <artifactId>geotk-wms</artifactId>
             <version>${geotoolkit.version}</version>
         </dependency>
-
         <dependency>
             <groupId>org.geotoolkit.pending</groupId>
             <artifactId>geotk-world-image</artifactId>
             <version>${geotoolkit.version}</version>
         </dependency>
-
         <dependency>
             <groupId>org.geotoolkit.pending</groupId>
             <artifactId>geotk-widgets-swing-pending</artifactId>
             <version>${geotoolkit.version}</version>
         </dependency>
-
         <dependency>
             <groupId>org.geotoolkit.pending</groupId>
-            <artifactId>geotk-filter</artifactId>
+            <artifactId>geotk-xml-sld</artifactId>
             <version>${geotoolkit.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.geotools</groupId>
             <artifactId>gtm-geotiff</artifactId>
-            <version>2.6-SNAPSHOT</version>
+            <version>${geomodif.version}</version>
         </dependency>
-
         <dependency>
             <groupId>org.geotools</groupId>
             <artifactId>gtm-shapefile</artifactId>
-            <version>2.6-SNAPSHOT</version>
+            <version>${geomodif.version}</version>
         </dependency>
 
     </dependencies>
@@ -166,10 +172,10 @@
                 </executions>
                 <configuration>
                     <tasks>
-                        <property name="GT_BINARY" value="./lib" />
+                        <property name="GEOTK_BINARY" value="./lib" />
                         <property name="PUZZLE_GEOAPI_MODULE" value="../puzzle/geoapi/release/modules/ext" />
                         <property name="PUZZLE_POSTGIS_MODULE" value="../puzzle/driver_postgis/release/modules/ext" />
-                        <property name="PUZZLE_GT_MODULE" value="../puzzle/geotools/release/modules/ext" />
+                        <property name="PUZZLE_GEOTK_MODULE" value="../puzzle/geotools/release/modules/ext" />
                         <property name="PUZZLE_GO3_MODULE" value="../puzzle/pz_go3/release/modules/ext" />
                         <property name="PUZZLE_APACHE_MODULE" value="../puzzle/apache_commons/release/modules/ext" />
 
@@ -181,7 +187,7 @@
                         </delete>
                         <echo>=&gt; Copying new jars</echo>
                         <copy todir="${PUZZLE_APACHE_MODULE}">
-                            <fileset dir="${GT_BINARY}" casesensitive="yes">
+                            <fileset dir="${GEOTK_BINARY}" casesensitive="yes">
                               <patternset id="apache">
                                 <include name="commons-beanutils.jar"/>
                                 <include name="commons-collections.jar"/>
@@ -203,7 +209,7 @@
                         </delete>
                         <echo>=&gt; Copying new jars</echo>
                         <copy todir="${PUZZLE_GEOAPI_MODULE}">
-                            <fileset dir="${GT_BINARY}" casesensitive="yes">
+                            <fileset dir="${GEOTK_BINARY}" casesensitive="yes">
                               <patternset id="geoapi">
                                 <include name="geoapi.jar"/>
                                 <include name="geoapi-pending.jar"/>
@@ -220,7 +226,7 @@
                         </delete>
                         <echo>=&gt; Copying new jars</echo>
                         <copy todir="${PUZZLE_POSTGIS_MODULE}">
-                            <fileset dir="${GT_BINARY}" casesensitive="yes">
+                            <fileset dir="${GEOTK_BINARY}" casesensitive="yes">
                               <patternset id="postgis">
                                 <include name="postgis-driver.jar"/>
                                 <include name="postgresql.jar"/>
@@ -230,14 +236,14 @@
                         <echo>=&gt; Done !</echo>
                         
                         
-                        <echo>=&gt; DISPATCHING GEOTOOLS JARS -------------------------------------</echo>
+                        <echo>=&gt; DISPATCHING GEOTOOLKIT JARS -------------------------------------</echo>
                         <echo>=&gt; Deleting existing jars</echo>
                         <delete>
-                            <fileset dir="${PUZZLE_GT_MODULE}" includes="*.jar" />
+                            <fileset dir="${PUZZLE_GEOTK_MODULE}" includes="*.jar" />
                         </delete>
                         <echo>=&gt; Copying new jars</echo>
-                        <copy todir="${PUZZLE_GT_MODULE}">
-                            <fileset dir="${GT_BINARY}" casesensitive="yes">
+                        <copy todir="${PUZZLE_GEOTK_MODULE}">
+                            <fileset dir="${GEOTK_BINARY}" casesensitive="yes">
                               <patternset id="geotools">
                                 <include name="avalon-framework-api.jar"/>
                                 <include name="avalon-framework-impl.jar"/>
@@ -263,11 +269,13 @@
                                 <include name="geotk-coverageio.jar"/>
                                 <include name="geotk-display.jar"/>
                                 <include name="geotk-engine-core.jar"/>
+                                <include name="geotk-epsg.jar"/>
                                 <include name="geotk-filter.jar"/>
                                 <include name="geotk-geometry.jar"/>
                                 <include name="geotk-go2.jar"/>
                                 <include name="geotk-go2-style-extension.jar"/>
                                 <include name="geotk-jasperreport.jar"/>
+                                <include name="geotk-jtswrapper.jar"/>
                                 <include name="geotk-metadata.jar"/>
                                 <include name="geotk-referencing.jar"/>
                                 <include name="geotk-render.jar"/>
@@ -320,7 +328,7 @@
                         </delete>
                         <echo>=&gt; Copying new jars</echo>
                         <copy todir="${PUZZLE_GO3_MODULE}">
-                            <fileset dir="${GT_BINARY}" casesensitive="yes">
+                            <fileset dir="${GEOTK_BINARY}" casesensitive="yes">
                               <patternset id="go3">
                                 <include name="aopalliance.jar"/>
                                 <include name="ardor3d-animations.jar"/>
@@ -337,7 +345,7 @@
                         </copy>
                         <echo>=&gt; Done !</echo>
 
-                        <!--delete dir="${GT_BINARY}"/-->
+                        <delete dir="${GEOTK_BINARY}"/>
 
                         <echo>=&gt; Done !</echo>
                         

@@ -55,7 +55,7 @@ public class Go3MapView extends ViewComponent{
             guiNavBar.setMap(gui3DPane);
             gui3DPane.getController().setObjectiveCRS(context.getCoordinateReferenceSystem());
             gui3DPane.getController().setCameraSpeed(100);
-            gui3DPane.getContainer2().setContext(context);
+            gui3DPane.getContainer2().setContext(context,false);
             add(BorderLayout.CENTER,gui3DPane.getComponent());
         }catch(Exception e){
             add(BorderLayout.CENTER,new JLabel(e.getLocalizedMessage()));

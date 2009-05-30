@@ -23,27 +23,11 @@
                     </run-dependency>
                 </dependency>
                 <dependency>
-                    <code-name-base>org.netbeans.swing.outline</code-name-base>
-                    <build-prerequisite/>
-                    <compile-dependency/>
-                    <run-dependency>
-                        <specification-version>1.1.1</specification-version>
-                    </run-dependency>
-                </dependency>
-                <dependency>
                     <code-name-base>org.opengis</code-name-base>
                     <build-prerequisite/>
                     <compile-dependency/>
                     <run-dependency>
                         <specification-version>1.0</specification-version>
-                    </run-dependency>
-                </dependency>
-                <dependency>
-                    <code-name-base>org.openide.filesystems</code-name-base>
-                    <build-prerequisite/>
-                    <compile-dependency/>
-                    <run-dependency>
-                        <specification-version>7.13.1.1.1</specification-version>
                     </run-dependency>
                 </dependency>
                 <dependency>
@@ -651,6 +635,13 @@
                 <package>org.geotoolkit.filter.sort</package>
                 <package>org.geotoolkit.geometry</package>
                 <package>org.geotoolkit.geometry.array</package>
+                <package>org.geotoolkit.geometry.isoonjts</package>
+                <package>org.geotoolkit.geometry.isoonjts.spatialschema</package>
+                <package>org.geotoolkit.geometry.isoonjts.spatialschema.geometry</package>
+                <package>org.geotoolkit.geometry.isoonjts.spatialschema.geometry.aggregate</package>
+                <package>org.geotoolkit.geometry.isoonjts.spatialschema.geometry.complex</package>
+                <package>org.geotoolkit.geometry.isoonjts.spatialschema.geometry.geometry</package>
+                <package>org.geotoolkit.geometry.isoonjts.spatialschema.geometry.primitive</package>
                 <package>org.geotoolkit.gml.xml</package>
                 <package>org.geotoolkit.gml.xml.v212</package>
                 <package>org.geotoolkit.gml.xml.v311</package>
@@ -1115,6 +1106,10 @@
             <class-path-extension>
                 <runtime-relative-path>ext/geotk-jasperreport.jar</runtime-relative-path>
                 <binary-origin>release/modules/ext/geotk-jasperreport.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/geotk-jtswrapper.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/geotk-jtswrapper.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
                 <runtime-relative-path>ext/geotk-metadata.jar</runtime-relative-path>
