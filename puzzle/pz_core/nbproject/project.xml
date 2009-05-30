@@ -157,13 +157,18 @@
                 </dependency>
             </module-dependencies>
             <public-packages>
+                <package>org.puzzle.core.actions</package>
+                <package>org.puzzle.core.contexttree</package>
                 <package>org.puzzle.core.project</package>
                 <package>org.puzzle.core.project.filetype</package>
                 <package>org.puzzle.core.project.nodes</package>
                 <package>org.puzzle.core.project.source</package>
                 <package>org.puzzle.core.project.source.capabilities</package>
+                <package>org.puzzle.core.project.view</package>
                 <package>org.puzzle.core.tool</package>
                 <package>org.puzzle.core.view</package>
+                <package>org.puzzle.core.windows.mapdetail</package>
+                <package>org.puzzle.core.windows.toolbox</package>
                 <package>org.puzzle.core.windows.toolbox.tree</package>
             </public-packages>
         </data>

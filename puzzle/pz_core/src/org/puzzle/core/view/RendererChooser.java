@@ -48,28 +48,23 @@ import org.openide.util.Lookup;
  * 
  * @author Johann Sorel (Puzzle-GIS)
  */
-public class RendererChooser extends JPanel implements WizardDescriptor.Panel {
+public class RendererChooser implements WizardDescriptor.Panel {
 
     private final Collection<? extends RenderingService> services = Lookup.getDefault().lookupAll(RenderingService.class);
     private final ButtonGroup group = new ButtonGroup();
     private final Map<JRadioButton,RenderingService> link = new HashMap<JRadioButton, RenderingService>();
+    private final JPanel component = new JPanel();
     private boolean flagok = false;
     
+    
     public RendererChooser(){
-        setLayout(new GridLayout(1, services.size()));
+        component.setLayout(new GridLayout(services.size(),1));
         
         for(final RenderingService service : services){
-            add(createServicePane(service));
+            component.add(createServicePane(service));
         }
-        
-    }
 
-    /**
-     * {@inheritDoc }
-     */
-    @Override
-    public String getName() {
-        return Utilities.getString("chooseRenderer");
+        component.setName(Utilities.getString("chooseRenderer"));
     }
     
     private JPanel createServicePane(RenderingService service){
@@ -105,8 +100,10 @@ public class RendererChooser extends JPanel implements WizardDescriptor.Panel {
      * @return MapView or null if wizard was canceled.
      */
     public void showChooserDialog(){
-        final RendererChooser chooser = new RendererChooser();
-        final WizardDescriptor wizardDescriptor = new WizardDescriptor(chooser.getPanels());
+
+//        JOptionPane.showInputDialog(null, this, "gnagnagna", JOptionPane.OK_CANCEL_OPTION);
+
+        final WizardDescriptor wizardDescriptor = new WizardDescriptor(this.getPanels());
         // {0} will be replaced by WizardDesriptor.Panel.getComponent().getName()
         wizardDescriptor.setTitleFormat(new MessageFormat("{0}"));
         wizardDescriptor.setTitle(Utilities.getString("chooseRenderer"));
@@ -115,7 +112,7 @@ public class RendererChooser extends JPanel implements WizardDescriptor.Panel {
         dialog.toFront();
         boolean cancelled = wizardDescriptor.getValue() != WizardDescriptor.FINISH_OPTION;
         if (!cancelled) {
-           chooser.flagok = true;
+           this.flagok = true;
         }
         
     }
@@ -123,7 +120,7 @@ public class RendererChooser extends JPanel implements WizardDescriptor.Panel {
     
     private WizardDescriptor.Panel[] panels;
 
-    
+
     /**
      * Initialize panels representing individual wizard's steps and sets
      * various properties for them influencing wizard appearance.
@@ -161,7 +158,7 @@ public class RendererChooser extends JPanel implements WizardDescriptor.Panel {
      */
     @Override
     public Component getComponent() {
-        return this;
+        return component;
     }
 
     /**
