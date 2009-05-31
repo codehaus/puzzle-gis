@@ -25,7 +25,6 @@ import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import javax.swing.JComponent;
 import javax.swing.JPanel;
 
 import javax.swing.JToolBar;
@@ -36,7 +35,6 @@ import org.geotoolkit.gui.swing.go.control.JCoordinateBar;
 import org.geotoolkit.gui.swing.go.control.JInformationBar;
 import org.geotoolkit.gui.swing.go.control.JNavigationBar;
 import org.geotoolkit.gui.swing.go.control.MapControlBar;
-import org.geotoolkit.gui.swing.go.decoration.JClassicNavigationDecoration;
 import org.geotoolkit.gui.swing.map.map2d.decoration.MapDecoration;
 import org.geotoolkit.map.MapContext;
 import org.openide.util.Exceptions;
@@ -55,12 +53,14 @@ public class Go2MapView extends ViewComponent{
     private final JInformationBar infoBar = new JInformationBar();
     private final JCoordinateBar coordBar = new JCoordinateBar();
     private final JConfigBar configBar = new JConfigBar();
-    private final JClassicNavigationDecoration boussole = new JClassicNavigationDecoration();
+    private final J2DMapVolatile map;
     private boolean firstPaint = true;
 
     
     public Go2MapView(J2DMapVolatile map){
-        super(map);
+        super();
+        setLayout(new BorderLayout());
+        this.map = map;
 
         final JPanel north = new JPanel(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
@@ -109,7 +109,9 @@ public class Go2MapView extends ViewComponent{
         constraints.fill = GridBagConstraints.BOTH;
         constraints.anchor = GridBagConstraints.WEST;
         constraints.weightx = 1.0;
-        north.add(new JComponent() {},constraints);
+        JToolBar glue = new JToolBar();
+        glue.setFloatable(false);
+        north.add(glue,constraints);
 
         coordBar.setMap(map);
         configBar.setMap(map);
@@ -123,14 +125,15 @@ public class Go2MapView extends ViewComponent{
         navBar.setFloatable(false);
         infoBar.setFloatable(false);
         configBar.setFloatable(false);
+        coordBar.setFloatable(false);
         add(BorderLayout.NORTH,north);
+        add(BorderLayout.CENTER,map);
         add(BorderLayout.SOUTH,coordBar);
 
     }
 
-    @Override
     public J2DMapVolatile getMap() {
-        return (J2DMapVolatile)super.getMap();
+        return map;
     }
 
     @Override

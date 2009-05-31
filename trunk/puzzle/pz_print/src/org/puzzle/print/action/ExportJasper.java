@@ -46,6 +46,7 @@ import org.openide.util.actions.CookieAction;
 import org.puzzle.core.project.GISProject;
 import org.puzzle.core.project.view.GISView;
 import org.puzzle.core.view.ViewComponent;
+import org.puzzle.renderer.go2.Go2MapView;
 
 /**
  * Save view action.
@@ -89,13 +90,13 @@ public final class ExportJasper extends CookieAction{
             public void run() {
                 final ViewComponent viewcomp = view.getComponent(false);
 
-                if(viewcomp != null){
+                if(viewcomp != null && viewcomp instanceof Go2MapView){
 //                    Image img = viewcomp.getMap().getCanvas().getSnapShot();
 
                     try {
-                        Shape shap = view.getComponent(true).getMap().getCanvas().getObjectiveBounds();
+                        Shape shap = ((Go2MapView)view.getComponent(true)).getMap().getCanvas().getObjectiveBounds();
                         GeneralEnvelope env = new GeneralEnvelope(shap.getBounds2D());
-                        env.setCoordinateReferenceSystem(view.getComponent(true).getMap().getCanvas().getObjectiveCRS());
+                        env.setCoordinateReferenceSystem(((Go2MapView)view.getComponent(true)).getMap().getCanvas().getObjectiveCRS());
                         JJasperDialog dia = new JJasperDialog(jasperFiles,view.getContext().getContext(),env);
                     } catch (Exception ex) {
                         Exceptions.printStackTrace(ex);

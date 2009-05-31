@@ -59,6 +59,7 @@ import org.openide.util.HelpCtx;
 import org.openide.util.NbBundle;
 
 import org.puzzle.core.view.ViewComponent;
+import org.puzzle.renderer.go2.Go2MapView;
 
 /**
  * Wizard to choose the view to save.
@@ -107,7 +108,7 @@ public class SaveWizard extends javax.swing.JPanel implements WizardDescriptor.P
         if(index != -1 && file != null){
             List<ViewComponent> lst = new ArrayList<ViewComponent>(views);
             ViewComponent view = lst.get(index);
-            Image img = view.getMap().getCanvas().getSnapShot();
+            Image img = ((Go2MapView)view).getMap().getCanvas().getSnapShot();
             final BufferedImage bi = new BufferedImage(img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_ARGB);
             final Graphics g = bi.getGraphics();
             g.drawImage(img, 0, 0, null);

@@ -34,31 +34,10 @@ import org.openide.windows.TopComponent;
  * @author Johann Sorel (Puzzle-GIS)
  */
 public abstract class ViewComponent extends TopComponent {
-
-    /**
-     * Map2D widget, is display at the center of the window.
-     */
-    protected final Map2D map;
-
     
-    public ViewComponent(final Map2D map){
+    public ViewComponent(){
         super();
-        
         associateLookup( Lookups.singleton(this));
-        
-        this.map = map;
-        setLayout(new BorderLayout());
-        add(BorderLayout.CENTER,map.getComponent());
-        revalidate();
-    }
-
-    /**
-     * Get the map2D widget of this view.
-     *
-     * @return Map2D
-     */
-    public Map2D getMap() {
-        return map;
     }
 
     /**

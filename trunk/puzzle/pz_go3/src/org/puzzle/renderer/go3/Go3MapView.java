@@ -27,11 +27,10 @@ import org.geotoolkit.display3d.canvas.A3DCanvas;
 import org.geotoolkit.gui.swing.go3.control.JNavigationBar;
 import org.geotoolkit.gui.swing.go.J2DMapVolatile;
 import org.geotoolkit.map.MapContext;
-import org.geotoolkit.referencing.crs.DefaultGeographicCRS;
 import org.puzzle.core.view.ViewComponent;
 
 /**
- * Map view using the GO2 Rendering engine.
+ * Map view using the GO3 Rendering engine.
  *
  * @author Johann Sorel (Puzzle-GIS)
  */
@@ -41,19 +40,17 @@ public class Go3MapView extends ViewComponent{
     private A3DCanvas gui3DPane;
 
     
-    public Go3MapView(J2DMapVolatile map, MapContext context){
-        super(map);
+    public Go3MapView(MapContext context){
+        super();
 
         setLayout(new BorderLayout());
 
         guiNavBar.setFloatable(false);
         add(BorderLayout.NORTH,guiNavBar);
 
-        
         try{
-            gui3DPane = new A3DCanvas(DefaultGeographicCRS.WGS84, null);
+            gui3DPane = new A3DCanvas(context.getCoordinateReferenceSystem(), null);
             guiNavBar.setMap(gui3DPane);
-            gui3DPane.getController().setObjectiveCRS(context.getCoordinateReferenceSystem());
             gui3DPane.getController().setCameraSpeed(100);
             gui3DPane.getContainer2().setContext(context,false);
             add(BorderLayout.CENTER,gui3DPane.getComponent());
@@ -64,13 +61,8 @@ public class Go3MapView extends ViewComponent{
     }
 
     @Override
-    public J2DMapVolatile getMap() {
-        return (J2DMapVolatile)super.getMap();
-    }
-
-    @Override
     public MapContext getContext() {
-        return getMap().getContainer().getContext();
+        return gui3DPane.getContainer2().getContext();
     }
 
 }
