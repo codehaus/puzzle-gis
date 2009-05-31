@@ -34,6 +34,7 @@ import org.openide.util.HelpCtx;
 import org.openide.util.actions.CookieAction;
 import org.puzzle.core.project.view.GISView;
 import org.puzzle.core.view.ViewComponent;
+import org.puzzle.renderer.go2.Go2MapView;
 
 /**
  * Save view action.
@@ -68,8 +69,8 @@ public final class ExportImage extends CookieAction{
             public void run() {
                 final ViewComponent viewcomp = view.getComponent(false);
 
-                if(viewcomp != null){
-                    Image img = viewcomp.getMap().getCanvas().getSnapShot();
+                if(viewcomp != null && viewcomp instanceof Go2MapView){
+                    Image img = ((Go2MapView)viewcomp).getMap().getCanvas().getSnapShot();
                     final BufferedImage bi = new BufferedImage(img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_ARGB);
                     final Graphics g = bi.getGraphics();
                     g.drawImage(img, 0, 0, null);
