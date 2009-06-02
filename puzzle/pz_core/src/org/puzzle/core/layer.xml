@@ -90,6 +90,13 @@
                         <attr name="originalFile" stringvalue="Actions/Puzzle/org-puzzle-core-actions-ShowView.instance"/>
                         <attr name="position" intvalue="0"/>
                     </file>
+                    <file name="sep-12.instance">
+                        <attr name="instanceClass" stringvalue="javax.swing.JSeparator"/>
+                        <attr name="position" intvalue="450"/>
+                    </file>
+                    <file name="org-openide-actions-DeleteAction.instance">
+                        <attr name="position" intvalue="500"/>
+                    </file>
                 </folder>
             </folder>
             <folder name="gissource+xml">

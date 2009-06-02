@@ -82,11 +82,12 @@ public class GISContextViewNode extends AbstractNode{
 
     @Override
     public boolean canCut() {
-        return false;
+        return true;
     }
 
     @Override
     public void destroy() throws IOException {
+        System.out.println("here");
         view.getContext().removeView(view);
         super.destroy();
     }

@@ -23,6 +23,14 @@
                     </run-dependency>
                 </dependency>
                 <dependency>
+                    <code-name-base>org.openide.modules</code-name-base>
+                    <build-prerequisite/>
+                    <compile-dependency/>
+                    <run-dependency>
+                        <specification-version>7.7.1</specification-version>
+                    </run-dependency>
+                </dependency>
+                <dependency>
                     <code-name-base>org.openide.util</code-name-base>
                     <build-prerequisite/>
                     <compile-dependency/>
@@ -65,6 +73,10 @@
                 <package>com.ardor3d.extension.model.collada.util</package>
                 <package>com.ardor3d.extension.shadow.map</package>
                 <package>com.ardor3d.extension.shadow.stencil</package>
+                <package>com.ardor3d.extension.terrain</package>
+                <package>com.ardor3d.extension.terrain.basic</package>
+                <package>com.ardor3d.extension.terrain.heightmap</package>
+                <package>com.ardor3d.extension.terrain.streaming</package>
                 <package>com.ardor3d.framework</package>
                 <package>com.ardor3d.framework.awt</package>
                 <package>com.ardor3d.framework.lwjgl</package>
@@ -92,6 +104,7 @@
                 <package>com.ardor3d.scenegraph</package>
                 <package>com.ardor3d.scenegraph.event</package>
                 <package>com.ardor3d.scenegraph.extension</package>
+                <package>com.ardor3d.scenegraph.hint</package>
                 <package>com.ardor3d.scenegraph.shape</package>
                 <package>com.ardor3d.scenegraph.visitor</package>
                 <package>com.ardor3d.ui.text</package>
@@ -103,18 +116,59 @@
                 <package>com.ardor3d.util.geom</package>
                 <package>com.ardor3d.util.logging</package>
                 <package>com.ardor3d.util.resource</package>
+                <package>com.ardor3d.util.scenegraph</package>
                 <package>com.ardor3d.util.screen</package>
                 <package>com.ardor3d.util.shader</package>
                 <package>com.ardor3d.util.shader.uniformtypes</package>
                 <package>com.ardor3d.util.stat</package>
                 <package>com.ardor3d.util.stat.graph</package>
+                <package>com.google.common.annotations</package>
+                <package>com.google.common.base</package>
+                <package>com.google.common.base.internal</package>
+                <package>com.google.common.collect</package>
+                <package>com.google.inject</package>
+                <package>com.google.inject.asm</package>
+                <package>com.google.inject.asm.signature</package>
+                <package>com.google.inject.binder</package>
+                <package>com.google.inject.cglib.asm</package>
+                <package>com.google.inject.cglib.asm.signature</package>
+                <package>com.google.inject.cglib.beans</package>
+                <package>com.google.inject.cglib.core</package>
+                <package>com.google.inject.cglib.proxy</package>
+                <package>com.google.inject.cglib.reflect</package>
+                <package>com.google.inject.cglib.transform</package>
+                <package>com.google.inject.cglib.transform.impl</package>
+                <package>com.google.inject.cglib.util</package>
+                <package>com.google.inject.jndi</package>
+                <package>com.google.inject.matcher</package>
+                <package>com.google.inject.name</package>
+                <package>com.google.inject.spi</package>
+                <package>com.google.inject.tools.jmx</package>
+                <package>com.google.inject.util</package>
+                <package>com.vividsolutions.jts.index.kdtree</package>
+                <package>com.vividsolutions.jts.triangulate</package>
+                <package>com.vividsolutions.jts.triangulate.quadedge</package>
+                <package>org.aopalliance.aop</package>
+                <package>org.aopalliance.intercept</package>
                 <package>org.geotoolkit.debug</package>
                 <package>org.geotoolkit.display3d.canvas</package>
                 <package>org.geotoolkit.display3d.container</package>
                 <package>org.geotoolkit.display3d.controller</package>
+                <package>org.geotoolkit.display3d.geom</package>
                 <package>org.geotoolkit.display3d.primitive</package>
+                <package>org.geotoolkit.display3d.style</package>
+                <package>org.geotoolkit.display3d.style.renderer</package>
                 <package>org.geotoolkit.gui.swing.go3.control</package>
                 <package>org.geotoolkit.gui.swing.go3.control.navigation</package>
+                <package>org.lwjgl</package>
+                <package>org.lwjgl.input</package>
+                <package>org.lwjgl.openal</package>
+                <package>org.lwjgl.opengl</package>
+                <package>org.lwjgl.util</package>
+                <package>org.lwjgl.util.glu</package>
+                <package>org.lwjgl.util.input</package>
+                <package>org.lwjgl.util.jinput</package>
+                <package>org.lwjgl.util.vector</package>
                 <package>org.puzzle.renderer.go3</package>
             </public-packages>
             <class-path-extension>
@@ -156,6 +210,14 @@
             <class-path-extension>
                 <runtime-relative-path>ext/guice.jar</runtime-relative-path>
                 <binary-origin>release/modules/ext/guice.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/lwjgl.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/lwjgl.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/lwjgl_util.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/lwjgl_util.jar</binary-origin>
             </class-path-extension>
         </data>
     </configuration>
