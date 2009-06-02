@@ -20,9 +20,14 @@
  */
 package org.puzzle.core.project.view;
 
+import java.io.IOException;
 import java.lang.ref.SoftReference;
 import java.util.Collection;
 import javax.swing.SwingUtilities;
+import org.openide.filesystems.FileObject;
+import org.openide.loaders.DataFolder;
+import org.openide.loaders.DataObject;
+import org.openide.util.HelpCtx;
 import org.openide.util.Lookup;
 import org.puzzle.core.project.filetype.GISContextDataObject;
 import org.puzzle.core.view.RenderingService;
@@ -32,7 +37,7 @@ import org.puzzle.core.view.ViewComponent;
  *
  * @author Johann Sorel (Puzzle-GIS)
  */
-public class GISView {
+public class GISView{
 
     private final GISContextDataObject contextData;
     private final GISViewInfo info;
