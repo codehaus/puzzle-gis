@@ -27,6 +27,7 @@ import org.geotoolkit.display3d.canvas.A3DCanvas;
 import org.geotoolkit.gui.swing.go3.control.JNavigationBar;
 import org.geotoolkit.gui.swing.go.J2DMapVolatile;
 import org.geotoolkit.map.MapContext;
+import org.geotoolkit.referencing.CRS;
 import org.puzzle.core.view.ViewComponent;
 
 /**
@@ -48,11 +49,16 @@ public class Go3MapView extends ViewComponent{
         guiNavBar.setFloatable(false);
         add(BorderLayout.NORTH,guiNavBar);
 
+
+        context.setCoordinateReferenceSystem(context.layers().get(context.layers().size()-1).getBounds().getCoordinateReferenceSystem());
+
+
         try{
+//            context.setCoordinateReferenceSystem(CRS.decode("EPSG:27592"));
             gui3DPane = new A3DCanvas(context.getCoordinateReferenceSystem(), null);
             guiNavBar.setMap(gui3DPane);
-            gui3DPane.getController().setCameraSpeed(100);
             gui3DPane.getContainer2().setContext(context,false);
+            gui3DPane.getController().setCameraSpeed(100);
             add(BorderLayout.CENTER,gui3DPane.getComponent());
         }catch(Exception e){
             add(BorderLayout.CENTER,new JLabel(e.getLocalizedMessage()));

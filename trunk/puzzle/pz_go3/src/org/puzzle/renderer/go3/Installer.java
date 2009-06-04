@@ -15,12 +15,24 @@ public class Installer extends ModuleInstall {
     @Override
     public void restored() {
         try{
+            String os = System.getProperty("os.name");
             String arch = System.getProperty("os.arch");
-            if(arch.toLowerCase().contains("64")){
-                System.loadLibrary("lwjgl64");
-            }else{
+
+            if(os.toLowerCase().contains("mac")){
+                System.out.println("-> loading mac lwjgl.");
                 System.loadLibrary("lwjgl");
+            }else{
+                System.out.println("-> loading win or linux lwjgl.");
+                if(arch.toLowerCase().contains("64")){
+                    System.loadLibrary("lwjgl64");
+                }else{
+                    System.loadLibrary("lwjgl");
+                }
             }
+
+
+            
+            
             
         }catch(Exception ex){
             ex.printStackTrace();
