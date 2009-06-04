@@ -160,6 +160,9 @@
                 <package>org.geotoolkit.display3d.style.renderer</package>
                 <package>org.geotoolkit.gui.swing.go3.control</package>
                 <package>org.geotoolkit.gui.swing.go3.control.navigation</package>
+                <package>org.jibx.extras</package>
+                <package>org.jibx.runtime</package>
+                <package>org.jibx.runtime.impl</package>
                 <package>org.lwjgl</package>
                 <package>org.lwjgl.input</package>
                 <package>org.lwjgl.openal</package>
@@ -210,6 +213,14 @@
             <class-path-extension>
                 <runtime-relative-path>ext/guice.jar</runtime-relative-path>
                 <binary-origin>release/modules/ext/guice.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/jibx-extras.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/jibx-extras.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/jibx-run.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/jibx-run.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
                 <runtime-relative-path>ext/lwjgl.jar</runtime-relative-path>
