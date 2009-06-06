@@ -29,7 +29,6 @@ import java.util.Map;
 import org.geotools.data.DataStore;
 import org.geotools.data.DataStoreFinder;
 import org.geotools.data.FeatureSource;
-import org.geotools.factory.CommonFactoryFinder;
 import org.geotoolkit.map.MapBuilder;
 import org.geotoolkit.map.MapLayer;
 import org.geotoolkit.style.DefaultStyleFactory;
@@ -46,10 +45,10 @@ import org.puzzle.core.project.source.GISSourceInfo;
 import org.puzzle.core.project.source.GISSourceState;
 import org.puzzle.core.project.source.capabilities.JLayerChooser;
 import org.puzzle.core.project.source.capabilities.LayerChooserMonitor;
+import org.puzzle.core.project.source.capabilities.LayerCreation;
 import org.puzzle.core.project.source.GISLayerSource;
 
-import org.puzzle.core.project.source.capabilities.LayerCreation;
-import static org.geotools.data.postgis.PostgisDataStoreFactory.*;
+import static org.geotools.data.postgis.PostgisNGDataStoreFactory.*;
 
 /**
  * PostGIS source object.
@@ -99,9 +98,7 @@ public class PostGISSource extends GISSource{
         params.put(MINCONN.key,         Integer.valueOf(infosParams.get(MINCONN.key)));
         params.put(NAMESPACE.key,       infosParams.get(NAMESPACE.key));
         params.put(VALIDATECONN.key,    Boolean.valueOf(infosParams.get(VALIDATECONN.key)));
-        params.put(ESTIMATEDEXTENT.key, Boolean.valueOf(infosParams.get(ESTIMATEDEXTENT.key)));
         params.put(LOOSEBBOX.key,       Boolean.valueOf(infosParams.get(LOOSEBBOX.key)));
-        params.put(WKBENABLED.key,      Boolean.valueOf(infosParams.get(WKBENABLED.key)));
 
         try {
             store = DataStoreFinder.getDataStore(params);

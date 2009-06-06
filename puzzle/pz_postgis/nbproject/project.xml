@@ -88,14 +88,6 @@
                         <specification-version>0.0.1.12</specification-version>
                     </run-dependency>
                 </dependency>
-                <dependency>
-                    <code-name-base>org.puzzle.driver.postgis</code-name-base>
-                    <build-prerequisite/>
-                    <compile-dependency/>
-                    <run-dependency>
-                        <implementation-version/>
-                    </run-dependency>
-                </dependency>
             </module-dependencies>
             <public-packages>
                 <package>org.puzzle.format.postgis.service</package>
