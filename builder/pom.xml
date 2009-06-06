@@ -196,30 +196,6 @@
                         <property name="PUZZLE_GEOAPI_MODULE" value="../puzzle/geoapi/release/modules/ext" />
                         <property name="PUZZLE_GEOTK_MODULE" value="../puzzle/geotools/release/modules/ext" />
                         <property name="PUZZLE_GO3_MODULE" value="../puzzle/pz_go3/release/modules/ext" />
-                        <property name="PUZZLE_APACHE_MODULE" value="../puzzle/apache_commons/release/modules/ext" />
-
-
-                        <echo>=&gt; DISPATCHING APACHE COMMONS JARS -------------------------------------</echo>
-                        <echo>=&gt; Deleting existing jars</echo>
-                        <delete>
-                            <fileset dir="${PUZZLE_APACHE_MODULE}" includes="*.jar" />
-                        </delete>
-                        <echo>=&gt; Copying new jars</echo>
-                        <copy todir="${PUZZLE_APACHE_MODULE}">
-                            <fileset dir="${GEOTK_BINARY}" casesensitive="yes">
-                              <patternset id="apache">
-                                <include name="commons-beanutils.jar"/>
-                                <include name="commons-collections.jar"/>
-                                <include name="commons-dbcp.jar"/>
-                                <include name="commons-digester.jar"/>
-                                <include name="commons-io.jar"/>
-                                <include name="commons-logging.jar"/>
-                                <include name="commons-pool.jar"/>
-                              </patternset>
-                            </fileset>
-                        </copy>
-                        <echo>=&gt; Done !</echo>
-
 
                         <echo>=&gt; DISPATCHING GEOAPI JARS -------------------------------------</echo>
                         <echo>=&gt; Deleting existing jars</echo>
@@ -265,6 +241,13 @@
                                 <include name="batik-xml.jar"/>
                                 <include name="bcmail-jdk14.jar"/>
                                 <include name="bcprov-jdk14.jar"/>
+                                <include name="commons-beanutils.jar"/>
+                                <include name="commons-collections.jar"/>
+                                <include name="commons-dbcp.jar"/>
+                                <include name="commons-digester.jar"/>
+                                <include name="commons-io.jar"/>
+                                <include name="commons-logging.jar"/>
+                                <include name="commons-pool.jar"/>
                                 <include name="derby.jar"/>
                                 <include name="fop.jar"/>
                                 <include name="geotk-coverage.jar"/>
@@ -296,6 +279,7 @@
                                 <include name="gtm-coverage.jar"/>
                                 <include name="gtm-coverageio.jar"/>
                                 <include name="gtm-cql.jar"/>
+                                <include name="gtm-data.jar"/>
                                 <include name="gtm-geotiff.jar"/>
                                 <include name="gtm-jdbc.jar"/>
                                 <include name="gtm-jdbc-core.jar"/>

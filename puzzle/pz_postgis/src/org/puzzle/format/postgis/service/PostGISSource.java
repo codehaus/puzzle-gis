@@ -87,7 +87,7 @@ public class PostGISSource extends GISSource{
 
         final Map<String,String> infosParams = getInfo().getParameters();
         final Map<String,Object> params = new HashMap<String,Object>();
-        params.put(DBTYPE.key,          DBTYPE.sample);
+        params.put(DBTYPE.key,          "postgisng");
         params.put(HOST.key,            infosParams.get(HOST.key));
         params.put(PORT.key,            infosParams.get(PORT.key));
         params.put(SCHEMA.key,          infosParams.get(SCHEMA.key));

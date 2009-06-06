@@ -4,9 +4,8 @@
     <configuration>
         <data xmlns="http://www.netbeans.org/ns/nb-module-project/3">
             <code-name-base>apache.commons</code-name-base>
-            <suite-component/>
-            <module-dependencies>
-            </module-dependencies>
+            <standalone/>
+            <module-dependencies/>
             <public-packages>
                 <package>org.apache.commons.beanutils</package>
                 <package>org.apache.commons.beanutils.converters</package>
