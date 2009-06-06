@@ -22,7 +22,8 @@ package org.puzzle.format.postgis.ui;
 
 import java.util.HashMap;
 import java.util.Map;
-import org.geotools.data.postgis.PostgisDataStoreFactory;
+import org.geotools.data.postgis.PostgisNGDataStoreFactory;
+import static org.geotools.data.postgis.PostgisNGDataStoreFactory.*;
 
 /**
  * @author Johann Sorel (Püzzle-GIS)
@@ -33,23 +34,20 @@ public class JPostGISconfigPanel extends javax.swing.JPanel {
         initComponents();
 
         final Map<String,Object> params = new HashMap<String, Object>();
-        params.put(PostgisDataStoreFactory.DBTYPE.key, PostgisDataStoreFactory.DBTYPE.sample);
-        params.put(PostgisDataStoreFactory.HOST.key, PostgisDataStoreFactory.HOST.sample);
-        params.put(PostgisDataStoreFactory.PORT.key, PostgisDataStoreFactory.PORT.sample);
-        params.put(PostgisDataStoreFactory.SCHEMA.key, PostgisDataStoreFactory.SCHEMA.sample);
-        params.put(PostgisDataStoreFactory.DATABASE.key, PostgisDataStoreFactory.DATABASE.sample);
-        params.put(PostgisDataStoreFactory.USER.key, PostgisDataStoreFactory.USER.sample);
-        params.put(PostgisDataStoreFactory.PASSWD.key, PostgisDataStoreFactory.PASSWD.sample);
-        params.put(PostgisDataStoreFactory.MAXCONN.key, PostgisDataStoreFactory.MAXCONN.sample);
-        params.put(PostgisDataStoreFactory.MINCONN.key, PostgisDataStoreFactory.MINCONN.sample);
-        params.put(PostgisDataStoreFactory.NAMESPACE.key, PostgisDataStoreFactory.NAMESPACE.sample);
-        params.put(PostgisDataStoreFactory.VALIDATECONN.key, PostgisDataStoreFactory.VALIDATECONN.sample);
-        params.put(PostgisDataStoreFactory.ESTIMATEDEXTENT.key, PostgisDataStoreFactory.ESTIMATEDEXTENT.sample);
-        params.put(PostgisDataStoreFactory.LOOSEBBOX.key, PostgisDataStoreFactory.LOOSEBBOX.sample);
-        params.put(PostgisDataStoreFactory.WKBENABLED.key, PostgisDataStoreFactory.WKBENABLED.sample);
+        params.put(DBTYPE.key, DBTYPE.sample);
+        params.put(HOST.key, HOST.sample);
+        params.put(PORT.key, PORT.sample);
+        params.put(SCHEMA.key, SCHEMA.sample);
+        params.put(DATABASE.key, DATABASE.sample);
+        params.put(USER.key, USER.sample);
+        params.put(PASSWD.key, PASSWD.sample);
+        params.put(MAXCONN.key, MAXCONN.sample);
+        params.put(MINCONN.key, MINCONN.sample);
+        params.put(NAMESPACE.key, NAMESPACE.sample);
+        params.put(VALIDATECONN.key, VALIDATECONN.sample);
+        params.put(LOOSEBBOX.key, LOOSEBBOX.sample);
 
         setParams(params);
-        
     }
 
     public void setParams(Map map) {
@@ -60,50 +58,43 @@ public class JPostGISconfigPanel extends javax.swing.JPanel {
 
         Object val = null;
 
-        val = map.get(PostgisDataStoreFactory.HOST.key);
+        val = map.get(HOST.key);
         jtf_host.setText( (val == null) ? "" : val.toString());
-        val = map.get(PostgisDataStoreFactory.PORT.key);
+        val = map.get(PORT.key);
         jtf_port.setText((val == null) ? "" : val.toString());
-        val = map.get(PostgisDataStoreFactory.SCHEMA.key);
+        val = map.get(SCHEMA.key);
         jtf_schema.setText((val == null) ? "" : val.toString());
-        val = map.get(PostgisDataStoreFactory.DATABASE.key);
+        val = map.get(DATABASE.key);
         jtf_database.setText((val == null) ? "" : val.toString());
-        val = map.get(PostgisDataStoreFactory.USER.key);
+        val = map.get(USER.key);
         jtf_user.setText((val == null) ? "" : val.toString());
-        val = map.get(PostgisDataStoreFactory.PASSWD.key);
+        val = map.get(PASSWD.key);
         jtf_password.setText((val == null) ? "" : val.toString());
-        val = map.get(PostgisDataStoreFactory.MAXCONN.key);
+        val = map.get(MAXCONN.key);
         jsp_max_connects.setValue((val == null) ? 10 : val);
-        val = map.get(PostgisDataStoreFactory.MINCONN.key);
+        val = map.get(MINCONN.key);
         jsp_min_connects.setValue((val == null) ? 4 : val);
-        val = map.get(PostgisDataStoreFactory.NAMESPACE.key);
+        val = map.get(NAMESPACE.key);
         jtf_namespace.setText((val == null) ? "" : val.toString());
-        val = map.get(PostgisDataStoreFactory.VALIDATECONN.key);
-        chk_validate.setSelected( (val == null) ? (Boolean) PostgisDataStoreFactory.VALIDATECONN.sample : (Boolean)val);
-        val = map.get(PostgisDataStoreFactory.ESTIMATEDEXTENT.key);
-        chk_estimated.setSelected((val == null) ? (Boolean) PostgisDataStoreFactory.ESTIMATEDEXTENT.sample : (Boolean)val);
-        val = map.get(PostgisDataStoreFactory.LOOSEBBOX.key);
-        chk_loose.setSelected( (val == null) ? (Boolean) PostgisDataStoreFactory.LOOSEBBOX.sample : (Boolean)val);
-        val = map.get(PostgisDataStoreFactory.WKBENABLED.key);
-        chk_wkb.setSelected( (val == null) ? (Boolean) PostgisDataStoreFactory.WKBENABLED.sample : (Boolean)val);
-
+        val = map.get(VALIDATECONN.key);
+        chk_validate.setSelected( (val == null) ? (Boolean) VALIDATECONN.sample : (Boolean)val);        
+        val = map.get(LOOSEBBOX.key);
+        chk_loose.setSelected( (val == null) ? (Boolean) LOOSEBBOX.sample : (Boolean)val);
     }
 
     public Map<String,String> getParams(){
         final Map<String,String> params = new HashMap<String,String>();
-        params.put(PostgisDataStoreFactory.HOST.key, jtf_host.getText());
-        params.put(PostgisDataStoreFactory.PORT.key, jtf_port.getText());
-        params.put(PostgisDataStoreFactory.SCHEMA.key, jtf_schema.getText());
-        params.put(PostgisDataStoreFactory.DATABASE.key, jtf_database.getText());
-        params.put(PostgisDataStoreFactory.USER.key, jtf_user.getText());
-        params.put(PostgisDataStoreFactory.PASSWD.key, new String(jtf_password.getPassword()));
-        params.put(PostgisDataStoreFactory.MAXCONN.key, jsp_max_connects.getValue().toString());
-        params.put(PostgisDataStoreFactory.MINCONN.key, jsp_min_connects.getValue().toString());
-        params.put(PostgisDataStoreFactory.NAMESPACE.key, jtf_namespace.getText());
-        params.put(PostgisDataStoreFactory.VALIDATECONN.key, Boolean.valueOf(chk_validate.isSelected()).toString());
-        params.put(PostgisDataStoreFactory.ESTIMATEDEXTENT.key, Boolean.valueOf(chk_estimated.isSelected()).toString());
-        params.put(PostgisDataStoreFactory.LOOSEBBOX.key, Boolean.valueOf(chk_loose.isSelected()).toString());
-        params.put(PostgisDataStoreFactory.WKBENABLED.key, Boolean.valueOf(chk_wkb.isSelected()).toString());
+        params.put(HOST.key, jtf_host.getText());
+        params.put(PORT.key, jtf_port.getText());
+        params.put(SCHEMA.key, jtf_schema.getText());
+        params.put(DATABASE.key, jtf_database.getText());
+        params.put(USER.key, jtf_user.getText());
+        params.put(PASSWD.key, new String(jtf_password.getPassword()));
+        params.put(MAXCONN.key, jsp_max_connects.getValue().toString());
+        params.put(MINCONN.key, jsp_min_connects.getValue().toString());
+        params.put(NAMESPACE.key, jtf_namespace.getText());
+        params.put(VALIDATECONN.key, Boolean.valueOf(chk_validate.isSelected()).toString());
+        params.put(LOOSEBBOX.key, Boolean.valueOf(chk_loose.isSelected()).toString());
         return params;
     }
 

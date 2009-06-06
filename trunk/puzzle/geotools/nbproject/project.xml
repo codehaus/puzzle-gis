@@ -46,14 +46,6 @@
                         <specification-version>7.18.1.1</specification-version>
                     </run-dependency>
                 </dependency>
-                <dependency>
-                    <code-name-base>org.puzzle.driver.postgis</code-name-base>
-                    <build-prerequisite/>
-                    <compile-dependency/>
-                    <run-dependency>
-                        <specification-version>1.0</specification-version>
-                    </run-dependency>
-                </dependency>
             </module-dependencies>
             <public-packages>
                 <package>com.keypoint</package>
@@ -77,6 +69,7 @@
                 <package>com.lowagie.tools</package>
                 <package>com.vividsolutions.jts</package>
                 <package>com.vividsolutions.jts.algorithm</package>
+                <package>com.vividsolutions.jts.algorithm.distance</package>
                 <package>com.vividsolutions.jts.algorithm.locate</package>
                 <package>com.vividsolutions.jts.geom</package>
                 <package>com.vividsolutions.jts.geom.impl</package>
@@ -92,6 +85,7 @@
                 <package>com.vividsolutions.jts.index.strtree</package>
                 <package>com.vividsolutions.jts.index.sweepline</package>
                 <package>com.vividsolutions.jts.io</package>
+                <package>com.vividsolutions.jts.io.gml2</package>
                 <package>com.vividsolutions.jts.linearref</package>
                 <package>com.vividsolutions.jts.noding</package>
                 <package>com.vividsolutions.jts.noding.snapround</package>
@@ -619,6 +613,8 @@
                 <package>org.geotoolkit.display2d.service</package>
                 <package>org.geotoolkit.display2d.style</package>
                 <package>org.geotoolkit.display2d.style.j2d</package>
+                <package>org.geotoolkit.display2d.style.labeling</package>
+                <package>org.geotoolkit.display2d.style.labeling.intelligent</package>
                 <package>org.geotoolkit.display2d.style.raster</package>
                 <package>org.geotoolkit.display2d.style.renderer</package>
                 <package>org.geotoolkit.factory</package>
@@ -633,6 +629,7 @@
                 <package>org.geotoolkit.filter.function</package>
                 <package>org.geotoolkit.filter.identity</package>
                 <package>org.geotoolkit.filter.sort</package>
+                <package>org.geotoolkit.filter.visitor</package>
                 <package>org.geotoolkit.geometry</package>
                 <package>org.geotoolkit.geometry.array</package>
                 <package>org.geotoolkit.geometry.isoonjts</package>
@@ -853,6 +850,7 @@
                 <package>org.geotools.index.rtree.database.mysql</package>
                 <package>org.geotools.index.rtree.fs</package>
                 <package>org.geotools.index.rtree.memory</package>
+                <package>org.geotools.jdbc</package>
                 <package>org.geotools.metadata.sql</package>
                 <package>org.geotools.ows</package>
                 <package>org.geotools.referencing.datum</package>
@@ -967,6 +965,23 @@
                 <package>org.jfree.util</package>
                 <package>org.netbeans.swing.etable</package>
                 <package>org.netbeans.swing.outline</package>
+                <package>org.postgresql</package>
+                <package>org.postgresql.core</package>
+                <package>org.postgresql.core.types</package>
+                <package>org.postgresql.core.v2</package>
+                <package>org.postgresql.core.v3</package>
+                <package>org.postgresql.ds</package>
+                <package>org.postgresql.ds.common</package>
+                <package>org.postgresql.fastpath</package>
+                <package>org.postgresql.geometric</package>
+                <package>org.postgresql.jdbc2</package>
+                <package>org.postgresql.jdbc2.optional</package>
+                <package>org.postgresql.jdbc3</package>
+                <package>org.postgresql.largeobject</package>
+                <package>org.postgresql.ssl</package>
+                <package>org.postgresql.translation</package>
+                <package>org.postgresql.util</package>
+                <package>org.postgresql.xa</package>
                 <package>org.w3c.css.sac</package>
                 <package>org.w3c.css.sac.helpers</package>
                 <package>org.w3c.dom</package>
@@ -1192,16 +1207,20 @@
                 <binary-origin>release/modules/ext/gtm-jdbc.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
+                <runtime-relative-path>ext/gtm-jdbc-core.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gtm-jdbc-core.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/gtm-jdbc-postgis.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/gtm-jdbc-postgis.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
                 <runtime-relative-path>ext/gtm-main.jar</runtime-relative-path>
                 <binary-origin>release/modules/ext/gtm-main.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
                 <runtime-relative-path>ext/gtm-metadata.jar</runtime-relative-path>
                 <binary-origin>release/modules/ext/gtm-metadata.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gtm-postgis.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gtm-postgis.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
                 <runtime-relative-path>ext/gtm-referencing.jar</runtime-relative-path>
@@ -1246,6 +1265,10 @@
             <class-path-extension>
                 <runtime-relative-path>ext/org-netbeans-swing-outline.jar</runtime-relative-path>
                 <binary-origin>release/modules/ext/org-netbeans-swing-outline.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/postgresql.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/postgresql.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
                 <runtime-relative-path>ext/swingx.jar</runtime-relative-path>

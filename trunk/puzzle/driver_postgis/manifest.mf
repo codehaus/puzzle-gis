@@ -1,5 +1,0 @@
-Manifest-Version: 1.0
-OpenIDE-Module: org.puzzle.driver.postgis
-OpenIDE-Module-Implementation-Version: 3
-OpenIDE-Module-Localizing-Bundle: org/puzzle/driver/postgis/Bundle.properties
-
