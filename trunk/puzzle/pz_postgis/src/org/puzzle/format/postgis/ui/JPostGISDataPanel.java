@@ -68,7 +68,7 @@ public class JPostGISDataPanel extends SourceCreationPane {
     public JPostGISDataPanel() {
         initComponents();
 
-        params.put(DBTYPE.key, DBTYPE.sample);
+        params.put(DBTYPE.key, "postgisng");
         params.put(HOST.key, HOST.sample);
         params.put(PORT.key, PORT.sample);
         params.put(SCHEMA.key, SCHEMA.sample);
@@ -378,7 +378,7 @@ public class JPostGISDataPanel extends SourceCreationPane {
     private void actionRefresh(ActionEvent evt) {//GEN-FIRST:event_actionRefresh
 
         params.clear();
-        params.put(DBTYPE.key, DBTYPE.sample);
+        params.put(DBTYPE.key, "postgisng");
         params.put(HOST.key, jtf_host.getText());
         params.put(PORT.key, jtf_port.getText());
         params.put(SCHEMA.key, jtf_schema.getText());
@@ -442,6 +442,7 @@ public class JPostGISDataPanel extends SourceCreationPane {
     
     public Map<String,GISSourceInfo> createSources() {
         final Map<String,String> params = new HashMap<String,String>();
+        params.put(DBTYPE.key, "postgisng");
         params.put(HOST.key, jtf_host.getText());
         params.put(PORT.key, jtf_port.getText());
         params.put(SCHEMA.key, jtf_schema.getText());

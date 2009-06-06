@@ -34,7 +34,7 @@ public class JPostGISconfigPanel extends javax.swing.JPanel {
         initComponents();
 
         final Map<String,Object> params = new HashMap<String, Object>();
-        params.put(DBTYPE.key, DBTYPE.sample);
+        params.put(DBTYPE.key, "postgisng");
         params.put(HOST.key, HOST.sample);
         params.put(PORT.key, PORT.sample);
         params.put(SCHEMA.key, SCHEMA.sample);
@@ -84,6 +84,7 @@ public class JPostGISconfigPanel extends javax.swing.JPanel {
 
     public Map<String,String> getParams(){
         final Map<String,String> params = new HashMap<String,String>();
+        params.put(DBTYPE.key, "postgisng");
         params.put(HOST.key, jtf_host.getText());
         params.put(PORT.key, jtf_port.getText());
         params.put(SCHEMA.key, jtf_schema.getText());
