@@ -21,6 +21,7 @@
 package org.puzzle.renderer.go2;
 
 import java.awt.Image;
+import java.awt.RenderingHints;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
@@ -75,6 +76,7 @@ public class Go2RenderingService implements RenderingService{
     public ViewComponent restoreView(MapContext context, final GISView view) {
         final J2DMapVolatile map = new J2DMapVolatile();
         map.getContainer().setContext(context);
+        map.getCanvas().setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
         
 //        try {
 //            map.getCanvas().setObjectiveCRS(CRS.decode("EPSG:3395"));
