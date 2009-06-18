@@ -252,6 +252,7 @@
             <folder name="navigator">
                 <file name="ContextTreeTopComponent.wstcref" url="ContextTreeTopComponentWstcref.xml"/>
             </folder>
+            <file name="navigator.wsmode" url="navigatorWsmode.xml"/>
             <folder name="rightSlidingSide">
                 <file name="ToolTreeTopComponent.wstcref" url="ToolTreeTopComponentWstcref.xml"/>
             </folder>
