@@ -172,7 +172,7 @@ final class ContextTreeTopComponent extends TopComponent implements LookupListen
 
     @Override
     public int getPersistenceType() {
-        return TopComponent.PERSISTENCE_NEVER;
+        return TopComponent.PERSISTENCE_ALWAYS;
     }
 
     @Override
