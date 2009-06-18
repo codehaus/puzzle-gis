@@ -612,6 +612,7 @@
                 <package>org.geotoolkit.console</package>
                 <package>org.geotoolkit.coverage</package>
                 <package>org.geotoolkit.coverage.grid</package>
+                <package>org.geotoolkit.coverage.io</package>
                 <package>org.geotoolkit.coverage.processing</package>
                 <package>org.geotoolkit.coverage.processing.operation</package>
                 <package>org.geotoolkit.coverage.wi</package>
@@ -629,6 +630,7 @@
                 <package>org.geotoolkit.display2d.container</package>
                 <package>org.geotoolkit.display2d.container.statefull</package>
                 <package>org.geotoolkit.display2d.container.stateless</package>
+                <package>org.geotoolkit.display2d.ext.dimrange</package>
                 <package>org.geotoolkit.display2d.ext.legend</package>
                 <package>org.geotoolkit.display2d.ext.northarrow</package>
                 <package>org.geotoolkit.display2d.ext.scalebar</package>
@@ -803,7 +805,6 @@
                 <package>org.geotools.coverage.grid.io</package>
                 <package>org.geotools.coverage.grid.io.imageio</package>
                 <package>org.geotools.coverage.grid.io.imageio.geotiff.codes</package>
-                <package>org.geotools.coverage.io</package>
                 <package>org.geotools.coverage.processing</package>
                 <package>org.geotools.coverage.processing.operation</package>
                 <package>org.geotools.data</package>
@@ -817,10 +818,6 @@
                 <package>org.geotools.data.memory</package>
                 <package>org.geotools.data.ows</package>
                 <package>org.geotools.data.postgis</package>
-                <package>org.geotools.data.postgis.attributeio</package>
-                <package>org.geotools.data.postgis.collection</package>
-                <package>org.geotools.data.postgis.fidmapper</package>
-                <package>org.geotools.data.postgis.referencing</package>
                 <package>org.geotools.data.shapefile</package>
                 <package>org.geotools.data.shapefile.dbf</package>
                 <package>org.geotools.data.shapefile.indexed</package>
@@ -864,7 +861,6 @@
                 <package>org.geotools.gml</package>
                 <package>org.geotools.gml.producer</package>
                 <package>org.geotools.image</package>
-                <package>org.geotools.image.io.text</package>
                 <package>org.geotools.image.jai</package>
                 <package>org.geotools.image.palette</package>
                 <package>org.geotools.index</package>
@@ -1145,6 +1141,10 @@
                 <binary-origin>release/modules/ext/geotk-coverageio.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
+                <runtime-relative-path>ext/geotk-coverageio-pending.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/geotk-coverageio-pending.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
                 <runtime-relative-path>ext/geotk-display.jar</runtime-relative-path>
                 <binary-origin>release/modules/ext/geotk-display.jar</binary-origin>
             </class-path-extension>
@@ -1243,10 +1243,6 @@
             <class-path-extension>
                 <runtime-relative-path>ext/gtm-coverage.jar</runtime-relative-path>
                 <binary-origin>release/modules/ext/gtm-coverage.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gtm-coverageio.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gtm-coverageio.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
                 <runtime-relative-path>ext/gtm-cql.jar</runtime-relative-path>

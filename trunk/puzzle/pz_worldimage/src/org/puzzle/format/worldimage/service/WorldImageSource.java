@@ -25,7 +25,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Map;
 
-import org.geotools.coverage.io.CoverageReader;
+import org.geotoolkit.coverage.io.CoverageReader;
 import org.geotoolkit.coverage.wi.WorldImageFactory;
 import org.geotools.factory.CommonFactoryFinder;
 import org.geotoolkit.map.MapLayer;

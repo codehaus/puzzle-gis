@@ -277,7 +277,6 @@
                                 <include name="geotk-xml-wms.jar"/>
                                 <include name="gtm-api.jar"/>
                                 <include name="gtm-coverage.jar"/>
-                                <include name="gtm-coverageio.jar"/>
                                 <include name="gtm-cql.jar"/>
                                 <include name="gtm-data.jar"/>
                                 <include name="gtm-geotiff.jar"/>
@@ -305,6 +304,7 @@
                                 <include name="xml-apis.jar"/>
                                 <include name="xml-apis-ext.jar"/>
                                 <include name="xmlgraphics-commons.jar"/>
+                                <include name="geotk-coverageio-pending.jar"/>
                               </patternset>
                             </fileset>
                         </copy>
