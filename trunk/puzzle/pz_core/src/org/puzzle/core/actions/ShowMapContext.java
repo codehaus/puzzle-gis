@@ -21,9 +21,8 @@
 package org.puzzle.core.actions;
 
 import java.util.Collection;
-
-import java.util.HashMap;
 import javax.swing.SwingUtilities;
+
 import org.geotoolkit.map.MapContext;
 
 import org.openide.nodes.Node;
@@ -32,9 +31,7 @@ import org.openide.util.Lookup;
 import org.openide.util.actions.CookieAction;
 
 import org.puzzle.core.project.filetype.GISContextDataObject;
-import org.puzzle.core.project.view.GISViewInfo;
 import org.puzzle.core.view.RendererChooser;
-import org.puzzle.core.view.ViewComponent;
 import org.puzzle.core.view.RenderingService;
 
 /**

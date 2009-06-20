@@ -27,9 +27,12 @@ import java.awt.Dialog;
 import java.awt.GridLayout;
 import java.text.MessageFormat;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+import java.util.SortedSet;
+import java.util.TreeSet;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
@@ -37,6 +40,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.event.ChangeListener;
+
 import org.openide.DialogDisplayer;
 import org.openide.WizardDescriptor;
 import org.openide.util.HelpCtx;
@@ -59,8 +63,16 @@ public class RendererChooser implements WizardDescriptor.Panel {
     
     public RendererChooser(){
         component.setLayout(new GridLayout(services.size(),1));
-        
-        for(final RenderingService service : services){
+
+        SortedSet<RenderingService> set = new TreeSet<RenderingService>(new Comparator<RenderingService>() {
+            @Override
+            public int compare(RenderingService c1, RenderingService c2) {
+                return c1.getTitle().compareTo(c2.getTitle());
+            }
+        });
+        set.addAll(services);
+
+        for(final RenderingService service : set){
             component.add(createServicePane(service));
         }
 
