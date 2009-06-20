@@ -47,7 +47,7 @@ public class Go3RenderingService implements RenderingService{
 
     @Override
     public Image getIcon() {
-        return ImageUtilities.loadImage("org/puzzle/renderer/go3/go2.png");
+        return ImageUtilities.loadImage("org/puzzle/renderer/go3/go3.png");
     }
 
     @Override

@@ -31,6 +31,7 @@ import java.util.List;
 import java.util.Map;
 import javax.xml.bind.JAXBException;
 
+import org.geotoolkit.map.FeatureMapLayer;
 import org.geotools.data.DefaultQuery;
 import org.geotools.factory.CommonFactoryFinder;
 import org.geotoolkit.map.MapBuilder;
@@ -161,7 +162,9 @@ public class Encoder {
                     layer.setDescription(new DefaultStyleFactory().description(title, ""));
                     layer.setStyle(style);
                     layer.setVisible(visible);
-                    layer.setQuery(query);
+                    if(layer instanceof FeatureMapLayer){
+                        ((FeatureMapLayer)layer).setQuery(query);
+                    }
                 }
             }
         }
@@ -288,14 +291,17 @@ public class Encoder {
             layerNode.appendChild(visibleNode);
 
             //store features filter
-            if (layer.getQuery() != null && layer.getQuery().getFilter() != null) {
-                final org.opengis.filter.Filter filter = layer.getQuery().getFilter();
-                if (!filter.equals(org.opengis.filter.Filter.INCLUDE) &&
-                        !filter.equals(org.opengis.filter.Filter.EXCLUDE)) {
-                    try {
-                        new XMLUtilities().writeFilter(layerNode, layer.getQuery().getFilter(), Filter.V_1_1_0);
-                    } catch (JAXBException ex) {
-                        Exceptions.printStackTrace(ex);
+            if(layer instanceof FeatureMapLayer){
+                FeatureMapLayer fml = (FeatureMapLayer) layer;
+                if (fml.getQuery() != null && fml.getQuery().getFilter() != null) {
+                    final org.opengis.filter.Filter filter = fml.getQuery().getFilter();
+                    if (!filter.equals(org.opengis.filter.Filter.INCLUDE) &&
+                            !filter.equals(org.opengis.filter.Filter.EXCLUDE)) {
+                        try {
+                            new XMLUtilities().writeFilter(layerNode, fml.getQuery().getFilter(), Filter.V_1_1_0);
+                        } catch (JAXBException ex) {
+                            Exceptions.printStackTrace(ex);
+                        }
                     }
                 }
             }
