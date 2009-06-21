@@ -28,6 +28,6 @@ package org.puzzle.renderer.go2.map;
  *
  * @author Johann Sorel (Puzzle-GIS)
  */
-public class JScaleBarDecoration extends org.geotoolkit.gui.swing.go.decoration.JScaleBarDecoration {
+public class JScaleBarDecoration extends org.geotoolkit.gui.swing.go2.decoration.JScaleBarDecoration {
 
 }

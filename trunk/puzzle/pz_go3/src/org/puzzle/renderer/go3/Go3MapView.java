@@ -25,9 +25,7 @@ import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import org.geotoolkit.display3d.canvas.A3DCanvas;
 import org.geotoolkit.gui.swing.go3.control.JNavigationBar;
-import org.geotoolkit.gui.swing.go.J2DMapVolatile;
 import org.geotoolkit.map.MapContext;
-import org.geotoolkit.referencing.CRS;
 import org.puzzle.core.view.ViewComponent;
 
 /**

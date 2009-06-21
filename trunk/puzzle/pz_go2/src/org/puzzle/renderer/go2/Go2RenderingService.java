@@ -25,7 +25,7 @@ import java.awt.RenderingHints;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-import org.geotoolkit.gui.swing.go.J2DMapVolatile;
+import org.geotoolkit.gui.swing.go2.JMap2D;
 import org.geotoolkit.map.MapContext;
 import org.geotoolkit.referencing.CRS;
 import org.geotoolkit.referencing.operation.matrix.AffineMatrix3;
@@ -74,7 +74,7 @@ public class Go2RenderingService implements RenderingService{
 
     @Override
     public ViewComponent restoreView(MapContext context, final GISView view) {
-        final J2DMapVolatile map = new J2DMapVolatile();
+        final JMap2D map = new JMap2D();
         map.getContainer().setContext(context);
         map.getCanvas().setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
         

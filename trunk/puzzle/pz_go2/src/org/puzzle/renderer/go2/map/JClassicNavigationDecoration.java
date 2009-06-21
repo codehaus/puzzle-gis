@@ -28,6 +28,6 @@ package org.puzzle.renderer.go2.map;
  *
  * @author Johann Sorel (Puzzle-GIS)
  */
-public class JClassicNavigationDecoration extends org.geotoolkit.gui.swing.go.decoration.JClassicNavigationDecoration{
+public class JClassicNavigationDecoration extends org.geotoolkit.gui.swing.go2.decoration.JClassicNavigationDecoration{
 
 }

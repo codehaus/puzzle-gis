@@ -20,8 +20,6 @@
  */
 package org.puzzle.core.view;
 
-import java.awt.BorderLayout;
-import org.geotoolkit.gui.swing.map.map2d.Map2D;
 import org.geotoolkit.map.MapContext;
 import org.openide.util.lookup.Lookups;
 import org.openide.windows.TopComponent;

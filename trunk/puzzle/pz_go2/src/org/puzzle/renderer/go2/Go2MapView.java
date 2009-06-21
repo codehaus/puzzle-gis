@@ -29,13 +29,13 @@ import javax.swing.JPanel;
 
 import javax.swing.JToolBar;
 import javax.swing.SwingUtilities;
-import org.geotoolkit.gui.swing.go.J2DMapVolatile;
-import org.geotoolkit.gui.swing.go.control.JConfigBar;
-import org.geotoolkit.gui.swing.go.control.JCoordinateBar;
-import org.geotoolkit.gui.swing.go.control.JInformationBar;
-import org.geotoolkit.gui.swing.go.control.JNavigationBar;
-import org.geotoolkit.gui.swing.go.control.MapControlBar;
-import org.geotoolkit.gui.swing.map.map2d.decoration.MapDecoration;
+import org.geotoolkit.gui.swing.go2.JMap2D;
+import org.geotoolkit.gui.swing.go2.control.JConfigBar;
+import org.geotoolkit.gui.swing.go2.control.JCoordinateBar;
+import org.geotoolkit.gui.swing.go2.control.JInformationBar;
+import org.geotoolkit.gui.swing.go2.control.JNavigationBar;
+import org.geotoolkit.gui.swing.go2.control.MapControlBar;
+import org.geotoolkit.gui.swing.go2.decoration.MapDecoration;
 import org.geotoolkit.map.MapContext;
 import org.openide.util.Exceptions;
 import org.openide.util.Lookup;
@@ -53,11 +53,11 @@ public class Go2MapView extends ViewComponent{
     private final JInformationBar infoBar = new JInformationBar();
     private final JCoordinateBar coordBar = new JCoordinateBar();
     private final JConfigBar configBar = new JConfigBar();
-    private final J2DMapVolatile map;
+    private final JMap2D map;
     private boolean firstPaint = true;
 
     
-    public Go2MapView(J2DMapVolatile map){
+    public Go2MapView(JMap2D map){
         super();
         setLayout(new BorderLayout());
         this.map = map;
@@ -132,7 +132,7 @@ public class Go2MapView extends ViewComponent{
 
     }
 
-    public J2DMapVolatile getMap() {
+    public JMap2D getMap() {
         return map;
     }
 

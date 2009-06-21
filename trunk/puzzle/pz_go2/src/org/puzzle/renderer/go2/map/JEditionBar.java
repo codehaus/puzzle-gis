@@ -28,6 +28,6 @@ package org.puzzle.renderer.go2.map;
  *
  * @author Johann Sorel (Puzzle-GIS)
  */
-public class JEditionBar extends org.geotoolkit.gui.swing.go.control.JEditionBar{
+public class JEditionBar extends org.geotoolkit.gui.swing.go2.control.JEditionBar{
 
 }
