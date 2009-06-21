@@ -29,7 +29,7 @@ import java.lang.ref.WeakReference;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreePath;
 
-import org.geotoolkit.gui.swing.maptree.AbstractTreePopupItem;
+import org.geotoolkit.gui.swing.contexttree.AbstractTreePopupItem;
 import org.geotoolkit.gui.swing.propertyedit.LayerFeaturePropertyPanel;
 import org.geotoolkit.gui.swing.resource.MessageBundle;
 import org.geotoolkit.map.FeatureMapLayer;

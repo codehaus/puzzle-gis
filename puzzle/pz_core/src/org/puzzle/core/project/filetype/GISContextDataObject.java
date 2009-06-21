@@ -161,11 +161,13 @@ public class GISContextDataObject extends XMLDataObject {
     }
 
     public void createView(RenderingService service){
-        //TODO replace the math random by a valid id finder
-        final GISViewInfo info = new GISViewInfo((int)(Math.random()*100000), service.getIdentifier(),"", new HashMap<String, String>());
-        info.setTitle(getContext().getDescription().getTitle().toString() + " - "+ service.getTitle());
-        createView(info,true);
-        setNeedViewSave(true);
+        if(service != null){
+            //TODO replace the math random by a valid id finder
+            final GISViewInfo info = new GISViewInfo((int)(Math.random()*100000), service.getIdentifier(),"", new HashMap<String, String>());
+            info.setTitle(getContext().getDescription().getTitle().toString() + " - "+ service.getTitle());
+            createView(info,true);
+            setNeedViewSave(true);
+        }
     }
 
     private void createView(GISViewInfo info, boolean open){

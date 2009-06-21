@@ -28,6 +28,6 @@ package org.puzzle.renderer.go2.map;
  *
  * @author Johann Sorel (Puzzle-GIS)
  */
-public class JInformationBar extends org.geotoolkit.gui.swing.go.control.JInformationBar{
+public class JInformationBar extends org.geotoolkit.gui.swing.go2.control.JInformationBar{
 
 }

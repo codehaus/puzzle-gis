@@ -30,10 +30,10 @@ import java.util.logging.Logger;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingUtilities;
 
-import org.geotoolkit.gui.swing.maptree.JContextTree;
-import org.geotoolkit.gui.swing.maptree.TreePopupItem;
-import org.geotoolkit.gui.swing.maptree.menu.LayerPropertyItem;
-import org.geotoolkit.gui.swing.maptree.menu.SeparatorItem;
+import org.geotoolkit.gui.swing.contexttree.JContextTree;
+import org.geotoolkit.gui.swing.contexttree.TreePopupItem;
+import org.geotoolkit.gui.swing.contexttree.menu.LayerPropertyItem;
+import org.geotoolkit.gui.swing.contexttree.menu.SeparatorItem;
 import org.geotoolkit.gui.swing.propertyedit.LayerFilterPropertyPanel;
 import org.geotoolkit.gui.swing.propertyedit.LayerStylePropertyPanel;
 import org.geotoolkit.gui.swing.propertyedit.PropertyPane;

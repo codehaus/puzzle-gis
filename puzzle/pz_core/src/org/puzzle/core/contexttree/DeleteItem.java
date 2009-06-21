@@ -28,6 +28,6 @@ package org.puzzle.core.contexttree;
  *
  * @author Johann Sorel (Puzzle-GIS)
  */
-public class DeleteItem extends org.geotoolkit.gui.swing.maptree.menu.DeleteItem{
+public class DeleteItem extends org.geotoolkit.gui.swing.contexttree.menu.DeleteItem{
     
 }

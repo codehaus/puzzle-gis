@@ -28,6 +28,6 @@ package org.puzzle.core.contexttree;
  *
  * @author Johann Sorel (Puzzle-GIS)
  */
-public class SeparatorItem extends org.geotoolkit.gui.swing.maptree.menu.SeparatorItem {
+public class SeparatorItem extends org.geotoolkit.gui.swing.contexttree.menu.SeparatorItem {
     
 }

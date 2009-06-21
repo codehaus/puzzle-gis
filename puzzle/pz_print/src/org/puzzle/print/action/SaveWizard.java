@@ -49,8 +49,8 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.EventListenerList;
 
-import org.geotoolkit.gui.swing.misc.filter.FileFilterFactory;
-import org.geotoolkit.gui.swing.misc.filter.FileFilterFactory.FORMAT;
+import org.geotoolkit.gui.swing.misc.FileFilterFactory;
+import org.geotoolkit.gui.swing.misc.FileFilterFactory.FORMAT;
 
 import org.openide.DialogDisplayer;
 import org.openide.WizardDescriptor;

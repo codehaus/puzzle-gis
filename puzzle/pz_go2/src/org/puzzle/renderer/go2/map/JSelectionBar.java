@@ -28,6 +28,6 @@ package org.puzzle.renderer.go2.map;
  *
  * @author Johann Sorel (Puzzle-GIS)
  */
-public class JSelectionBar extends org.geotoolkit.gui.swing.go.control.JSelectionBar{
+public class JSelectionBar extends org.geotoolkit.gui.swing.go2.control.JSelectionBar{
 
 }
