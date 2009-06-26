@@ -14,7 +14,7 @@ import org.openide.modules.ModuleInstall;
 
 /**
  *
- * @author eclesia
+ * @author Johann Sorel
  */
 public class Installer extends ModuleInstall {
 

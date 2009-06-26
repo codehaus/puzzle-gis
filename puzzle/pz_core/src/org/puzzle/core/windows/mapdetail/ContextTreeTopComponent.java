@@ -29,13 +29,11 @@ import java.util.List;
 import java.util.logging.Logger;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingUtilities;
+import javax.swing.tree.DefaultMutableTreeNode;
 
 import org.geotoolkit.gui.swing.contexttree.JContextTree;
 import org.geotoolkit.gui.swing.contexttree.TreePopupItem;
-import org.geotoolkit.gui.swing.contexttree.menu.LayerPropertyItem;
 import org.geotoolkit.gui.swing.contexttree.menu.SeparatorItem;
-import org.geotoolkit.gui.swing.propertyedit.LayerFilterPropertyPanel;
-import org.geotoolkit.gui.swing.propertyedit.LayerStylePropertyPanel;
 import org.geotoolkit.gui.swing.propertyedit.PropertyPane;
 import org.geotoolkit.map.MapContext;
 
@@ -49,6 +47,7 @@ import org.openide.util.lookup.Lookups;
 import org.openide.windows.TopComponent;
 import org.openide.windows.WindowManager;
 
+import org.puzzle.core.contexttree.LayerPropertyItem;
 import org.puzzle.core.project.filetype.GISContextDataObject;
 
 /**
@@ -82,43 +81,39 @@ final class ContextTreeTopComponent extends TopComponent implements LookupListen
         }
 
         final List<PropertyPane> configPanes = new ArrayList<PropertyPane>();
-        
+
+        JPropertyTree propertyTree = new JPropertyTree();
+
+        DefaultMutableTreeNode root = new DefaultMutableTreeNode();
+
         //search available property panels
         lk = Lookups.forPath("/Puzzle/ContextTree/PropertyPanels");
-        configPanes.addAll( lk.lookupAll(PropertyPane.class));
+        for(PropertyPane p : lk.lookupAll(PropertyPane.class)){
+            root.add(new DefaultMutableTreeNode(p));
+        }
 
         //search filter panels
+        DefaultMutableTreeNode filterNodes = new DefaultMutableTreeNode("Filters");
         lk = Lookups.forPath("/Puzzle/ContextTree/FilterPanels");
-        Collection<? extends PropertyPane> candidates = lk.lookupAll(PropertyPane.class);
-        if(!candidates.isEmpty()){
-            LayerFilterPropertyPanel filters = new LayerFilterPropertyPanel();
-            for(PropertyPane item : candidates){
-                filters.addPropertyPanel(item);
-            }
-            configPanes.add(filters);
+        for(PropertyPane p : lk.lookupAll(PropertyPane.class)){
+            filterNodes.add(new DefaultMutableTreeNode(p));
         }
+        root.add(filterNodes);
 
         //search style panels
+        DefaultMutableTreeNode styleNodes = new DefaultMutableTreeNode("Styles");
         lk = Lookups.forPath("/Puzzle/ContextTree/StylePanels");
-        candidates = lk.lookupAll(PropertyPane.class);
-        if(!candidates.isEmpty()){
-            LayerStylePropertyPanel styles = new LayerStylePropertyPanel();
-            for(PropertyPane item : candidates){
-                styles.addPropertyPanel(item);
-            }
-            configPanes.add(styles);
+        for(PropertyPane p : lk.lookupAll(PropertyPane.class)){
+            styleNodes.add(new DefaultMutableTreeNode(p));
+        }
+        root.add(styleNodes);
+
+        if(!tree.controls().isEmpty()){
+            tree.controls().add(new SeparatorItem());
         }
 
-        //add property popup item id we have some property panels
-        if(!configPanes.isEmpty()){
-            if(!tree.controls().isEmpty()){
-                tree.controls().add(new SeparatorItem());
-            }
-
-            LayerPropertyItem property = new LayerPropertyItem();
-            property.setPropertyPanels(configPanes);
-            tree.controls().add(property);
-        }
+        LayerPropertyItem property = new LayerPropertyItem(root);
+        tree.controls().add(property);
 
         tree.revalidate();
         tree.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
