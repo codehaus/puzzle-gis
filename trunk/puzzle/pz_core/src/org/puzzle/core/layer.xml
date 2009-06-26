@@ -297,9 +297,13 @@
                     <attr name="instanceCreate" newvalue="org.puzzle.core.contexttree.JSimpleStylePanel"/>
                     <attr name="position" intvalue="100"/>
                 </file>
+                <file name="org-puzzle-core-contexttree-JCategoryStylePanel.instance">
+                    <attr name="instanceCreate" newvalue="org.puzzle.core.contexttree.JCategoryStylePanel"/>
+                    <attr name="position" intvalue="200"/>
+                </file>
                 <file name="org-puzzle-core-contexttree-JAdvancedStylePanel.instance">
                     <attr name="instanceCreate" newvalue="org.puzzle.core.contexttree.JAdvancedStylePanel"/>
-                    <attr name="position" intvalue="200"/>
+                    <attr name="position" intvalue="300"/>
                 </file>
             </folder>
         </folder>

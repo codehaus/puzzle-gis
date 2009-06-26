@@ -1257,10 +1257,18 @@
        r="60.048138"
        gradientTransform="matrix(0.6073816,0,0,0.3438852,789.35916,162.77267)"
        gradientUnits="userSpaceOnUse" />
+    <filter
+       inkscape:collect="always"
+       id="filter3960">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="20.828053"
+         id="feGaussianBlur3962" />
+    </filter>
   </defs>
   <sodipodi:namedview
      inkscape:window-height="961"
-     inkscape:window-width="1680"
+     inkscape:window-width="1678"
      inkscape:pageshadow="2"
      inkscape:pageopacity="0.0"
      guidetolerance="10.0"
@@ -1271,40 +1279,36 @@
      pagecolor="#ffffff"
      id="base"
      inkscape:zoom="0.7053726"
-     inkscape:cx="1815.5763"
-     inkscape:cy="413.90999"
+     inkscape:cx="1869.3871"
+     inkscape:cy="491.85452"
      inkscape:window-x="0"
-     inkscape:window-y="31"
+     inkscape:window-y="25"
      inkscape:current-layer="svg3432"
      showgrid="false" />
-  <rect
-     style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1.25100005000000003;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
-     id="rect3629"
-     width="969.70026"
-     height="758.46442"
-     x="1552.3711"
-     y="-311.89191" />
   <image
-     xlink:href="/home/eclesia/images/090529185754_83.jpg"
-     sodipodi:absref="/home/eclesia/images/090529185754_83.jpg"
-     width="1280.6216"
-     height="800.38855"
-     id="image2466"
-     x="1265.7742"
-     y="-182.49019" />
+     xlink:href="/home/eclesia/Images/090529185754_83.jpg"
+     sodipodi:absref="/home/eclesia/Images/090529185754_83.jpg"
+     width="1708.9684"
+     height="1068.1053"
+     id="image3071"
+     x="1027.5745"
+     y="-302.82993"
+     style="filter:url(#filter3960)"
+     transform="matrix(0.7829628,0,0,0.7829628,393.39806,52.785889)" />
   <rect
-     style="opacity:0.25648415;fill:url(#linearGradient19276);fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.46863312000000001;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+     style="opacity:0.01;fill:url(#linearGradient19276);fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.46863312000000001;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
      id="rect6510"
      width="786.05884"
      height="462.26477"
      x="1581.0369"
      y="-68.643898"
-     inkscape:export-filename="/home/eclesia/dev/puzzle/graphics/puzzle_loading_screen36.png"
+     inkscape:export-filename="/home/eclesia/loader.png"
      inkscape:export-xdpi="57.213505"
      inkscape:export-ydpi="57.213505" />
   <g
      id="g4785"
-     transform="matrix(0.5700805,-2.8085346e-2,2.8085346e-2,0.5700805,79.064532,-288.03708)">
+     transform="matrix(0.9161307,-4.5133709e-2,4.5133709e-2,0.9161307,77.408223,75.664958)"
+     style="opacity:0.5">
     <g
        style="filter:url(#filter3685)"
        transform="translate(117.6683,-363.56265)"
@@ -1389,12 +1393,12 @@
        sodipodi:type="arc" />
   </g>
   <rect
-     style="opacity:0.5;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.20000005;stroke-miterlimit:4;stroke-dasharray:9.6, 2.4, 1.2, 2.4;stroke-dashoffset:0;stroke-opacity:1"
+     style="opacity:0.6;fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:1.20527005;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
      id="rect4139"
-     width="795.95209"
-     height="55.13522"
-     x="1583.3684"
-     y="343.42715" />
+     width="803.03528"
+     height="55.129951"
+     x="1576.2826"
+     y="343.42978" />
   <text
      xml:space="preserve"
      style="font-size:15.00736904px;font-style:normal;font-weight:normal;text-align:start;text-anchor:start;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
@@ -1420,7 +1424,7 @@
        id="tspan3473"
        x="2070.2363"
        y="217.91168"
-       style="fill:url(#radialGradient4573);fill-opacity:1">1/2</tspan></text>
+       style="fill:url(#radialGradient4573);fill-opacity:1">v0.4</tspan></text>
   <g
      id="g4532"
      transform="matrix(1.1270949,0,0,1.1270949,-71.904975,17.51812)">
