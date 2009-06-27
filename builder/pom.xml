@@ -151,7 +151,6 @@
             <artifactId>gtm-shapefile</artifactId>
             <version>${geomodif.version}</version>
         </dependency>
-
     </dependencies>
 
 
@@ -192,156 +191,17 @@
                 </executions>
                 <configuration>
                     <tasks>
-                        <property name="GEOTK_BINARY" value="./lib" />
-                        <property name="PUZZLE_GEOAPI_MODULE" value="../puzzle/geoapi/release/modules/ext" />
-                        <property name="PUZZLE_GEOTK_MODULE" value="../puzzle/geotools/release/modules/ext" />
-                        <property name="PUZZLE_GO3_MODULE" value="../puzzle/pz_go3/release/modules/ext" />
-
-                        <echo>=&gt; DISPATCHING GEOAPI JARS -------------------------------------</echo>
-                        <echo>=&gt; Deleting existing jars</echo>
-                        <delete>
-                            <fileset dir="${PUZZLE_GEOAPI_MODULE}" includes="*.jar" />
-                        </delete>
-                        <echo>=&gt; Copying new jars</echo>
-                        <copy todir="${PUZZLE_GEOAPI_MODULE}">
-                            <fileset dir="${GEOTK_BINARY}" casesensitive="yes">
-                              <patternset id="geoapi">
-                                <include name="geoapi.jar"/>
-                                <include name="geoapi-pending.jar"/>
-                                <include name="jsr-275.jar"/>
-                              </patternset>
-                            </fileset>
-                        </copy>
-                        <echo>=&gt; Done !</echo>
-                        
-                        <echo>=&gt; DISPATCHING GEOTOOLKIT JARS -------------------------------------</echo>
-                        <echo>=&gt; Deleting existing jars</echo>
-                        <delete>
-                            <fileset dir="${PUZZLE_GEOTK_MODULE}" includes="*.jar" />
-                        </delete>
-                        <echo>=&gt; Copying new jars</echo>
-                        <copy todir="${PUZZLE_GEOTK_MODULE}">
-                            <fileset dir="${GEOTK_BINARY}" casesensitive="yes">
-                              <patternset id="geotools">
-                                <include name="avalon-framework-api.jar"/>
-                                <include name="avalon-framework-impl.jar"/>
-                                <include name="batik-anim.jar"/>
-                                <include name="batik-awt-util.jar"/>
-                                <include name="batik-bridge.jar"/>
-                                <include name="batik-css.jar"/>
-                                <include name="batik-dom.jar"/>
-                                <include name="batik-ext.jar"/>
-                                <include name="batik-gvt.jar"/>
-                                <include name="batik-parser.jar"/>
-                                <include name="batik-script.jar"/>
-                                <include name="batik-svg-dom.jar"/>
-                                <include name="batik-svggen.jar"/>
-                                <include name="batik-transcoder.jar"/>
-                                <include name="batik-util.jar"/>
-                                <include name="batik-xml.jar"/>
-                                <include name="bcmail-jdk14.jar"/>
-                                <include name="bcprov-jdk14.jar"/>
-                                <include name="commons-beanutils.jar"/>
-                                <include name="commons-collections.jar"/>
-                                <include name="commons-dbcp.jar"/>
-                                <include name="commons-digester.jar"/>
-                                <include name="commons-io.jar"/>
-                                <include name="commons-logging.jar"/>
-                                <include name="commons-pool.jar"/>
-                                <include name="derby.jar"/>
-                                <include name="fop.jar"/>
-                                <include name="geotk-coverage.jar"/>
-                                <include name="geotk-coverageio.jar"/>
-                                <include name="geotk-display.jar"/>
-                                <include name="geotk-engine-core.jar"/>
-                                <include name="geotk-epsg.jar"/>
-                                <include name="geotk-filter.jar"/>
-                                <include name="geotk-geometry.jar"/>
-                                <include name="geotk-go2.jar"/>
-                                <include name="geotk-go2-style-extension.jar"/>
-                                <include name="geotk-jasperreport.jar"/>
-                                <include name="geotk-jtswrapper.jar"/>
-                                <include name="geotk-metadata.jar"/>
-                                <include name="geotk-referencing.jar"/>
-                                <include name="geotk-render.jar"/>
-                                <include name="geotk-style.jar"/>
-                                <include name="geotk-utility.jar"/>
-                                <include name="geotk-widgets-swing.jar"/>
-                                <include name="geotk-widgets-swing-pending.jar"/>
-                                <include name="geotk-wms.jar"/>
-                                <include name="geotk-world-image.jar"/>
-                                <include name="geotk-xml-gml.jar"/>
-                                <include name="geotk-xml-ogc.jar"/>
-                                <include name="geotk-xml-se.jar"/>
-                                <include name="geotk-xml-sld.jar"/>
-                                <include name="geotk-xml-wms.jar"/>
-                                <include name="gtm-api.jar"/>
-                                <include name="gtm-coverage.jar"/>
-                                <include name="gtm-cql.jar"/>
-                                <include name="gtm-data.jar"/>
-                                <include name="gtm-geotiff.jar"/>
-                                <include name="gtm-jdbc.jar"/>
-                                <include name="gtm-jdbc-core.jar"/>
-                                <include name="gtm-jdbc-postgis.jar"/>
-                                <include name="gtm-main.jar"/>
-                                <include name="gtm-metadata.jar"/>
-                                <include name="gtm-referencing.jar"/>
-                                <include name="gtm-shapefile.jar"/>
-                                <include name="itext.jar"/>
-                                <include name="jasperreports.jar"/>
-                                <include name="jcommon.jar"/>
-                                <include name="jdom.jar"/>
-                                <include name="jdtcore.jar"/>
-                                <include name="jfreechart.jar"/>
-                                <include name="jlfgr.jar"/>
-                                <include name="jts.jar"/>
-                                <include name="org-netbeans-swing-outline.jar"/>
-                                <include name="postgresql.jar"/>
-                                <include name="swingx.jar"/>
-                                <include name="timingframework.jar"/>
-                                <include name="vecmath.jar"/>
-                                <include name="xalan.jar"/>
-                                <include name="xml-apis.jar"/>
-                                <include name="xml-apis-ext.jar"/>
-                                <include name="xmlgraphics-commons.jar"/>
-                                <include name="geotk-coverageio-pending.jar"/>
-                              </patternset>
-                            </fileset>
-                        </copy>
-
-                        <echo>=&gt; DISPATCHING GO3 JARS -------------------------------------</echo>
-                        <echo>=&gt; Deleting existing jars</echo>
-                        <delete>
-                            <fileset dir="${PUZZLE_GO3_MODULE}" includes="*.jar" />
-                        </delete>
-                        <echo>=&gt; Copying new jars</echo>
-                        <copy todir="${PUZZLE_GO3_MODULE}">
-                            <fileset dir="${GEOTK_BINARY}" casesensitive="yes">
-                              <patternset id="go3">
-                                <include name="aopalliance.jar"/>
-                                <include name="ardor3d-animations.jar"/>
-                                <include name="ardor3d-awt.jar"/>
-                                <include name="ardor3d-collada.jar"/>
-                                <include name="ardor3d-core.jar"/>
-                                <include name="ardor3d-effects.jar"/>
-                                <include name="ardor3d-lwjgl.jar"/>
-                                <include name="geotk-go3.jar"/>
-                                <include name="google-collections.jar"/>
-                                <include name="guice.jar"/>
-                                <include name="jibx-extras.jar"/>
-                                <include name="jibx-run.jar"/>
-                                <include name="lwjgl.jar"/>
-                                <include name="lwjgl_util.jar"/>
-                              </patternset>
-                            </fileset>
-                        </copy>
-                        <echo>=&gt; Done !</echo>
-
-                        <!--delete dir="${GEOTK_BINARY}"/-->
-
-                        <echo>=&gt; Done !</echo>
-                        
+                        <ant antfile="./build.xml" inheritRefs="true" />
                     </tasks>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.0.2</version>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
                 </configuration>
             </plugin>
         </plugins>

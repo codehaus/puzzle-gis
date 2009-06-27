@@ -642,7 +642,6 @@
                 <package>org.geotoolkit.display2d.style</package>
                 <package>org.geotoolkit.display2d.style.j2d</package>
                 <package>org.geotoolkit.display2d.style.labeling</package>
-                <package>org.geotoolkit.display2d.style.labeling.intelligent</package>
                 <package>org.geotoolkit.display2d.style.raster</package>
                 <package>org.geotoolkit.display2d.style.renderer</package>
                 <package>org.geotoolkit.factory</package>
@@ -655,6 +654,7 @@
                 <package>org.geotoolkit.filter.binaryspatial</package>
                 <package>org.geotoolkit.filter.capability</package>
                 <package>org.geotoolkit.filter.function</package>
+                <package>org.geotoolkit.filter.function.math</package>
                 <package>org.geotoolkit.filter.identity</package>
                 <package>org.geotoolkit.filter.sort</package>
                 <package>org.geotoolkit.filter.visitor</package>
@@ -667,6 +667,7 @@
                 <package>org.geotoolkit.geometry.isoonjts.spatialschema.geometry.complex</package>
                 <package>org.geotoolkit.geometry.isoonjts.spatialschema.geometry.geometry</package>
                 <package>org.geotoolkit.geometry.isoonjts.spatialschema.geometry.primitive</package>
+                <package>org.geotoolkit.geometry.jts</package>
                 <package>org.geotoolkit.gml.xml</package>
                 <package>org.geotoolkit.gml.xml.v212</package>
                 <package>org.geotoolkit.gml.xml.v311</package>
@@ -674,29 +675,20 @@
                 <package>org.geotoolkit.gui.headless</package>
                 <package>org.geotoolkit.gui.swing</package>
                 <package>org.geotoolkit.gui.swing.contexttree</package>
-                <package>org.geotoolkit.gui.swing.contexttree.column</package>
-                <package>org.geotoolkit.gui.swing.contexttree.node</package>
-                <package>org.geotoolkit.gui.swing.contexttree.popup</package>
-                <package>org.geotoolkit.gui.swing.contexttree.renderer</package>
+                <package>org.geotoolkit.gui.swing.contexttree.menu</package>
                 <package>org.geotoolkit.gui.swing.crschooser</package>
                 <package>org.geotoolkit.gui.swing.event</package>
                 <package>org.geotoolkit.gui.swing.filter</package>
-                <package>org.geotoolkit.gui.swing.go</package>
-                <package>org.geotoolkit.gui.swing.go.control</package>
-                <package>org.geotoolkit.gui.swing.go.control.creation</package>
-                <package>org.geotoolkit.gui.swing.go.control.information</package>
-                <package>org.geotoolkit.gui.swing.go.control.navigation</package>
-                <package>org.geotoolkit.gui.swing.go.control.selection</package>
-                <package>org.geotoolkit.gui.swing.go.decoration</package>
-                <package>org.geotoolkit.gui.swing.go.extractor</package>
+                <package>org.geotoolkit.gui.swing.go2</package>
+                <package>org.geotoolkit.gui.swing.go2.control</package>
+                <package>org.geotoolkit.gui.swing.go2.control.creation</package>
+                <package>org.geotoolkit.gui.swing.go2.control.information</package>
+                <package>org.geotoolkit.gui.swing.go2.control.navigation</package>
+                <package>org.geotoolkit.gui.swing.go2.control.selection</package>
+                <package>org.geotoolkit.gui.swing.go2.decoration</package>
+                <package>org.geotoolkit.gui.swing.go2.extractor</package>
                 <package>org.geotoolkit.gui.swing.image</package>
-                <package>org.geotoolkit.gui.swing.map.map2d</package>
-                <package>org.geotoolkit.gui.swing.map.map2d.decoration</package>
-                <package>org.geotoolkit.gui.swing.maptree</package>
-                <package>org.geotoolkit.gui.swing.maptree.menu</package>
                 <package>org.geotoolkit.gui.swing.misc</package>
-                <package>org.geotoolkit.gui.swing.misc.Render</package>
-                <package>org.geotoolkit.gui.swing.misc.filter</package>
                 <package>org.geotoolkit.gui.swing.propertyedit</package>
                 <package>org.geotoolkit.gui.swing.propertyedit.filterproperty</package>
                 <package>org.geotoolkit.gui.swing.propertyedit.model</package>
@@ -776,6 +768,7 @@
                 <package>org.geotoolkit.report.attribut.context</package>
                 <package>org.geotoolkit.report.attribut.context.title</package>
                 <package>org.geotoolkit.report.graphic</package>
+                <package>org.geotoolkit.report.graphic.chart</package>
                 <package>org.geotoolkit.report.graphic.legend</package>
                 <package>org.geotoolkit.report.graphic.map</package>
                 <package>org.geotoolkit.report.graphic.northarrow</package>
