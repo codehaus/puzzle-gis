@@ -244,8 +244,8 @@ public class Tree extends JTree {
 
     private class ToolCellRenderer extends DefaultTreeCellRenderer{
 
-        private final Icon ICON_TOOL     = ImageUtilities.image2Icon(ImageUtilities.loadImage("/org/puzzle/core/windows/toolbox/tree/tool.png"));
-        private final Icon ICON_TOOLPACK = ImageUtilities.image2Icon(ImageUtilities.loadImage("/org/puzzle/core/windows/toolbox/tree/tools.png"));
+        private final Icon ICON_TOOL     = ImageUtilities.image2Icon(ImageUtilities.loadImage("org/puzzle/core/windows/toolbox/tree/tool.png"));
+        private final Icon ICON_TOOLPACK = ImageUtilities.image2Icon(ImageUtilities.loadImage("org/puzzle/core/windows/toolbox/tree/tools.png"));
 
         /**
          * {@inheritDoc }
