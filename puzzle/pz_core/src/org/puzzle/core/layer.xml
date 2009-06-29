@@ -307,5 +307,7 @@
                 </file>
             </folder>
         </folder>
+        <folder name="Tools">
+        </folder>
     </folder>
 </filesystem>
