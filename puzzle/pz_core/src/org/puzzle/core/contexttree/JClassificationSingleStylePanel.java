@@ -28,6 +28,6 @@ package org.puzzle.core.contexttree;
  *
  * @author Johann Sorel (Puzzle-GIS)
  */
-public class JCategoryStylePanel extends org.geotoolkit.gui.swing.propertyedit.styleproperty.JCategoryStylePanel{
+public class JClassificationSingleStylePanel extends org.geotoolkit.gui.swing.propertyedit.styleproperty.JClassificationSingleStylePanel{
 
 }

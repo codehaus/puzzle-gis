@@ -61,6 +61,10 @@
             <file name="search-results.settings_hidden"/>
         </folder>
          <folder name="Modes">
+            <folder name="explorer">
+                <file name="projectTabLogical_tc.wstcref" url="projectTabLogical_tcWstcref.xml"/>
+                <file name="projectTab_tc.wstcref" url="projectTab_tcWstcref.xml"/>
+            </folder>
             <folder name="navigator">
                 <file name="navigatorTC.wstcref_hidden"/>
             </folder>
