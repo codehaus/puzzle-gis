@@ -35,6 +35,29 @@
   <defs
      id="defs3435">
     <linearGradient
+       inkscape:collect="always"
+       id="linearGradient3982">
+      <stop
+         style="stop-color:#ffffff;stop-opacity:1;"
+         offset="0"
+         id="stop3984" />
+      <stop
+         style="stop-color:#ffffff;stop-opacity:0;"
+         offset="1"
+         id="stop3986" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient3966">
+      <stop
+         style="stop-color:#ffffff;stop-opacity:0;"
+         offset="0"
+         id="stop3968" />
+      <stop
+         style="stop-color:#ffffff;stop-opacity:1;"
+         offset="1"
+         id="stop3970" />
+    </linearGradient>
+    <linearGradient
        id="linearGradient4575">
       <stop
          id="stop4577"
@@ -1265,6 +1288,33 @@
          stdDeviation="20.828053"
          id="feGaussianBlur3962" />
     </filter>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3966"
+       id="linearGradient3972"
+       x1="2202.6594"
+       y1="374.14374"
+       x2="2267.166"
+       y2="374.14374"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3966"
+       id="linearGradient3980"
+       gradientUnits="userSpaceOnUse"
+       x1="2202.6594"
+       y1="374.14374"
+       x2="2267.166"
+       y2="374.14374" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3982"
+       id="linearGradient3988"
+       x1="1577.2002"
+       y1="373.12126"
+       x2="2167.2966"
+       y2="368.10895"
+       gradientUnits="userSpaceOnUse" />
   </defs>
   <sodipodi:namedview
      inkscape:window-height="961"
@@ -1278,15 +1328,15 @@
      bordercolor="#666666"
      pagecolor="#ffffff"
      id="base"
-     inkscape:zoom="0.7053726"
-     inkscape:cx="1869.3871"
-     inkscape:cy="491.85452"
+     inkscape:zoom="0.9975475"
+     inkscape:cx="1980.9025"
+     inkscape:cy="411.65784"
      inkscape:window-x="0"
      inkscape:window-y="25"
      inkscape:current-layer="svg3432"
      showgrid="false" />
   <image
-     xlink:href="/home/eclesia/Images/090529185754_83.jpg"
+     xlink:href="/home/sorel/Images/090529185754_83.jpg"
      sodipodi:absref="/home/eclesia/Images/090529185754_83.jpg"
      width="1708.9684"
      height="1068.1053"
@@ -1302,7 +1352,7 @@
      height="462.26477"
      x="1581.0369"
      y="-68.643898"
-     inkscape:export-filename="/home/eclesia/loader.png"
+     inkscape:export-filename="/home/sorel/loader.png"
      inkscape:export-xdpi="57.213505"
      inkscape:export-ydpi="57.213505" />
   <g
@@ -1393,27 +1443,27 @@
        sodipodi:type="arc" />
   </g>
   <rect
-     style="opacity:0.6;fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:1.20527005;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+     style="opacity:0.59999999999999998;fill:#000000;fill-opacity:1;stroke:url(#linearGradient3988);stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
      id="rect4139"
-     width="803.03528"
-     height="55.129951"
-     x="1576.2826"
-     y="343.42978" />
+     width="801.61761"
+     height="50.876858"
+     x="1577.7002"
+     y="347.68283" />
   <text
      xml:space="preserve"
-     style="font-size:15.00736904px;font-style:normal;font-weight:normal;text-align:start;text-anchor:start;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
-     x="1623.2468"
-     y="356.74338"
+     style="font-size:14.45339298px;font-style:normal;font-weight:normal;text-align:start;text-anchor:start;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+     x="1597.4207"
+     y="366.2482"
      id="text3698"
-     transform="scale(0.9781253,1.0223639)"><tspan
+     transform="scale(0.9927074,1.0073461)"><tspan
        sodipodi:role="line"
-       x="1623.2468"
-       y="356.74338"
-       id="tspan3390">Puzzle-GIS is based on NetBeans6.7 Platform. This project is under GNU General Public License version 3 </tspan><tspan
+       x="1597.4207"
+       y="366.2482"
+       id="tspan3928">Puzzle-GIS is based on NetBeans6.7 Platform. This project is under GNU GPL version 3 </tspan><tspan
        sodipodi:role="line"
-       x="1623.2468"
-       y="375.50259"
-       id="tspan3396">with Classpath exception (GPL+CE).For more information, please visit http://puzzle-gis.codehaus.org.</tspan></text>
+       x="1597.4207"
+       y="384.31494"
+       id="tspan3936">with Classpath exception (GPL+CE).please visit http://puzzle-gis.codehaus.org.</tspan></text>
   <text
      xml:space="preserve"
      style="font-size:47.75890732px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:url(#radialGradient4573);fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Mallige;-inkscape-font-specification:Mallige"
@@ -1554,5 +1604,34 @@
            y="144.60106"
            x="-692.1051">W</tspan></text>
     </g>
+  </g>
+  <g
+     id="g3974"
+     transform="matrix(0.7808112,0,0,0.7808112,512.66276,78.492257)">
+    <rect
+       y="365.94986"
+       x="2228.1367"
+       height="16.387785"
+       width="124.13187"
+       id="rect3930"
+       style="fill:none;fill-opacity:1;stroke:url(#linearGradient3980);stroke-width:33.94200134;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <image
+       y="358.20026"
+       x="2246.1069"
+       id="image3053"
+       height="37.557739"
+       width="113.7022"
+       sodipodi:absref="/home/sorel/geomatys_1.png"
+       xlink:href="/home/sorel/geomatys_1.png" />
+    <text
+       id="text3938"
+       y="367.32507"
+       x="2223.1069"
+       style="font-size:13.63181686px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       xml:space="preserve"><tspan
+         y="367.32507"
+         x="2223.1069"
+         id="tspan3940"
+         sodipodi:role="line">Sponsored by</tspan></text>
   </g>
 </svg>
