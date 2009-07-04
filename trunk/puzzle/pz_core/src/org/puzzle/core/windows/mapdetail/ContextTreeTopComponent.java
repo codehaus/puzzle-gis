@@ -89,7 +89,7 @@ final class ContextTreeTopComponent extends TopComponent implements LookupListen
         }
 
         //search filter panels
-        DefaultMutableTreeNode filterNodes = new DefaultMutableTreeNode("Filters");
+        DefaultMutableTreeNode filterNodes = new DefaultMutableTreeNode(NbBundle.getMessage(ContextTreeTopComponent.class, "filter"));
         lk = Lookups.forPath("/Puzzle/ContextTree/FilterPanels");
         for(PropertyPane p : lk.lookupAll(PropertyPane.class)){
             filterNodes.add(new DefaultMutableTreeNode(p));
@@ -97,7 +97,7 @@ final class ContextTreeTopComponent extends TopComponent implements LookupListen
         root.add(filterNodes);
 
         //search style panels
-        DefaultMutableTreeNode styleNodes = new DefaultMutableTreeNode("Styles");
+        DefaultMutableTreeNode styleNodes = new DefaultMutableTreeNode(NbBundle.getMessage(ContextTreeTopComponent.class, "symbology"));
         lk = Lookups.forPath("/Puzzle/ContextTree/StylePanels");
         for(PropertyPane p : lk.lookupAll(PropertyPane.class)){
             styleNodes.add(new DefaultMutableTreeNode(p));

@@ -70,6 +70,7 @@
             <include name="fop.jar"/>
             <include name="geotk-coverage.jar"/>
             <include name="geotk-coverageio.jar"/>
+            <include name="geotk-coverageio-pending.jar"/>
             <include name="geotk-display.jar"/>
             <include name="geotk-engine-core.jar"/>
             <include name="geotk-epsg.jar"/>
@@ -82,10 +83,12 @@
             <include name="geotk-metadata.jar"/>
             <include name="geotk-referencing.jar"/>
             <include name="geotk-render.jar"/>
+            <include name="geotk-setup.jar"/>
             <include name="geotk-style.jar"/>
             <include name="geotk-utility.jar"/>
             <include name="geotk-widgets-swing.jar"/>
             <include name="geotk-widgets-swing-pending.jar"/>
+            <include name="geotk-wizards-swing.jar"/>
             <include name="geotk-wms.jar"/>
             <include name="geotk-world-image.jar"/>
             <include name="geotk-xml-gml.jar"/>
@@ -122,7 +125,7 @@
             <include name="xml-apis.jar"/>
             <include name="xml-apis-ext.jar"/>
             <include name="xmlgraphics-commons.jar"/>
-            <include name="geotk-coverageio-pending.jar"/>
+            <include name="wizard.jar"/>
         </patternset>
     </fileset>
 

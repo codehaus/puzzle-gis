@@ -609,6 +609,7 @@
                 <package>org.eclipse.jdt.internal.formatter.align</package>
                 <package>org.eclipse.jdt.internal.formatter.comment</package>
                 <package>org.eclipse.jdt.internal.formatter.old</package>
+                <package>org.geotoolkit</package>
                 <package>org.geotoolkit.console</package>
                 <package>org.geotoolkit.coverage</package>
                 <package>org.geotoolkit.coverage.grid</package>
@@ -722,7 +723,9 @@
                 <package>org.geotoolkit.internal.jdbc</package>
                 <package>org.geotoolkit.internal.referencing</package>
                 <package>org.geotoolkit.internal.rmi</package>
+                <package>org.geotoolkit.internal.setup</package>
                 <package>org.geotoolkit.internal.swing</package>
+                <package>org.geotoolkit.internal.wizard</package>
                 <package>org.geotoolkit.io</package>
                 <package>org.geotoolkit.io.wkt</package>
                 <package>org.geotoolkit.lang</package>
@@ -794,7 +797,6 @@
                 <package>org.geotoolkit.wms.xml.v111</package>
                 <package>org.geotoolkit.wms.xml.v130</package>
                 <package>org.geotoolkit.xml</package>
-                <package>org.geotools</package>
                 <package>org.geotools.coverage.grid.io</package>
                 <package>org.geotools.coverage.grid.io.imageio</package>
                 <package>org.geotools.coverage.grid.io.imageio.geotiff.codes</package>
@@ -978,6 +980,10 @@
                 <package>org.jfree.ui.action</package>
                 <package>org.jfree.ui.tabbedui</package>
                 <package>org.jfree.util</package>
+                <package>org.netbeans.api.wizard</package>
+                <package>org.netbeans.api.wizard.displayer</package>
+                <package>org.netbeans.modules.wizard</package>
+                <package>org.netbeans.spi.wizard</package>
                 <package>org.netbeans.swing.etable</package>
                 <package>org.netbeans.swing.outline</package>
                 <package>org.postgresql</package>
@@ -1186,6 +1192,10 @@
                 <binary-origin>release/modules/ext/geotk-render.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
+                <runtime-relative-path>ext/geotk-setup.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/geotk-setup.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
                 <runtime-relative-path>ext/geotk-style.jar</runtime-relative-path>
                 <binary-origin>release/modules/ext/geotk-style.jar</binary-origin>
             </class-path-extension>
@@ -1200,6 +1210,10 @@
             <class-path-extension>
                 <runtime-relative-path>ext/geotk-widgets-swing-pending.jar</runtime-relative-path>
                 <binary-origin>release/modules/ext/geotk-widgets-swing-pending.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/geotk-wizards-swing.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/geotk-wizards-swing.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
                 <runtime-relative-path>ext/geotk-wms.jar</runtime-relative-path>
@@ -1344,6 +1358,10 @@
             <class-path-extension>
                 <runtime-relative-path>ext/xmlgraphics-commons.jar</runtime-relative-path>
                 <binary-origin>release/modules/ext/xmlgraphics-commons.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/wizard.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/wizard.jar</binary-origin>
             </class-path-extension>
         </data>
     </configuration>
