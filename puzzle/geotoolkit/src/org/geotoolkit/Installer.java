@@ -15,7 +15,7 @@
  *    Lesser General Public License for more details.
  */
 
-package org.geotools;
+package org.geotoolkit;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
