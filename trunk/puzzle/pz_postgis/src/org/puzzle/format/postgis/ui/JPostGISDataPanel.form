@@ -36,7 +36,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="but_refresh" min="-2" max="-2" attributes="1"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" pref="392" max="32767" attributes="0"/>
+                      <Component id="jScrollPane1" pref="424" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jXTitledPanel1" min="-2" max="-2" attributes="0"/>
