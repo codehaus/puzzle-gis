@@ -99,6 +99,11 @@
             <artifactId>geotk-widgets-swing</artifactId>
             <version>${geotoolkit.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.geotoolkit</groupId>
+            <artifactId>geotk-wizards-swing</artifactId>
+            <version>${geotoolkit.version}</version>
+        </dependency>
 
         <dependency>
             <groupId>org.geotoolkit.pending</groupId>
