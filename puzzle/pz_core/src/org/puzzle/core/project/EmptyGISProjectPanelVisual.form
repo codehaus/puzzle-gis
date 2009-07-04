@@ -24,10 +24,10 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="projectLocationLabel" min="-2" max="-2" attributes="0"/>
-                          <Component id="projectNameTextField" pref="257" max="32767" attributes="0"/>
+                          <Component id="projectNameTextField" pref="265" max="32767" attributes="0"/>
                           <Component id="projectNameLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="projectLocationTextField" pref="162" max="32767" attributes="0"/>
+                              <Component id="projectLocationTextField" pref="185" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="browseButton" min="-2" max="-2" attributes="0"/>
                           </Group>

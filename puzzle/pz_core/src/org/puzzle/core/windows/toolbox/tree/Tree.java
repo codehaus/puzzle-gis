@@ -78,17 +78,14 @@ public class Tree extends JTree {
 
         addMouseListener(new ToolSelectionListener());
 
-        Lookup lk = Lookups.forPath("/Puzzle/Tools");
-        Result<? extends Object> objs = lk.lookupResult(Object.class);
-
-
-        Collection<? extends Item<? extends Object>> items = objs.allItems();
-
-        System.out.println("iciiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii");
-        for(Item obj : items){
-            System.out.println(obj);
-            System.out.println(obj.getClass());
-        }
+//        Lookup lk = Lookups.forPath("/Puzzle/Tools");
+//        Result<? extends Object> objs = lk.lookupResult(Object.class);
+//
+//        Collection<? extends Item<? extends Object>> items = objs.allItems();
+//        for(Item obj : items){
+//            System.out.println(obj);
+//            System.out.println(obj.getClass());
+//        }
 
 
     }
