@@ -28,7 +28,7 @@
 <!-- //////////////////// PROPERTIES //////////////////////// -->
     <property name="GEOTK_BINARY" value="./lib" />
     <property name="PUZZLE_GEOAPI_MODULE" value="../puzzle/geoapi/release/modules/ext" />
-    <property name="PUZZLE_GEOTK_MODULE" value="../puzzle/geotools/release/modules/ext" />
+    <property name="PUZZLE_GEOTK_MODULE" value="../puzzle/geotoolkit/release/modules/ext" />
     <property name="PUZZLE_GO3_MODULE" value="../puzzle/pz_go3/release/modules/ext" />
 
     <fileset id="geoapi" dir="${GEOTK_BINARY}" casesensitive="yes">

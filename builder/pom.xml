@@ -23,7 +23,7 @@
 
 
   <!-- =========================================================== -->
-  <!--     GeoTools, Geomatys and maven repositories     -->
+  <!--     Maven repositories      -->
   <!-- =========================================================== -->
     <repositories>
         <repository>
@@ -198,7 +198,6 @@
 
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.0.2</version>
                 <configuration>
                     <source>1.6</source>
                     <target>1.6</target>
@@ -208,3 +207,4 @@
     </build>
 
 </project>
+
