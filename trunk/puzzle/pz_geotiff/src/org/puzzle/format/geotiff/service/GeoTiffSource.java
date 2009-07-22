@@ -21,16 +21,19 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.Map;
+import org.geotoolkit.coverage.geotiff.GeoTIFFactory;
 import org.geotoolkit.coverage.grid.GridCoverage2D;
-import org.geotools.data.DataSourceException;
-import org.geotools.factory.CommonFactoryFinder;
-import org.geotools.gce.geotiff.GeoTiffReader;
+import org.geotoolkit.coverage.io.CoverageReader;
+import org.geotoolkit.data.DataSourceException;
 import org.geotoolkit.map.MapLayer;
 import org.geotoolkit.map.MapBuilder;
 import org.geotoolkit.style.DefaultStyleFactory;
 import org.geotoolkit.style.MutableStyle;
 import org.geotoolkit.util.RandomStyleFactory;
 
+import org.opengis.referencing.FactoryException;
+import org.opengis.referencing.operation.NoninvertibleTransformException;
+import org.opengis.referencing.operation.TransformException;
 import org.openide.util.Exceptions;
 import org.openide.util.ImageUtilities;
 
@@ -93,23 +96,35 @@ public class GeoTiffSource extends GISSource{
      */
     @Override
     public void load() {
-        if(gc2d != null) return;
-
-        GeoTiffReader reader;
         try {
-            reader = new GeoTiffReader(geotiff);
-            gc2d = (GridCoverage2D)reader.read(null);
-        } catch (DataSourceException ex) {
-            setState(GISSourceState.LOADING_ERROR);
+            if (gc2d != null) {
+                return;
+            }
+            GeoTIFFactory geoTiffFactory = new GeoTIFFactory();
+            CoverageReader reader = geoTiffFactory.createSimpleReader(geotiff);
+            try {
+                try {
+                    gc2d = (GridCoverage2D) reader.read(null);
+                } catch (FactoryException ex) {
+                    Exceptions.printStackTrace(ex);
+                } catch (TransformException ex) {
+                    Exceptions.printStackTrace(ex);
+                }
+            } catch (DataSourceException ex) {
+                setState(GISSourceState.LOADING_ERROR);
+                Exceptions.printStackTrace(ex);
+                return;
+            } catch (IOException ex) {
+                setState(GISSourceState.LOADING_ERROR);
+                Exceptions.printStackTrace(ex);
+                return;
+            }
+            setState(GISSourceState.LOADED);
+        } catch (IOException ex) {
             Exceptions.printStackTrace(ex);
-            return;
-        } catch (IOException ex){
-            setState(GISSourceState.LOADING_ERROR);
+        } catch (NoninvertibleTransformException ex) {
             Exceptions.printStackTrace(ex);
-            return;
         }
-        
-        setState(GISSourceState.LOADED);
     }
 
     private class GeoTiffLayerCreation implements LayerCreation{

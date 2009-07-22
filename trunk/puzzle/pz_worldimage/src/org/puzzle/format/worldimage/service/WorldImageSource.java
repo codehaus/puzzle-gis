@@ -23,7 +23,6 @@ import java.util.Map;
 
 import org.geotoolkit.coverage.io.CoverageReader;
 import org.geotoolkit.coverage.wi.WorldImageFactory;
-import org.geotools.factory.CommonFactoryFinder;
 import org.geotoolkit.map.MapLayer;
 import org.geotoolkit.map.MapBuilder;
 import org.geotoolkit.style.DefaultStyleFactory;

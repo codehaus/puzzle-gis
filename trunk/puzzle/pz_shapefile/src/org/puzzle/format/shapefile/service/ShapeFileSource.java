@@ -22,10 +22,9 @@ import java.io.File;
 import java.util.Collections;
 import java.util.Map;
 
-import org.geotools.data.DataStore;
-import org.geotools.data.DataStoreFinder;
-import org.geotools.data.FeatureSource;
-import org.geotools.factory.CommonFactoryFinder;
+import org.geotoolkit.data.DataStore;
+import org.geotoolkit.data.DataStoreFinder;
+import org.geotoolkit.data.FeatureSource;
 import org.geotoolkit.map.MapLayer;
 import org.geotoolkit.map.MapBuilder;
 import org.geotoolkit.style.DefaultStyleFactory;

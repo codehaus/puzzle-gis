@@ -23,7 +23,6 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import org.geotools.factory.CommonFactoryFinder;
 import org.geotoolkit.map.MapLayer;
 import org.geotoolkit.style.DefaultDescription;
 import org.geotoolkit.style.DefaultStyleFactory;

@@ -35,7 +35,6 @@ import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import org.geotoolkit.wms.WebMapServer;
 import org.geotoolkit.wms.xml.AbstractWMSCapabilities;
-import org.geotools.factory.CommonFactoryFinder;
 import org.geotoolkit.map.MapLayer;
 import org.geotoolkit.style.DefaultStyleFactory;
 import org.jdesktop.swingx.combobox.ListComboBoxModel;

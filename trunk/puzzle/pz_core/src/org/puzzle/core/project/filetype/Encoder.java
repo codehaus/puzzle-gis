@@ -26,9 +26,8 @@ import java.util.List;
 import java.util.Map;
 import javax.xml.bind.JAXBException;
 
+import org.geotoolkit.data.DefaultQuery;
 import org.geotoolkit.map.FeatureMapLayer;
-import org.geotools.data.DefaultQuery;
-import org.geotools.factory.CommonFactoryFinder;
 import org.geotoolkit.map.MapBuilder;
 import org.geotoolkit.map.MapContext;
 import org.geotoolkit.map.MapLayer;
