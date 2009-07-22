@@ -18,9 +18,8 @@ package org.puzzle.format.postgis.ui;
 
 import java.util.HashMap;
 import java.util.Map;
-import org.geotools.data.postgis.PostgisNGDataStoreFactory;
-import static org.geotools.data.postgis.PostgisNGDataStoreFactory.*;
-
+import static org.geotoolkit.jdbc.JDBCDataStoreFactory.*;
+import static org.geotoolkit.data.postgis.PostgisNGDataStoreFactory.LOOSEBBOX;
 /**
  * @author Johann Sorel (Püzzle-GIS)
  */

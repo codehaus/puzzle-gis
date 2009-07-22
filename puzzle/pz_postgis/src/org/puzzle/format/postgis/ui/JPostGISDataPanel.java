@@ -37,11 +37,12 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
-import org.geotools.data.DataStore;
-import org.geotools.data.DataStoreFinder;
-import org.geotools.data.postgis.PostgisNGDataStoreFactory;
-import static org.geotools.data.postgis.PostgisNGDataStoreFactory.*;
+import static org.geotoolkit.jdbc.JDBCDataStoreFactory.*;
+import static org.geotoolkit.data.postgis.PostgisNGDataStoreFactory.LOOSEBBOX;
 
+import org.geotoolkit.data.DataStore;
+import org.geotoolkit.jdbc.JDBCDataStoreFactory;
+import org.geotoolkit.data.DataStoreFinder;
 import org.jdesktop.swingx.JXTitledPanel;
 
 import org.openide.util.Exceptions;

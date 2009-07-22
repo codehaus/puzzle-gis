@@ -22,7 +22,7 @@ import javax.swing.JTable;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.TableModel;
 
-import org.geotools.data.DataAccessFactory.Param;
+import org.geotoolkit.data.DataAccessFactory.Param;
 import org.openide.util.NbBundle;
 
 /**

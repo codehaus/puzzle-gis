@@ -21,7 +21,6 @@ import java.net.URL;
 import java.util.Map;
 
 import org.geotoolkit.wms.WebMapServer;
-import org.geotools.factory.CommonFactoryFinder;
 import org.geotoolkit.map.MapBuilder;
 import org.geotoolkit.map.MapLayer;
 import org.geotoolkit.style.DefaultStyleFactory;

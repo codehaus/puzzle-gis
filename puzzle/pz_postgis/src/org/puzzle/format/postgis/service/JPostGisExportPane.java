@@ -18,11 +18,11 @@ package org.puzzle.format.postgis.service;
 
 import java.awt.BorderLayout;
 import java.io.IOException;
-import org.geotools.data.DataStore;
-import org.geotools.data.DataStoreFinder;
-import org.geotools.data.DefaultTransaction;
-import org.geotools.data.FeatureSource;
-import org.geotools.data.FeatureStore;
+import org.geotoolkit.data.DataStore;
+import org.geotoolkit.data.DataStoreFinder;
+import org.geotoolkit.data.DefaultTransaction;
+import org.geotoolkit.data.FeatureSource;
+import org.geotoolkit.data.FeatureStore;
 import org.opengis.feature.simple.SimpleFeature;
 import org.opengis.feature.simple.SimpleFeatureType;
 import org.puzzle.core.project.source.capabilities.JExportPane;

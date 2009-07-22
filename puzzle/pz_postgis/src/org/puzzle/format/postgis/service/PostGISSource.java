@@ -21,9 +21,9 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.geotools.data.DataStore;
-import org.geotools.data.DataStoreFinder;
-import org.geotools.data.FeatureSource;
+import org.geotoolkit.data.DataStore;
+import org.geotoolkit.data.DataStoreFinder;
+import org.geotoolkit.data.FeatureSource;
 import org.geotoolkit.map.MapBuilder;
 import org.geotoolkit.map.MapLayer;
 import org.geotoolkit.style.DefaultStyleFactory;
@@ -43,7 +43,8 @@ import org.puzzle.core.project.source.capabilities.LayerChooserMonitor;
 import org.puzzle.core.project.source.capabilities.LayerCreation;
 import org.puzzle.core.project.source.GISLayerSource;
 
-import static org.geotools.data.postgis.PostgisNGDataStoreFactory.*;
+import static org.geotoolkit.jdbc.JDBCDataStoreFactory.*;
+import static org.geotoolkit.data.postgis.PostgisNGDataStoreFactory.LOOSEBBOX;
 
 /**
  * PostGIS source object.

@@ -53,12 +53,14 @@
   <!-- =========================================================== -->
 
     <dependencies>
+        <!-- Apache dependencies -->
         <dependency>
             <groupId>org.apache.derby</groupId>
             <artifactId>derby</artifactId>
             <version>10.4.2.0</version>
         </dependency>
 
+        <!-- Geotoolkit dependencies -->
         <dependency>
             <groupId>org.geotoolkit</groupId>
             <artifactId>geotk-coverage</artifactId>
@@ -76,17 +78,17 @@
         </dependency>
         <dependency>
             <groupId>org.geotoolkit</groupId>
+            <artifactId>geotk-epsg</artifactId>
+            <version>${geotoolkit.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.geotoolkit</groupId>
             <artifactId>geotk-metadata</artifactId>
             <version>${geotoolkit.version}</version>
         </dependency>
         <dependency>
             <groupId>org.geotoolkit</groupId>
             <artifactId>geotk-referencing</artifactId>
-            <version>${geotoolkit.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.geotoolkit</groupId>
-            <artifactId>geotk-epsg</artifactId>
             <version>${geotoolkit.version}</version>
         </dependency>
         <dependency>
@@ -105,9 +107,16 @@
             <version>${geotoolkit.version}</version>
         </dependency>
 
+        <!-- Geotoolkit-Pending dependencies -->
+
         <dependency>
             <groupId>org.geotoolkit.pending</groupId>
-            <artifactId>geotk-go3</artifactId>
+            <artifactId>geotk-cql</artifactId>
+            <version>${geotoolkit.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.geotoolkit.pending</groupId>
+            <artifactId>geotk-datastore-core</artifactId>
             <version>${geotoolkit.version}</version>
         </dependency>
         <dependency>
@@ -117,7 +126,42 @@
         </dependency>
         <dependency>
             <groupId>org.geotoolkit.pending</groupId>
+            <artifactId>geotk-feature</artifactId>
+            <version>${geotoolkit.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.geotoolkit.pending</groupId>
+            <artifactId>geotk-geotiff</artifactId>
+            <version>${geotoolkit.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.geotoolkit.pending</groupId>
+            <artifactId>geotk-go3</artifactId>
+            <version>${geotoolkit.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.geotoolkit.pending</groupId>
+            <artifactId>geotk-jdbc-postgis</artifactId>
+            <version>${geotoolkit.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.geotoolkit.pending</groupId>
+            <artifactId>geotk-jdbc-core</artifactId>
+            <version>${geotoolkit.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.geotoolkit.pending</groupId>
             <artifactId>geotk-jtswrapper</artifactId>
+            <version>${geotoolkit.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.geotoolkit.pending</groupId>
+            <artifactId>geotk-render</artifactId>
+            <version>${geotoolkit.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.geotoolkit.pending</groupId>
+            <artifactId>geotk-shapefile</artifactId>
             <version>${geotoolkit.version}</version>
         </dependency>
         <dependency>
@@ -141,20 +185,12 @@
             <version>${geotoolkit.version}</version>
         </dependency>
 
+        <!-- JDom dependencies -->
+        
         <dependency>
-            <groupId>org.geotools</groupId>
-            <artifactId>gtm-geotiff</artifactId>
-            <version>${geomodif.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.geotools</groupId>
-            <artifactId>gtm-jdbc-postgis</artifactId>
-            <version>${geomodif.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.geotools</groupId>
-            <artifactId>gtm-shapefile</artifactId>
-            <version>${geomodif.version}</version>
+            <groupId>org.jdom</groupId>
+            <artifactId>jdom</artifactId>
+            <version>1.1</version>
         </dependency>
     </dependencies>
 

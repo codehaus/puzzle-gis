@@ -40,11 +40,11 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SwingConstants;
 
-import org.geotools.data.DataUtilities;
-import org.geotools.data.FileDataStoreFactorySpi;
-import org.geotools.data.shapefile.ShapefileDataStore;
-import org.geotools.data.shapefile.ShapefileDataStoreFactory;
-import org.geotools.feature.SchemaException;
+import org.geotoolkit.data.FileDataStoreFactorySpi;
+import org.geotoolkit.data.shapefile.ShapefileDataStore;
+import org.geotoolkit.data.shapefile.ShapefileDataStoreFactory;
+import org.geotoolkit.feature.FeatureTypeUtilities;
+import org.geotoolkit.feature.SchemaException;
 import org.geotoolkit.gui.swing.crschooser.JCRSChooser;
 import org.geotoolkit.referencing.crs.DefaultGeographicCRS;
 
@@ -92,7 +92,7 @@ public class ShapeCreationTool extends JPanel {
 
             // Create the ShapefileDataStore from our factory based on our Map object
             ShapefileDataStore myData = (ShapefileDataStore) factory.createNewDataStore(map);
-            
+
             // Tell this shapefile what type of data it will store
             StringBuffer buffer = new StringBuffer();
             buffer.append("geom:");
@@ -123,12 +123,12 @@ public class ShapeCreationTool extends JPanel {
             }
 
             System.out.println(buffer);
-            
-            SimpleFeatureType featureType = DataUtilities.createType(name, buffer.toString());
+            //SimpleFeatureType featureType = DataUtilities.createType(name, buffer.toString());
+            SimpleFeatureType featureType = FeatureTypeUtilities.createType(name, buffer.toString());
 
             // Create the Shapefile (empty at this point)
             myData.createSchema(featureType);
-            
+
             // Tell the DataStore what type of Coordinate Reference System (CRS) to use
             myData.forceSchemaCRS(crs);
 

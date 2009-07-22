@@ -17,7 +17,7 @@
 package org.puzzle.core.project.source.capabilities;
 
 import javax.swing.JPanel;
-import org.geotools.data.FeatureSource;
+import org.geotoolkit.data.FeatureSource;
 import org.opengis.feature.simple.SimpleFeature;
 import org.opengis.feature.simple.SimpleFeatureType;
 

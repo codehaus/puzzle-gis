@@ -612,11 +612,35 @@
                 <package>org.geotoolkit</package>
                 <package>org.geotoolkit.console</package>
                 <package>org.geotoolkit.coverage</package>
+                <package>org.geotoolkit.coverage.geotiff</package>
+                <package>org.geotoolkit.coverage.geotiff.IIOMetadataAdpaters</package>
+                <package>org.geotoolkit.coverage.geotiff.IIOMetadataAdpaters.utils</package>
+                <package>org.geotoolkit.coverage.geotiff.IIOMetadataAdpaters.utils.codes</package>
+                <package>org.geotoolkit.coverage.geotiff.crs_adapters</package>
                 <package>org.geotoolkit.coverage.grid</package>
                 <package>org.geotoolkit.coverage.io</package>
                 <package>org.geotoolkit.coverage.processing</package>
                 <package>org.geotoolkit.coverage.processing.operation</package>
                 <package>org.geotoolkit.coverage.wi</package>
+                <package>org.geotoolkit.data</package>
+                <package>org.geotoolkit.data.collection</package>
+                <package>org.geotoolkit.data.concurrent</package>
+                <package>org.geotoolkit.data.crs</package>
+                <package>org.geotoolkit.data.jdbc</package>
+                <package>org.geotoolkit.data.jdbc.datasource</package>
+                <package>org.geotoolkit.data.jdbc.fidmapper</package>
+                <package>org.geotoolkit.data.memory</package>
+                <package>org.geotoolkit.data.postgis</package>
+                <package>org.geotoolkit.data.query</package>
+                <package>org.geotoolkit.data.shapefile</package>
+                <package>org.geotoolkit.data.shapefile.dbf</package>
+                <package>org.geotoolkit.data.shapefile.indexed</package>
+                <package>org.geotoolkit.data.shapefile.indexed.attribute</package>
+                <package>org.geotoolkit.data.shapefile.prj</package>
+                <package>org.geotoolkit.data.shapefile.shp</package>
+                <package>org.geotoolkit.data.shapefile.shp.xml</package>
+                <package>org.geotoolkit.data.store</package>
+                <package>org.geotoolkit.data.view</package>
                 <package>org.geotoolkit.display.axis</package>
                 <package>org.geotoolkit.display.canvas</package>
                 <package>org.geotoolkit.display.canvas.control</package>
@@ -646,6 +670,10 @@
                 <package>org.geotoolkit.display2d.style.raster</package>
                 <package>org.geotoolkit.display2d.style.renderer</package>
                 <package>org.geotoolkit.factory</package>
+                <package>org.geotoolkit.feature</package>
+                <package>org.geotoolkit.feature.collection</package>
+                <package>org.geotoolkit.feature.simple</package>
+                <package>org.geotoolkit.feature.type</package>
                 <package>org.geotoolkit.filter</package>
                 <package>org.geotoolkit.filter.accessor</package>
                 <package>org.geotoolkit.filter.adapter</package>
@@ -655,9 +683,16 @@
                 <package>org.geotoolkit.filter.binaryspatial</package>
                 <package>org.geotoolkit.filter.capability</package>
                 <package>org.geotoolkit.filter.function</package>
+                <package>org.geotoolkit.filter.function.geometry</package>
                 <package>org.geotoolkit.filter.function.math</package>
+                <package>org.geotoolkit.filter.function.other</package>
+                <package>org.geotoolkit.filter.function.string</package>
                 <package>org.geotoolkit.filter.identity</package>
                 <package>org.geotoolkit.filter.sort</package>
+                <package>org.geotoolkit.filter.text.commons</package>
+                <package>org.geotoolkit.filter.text.cql2</package>
+                <package>org.geotoolkit.filter.text.ecql</package>
+                <package>org.geotoolkit.filter.text.generated.parsers</package>
                 <package>org.geotoolkit.filter.visitor</package>
                 <package>org.geotoolkit.geometry</package>
                 <package>org.geotoolkit.geometry.array</package>
@@ -669,6 +704,7 @@
                 <package>org.geotoolkit.geometry.isoonjts.spatialschema.geometry.geometry</package>
                 <package>org.geotoolkit.geometry.isoonjts.spatialschema.geometry.primitive</package>
                 <package>org.geotoolkit.geometry.jts</package>
+                <package>org.geotoolkit.geometry.jts.coordinatesequence</package>
                 <package>org.geotoolkit.gml.xml</package>
                 <package>org.geotoolkit.gml.xml.v212</package>
                 <package>org.geotoolkit.gml.xml.v311</package>
@@ -707,6 +743,15 @@
                 <package>org.geotoolkit.image.io.stream</package>
                 <package>org.geotoolkit.image.io.text</package>
                 <package>org.geotoolkit.image.jai</package>
+                <package>org.geotoolkit.index</package>
+                <package>org.geotoolkit.index.quadtree</package>
+                <package>org.geotoolkit.index.quadtree.fs</package>
+                <package>org.geotoolkit.index.rtree</package>
+                <package>org.geotoolkit.index.rtree.cachefs</package>
+                <package>org.geotoolkit.index.rtree.database</package>
+                <package>org.geotoolkit.index.rtree.database.mysql</package>
+                <package>org.geotoolkit.index.rtree.fs</package>
+                <package>org.geotoolkit.index.rtree.memory</package>
                 <package>org.geotoolkit.internal</package>
                 <package>org.geotoolkit.internal.coverage</package>
                 <package>org.geotoolkit.internal.image</package>
@@ -728,6 +773,7 @@
                 <package>org.geotoolkit.internal.wizard</package>
                 <package>org.geotoolkit.io</package>
                 <package>org.geotoolkit.io.wkt</package>
+                <package>org.geotoolkit.jdbc</package>
                 <package>org.geotoolkit.lang</package>
                 <package>org.geotoolkit.legacy.array</package>
                 <package>org.geotoolkit.legacy.geom</package>
@@ -797,87 +843,6 @@
                 <package>org.geotoolkit.wms.xml.v111</package>
                 <package>org.geotoolkit.wms.xml.v130</package>
                 <package>org.geotoolkit.xml</package>
-                <package>org.geotools.coverage.grid.io</package>
-                <package>org.geotools.coverage.grid.io.imageio</package>
-                <package>org.geotools.coverage.grid.io.imageio.geotiff.codes</package>
-                <package>org.geotools.coverage.processing</package>
-                <package>org.geotools.coverage.processing.operation</package>
-                <package>org.geotools.data</package>
-                <package>org.geotools.data.collection</package>
-                <package>org.geotools.data.crs</package>
-                <package>org.geotools.data.jdbc</package>
-                <package>org.geotools.data.jdbc.attributeio</package>
-                <package>org.geotools.data.jdbc.datasource</package>
-                <package>org.geotools.data.jdbc.fidmapper</package>
-                <package>org.geotools.data.jdbc.referencing</package>
-                <package>org.geotools.data.memory</package>
-                <package>org.geotools.data.ows</package>
-                <package>org.geotools.data.postgis</package>
-                <package>org.geotools.data.shapefile</package>
-                <package>org.geotools.data.shapefile.dbf</package>
-                <package>org.geotools.data.shapefile.indexed</package>
-                <package>org.geotools.data.shapefile.indexed.attribute</package>
-                <package>org.geotools.data.shapefile.prj</package>
-                <package>org.geotools.data.shapefile.shp</package>
-                <package>org.geotools.data.shapefile.shp.xml</package>
-                <package>org.geotools.data.store</package>
-                <package>org.geotools.data.view</package>
-                <package>org.geotools.factory</package>
-                <package>org.geotools.feature</package>
-                <package>org.geotools.feature.collection</package>
-                <package>org.geotools.feature.simple</package>
-                <package>org.geotools.feature.type</package>
-                <package>org.geotools.feature.visitor</package>
-                <package>org.geotools.filter</package>
-                <package>org.geotools.filter.adapter</package>
-                <package>org.geotools.filter.capability</package>
-                <package>org.geotools.filter.expression</package>
-                <package>org.geotools.filter.function</package>
-                <package>org.geotools.filter.function.math</package>
-                <package>org.geotools.filter.function.string</package>
-                <package>org.geotools.filter.identity</package>
-                <package>org.geotools.filter.parser</package>
-                <package>org.geotools.filter.spatial</package>
-                <package>org.geotools.filter.text.commons</package>
-                <package>org.geotools.filter.text.cql2</package>
-                <package>org.geotools.filter.text.ecql</package>
-                <package>org.geotools.filter.text.generated.parsers</package>
-                <package>org.geotools.filter.visitor</package>
-                <package>org.geotools.gce.geotiff</package>
-                <package>org.geotools.gce.geotiff.IIOMetadataAdpaters</package>
-                <package>org.geotools.gce.geotiff.IIOMetadataAdpaters.utils</package>
-                <package>org.geotools.gce.geotiff.IIOMetadataAdpaters.utils.codes</package>
-                <package>org.geotools.gce.geotiff.crs_adapters</package>
-                <package>org.geotools.geometry</package>
-                <package>org.geotools.geometry.coordinatesequence</package>
-                <package>org.geotools.geometry.jts</package>
-                <package>org.geotools.geometry.jts.coordinatesequence</package>
-                <package>org.geotools.geometry.text</package>
-                <package>org.geotools.gml</package>
-                <package>org.geotools.gml.producer</package>
-                <package>org.geotools.image</package>
-                <package>org.geotools.image.jai</package>
-                <package>org.geotools.image.palette</package>
-                <package>org.geotools.index</package>
-                <package>org.geotools.index.quadtree</package>
-                <package>org.geotools.index.quadtree.fs</package>
-                <package>org.geotools.index.rtree</package>
-                <package>org.geotools.index.rtree.cachefs</package>
-                <package>org.geotools.index.rtree.database</package>
-                <package>org.geotools.index.rtree.database.mysql</package>
-                <package>org.geotools.index.rtree.fs</package>
-                <package>org.geotools.index.rtree.memory</package>
-                <package>org.geotools.jdbc</package>
-                <package>org.geotools.metadata.sql</package>
-                <package>org.geotools.ows</package>
-                <package>org.geotools.referencing.datum</package>
-                <package>org.geotools.referencing.operation.builder</package>
-                <package>org.geotools.resources</package>
-                <package>org.geotools.resources.coverage</package>
-                <package>org.geotools.resources.image</package>
-                <package>org.geotools.tool.store</package>
-                <package>org.geotools.util</package>
-                <package>org.geotools.xml.transform</package>
                 <package>org.jdesktop.animation.timing</package>
                 <package>org.jdesktop.animation.timing.interpolation</package>
                 <package>org.jdesktop.animation.timing.triggers</package>
@@ -993,11 +958,14 @@
                 <package>org.postgresql.core.v3</package>
                 <package>org.postgresql.ds</package>
                 <package>org.postgresql.ds.common</package>
+                <package>org.postgresql.ds.jdbc23</package>
+                <package>org.postgresql.ds.jdbc4</package>
                 <package>org.postgresql.fastpath</package>
                 <package>org.postgresql.geometric</package>
                 <package>org.postgresql.jdbc2</package>
                 <package>org.postgresql.jdbc2.optional</package>
                 <package>org.postgresql.jdbc3</package>
+                <package>org.postgresql.jdbc4</package>
                 <package>org.postgresql.largeobject</package>
                 <package>org.postgresql.ssl</package>
                 <package>org.postgresql.translation</package>
@@ -1148,6 +1116,10 @@
                 <binary-origin>release/modules/ext/geotk-display.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
+                <runtime-relative-path>ext/geotk-datastore-core.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/geotk-datastore-core.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
                 <runtime-relative-path>ext/geotk-engine-core.jar</runtime-relative-path>
                 <binary-origin>release/modules/ext/geotk-engine-core.jar</binary-origin>
             </class-path-extension>
@@ -1160,8 +1132,16 @@
                 <binary-origin>release/modules/ext/geotk-filter.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
+                <runtime-relative-path>ext/geotk-feature.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/geotk-feature.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
                 <runtime-relative-path>ext/geotk-geometry.jar</runtime-relative-path>
                 <binary-origin>release/modules/ext/geotk-geometry.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/geotk-geotiff.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/geotk-geotiff.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
                 <runtime-relative-path>ext/geotk-go2.jar</runtime-relative-path>
@@ -1180,6 +1160,18 @@
                 <binary-origin>release/modules/ext/geotk-jtswrapper.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
+                <runtime-relative-path>ext/geotk-jdbc-postgis.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/geotk-jdbc-postgis.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/geotk-jdbc-core.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/geotk-jdbc-core.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/geotk-cql.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/geotk-cql.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
                 <runtime-relative-path>ext/geotk-metadata.jar</runtime-relative-path>
                 <binary-origin>release/modules/ext/geotk-metadata.jar</binary-origin>
             </class-path-extension>
@@ -1194,6 +1186,10 @@
             <class-path-extension>
                 <runtime-relative-path>ext/geotk-setup.jar</runtime-relative-path>
                 <binary-origin>release/modules/ext/geotk-setup.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/geotk-shapefile.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/geotk-shapefile.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
                 <runtime-relative-path>ext/geotk-style.jar</runtime-relative-path>
@@ -1243,7 +1239,7 @@
                 <runtime-relative-path>ext/geotk-xml-wms.jar</runtime-relative-path>
                 <binary-origin>release/modules/ext/geotk-xml-wms.jar</binary-origin>
             </class-path-extension>
-            <class-path-extension>
+            <!--class-path-extension>
                 <runtime-relative-path>ext/gtm-api.jar</runtime-relative-path>
                 <binary-origin>release/modules/ext/gtm-api.jar</binary-origin>
             </class-path-extension>
@@ -1290,7 +1286,7 @@
             <class-path-extension>
                 <runtime-relative-path>ext/gtm-shapefile.jar</runtime-relative-path>
                 <binary-origin>release/modules/ext/gtm-shapefile.jar</binary-origin>
-            </class-path-extension>
+            </class-path-extension-->
             <class-path-extension>
                 <runtime-relative-path>ext/itext.jar</runtime-relative-path>
                 <binary-origin>release/modules/ext/itext.jar</binary-origin>
