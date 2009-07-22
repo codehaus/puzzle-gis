@@ -1104,20 +1104,24 @@
                 <binary-origin>release/modules/ext/geotk-coverage.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/geotk-coverageio.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/geotk-coverageio.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
                 <runtime-relative-path>ext/geotk-coverageio-pending.jar</runtime-relative-path>
                 <binary-origin>release/modules/ext/geotk-coverageio-pending.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/geotk-display.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/geotk-display.jar</binary-origin>
+                <runtime-relative-path>ext/geotk-coverageio.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/geotk-coverageio.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/geotk-cql.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/geotk-cql.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
                 <runtime-relative-path>ext/geotk-datastore-core.jar</runtime-relative-path>
                 <binary-origin>release/modules/ext/geotk-datastore-core.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/geotk-display.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/geotk-display.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
                 <runtime-relative-path>ext/geotk-engine-core.jar</runtime-relative-path>
@@ -1128,12 +1132,12 @@
                 <binary-origin>release/modules/ext/geotk-epsg.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/geotk-filter.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/geotk-filter.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
                 <runtime-relative-path>ext/geotk-feature.jar</runtime-relative-path>
                 <binary-origin>release/modules/ext/geotk-feature.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/geotk-filter.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/geotk-filter.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
                 <runtime-relative-path>ext/geotk-geometry.jar</runtime-relative-path>
@@ -1144,32 +1148,28 @@
                 <binary-origin>release/modules/ext/geotk-geotiff.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/geotk-go2.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/geotk-go2.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
                 <runtime-relative-path>ext/geotk-go2-style-extension.jar</runtime-relative-path>
                 <binary-origin>release/modules/ext/geotk-go2-style-extension.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/geotk-go2.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/geotk-go2.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
                 <runtime-relative-path>ext/geotk-jasperreport.jar</runtime-relative-path>
                 <binary-origin>release/modules/ext/geotk-jasperreport.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/geotk-jtswrapper.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/geotk-jtswrapper.jar</binary-origin>
+                <runtime-relative-path>ext/geotk-jdbc-core.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/geotk-jdbc-core.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
                 <runtime-relative-path>ext/geotk-jdbc-postgis.jar</runtime-relative-path>
                 <binary-origin>release/modules/ext/geotk-jdbc-postgis.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/geotk-jdbc-core.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/geotk-jdbc-core.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/geotk-cql.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/geotk-cql.jar</binary-origin>
+                <runtime-relative-path>ext/geotk-jtswrapper.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/geotk-jtswrapper.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
                 <runtime-relative-path>ext/geotk-metadata.jar</runtime-relative-path>
@@ -1200,12 +1200,16 @@
                 <binary-origin>release/modules/ext/geotk-utility.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/geotk-widgets-swing.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/geotk-widgets-swing.jar</binary-origin>
+                <runtime-relative-path>ext/geotk-utility-pending.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/geotk-utility-pending.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
                 <runtime-relative-path>ext/geotk-widgets-swing-pending.jar</runtime-relative-path>
                 <binary-origin>release/modules/ext/geotk-widgets-swing-pending.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/geotk-widgets-swing.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/geotk-widgets-swing.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
                 <runtime-relative-path>ext/geotk-wizards-swing.jar</runtime-relative-path>
@@ -1239,54 +1243,6 @@
                 <runtime-relative-path>ext/geotk-xml-wms.jar</runtime-relative-path>
                 <binary-origin>release/modules/ext/geotk-xml-wms.jar</binary-origin>
             </class-path-extension>
-            <!--class-path-extension>
-                <runtime-relative-path>ext/gtm-api.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gtm-api.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gtm-coverage.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gtm-coverage.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gtm-cql.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gtm-cql.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gtm-data.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gtm-data.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gtm-geotiff.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gtm-geotiff.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gtm-jdbc.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gtm-jdbc.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gtm-jdbc-core.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gtm-jdbc-core.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gtm-jdbc-postgis.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gtm-jdbc-postgis.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gtm-main.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gtm-main.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gtm-metadata.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gtm-metadata.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gtm-referencing.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gtm-referencing.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/gtm-shapefile.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/gtm-shapefile.jar</binary-origin>
-            </class-path-extension-->
             <class-path-extension>
                 <runtime-relative-path>ext/itext.jar</runtime-relative-path>
                 <binary-origin>release/modules/ext/itext.jar</binary-origin>
@@ -1340,24 +1296,24 @@
                 <binary-origin>release/modules/ext/vecmath.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/xalan.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/xalan.jar</binary-origin>
+                <runtime-relative-path>ext/wizard.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/wizard.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/xml-apis.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/xml-apis.jar</binary-origin>
+                <runtime-relative-path>ext/xalan.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/xalan.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
                 <runtime-relative-path>ext/xml-apis-ext.jar</runtime-relative-path>
                 <binary-origin>release/modules/ext/xml-apis-ext.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/xmlgraphics-commons.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/xmlgraphics-commons.jar</binary-origin>
+                <runtime-relative-path>ext/xml-apis.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/xml-apis.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/wizard.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/wizard.jar</binary-origin>
+                <runtime-relative-path>ext/xmlgraphics-commons.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/xmlgraphics-commons.jar</binary-origin>
             </class-path-extension>
         </data>
     </configuration>

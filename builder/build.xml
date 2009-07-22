@@ -93,6 +93,7 @@
             <include name="geotk-style.jar"/>
             <include name="geotk-shapefile.jar"/>
             <include name="geotk-utility.jar"/>
+            <include name="geotk-utility-pending.jar"/>
             <include name="geotk-widgets-swing.jar"/>
             <include name="geotk-widgets-swing-pending.jar"/>
             <include name="geotk-wizards-swing.jar"/>
@@ -215,6 +216,7 @@
     <cleanMetaInf jar="${GEOTK_BINARY}/geotk-style.jar"/>
     <cleanMetaInf jar="${GEOTK_BINARY}/geotk-shapefile.jar"/>
     <cleanMetaInf jar="${GEOTK_BINARY}/geotk-utility.jar"/>
+    <cleanMetaInf jar="${GEOTK_BINARY}/geotk-utility-pending.jar"/>
     <cleanMetaInf jar="${GEOTK_BINARY}/geotk-widgets-swing.jar"/>
     <cleanMetaInf jar="${GEOTK_BINARY}/geotk-widgets-swing-pending.jar"/>
     <cleanMetaInf jar="${GEOTK_BINARY}/geotk-wms.jar"/>
