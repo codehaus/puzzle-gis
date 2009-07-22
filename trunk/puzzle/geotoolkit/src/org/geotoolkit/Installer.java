@@ -23,6 +23,7 @@ import org.geotoolkit.referencing.CRS;
 import org.opengis.referencing.FactoryException;
 import org.opengis.referencing.NoSuchAuthorityCodeException;
 import org.openide.modules.ModuleInstall;
+import org.openide.util.Exceptions;
 
 /**
  *
@@ -32,6 +33,14 @@ public class Installer extends ModuleInstall {
 
     @Override
     public void restored() {
+
+        //force netbeans platform classloader to load the derby driver
+        try {
+            Class.forName("org.apache.derby.jdbc.EmbeddedDriver").newInstance();
+        } catch (Exception ex) {
+            Exceptions.printStackTrace(ex);
+        }
+
 
         try {
             //force accessing EPSG database or create it if necessary
