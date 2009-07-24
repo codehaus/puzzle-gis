@@ -138,7 +138,7 @@ public class GeoTiffSource extends GISSource{
             final MapLayer layer;
 
             if(gc2d != null){
-                final MutableStyle style = new RandomStyleFactory().createRasterStyle();
+                final MutableStyle style = RandomStyleFactory.createRasterStyle();
                 layer = MapBuilder.createCoverageLayer(gc2d, style, name);
             }else{
                 layer = MapBuilder.createEmptyMapLayer();

@@ -137,7 +137,7 @@ public class WorldImageSource extends GISSource{
 
             final MapLayer layer;
             if(reader != null){
-                final MutableStyle style = new RandomStyleFactory().createRasterStyle();
+                final MutableStyle style = RandomStyleFactory.createRasterStyle();
                 layer = MapBuilder.createCoverageLayer(reader, style, WorldImageSource.this.name);
             }else{
                 layer = MapBuilder.createEmptyMapLayer();

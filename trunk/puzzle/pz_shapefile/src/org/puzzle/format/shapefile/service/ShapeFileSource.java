@@ -122,7 +122,7 @@ public class ShapeFileSource extends GISSource{
             final MapLayer layer;
 
             if(featureSource != null){
-                final MutableStyle style = new RandomStyleFactory().createRandomVectorStyle(featureSource);
+                final MutableStyle style = RandomStyleFactory.createRandomVectorStyle(featureSource);
                 layer = MapBuilder.createFeatureLayer(featureSource, style);
             }else{
                 layer = MapBuilder.createEmptyMapLayer();
