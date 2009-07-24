@@ -122,7 +122,7 @@ public class PostGISSource extends GISSource{
             if(store != null){
                 try{
                     final FeatureSource<SimpleFeatureType,SimpleFeature> featureSource = store.getFeatureSource(featureName);
-                    final MutableStyle style = new RandomStyleFactory().createRandomVectorStyle(featureSource);
+                    final MutableStyle style = RandomStyleFactory.createRandomVectorStyle(featureSource);
                     layer = MapBuilder.createFeatureLayer(featureSource, style);
                 }catch(IOException ex){
                     layer = MapBuilder.createEmptyMapLayer();
