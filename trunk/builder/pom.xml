@@ -16,8 +16,7 @@
   <!--     Dependencies optionals, replace version number for GT dependencies     -->
   <!-- =========================================================== -->
     <properties>
-        <geotoolkit.version>SNAPSHOT</geotoolkit.version>
-        <geomodif.version>2.6-SNAPSHOT</geomodif.version>
+        <geotoolkit.version>3.02</geotoolkit.version>
     </properties>
     <description>Maven module to download and dispatch the latest jars needed by puzzle.</description>
 
