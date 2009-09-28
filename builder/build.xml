@@ -33,7 +33,6 @@
 
     <fileset id="geoapi" dir="${GEOTK_BINARY}" casesensitive="yes">
         <patternset >
-            <include name="geoapi.jar"/>
             <include name="geoapi-pending.jar"/>
             <include name="jsr-275.jar"/>
         </patternset>
@@ -151,7 +150,6 @@
     </delete>
     <echo>=&gt; Copying new jars</echo>
 
-    <cleanMetaInf jar="${GEOTK_BINARY}/geoapi.jar"/>
     <cleanMetaInf jar="${GEOTK_BINARY}/geoapi-pending.jar"/>
     <cleanMetaInf jar="${GEOTK_BINARY}/jsr-275.jar"/>
 
