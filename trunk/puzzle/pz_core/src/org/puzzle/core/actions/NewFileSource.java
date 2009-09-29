@@ -63,7 +63,7 @@ public final class NewFileSource extends AbstractAction {
         }
         
         if(candidate != null && candidate instanceof GISProject) {
-            final GISProject gis =(GISProject) candidate;
+            final GISProject currentProject =(GISProject) candidate;
             final JFileSourcePane pane = new JFileSourcePane();
             final ActionListener lst = new ActionListener() {
 
@@ -74,7 +74,7 @@ public final class NewFileSource extends AbstractAction {
                         final Map<String,GISSourceInfo> sources = pane.getSources();
                         final Set<String> names = sources.keySet();
                         for (final String name : names) {
-                            gis.registerSource(name,sources.get(name));
+                            currentProject.registerSource(name,sources.get(name));
                         }
                     }
                 }

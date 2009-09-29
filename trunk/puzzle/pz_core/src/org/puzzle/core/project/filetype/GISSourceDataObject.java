@@ -89,6 +89,7 @@ public class GISSourceDataObject extends XMLDataObject {
         if(source == null){
 
             ProgressHandle handle = ProgressHandleFactory.createHandle(Utilities.getString("loadingSource") +" : " + getName());
+            handle.setInitialDelay(1);
             handle.start(100);
             handle.switchToIndeterminate();
 

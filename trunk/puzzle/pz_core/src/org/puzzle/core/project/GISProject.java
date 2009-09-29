@@ -405,7 +405,7 @@ public class GISProject implements Project {
             TransformerFactory fabrique = TransformerFactory.newInstance();
             Transformer transformer = fabrique.newTransformer();
             transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-            transformer.setOutputProperty(OutputKeys.ENCODING, "ISO-8859-1");
+            transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
             
             // Transformation
             transformer.transform(source, resultat);
