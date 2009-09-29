@@ -59,7 +59,8 @@ public class JWMSDataPanel extends SourceCreationPane {
         initComponents();
 
         params.put(WMSSourceService.URL_PROP, "http://www2.demis.nl/WMS/wms.asp?wms=WorldMap");
-        params.put(WMSSourceService.VERSION_PROP, "1.1.1");
+        params.put(WMSSourceService.VERSION_PROP, "1.3.0");
+        jtf_name.setText("Demis");
 
         setProperties(params);
 
@@ -89,24 +90,25 @@ public class JWMSDataPanel extends SourceCreationPane {
         if (server != null) {
             try {
                 final AbstractWMSCapabilities capa = server.getCapabilities();
-                final List<String> layerNames = new ArrayList<String>();
+                final List<Object> layers = new ArrayList<Object>();
 
 
                 if(capa instanceof org.geotoolkit.wms.xml.v130.WMSCapabilities){
                     org.geotoolkit.wms.xml.v130.WMSCapabilities cp13 =
                             (org.geotoolkit.wms.xml.v130.WMSCapabilities) capa;
                     for(org.geotoolkit.wms.xml.v130.Layer layer : cp13.getCapability().getLayer().getLayer()){
-                        layerNames.add(layer.getName());
+                        layers.add(layer);
                     }
                 }else if(capa instanceof org.geotoolkit.wms.xml.v111.WMT_MS_Capabilities){
                     org.geotoolkit.wms.xml.v111.WMT_MS_Capabilities cp11 =
                             (org.geotoolkit.wms.xml.v111.WMT_MS_Capabilities) capa;
                     for(org.geotoolkit.wms.xml.v111.Layer layer : cp11.getCapability().getLayer().getLayer()){
-                        layerNames.add(layer.getName());
+                        layers.add(layer);
                     }
                 }
 
-                guiLayerList.setModel(new ListComboBoxModel<String>(layerNames));
+                guiLayerList.setModel(new ListComboBoxModel<Object>(layers));
+                guiLayerList.setCellRenderer(new LayerRenderer());
             } catch (Exception ex) {
                 Exceptions.printStackTrace(ex);
             }
@@ -141,11 +143,11 @@ public class JWMSDataPanel extends SourceCreationPane {
         });
 
         jXTitledPanel1.setBorder(null);
-        jXTitledPanel1.setTitle("null");
 
 
 
 
+        jXTitledPanel1.setTitle(NbBundle.getBundle(JWMSDataPanel.class).getString("connection")); // NOI18N
         jLabel1.setText(NbBundle.getBundle(JWMSDataPanel.class).getString("url")); // NOI18N
         jLabel2.setText(NbBundle.getBundle(JWMSDataPanel.class).getString("version")); // NOI18N
         jLabel3.setText(NbBundle.getMessage(JWMSDataPanel.class, "name")); // NOI18N
@@ -159,15 +161,15 @@ public class JWMSDataPanel extends SourceCreationPane {
                     .addGroup(jXTitledPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(ComponentPlacement.RELATED)
-                        .addComponent(jtf_url, GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE))
+                        .addComponent(jtf_url, GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE))
                     .addGroup(jXTitledPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(ComponentPlacement.RELATED)
-                        .addComponent(jtf_version, GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE))
+                        .addComponent(jtf_version, GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE))
                     .addGroup(jXTitledPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(ComponentPlacement.RELATED)
-                        .addComponent(jtf_name, GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)))
+                        .addComponent(jtf_name, GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jXTitledPanel1Layout.setVerticalGroup(
@@ -198,8 +200,8 @@ public class JWMSDataPanel extends SourceCreationPane {
                 .addComponent(jXTitledPanel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(Alignment.LEADING)
-                    .addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
-                    .addComponent(but_refresh, GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)))
+                    .addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
+                    .addComponent(but_refresh, GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(Alignment.LEADING)
@@ -208,7 +210,7 @@ public class JWMSDataPanel extends SourceCreationPane {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(but_refresh)
                         .addPreferredGap(ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE))
                     .addComponent(jXTitledPanel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );

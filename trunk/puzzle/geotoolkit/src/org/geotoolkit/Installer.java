@@ -34,9 +34,11 @@ public class Installer extends ModuleInstall {
     @Override
     public void restored() {
 
-        //force netbeans platform classloader to load the derby driver
+        //force netbeans platform classloader to load the derby and postgres driver
+        //often use for EPSG databases
         try {
             Class.forName("org.apache.derby.jdbc.EmbeddedDriver").newInstance();
+            Class.forName("org.postgresql.Driver").newInstance();
         } catch (Exception ex) {
             Exceptions.printStackTrace(ex);
         }
