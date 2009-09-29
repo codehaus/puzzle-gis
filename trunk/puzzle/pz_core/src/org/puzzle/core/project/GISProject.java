@@ -329,6 +329,7 @@ public class GISProject implements Project {
              */
             final File xml = new File(FileUtil.toFile(getSourceFolder(true)).getAbsolutePath() + File.separator + name + ".xml");
             transformerXml(doc, xml);
+            getSourceFolder(true).refresh();
         } catch (Exception e) {
             e.printStackTrace();
         }
