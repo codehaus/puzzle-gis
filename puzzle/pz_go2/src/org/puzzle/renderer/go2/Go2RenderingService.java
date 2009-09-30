@@ -21,6 +21,7 @@ import java.awt.RenderingHints;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
+import javax.swing.SwingUtilities;
 import org.geotoolkit.gui.swing.go2.JMap2D;
 import org.geotoolkit.map.MapContext;
 import org.geotoolkit.referencing.CRS;
@@ -147,8 +148,16 @@ public class Go2RenderingService implements RenderingService{
         });
 
 
-        Go2MapView viewComponent = new Go2MapView(map);
-        viewComponent.setDisplayName(view.getTitle());
+        final Go2MapView viewComponent = new Go2MapView(map);
+
+        SwingUtilities.invokeLater(new Runnable() {
+
+            @Override
+            public void run() {
+                viewComponent.setDisplayName(view.getTitle());
+            }
+        });
+        
         return viewComponent;
     }
 
