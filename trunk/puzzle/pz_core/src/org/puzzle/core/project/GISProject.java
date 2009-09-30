@@ -67,7 +67,6 @@ import org.puzzle.core.project.filetype.GISContextDataObject;
 import org.puzzle.core.project.filetype.GISSourceDataObject;
 import org.puzzle.core.project.source.GISSource;
 import org.puzzle.core.project.source.GISSourceInfo;
-import org.puzzle.core.view.ViewComponent;
 
 /**
  * This class is the project. the project allow to manage the

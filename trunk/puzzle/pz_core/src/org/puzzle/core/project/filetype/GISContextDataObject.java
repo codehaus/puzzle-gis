@@ -142,6 +142,7 @@ public class GISContextDataObject extends XMLDataObject {
         if (context == null) {
             ProgressHandle handle = ProgressHandleFactory.createHandle(Utilities.getString("loadingContext") +" : " + getPrimaryFile().getName().replaceAll(".xml", ""));
             handle.start(100);
+            handle.setInitialDelay(1);
             handle.switchToIndeterminate();
             // at this point the task is finished and removed from status bar
             // it's not realy necessary to count all the way to the limit, finish can be called earlier.

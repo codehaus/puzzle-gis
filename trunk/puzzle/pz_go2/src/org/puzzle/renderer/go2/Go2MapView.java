@@ -22,9 +22,9 @@ import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import javax.swing.JPanel;
-
 import javax.swing.JToolBar;
 import javax.swing.SwingUtilities;
+
 import org.geotoolkit.gui.swing.go2.JMap2D;
 import org.geotoolkit.gui.swing.go2.control.JConfigBar;
 import org.geotoolkit.gui.swing.go2.control.JCoordinateBar;
@@ -33,6 +33,7 @@ import org.geotoolkit.gui.swing.go2.control.JNavigationBar;
 import org.geotoolkit.gui.swing.go2.control.MapControlBar;
 import org.geotoolkit.gui.swing.go2.decoration.MapDecoration;
 import org.geotoolkit.map.MapContext;
+
 import org.openide.util.Exceptions;
 import org.openide.util.Lookup;
 import org.openide.util.lookup.Lookups;

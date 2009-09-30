@@ -17,9 +17,13 @@
 package org.puzzle.core.actions;
 
 import java.awt.event.ActionEvent;
+import java.lang.reflect.InvocationTargetException;
 import javax.swing.AbstractAction;
 import javax.swing.SwingUtilities;
+import org.netbeans.api.progress.ProgressHandle;
+import org.netbeans.api.progress.ProgressHandleFactory;
 import org.openide.nodes.Node;
+import org.openide.util.Exceptions;
 import org.openide.util.HelpCtx;
 import org.openide.util.actions.CookieAction;
 import org.puzzle.core.project.view.GISView;
@@ -52,17 +56,40 @@ public class ShowView extends CookieAction{
 
         if(view == null) return;
 
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
+        new Thread() {
+
             public void run() {
+
+                final ProgressHandle handle = ProgressHandleFactory.createHandle(Utilities.getString("openView") + " : " + view.getTitle());
+                handle.start(100);
+                handle.setInitialDelay(1);
+                handle.switchToIndeterminate();
+
                 final ViewComponent comp = view.getComponent(true);
-                if(!comp.isOpened()){
-                    comp.open();
+
+                try {
+                    SwingUtilities.invokeAndWait(new Runnable() {
+
+                        @Override
+                        public void run() {
+                            if (!comp.isOpened()) {
+                                comp.open();
+                            }
+                            comp.requestActive();
+                            comp.requestVisible();
+                        }
+                    });
+                } catch (InterruptedException ex) {
+                    Exceptions.printStackTrace(ex);
+                } catch (InvocationTargetException ex) {
+                    Exceptions.printStackTrace(ex);
                 }
-                comp.requestActive();
-                comp.requestVisible();
+
+                
+
+                handle.finish();
             }
-        });
+        }.start();
     }
 
     @Override

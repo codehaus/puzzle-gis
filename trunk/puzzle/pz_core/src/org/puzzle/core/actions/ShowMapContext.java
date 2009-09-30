@@ -21,6 +21,8 @@ import javax.swing.SwingUtilities;
 
 import org.geotoolkit.map.MapContext;
 
+import org.netbeans.api.progress.ProgressHandle;
+import org.netbeans.api.progress.ProgressHandleFactory;
 import org.openide.nodes.Node;
 import org.openide.util.HelpCtx;
 import org.openide.util.Lookup;
@@ -57,6 +59,11 @@ public final class ShowMapContext extends CookieAction {
             public void run(){
                 final MapContext context = dataObject.getContext();
 
+                ProgressHandle handle = ProgressHandleFactory.createHandle(Utilities.getString("createView") +" : " + context.getDescription().getTitle().toString());
+                handle.start(100);
+                handle.setInitialDelay(1);
+                handle.switchToIndeterminate();
+
                 if(context != null){
                     final Collection<? extends RenderingService> services = Lookup.getDefault().lookupAll(RenderingService.class);
                     if(services.isEmpty()){
@@ -87,6 +94,7 @@ public final class ShowMapContext extends CookieAction {
 
                 }
 
+                handle.finish();
 
             }
         }.start();
