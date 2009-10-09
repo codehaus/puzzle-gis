@@ -16,12 +16,21 @@
  */
 package org.puzzle.format.postgis.service;
 
+import com.vividsolutions.jts.geom.LineString;
+import com.vividsolutions.jts.geom.MultiLineString;
+import com.vividsolutions.jts.geom.MultiPoint;
+import com.vividsolutions.jts.geom.MultiPolygon;
+import com.vividsolutions.jts.geom.Point;
+import com.vividsolutions.jts.geom.Polygon;
+import java.awt.Component;
 import java.awt.Font;
 import java.io.IOException;
 import java.util.Collections;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListCellRenderer;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.Icon;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
@@ -31,8 +40,11 @@ import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import org.geotoolkit.data.DataStore;
+import org.geotoolkit.gui.swing.resource.IconBundle;
 import org.geotoolkit.map.MapLayer;
 import org.geotoolkit.style.DefaultStyleFactory;
+import org.opengis.feature.simple.SimpleFeatureType;
+import org.openide.util.Exceptions;
 import org.openide.util.NbBundle;
 import org.puzzle.core.project.source.capabilities.JLayerChooser;
 import org.puzzle.core.project.source.capabilities.LayerChooserMonitor;
@@ -56,10 +68,7 @@ public class LayerCreationComponent extends JLayerChooser {
 
         guiLayerList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
-        
-
         try {
-            System.out.println(">>>>>>>>>>>>>>>>>>"+store.getTypeNames().length);
             guiLayerList.setModel(new DefaultComboBoxModel(store.getTypeNames()));
             guiLayerList.revalidate();
             guiLayerList.repaint();
@@ -78,6 +87,8 @@ public class LayerCreationComponent extends JLayerChooser {
                 }
             }
         });
+
+        guiLayerList.setCellRenderer(new TypeRender());
 
     }
 
@@ -159,5 +170,51 @@ public class LayerCreationComponent extends JLayerChooser {
     private JLabel jLabel2;
     private JScrollPane jsp;
     // End of variables declaration//GEN-END:variables
+
+    private static final Icon POINT = IconBundle.getInstance().getIcon("16_single_point");
+    private static final Icon LINE = IconBundle.getInstance().getIcon("16_single_line");
+    private static final Icon POLYGON = IconBundle.getInstance().getIcon("16_single_polygon");
+    private static final Icon MPOINT = IconBundle.getInstance().getIcon("16_multi_point");
+    private static final Icon MLINE = IconBundle.getInstance().getIcon("16_multi_line");
+    private static final Icon MPOLYGON = IconBundle.getInstance().getIcon("16_multi_polygon");
+
+    private class TypeRender extends DefaultListCellRenderer{
+
+
+
+        @Override
+        public Component getListCellRendererComponent(JList arg0, Object value, int arg2, boolean arg3, boolean arg4) {
+            JLabel lbl = (JLabel) super.getListCellRendererComponent(arg0, value, arg2, arg3, arg4);
+
+            if(value instanceof String){
+                try {
+                    SimpleFeatureType sft = (SimpleFeatureType) store.getSchema(value.toString());
+                    Class binding = sft.getGeometryDescriptor().getType().getBinding();
+
+                    if(binding.isAssignableFrom(Point.class)){
+                        lbl.setIcon(POINT);
+                    }else if(binding.isAssignableFrom(LineString.class)){
+                        lbl.setIcon(LINE);
+                    }else if(binding.isAssignableFrom(Polygon.class)){
+                        lbl.setIcon(POLYGON);
+                    }else if(binding.isAssignableFrom(MultiPoint.class)){
+                        lbl.setIcon(MPOINT);
+                    }else if(binding.isAssignableFrom(MultiLineString.class)){
+                        lbl.setIcon(MLINE);
+                    }else if(binding.isAssignableFrom(MultiPolygon.class)){
+                        lbl.setIcon(MPOLYGON);
+                    }
+
+                } catch (IOException ex) {
+                    Exceptions.printStackTrace(ex);
+                }
+            }
+
+            return lbl;
+        }
+
+
+
+    }
 
 }
