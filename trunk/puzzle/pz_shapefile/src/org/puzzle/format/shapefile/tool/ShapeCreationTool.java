@@ -40,7 +40,7 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SwingConstants;
 
-import org.geotoolkit.data.FileDataStoreFactorySpi;
+import org.geotoolkit.data.FileDataStoreFactory;
 import org.geotoolkit.data.shapefile.ShapefileDataStore;
 import org.geotoolkit.data.shapefile.ShapefileDataStoreFactory;
 import org.geotoolkit.feature.FeatureTypeUtilities;
@@ -84,7 +84,7 @@ public class ShapeCreationTool extends JPanel {
     private void createShape(String name) {
         try {
             // Create the DataStoreFactory
-            FileDataStoreFactorySpi factory = new ShapefileDataStoreFactory();
+            FileDataStoreFactory factory = new ShapefileDataStoreFactory();
 
             // Create a Map object used by our DataStore Factory
             // NOTE: file.toURI().toURL() is used because file.toURL() is deprecated

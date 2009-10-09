@@ -43,6 +43,7 @@
                 <package>org.opengis.geometry.coordinate</package>
                 <package>org.opengis.geometry.primitive</package>
                 <package>org.opengis.metadata</package>
+                <package>org.opengis.metadata.acquisition</package>
                 <package>org.opengis.metadata.citation</package>
                 <package>org.opengis.metadata.constraint</package>
                 <package>org.opengis.metadata.content</package>

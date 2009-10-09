@@ -17,6 +17,7 @@
 package org.puzzle.core.project.filetype;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -122,7 +123,7 @@ public class GISSourceDataObject extends XMLDataObject {
                 }
 
                 final NodeList urls = gisDoc.getElementsByTagName("parameters");
-                final Map<String,String> parameters = new HashMap<String,String>();
+                final Map<String,Serializable> parameters = new HashMap<String,Serializable>();
 
                 for(int i=0, n = urls.getLength(); i<n; i++){
                     org.w3c.dom.Element paramsNode = (Element) urls.item(i);

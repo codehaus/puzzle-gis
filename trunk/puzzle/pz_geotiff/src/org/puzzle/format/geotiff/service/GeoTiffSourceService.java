@@ -17,6 +17,7 @@
 package org.puzzle.format.geotiff.service;
 
 import java.io.File;
+import java.io.Serializable;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.HashMap;
@@ -60,7 +61,7 @@ public class GeoTiffSourceService extends AbstractGISSourceService implements Fi
     /** {@inheritDoc} */
     @Override
     public GISSource restoreSource(final GISSourceInfo info) throws IllegalArgumentException {
-        final String strURI = info.getParameters().get("uri");
+        final String strURI = info.getParameters().get("uri").toString();
         
         if(strURI == null) throw new IllegalArgumentException("missing parameter url");
 
@@ -78,7 +79,7 @@ public class GeoTiffSourceService extends AbstractGISSourceService implements Fi
     @Override
     public GISSourceInfo createSourceInfo(final File file) throws IllegalArgumentException {
         final String uri = file.toURI().toString();
-        final Map<String,String> params = new HashMap<String, String>();
+        final Map<String,Serializable> params = new HashMap<String, Serializable>();
         params.put("uri", uri);
         return new GISSourceInfo(GISSourceInfo.UNREGISTERED_ID, SERVICE_ID, params);
     }

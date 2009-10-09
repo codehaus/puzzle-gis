@@ -18,6 +18,7 @@ package org.puzzle.format.postgis.service;
 
 import java.awt.Image;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -81,20 +82,15 @@ public class PostGISSource extends GISSource{
     public void load() {
         if(store != null) return;
 
-        final Map<String,String> infosParams = getInfo().getParameters();
-        final Map<String,Object> params = new HashMap<String,Object>();
-        params.put(DBTYPE.key,          "postgisng");
-        params.put(HOST.key,            infosParams.get(HOST.key));
-        params.put(PORT.key,            infosParams.get(PORT.key));
-        params.put(SCHEMA.key,          infosParams.get(SCHEMA.key));
-        params.put(DATABASE.key,        infosParams.get(DATABASE.key));
-        params.put(USER.key,            infosParams.get(USER.key));
-        params.put(PASSWD.key,          infosParams.get(PASSWD.key));
-        params.put(MAXCONN.key,         Integer.valueOf(infosParams.get(MAXCONN.key)));
-        params.put(MINCONN.key,         Integer.valueOf(infosParams.get(MINCONN.key)));
-        params.put(NAMESPACE.key,       infosParams.get(NAMESPACE.key));
-        params.put(VALIDATECONN.key,    Boolean.valueOf(infosParams.get(VALIDATECONN.key)));
-        params.put(LOOSEBBOX.key,       Boolean.valueOf(infosParams.get(LOOSEBBOX.key)));
+        final Map<String,Serializable> infosParams = getInfo().getParameters();
+        final Map<String,Serializable> params = new HashMap<String,Serializable>();
+        params.put(DBTYPE.getName().toString(),          "postgisng");
+        params.put(HOST.getName().toString(),            infosParams.get(HOST.getName().toString()));
+        params.put(PORT.getName().toString(),            Integer.valueOf( infosParams.get(PORT.getName().toString()).toString() ));
+        params.put(SCHEMA.getName().toString(),          infosParams.get(SCHEMA.getName().toString()));
+        params.put(DATABASE.getName().toString(),        infosParams.get(DATABASE.getName().toString()));
+        params.put(USER.getName().toString(),            infosParams.get(USER.getName().toString()));
+        params.put(PASSWD.getName().toString(),          infosParams.get(PASSWD.getName().toString()));
 
         try {
             store = DataStoreFinder.getDataStore(params);
