@@ -20,6 +20,7 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -295,10 +296,10 @@ public class GISProject implements Project {
             return true;
         }
         
-        final Map<String,String> sourceParameters = info.getParameters();
+        final Map<String,Serializable> sourceParameters = info.getParameters();
         //check if another source have the same parameters
         for(final GISSource src : sources){
-            final Map<String,String> srcParameters = src.getInfo().getParameters();
+            final Map<String,Serializable> srcParameters = src.getInfo().getParameters();
 
             if(srcParameters.equals(sourceParameters)){
                 return true;
@@ -372,15 +373,15 @@ public class GISProject implements Project {
             final org.w3c.dom.Node parametersNode = gisDoc.createElement("parameters");
             rootNode.appendChild(parametersNode);
 
-            final Map<String, String> parameters = info.getParameters();
+            final Map<String, Serializable> parameters = info.getParameters();
             final Set<String> keys = parameters.keySet();
 
             for (final String key : keys) {
                 final org.w3c.dom.Element paramNode = gisDoc.createElement("parameter");
-                final String value = parameters.get(key);
+                final Serializable value = parameters.get(key);
 //                paramNode.setNodeValue(key);
                 paramNode.setAttribute("name", key);
-                paramNode.setTextContent(value);
+                paramNode.setTextContent(value.toString());
                 parametersNode.appendChild(paramNode);
             }
         }

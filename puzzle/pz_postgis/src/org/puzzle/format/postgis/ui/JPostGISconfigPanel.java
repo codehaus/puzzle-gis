@@ -16,10 +16,10 @@
  */
 package org.puzzle.format.postgis.ui;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 import static org.geotoolkit.jdbc.JDBCDataStoreFactory.*;
-import static org.geotoolkit.data.postgis.PostgisNGDataStoreFactory.LOOSEBBOX;
 /**
  * @author Johann Sorel (Püzzle-GIS)
  */
@@ -28,19 +28,14 @@ public class JPostGISconfigPanel extends javax.swing.JPanel {
     public JPostGISconfigPanel() {
         initComponents();
 
-        final Map<String,Object> params = new HashMap<String, Object>();
-        params.put(DBTYPE.key, "postgisng");
-        params.put(HOST.key, HOST.sample);
-        params.put(PORT.key, PORT.sample);
-        params.put(SCHEMA.key, SCHEMA.sample);
-        params.put(DATABASE.key, DATABASE.sample);
-        params.put(USER.key, USER.sample);
-        params.put(PASSWD.key, PASSWD.sample);
-        params.put(MAXCONN.key, MAXCONN.sample);
-        params.put(MINCONN.key, MINCONN.sample);
-        params.put(NAMESPACE.key, NAMESPACE.sample);
-        params.put(VALIDATECONN.key, VALIDATECONN.sample);
-        params.put(LOOSEBBOX.key, LOOSEBBOX.sample);
+        final Map<String,Serializable> params = new HashMap<String, Serializable>();
+        params.put(DBTYPE.getName().toString(), "postgisng");
+        params.put(HOST.getName().toString(), "localhost");
+        params.put(PORT.getName().toString(), 5432);
+        params.put(SCHEMA.getName().toString(), "public");
+        params.put(DATABASE.getName().toString(), "");
+        params.put(USER.getName().toString(), "");
+        params.put(PASSWD.getName().toString(), "");
 
         setParams(params);
     }
@@ -53,44 +48,30 @@ public class JPostGISconfigPanel extends javax.swing.JPanel {
 
         Object val = null;
 
-        val = map.get(HOST.key);
+        val = map.get(HOST.getName().toString());
         jtf_host.setText( (val == null) ? "" : val.toString());
-        val = map.get(PORT.key);
+        val = map.get(PORT.getName().toString());
         jtf_port.setText((val == null) ? "" : val.toString());
-        val = map.get(SCHEMA.key);
+        val = map.get(SCHEMA.getName().toString());
         jtf_schema.setText((val == null) ? "" : val.toString());
-        val = map.get(DATABASE.key);
+        val = map.get(DATABASE.getName().toString());
         jtf_database.setText((val == null) ? "" : val.toString());
-        val = map.get(USER.key);
+        val = map.get(USER.getName().toString());
         jtf_user.setText((val == null) ? "" : val.toString());
-        val = map.get(PASSWD.key);
+        val = map.get(PASSWD.getName().toString());
         jtf_password.setText((val == null) ? "" : val.toString());
-        val = map.get(MAXCONN.key);
-        jsp_max_connects.setValue((val == null) ? 10 : val);
-        val = map.get(MINCONN.key);
-        jsp_min_connects.setValue((val == null) ? 4 : val);
-        val = map.get(NAMESPACE.key);
-        jtf_namespace.setText((val == null) ? "" : val.toString());
-        val = map.get(VALIDATECONN.key);
-        chk_validate.setSelected( (val == null) ? (Boolean) VALIDATECONN.sample : (Boolean)val);        
-        val = map.get(LOOSEBBOX.key);
-        chk_loose.setSelected( (val == null) ? (Boolean) LOOSEBBOX.sample : (Boolean)val);
+        val = map.get(MAXCONN.getName().toString());
     }
 
-    public Map<String,String> getParams(){
-        final Map<String,String> params = new HashMap<String,String>();
-        params.put(DBTYPE.key, "postgisng");
-        params.put(HOST.key, jtf_host.getText());
-        params.put(PORT.key, jtf_port.getText());
-        params.put(SCHEMA.key, jtf_schema.getText());
-        params.put(DATABASE.key, jtf_database.getText());
-        params.put(USER.key, jtf_user.getText());
-        params.put(PASSWD.key, new String(jtf_password.getPassword()));
-        params.put(MAXCONN.key, jsp_max_connects.getValue().toString());
-        params.put(MINCONN.key, jsp_min_connects.getValue().toString());
-        params.put(NAMESPACE.key, jtf_namespace.getText());
-        params.put(VALIDATECONN.key, Boolean.valueOf(chk_validate.isSelected()).toString());
-        params.put(LOOSEBBOX.key, Boolean.valueOf(chk_loose.isSelected()).toString());
+    public Map<String,Serializable> getParams(){
+        final Map<String,Serializable> params = new HashMap<String,Serializable>();
+        params.put(DBTYPE.getName().toString(), "postgisng");
+        params.put(HOST.getName().toString(), jtf_host.getText());
+        params.put(PORT.getName().toString(), jtf_port.getText());
+        params.put(SCHEMA.getName().toString(), jtf_schema.getText());
+        params.put(DATABASE.getName().toString(), jtf_database.getText());
+        params.put(USER.getName().toString(), jtf_user.getText());
+        params.put(PASSWD.getName().toString(), new String(jtf_password.getPassword()));
         return params;
     }
 
@@ -103,17 +84,6 @@ public class JPostGISconfigPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jXTitledPanel2 = new org.jdesktop.swingx.JXTitledPanel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jsp_min_connects = new javax.swing.JSpinner();
-        jsp_max_connects = new javax.swing.JSpinner();
-        chk_validate = new javax.swing.JCheckBox();
-        chk_wkb = new javax.swing.JCheckBox();
-        chk_loose = new javax.swing.JCheckBox();
-        chk_estimated = new javax.swing.JCheckBox();
-        jLabel13 = new javax.swing.JLabel();
-        jtf_namespace = new javax.swing.JTextField();
         jXTitledPanel1 = new org.jdesktop.swingx.JXTitledPanel();
         jLabel1 = new javax.swing.JLabel();
         jtf_host = new javax.swing.JTextField();
@@ -127,75 +97,6 @@ public class JPostGISconfigPanel extends javax.swing.JPanel {
         jtf_user = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jtf_password = new javax.swing.JPasswordField();
-
-        jXTitledPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jXTitledPanel2.setTitle(org.openide.util.NbBundle.getBundle(JPostGISconfigPanel.class).getString("JPostGISconfigPanel.jXTitledPanel2.title")); // NOI18N
-
-        jLabel7.setText(org.openide.util.NbBundle.getBundle(JPostGISconfigPanel.class).getString("JPostGISconfigPanel.jLabel7.text")); // NOI18N
-
-        jLabel8.setText(org.openide.util.NbBundle.getBundle(JPostGISconfigPanel.class).getString("JPostGISconfigPanel.jLabel8.text")); // NOI18N
-
-        chk_validate.setText(org.openide.util.NbBundle.getBundle(JPostGISconfigPanel.class).getString("JPostGISconfigPanel.chk_validate.text")); // NOI18N
-
-        chk_wkb.setText(org.openide.util.NbBundle.getBundle(JPostGISconfigPanel.class).getString("JPostGISconfigPanel.chk_wkb.text")); // NOI18N
-
-        chk_loose.setText(org.openide.util.NbBundle.getBundle(JPostGISconfigPanel.class).getString("JPostGISconfigPanel.chk_loose.text")); // NOI18N
-
-        chk_estimated.setText(org.openide.util.NbBundle.getBundle(JPostGISconfigPanel.class).getString("JPostGISconfigPanel.chk_estimated.text")); // NOI18N
-
-        jLabel13.setText(org.openide.util.NbBundle.getBundle(JPostGISconfigPanel.class).getString("JPostGISconfigPanel.jLabel13.text")); // NOI18N
-
-        javax.swing.GroupLayout jXTitledPanel2Layout = new javax.swing.GroupLayout(jXTitledPanel2);
-        jXTitledPanel2.setLayout(jXTitledPanel2Layout);
-        jXTitledPanel2Layout.setHorizontalGroup(
-            jXTitledPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jXTitledPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jXTitledPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(chk_estimated)
-                    .addComponent(chk_loose)
-                    .addComponent(chk_wkb)
-                    .addGroup(jXTitledPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(jXTitledPanel2Layout.createSequentialGroup()
-                            .addComponent(jLabel7)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jsp_max_connects, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jXTitledPanel2Layout.createSequentialGroup()
-                            .addComponent(jLabel8)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jsp_min_connects)))
-                    .addComponent(chk_validate)
-                    .addGroup(jXTitledPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel13)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jtf_namespace, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        jXTitledPanel2Layout.setVerticalGroup(
-            jXTitledPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jXTitledPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jXTitledPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(jsp_max_connects, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jXTitledPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(jsp_min_connects, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(chk_validate)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(chk_wkb)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(chk_loose)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(chk_estimated)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jXTitledPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel13)
-                    .addComponent(jtf_namespace, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
 
         jXTitledPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jXTitledPanel1.setTitle(org.openide.util.NbBundle.getBundle(JPostGISconfigPanel.class).getString("JPostGISconfigPanel.jXTitledPanel1.title")); // NOI18N
@@ -222,11 +123,11 @@ public class JPostGISconfigPanel extends javax.swing.JPanel {
                     .addGroup(jXTitledPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jtf_host, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE))
+                        .addComponent(jtf_host, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE))
                     .addGroup(jXTitledPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jtf_port, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
+                        .addComponent(jtf_port, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE))
                     .addGroup(jXTitledPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -234,15 +135,15 @@ public class JPostGISconfigPanel extends javax.swing.JPanel {
                     .addGroup(jXTitledPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jtf_database, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE))
+                        .addComponent(jtf_database, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE))
                     .addGroup(jXTitledPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jtf_user, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE))
+                        .addComponent(jtf_user, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE))
                     .addGroup(jXTitledPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jtf_password, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)))
+                        .addComponent(jtf_password, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jXTitledPanel1Layout.setVerticalGroup(
@@ -280,40 +181,24 @@ public class JPostGISconfigPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jXTitledPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jXTitledPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jXTitledPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jXTitledPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addComponent(jXTitledPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JCheckBox chk_estimated;
-    private javax.swing.JCheckBox chk_loose;
-    private javax.swing.JCheckBox chk_validate;
-    private javax.swing.JCheckBox chk_wkb;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private org.jdesktop.swingx.JXTitledPanel jXTitledPanel1;
-    private org.jdesktop.swingx.JXTitledPanel jXTitledPanel2;
-    private javax.swing.JSpinner jsp_max_connects;
-    private javax.swing.JSpinner jsp_min_connects;
     private javax.swing.JTextField jtf_database;
     private javax.swing.JTextField jtf_host;
-    private javax.swing.JTextField jtf_namespace;
     private javax.swing.JPasswordField jtf_password;
     private javax.swing.JTextField jtf_port;
     private javax.swing.JTextField jtf_schema;

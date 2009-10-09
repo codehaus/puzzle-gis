@@ -56,12 +56,15 @@ public class LayerCreationComponent extends JLayerChooser {
 
         guiLayerList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
-        if (store != null) {
-            try {
-                guiLayerList.setModel(new DefaultComboBoxModel(store.getTypeNames()));
-            } catch (IOException ex) {
-                System.out.println(ex);
-            }
+        
+
+        try {
+            System.out.println(">>>>>>>>>>>>>>>>>>"+store.getTypeNames().length);
+            guiLayerList.setModel(new DefaultComboBoxModel(store.getTypeNames()));
+            guiLayerList.revalidate();
+            guiLayerList.repaint();
+        } catch (IOException ex) {
+            System.out.println(ex);
         }
 
         guiLayerList.addListSelectionListener(new ListSelectionListener() {

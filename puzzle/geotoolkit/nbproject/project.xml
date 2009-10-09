@@ -636,7 +636,6 @@
                 <package>org.geotoolkit.data.shapefile.dbf</package>
                 <package>org.geotoolkit.data.shapefile.indexed</package>
                 <package>org.geotoolkit.data.shapefile.indexed.attribute</package>
-                <package>org.geotoolkit.data.shapefile.prj</package>
                 <package>org.geotoolkit.data.shapefile.shp</package>
                 <package>org.geotoolkit.data.shapefile.shp.xml</package>
                 <package>org.geotoolkit.data.store</package>
@@ -651,14 +650,20 @@
                 <package>org.geotoolkit.display.shape</package>
                 <package>org.geotoolkit.display2d</package>
                 <package>org.geotoolkit.display2d.canvas</package>
+                <package>org.geotoolkit.display2d.canvas.painter</package>
                 <package>org.geotoolkit.display2d.canvas.web</package>
                 <package>org.geotoolkit.display2d.container</package>
                 <package>org.geotoolkit.display2d.container.statefull</package>
                 <package>org.geotoolkit.display2d.container.stateless</package>
+                <package>org.geotoolkit.display2d.ext</package>
                 <package>org.geotoolkit.display2d.ext.dimrange</package>
+                <package>org.geotoolkit.display2d.ext.grid</package>
+                <package>org.geotoolkit.display2d.ext.image</package>
+                <package>org.geotoolkit.display2d.ext.isoline</package>
                 <package>org.geotoolkit.display2d.ext.legend</package>
                 <package>org.geotoolkit.display2d.ext.northarrow</package>
                 <package>org.geotoolkit.display2d.ext.scalebar</package>
+                <package>org.geotoolkit.display2d.ext.text</package>
                 <package>org.geotoolkit.display2d.ext.vectorfield</package>
                 <package>org.geotoolkit.display2d.primitive</package>
                 <package>org.geotoolkit.display2d.primitive.iso</package>
@@ -684,6 +689,7 @@
                 <package>org.geotoolkit.filter.capability</package>
                 <package>org.geotoolkit.filter.function</package>
                 <package>org.geotoolkit.filter.function.geometry</package>
+                <package>org.geotoolkit.filter.function.javascript</package>
                 <package>org.geotoolkit.filter.function.math</package>
                 <package>org.geotoolkit.filter.function.other</package>
                 <package>org.geotoolkit.filter.function.string</package>
@@ -705,10 +711,10 @@
                 <package>org.geotoolkit.geometry.isoonjts.spatialschema.geometry.primitive</package>
                 <package>org.geotoolkit.geometry.jts</package>
                 <package>org.geotoolkit.geometry.jts.coordinatesequence</package>
+                <package>org.geotoolkit.gml</package>
                 <package>org.geotoolkit.gml.xml</package>
                 <package>org.geotoolkit.gml.xml.v212</package>
                 <package>org.geotoolkit.gml.xml.v311</package>
-                <package>org.geotoolkit.gml.xml.v311modified</package>
                 <package>org.geotoolkit.gui.headless</package>
                 <package>org.geotoolkit.gui.swing</package>
                 <package>org.geotoolkit.gui.swing.contexttree</package>
@@ -763,15 +769,18 @@
                 <package>org.geotoolkit.internal.jaxb.metadata</package>
                 <package>org.geotoolkit.internal.jaxb.primitive</package>
                 <package>org.geotoolkit.internal.jaxb.referencing</package>
+                <package>org.geotoolkit.internal.jaxb.referencing.cs</package>
+                <package>org.geotoolkit.internal.jaxb.referencing.datum</package>
                 <package>org.geotoolkit.internal.jaxb.text</package>
                 <package>org.geotoolkit.internal.jaxb.uom</package>
-                <package>org.geotoolkit.internal.jdbc</package>
                 <package>org.geotoolkit.internal.referencing</package>
                 <package>org.geotoolkit.internal.rmi</package>
                 <package>org.geotoolkit.internal.setup</package>
+                <package>org.geotoolkit.internal.sql</package>
                 <package>org.geotoolkit.internal.swing</package>
                 <package>org.geotoolkit.internal.wizard</package>
                 <package>org.geotoolkit.io</package>
+                <package>org.geotoolkit.io.wkb</package>
                 <package>org.geotoolkit.io.wkt</package>
                 <package>org.geotoolkit.jdbc</package>
                 <package>org.geotoolkit.lang</package>
@@ -782,6 +791,7 @@
                 <package>org.geotoolkit.measure</package>
                 <package>org.geotoolkit.metadata</package>
                 <package>org.geotoolkit.metadata.iso</package>
+                <package>org.geotoolkit.metadata.iso.acquisition</package>
                 <package>org.geotoolkit.metadata.iso.citation</package>
                 <package>org.geotoolkit.metadata.iso.constraint</package>
                 <package>org.geotoolkit.metadata.iso.content</package>
@@ -796,7 +806,6 @@
                 <package>org.geotoolkit.ogc.xml</package>
                 <package>org.geotoolkit.ogc.xml.v100</package>
                 <package>org.geotoolkit.ogc.xml.v110</package>
-                <package>org.geotoolkit.ogc.xml.v110modified</package>
                 <package>org.geotoolkit.parameter</package>
                 <package>org.geotoolkit.referencing</package>
                 <package>org.geotoolkit.referencing.crs</package>
@@ -829,8 +838,12 @@
                 <package>org.geotoolkit.sld.xml</package>
                 <package>org.geotoolkit.sld.xml.v100</package>
                 <package>org.geotoolkit.sld.xml.v110</package>
+                <package>org.geotoolkit.sql</package>
                 <package>org.geotoolkit.style</package>
+                <package>org.geotoolkit.style.category</package>
                 <package>org.geotoolkit.style.function</package>
+                <package>org.geotoolkit.style.interval</package>
+                <package>org.geotoolkit.style.random</package>
                 <package>org.geotoolkit.util</package>
                 <package>org.geotoolkit.util.collection</package>
                 <package>org.geotoolkit.util.converter</package>

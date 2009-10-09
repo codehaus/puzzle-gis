@@ -17,6 +17,7 @@
 package org.puzzle.format.wms.service;
 
 import java.awt.Image;
+import java.io.Serializable;
 import java.net.URL;
 import java.util.Map;
 
@@ -77,9 +78,9 @@ public class WMSSource extends GISSource{
     public void load() {
         if(server != null) return;
 
-        final Map<String,String> infosParams = getInfo().getParameters();
-        final String url = infosParams.get(WMSSourceService.URL_PROP);
-        final String version = infosParams.get(WMSSourceService.VERSION_PROP);
+        final Map<String,Serializable> infosParams = getInfo().getParameters();
+        final String url = infosParams.get(WMSSourceService.URL_PROP).toString();
+        final String version = infosParams.get(WMSSourceService.VERSION_PROP).toString();
 
         WebMapServer temp = null;
         try {

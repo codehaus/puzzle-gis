@@ -18,6 +18,7 @@ package org.puzzle.format.wms.ui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.Serializable;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -254,7 +255,7 @@ public class JWMSDataPanel extends SourceCreationPane {
     // End of variables declaration//GEN-END:variables
     
     public Map<String,GISSourceInfo> createSources() {
-        final Map<String,String> params = new HashMap<String,String>();
+        final Map<String,Serializable> params = new HashMap<String,Serializable>();
         params.put(WMSSourceService.URL_PROP, jtf_url.getText());
         params.put(WMSSourceService.VERSION_PROP, jtf_version.getText());
         final GISSourceInfo info = new GISSourceInfo(-1, WMSSourceService.SERVICE_ID, params);

@@ -28,7 +28,7 @@ import javax.swing.filechooser.FileFilter;
 import org.geotoolkit.data.DefaultTransaction;
 import org.geotoolkit.data.FeatureSource;
 import org.geotoolkit.data.FeatureStore;
-import org.geotoolkit.data.FileDataStoreFactorySpi;
+import org.geotoolkit.data.FileDataStoreFactory;
 import org.geotoolkit.data.shapefile.ShapefileDataStore;
 import org.geotoolkit.data.shapefile.ShapefileDataStoreFactory;
 import org.geotoolkit.gui.swing.misc.FileFilterFactory;
@@ -88,7 +88,7 @@ public class JShapeExportPane extends JExportPane {
         File file = guiChooser.getSelectedFile();
 
         // Create the DataStoreFactory
-        FileDataStoreFactorySpi factory = new ShapefileDataStoreFactory();
+        FileDataStoreFactory factory = new ShapefileDataStoreFactory();
 
         // Create a Map object used by our DataStore Factory
         // NOTE: file.toURI().toURL() is used because file.toURL() is deprecated

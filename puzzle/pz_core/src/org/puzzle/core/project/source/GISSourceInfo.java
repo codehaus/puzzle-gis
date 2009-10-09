@@ -16,6 +16,7 @@
  */
 package org.puzzle.core.project.source;
 
+import java.io.Serializable;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -32,9 +33,9 @@ public final class GISSourceInfo {
 
     private final int id;
     private final String serviceName;
-    private final Map<String,String> parameters;
+    private final Map<String,Serializable> parameters;
 
-    public GISSourceInfo(int id, String serviceName, Map<String, String> parameters) {
+    public GISSourceInfo(int id, String serviceName, Map<String, Serializable> parameters) {
         if(serviceName == null){
             throw new NullPointerException("Service name can not be null");
         }
@@ -42,7 +43,7 @@ public final class GISSourceInfo {
         this.serviceName = serviceName;
 
         //make a defensive copy immutable
-        final Map<String,String> params = new HashMap<String,String>(parameters);
+        final Map<String,Serializable> params = new HashMap<String,Serializable>(parameters);
         this.parameters = Collections.unmodifiableMap(params);
     }
 
@@ -67,7 +68,7 @@ public final class GISSourceInfo {
      * This parameters are retrieved from the XML storing the {@code GISSource}.
      * @return A {@code Map} containing all parameters.
      */
-    public Map<String,String> getParameters(){
+    public Map<String,Serializable> getParameters(){
         return parameters;
     }
     

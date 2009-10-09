@@ -18,6 +18,7 @@ package org.puzzle.format.shapefile.service;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.Collections;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -89,7 +90,7 @@ public class JShapeImportPane extends JImportPane {
 
         DataStore store = null;
         try {
-            store = DataStoreFinder.getDataStore(Collections.singletonMap("url",shapefile.toURI().toURL()));
+            store = DataStoreFinder.getDataStore(Collections.singletonMap("url",(Serializable)shapefile.toURI().toURL()));
         } catch (IOException ex) {
             Exceptions.printStackTrace(ex);
             return null;

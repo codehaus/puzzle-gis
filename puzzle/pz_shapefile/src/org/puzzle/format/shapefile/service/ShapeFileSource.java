@@ -19,6 +19,7 @@ package org.puzzle.format.shapefile.service;
 
 import java.awt.Image;
 import java.io.File;
+import java.io.Serializable;
 import java.util.Collections;
 import java.util.Map;
 
@@ -90,7 +91,7 @@ public class ShapeFileSource extends GISSource{
 
         DataStore store = null;
         try {
-            store = DataStoreFinder.getDataStore(Collections.singletonMap("url",shapefile.toURI().toURL()));
+            store = DataStoreFinder.getDataStore(Collections.singletonMap("url",(Serializable)shapefile.toURI().toURL()));
         } catch (Exception ex) {
             //we can not trust the underlying datastore, they sometime throw nullpointer errors
             setState(GISSourceState.LOADING_ERROR);
