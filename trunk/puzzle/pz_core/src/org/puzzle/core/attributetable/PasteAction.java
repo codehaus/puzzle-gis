@@ -20,25 +20,16 @@ package org.puzzle.core.attributetable;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.util.Collection;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 import org.geotoolkit.data.FeatureReader;
 import org.geotoolkit.data.FeatureStore;
-import org.geotoolkit.feature.collection.CollectionListener;
 import org.geotoolkit.feature.collection.FeatureCollection;
-import org.geotoolkit.feature.collection.FeatureIterator;
-import org.geotoolkit.geometry.jts.JTSEnvelope2D;
 import org.geotoolkit.gui.swing.propertyedit.LayerFeaturePropertyPanel;
 import org.geotoolkit.map.FeatureMapLayer;
-import org.opengis.feature.Feature;
-import org.opengis.feature.FeatureVisitor;
 import org.opengis.feature.simple.SimpleFeature;
 import org.opengis.feature.simple.SimpleFeatureType;
-import org.opengis.feature.type.FeatureType;
 import org.opengis.filter.Filter;
-import org.opengis.filter.sort.SortBy;
-import org.opengis.util.ProgressListener;
 import org.openide.util.Exceptions;
 import org.puzzle.core.attributetable.typemapping.FeatureMapper;
 import org.puzzle.core.attributetable.typemapping.MappingChooser;
@@ -99,6 +90,8 @@ public class PasteAction extends AbstractDataBufferAction{
                         }
 
                     }
+                    //refresh the data table
+                    panel.reset();
                 }
 
             }

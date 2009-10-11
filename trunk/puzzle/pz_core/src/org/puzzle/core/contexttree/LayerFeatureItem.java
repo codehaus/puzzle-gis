@@ -21,6 +21,8 @@ import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.lang.ref.WeakReference;
+import javax.swing.JComponent;
+import javax.swing.JMenuItem;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreePath;
 
@@ -68,7 +70,7 @@ public class LayerFeatureItem extends AbstractTreePopupItem{
 
                 //configure all actions
                 Lookup lk = Lookups.forPath("/Puzzle/AttributeTable/Actions");
-                for(JFeaturePanelAction item : lk.lookupAll(JFeaturePanelAction.class)){
+                for(JComponent item : lk.lookupAll(JComponent.class)){
                     pan.actions().add(item);
                 }
 
