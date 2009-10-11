@@ -51,9 +51,50 @@ import org.puzzle.core.project.filetype.GISContextDataObject;
  * 
  * @author : Johann Sorel (Puzzle-GIS)
  */
-final class ContextTreeTopComponent extends TopComponent implements LookupListener{
+final class ContextTreeTopComponent extends TopComponent{
 
-    private Lookup.Result result = null;
+    private static Lookup.Result result = null;
+
+    static {
+        result = Utilities.actionsGlobalContext().lookupResult(GISContextDataObject.class);
+        result.addLookupListener(new LookupListener() {
+
+            @Override
+            public void resultChanged(LookupEvent lookupEvent) {
+                final Lookup.Result r = (Lookup.Result) lookupEvent.getSource();
+                final Collection c = r.allInstances();
+                if (!c.isEmpty()) {
+
+                    new Thread() {
+
+                        @Override
+                        public void run() {
+                            final Iterator ite = c.iterator();
+                            while (ite.hasNext()) {
+                                final GISContextDataObject da = (GISContextDataObject) ite.next();
+                                final MapContext candidate = da.getContext();
+                                SwingUtilities.invokeLater(new Runnable() {
+
+                                    @Override
+                                    public void run() {
+                                        final ContextTreeTopComponent window = findInstance();
+                                        if (window != null && candidate != window.getContextTree().getContext()) {
+                                            window.getContextTree().setContext(candidate);
+                                            window.setDisplayName(NbBundle.getMessage(ContextTreeTopComponent.class, "contextTree") + " - " + candidate.getDescription().getTitle());
+                                        }
+                                    }
+                                });
+                            }
+                        }
+                    }.start();
+
+                }
+            }
+        });
+        result.allItems();
+
+    }
+
 
     private JContextTree tree = null;
     private static ContextTreeTopComponent instance;
@@ -67,53 +108,55 @@ final class ContextTreeTopComponent extends TopComponent implements LookupListen
 
     }
 
-    public JContextTree getContextTree() {
-        final JContextTree tree = new JContextTree();
+    public synchronized JContextTree getContextTree() {
+        if(tree == null){
+            final JContextTree tree = new JContextTree();
 
-        //search available popup menu items
-        Lookup lk = Lookups.forPath("/Puzzle/ContextTree/Actions");
-        for(TreePopupItem item : lk.lookupAll(TreePopupItem.class)){
-            tree.controls().add(item);
+            //search available popup menu items
+            Lookup lk = Lookups.forPath("/Puzzle/ContextTree/Actions");
+            for(TreePopupItem item : lk.lookupAll(TreePopupItem.class)){
+                tree.controls().add(item);
+            }
+
+            final List<PropertyPane> configPanes = new ArrayList<PropertyPane>();
+
+            JPropertyTree propertyTree = new JPropertyTree();
+
+            DefaultMutableTreeNode root = new DefaultMutableTreeNode();
+
+            //search available property panels
+            lk = Lookups.forPath("/Puzzle/ContextTree/PropertyPanels");
+            for(PropertyPane p : lk.lookupAll(PropertyPane.class)){
+                root.add(new DefaultMutableTreeNode(p));
+            }
+
+            //search filter panels
+            DefaultMutableTreeNode filterNodes = new DefaultMutableTreeNode(NbBundle.getMessage(ContextTreeTopComponent.class, "filter"));
+            lk = Lookups.forPath("/Puzzle/ContextTree/FilterPanels");
+            for(PropertyPane p : lk.lookupAll(PropertyPane.class)){
+                filterNodes.add(new DefaultMutableTreeNode(p));
+            }
+            root.add(filterNodes);
+
+            //search style panels
+            DefaultMutableTreeNode styleNodes = new DefaultMutableTreeNode(NbBundle.getMessage(ContextTreeTopComponent.class, "symbology"));
+            lk = Lookups.forPath("/Puzzle/ContextTree/StylePanels");
+            for(PropertyPane p : lk.lookupAll(PropertyPane.class)){
+                styleNodes.add(new DefaultMutableTreeNode(p));
+            }
+            root.add(styleNodes);
+
+            if(!tree.controls().isEmpty()){
+                tree.controls().add(new SeparatorItem());
+            }
+
+            LayerPropertyItem property = new LayerPropertyItem(root);
+            tree.controls().add(property);
+
+            tree.revalidate();
+            tree.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+            this.tree = tree;
         }
-
-        final List<PropertyPane> configPanes = new ArrayList<PropertyPane>();
-
-        JPropertyTree propertyTree = new JPropertyTree();
-
-        DefaultMutableTreeNode root = new DefaultMutableTreeNode();
-
-        //search available property panels
-        lk = Lookups.forPath("/Puzzle/ContextTree/PropertyPanels");
-        for(PropertyPane p : lk.lookupAll(PropertyPane.class)){
-            root.add(new DefaultMutableTreeNode(p));
-        }
-
-        //search filter panels
-        DefaultMutableTreeNode filterNodes = new DefaultMutableTreeNode(NbBundle.getMessage(ContextTreeTopComponent.class, "filter"));
-        lk = Lookups.forPath("/Puzzle/ContextTree/FilterPanels");
-        for(PropertyPane p : lk.lookupAll(PropertyPane.class)){
-            filterNodes.add(new DefaultMutableTreeNode(p));
-        }
-        root.add(filterNodes);
-
-        //search style panels
-        DefaultMutableTreeNode styleNodes = new DefaultMutableTreeNode(NbBundle.getMessage(ContextTreeTopComponent.class, "symbology"));
-        lk = Lookups.forPath("/Puzzle/ContextTree/StylePanels");
-        for(PropertyPane p : lk.lookupAll(PropertyPane.class)){
-            styleNodes.add(new DefaultMutableTreeNode(p));
-        }
-        root.add(styleNodes);
-
-        if(!tree.controls().isEmpty()){
-            tree.controls().add(new SeparatorItem());
-        }
-
-        LayerPropertyItem property = new LayerPropertyItem(root);
-        tree.controls().add(property);
-
-        tree.revalidate();
-        tree.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-
         return tree;
     }
 
@@ -163,29 +206,18 @@ final class ContextTreeTopComponent extends TopComponent implements LookupListen
 
     @Override
     public int getPersistenceType() {
-        return TopComponent.PERSISTENCE_ALWAYS;
+        return TopComponent.PERSISTENCE_NEVER;
     }
 
     @Override
     public void componentOpened() {
-        result = Utilities.actionsGlobalContext().lookupResult(GISContextDataObject.class);
-        result.addLookupListener (this);
-
         removeAll();
-        if (tree == null) {
-            tree = getContextTree();
-        }
-
-        add(BorderLayout.CENTER, tree);
-
+        add(BorderLayout.CENTER, getContextTree());
         requestActive();
     }
 
     @Override
     public void componentClosed() {
-        result.removeLookupListener (this);
-        result = null;
-
         removeAll();
         tree = null;
     }
@@ -212,39 +244,6 @@ final class ContextTreeTopComponent extends TopComponent implements LookupListen
 
         public Object readResolve() {
             return ContextTreeTopComponent.getDefault();
-        }
-    }
-
-    @Override
-    public void resultChanged(LookupEvent lookupEvent) {
-        final Lookup.Result r = (Lookup.Result) lookupEvent.getSource();
-        final Collection c = r.allInstances();
-        if (!c.isEmpty()) {
-
-            new Thread(){
-
-                public void run(){
-
-                    final Iterator ite = c.iterator();
-                    while(ite.hasNext()){
-                        final GISContextDataObject da = (GISContextDataObject) ite.next();
-                        final MapContext candidate = da.getContext();
-                        if(candidate != tree.getContext()){
-                            tree.setContext(candidate);
-
-                            SwingUtilities.invokeLater(new Runnable() {
-                                @Override
-                                public void run() {
-                                    setDisplayName(NbBundle.getMessage(ContextTreeTopComponent.class, "contextTree")
-                                    +" - "+ candidate.getDescription().getTitle());
-                                }
-                            });
-                        }
-                    }
-                }
-
-            }.start();
-            
         }
     }
 
