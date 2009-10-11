@@ -16,19 +16,29 @@
  */
 package org.puzzle.core.attributetable.typemapping;
 
-import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dialog;
+import java.awt.Dimension;
 import java.text.MessageFormat;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.swing.JComponent;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JSplitPane;
 import javax.swing.event.ChangeListener;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+
+import org.jdesktop.swingx.JXTable;
+import org.jdesktop.swingx.decorator.Highlighter;
+import org.jdesktop.swingx.decorator.HighlighterFactory;
 
 import org.opengis.feature.simple.SimpleFeatureType;
 import org.opengis.feature.type.AttributeDescriptor;
+import org.opengis.feature.type.GeometryDescriptor;
 import org.openide.DialogDisplayer;
 import org.openide.WizardDescriptor;
 import org.openide.util.HelpCtx;
@@ -41,25 +51,71 @@ import org.openide.util.HelpCtx;
  */
 public class MappingChooser implements WizardDescriptor.Panel {
 
-    private final JPanel component = new JPanel();
+    private final JSplitPane component = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
     private boolean flagok = false;
-    private final TypeGraph graph;    
+    private final TypeGraph graph;
+    private final TableModel model;
     
-    public MappingChooser(SimpleFeatureType type1, SimpleFeatureType type2){
-        
-        graph = new TypeGraph(type1, type2);
+    public MappingChooser(SimpleFeatureType sourceType, SimpleFeatureType targetType){
+
+        final List<AttributeDescriptor> validDescs = new ArrayList<AttributeDescriptor>();
+        for(AttributeDescriptor desc : targetType.getAttributeDescriptors()){
+            if(!(desc instanceof GeometryDescriptor)){
+                validDescs.add(desc);
+            }
+        }
+
+        final Object[][] datas = new Object[validDescs.size()][2];
+        for(int i=0; i<validDescs.size(); i++){
+            final AttributeDescriptor desc = validDescs.get(i);
+            datas[i][0] = desc.getLocalName();
+            datas[i][1] = desc.getDefaultValue();
+        }
+
+        model = new DefaultTableModel(datas,
+                new String[]{Utilities.getString("property"),Utilities.getString("default")}){
+
+            @Override
+            public boolean isCellEditable(int arg0, int arg1) {
+                if(arg1 <1) return false;
+                return super.isCellEditable(arg0, arg1);
+            }
+        };
+
+        final JXTable table = new JXTable(model);
+        table.setHighlighters(new Highlighter[]{HighlighterFactory.createAlternateStriping(Color.white, HighlighterFactory.QUICKSILVER, 1)});
+        table.setShowGrid(true, true);
+        table.setGridColor(Color.GRAY.brighter());
+
+
+        graph = new TypeGraph(sourceType, targetType);
 
         component.setName("");
-        component.setLayout(new BorderLayout());
-        component.add(BorderLayout.CENTER,new JScrollPane(graph.createView()));
+        component.setLeftComponent(new JScrollPane(table));
+        component.setRightComponent(new JScrollPane(graph.createView()));
+        component.setPreferredSize(new Dimension(620, 300));
+        component.setDividerLocation(220);
+        table.packAll();
     }
     
     
     public FeatureMapper getMapper(){
         
         if(flagok){
+            final Map<AttributeDescriptor,Object> defaults = new HashMap<AttributeDescriptor, Object>();
+
+            for(int i=0, n=model.getRowCount(); i<n; i++){
+                String attName = model.getValueAt(i, 0).toString();
+                Object value = model.getValueAt(i, 1);
+
+                AttributeDescriptor desc = graph.getTargetType().getDescriptor(attName);
+                if(desc != null){
+                    defaults.put(desc, value);
+                }
+            }
+
             final Map<AttributeDescriptor,List<AttributeDescriptor>> mapping = graph.getMapping();
-            return new DefaultFeatureMapper(graph.getSourceType(), graph.getTargetType(), mapping);
+            return new DefaultFeatureMapper(graph.getSourceType(), graph.getTargetType(), mapping, defaults);
         }
         
         return null;

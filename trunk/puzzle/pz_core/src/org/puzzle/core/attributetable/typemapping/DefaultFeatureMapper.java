@@ -52,15 +52,18 @@ public class DefaultFeatureMapper implements FeatureMapper{
     private final SimpleFeatureBuilder builder;
     private final SimpleFeatureType typeSource;
     private final SimpleFeatureType typeTarget;
+    private final Map<AttributeDescriptor,Object> defaults;
     private final Map<AttributeDescriptor,List<AttributeDescriptor>> mapping;
 
     private int id = 1;
 
     public DefaultFeatureMapper(SimpleFeatureType typeSource, SimpleFeatureType typeTarget, 
-            Map<AttributeDescriptor, List<AttributeDescriptor>> mapping) {
+            Map<AttributeDescriptor, List<AttributeDescriptor>> mapping,
+            Map<AttributeDescriptor,Object> defaults) {
         this.typeSource = typeSource;
         this.typeTarget = typeTarget;
         this.mapping = mapping;
+        this.defaults = defaults;
 
         this.builder = new SimpleFeatureBuilder(typeTarget);
     }
@@ -68,6 +71,20 @@ public class DefaultFeatureMapper implements FeatureMapper{
     @Override
     public SimpleFeature transform(SimpleFeature feature) {
         builder.reset();
+
+        //set all default values
+        for(final AttributeDescriptor desc : typeTarget.getAttributeDescriptors()){
+            Object val = defaults.get(desc);
+            if(val == null){
+                val = desc.getDefaultValue();
+            }
+            try{
+                builder.set(desc.getLocalName(), Converters.convert(val, desc.getType().getBinding()));
+            }catch(Exception ex){
+                ex.printStackTrace();
+            }
+        }
+
 
         for(final AttributeDescriptor sourceDesc : mapping.keySet()){
             final Object value = feature.getAttribute(sourceDesc.getLocalName());
@@ -108,23 +125,20 @@ public class DefaultFeatureMapper implements FeatureMapper{
                         candidateGeom = transformer.transform(candidateGeom);
                     } catch (Exception ex) {
                         Exceptions.printStackTrace(ex);
-                        return target.getDefaultValue();
+                        return null;
                     }
                 }
 
                 candidateGeom = convertType(candidateGeom,targetGeomDesc.getType().getBinding());
-                if(candidateGeom == null){
-                    return targetGeomDesc.getDefaultValue();
-                }
                 return candidateGeom;
 
             }else{
-                //types doesnt match, return default value
-                return target.getDefaultValue();
+                //types doesnt match
+                return null;
             }
         }else if(target instanceof GeometryDescriptor){
             //source attribut doesnt match
-            return target.getDefaultValue();
+            return null;
         }
 
         //normal attributs type, string, numbers, dates ...
@@ -133,7 +147,7 @@ public class DefaultFeatureMapper implements FeatureMapper{
         }catch(Exception ex){
             Exceptions.printStackTrace(ex);
             //could not convert between types
-            return target.getDefaultValue();
+            return null;
         }
     }
 
