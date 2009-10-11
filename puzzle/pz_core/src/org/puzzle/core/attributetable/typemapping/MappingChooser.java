@@ -77,7 +77,9 @@ public class MappingChooser implements WizardDescriptor.Panel {
         final WizardDescriptor wizardDescriptor = new WizardDescriptor(this.getPanels());
         // {0} will be replaced by WizardDesriptor.Panel.getComponent().getName()
         wizardDescriptor.setTitleFormat(new MessageFormat("{0}"));
-        wizardDescriptor.setTitle("");
+        wizardDescriptor.setTitle(Utilities.getString("configure_mapping"));
+        wizardDescriptor.putProperty(WizardDescriptor.PROP_CONTENT_DISPLAYED, false);
+        wizardDescriptor.putProperty(WizardDescriptor.PROP_TITLE, false);
         Dialog dialog = DialogDisplayer.getDefault().createDialog(wizardDescriptor);
         dialog.setVisible(true);
         dialog.toFront();
