@@ -25,9 +25,12 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreePath;
 
 import org.geotoolkit.gui.swing.contexttree.AbstractTreePopupItem;
+import org.geotoolkit.gui.swing.propertyedit.JFeaturePanelAction;
 import org.geotoolkit.gui.swing.propertyedit.LayerFeaturePropertyPanel;
 import org.geotoolkit.gui.swing.resource.MessageBundle;
 import org.geotoolkit.map.FeatureMapLayer;
+import org.openide.util.Lookup;
+import org.openide.util.lookup.Lookups;
 import org.openide.windows.Mode;
 import org.openide.windows.TopComponent;
 import org.openide.windows.WindowManager;
@@ -62,6 +65,13 @@ public class LayerFeatureItem extends AbstractTreePopupItem{
 
                 LayerFeaturePropertyPanel pan = new LayerFeaturePropertyPanel();
                 pan.setTarget(layer);
+
+                //configure all actions
+                Lookup lk = Lookups.forPath("/Puzzle/AttributeTable/Actions");
+                for(JFeaturePanelAction item : lk.lookupAll(JFeaturePanelAction.class)){
+                    pan.actions().add(item);
+                }
+
 
                 TopComponent comp = new TopComponent(){
                     @Override
