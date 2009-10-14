@@ -66,6 +66,9 @@ public final class ShowMapContext extends CookieAction {
 
                 if(context != null){
                     final Collection<? extends RenderingService> services = Lookup.getDefault().lookupAll(RenderingService.class);
+
+                    System.out.println(">>>>>>>>>>>>" + services.size());
+
                     if(services.isEmpty()){
                         return;
                     }else if(services.size() == 1){
