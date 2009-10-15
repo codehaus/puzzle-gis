@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+OpenIDE-Module: nasa.worldwind
+OpenIDE-Module-Localizing-Bundle: nasa/worldwind/Bundle.properties
+OpenIDE-Module-Specification-Version: 1.0
+

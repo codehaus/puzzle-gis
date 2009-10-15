@@ -121,7 +121,7 @@ public class DefaultFeatureMapper implements FeatureMapper{
                     final GeometryCoordinateSequenceTransformer transformer
                             = new GeometryCoordinateSequenceTransformer();
                     try {
-                        transformer.setMathTransform(CRS.findMathTransform(sourceCRS, targetCRS));
+                        transformer.setMathTransform(CRS.findMathTransform(sourceCRS, targetCRS, true));
                         candidateGeom = transformer.transform(candidateGeom);
                     } catch (Exception ex) {
                         Exceptions.printStackTrace(ex);

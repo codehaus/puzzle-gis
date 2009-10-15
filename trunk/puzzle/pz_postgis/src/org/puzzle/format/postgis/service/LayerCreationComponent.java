@@ -44,6 +44,7 @@ import org.geotoolkit.gui.swing.resource.IconBundle;
 import org.geotoolkit.map.MapLayer;
 import org.geotoolkit.style.DefaultStyleFactory;
 import org.opengis.feature.simple.SimpleFeatureType;
+import org.opengis.feature.type.GeometryDescriptor;
 import org.openide.util.Exceptions;
 import org.openide.util.NbBundle;
 import org.puzzle.core.project.source.capabilities.JLayerChooser;
@@ -71,7 +72,6 @@ public class LayerCreationComponent extends JLayerChooser {
         try {
             guiLayerList.setModel(new DefaultComboBoxModel(store.getTypeNames()));
             guiLayerList.revalidate();
-            guiLayerList.repaint();
         } catch (IOException ex) {
             System.out.println(ex);
         }
@@ -180,32 +180,36 @@ public class LayerCreationComponent extends JLayerChooser {
 
     private class TypeRender extends DefaultListCellRenderer{
 
-
-
         @Override
         public Component getListCellRendererComponent(JList arg0, Object value, int arg2, boolean arg3, boolean arg4) {
             JLabel lbl = (JLabel) super.getListCellRendererComponent(arg0, value, arg2, arg3, arg4);
 
             if(value instanceof String){
                 try {
-                    SimpleFeatureType sft = (SimpleFeatureType) store.getSchema(value.toString());
-                    Class binding = sft.getGeometryDescriptor().getType().getBinding();
+                    final SimpleFeatureType sft = (SimpleFeatureType) store.getSchema(value.toString());
+                    final GeometryDescriptor desc = sft.getGeometryDescriptor();
+                    if(desc == null){
+                        //geometryless table
+                        lbl.setIcon(null);
+                    }else{
+                        final Class binding = sft.getGeometryDescriptor().getType().getBinding();
 
-                    if(binding.isAssignableFrom(Point.class)){
-                        lbl.setIcon(POINT);
-                    }else if(binding.isAssignableFrom(LineString.class)){
-                        lbl.setIcon(LINE);
-                    }else if(binding.isAssignableFrom(Polygon.class)){
-                        lbl.setIcon(POLYGON);
-                    }else if(binding.isAssignableFrom(MultiPoint.class)){
-                        lbl.setIcon(MPOINT);
-                    }else if(binding.isAssignableFrom(MultiLineString.class)){
-                        lbl.setIcon(MLINE);
-                    }else if(binding.isAssignableFrom(MultiPolygon.class)){
-                        lbl.setIcon(MPOLYGON);
+                        if(binding.isAssignableFrom(Point.class)){
+                            lbl.setIcon(POINT);
+                        }else if(binding.isAssignableFrom(LineString.class)){
+                            lbl.setIcon(LINE);
+                        }else if(binding.isAssignableFrom(Polygon.class)){
+                            lbl.setIcon(POLYGON);
+                        }else if(binding.isAssignableFrom(MultiPoint.class)){
+                            lbl.setIcon(MPOINT);
+                        }else if(binding.isAssignableFrom(MultiLineString.class)){
+                            lbl.setIcon(MLINE);
+                        }else if(binding.isAssignableFrom(MultiPolygon.class)){
+                            lbl.setIcon(MPOLYGON);
+                        }
                     }
 
-                } catch (IOException ex) {
+                } catch (Exception ex) {
                     Exceptions.printStackTrace(ex);
                 }
             }
