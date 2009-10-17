@@ -19,6 +19,7 @@ package org.puzzle.core.windows.toolbox.tree;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.puzzle.core.resources.MessageBundle;
 
 /**
  * tree path for tool.
@@ -32,7 +33,7 @@ class DefaultToolTreePath implements ToolTreePath{
     private final List<String> paths = new ArrayList<String>();
     
     DefaultToolTreePath(final ToolTreePath father, final String i18nKey){
-        final String myPath = Utilities.getString(i18nKey);
+        final String myPath = MessageBundle.getString(i18nKey);
         
         if(father != null){
             paths.addAll(((DefaultToolTreePath)father).getInerPath());
