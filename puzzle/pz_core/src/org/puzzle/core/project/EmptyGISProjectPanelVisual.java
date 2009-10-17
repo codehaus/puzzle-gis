@@ -102,7 +102,7 @@ public class EmptyGISProjectPanelVisual extends JPanel implements DocumentListen
         createdFolderTextField.setEditable(false);
 
 
-        jLabel1.setIcon(new ImageIcon(getClass().getResource("/org/puzzle/core/project/boussole100.png"))); // NOI18N
+        jLabel1.setIcon(new ImageIcon(getClass().getResource("/org/puzzle/core/resources/boussole100.png"))); // NOI18N
         GroupLayout layout = new GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
