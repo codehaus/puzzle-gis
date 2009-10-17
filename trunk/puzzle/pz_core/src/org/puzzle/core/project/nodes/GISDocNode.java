@@ -21,6 +21,7 @@ import java.awt.Image;
 import org.openide.nodes.FilterNode;
 import org.openide.nodes.Node;
 import org.openide.util.ImageUtilities;
+import org.puzzle.core.resources.MessageBundle;
 
 /**
  * This class provides a {@link org.openide.nodes.Node} for the "doc" folder
@@ -35,7 +36,7 @@ import org.openide.util.ImageUtilities;
  */
 public class GISDocNode extends FilterNode {
 
-    private final Image ICON = ImageUtilities.loadImage("org/puzzle/core/project/doc.png", true);
+    private final Image ICON = ImageUtilities.loadImage("org/puzzle/core/resources/doc.png", true);
 
     /**
      * Constructor.
@@ -57,7 +58,7 @@ public class GISDocNode extends FilterNode {
 
     @Override
     public String getDisplayName() {
-        return Utilities.getString("documents");
+        return MessageBundle.getString("documents");
     }
 
     @Override

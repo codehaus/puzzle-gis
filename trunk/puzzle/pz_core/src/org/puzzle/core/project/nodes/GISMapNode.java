@@ -28,6 +28,7 @@ import org.openide.util.ImageUtilities;
 
 import org.puzzle.core.actions.NewMapContext;
 import org.puzzle.core.project.GISProject;
+import org.puzzle.core.resources.MessageBundle;
 
 /**
  * This class provides a {@link org.openide.nodes.Node} for the "map" folder
@@ -42,7 +43,7 @@ import org.puzzle.core.project.GISProject;
  */
 public class GISMapNode extends FilterNode {
 
-    private final Image ICON = ImageUtilities.loadImage("org/puzzle/core/project/map.png");
+    private final Image ICON = ImageUtilities.loadImage("org/puzzle/core/resources/map.png");
 
     /**
      * Constructor.
@@ -64,7 +65,7 @@ public class GISMapNode extends FilterNode {
 
     @Override
     public String getDisplayName() {
-        return Utilities.getString("maps");
+        return MessageBundle.getString("maps");
     }
 
     @Override
