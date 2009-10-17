@@ -90,66 +90,68 @@ public class GISSourceDataObject extends XMLDataObject {
 
         if(source == null){
 
-            ProgressHandle handle = ProgressHandleFactory.createHandle(MessageBundle.getString("loadingSource") +" : " + getName());
+            final ProgressHandle handle = ProgressHandleFactory.createHandle(MessageBundle.getString("loadingSource") +" : " + getName());
             handle.setInitialDelay(1);
             handle.start(100);
             handle.switchToIndeterminate();
 
-            //try to read the xml file
-            Document gisDoc = null;
-            try {
-                gisDoc = getDocument();
-            } catch (IOException ex) {
-                Exceptions.printStackTrace(ex);
-            } catch (SAXException ex) {
-                Exceptions.printStackTrace(ex);
-            }
-
-            //if file is valid
-            if(gisDoc != null){
-                final org.w3c.dom.Node rootNode = gisDoc.getFirstChild();
-
-                final NodeList ids = gisDoc.getElementsByTagName("id");
-                int id = 0;
-                if(ids.getLength()>0){
-                    //there is a set ID
-                    id = Integer.valueOf( ids.item(0).getTextContent() );
+            try{
+                //try to read the xml file
+                Document gisDoc = null;
+                try {
+                    gisDoc = getDocument();
+                } catch (IOException ex) {
+                    Exceptions.printStackTrace(ex);
+                } catch (SAXException ex) {
+                    Exceptions.printStackTrace(ex);
                 }
 
-                String serviceId = "unknowned";
-                final NodeList serviceIds = gisDoc.getElementsByTagName("serviceid");
-                if(serviceIds.getLength()>0){
-                    //there is a set service ID
-                    serviceId = serviceIds.item(0).getTextContent();
-                }
+                //if file is valid
+                if(gisDoc != null){
+                    final org.w3c.dom.Node rootNode = gisDoc.getFirstChild();
 
-                final NodeList urls = gisDoc.getElementsByTagName("parameters");
-                final Map<String,Serializable> parameters = new HashMap<String,Serializable>();
+                    final NodeList ids = gisDoc.getElementsByTagName("id");
+                    int id = 0;
+                    if(ids.getLength()>0){
+                        //there is a set ID
+                        id = Integer.valueOf( ids.item(0).getTextContent() );
+                    }
 
-                for(int i=0, n = urls.getLength(); i<n; i++){
-                    org.w3c.dom.Element paramsNode = (Element) urls.item(i);
-                    final NodeList params = paramsNode.getElementsByTagName("parameter");
+                    String serviceId = "unknowned";
+                    final NodeList serviceIds = gisDoc.getElementsByTagName("serviceid");
+                    if(serviceIds.getLength()>0){
+                        //there is a set service ID
+                        serviceId = serviceIds.item(0).getTextContent();
+                    }
 
-                    for(int j=0, l=params.getLength(); j<l; j++){
-                        final org.w3c.dom.Element singleParam = (Element) params.item(j);
-                        final String key = singleParam.getAttribute("name");
-                        final String value = singleParam.getTextContent();
-                        if(key != null && value != null){
-                            parameters.put(key, value);
+                    final NodeList urls = gisDoc.getElementsByTagName("parameters");
+                    final Map<String,Serializable> parameters = new HashMap<String,Serializable>();
+
+                    for(int i=0, n = urls.getLength(); i<n; i++){
+                        org.w3c.dom.Element paramsNode = (Element) urls.item(i);
+                        final NodeList params = paramsNode.getElementsByTagName("parameter");
+
+                        for(int j=0, l=params.getLength(); j<l; j++){
+                            final org.w3c.dom.Element singleParam = (Element) params.item(j);
+                            final String key = singleParam.getAttribute("name");
+                            final String value = singleParam.getTextContent();
+                            if(key != null && value != null){
+                                parameters.put(key, value);
+                            }
                         }
                     }
+
+                    final GISSourceService service = getSourceService(serviceId);
+
+                    if(service != null){
+                        final GISSourceInfo info = new GISSourceInfo(id, serviceId, parameters);
+                        source = service.restoreSource(info);
+                    }
+
                 }
-
-                final GISSourceService service = getSourceService(serviceId);
-
-                if(service != null){
-                    final GISSourceInfo info = new GISSourceInfo(id, serviceId, parameters);
-                    source = service.restoreSource(info);
-                }
-
+            }finally{
+                handle.finish();
             }
-
-            handle.finish();
         }
 
         return source;
