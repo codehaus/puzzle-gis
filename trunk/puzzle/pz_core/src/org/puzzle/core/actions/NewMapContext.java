@@ -35,6 +35,7 @@ import org.openide.loaders.DataObjectNotFoundException;
 import org.openide.loaders.TemplateWizard;
 
 import org.puzzle.core.project.GISProject;
+import org.puzzle.core.resources.MessageBundle;
 
 /**
  * Action to create a new map.
@@ -50,7 +51,7 @@ public final class NewMapContext extends AbstractAction {
     }
     
     public NewMapContext(final GISProject project){
-        super(Utilities.getString("newMap"));
+        super(MessageBundle.getString("newMap"));
         this.project = project;
     }
     
@@ -95,7 +96,9 @@ public final class NewMapContext extends AbstractAction {
                 }
             }
         } else {
-            NotifyDescriptor d =  new NotifyDescriptor.Message(Utilities.getString("projectIsNotGIS"), NotifyDescriptor.INFORMATION_MESSAGE);
+            NotifyDescriptor d =  new NotifyDescriptor.Message(
+                    MessageBundle.getString("projectIsNotGIS"),
+                    NotifyDescriptor.INFORMATION_MESSAGE);
             DialogDisplayer.getDefault().notify(d);
         }
         

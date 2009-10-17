@@ -20,6 +20,9 @@ import java.io.File;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JFileChooser;
 
 import org.openide.util.Lookup;
 
@@ -84,24 +87,24 @@ final class JFileSourcePane extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        gui_choose = new javax.swing.JFileChooser();
+        gui_choose = new JFileChooser();
 
         gui_choose.setControlButtonsAreShown(false);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        GroupLayout layout = new GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(gui_choose, javax.swing.GroupLayout.DEFAULT_SIZE, 614, Short.MAX_VALUE)
+            layout.createParallelGroup(Alignment.LEADING)
+            .addComponent(gui_choose, GroupLayout.DEFAULT_SIZE, 614, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(gui_choose, javax.swing.GroupLayout.DEFAULT_SIZE, 407, Short.MAX_VALUE)
+            layout.createParallelGroup(Alignment.LEADING)
+            .addComponent(gui_choose, GroupLayout.DEFAULT_SIZE, 407, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JFileChooser gui_choose;
+    private JFileChooser gui_choose;
     // End of variables declaration//GEN-END:variables
 
     /**

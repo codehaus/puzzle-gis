@@ -14,7 +14,7 @@
  *    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  *    Lesser General Public License for more details.
  */
-package org.puzzle.core.actions;
+package org.puzzle.core.resources;
 
 import java.util.ResourceBundle;
 
@@ -22,11 +22,13 @@ import java.util.ResourceBundle;
  * I18N for this package
  * @author Johann Sorel (Puzzle-GIS)
  */
-final class Utilities {
+public final class MessageBundle {
 
-    private static final ResourceBundle BUNDLE = ResourceBundle.getBundle("org/puzzle/core/actions/Bundle");
+    private static final ResourceBundle BUNDLE = ResourceBundle.getBundle("org/puzzle/core/resources/Bundle");
 
-    static final String getString(final String key){
+    private MessageBundle(){}
+
+    public static final String getString(final String key){
         return BUNDLE.getString(key);
     }
 
