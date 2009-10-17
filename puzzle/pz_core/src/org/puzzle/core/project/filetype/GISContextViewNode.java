@@ -36,7 +36,7 @@ import org.puzzle.core.project.view.GISView;
  */
 public class GISContextViewNode extends AbstractNode{
 
-    private static final Image IMAGE_VIEW = ImageUtilities.loadImage("org/puzzle/core/project/filetype/view.png");
+    private static final Image IMAGE_VIEW = ImageUtilities.loadImage("org/puzzle/core/resources/view.png");
     private final GISView view;
 
     public GISContextViewNode(GISView view) {
