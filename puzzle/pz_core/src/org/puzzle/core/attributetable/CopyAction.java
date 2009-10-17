@@ -23,6 +23,7 @@ import org.geotoolkit.factory.FactoryFinder;
 import org.geotoolkit.gui.swing.propertyedit.LayerFeaturePropertyPanel;
 import org.geotoolkit.map.FeatureMapLayer;
 import org.opengis.filter.Id;
+import org.puzzle.core.resources.MessageBundle;
 
 /**
  *
@@ -31,7 +32,7 @@ import org.opengis.filter.Id;
 public class CopyAction extends AbstractDataBufferAction{
 
     public CopyAction(){
-        setText(Utilities.getString("copy"));
+        setText(MessageBundle.getString("copy"));
 
         addActionListener(new ActionListener() {
 
