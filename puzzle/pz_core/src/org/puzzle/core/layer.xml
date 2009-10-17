@@ -341,6 +341,10 @@
                     <attr name="instanceCreate" newvalue="org.puzzle.core.contexttree.JAdvancedStylePanel"/>
                     <attr name="position" intvalue="400"/>
                 </file>
+                <file name="org-puzzle-core-contexttree-JSLDExportPanel.instance">
+                    <attr name="instanceCreate" newvalue="org.puzzle.core.contexttree.JSLDExportPanel"/>
+                    <attr name="position" intvalue="500"/>
+                </file>
             </folder>
         </folder>
         <folder name="Tools">
