@@ -25,6 +25,7 @@ import org.openide.util.Lookup;
 import org.openide.util.LookupEvent;
 import org.openide.util.LookupListener;
 
+import org.puzzle.core.resources.MessageBundle;
 import org.puzzle.core.windows.toolbox.tree.ToolTreeListener;
 import org.puzzle.core.tool.ToolDescriptor;
 import org.puzzle.core.windows.toolbox.tree.Tree;
@@ -50,7 +51,7 @@ public class BindToolTree extends Tree implements LookupListener {
 
                     @Override
                     public void run() {
-                        final Object close = Utilities.getString("close");
+                        final Object close = MessageBundle.getString("close");
                         final Object[] objs = new Object[]{close};
 
                         Component comp = tool.getComponent();

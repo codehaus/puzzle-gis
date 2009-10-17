@@ -22,6 +22,7 @@ import javax.swing.ImageIcon;
 
 import org.openide.util.ImageUtilities;
 import org.openide.windows.TopComponent;
+import org.puzzle.core.resources.MessageBundle;
 
 /**
  * Action which shows ToolTree component.
@@ -31,8 +32,8 @@ import org.openide.windows.TopComponent;
 public class ToolTreeAction extends AbstractAction {
 
     public ToolTreeAction() {
-        super(Utilities.getString("toolTree"));
-        putValue(SMALL_ICON, new ImageIcon(ImageUtilities.loadImage("org/puzzle/core/windows/toolbox/tool.png", true)));
+        super(MessageBundle.getString("toolTree"));
+        putValue(SMALL_ICON, new ImageIcon(ImageUtilities.loadImage("org/puzzle/core/resources/tool.png", true)));
     }
 
     @Override
