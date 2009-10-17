@@ -65,9 +65,9 @@ public class ShowView extends CookieAction{
                 handle.setInitialDelay(1);
                 handle.switchToIndeterminate();
 
-                final ViewComponent comp = view.getComponent(true);
-
                 try {
+                    final ViewComponent comp = view.getComponent(true);
+
                     SwingUtilities.invokeAndWait(new Runnable() {
 
                         @Override
@@ -83,11 +83,10 @@ public class ShowView extends CookieAction{
                     Exceptions.printStackTrace(ex);
                 } catch (InvocationTargetException ex) {
                     Exceptions.printStackTrace(ex);
+                }finally{
+                    handle.finish();
                 }
 
-                
-
-                handle.finish();
             }
         }.start();
     }

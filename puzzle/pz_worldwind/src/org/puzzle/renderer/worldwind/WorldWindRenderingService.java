@@ -18,6 +18,7 @@ package org.puzzle.renderer.worldwind;
 
 import java.awt.Image;
 
+import javax.swing.SwingUtilities;
 import org.geotoolkit.map.MapContext;
 
 import org.openide.util.ImageUtilities;
@@ -58,8 +59,14 @@ public class WorldWindRenderingService implements RenderingService{
 
     @Override
     public ViewComponent restoreView(MapContext context, final GISView view) {
-        WorldWindMapView viewComponent = new WorldWindMapView(context);
-        viewComponent.setDisplayName(view.getTitle());
+        final WorldWindMapView viewComponent = new WorldWindMapView(context);
+
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                viewComponent.setDisplayName(view.getTitle());
+            }
+        });
         return viewComponent;
     }
 
