@@ -23,9 +23,6 @@ import org.puzzle.core.project.source.capabilities.SourceCreationPane;
 import org.puzzle.core.project.source.capabilities.DistantSourceCreation;
 import org.puzzle.core.project.source.GISSource;
 import org.puzzle.core.project.source.GISSourceInfo;
-import org.puzzle.core.project.source.capabilities.FeatureStoreConversion;
-import org.puzzle.core.project.source.capabilities.JExportPane;
-import org.puzzle.core.project.source.capabilities.JImportPane;
 import org.puzzle.format.postgis.ui.JPostGISDataPanel;
 
 /**
@@ -39,7 +36,6 @@ public class PostGISSourceService extends AbstractGISSourceService implements Di
 
     public PostGISSourceService(){
         super();
-        content.add(new PostGISConverter());
     }
 
     /**
@@ -73,20 +69,6 @@ public class PostGISSourceService extends AbstractGISSourceService implements Di
     @Override
     public SourceCreationPane createPanel() {
         return new JPostGISDataPanel();
-    }
-
-    private class PostGISConverter implements FeatureStoreConversion{
-
-        @Override
-        public JImportPane createImportPane() {
-            return new JPostGisImportPane();
-        }
-
-        @Override
-        public JExportPane createExportPane() {
-            return new JPostGisExportPane();
-        }
-
     }
 
 }

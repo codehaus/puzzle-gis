@@ -32,9 +32,6 @@ import org.puzzle.core.project.source.AbstractGISSourceService;
 import org.puzzle.core.project.source.capabilities.FileSourceCreation;
 import org.puzzle.core.project.source.GISSource;
 import org.puzzle.core.project.source.GISSourceInfo;
-import org.puzzle.core.project.source.capabilities.FeatureStoreConversion;
-import org.puzzle.core.project.source.capabilities.JExportPane;
-import org.puzzle.core.project.source.capabilities.JImportPane;
 
 /**
  * Shapefile sourcre creation service.
@@ -46,7 +43,6 @@ public class ShapeFileSourceService extends AbstractGISSourceService implements 
 
     public ShapeFileSourceService(){
         super();
-        content.add(new ShapeConverter());
     }
 
     @Override
@@ -94,20 +90,6 @@ public class ShapeFileSourceService extends AbstractGISSourceService implements 
     @Override
     public String getTitle() {
         return NbBundle.getMessage(ShapeFileSourceService.class, "shapeTitle");
-    }
-
-    private class ShapeConverter implements FeatureStoreConversion{
-
-        @Override
-        public JImportPane createImportPane() {
-            return new JShapeImportPane();
-        }
-
-        @Override
-        public JExportPane createExportPane() {
-            return new JShapeExportPane();
-        }
-
     }
 
 }
