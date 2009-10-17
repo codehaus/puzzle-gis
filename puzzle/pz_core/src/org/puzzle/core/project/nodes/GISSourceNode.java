@@ -29,6 +29,7 @@ import org.openide.util.ImageUtilities;
 import org.puzzle.core.actions.NewDistantSource;
 import org.puzzle.core.actions.NewFileSource;
 import org.puzzle.core.project.GISProject;
+import org.puzzle.core.resources.MessageBundle;
 
 /**
  * This class represents the folder "src" defined in the
@@ -42,7 +43,7 @@ import org.puzzle.core.project.GISProject;
  */
 public class GISSourceNode extends FilterNode {
 
-    private final Image ICON = ImageUtilities.loadImage("org/puzzle/core/project/source.png", true);
+    private final Image ICON = ImageUtilities.loadImage("org/puzzle/core/resources/source.png", true);
 
     /**
      * Constructor.
@@ -64,7 +65,7 @@ public class GISSourceNode extends FilterNode {
 
     @Override
     public String getDisplayName() {
-        return Utilities.getString("sources");
+        return MessageBundle.getString("sources");
     }
 
     @Override
