@@ -61,44 +61,46 @@ public final class ShowMapContext extends CookieAction {
             public void run(){
                 final MapContext context = dataObject.getContext();
 
-                ProgressHandle handle = ProgressHandleFactory.createHandle(
+                final ProgressHandle handle = ProgressHandleFactory.createHandle(
                         MessageBundle.getString("createView") +" : " + context.getDescription().getTitle().toString());
                 handle.start(100);
                 handle.setInitialDelay(1);
                 handle.switchToIndeterminate();
 
-                if(context != null){
-                    final Collection<? extends RenderingService> services = Lookup.getDefault().lookupAll(RenderingService.class);
+                try{
+                    if(context != null){
+                        final Collection<? extends RenderingService> services = Lookup.getDefault().lookupAll(RenderingService.class);
 
-                    if(services.isEmpty()){
-                        return;
-                    }else if(services.size() == 1){
-                        //only one service, dont show the renderer chooser
-                        SwingUtilities.invokeLater(new Runnable() {
+                        if(services.isEmpty()){
+                            return;
+                        }else if(services.size() == 1){
+                            //only one service, dont show the renderer chooser
+                            SwingUtilities.invokeLater(new Runnable() {
 
-                            @Override
-                            public void run() {
-                                dataObject.createView(services.iterator().next());
-                            }
-                        });
+                                @Override
+                                public void run() {
+                                    dataObject.createView(services.iterator().next());
+                                }
+                            });
 
-                    }else{
+                        }else{
 
-                        SwingUtilities.invokeLater(new Runnable() {
+                            SwingUtilities.invokeLater(new Runnable() {
 
-                            @Override
-                            public void run() {
-                                final RendererChooser rc = new RendererChooser();
-                                rc.showChooserDialog();
-                                dataObject.createView(rc.getSelectedService());
-                            }
-                        });
-                        
+                                @Override
+                                public void run() {
+                                    final RendererChooser rc = new RendererChooser();
+                                    rc.showChooserDialog();
+                                    dataObject.createView(rc.getSelectedService());
+                                }
+                            });
+
+                        }
+
                     }
-
+                }finally{
+                    handle.finish();
                 }
-
-                handle.finish();
 
             }
         }.start();

@@ -141,17 +141,21 @@ public class GISContextDataObject extends XMLDataObject {
     public MapContext getContext() {
 
         if (context == null) {
-            ProgressHandle handle = ProgressHandleFactory.createHandle(MessageBundle.getString("loadingContext") +" : " + getPrimaryFile().getName().replaceAll(".xml", ""));
+            final ProgressHandle handle = ProgressHandleFactory.createHandle(MessageBundle.getString("loadingContext") +" : " + getPrimaryFile().getName().replaceAll(".xml", ""));
             handle.start(100);
             handle.setInitialDelay(1);
             handle.switchToIndeterminate();
-            // at this point the task is finished and removed from status bar
-            // it's not realy necessary to count all the way to the limit, finish can be called earlier.
-            // however it has to be called at the end of the processing.
+            try{
+                // at this point the task is finished and removed from status bar
+                // it's not realy necessary to count all the way to the limit, finish can be called earlier.
+                // however it has to be called at the end of the processing.
 
-            context = Encoder.parseContext(getDOM(),getPrimaryFile().getName().replaceAll(".xml", ""),getGISSources());
-            context.addContextListener(contextListener);
-            handle.finish();
+                context = Encoder.parseContext(getDOM(),getPrimaryFile().getName().replaceAll(".xml", ""),getGISSources());
+                context.addContextListener(contextListener);
+            }finally{
+                handle.finish();
+            }
+            
             setState(GISContextState.LOADED);
         }
 
