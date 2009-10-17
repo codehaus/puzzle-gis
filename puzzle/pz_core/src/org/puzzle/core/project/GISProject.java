@@ -32,7 +32,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import javax.swing.SwingUtilities;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.OutputKeys;
@@ -533,7 +532,7 @@ public class GISProject implements Project {
     /* Implementation of project system's ProjectInformation class */
     private final class Info implements ProjectInformation {
         
-        private final String ICON_PATH = "org/puzzle/core/project/boussole.png";
+        private final String ICON_PATH = "org/puzzle/core/resources/boussole.png";
         private final ImageIcon ICON = new ImageIcon(ImageUtilities.loadImage(ICON_PATH, true));
         private final PropertyChangeSupport support = new PropertyChangeSupport(this);
         

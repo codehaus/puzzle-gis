@@ -31,7 +31,7 @@ public class ContextTreeAction extends AbstractAction {
 
     public ContextTreeAction() {
         super(NbBundle.getMessage(ContextTreeAction.class, "contextTree"));
-        putValue(SMALL_ICON, new ImageIcon(ImageUtilities.loadImage("org/puzzle/core/project/map.png", true)));
+        putValue(SMALL_ICON, new ImageIcon(ImageUtilities.loadImage("org/puzzle/core/resources/map.png", true)));
     }
 
     @Override
