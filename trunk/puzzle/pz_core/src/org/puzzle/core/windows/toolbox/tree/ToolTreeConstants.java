@@ -24,7 +24,7 @@ import java.lang.ref.WeakReference;
  * 
  * @author Johann Sorel (Puzzle-GIS)
  */
-public class ToolTreeConstants {
+public final class ToolTreeConstants {
 
     private static WeakReference<ToolTreeConstants> ref = null;
     
@@ -40,7 +40,9 @@ public class ToolTreeConstants {
     public final ToolTreePath FILE = new DefaultToolTreePath(null,"file");
     public final ToolTreePath FILE_CONVERT = new DefaultToolTreePath(FILE,"convert");
     public final ToolTreePath FILE_CREATE = new DefaultToolTreePath(FILE,"create");
-    
+
+    private ToolTreeConstants(){}
+
     /**
      * ToolTreePaths instance
      * @return ToolTreePaths

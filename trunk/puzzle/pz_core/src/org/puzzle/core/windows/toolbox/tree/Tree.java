@@ -22,7 +22,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.beans.BeanInfo;
 import java.lang.ref.WeakReference;
-import java.util.Collection;
 import java.util.Map;
 import java.util.WeakHashMap;
 import javax.swing.Icon;
@@ -38,10 +37,6 @@ import javax.swing.tree.TreeSelectionModel;
 
 import org.geotoolkit.gui.swing.resource.IconBundle;
 import org.openide.util.ImageUtilities;
-import org.openide.util.Lookup;
-import org.openide.util.Lookup.Item;
-import org.openide.util.Lookup.Result;
-import org.openide.util.lookup.Lookups;
 import org.puzzle.core.tool.ToolDescriptor;
 
 /**
@@ -256,8 +251,8 @@ public class Tree extends JTree {
 
     private class ToolCellRenderer extends DefaultTreeCellRenderer{
 
-        private final Icon ICON_TOOL     = ImageUtilities.image2Icon(ImageUtilities.loadImage("org/puzzle/core/windows/toolbox/tree/tool.png"));
-        private final Icon ICON_TOOLPACK = ImageUtilities.image2Icon(ImageUtilities.loadImage("org/puzzle/core/windows/toolbox/tree/tools.png"));
+        private final Icon ICON_TOOL     = ImageUtilities.image2Icon(ImageUtilities.loadImage("org/puzzle/core/resources/tree/tool.png"));
+        private final Icon ICON_TOOLPACK = ImageUtilities.image2Icon(ImageUtilities.loadImage("org/puzzle/core/resources/tools.png"));
 
         /**
          * {@inheritDoc }
