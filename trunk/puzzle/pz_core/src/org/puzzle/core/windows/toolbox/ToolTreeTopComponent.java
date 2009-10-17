@@ -25,6 +25,7 @@ import org.openide.util.ImageUtilities;
 import org.openide.windows.TopComponent;
 import org.openide.windows.WindowManager;
 
+import org.puzzle.core.resources.MessageBundle;
 import org.puzzle.core.windows.toolbox.tree.Tree;
 
 /**
@@ -40,9 +41,9 @@ final class ToolTreeTopComponent extends TopComponent {
 
     private ToolTreeTopComponent() {
         initComponents();
-        setName(Utilities.getString("toolTree"));
-        setToolTipText(Utilities.getString("toolTreeHint"));
-        setIcon(ImageUtilities.loadImage("org/puzzle/core/windows/toolbox/tool.png", true));
+        setName(MessageBundle.getString("toolTree"));
+        setToolTipText(MessageBundle.getString("toolTreeHint"));
+        setIcon(ImageUtilities.loadImage("org/puzzle/core/resources/tool.png", true));
     }
 
     /** This method is called from within the constructor to
