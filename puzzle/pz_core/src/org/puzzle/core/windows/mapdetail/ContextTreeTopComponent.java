@@ -37,7 +37,6 @@ import org.openide.util.ImageUtilities;
 import org.openide.util.Lookup;
 import org.openide.util.LookupEvent;
 import org.openide.util.LookupListener;
-import org.openide.util.NbBundle;
 import org.openide.util.Utilities;
 import org.openide.util.lookup.Lookups;
 import org.openide.windows.TopComponent;
@@ -45,6 +44,7 @@ import org.openide.windows.WindowManager;
 
 import org.puzzle.core.contexttree.LayerPropertyItem;
 import org.puzzle.core.project.filetype.GISContextDataObject;
+import org.puzzle.core.resources.MessageBundle;
 
 /**
  * Top component which displays the context detail view.
@@ -80,7 +80,7 @@ final class ContextTreeTopComponent extends TopComponent{
                                         final ContextTreeTopComponent window = findInstance();
                                         if (window != null && candidate != window.getContextTree().getContext()) {
                                             window.getContextTree().setContext(candidate);
-                                            window.setDisplayName(NbBundle.getMessage(ContextTreeTopComponent.class, "contextTree") + " - " + candidate.getDescription().getTitle());
+                                            window.setDisplayName(MessageBundle.getString("contextTree") + " - " + candidate.getDescription().getTitle());
                                         }
                                     }
                                 });
@@ -102,8 +102,8 @@ final class ContextTreeTopComponent extends TopComponent{
 
     private ContextTreeTopComponent() {
         initComponents();
-        setDisplayName(NbBundle.getMessage(ContextTreeTopComponent.class, "contextTree"));
-        setToolTipText(NbBundle.getMessage(ContextTreeTopComponent.class, "contextTreeHint"));
+        setDisplayName(MessageBundle.getString("contextTree"));
+        setToolTipText(MessageBundle.getString("contextTreeHint"));
         setIcon(ImageUtilities.loadImage("org/puzzle/core/project/map.png", true));
 
     }
@@ -131,7 +131,7 @@ final class ContextTreeTopComponent extends TopComponent{
             }
 
             //search filter panels
-            DefaultMutableTreeNode filterNodes = new DefaultMutableTreeNode(NbBundle.getMessage(ContextTreeTopComponent.class, "filter"));
+            DefaultMutableTreeNode filterNodes = new DefaultMutableTreeNode(MessageBundle.getString("filter"));
             lk = Lookups.forPath("/Puzzle/ContextTree/FilterPanels");
             for(PropertyPane p : lk.lookupAll(PropertyPane.class)){
                 filterNodes.add(new DefaultMutableTreeNode(p));
@@ -139,7 +139,7 @@ final class ContextTreeTopComponent extends TopComponent{
             root.add(filterNodes);
 
             //search style panels
-            DefaultMutableTreeNode styleNodes = new DefaultMutableTreeNode(NbBundle.getMessage(ContextTreeTopComponent.class, "symbology"));
+            DefaultMutableTreeNode styleNodes = new DefaultMutableTreeNode(MessageBundle.getString("symbology"));
             lk = Lookups.forPath("/Puzzle/ContextTree/StylePanels");
             for(PropertyPane p : lk.lookupAll(PropertyPane.class)){
                 styleNodes.add(new DefaultMutableTreeNode(p));

@@ -21,7 +21,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeCellRenderer;
-import javax.swing.tree.MutableTreeNode;
 import org.geotoolkit.gui.swing.propertyedit.PropertyPane;
 import org.jdesktop.swingx.JXTree;
 import org.openide.util.ImageUtilities;
@@ -46,7 +45,7 @@ public class JPropertyTree extends JXTree{
             Object value = node.getUserObject();
 
             if(node.isLeaf()){
-                PaneRenderer.this.setIcon(new ImageIcon(ImageUtilities.loadImage("org/puzzle/core/windows/mapdetail/bullet.png", true)));
+                PaneRenderer.this.setIcon(new ImageIcon(ImageUtilities.loadImage("org/puzzle/core/resources/bullet.png", true)));
             }else{
                 PaneRenderer.this.setIcon(null);
             }
