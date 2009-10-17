@@ -45,30 +45,6 @@ public abstract class ViewComponent extends TopComponent {
      * {@inheritDoc }
      */
     @Override
-    protected void componentOpened() {
-        super.componentOpened();
-    }
-
-    /**
-     * {@inheritDoc }
-     */
-    @Override
-    protected void componentClosed() {
-        super.componentClosed();
-    }
-
-    /**
-     * {@inheritDoc }
-     */
-    @Override
-    protected void componentActivated() {
-        super.componentActivated();
-    }
-
-    /**
-     * {@inheritDoc }
-     */
-    @Override
     public int getPersistenceType() {
         return PERSISTENCE_NEVER;
     }
