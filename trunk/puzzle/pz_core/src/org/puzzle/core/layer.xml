@@ -205,7 +205,7 @@
         <folder name="Project">
             <folder name="Geographic">
                 <file name="EmptyGISProjectProject.zip" url="EmptyGISProjectProject.zip">
-                    <attr name="SystemFileSystem.icon" urlvalue="nbresloc:/org/puzzle/core/project/boussole.png"/>
+                    <attr name="SystemFileSystem.icon" urlvalue="nbresloc:/org/puzzle/core/resources/boussole.png"/>
                     <attr name="SystemFileSystem.localizingBundle" stringvalue="org.puzzle.core.Bundle"/>
                     <attr name="instantiatingIterator" methodvalue="org.puzzle.core.project.EmptyGISProjectWizardIterator.createIterator"/>
                     <attr name="instantiatingWizardURL" urlvalue="nbresloc:/org/puzzle/core/project/EmptyGISProjectDescription.html"/>
