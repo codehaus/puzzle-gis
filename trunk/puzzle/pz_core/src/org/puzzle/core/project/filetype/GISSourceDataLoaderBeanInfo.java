@@ -44,7 +44,7 @@ public class GISSourceDataLoaderBeanInfo extends SimpleBeanInfo {
     @Override
     public Image getIcon(int type) {
         if (type == BeanInfo.ICON_COLOR_16x16 || type == BeanInfo.ICON_MONO_16x16) {
-            return ImageUtilities.loadImage("org/puzzle/core/project/filetype/signal-1.png");
+            return ImageUtilities.loadImage("org/puzzle/core/resources/signal-1.png");
         } else {
             return null;
         }

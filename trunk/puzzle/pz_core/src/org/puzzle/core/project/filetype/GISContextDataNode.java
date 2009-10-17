@@ -42,9 +42,9 @@ import org.puzzle.core.project.view.GISView;
  */
 public class GISContextDataNode extends DataNode {
 
-    private static final Image IMAGE_LOADED = ImageUtilities.loadImage("org/puzzle/core/project/filetype/context_loaded.png");
+    private static final Image IMAGE_LOADED = ImageUtilities.loadImage("org/puzzle/core/resources/context_loaded.png");
 
-    private static final String IMAGE_ICON_BASE = "org/puzzle/core/project/filetype/locale.png";
+    private static final String IMAGE_ICON_BASE = "org/puzzle/core/resources/locale.png";
 
     /**
      * Constructor.<br>

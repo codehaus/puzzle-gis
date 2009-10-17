@@ -39,10 +39,10 @@ import org.puzzle.core.project.source.GISSourceState;
  */
 public class GISSourceDataNode extends DataNode {
 
-    private static final Image IMAGE_LOADED = ImageUtilities.loadImage("org/puzzle/core/project/filetype/source_loaded.png");
-    private static final Image IMAGE_UNLOADED = ImageUtilities.loadImage("org/puzzle/core/project/filetype/source_unloaded.png");
-    private static final Image IMAGE_ERROR = ImageUtilities.loadImage("org/puzzle/core/project/filetype/source_error.png");
-    private static final String IMAGE_ICON_BASE = "org/puzzle/core/project/filetype/signal-1.png";
+    private static final Image IMAGE_LOADED = ImageUtilities.loadImage("org/puzzle/core/resources/source_loaded.png");
+    private static final Image IMAGE_UNLOADED = ImageUtilities.loadImage("org/puzzle/core/resources/source_unloaded.png");
+    private static final Image IMAGE_ERROR = ImageUtilities.loadImage("org/puzzle/core/resources/source_error.png");
+    private static final String IMAGE_ICON_BASE = "org/puzzle/core/resources/signal-1.png";
     
     /**
      * Constructor.<br>

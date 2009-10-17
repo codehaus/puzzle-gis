@@ -39,7 +39,7 @@ import org.openide.WizardDescriptor;
 import org.openide.WizardValidationException;
 import org.openide.awt.Mnemonics;
 import org.openide.filesystems.FileUtil;
-import org.openide.util.NbBundle;
+import org.puzzle.core.resources.MessageBundle;
 
 /**
  * Swing panel to create a GIS project.
@@ -84,11 +84,11 @@ public class EmptyGISProjectPanelVisual extends JPanel implements DocumentListen
         projectNameLabel.setFont(projectNameLabel.getFont().deriveFont(projectNameLabel.getFont().getStyle() | Font.BOLD));
         projectNameLabel.setLabelFor(projectNameTextField);
 
-        Mnemonics.setLocalizedText(projectNameLabel, NbBundle.getMessage(EmptyGISProjectPanelVisual.class, "projectName")); // NOI18N
+        Mnemonics.setLocalizedText(projectNameLabel, MessageBundle.getString("projectName")); // NOI18N
         projectLocationLabel.setLabelFor(projectLocationTextField);
 
-        Mnemonics.setLocalizedText(projectLocationLabel, NbBundle.getMessage(EmptyGISProjectPanelVisual.class, "projectLocation")); // NOI18N
-        Mnemonics.setLocalizedText(browseButton, NbBundle.getMessage(EmptyGISProjectPanelVisual.class, "browse"));
+        Mnemonics.setLocalizedText(projectLocationLabel, MessageBundle.getString("projectLocation")); // NOI18N
+        Mnemonics.setLocalizedText(browseButton, MessageBundle.getString("browse"));
         browseButton.setActionCommand("BROWSE");
         browseButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
@@ -98,7 +98,7 @@ public class EmptyGISProjectPanelVisual extends JPanel implements DocumentListen
 
         createdFolderLabel.setLabelFor(createdFolderTextField);
 
-        Mnemonics.setLocalizedText(createdFolderLabel, NbBundle.getMessage(EmptyGISProjectPanelVisual.class, "projectFolder")); // NOI18N
+        Mnemonics.setLocalizedText(createdFolderLabel, MessageBundle.getString("projectFolder")); // NOI18N
         createdFolderTextField.setEditable(false);
 
 
@@ -115,16 +115,16 @@ public class EmptyGISProjectPanelVisual extends JPanel implements DocumentListen
                         .addPreferredGap(ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(Alignment.LEADING)
                             .addComponent(projectLocationLabel)
-                            .addComponent(projectNameTextField, GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
+                            .addComponent(projectNameTextField, GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)
                             .addComponent(projectNameLabel)
                             .addGroup(Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(projectLocationTextField, GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
+                                .addComponent(projectLocationTextField, GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
                                 .addPreferredGap(ComponentPlacement.RELATED)
                                 .addComponent(browseButton))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(createdFolderLabel)
                         .addGap(14, 14, 14)
-                        .addComponent(createdFolderTextField, GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)))
+                        .addComponent(createdFolderTextField, GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
