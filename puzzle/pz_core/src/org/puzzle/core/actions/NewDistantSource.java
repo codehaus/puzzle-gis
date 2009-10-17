@@ -25,13 +25,13 @@ import javax.swing.AbstractAction;
 import org.netbeans.api.project.Project;
 import org.netbeans.api.project.ui.OpenProjects;
 
-import org.openide.DialogDescriptor;
 import org.openide.DialogDisplayer;
 import org.openide.NotifyDescriptor;
-
 import org.openide.WizardDescriptor;
+
 import org.puzzle.core.project.GISProject;
 import org.puzzle.core.project.source.GISSourceInfo;
+import org.puzzle.core.resources.MessageBundle;
 
 /**
  * Action to create new distant sources.
@@ -47,7 +47,7 @@ public final class NewDistantSource extends AbstractAction {
     }
 
     public NewDistantSource(final GISProject project){
-        super(Utilities.getString("newDistantSource"));
+        super(MessageBundle.getString("newDistantSource"));
         this.project = project;
     }
 
@@ -81,11 +81,11 @@ public final class NewDistantSource extends AbstractAction {
                 }
             };
 
-            final WizardDescriptor wdesc = WizardUtilities.createSimplewWizard(pane, Utilities.getString("open"));
+            final WizardDescriptor wdesc = WizardUtilities.createSimplewWizard(pane, MessageBundle.getString("open"));
             wdesc.setButtonListener(lst);
             DialogDisplayer.getDefault().notify(wdesc);
         }else{
-            final NotifyDescriptor d =  new NotifyDescriptor.Message(Utilities.getString("projectIsNotGIS"), NotifyDescriptor.INFORMATION_MESSAGE);
+            final NotifyDescriptor d =  new NotifyDescriptor.Message(MessageBundle.getString("projectIsNotGIS"), NotifyDescriptor.INFORMATION_MESSAGE);
             DialogDisplayer.getDefault().notify(d);
         }
     }

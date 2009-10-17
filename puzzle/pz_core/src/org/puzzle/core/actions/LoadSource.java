@@ -21,10 +21,11 @@ import org.openide.util.HelpCtx;
 import org.openide.util.Lookup;
 import org.openide.util.actions.NodeAction;
 import org.puzzle.core.project.filetype.GISSourceDataObject;
+import org.puzzle.core.resources.MessageBundle;
 
 /**
  *
- * @author eclesia
+ * @author Johann Sorel (Puzzle-GIS)
  */
 public class LoadSource extends NodeAction{
 
@@ -49,7 +50,7 @@ public class LoadSource extends NodeAction{
      */
     @Override
     public String getName() {
-        return Utilities.getString("loadsource");
+        return MessageBundle.getString("loadsource");
     }
 
     /**

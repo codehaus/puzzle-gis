@@ -21,26 +21,26 @@
             <file name="org-puzzle-core-actions-NewDistantSource.instance">
                 <attr name="SystemFileSystem.localizingBundle" stringvalue="org.puzzle.core.Bundle"/>
                 <attr name="delegate" newvalue="org.puzzle.core.actions.NewDistantSource"/>
-                <attr name="displayName" bundlevalue="org.puzzle.core.actions.Bundle#newDistantSource"/>
-                <attr name="iconBase" stringvalue="org/puzzle/core/actions/newDistantSource.png"/>
+                <attr name="displayName" bundlevalue="org.puzzle.core.resources.Bundle#newDistantSource"/>
+                <attr name="iconBase" stringvalue="org/puzzle/core/resources/newDistantSource.png"/>
                 <attr name="instanceCreate" methodvalue="org.openide.awt.Actions.alwaysEnabled"/>
-                <attr name="noIconInMenu" stringvalue="false"/>
+                <attr name="noIconInMenu" boolvalue="false"/>
             </file>
             <file name="org-puzzle-core-actions-NewFileSource.instance">
                 <attr name="SystemFileSystem.localizingBundle" stringvalue="org.puzzle.core.Bundle"/>
                 <attr name="delegate" newvalue="org.puzzle.core.actions.NewFileSource"/>
-                <attr name="displayName" bundlevalue="org.puzzle.core.actions.Bundle#newFileSource"/>
-                <attr name="iconBase" stringvalue="org/puzzle/core/actions/newFileSource.png"/>
+                <attr name="displayName" bundlevalue="org.puzzle.core.resources.Bundle#newFileSource"/>
+                <attr name="iconBase" stringvalue="org/puzzle/core/resources/newFileSource.png"/>
                 <attr name="instanceCreate" methodvalue="org.openide.awt.Actions.alwaysEnabled"/>
-                <attr name="noIconInMenu" stringvalue="false"/>
+                <attr name="noIconInMenu" boolvalue="false"/>
             </file>
             <file name="org-puzzle-core-actions-NewMapContext.instance">
                 <attr name="SystemFileSystem.localizingBundle" stringvalue="org.puzzle.core.Bundle"/>
                 <attr name="delegate" newvalue="org.puzzle.core.actions.NewMapContext"/>
-                <attr name="displayName" bundlevalue="org.puzzle.core.actions.Bundle#newMap"/>
-                <attr name="iconBase" stringvalue="org/puzzle/core/actions/newMapContext.png"/>
+                <attr name="displayName" bundlevalue="org.puzzle.core.resources.Bundle#newMap"/>
+                <attr name="iconBase" stringvalue="org/puzzle/core/resources/newMapContext.png"/>
                 <attr name="instanceCreate" methodvalue="org.openide.awt.Actions.alwaysEnabled"/>
-                <attr name="noIconInMenu" stringvalue="false"/>
+                <attr name="noIconInMenu" boolvalue="false"/>
             </file>
             <file name="org-puzzle-core-actions-ShowLayerWizard.instance"/>
             <file name="org-puzzle-core-actions-LoadSource.instance"/>

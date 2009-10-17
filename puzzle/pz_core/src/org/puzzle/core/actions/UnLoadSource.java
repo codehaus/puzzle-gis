@@ -21,6 +21,7 @@ import org.openide.util.HelpCtx;
 import org.openide.util.Lookup;
 import org.openide.util.actions.NodeAction;
 import org.puzzle.core.project.filetype.GISSourceDataObject;
+import org.puzzle.core.resources.MessageBundle;
 
 /**
  *
@@ -49,7 +50,7 @@ public class UnLoadSource extends NodeAction{
      */
     @Override
     public String getName() {
-        return Utilities.getString("unloadsource");
+        return MessageBundle.getString("unloadsource");
     }
 
     /**

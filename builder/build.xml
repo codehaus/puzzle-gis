@@ -29,7 +29,6 @@
     <property name="GEOTK_BINARY" value="./lib" />
     <property name="PUZZLE_GEOAPI_MODULE" value="../puzzle/geoapi/release/modules/ext" />
     <property name="PUZZLE_GEOTK_MODULE" value="../puzzle/geotoolkit/release/modules/ext" />
-    <property name="PUZZLE_GO3_MODULE" value="../puzzle/pz_go3/release/modules/ext" />
 
     <fileset id="geoapi" dir="${GEOTK_BINARY}" casesensitive="yes">
         <patternset >
@@ -121,25 +120,6 @@
             <include name="xml-apis-ext.jar"/>
             <include name="xmlgraphics-commons.jar"/>
             <include name="wizard.jar"/>
-        </patternset>
-    </fileset>
-
-    <fileset id="go3" dir="${GEOTK_BINARY}" casesensitive="yes">
-        <patternset>
-            <include name="aopalliance.jar"/>
-            <include name="ardor3d-animations.jar"/>
-            <include name="ardor3d-awt.jar"/>
-            <include name="ardor3d-collada.jar"/>
-            <include name="ardor3d-core.jar"/>
-            <include name="ardor3d-effects.jar"/>
-            <include name="ardor3d-lwjgl.jar"/>
-            <include name="geotk-go3.jar"/>
-            <include name="google-collections.jar"/>
-            <include name="guice.jar"/>
-            <include name="jibx-extras.jar"/>
-            <include name="jibx-run.jar"/>
-            <include name="lwjgl.jar"/>
-            <include name="lwjgl_util.jar"/>
         </patternset>
     </fileset>
 
@@ -249,42 +229,6 @@
     </copy>
     <echo>=&gt; Done !</echo>
 
-    <echo>=&gt; DISPATCHING GO3 JARS -------------------------------------</echo>
-    <echo>=&gt; Deleting existing jars</echo>
-    <delete>
-        <fileset dir="${PUZZLE_GO3_MODULE}" includes="*.jar" />
-    </delete>
-    <echo>=&gt; Copying new jars</echo>
-
-    <cleanMetaInf jar="${GEOTK_BINARY}/aopalliance.jar"/>
-    <cleanMetaInf jar="${GEOTK_BINARY}/ardor3d-animations.jar"/>
-    <cleanMetaInf jar="${GEOTK_BINARY}/ardor3d-awt.jar"/>
-    <cleanMetaInf jar="${GEOTK_BINARY}/ardor3d-collada.jar"/>
-    <cleanMetaInf jar="${GEOTK_BINARY}/ardor3d-core.jar"/>
-    <cleanMetaInf jar="${GEOTK_BINARY}/ardor3d-effects.jar"/>
-    <cleanMetaInf jar="${GEOTK_BINARY}/ardor3d-lwjgl.jar"/>
-    <cleanMetaInf jar="${GEOTK_BINARY}/geotk-go3.jar"/>
-    <cleanMetaInf jar="${GEOTK_BINARY}/google-collections.jar"/>
-    <cleanMetaInf jar="${GEOTK_BINARY}/guice.jar"/>
-    <cleanMetaInf jar="${GEOTK_BINARY}/jibx-extras.jar"/>
-    <cleanMetaInf jar="${GEOTK_BINARY}/jibx-run.jar"/>
-    <cleanMetaInf jar="${GEOTK_BINARY}/lwjgl.jar"/>
-    <cleanMetaInf jar="${GEOTK_BINARY}/lwjgl_util.jar"/>
-
-    <!-- maven ant doesnt handle a basic for loop ? -->
-        <!--for param="file">
-            <path>
-                <fileset refid="go3"/>
-            </path>
-            <sequential>
-                <cleanMetaInf jar="@{file}" />
-            </sequential>
-        </for-->
-
-    <copy todir="${PUZZLE_GO3_MODULE}" >
-        <fileset refid="go3"/>
-    </copy>
-    <echo>=&gt; Done !</echo>
 
     <delete dir="${GEOTK_BINARY}"/>
     <echo>=&gt; Done !</echo>

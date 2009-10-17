@@ -19,6 +19,9 @@ package org.puzzle.core.actions;
 import java.util.Collection;
 import java.util.Map;
 
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JTabbedPane;
 import org.openide.util.Lookup;
 
 import org.puzzle.core.project.source.capabilities.DistantSourceCreation;
@@ -60,24 +63,24 @@ final class JDistantSourcePane extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        guiTabPane = new javax.swing.JTabbedPane();
+        guiTabPane = new JTabbedPane();
 
-        guiTabPane.setTabPlacement(javax.swing.JTabbedPane.LEFT);
+        guiTabPane.setTabPlacement(JTabbedPane.LEFT);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        GroupLayout layout = new GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(guiTabPane, javax.swing.GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE)
+            layout.createParallelGroup(Alignment.LEADING)
+            .addComponent(guiTabPane, GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(guiTabPane, javax.swing.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE)
+            layout.createParallelGroup(Alignment.LEADING)
+            .addComponent(guiTabPane, GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTabbedPane guiTabPane;
+    private JTabbedPane guiTabPane;
     // End of variables declaration//GEN-END:variables
 
     /**

@@ -31,6 +31,7 @@ import org.openide.WizardDescriptor;
 
 import org.puzzle.core.project.GISProject;
 import org.puzzle.core.project.source.GISSourceInfo;
+import org.puzzle.core.resources.MessageBundle;
 
 /**
  * action to create new file sources.
@@ -46,7 +47,7 @@ public final class NewFileSource extends AbstractAction {
     }
 
     public NewFileSource(final GISProject project){
-        super(Utilities.getString("newFileSource"));
+        super(MessageBundle.getString("newFileSource"));
         this.project = project;
     }
 
@@ -80,11 +81,13 @@ public final class NewFileSource extends AbstractAction {
                 }
             };
 
-            final WizardDescriptor wdesc = WizardUtilities.createSimplewWizard(pane, Utilities.getString("openFile"));
+            final WizardDescriptor wdesc = WizardUtilities.createSimplewWizard(pane, MessageBundle.getString("openFile"));
             wdesc.setButtonListener(lst);
             DialogDisplayer.getDefault().notify(wdesc);
         }else{
-            final NotifyDescriptor d =  new NotifyDescriptor.Message(Utilities.getString("projectIsNotGIS"), NotifyDescriptor.INFORMATION_MESSAGE);
+            final NotifyDescriptor d =  new NotifyDescriptor.Message(
+                    MessageBundle.getString("projectIsNotGIS"),
+                    NotifyDescriptor.INFORMATION_MESSAGE);
             DialogDisplayer.getDefault().notify(d);
         }
         

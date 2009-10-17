@@ -16,9 +16,7 @@
  */
 package org.puzzle.core.actions;
 
-import java.awt.event.ActionEvent;
 import java.lang.reflect.InvocationTargetException;
-import javax.swing.AbstractAction;
 import javax.swing.SwingUtilities;
 import org.netbeans.api.progress.ProgressHandle;
 import org.netbeans.api.progress.ProgressHandleFactory;
@@ -27,6 +25,7 @@ import org.openide.util.Exceptions;
 import org.openide.util.HelpCtx;
 import org.openide.util.actions.CookieAction;
 import org.puzzle.core.project.view.GISView;
+import org.puzzle.core.resources.MessageBundle;
 import org.puzzle.core.view.ViewComponent;
 
 /**
@@ -58,9 +57,10 @@ public class ShowView extends CookieAction{
 
         new Thread() {
 
+            @Override
             public void run() {
 
-                final ProgressHandle handle = ProgressHandleFactory.createHandle(Utilities.getString("openView") + " : " + view.getTitle());
+                final ProgressHandle handle = ProgressHandleFactory.createHandle(MessageBundle.getString("openView") + " : " + view.getTitle());
                 handle.start(100);
                 handle.setInitialDelay(1);
                 handle.switchToIndeterminate();
@@ -94,7 +94,7 @@ public class ShowView extends CookieAction{
 
     @Override
     public String getName() {
-        return Utilities.getString("showView");
+        return MessageBundle.getString("showView");
     }
 
     @Override

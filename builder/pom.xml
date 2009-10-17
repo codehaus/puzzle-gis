@@ -35,16 +35,6 @@
             <name>geotoolkit</name>
             <url>http://maven.geotoolkit.org/</url>
         </repository>
-        <repository>
-            <id>ardor3d</id>
-            <name>ardor3d repository</name>
-            <url>http://ardor3d.com:8081/nexus/content/repositories/snapshots/</url>
-        </repository>
-        <repository>
-            <id>ardor3d_thirdparty</id>
-            <name>ardor3d thirdparty repository</name>
-            <url>http://ardor3d.com:8081/nexus/content/repositories/thirdparty/</url>
-        </repository>
     </repositories>
 
   <!-- =========================================================== -->
@@ -131,11 +121,6 @@
         <dependency>
             <groupId>org.geotoolkit.pending</groupId>
             <artifactId>geotk-geotiff</artifactId>
-            <version>${geotoolkit.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.geotoolkit.pending</groupId>
-            <artifactId>geotk-go3</artifactId>
             <version>${geotoolkit.version}</version>
         </dependency>
         <dependency>
