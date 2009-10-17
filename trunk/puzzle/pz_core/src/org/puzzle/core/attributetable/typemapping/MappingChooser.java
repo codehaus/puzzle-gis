@@ -42,6 +42,7 @@ import org.opengis.feature.type.GeometryDescriptor;
 import org.openide.DialogDisplayer;
 import org.openide.WizardDescriptor;
 import org.openide.util.HelpCtx;
+import org.puzzle.core.resources.MessageBundle;
 
 /**
  * Panel to choose the rendering engine.
@@ -73,7 +74,7 @@ public class MappingChooser implements WizardDescriptor.Panel {
         }
 
         model = new DefaultTableModel(datas,
-                new String[]{Utilities.getString("property"),Utilities.getString("default")}){
+                new String[]{MessageBundle.getString("property"),MessageBundle.getString("default")}){
 
             @Override
             public boolean isCellEditable(int arg0, int arg1) {
@@ -133,7 +134,7 @@ public class MappingChooser implements WizardDescriptor.Panel {
         final WizardDescriptor wizardDescriptor = new WizardDescriptor(this.getPanels());
         // {0} will be replaced by WizardDesriptor.Panel.getComponent().getName()
         wizardDescriptor.setTitleFormat(new MessageFormat("{0}"));
-        wizardDescriptor.setTitle(Utilities.getString("configure_mapping"));
+        wizardDescriptor.setTitle(MessageBundle.getString("configure_mapping"));
         wizardDescriptor.putProperty(WizardDescriptor.PROP_CONTENT_DISPLAYED, false);
         wizardDescriptor.putProperty(WizardDescriptor.PROP_TITLE, false);
         Dialog dialog = DialogDisplayer.getDefault().createDialog(wizardDescriptor);
