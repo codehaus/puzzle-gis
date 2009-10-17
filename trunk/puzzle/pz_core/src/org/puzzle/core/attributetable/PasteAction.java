@@ -33,6 +33,7 @@ import org.opengis.filter.Filter;
 import org.openide.util.Exceptions;
 import org.puzzle.core.attributetable.typemapping.FeatureMapper;
 import org.puzzle.core.attributetable.typemapping.MappingChooser;
+import org.puzzle.core.resources.MessageBundle;
 
 /**
  *
@@ -41,7 +42,7 @@ import org.puzzle.core.attributetable.typemapping.MappingChooser;
 public class PasteAction extends AbstractDataBufferAction{
 
     public PasteAction(){
-        setText(Utilities.getString("paste"));
+        setText(MessageBundle.getString("paste"));
 
         addActionListener(new ActionListener() {
 
