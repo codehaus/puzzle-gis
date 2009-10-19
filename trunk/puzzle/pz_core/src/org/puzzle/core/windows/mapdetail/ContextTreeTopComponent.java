@@ -45,6 +45,7 @@ import org.openide.windows.WindowManager;
 import org.puzzle.core.contexttree.LayerPropertyItem;
 import org.puzzle.core.project.filetype.GISContextDataObject;
 import org.puzzle.core.resources.MessageBundle;
+import org.puzzle.core.view.ViewComponent;
 
 /**
  * Top component which displays the context detail view.
@@ -53,11 +54,12 @@ import org.puzzle.core.resources.MessageBundle;
  */
 final class ContextTreeTopComponent extends TopComponent{
 
-    private static Lookup.Result result = null;
+    private static Lookup.Result resultContext = null;
+    private static Lookup.Result resultViews = null;
 
     static {
-        result = Utilities.actionsGlobalContext().lookupResult(GISContextDataObject.class);
-        result.addLookupListener(new LookupListener() {
+        resultContext = Utilities.actionsGlobalContext().lookupResult(GISContextDataObject.class);
+        resultContext.addLookupListener(new LookupListener() {
 
             @Override
             public void resultChanged(LookupEvent lookupEvent) {
@@ -73,17 +75,7 @@ final class ContextTreeTopComponent extends TopComponent{
                             while (ite.hasNext()) {
                                 final GISContextDataObject da = (GISContextDataObject) ite.next();
                                 final MapContext candidate = da.getContext();
-                                SwingUtilities.invokeLater(new Runnable() {
-
-                                    @Override
-                                    public void run() {
-                                        final ContextTreeTopComponent window = findInstance();
-                                        if (window != null && candidate != window.getContextTree().getContext()) {
-                                            window.getContextTree().setContext(candidate);
-                                            window.setDisplayName(MessageBundle.getString("contextTree") + " - " + candidate.getDescription().getTitle());
-                                        }
-                                    }
-                                });
+                                updateName(candidate);
                             }
                         }
                     }.start();
@@ -91,10 +83,50 @@ final class ContextTreeTopComponent extends TopComponent{
                 }
             }
         });
-        result.allItems();
+        resultContext.allItems();
+
+        resultViews = Utilities.actionsGlobalContext().lookupResult(ViewComponent.class);
+        resultViews.addLookupListener(new LookupListener() {
+
+            @Override
+            public void resultChanged(LookupEvent lookupEvent) {
+                final Lookup.Result r = (Lookup.Result) lookupEvent.getSource();
+                final Collection c = r.allInstances();
+                if (!c.isEmpty()) {
+
+                    new Thread() {
+
+                        @Override
+                        public void run() {
+                            final Iterator ite = c.iterator();
+                            while (ite.hasNext()) {
+                                final ViewComponent da = (ViewComponent) ite.next();
+                                final MapContext candidate = da.getContext();
+                                updateName(candidate);
+                            }
+                        }
+                    }.start();
+
+                }
+            }
+        });
+        resultViews.allItems();
+
 
     }
 
+    private static void updateName(final MapContext candidate){
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                final ContextTreeTopComponent window = findInstance();
+                if (window != null && candidate != window.getContextTree().getContext()) {
+                    window.getContextTree().setContext(candidate);
+                    window.setDisplayName(MessageBundle.getString("contextTree") + " - " + candidate.getDescription().getTitle());
+                }
+            }
+        });
+    }
 
     private JContextTree tree = null;
     private static ContextTreeTopComponent instance;
