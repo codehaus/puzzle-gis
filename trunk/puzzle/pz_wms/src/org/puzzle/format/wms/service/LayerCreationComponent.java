@@ -33,18 +33,24 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreePath;
+import javax.swing.tree.TreeSelectionModel;
 import org.geotoolkit.wms.WebMapServer;
 import org.geotoolkit.wms.xml.AbstractWMSCapabilities;
 import org.geotoolkit.map.MapLayer;
 import org.geotoolkit.style.DefaultStyleFactory;
 import org.geotoolkit.wms.xml.v111.Layer;
+import org.jdesktop.swingx.JXTree;
 import org.jdesktop.swingx.combobox.ListComboBoxModel;
 import org.openide.util.Exceptions;
 import org.openide.util.NbBundle;
 import org.puzzle.core.project.source.capabilities.JLayerChooser;
 import org.puzzle.core.project.source.capabilities.LayerChooserMonitor;
 import org.puzzle.core.project.source.capabilities.LayerCreation;
-import org.puzzle.format.wms.ui.LayerRenderer;
+import org.puzzle.format.wms.ui.ListCellLayerRenderer;
+import org.puzzle.format.wms.ui.TreeCellLayerRenderer;
 
 /**
  *
@@ -64,41 +70,71 @@ public class LayerCreationComponent extends JLayerChooser {
         this.source = source;
         initComponents();
 
+        DefaultMutableTreeNode root = new DefaultMutableTreeNode("-");
+
         if (server != null) {
             possibleLayers.clear();
             try {
                 final AbstractWMSCapabilities capa = server.getCapabilities();
 
                 if(capa instanceof org.geotoolkit.wms.xml.v130.WMSCapabilities){
-                    org.geotoolkit.wms.xml.v130.WMSCapabilities cp13 =
+                    final org.geotoolkit.wms.xml.v130.WMSCapabilities cp13 =
                             (org.geotoolkit.wms.xml.v130.WMSCapabilities) capa;
-                    for(org.geotoolkit.wms.xml.v130.Layer layer : cp13.getCapability().getLayer().getLayer()){
-                        possibleLayers.add(layer);
-                    }
+                    root = explore(cp13.getCapability().getLayer(), root);
                 }else if(capa instanceof org.geotoolkit.wms.xml.v111.WMT_MS_Capabilities){
-                    org.geotoolkit.wms.xml.v111.WMT_MS_Capabilities cp11 =
+                    final org.geotoolkit.wms.xml.v111.WMT_MS_Capabilities cp11 =
                             (org.geotoolkit.wms.xml.v111.WMT_MS_Capabilities) capa;
-                    for(org.geotoolkit.wms.xml.v111.Layer layer : cp11.getCapability().getLayer().getLayer()){
-                        possibleLayers.add(layer);
-                    }
+                    root = explore(cp11.getCapability().getLayer(), root);
                 }
-
 
             } catch (Exception ex) {
                 Exceptions.printStackTrace(ex);
             }
         }
 
-        guiLstData.setModel(new ListComboBoxModel<Object>(possibleLayers));
+        
         guiLstSelected.setModel(new ListComboBoxModel<Object>(selectedLayers));
         
-        guiLstData.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
         guiLstSelected.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        guiLstSelected.setCellRenderer(new ListCellLayerRenderer());
 
-        guiLstData.setCellRenderer(new LayerRenderer());
-        guiLstSelected.setCellRenderer(new LayerRenderer());
-
+        guiLstData.setModel(new DefaultTreeModel(root));
+        guiLstData.getSelectionModel().setSelectionMode(TreeSelectionModel.DISCONTIGUOUS_TREE_SELECTION);
+        guiLstData.setCellRenderer(new TreeCellLayerRenderer());
+        guiLstData.setRootVisible(false);
+        guiLstData.expandAll();
     }
+
+    private DefaultMutableTreeNode explore(org.geotoolkit.wms.xml.v130.Layer layer, DefaultMutableTreeNode parent){
+        final DefaultMutableTreeNode node = new DefaultMutableTreeNode(layer);
+
+        for (org.geotoolkit.wms.xml.v130.Layer child : layer.getLayer()) {
+            explore(child, node);
+        }
+
+        if(parent != null){
+            parent.add(node);
+            return parent;
+        }else{
+            return node;
+        }
+    }
+
+    private DefaultMutableTreeNode explore(org.geotoolkit.wms.xml.v111.Layer layer, DefaultMutableTreeNode parent){
+        final DefaultMutableTreeNode node = new DefaultMutableTreeNode(layer);
+
+        for (org.geotoolkit.wms.xml.v111.Layer child : layer.getLayer()) {
+            explore(child, node);
+        }
+
+        if(parent != null){
+            parent.add(node);
+            return parent;
+        }else{
+            return node;
+        }
+    }
+
 
     private String getLayerNames(){
 
@@ -145,10 +181,10 @@ public class LayerCreationComponent extends JLayerChooser {
         jButton4 = new JButton();
         jButton5 = new JButton();
         jButton6 = new JButton();
-        jScrollPane1 = new JScrollPane();
-        guiLstData = new JList();
         jsp2 = new JScrollPane();
         guiLstSelected = new JList();
+        jScrollPane1 = new JScrollPane();
+        guiLstData = new JXTree();
 
         jLabel2.setFont(jLabel2.getFont().deriveFont(jLabel2.getFont().getStyle() | Font.BOLD));
         jLabel2.setText(NbBundle.getMessage(LayerCreationComponent.class, "title")); // NOI18N
@@ -194,9 +230,9 @@ public class LayerCreationComponent extends JLayerChooser {
             }
         });
 
-        jScrollPane1.setViewportView(guiLstData);
-
         jsp2.setViewportView(guiLstSelected);
+
+        jScrollPane1.setViewportView(guiLstData);
 
         GroupLayout layout = new GroupLayout(this);
         this.setLayout(layout);
@@ -206,7 +242,7 @@ public class LayerCreationComponent extends JLayerChooser {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(Alignment.LEADING)
                     .addGroup(Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
                         .addPreferredGap(ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(Alignment.LEADING)
                             .addComponent(jButton4)
@@ -214,7 +250,7 @@ public class LayerCreationComponent extends JLayerChooser {
                             .addComponent(jButton2)
                             .addComponent(jButton1))
                         .addPreferredGap(ComponentPlacement.UNRELATED)
-                        .addComponent(jsp2, GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
+                        .addComponent(jsp2, GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
                         .addPreferredGap(ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(Alignment.LEADING)
                             .addComponent(jButton6)
@@ -222,7 +258,7 @@ public class LayerCreationComponent extends JLayerChooser {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(ComponentPlacement.RELATED)
-                        .addComponent(guiTitle, GroupLayout.DEFAULT_SIZE, 477, Short.MAX_VALUE)))
+                        .addComponent(guiTitle, GroupLayout.DEFAULT_SIZE, 457, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -239,8 +275,7 @@ public class LayerCreationComponent extends JLayerChooser {
                     .addComponent(guiTitle, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(Alignment.LEADING)
-                    .addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
-                    .addComponent(jsp2, GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
+                    .addComponent(jsp2, GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton5)
                         .addPreferredGap(ComponentPlacement.RELATED)
@@ -252,7 +287,8 @@ public class LayerCreationComponent extends JLayerChooser {
                         .addPreferredGap(ComponentPlacement.RELATED)
                         .addComponent(jButton3)
                         .addPreferredGap(ComponentPlacement.RELATED)
-                        .addComponent(jButton4)))
+                        .addComponent(jButton4))
+                    .addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -266,10 +302,22 @@ public class LayerCreationComponent extends JLayerChooser {
     }//GEN-LAST:event_addAll
 
     private void addSelected(ActionEvent evt) {//GEN-FIRST:event_addSelected
-        Object[] selections = guiLstData.getSelectedValues();
-        for(Object obj : selections){
-            if(!selectedLayers.contains(obj)){
-                selectedLayers.add(obj);
+        TreePath[] selections = guiLstData.getSelectionPaths();
+        for(TreePath obj : selections){
+            Object candidate = ((DefaultMutableTreeNode)obj.getLastPathComponent()).getUserObject();
+            if(!selectedLayers.contains(candidate) ){
+                if(candidate instanceof Layer){
+                    Layer l = (Layer) candidate;
+                    if(l.getName() != null && !l.getName().isEmpty()){
+                        selectedLayers.add(l);
+                    }
+                }else if(candidate instanceof org.geotoolkit.wms.xml.v130.Layer){
+                    org.geotoolkit.wms.xml.v130.Layer l = (org.geotoolkit.wms.xml.v130.Layer) candidate;
+                    if(l.getName() != null && !l.getName().isEmpty()){
+                        selectedLayers.add(l);
+                    }
+                }
+                
             }
         }
         guiLstSelected.setModel(new ListComboBoxModel<Object>(selectedLayers));
@@ -340,7 +388,7 @@ public class LayerCreationComponent extends JLayerChooser {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private JList guiLstData;
+    private JXTree guiLstData;
     private JList guiLstSelected;
     private JTextField guiTitle;
     private JButton jButton1;

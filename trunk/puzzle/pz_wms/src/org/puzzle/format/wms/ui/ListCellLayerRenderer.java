@@ -1,45 +1,29 @@
 /*
- *    Puzzle GIS - Desktop GIS Platform
- *    http://puzzle-gis.codehaus.org
- *
- *    (C) 2009, Johann Sorel
- *
- *    This library is free software; you can redistribute it and/or
- *    modify it under the terms of the GNU Lesser General Public
- *    License as published by the Free Software Foundation;
- *    version 3 of the License.
- *
- *    This library is distributed in the hope that it will be useful,
- *    but WITHOUT ANY WARRANTY; without even the implied warranty of
- *    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- *    Lesser General Public License for more details.
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
  */
 
 package org.puzzle.format.wms.ui;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Component;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
 import javax.swing.JTextPane;
-import javax.swing.text.html.HTMLDocument;
 import javax.swing.text.html.HTMLEditorKit;
 import org.geotoolkit.wms.xml.v111.Layer;
 
 /**
- * Cell renderer for wms capability layers.
  *
- * @author Johann Sorel (Puzzle-GIS)
+ * @author eclesia
  */
-public class LayerRenderer extends DefaultListCellRenderer{
+public class ListCellLayerRenderer extends DefaultListCellRenderer{
 
     @Override
-    public Component getListCellRendererComponent(JList arg0, Object obj, int arg2, boolean arg3, boolean arg4) {
-        super.getListCellRendererComponent(arg0, obj, arg2, arg3, arg4);
+    public Component getListCellRendererComponent(JList list, Object obj, int index, boolean isSelected, boolean cellHasFocus) {
+        super.getListCellRendererComponent(list, obj, index, isSelected, cellHasFocus);
 
         final JPanel panel = new JPanel(new BorderLayout());
         panel.setOpaque(this.isOpaque());
@@ -80,6 +64,5 @@ public class LayerRenderer extends DefaultListCellRenderer{
         panel.add(BorderLayout.CENTER,area);
         return panel;
     }
-
 
 }

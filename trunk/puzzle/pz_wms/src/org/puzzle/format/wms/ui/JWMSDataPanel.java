@@ -20,25 +20,24 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.Serializable;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JList;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
 import org.geotoolkit.wms.WebMapServer;
 
 import org.geotoolkit.wms.xml.AbstractWMSCapabilities;
 import org.jdesktop.swingx.JXTitledPanel;
 
-import org.jdesktop.swingx.combobox.ListComboBoxModel;
+import org.jdesktop.swingx.JXTree;
 import org.openide.util.Exceptions;
 import org.openide.util.NbBundle;
 import org.puzzle.core.project.source.capabilities.SourceCreationPane;
@@ -65,6 +64,7 @@ public class JWMSDataPanel extends SourceCreationPane {
 
         setProperties(params);
 
+        refreshTable();
     }
 
     public Map getProperties() {
@@ -88,35 +88,64 @@ public class JWMSDataPanel extends SourceCreationPane {
 
     private void refreshTable() {
 
+        DefaultMutableTreeNode root = new DefaultMutableTreeNode("-");
+
         if (server != null) {
             try {
                 final AbstractWMSCapabilities capa = server.getCapabilities();
-                final List<Object> layers = new ArrayList<Object>();
-
 
                 if(capa instanceof org.geotoolkit.wms.xml.v130.WMSCapabilities){
-                    org.geotoolkit.wms.xml.v130.WMSCapabilities cp13 =
+                    final org.geotoolkit.wms.xml.v130.WMSCapabilities cp13 =
                             (org.geotoolkit.wms.xml.v130.WMSCapabilities) capa;
-                    for(org.geotoolkit.wms.xml.v130.Layer layer : cp13.getCapability().getLayer().getLayer()){
-                        layers.add(layer);
-                    }
+                    root = explore(cp13.getCapability().getLayer(), null);
                 }else if(capa instanceof org.geotoolkit.wms.xml.v111.WMT_MS_Capabilities){
-                    org.geotoolkit.wms.xml.v111.WMT_MS_Capabilities cp11 =
+                    final org.geotoolkit.wms.xml.v111.WMT_MS_Capabilities cp11 =
                             (org.geotoolkit.wms.xml.v111.WMT_MS_Capabilities) capa;
-                    for(org.geotoolkit.wms.xml.v111.Layer layer : cp11.getCapability().getLayer().getLayer()){
-                        layers.add(layer);
-                    }
+                    root = explore(cp11.getCapability().getLayer(), root);
                 }
 
-                guiLayerList.setModel(new ListComboBoxModel<Object>(layers));
-                guiLayerList.setCellRenderer(new LayerRenderer());
             } catch (Exception ex) {
                 Exceptions.printStackTrace(ex);
             }
         }
 
+        guiLayerList.setModel(new DefaultTreeModel(root));
+        guiLayerList.setCellRenderer(new TreeCellLayerRenderer());
+        guiLayerList.setRootVisible(false);
+        guiLayerList.expandAll();
+        guiLayerList.revalidate();
     }
 
+    private DefaultMutableTreeNode explore(org.geotoolkit.wms.xml.v130.Layer layer, DefaultMutableTreeNode parent){
+        final DefaultMutableTreeNode node = new DefaultMutableTreeNode(layer);
+        
+        for (org.geotoolkit.wms.xml.v130.Layer child : layer.getLayer()) {
+            explore(child, node);
+        }
+
+        if(parent != null){
+            parent.add(node);
+            return parent;
+        }else{
+            return node;
+        }
+    }
+
+    private DefaultMutableTreeNode explore(org.geotoolkit.wms.xml.v111.Layer layer, DefaultMutableTreeNode parent){
+        final DefaultMutableTreeNode node = new DefaultMutableTreeNode(layer);
+
+        for (org.geotoolkit.wms.xml.v111.Layer child : layer.getLayer()) {
+            explore(child, node);
+        }
+
+        if(parent != null){
+            parent.add(node);
+            return parent;
+        }else{
+            return node;
+        }
+    }
+    
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -134,7 +163,7 @@ public class JWMSDataPanel extends SourceCreationPane {
         jLabel3 = new JLabel();
         jtf_name = new JTextField();
         jScrollPane1 = new JScrollPane();
-        guiLayerList = new JList();
+        guiLayerList = new JXTree();
 
         but_refresh.setText(NbBundle.getBundle(JWMSDataPanel.class).getString("test")); // NOI18N
         but_refresh.addActionListener(new ActionListener() {
@@ -162,15 +191,15 @@ public class JWMSDataPanel extends SourceCreationPane {
                     .addGroup(jXTitledPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(ComponentPlacement.RELATED)
-                        .addComponent(jtf_url, GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE))
+                        .addComponent(jtf_url, GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE))
                     .addGroup(jXTitledPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(ComponentPlacement.RELATED)
-                        .addComponent(jtf_version, GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE))
+                        .addComponent(jtf_version, GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE))
                     .addGroup(jXTitledPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(ComponentPlacement.RELATED)
-                        .addComponent(jtf_name, GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)))
+                        .addComponent(jtf_name, GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jXTitledPanel1Layout.setVerticalGroup(
@@ -201,8 +230,8 @@ public class JWMSDataPanel extends SourceCreationPane {
                 .addComponent(jXTitledPanel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(Alignment.LEADING)
-                    .addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
-                    .addComponent(but_refresh, GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)))
+                    .addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
+                    .addComponent(but_refresh, GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(Alignment.LEADING)
@@ -211,7 +240,7 @@ public class JWMSDataPanel extends SourceCreationPane {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(but_refresh)
                         .addPreferredGap(ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE))
                     .addComponent(jXTitledPanel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
@@ -243,7 +272,7 @@ public class JWMSDataPanel extends SourceCreationPane {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private JButton but_refresh;
-    private JList guiLayerList;
+    private JXTree guiLayerList;
     private JLabel jLabel1;
     private JLabel jLabel2;
     private JLabel jLabel3;
