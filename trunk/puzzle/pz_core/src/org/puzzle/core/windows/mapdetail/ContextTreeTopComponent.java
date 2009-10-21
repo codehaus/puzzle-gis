@@ -44,7 +44,6 @@ import org.openide.windows.WindowManager;
 
 import org.puzzle.core.contexttree.LayerPropertyItem;
 import org.puzzle.core.project.filetype.GISContextDataObject;
-import org.puzzle.core.project.filetype.GISContextViewNode;
 import org.puzzle.core.project.view.GISView;
 import org.puzzle.core.resources.MessageBundle;
 import org.puzzle.core.view.ViewComponent;

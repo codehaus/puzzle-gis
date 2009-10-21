@@ -100,6 +100,7 @@ public class PostGISSource extends GISSource{
             return;
         }
 
+        content.add(store);
         setState(GISSourceState.LOADED);
     }
 

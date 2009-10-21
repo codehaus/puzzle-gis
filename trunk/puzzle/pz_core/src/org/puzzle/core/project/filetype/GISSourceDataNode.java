@@ -21,8 +21,19 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.IOException;
 
+import java.util.List;
+import org.geotoolkit.data.DataStore;
+import org.openide.filesystems.FileObject;
+import org.openide.loaders.DataFolder;
 import org.openide.loaders.DataNode;
+import org.openide.loaders.DataObject;
+import org.openide.nodes.AbstractNode;
+import org.openide.nodes.BeanNode;
+import org.openide.nodes.ChildFactory;
 import org.openide.nodes.Children;
+import org.openide.nodes.Node;
+import org.openide.util.Exceptions;
+import org.openide.util.HelpCtx;
 import org.openide.util.ImageUtilities;
 import org.openide.util.Lookup;
 import org.puzzle.core.project.source.GISSource;
@@ -50,7 +61,7 @@ public class GISSourceDataNode extends DataNode {
      * @param obj   The {@code GISContextDataObject} used.
      */
     GISSourceDataNode(GISSourceDataObject obj, Lookup lookup) {
-        super(obj, Children.LEAF, lookup);
+        super(obj, Children.create(new MyFactory(obj), true), lookup);
 
         GISSource source = obj.getSource();
         if(source != null){
@@ -71,6 +82,11 @@ public class GISSourceDataNode extends DataNode {
         String str = super.getHtmlDisplayName();
         if(str != null) str = str.replaceAll(".xml", "");
         return str;
+    }
+
+    @Override
+    public Image getOpenedIcon(int arg0) {
+        return getIcon(arg0);
     }
 
     @Override
@@ -113,4 +129,61 @@ public class GISSourceDataNode extends DataNode {
         return str;
     }
     
+    private static class MyFactory extends ChildFactory<String>{
+
+        private final GISSourceDataObject obj;
+        private String[] typeNames = null;
+
+        public MyFactory(GISSourceDataObject obj){
+            this.obj = obj;
+        }
+
+        @Override
+        protected boolean createKeys(List<String> keys) {
+
+            obj.getSource().load();
+            final DataStore store = obj.getSource().getLookup().lookup(DataStore.class);
+
+            if(store != null){
+                try {
+                    typeNames = store.getTypeNames();
+
+                    for(int i=0; i<typeNames.length; i++){
+                        keys.add(typeNames[i]);
+                    }
+
+                } catch (IOException ex) {
+                    Exceptions.printStackTrace(ex);
+                }
+            }
+
+            return true;
+        }
+
+        @Override
+        protected Node createNodeForKey(String key) {
+            obj.getSource().load();
+            final DataStore store = obj.getSource().getLookup().lookup(DataStore.class);
+
+            return new TypeNode(key);
+        }
+        
+    }
+
+    private static class TypeNode extends AbstractNode{
+
+        private final String type;
+
+        private TypeNode(String type){
+            super(Children.LEAF);
+            this.type = type;
+        }
+
+        @Override
+        public String getDisplayName() {
+            return type;
+        }
+
+    }
+
 }

@@ -98,6 +98,9 @@ public class ShapeFileSource extends GISSource{
             Exceptions.printStackTrace(ex);
             return;
         }
+
+        content.add(store);
+
         try {
             featureSource = store.getFeatureSource(store.getTypeNames()[0]);
         } catch (Exception ex) {
