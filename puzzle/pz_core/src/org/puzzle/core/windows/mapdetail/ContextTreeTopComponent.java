@@ -44,6 +44,8 @@ import org.openide.windows.WindowManager;
 
 import org.puzzle.core.contexttree.LayerPropertyItem;
 import org.puzzle.core.project.filetype.GISContextDataObject;
+import org.puzzle.core.project.filetype.GISContextViewNode;
+import org.puzzle.core.project.view.GISView;
 import org.puzzle.core.resources.MessageBundle;
 import org.puzzle.core.view.ViewComponent;
 
@@ -56,6 +58,7 @@ final class ContextTreeTopComponent extends TopComponent{
 
     private static Lookup.Result resultContext = null;
     private static Lookup.Result resultViews = null;
+    private static Lookup.Result resultGISViews = null;
 
     static {
         resultContext = Utilities.actionsGlobalContext().lookupResult(GISContextDataObject.class);
@@ -111,6 +114,33 @@ final class ContextTreeTopComponent extends TopComponent{
             }
         });
         resultViews.allItems();
+
+        resultGISViews = Utilities.actionsGlobalContext().lookupResult(GISView.class);
+        resultGISViews.addLookupListener(new LookupListener() {
+
+            @Override
+            public void resultChanged(LookupEvent lookupEvent) {
+                final Lookup.Result r = (Lookup.Result) lookupEvent.getSource();
+                final Collection c = r.allInstances();
+                if (!c.isEmpty()) {
+
+                    new Thread() {
+
+                        @Override
+                        public void run() {
+                            final Iterator ite = c.iterator();
+                            while (ite.hasNext()) {
+                                final GISView da = (GISView) ite.next();
+                                final MapContext candidate = da.getContext().getContext();
+                                updateName(candidate);
+                            }
+                        }
+                    }.start();
+
+                }
+            }
+        });
+        resultGISViews.allItems();
 
 
     }
