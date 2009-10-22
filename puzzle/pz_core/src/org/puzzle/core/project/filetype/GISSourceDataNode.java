@@ -37,6 +37,7 @@ import org.openide.util.Exceptions;
 import org.openide.util.HelpCtx;
 import org.openide.util.ImageUtilities;
 import org.openide.util.Lookup;
+import org.openide.util.actions.SystemAction;
 import org.openide.util.lookup.AbstractLookup;
 import org.openide.util.lookup.InstanceContent;
 import org.openide.util.lookup.Lookups;
@@ -192,7 +193,14 @@ public class GISSourceDataNode extends DataNode {
             final List<? extends Action> actions = org.openide.util.Utilities.actionsForPath("Loaders/text/gissourcetype/Actions");
             return actions.toArray(new Action[actions.size()]);
         }
-        
+
+        @Override
+        public SystemAction getDefaultAction() {
+            return (SystemAction) getActions(false)[0];
+        }
+
+
+
     }
 
 }
