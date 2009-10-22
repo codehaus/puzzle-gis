@@ -185,6 +185,7 @@ public class Encoder {
     private static Map<String, String> parseParameters(Node sourceNode) {
         Map<String, String> parameters = new HashMap<String, String>();
         NodeList elements = sourceNode.getChildNodes();
+        if(elements == null) return parameters;
         for (int i = 0, n = elements.getLength(); i < n; i++) {
             Node elementNode = elements.item(i);
             String elementName = elementNode.getNodeName();
