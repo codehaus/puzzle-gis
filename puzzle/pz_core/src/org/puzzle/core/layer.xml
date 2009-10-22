@@ -18,6 +18,7 @@
         <folder name="Puzzle">
             <file name="org-puzzle-core-actions-ShowMapContext.instance"/>
             <file name="org-puzzle-core-actions-ShowView.instance"/>
+            <file name="org-puzzle-core-actions-ShowTypeSource.instance"/>
             <file name="org-puzzle-core-actions-NewDistantSource.instance">
                 <attr name="SystemFileSystem.localizingBundle" stringvalue="org.puzzle.core.Bundle"/>
                 <attr name="delegate" newvalue="org.puzzle.core.actions.NewDistantSource"/>
@@ -96,6 +97,14 @@
                     </file>
                     <file name="org-openide-actions-DeleteAction.instance">
                         <attr name="position" intvalue="500"/>
+                    </file>
+                </folder>
+            </folder>
+            <folder name="gissourcetype">
+                <folder name="Actions">
+                    <file name="org-puzzle-core-actions-ShowTypeSource.shadow">
+                        <attr name="originalFile" stringvalue="Actions/Puzzle/org-puzzle-core-actions-ShowTypeSource.instance"/>
+                        <attr name="position" intvalue="0"/>
                     </file>
                 </folder>
             </folder>
