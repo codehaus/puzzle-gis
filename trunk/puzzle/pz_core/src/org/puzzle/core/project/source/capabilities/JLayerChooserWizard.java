@@ -38,6 +38,8 @@ import javax.swing.event.EventListenerList;
 import org.geotoolkit.map.MapContext;
 import org.geotoolkit.map.MapLayer;
 
+import org.netbeans.api.progress.ProgressHandle;
+import org.netbeans.api.progress.ProgressHandleFactory;
 import org.openide.DialogDisplayer;
 import org.openide.WizardDescriptor;
 import org.openide.util.HelpCtx;
@@ -143,12 +145,32 @@ public class JLayerChooserWizard extends JPanel implements WizardDescriptor.Pane
         dialog.toFront();
         boolean cancelled = wizardDescriptor.getValue() != WizardDescriptor.FINISH_OPTION;
         if (!cancelled) {
-            MapContext context = chooser.getContext();
-            MapLayer[] layers = comp.getLayers();
+            final MapContext context = chooser.getContext();
 
-            for(MapLayer layer : layers){
-                context.layers().add(layer);
-            }
+            new Thread() {
+
+                public void run() {
+
+                    final ProgressHandle handle = ProgressHandleFactory.createHandle(
+                            MessageBundle.getString("creatingLayers"));
+                    handle.start(100);
+                    handle.setInitialDelay(1);
+                    handle.switchToIndeterminate();
+
+                    try {
+                        MapLayer[] layers = comp.getLayers();
+
+                        for (MapLayer layer : layers) {
+                            context.layers().add(layer);
+                        }
+                    } finally {
+                        handle.finish();
+                    }
+                }
+            }.start();
+
+
+
         }
 
     }
