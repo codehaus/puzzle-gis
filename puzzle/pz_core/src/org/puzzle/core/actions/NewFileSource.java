@@ -22,6 +22,8 @@ import java.util.Map;
 import java.util.Set;
 import javax.swing.AbstractAction;
 
+import org.netbeans.api.progress.ProgressHandle;
+import org.netbeans.api.progress.ProgressHandleFactory;
 import org.netbeans.api.project.Project;
 import org.netbeans.api.project.ui.OpenProjects;
 
@@ -72,11 +74,30 @@ public final class NewFileSource extends AbstractAction {
                 public void actionPerformed(ActionEvent e) {
                     if (e.getActionCommand().equalsIgnoreCase("Finish")) {
                         pane.setVisible(false);
-                        final Map<String,GISSourceInfo> sources = pane.getSources();
-                        final Set<String> names = sources.keySet();
-                        for (final String name : names) {
-                            currentProject.registerSource(name,sources.get(name));
-                        }
+
+                        new Thread(){
+
+                            public void run(){
+
+                                final ProgressHandle handle = ProgressHandleFactory.createHandle(
+                                MessageBundle.getString("openingSources"));
+                                handle.start(100);
+                                handle.setInitialDelay(1);
+                                handle.switchToIndeterminate();
+
+                                try{
+                                    final Map<String,GISSourceInfo> sources = pane.getSources();
+                                    final Set<String> names = sources.keySet();
+                                    for (final String name : names) {
+                                        currentProject.registerSource(name,sources.get(name));
+                                    }
+                                }finally{
+                                    handle.finish();
+                                }
+                            }
+                        }.start();
+
+                        
                     }
                 }
             };
