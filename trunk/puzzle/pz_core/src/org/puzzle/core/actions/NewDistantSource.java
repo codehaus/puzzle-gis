@@ -22,6 +22,8 @@ import java.util.Map;
 import java.util.Set;
 import javax.swing.AbstractAction;
 
+import org.netbeans.api.progress.ProgressHandle;
+import org.netbeans.api.progress.ProgressHandleFactory;
 import org.netbeans.api.project.Project;
 import org.netbeans.api.project.ui.OpenProjects;
 
@@ -71,12 +73,30 @@ public final class NewDistantSource extends AbstractAction {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     if (e.getActionCommand().equalsIgnoreCase("Finish")) {
-                        final Map<String,GISSourceInfo> sources = pane.getSources();
-                        final Set<String> names = sources.keySet();
-                        for (final String name : names) {
-                            System.out.println("one register" + name);
-                            gis.registerSource(name,sources.get(name));
-                        }
+
+                        new Thread(){
+
+                            @Override
+                            public void run(){
+
+                                final ProgressHandle handle = ProgressHandleFactory.createHandle(
+                                MessageBundle.getString("openingSources"));
+                                handle.start(100);
+                                handle.setInitialDelay(1);
+                                handle.switchToIndeterminate();
+                                
+                                try{
+                                    final Map<String,GISSourceInfo> sources = pane.getSources();
+                                    final Set<String> names = sources.keySet();
+                                    for (final String name : names) {
+                                        System.out.println("one register" + name);
+                                        gis.registerSource(name,sources.get(name));
+                                    }
+                                }finally{
+                                    handle.finish();
+                                }
+                            }
+                        }.start();
                     }
                 }
             };

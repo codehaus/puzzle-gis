@@ -22,15 +22,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.lang.ref.WeakReference;
 import javax.swing.JComponent;
-import javax.swing.JMenuItem;
+import javax.swing.SwingUtilities;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreePath;
 
 import org.geotoolkit.gui.swing.contexttree.AbstractTreePopupItem;
-import org.geotoolkit.gui.swing.propertyedit.JFeaturePanelAction;
 import org.geotoolkit.gui.swing.propertyedit.LayerFeaturePropertyPanel;
 import org.geotoolkit.gui.swing.resource.MessageBundle;
 import org.geotoolkit.map.FeatureMapLayer;
+import org.netbeans.api.progress.ProgressHandle;
+import org.netbeans.api.progress.ProgressHandleFactory;
 import org.openide.util.Lookup;
 import org.openide.util.lookup.Lookups;
 import org.openide.windows.Mode;
@@ -62,39 +63,67 @@ public class LayerFeatureItem extends AbstractTreePopupItem{
             public void actionPerformed(ActionEvent e) {
                 if(layerRef == null) return;
 
-                FeatureMapLayer layer = layerRef.get();
+                final FeatureMapLayer layer = layerRef.get();
                 if(layer == null) return;
 
-                LayerFeaturePropertyPanel pan = new LayerFeaturePropertyPanel();
-                pan.setTarget(layer);
+                new Thread(){
 
-                //configure all actions
-                Lookup lk = Lookups.forPath("/Puzzle/AttributeTable/Actions");
-                for(JComponent item : lk.lookupAll(JComponent.class)){
-                    pan.actions().add(item);
-                }
-
-
-                TopComponent comp = new TopComponent(){
                     @Override
-                    public void open() {
-                        Mode m = WindowManager.getDefault().findMode("output");
-                        if (m != null) {
-                            m.dockInto(this);
+                    public void run() {
+
+                        final ProgressHandle handle = ProgressHandleFactory.createHandle(
+                                org.puzzle.core.resources.MessageBundle.getString("openSource") +" : " + layer.getName());
+                        handle.start(100);
+                        handle.setInitialDelay(1);
+                        handle.switchToIndeterminate();
+
+                        try{
+                            LayerFeaturePropertyPanel pan = new LayerFeaturePropertyPanel();
+                            pan.setTarget(layer);
+
+                            //configure all actions
+                            Lookup lk = Lookups.forPath("/Puzzle/AttributeTable/Actions");
+                            for(JComponent item : lk.lookupAll(JComponent.class)){
+                                pan.actions().add(item);
+                            }
+
+
+                            final TopComponent comp = new TopComponent(){
+                                @Override
+                                public void open() {
+                                    Mode m = WindowManager.getDefault().findMode("output");
+                                    if (m != null) {
+                                        m.dockInto(this);
+                                    }
+                                    super.open();
+                                }
+
+                            };
+
+                            SwingUtilities.invokeLater(new Runnable() {
+
+                                @Override
+                                public void run() {
+                                    comp.setDisplayName(layer.getDescription().getTitle().toString());
+                                }
+                            });
+
+                            comp.setLayout(new BorderLayout());
+                            comp.add(BorderLayout.CENTER,pan);
+
+                            if(!comp.isOpened()){
+                                comp.open();
+                            }
+                            comp.requestActive();
+                            comp.requestVisible();
+                        }finally{
+                            handle.finish();
                         }
-                        super.open();
+
                     }
 
-                };
-                comp.setDisplayName(layer.getDescription().getTitle().toString());
-                comp.setLayout(new BorderLayout());
-                comp.add(BorderLayout.CENTER,pan);
+                }.start();
 
-                if(!comp.isOpened()){
-                    comp.open();
-                }
-                comp.requestActive();
-                comp.requestVisible();
             }
         }
         );
