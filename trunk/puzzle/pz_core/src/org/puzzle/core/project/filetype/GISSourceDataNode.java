@@ -22,6 +22,7 @@ import java.beans.PropertyChangeListener;
 import java.io.IOException;
 
 import java.util.List;
+import javax.swing.Action;
 import org.geotoolkit.data.DataStore;
 import org.openide.filesystems.FileObject;
 import org.openide.loaders.DataFolder;
@@ -36,6 +37,9 @@ import org.openide.util.Exceptions;
 import org.openide.util.HelpCtx;
 import org.openide.util.ImageUtilities;
 import org.openide.util.Lookup;
+import org.openide.util.lookup.AbstractLookup;
+import org.openide.util.lookup.InstanceContent;
+import org.openide.util.lookup.Lookups;
 import org.puzzle.core.project.source.GISSource;
 import org.puzzle.core.project.source.GISSourceState;
 
@@ -54,6 +58,7 @@ public class GISSourceDataNode extends DataNode {
     private static final Image IMAGE_UNLOADED = ImageUtilities.loadImage("org/puzzle/core/resources/source_unloaded.png");
     private static final Image IMAGE_ERROR = ImageUtilities.loadImage("org/puzzle/core/resources/source_error.png");
     private static final String IMAGE_ICON_BASE = "org/puzzle/core/resources/signal-1.png";
+    private static final String IMAGE_ICON_TYPE = "org/puzzle/core/resources/sourcetable.png";
     
     /**
      * Constructor.<br>
@@ -175,15 +180,19 @@ public class GISSourceDataNode extends DataNode {
         private final String type;
 
         private TypeNode(String type){
-            super(Children.LEAF);
+            super(Children.LEAF, Lookups.singleton(type));
             this.type = type;
+            setName(type);
+            setIconBaseWithExtension(IMAGE_ICON_TYPE);
+            setDisplayName(type);
         }
 
         @Override
-        public String getDisplayName() {
-            return type;
+        public Action[] getActions(boolean context) {
+            final List<? extends Action> actions = org.openide.util.Utilities.actionsForPath("Loaders/text/gissourcetype/Actions");
+            return actions.toArray(new Action[actions.size()]);
         }
-
+        
     }
 
 }
