@@ -16,17 +16,24 @@
  */
 package org.puzzle.core.actions;
 
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import javax.swing.AbstractAction;
 
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import org.netbeans.api.progress.ProgressHandle;
 import org.netbeans.api.progress.ProgressHandleFactory;
 import org.netbeans.api.project.Project;
 import org.netbeans.api.project.ui.OpenProjects;
 
+import org.openide.DialogDescriptor;
 import org.openide.DialogDisplayer;
 import org.openide.NotifyDescriptor;
 import org.openide.WizardDescriptor;
@@ -58,9 +65,14 @@ public final class NewFileSource extends AbstractAction {
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-        final Project candidate;
+        Project candidate = null;
         if(project == null){
             candidate = OpenProjects.getDefault().getMainProject();
+
+            if(candidate == null){
+                candidate = ActionUtils.forceChoosingProject();
+            }
+
         }else{
             candidate = project;
         }
