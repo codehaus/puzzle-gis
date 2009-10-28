@@ -51,27 +51,27 @@ public class TypeGraph extends VMDGraphScene{
 
     private static long edgeID = 0;
 
-    private final SimpleFeatureType type1;
-    private final SimpleFeatureType type2;
+    private final SimpleFeatureType sourceType;
+    private final SimpleFeatureType targetType;
 
     private LayerWidget interractionLayer = new LayerWidget (this);
     private WidgetAction connectAction = ActionFactory.createConnectAction(interractionLayer, new SceneConnectProvider ());
     private WidgetAction reconnectAction = ActionFactory.createReconnectAction(new SceneReconnectProvider());
 
-    public TypeGraph(SimpleFeatureType type1, SimpleFeatureType type2) {
+    public TypeGraph(SimpleFeatureType sourceType, SimpleFeatureType targetType) {
         addChild (interractionLayer);
 
-        this.type1 = type1;
-        this.type2 = type2;
+        this.sourceType = sourceType;
+        this.targetType = targetType;
 
-        createSFTWidget(type1);
-        createSFTWidget(type2);
+        createSFTWidget(targetType);
+        createSFTWidget(sourceType);
 
 
         //create the default link for geometries
         createPPEdge(this,
-                type1.getTypeName()+type1.getGeometryDescriptor().getLocalName(),
-                type2.getTypeName()+type2.getGeometryDescriptor().getLocalName());
+                sourceType.getTypeName()+sourceType.getGeometryDescriptor().getLocalName(),
+                targetType.getTypeName()+targetType.getGeometryDescriptor().getLocalName());
 
         GridGraphLayout<String, String> graphLayout = new GridGraphLayout<String, String> ();
         SceneLayout sceneGraphLayout = LayoutFactory.createSceneGraphLayout(this, graphLayout);
@@ -79,19 +79,19 @@ public class TypeGraph extends VMDGraphScene{
     }
 
     public SimpleFeatureType getSourceType() {
-        return type1;
+        return sourceType;
     }
 
     public SimpleFeatureType getTargetType() {
-        return type2;
+        return targetType;
     }
 
     public Map<AttributeDescriptor,List<AttributeDescriptor>> getMapping(){
         final Map<AttributeDescriptor,List<AttributeDescriptor>> mapping =
                 new HashMap<AttributeDescriptor, List<AttributeDescriptor>>();
 
-        final String typeName1 = type1.getTypeName();
-        final String typeName2 = type2.getTypeName();
+        final String typeName1 = sourceType.getTypeName();
+        final String typeName2 = targetType.getTypeName();
 
         for(final String edge : getEdges()){
             final ConnectionWidget wid = (ConnectionWidget) findWidget(edge);
@@ -105,13 +105,13 @@ public class TypeGraph extends VMDGraphScene{
             if(att1.startsWith(typeName1)){
                 att1 = att1.replaceAll(typeName1, "");
                 att2 = att2.replaceAll(typeName2, "");
-                desc1 = type1.getDescriptor(att1);
-                desc2 = type2.getDescriptor(att2);
+                desc1 = sourceType.getDescriptor(att1);
+                desc2 = targetType.getDescriptor(att2);
             }else if(att2.startsWith(typeName1)){
                 att2 = att2.replaceAll(typeName1, "");
                 att1 = att1.replaceAll(typeName2, "");
-                desc1 = type1.getDescriptor(att2);
-                desc2 = type2.getDescriptor(att1);
+                desc1 = sourceType.getDescriptor(att2);
+                desc2 = targetType.getDescriptor(att1);
             }else{
                 continue;
             }
@@ -178,9 +178,48 @@ public class TypeGraph extends VMDGraphScene{
         public ConnectorState isTargetWidget(Widget pin1, Widget pin2) {
 
             if(pin1 instanceof VMDPinWidget && pin2 instanceof VMDPinWidget){
+                final VMDPinWidget vmd1 = (VMDPinWidget) pin1;
+                final VMDPinWidget vmd2 = (VMDPinWidget) pin2;
+                
                 if(pin1.getParentWidget().equals(pin2.getParentWidget())){
                     return ConnectorState.REJECT;
                 }
+
+                String attSource = (String) findObject(pin1);
+                String attTarget = (String) findObject(pin2);
+                final String typeSource = (String) findObject(pin1.getParentWidget());
+                final String typeTarget = (String) findObject(pin2.getParentWidget());
+                attSource = attSource.substring(typeSource.length(), attSource.length());
+                attTarget = attTarget.substring(typeTarget.length(), attTarget.length());
+
+                final Map<AttributeDescriptor,List<AttributeDescriptor>> mapping = getMapping();
+                if(typeSource.equals(sourceType.getName().getLocalPart())){
+                    //pin1 is the source, can be match to several attributs
+                    //check that the link doesnt exist already
+                    for(final List<AttributeDescriptor> lst : mapping.values()){
+                        for(final AttributeDescriptor desc : lst){
+                            if(desc.getLocalName().equals(attTarget)){
+                                return ConnectorState.REJECT;
+                            }
+                        }
+                    }
+                }else{
+                    //pin1 is the target, can be match to only one attributs
+                    //check that the link doesnt exist already
+                    for(final List<AttributeDescriptor> lst : mapping.values()){
+                        for(final AttributeDescriptor desc : lst){
+                            if(desc.getLocalName().equals(attSource)){
+                                return ConnectorState.REJECT;
+                            }
+                        }
+                    }
+                }
+
+                System.out.println("att source : " + attSource);
+                System.out.println("type source : " + typeSource);
+                System.out.println("att target : " + attTarget);
+                System.out.println("type target : " + typeTarget);
+
 
                 return ConnectorState.ACCEPT;
             }
