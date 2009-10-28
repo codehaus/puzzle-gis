@@ -58,9 +58,14 @@ public final class NewDistantSource extends AbstractAction {
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-        final Project candidate;
+        Project candidate;
         if(project == null){
             candidate = OpenProjects.getDefault().getMainProject();
+
+            if(candidate == null){
+                candidate = ActionUtils.forceChoosingProject();
+            }
+
         }else{
             candidate = project;
         }
