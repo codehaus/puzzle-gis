@@ -1,1 +1,3 @@
 org.puzzle.analyze.tiling.MosaicPyramidToolDescriptor
+org.puzzle.analyze.metadata.ImageMetaDataToolDescriptor
+
