@@ -135,8 +135,6 @@ public class ShapeCreationTool extends JPanel {
             myData.dispose();
         } catch (IOException e) {
             JOptionPane.showMessageDialog(this, "Incorrect File : " + e.getMessage());
-        } catch (SchemaException se) {
-            JOptionPane.showMessageDialog(this, "Incorrect Schema : " + se.getMessage());
         }
 
     }

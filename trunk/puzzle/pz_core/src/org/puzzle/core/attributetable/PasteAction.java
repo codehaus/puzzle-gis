@@ -24,7 +24,7 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 import org.geotoolkit.data.FeatureReader;
 import org.geotoolkit.data.FeatureStore;
-import org.geotoolkit.feature.collection.FeatureCollection;
+import org.geotoolkit.data.collection.FeatureCollection;
 import org.geotoolkit.gui.swing.propertyedit.LayerFeaturePropertyPanel;
 import org.geotoolkit.map.FeatureMapLayer;
 import org.opengis.feature.simple.SimpleFeature;
