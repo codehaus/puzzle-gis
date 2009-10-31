@@ -7,10 +7,9 @@ package org.puzzle.analyze.tiling;
 
 import java.awt.Component;
 import java.awt.Image;
-import org.puzzle.core.tool.ToolDescriptor;
 import org.geotoolkit.internal.wizard.MosaicWizard;
 import org.netbeans.api.wizard.WizardDisplayer;
-import org.openide.util.NbBundle;
+import org.puzzle.analyze.resources.MessageBundle;
 import org.puzzle.core.tool.AbstractToolDescriptor;
 import org.puzzle.core.windows.toolbox.tree.ToolTreeConstants;
 
@@ -22,7 +21,7 @@ public class MosaicPyramidToolDescriptor extends AbstractToolDescriptor{
 
     private final String[] path = ToolTreeConstants.getInstance().FILE_CREATE.getPath();
 
-    private String title = NbBundle.getMessage(MosaicPyramidToolDescriptor.class, "mosaic_creation");
+    private String title = MessageBundle.getString("mosaic_creation");
 
 
     @Override
