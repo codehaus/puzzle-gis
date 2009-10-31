@@ -100,22 +100,21 @@ public class LayerFeatureItem extends AbstractTreePopupItem{
 
                             };
 
-                            SwingUtilities.invokeLater(new Runnable() {
-
-                                @Override
-                                public void run() {
-                                    comp.setDisplayName(layer.getDescription().getTitle().toString());
-                                }
-                            });
-
                             comp.setLayout(new BorderLayout());
                             comp.add(BorderLayout.CENTER,pan);
 
-                            if(!comp.isOpened()){
-                                comp.open();
-                            }
-                            comp.requestActive();
-                            comp.requestVisible();
+                            SwingUtilities.invokeLater(new Runnable() {
+                                @Override
+                                public void run() {
+                                    comp.setDisplayName(layer.getDescription().getTitle().toString());
+                                    if(!comp.isOpened()){
+                                        comp.open();
+                                    }
+                                    comp.requestActive();
+                                    comp.requestVisible();
+                                }
+                            });
+                            
                         }finally{
                             handle.finish();
                         }
