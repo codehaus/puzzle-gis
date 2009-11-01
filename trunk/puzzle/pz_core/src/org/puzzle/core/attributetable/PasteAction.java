@@ -27,6 +27,8 @@ import org.geotoolkit.data.FeatureStore;
 import org.geotoolkit.data.collection.FeatureCollection;
 import org.geotoolkit.gui.swing.propertyedit.LayerFeaturePropertyPanel;
 import org.geotoolkit.map.FeatureMapLayer;
+import org.netbeans.api.progress.ProgressHandle;
+import org.netbeans.api.progress.ProgressHandleFactory;
 import org.opengis.feature.simple.SimpleFeature;
 import org.opengis.feature.simple.SimpleFeatureType;
 import org.opengis.filter.Filter;
@@ -67,12 +69,28 @@ public class PasteAction extends AbstractDataBufferAction{
                     if(currentLayer == bufferLayer){
                         //we are copying datas in the same datasource
                         //no need to check feature types
-                        try {
-                            FeatureCollection<SimpleFeatureType, SimpleFeature> features = bufferLayer.getFeatureSource().getFeatures(bufferFilter);
-                            store.addFeatures(features);
-                        } catch (IOException ex) {
-                            Exceptions.printStackTrace(ex);
-                        }
+
+                        new Thread(){
+                            @Override
+                            public void run() {
+                                final ProgressHandle handle = ProgressHandleFactory.createHandle(
+                                MessageBundle.getString("copyingDatas"));
+                                handle.start(100);
+                                handle.setInitialDelay(1);
+                                handle.switchToIndeterminate();
+                                try {
+                                    FeatureCollection<SimpleFeatureType, SimpleFeature> features = bufferLayer.getFeatureSource().getFeatures(bufferFilter);
+                                    store.addFeatures(features);
+                                    //refresh the data table
+                                    panel.reset();
+                                } catch (IOException ex) {
+                                    Exceptions.printStackTrace(ex);
+                                }finally{
+                                    handle.finish();
+                                }
+                            }
+                        }.start();
+
                     }else{
                         //schema may not fit, we display a dialog to choose matching properties
                         final MappingChooser chooser = new MappingChooser(
@@ -82,12 +100,27 @@ public class PasteAction extends AbstractDataBufferAction{
                         final FeatureMapper mapper = chooser.getMapper();
 
                         if(mapper != null){
-                            try {
-                                FeatureCollection<SimpleFeatureType, SimpleFeature> features = bufferLayer.getFeatureSource().getFeatures(bufferFilter);
-                                store.addFeatures(new TransformReader(features, mapper));
-                            } catch (IOException ex) {
-                                Exceptions.printStackTrace(ex);
-                            }
+                            new Thread(){
+                                @Override
+                                public void run() {
+                                    final ProgressHandle handle = ProgressHandleFactory.createHandle(
+                                    MessageBundle.getString("copyingDatas"));
+                                    handle.start(100);
+                                    handle.setInitialDelay(1);
+                                    handle.switchToIndeterminate();
+                                    try {
+                                        FeatureCollection<SimpleFeatureType, SimpleFeature> features = bufferLayer.getFeatureSource().getFeatures(bufferFilter);
+                                        store.addFeatures(new TransformReader(features, mapper));
+                                        //refresh the data table
+                                        panel.reset();
+                                    } catch (IOException ex) {
+                                        Exceptions.printStackTrace(ex);
+                                    }finally{
+                                        handle.finish();
+                                    }
+                                }
+                            }.start();
+                            
                         }
 
                     }
