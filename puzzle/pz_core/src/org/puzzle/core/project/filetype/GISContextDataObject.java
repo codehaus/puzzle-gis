@@ -138,7 +138,7 @@ public class GISContextDataObject extends XMLDataObject {
      * XML document.
      * @return  The {@code MapContext} associated.
      */
-    public MapContext getContext() {
+    public synchronized MapContext getContext() {
 
         if (context == null) {
             final ProgressHandle handle = ProgressHandleFactory.createHandle(MessageBundle.getString("loadingContext") +" : " + getPrimaryFile().getName().replaceAll(".xml", ""));
