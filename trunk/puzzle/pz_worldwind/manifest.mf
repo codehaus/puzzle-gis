@@ -2,5 +2,5 @@ Manifest-Version: 1.0
 OpenIDE-Module: org.puzzle.renderer.worldwind
 OpenIDE-Module-Layer: org/puzzle/renderer/worldwind/layer.xml
 OpenIDE-Module-Localizing-Bundle: org/puzzle/renderer/worldwind/Bundle.properties
-OpenIDE-Module-Specification-Version: 1.0
+OpenIDE-Module-Specification-Version: 0.6
 
