@@ -59,7 +59,7 @@ public class WMSSource extends GISSource{
      */
     @Override
     public Image getIcon(int type) {
-        return ImageUtilities.loadImage("org/puzzle/format/wms/wms.png");
+        return ImageUtilities.loadImage("org/puzzle/format/wms/resources/wms.png");
     }
 
     /**
