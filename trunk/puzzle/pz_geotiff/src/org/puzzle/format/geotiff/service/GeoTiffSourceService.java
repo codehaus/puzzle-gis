@@ -27,12 +27,12 @@ import javax.swing.filechooser.FileFilter;
 import org.geotoolkit.gui.swing.misc.FileFilterFactory;
 
 import org.openide.util.Exceptions;
-import org.openide.util.NbBundle;
 
 import org.puzzle.core.project.source.AbstractGISSourceService;
 import org.puzzle.core.project.source.capabilities.FileSourceCreation;
 import org.puzzle.core.project.source.GISSource;
 import org.puzzle.core.project.source.GISSourceInfo;
+import org.puzzle.format.geotiff.resources.GeotiffResource;
 
 /**
  * This is the service linked with the {@code GeoTiffSource}.
@@ -94,6 +94,6 @@ public class GeoTiffSourceService extends AbstractGISSourceService implements Fi
     /** {@inheritDoc} */
     @Override
     public String getTitle(){
-        return NbBundle.getMessage(GeoTiffSourceService.class, "geotiffTitle");
+        return GeotiffResource.getString("geotiffTitle");
     }
 }
