@@ -46,10 +46,10 @@ import org.geotoolkit.style.DefaultStyleFactory;
 import org.opengis.feature.simple.SimpleFeatureType;
 import org.opengis.feature.type.GeometryDescriptor;
 import org.openide.util.Exceptions;
-import org.openide.util.NbBundle;
 import org.puzzle.core.project.source.capabilities.JLayerChooser;
 import org.puzzle.core.project.source.capabilities.LayerChooserMonitor;
 import org.puzzle.core.project.source.capabilities.LayerCreation;
+import org.puzzle.format.postgis.resources.PostgisResource;
 
 /**
  *
@@ -118,7 +118,7 @@ public class LayerCreationComponent extends JLayerChooser {
         guiLayerList = new JList();
 
         jLabel2.setFont(jLabel2.getFont().deriveFont(jLabel2.getFont().getStyle() | Font.BOLD));
-        jLabel2.setText(NbBundle.getMessage(LayerCreationComponent.class, "title")); // NOI18N
+        jLabel2.setText(PostgisResource.getString("title")); // NOI18N
         jsp.setViewportView(guiLayerList);
 
         GroupLayout layout = new GroupLayout(this);
@@ -128,11 +128,11 @@ public class LayerCreationComponent extends JLayerChooser {
             .addGroup(Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(Alignment.TRAILING)
-                    .addComponent(jsp, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE)
+                    .addComponent(jsp, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(ComponentPlacement.RELATED)
-                        .addComponent(guiTitle, GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)))
+                        .addComponent(guiTitle, GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(

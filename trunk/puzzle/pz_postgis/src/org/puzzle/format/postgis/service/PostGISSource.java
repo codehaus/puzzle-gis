@@ -45,7 +45,6 @@ import org.puzzle.core.project.source.capabilities.LayerCreation;
 import org.puzzle.core.project.source.GISLayerSource;
 
 import static org.geotoolkit.jdbc.JDBCDataStoreFactory.*;
-import static org.geotoolkit.data.postgis.PostgisNGDataStoreFactory.LOOSEBBOX;
 
 /**
  * PostGIS source object.
@@ -68,7 +67,7 @@ public class PostGISSource extends GISSource{
      */
     @Override
     public Image getIcon(int type) {
-        return ImageUtilities.loadImage("org/puzzle/format/postgis/postgres.png");
+        return ImageUtilities.loadImage("org/puzzle/format/postgis/resources/postgres.png");
     }
 
 
