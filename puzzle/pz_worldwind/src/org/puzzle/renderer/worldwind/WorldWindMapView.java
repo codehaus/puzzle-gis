@@ -26,17 +26,19 @@ import gov.nasa.worldwind.geom.Sector;
 import gov.nasa.worldwind.layers.Layer;
 import gov.nasa.worldwind.layers.WMSLayerFactory;
 import gov.nasa.worldwind.wms.Capabilities;
-import java.awt.BorderLayout;
 
+import java.awt.BorderLayout;
 import java.beans.PropertyChangeEvent;
 import java.util.HashMap;
 import java.util.Map;
+
 import org.geotoolkit.map.ContextListener;
 import org.geotoolkit.map.MapContext;
 import org.geotoolkit.map.MapLayer;
 import org.geotoolkit.style.CollectionChangeEvent;
 import org.geotoolkit.wms.WebMapServer;
 import org.geotoolkit.wms.map.WMSMapLayer;
+
 import org.openide.util.Exceptions;
 import org.puzzle.core.view.ViewComponent;
 

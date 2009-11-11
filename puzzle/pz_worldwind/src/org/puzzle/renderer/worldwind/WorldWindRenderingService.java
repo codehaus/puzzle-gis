@@ -17,8 +17,8 @@
 package org.puzzle.renderer.worldwind;
 
 import java.awt.Image;
-
 import javax.swing.SwingUtilities;
+
 import org.geotoolkit.map.MapContext;
 
 import org.openide.util.ImageUtilities;
@@ -44,7 +44,7 @@ public class WorldWindRenderingService implements RenderingService{
 
     @Override
     public Image getIcon() {
-        return ImageUtilities.loadImage("org/puzzle/renderer/worldwind/worldwind.png");
+        return ImageUtilities.loadImage("org/puzzle/renderer/worldwind/resources/worldwind.png");
     }
 
     @Override
