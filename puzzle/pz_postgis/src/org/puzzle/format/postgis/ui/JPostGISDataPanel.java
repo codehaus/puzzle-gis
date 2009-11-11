@@ -44,9 +44,10 @@ import org.geotoolkit.data.DataStoreFinder;
 import org.jdesktop.swingx.JXTitledPanel;
 
 import org.openide.util.Exceptions;
-import org.openide.util.NbBundle;
+
 import org.puzzle.core.project.source.capabilities.SourceCreationPane;
 import org.puzzle.core.project.source.GISSourceInfo;
+import org.puzzle.format.postgis.resources.PostgisResource;
 import org.puzzle.format.postgis.service.PostGISSourceService;
 
 /**
@@ -138,7 +139,7 @@ public class JPostGISDataPanel extends SourceCreationPane {
         jScrollPane1 = new JScrollPane();
         guiLayerList = new JList();
 
-        but_refresh.setText(NbBundle.getBundle(JPostGISDataPanel.class).getString("test")); // NOI18N
+        but_refresh.setText(PostgisResource.getString("test")); // NOI18N
         but_refresh.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 actionRefresh(evt);
@@ -153,13 +154,13 @@ public class JPostGISDataPanel extends SourceCreationPane {
 
 
 
-        jXTitledPanel1.setTitle(NbBundle.getBundle(JPostGISDataPanel.class).getString("connection")); // NOI18N
-        jLabel1.setText(NbBundle.getBundle(JPostGISDataPanel.class).getString("host")); // NOI18N
-        jLabel2.setText(NbBundle.getBundle(JPostGISDataPanel.class).getString("port")); // NOI18N
-        jLabel3.setText(NbBundle.getBundle(JPostGISDataPanel.class).getString("schema")); // NOI18N
-        jLabel4.setText(NbBundle.getBundle(JPostGISDataPanel.class).getString("database")); // NOI18N
-        jLabel5.setText(NbBundle.getBundle(JPostGISDataPanel.class).getString("user")); // NOI18N
-        jLabel6.setText(NbBundle.getBundle(JPostGISDataPanel.class).getString("password")); // NOI18N
+        jXTitledPanel1.setTitle(PostgisResource.getString("connection")); // NOI18N
+        jLabel1.setText(PostgisResource.getString("host")); // NOI18N
+        jLabel2.setText(PostgisResource.getString("port")); // NOI18N
+        jLabel3.setText(PostgisResource.getString("schema")); // NOI18N
+        jLabel4.setText(PostgisResource.getString("database")); // NOI18N
+        jLabel5.setText(PostgisResource.getString("user")); // NOI18N
+        jLabel6.setText(PostgisResource.getString("password")); // NOI18N
         jtf_port.setModel(new SpinnerNumberModel(Integer.valueOf(5432), Integer.valueOf(0), null, Integer.valueOf(1)));
 
         GroupLayout jXTitledPanel1Layout = new GroupLayout(jXTitledPanel1);
@@ -228,8 +229,8 @@ public class JPostGISDataPanel extends SourceCreationPane {
                 .addComponent(jXTitledPanel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(Alignment.LEADING)
-                    .addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
-                    .addComponent(but_refresh, GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)))
+                    .addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
+                    .addComponent(but_refresh, GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(Alignment.LEADING)

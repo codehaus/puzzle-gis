@@ -19,11 +19,11 @@
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="jsp" alignment="0" pref="313" max="32767" attributes="0"/>
+                  <Component id="jsp" alignment="0" pref="323" max="32767" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="guiTitle" pref="260" max="32767" attributes="0"/>
+                      <Component id="guiTitle" pref="270" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -54,7 +54,7 @@
           </FontInfo>
         </Property>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-          <ResourceString bundle="org/puzzle/format/postgis/service/Bundle.properties" key="title" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+          <ResourceString bundle="org/puzzle/format/postgis/resources/Bundle.properties" key="title" replaceFormat="PostgisResource.getString(&quot;{key}&quot;)"/>
         </Property>
       </Properties>
     </Component>
