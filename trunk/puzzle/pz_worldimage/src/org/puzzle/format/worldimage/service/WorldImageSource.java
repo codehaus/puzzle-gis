@@ -88,7 +88,7 @@ public class WorldImageSource extends GISSource{
      */
     @Override
     public Image getIcon(int type) {
-        return ImageUtilities.loadImage("org/puzzle/format/worldimage/worldimage.png");
+        return ImageUtilities.loadImage("org/puzzle/format/worldimage/resources/worldimage.png");
     }
 
     /**
