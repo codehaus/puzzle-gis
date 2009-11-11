@@ -20,8 +20,8 @@ import java.awt.Image;
 import java.awt.RenderingHints;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-
 import javax.swing.SwingUtilities;
+
 import org.geotoolkit.gui.swing.go2.JMap2D;
 import org.geotoolkit.map.MapContext;
 import org.geotoolkit.referencing.CRS;
@@ -56,7 +56,7 @@ public class Go2RenderingService implements RenderingService{
 
     @Override
     public Image getIcon() {
-        return ImageUtilities.loadImage("org/puzzle/renderer/go2/go2.png");
+        return ImageUtilities.loadImage("org/puzzle/renderer/go2/resources/go2.png");
     }
 
     @Override
