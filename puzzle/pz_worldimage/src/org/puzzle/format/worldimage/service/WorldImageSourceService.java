@@ -27,12 +27,12 @@ import javax.swing.filechooser.FileFilter;
 import org.geotoolkit.gui.swing.misc.FileFilterFactory;
 
 import org.openide.util.Exceptions;
-import org.openide.util.NbBundle;
 
 import org.puzzle.core.project.source.AbstractGISSourceService;
 import org.puzzle.core.project.source.capabilities.FileSourceCreation;
 import org.puzzle.core.project.source.GISSource;
 import org.puzzle.core.project.source.GISSourceInfo;
+import org.puzzle.format.worldimage.resources.WIResource;
 
 /**
  * This is the service linked with the {@code WorldImageSource}.
@@ -54,7 +54,7 @@ public class WorldImageSourceService extends AbstractGISSourceService implements
     /** {@inheritDoc} */
     @Override
     public String getTitle() {
-        return NbBundle.getMessage(WorldImageSourceService.class, "worldTitle");
+        return WIResource.getString("worldTitle");
     }
 
     /** {@inheritDoc} */
