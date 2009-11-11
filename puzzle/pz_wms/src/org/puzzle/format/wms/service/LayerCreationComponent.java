@@ -37,18 +37,21 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreePath;
 import javax.swing.tree.TreeSelectionModel;
+
 import org.geotoolkit.wms.WebMapServer;
 import org.geotoolkit.wms.xml.AbstractWMSCapabilities;
 import org.geotoolkit.map.MapLayer;
 import org.geotoolkit.style.DefaultStyleFactory;
 import org.geotoolkit.wms.xml.v111.Layer;
+
 import org.jdesktop.swingx.JXTree;
 import org.jdesktop.swingx.combobox.ListComboBoxModel;
 import org.openide.util.Exceptions;
-import org.openide.util.NbBundle;
+
 import org.puzzle.core.project.source.capabilities.JLayerChooser;
 import org.puzzle.core.project.source.capabilities.LayerChooserMonitor;
 import org.puzzle.core.project.source.capabilities.LayerCreation;
+import org.puzzle.format.wms.resources.WMSResource;
 import org.puzzle.format.wms.ui.ListCellLayerRenderer;
 import org.puzzle.format.wms.ui.TreeCellLayerRenderer;
 
@@ -187,7 +190,7 @@ public class LayerCreationComponent extends JLayerChooser {
         guiLstData = new JXTree();
 
         jLabel2.setFont(jLabel2.getFont().deriveFont(jLabel2.getFont().getStyle() | Font.BOLD));
-        jLabel2.setText(NbBundle.getMessage(LayerCreationComponent.class, "title")); // NOI18N
+        jLabel2.setText(WMSResource.getString("title")); // NOI18N
         jButton1.setText(">>");
         jButton1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
@@ -216,14 +219,14 @@ public class LayerCreationComponent extends JLayerChooser {
             }
         });
 
-        jButton5.setText("up");
+        jButton5.setText(WMSResource.getString("up")); // NOI18N
         jButton5.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 moveUp(evt);
             }
         });
 
-        jButton6.setText("down");
+        jButton6.setText(WMSResource.getString("down")); // NOI18N
         jButton6.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 moveDown(evt);
@@ -242,7 +245,7 @@ public class LayerCreationComponent extends JLayerChooser {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(Alignment.LEADING)
                     .addGroup(Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)
                         .addPreferredGap(ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(Alignment.LEADING)
                             .addComponent(jButton4)
@@ -250,7 +253,7 @@ public class LayerCreationComponent extends JLayerChooser {
                             .addComponent(jButton2)
                             .addComponent(jButton1))
                         .addPreferredGap(ComponentPlacement.UNRELATED)
-                        .addComponent(jsp2, GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
+                        .addComponent(jsp2, GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
                         .addPreferredGap(ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(Alignment.LEADING)
                             .addComponent(jButton6)
@@ -258,7 +261,7 @@ public class LayerCreationComponent extends JLayerChooser {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(ComponentPlacement.RELATED)
-                        .addComponent(guiTitle, GroupLayout.DEFAULT_SIZE, 457, Short.MAX_VALUE)))
+                        .addComponent(guiTitle, GroupLayout.DEFAULT_SIZE, 467, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 

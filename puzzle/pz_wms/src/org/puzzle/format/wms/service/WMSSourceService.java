@@ -16,13 +16,12 @@
  */
 package org.puzzle.format.wms.service;
 
-import org.openide.util.NbBundle;
-
 import org.puzzle.core.project.source.AbstractGISSourceService;
 import org.puzzle.core.project.source.capabilities.SourceCreationPane;
 import org.puzzle.core.project.source.capabilities.DistantSourceCreation;
 import org.puzzle.core.project.source.GISSource;
 import org.puzzle.core.project.source.GISSourceInfo;
+import org.puzzle.format.wms.resources.WMSResource;
 import org.puzzle.format.wms.ui.JWMSDataPanel;
 
 /**
@@ -49,11 +48,6 @@ public class WMSSourceService extends AbstractGISSourceService implements Distan
      */
     @Override
     public GISSource restoreSource(final GISSourceInfo info) throws IllegalArgumentException{
-//        final String url = parameters.get("url");
-//
-//        if(url == null) throw new IllegalArgumentException("missing parameter url");
-//
-//        GISSource postgisSource = new PostGISSource(getIdentifier(),id,parameters);
         return new WMSSource(info);
     }
 
@@ -62,7 +56,7 @@ public class WMSSourceService extends AbstractGISSourceService implements Distan
      */
     @Override
     public String getTitle() {
-        return NbBundle.getMessage(WMSSourceService.class, "wmsTitle");
+        return WMSResource.getString("wmsTitle");
     }
 
     /**

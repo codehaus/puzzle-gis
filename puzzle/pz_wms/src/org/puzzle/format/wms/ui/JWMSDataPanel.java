@@ -22,7 +22,6 @@ import java.io.Serializable;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
-
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
@@ -32,16 +31,17 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
+
 import org.geotoolkit.wms.WebMapServer;
-
 import org.geotoolkit.wms.xml.AbstractWMSCapabilities;
-import org.jdesktop.swingx.JXTitledPanel;
 
+import org.jdesktop.swingx.JXTitledPanel;
 import org.jdesktop.swingx.JXTree;
 import org.openide.util.Exceptions;
-import org.openide.util.NbBundle;
+
 import org.puzzle.core.project.source.capabilities.SourceCreationPane;
 import org.puzzle.core.project.source.GISSourceInfo;
+import org.puzzle.format.wms.resources.WMSResource;
 import org.puzzle.format.wms.service.WMSSourceService;
 
 /**
@@ -165,7 +165,7 @@ public class JWMSDataPanel extends SourceCreationPane {
         jScrollPane1 = new JScrollPane();
         guiLayerList = new JXTree();
 
-        but_refresh.setText(NbBundle.getBundle(JWMSDataPanel.class).getString("test")); // NOI18N
+        but_refresh.setText(WMSResource.getString("test")); // NOI18N
         but_refresh.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 actionRefresh(evt);
@@ -177,10 +177,10 @@ public class JWMSDataPanel extends SourceCreationPane {
 
 
 
-        jXTitledPanel1.setTitle(NbBundle.getBundle(JWMSDataPanel.class).getString("connection")); // NOI18N
-        jLabel1.setText(NbBundle.getBundle(JWMSDataPanel.class).getString("url")); // NOI18N
-        jLabel2.setText(NbBundle.getBundle(JWMSDataPanel.class).getString("version")); // NOI18N
-        jLabel3.setText(NbBundle.getMessage(JWMSDataPanel.class, "name")); // NOI18N
+        jXTitledPanel1.setTitle(WMSResource.getString("connection")); // NOI18N
+        jLabel1.setText(WMSResource.getString("url")); // NOI18N
+        jLabel2.setText(WMSResource.getString("version")); // NOI18N
+        jLabel3.setText(WMSResource.getString("name")); // NOI18N
         GroupLayout jXTitledPanel1Layout = new GroupLayout(jXTitledPanel1);
         jXTitledPanel1.setLayout(jXTitledPanel1Layout);
         jXTitledPanel1Layout.setHorizontalGroup(
@@ -191,15 +191,15 @@ public class JWMSDataPanel extends SourceCreationPane {
                     .addGroup(jXTitledPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(ComponentPlacement.RELATED)
-                        .addComponent(jtf_url, GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE))
+                        .addComponent(jtf_url, GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE))
                     .addGroup(jXTitledPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(ComponentPlacement.RELATED)
-                        .addComponent(jtf_version, GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE))
+                        .addComponent(jtf_version, GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE))
                     .addGroup(jXTitledPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(ComponentPlacement.RELATED)
-                        .addComponent(jtf_name, GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)))
+                        .addComponent(jtf_name, GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jXTitledPanel1Layout.setVerticalGroup(

@@ -26,6 +26,7 @@ import javax.swing.JTree;
 import javax.swing.text.html.HTMLEditorKit;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeCellRenderer;
+
 import org.geotoolkit.wms.xml.v111.Layer;
 
 /**
