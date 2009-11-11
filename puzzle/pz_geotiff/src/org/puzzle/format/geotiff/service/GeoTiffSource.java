@@ -79,7 +79,7 @@ public class GeoTiffSource extends GISSource{
     /** {@inheritDoc } */
     @Override
     public Image getIcon(int type) {
-        return ImageUtilities.loadImage("org/puzzle/format/geotiff/geotiff.png");
+        return ImageUtilities.loadImage("org/puzzle/format/geotiff/resources/geotiff.png");
     }
 
     /**
