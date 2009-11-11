@@ -17,7 +17,7 @@ import org.openide.DialogDescriptor;
 import org.openide.DialogDisplayer;
 import org.openide.NotifyDescriptor;
 import org.puzzle.core.project.GISProject;
-import org.puzzle.core.resources.MessageBundle;
+import org.puzzle.core.resources.CoreResource;
 
 /**
  *
@@ -43,7 +43,7 @@ public final class ActionUtils {
             OpenProjects.getDefault().setMainProject(candidate);
         }else if(valids.size() > 1){
             final JPanel panel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-            final JLabel lbl = new JLabel(MessageBundle.getString("chooseProject"));
+            final JLabel lbl = new JLabel(CoreResource.getString("chooseProject"));
             final JComboBox box = new JComboBox(valids.toArray());
             box.setSelectedIndex(0);
             panel.add(lbl);

@@ -53,7 +53,7 @@ import org.puzzle.core.project.GISProject;
 import org.puzzle.core.project.source.GISSource;
 import org.puzzle.core.project.view.GISView;
 import org.puzzle.core.project.view.GISViewInfo;
-import org.puzzle.core.resources.MessageBundle;
+import org.puzzle.core.resources.CoreResource;
 import org.puzzle.core.view.RenderingService;
 import org.puzzle.core.view.ViewComponent;
 
@@ -141,7 +141,7 @@ public class GISContextDataObject extends XMLDataObject {
     public synchronized MapContext getContext() {
 
         if (context == null) {
-            final ProgressHandle handle = ProgressHandleFactory.createHandle(MessageBundle.getString("loadingContext") +" : " + getPrimaryFile().getName().replaceAll(".xml", ""));
+            final ProgressHandle handle = ProgressHandleFactory.createHandle(CoreResource.getString("loadingContext") +" : " + getPrimaryFile().getName().replaceAll(".xml", ""));
             handle.start(100);
             handle.setInitialDelay(1);
             handle.switchToIndeterminate();

@@ -29,7 +29,7 @@ import org.openide.util.ImageUtilities;
 import org.puzzle.core.actions.NewDistantSource;
 import org.puzzle.core.actions.NewFileSource;
 import org.puzzle.core.project.GISProject;
-import org.puzzle.core.resources.MessageBundle;
+import org.puzzle.core.resources.CoreResource;
 
 /**
  * This class represents the folder "src" defined in the
@@ -65,7 +65,7 @@ public class GISSourceNode extends FilterNode {
 
     @Override
     public String getDisplayName() {
-        return MessageBundle.getString("sources");
+        return CoreResource.getString("sources");
     }
 
     @Override

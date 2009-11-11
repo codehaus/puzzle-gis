@@ -22,7 +22,7 @@ import org.openide.filesystems.FileObject;
 import org.openide.loaders.DataObjectExistsException;
 import org.openide.loaders.MultiDataObject;
 import org.openide.loaders.UniFileLoader;
-import org.puzzle.core.resources.MessageBundle;
+import org.puzzle.core.resources.CoreResource;
 
 /**
  * This class is a loader for the {@code GISContextDataObject}.
@@ -45,7 +45,7 @@ public class GISContextDataLoader extends UniFileLoader {
 
     @Override
     protected String defaultDisplayName() {
-        return MessageBundle.getString("LBL_GISContext_loader_name");
+        return CoreResource.getString("LBL_GISContext_loader_name");
     }
 
     @Override

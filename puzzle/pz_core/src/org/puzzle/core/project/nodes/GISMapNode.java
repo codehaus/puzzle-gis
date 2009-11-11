@@ -28,7 +28,7 @@ import org.openide.util.ImageUtilities;
 
 import org.puzzle.core.actions.NewMapContext;
 import org.puzzle.core.project.GISProject;
-import org.puzzle.core.resources.MessageBundle;
+import org.puzzle.core.resources.CoreResource;
 
 /**
  * This class provides a {@link org.openide.nodes.Node} for the "map" folder
@@ -65,7 +65,7 @@ public class GISMapNode extends FilterNode {
 
     @Override
     public String getDisplayName() {
-        return MessageBundle.getString("maps");
+        return CoreResource.getString("maps");
     }
 
     @Override

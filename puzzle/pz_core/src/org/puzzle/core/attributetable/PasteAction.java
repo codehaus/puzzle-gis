@@ -35,7 +35,7 @@ import org.opengis.filter.Filter;
 import org.openide.util.Exceptions;
 import org.puzzle.core.attributetable.typemapping.FeatureMapper;
 import org.puzzle.core.attributetable.typemapping.MappingChooser;
-import org.puzzle.core.resources.MessageBundle;
+import org.puzzle.core.resources.CoreResource;
 
 /**
  *
@@ -44,7 +44,7 @@ import org.puzzle.core.resources.MessageBundle;
 public class PasteAction extends AbstractDataBufferAction{
 
     public PasteAction(){
-        setText(MessageBundle.getString("paste"));
+        setText(CoreResource.getString("paste"));
 
         addActionListener(new ActionListener() {
 
@@ -74,7 +74,7 @@ public class PasteAction extends AbstractDataBufferAction{
                             @Override
                             public void run() {
                                 final ProgressHandle handle = ProgressHandleFactory.createHandle(
-                                MessageBundle.getString("copyingDatas"));
+                                CoreResource.getString("copyingDatas"));
                                 handle.start(100);
                                 handle.setInitialDelay(1);
                                 handle.switchToIndeterminate();
@@ -104,7 +104,7 @@ public class PasteAction extends AbstractDataBufferAction{
                                 @Override
                                 public void run() {
                                     final ProgressHandle handle = ProgressHandleFactory.createHandle(
-                                    MessageBundle.getString("copyingDatas"));
+                                    CoreResource.getString("copyingDatas"));
                                     handle.start(100);
                                     handle.setInitialDelay(1);
                                     handle.switchToIndeterminate();

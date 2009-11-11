@@ -42,7 +42,7 @@ import org.puzzle.core.project.source.GISSource;
 import org.puzzle.core.project.source.GISSourceInfo;
 import org.puzzle.core.project.source.GISSourceService;
 
-import org.puzzle.core.resources.MessageBundle;
+import org.puzzle.core.resources.CoreResource;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -90,7 +90,7 @@ public class GISSourceDataObject extends XMLDataObject {
 
         if(source == null){
 
-            final ProgressHandle handle = ProgressHandleFactory.createHandle(MessageBundle.getString("loadingSource") +" : " + getName());
+            final ProgressHandle handle = ProgressHandleFactory.createHandle(CoreResource.getString("loadingSource") +" : " + getName());
             handle.setInitialDelay(1);
             handle.start(100);
             handle.switchToIndeterminate();

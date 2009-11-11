@@ -33,7 +33,7 @@ import org.openide.WizardDescriptor;
 
 import org.puzzle.core.project.GISProject;
 import org.puzzle.core.project.source.GISSourceInfo;
-import org.puzzle.core.resources.MessageBundle;
+import org.puzzle.core.resources.CoreResource;
 
 /**
  * Action to create new distant sources.
@@ -49,7 +49,7 @@ public final class NewDistantSource extends AbstractAction {
     }
 
     public NewDistantSource(final GISProject project){
-        super(MessageBundle.getString("newDistantSource"));
+        super(CoreResource.getString("newDistantSource"));
         this.project = project;
     }
 
@@ -85,7 +85,7 @@ public final class NewDistantSource extends AbstractAction {
                             public void run(){
 
                                 final ProgressHandle handle = ProgressHandleFactory.createHandle(
-                                MessageBundle.getString("openingSources"));
+                                CoreResource.getString("openingSources"));
                                 handle.start(100);
                                 handle.setInitialDelay(1);
                                 handle.switchToIndeterminate();
@@ -106,11 +106,11 @@ public final class NewDistantSource extends AbstractAction {
                 }
             };
 
-            final WizardDescriptor wdesc = WizardUtilities.createSimplewWizard(pane, MessageBundle.getString("open"));
+            final WizardDescriptor wdesc = WizardUtilities.createSimplewWizard(pane, CoreResource.getString("open"));
             wdesc.setButtonListener(lst);
             DialogDisplayer.getDefault().notify(wdesc);
         }else{
-            final NotifyDescriptor d =  new NotifyDescriptor.Message(MessageBundle.getString("projectIsNotGIS"), NotifyDescriptor.INFORMATION_MESSAGE);
+            final NotifyDescriptor d =  new NotifyDescriptor.Message(CoreResource.getString("projectIsNotGIS"), NotifyDescriptor.INFORMATION_MESSAGE);
             DialogDisplayer.getDefault().notify(d);
         }
     }

@@ -39,7 +39,7 @@ import org.openide.util.lookup.Lookups;
 import org.openide.windows.Mode;
 import org.openide.windows.TopComponent;
 import org.openide.windows.WindowManager;
-import org.puzzle.core.resources.MessageBundle;
+import org.puzzle.core.resources.CoreResource;
 
 /**
  * This class is made to extend the menu item from geotoolkit, this
@@ -70,7 +70,7 @@ public class ShowTypeSource extends CookieAction{
             public void run(){
 
                 final ProgressHandle handle = ProgressHandleFactory.createHandle(
-                        MessageBundle.getString("openSource") +" : " + typeName);
+                        CoreResource.getString("openSource") +" : " + typeName);
                 handle.start(100);
                 handle.setInitialDelay(1);
                 handle.switchToIndeterminate();
@@ -147,7 +147,7 @@ public class ShowTypeSource extends CookieAction{
      */
     @Override
     public String getName() {
-        return MessageBundle.getString("attributTable");
+        return CoreResource.getString("attributTable");
     }
 
     /**

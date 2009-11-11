@@ -28,7 +28,7 @@ import org.geotoolkit.sld.xml.XMLUtilities;
 import org.geotoolkit.style.MutableStyle;
 import org.openide.util.Exceptions;
 import org.openide.util.ImageUtilities;
-import org.puzzle.core.resources.MessageBundle;
+import org.puzzle.core.resources.CoreResource;
 
 /**
  *
@@ -55,14 +55,14 @@ public class JSLDExportPanel extends javax.swing.JPanel implements PropertyPane{
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
-        jButton1.setText(MessageBundle.getString("sld_100")); // NOI18N
+        jButton1.setText(CoreResource.getString("sld_100")); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 exp100(evt);
             }
         });
 
-        jButton2.setText(MessageBundle.getString("sld_110")); // NOI18N
+        jButton2.setText(CoreResource.getString("sld_110")); // NOI18N
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 exp110(evt);
@@ -133,7 +133,7 @@ public class JSLDExportPanel extends javax.swing.JPanel implements PropertyPane{
 
     @Override
     public String getTitle() {
-        return MessageBundle.getString("sld_export");
+        return CoreResource.getString("sld_export");
     }
 
     @Override

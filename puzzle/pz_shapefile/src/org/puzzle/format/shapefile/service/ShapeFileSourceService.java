@@ -26,12 +26,11 @@ import javax.swing.filechooser.FileFilter;
 
 import org.geotoolkit.gui.swing.misc.FileFilterFactory;
 
-import org.openide.util.NbBundle;
-
 import org.puzzle.core.project.source.AbstractGISSourceService;
 import org.puzzle.core.project.source.capabilities.FileSourceCreation;
 import org.puzzle.core.project.source.GISSource;
 import org.puzzle.core.project.source.GISSourceInfo;
+import org.puzzle.format.shapefile.resources.ShapefileResource;
 
 /**
  * Shapefile sourcre creation service.
@@ -89,7 +88,7 @@ public class ShapeFileSourceService extends AbstractGISSourceService implements 
     
     @Override
     public String getTitle() {
-        return NbBundle.getMessage(ShapeFileSourceService.class, "shapeTitle");
+        return ShapefileResource.getString("shapeTitle");
     }
 
 }

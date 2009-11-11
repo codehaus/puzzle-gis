@@ -76,7 +76,7 @@ public class ShapeFileSource extends GISSource{
      */
     @Override
     public Image getIcon(int type) {
-        return ImageUtilities.loadImage("org/puzzle/format/shapefile/shapefile.png");
+        return ImageUtilities.loadImage("org/puzzle/format/shapefile/resources/shapefile.png");
     }
 
     @Override

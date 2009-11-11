@@ -40,7 +40,7 @@ import org.openide.DialogDisplayer;
 import org.openide.WizardDescriptor;
 import org.openide.util.HelpCtx;
 import org.openide.util.Lookup;
-import org.puzzle.core.resources.MessageBundle;
+import org.puzzle.core.resources.CoreResource;
 
 /**
  * Panel to choose the rendering engine.
@@ -72,7 +72,7 @@ public class RendererChooser implements WizardDescriptor.Panel {
             component.add(createServicePane(service));
         }
 
-        component.setName(MessageBundle.getString("chooseRenderer"));
+        component.setName(CoreResource.getString("chooseRenderer"));
     }
     
     private JPanel createServicePane(RenderingService service){
@@ -114,7 +114,7 @@ public class RendererChooser implements WizardDescriptor.Panel {
         final WizardDescriptor wizardDescriptor = new WizardDescriptor(this.getPanels());
         // {0} will be replaced by WizardDesriptor.Panel.getComponent().getName()
         wizardDescriptor.setTitleFormat(new MessageFormat("{0}"));
-        wizardDescriptor.setTitle(MessageBundle.getString("chooseRenderer"));
+        wizardDescriptor.setTitle(CoreResource.getString("chooseRenderer"));
         Dialog dialog = DialogDisplayer.getDefault().createDialog(wizardDescriptor);
         dialog.setVisible(true);
         dialog.toFront();

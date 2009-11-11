@@ -33,7 +33,7 @@ import org.openide.util.actions.NodeAction;
 import org.puzzle.core.project.GISProject;
 import org.puzzle.core.project.source.capabilities.JLayerChooserWizard;
 import org.puzzle.core.project.source.capabilities.LayerCreation;
-import org.puzzle.core.resources.MessageBundle;
+import org.puzzle.core.resources.CoreResource;
 
 /**
  *  Action to show a layer creation wizard, this wizard will query the source
@@ -73,8 +73,8 @@ public final class ShowLayerWizard extends NodeAction {
                         @Override
                         public void run() {
                             final DialogDescriptor desc = new DialogDescriptor(
-                                    MessageBundle.getString("projectHasNoMap"),
-                                    MessageBundle.getString("warning"), true, null);
+                                    CoreResource.getString("projectHasNoMap"),
+                                    CoreResource.getString("warning"), true, null);
                             DialogDisplayer.getDefault().notify(desc);
                         }
                     });
@@ -91,7 +91,7 @@ public final class ShowLayerWizard extends NodeAction {
      */
     @Override
     public String getName() {
-        return MessageBundle.getString("showLayerWizard");
+        return CoreResource.getString("showLayerWizard");
     }
    
     /**

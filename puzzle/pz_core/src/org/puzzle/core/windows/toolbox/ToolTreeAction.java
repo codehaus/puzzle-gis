@@ -22,7 +22,7 @@ import javax.swing.ImageIcon;
 
 import org.openide.util.ImageUtilities;
 import org.openide.windows.TopComponent;
-import org.puzzle.core.resources.MessageBundle;
+import org.puzzle.core.resources.CoreResource;
 
 /**
  * Action which shows ToolTree component.
@@ -32,7 +32,7 @@ import org.puzzle.core.resources.MessageBundle;
 public class ToolTreeAction extends AbstractAction {
 
     public ToolTreeAction() {
-        super(MessageBundle.getString("toolTree"));
+        super(CoreResource.getString("toolTree"));
         putValue(SMALL_ICON, new ImageIcon(ImageUtilities.loadImage("org/puzzle/core/resources/tool.png", true)));
     }
 
