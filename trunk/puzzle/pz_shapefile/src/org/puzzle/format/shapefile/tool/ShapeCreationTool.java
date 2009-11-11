@@ -44,7 +44,6 @@ import org.geotoolkit.data.FileDataStoreFactory;
 import org.geotoolkit.data.shapefile.ShapefileDataStore;
 import org.geotoolkit.data.shapefile.ShapefileDataStoreFactory;
 import org.geotoolkit.feature.FeatureTypeUtilities;
-import org.geotoolkit.feature.SchemaException;
 import org.geotoolkit.gui.swing.crschooser.JCRSChooser;
 import org.geotoolkit.referencing.crs.DefaultGeographicCRS;
 
@@ -54,7 +53,7 @@ import org.jdesktop.swingx.JXTitledSeparator;
 import org.opengis.feature.simple.SimpleFeatureType;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
-import org.openide.util.NbBundle;
+import org.puzzle.format.shapefile.resources.ShapefileResource;
 
 
 /**
@@ -171,52 +170,52 @@ public class ShapeCreationTool extends JPanel {
         jLabel2 = new JLabel();
         gui_jtf_crs = new JTextField();
 
-        jLabel1.setText(NbBundle.getMessage(ShapeCreationTool.class, "file")); // NOI18N
-        jXTitledSeparator1.setTitle(NbBundle.getMessage(ShapeCreationTool.class, "shapefile_creation")); // NOI18N
+        jLabel1.setText(ShapefileResource.getString("file")); // NOI18N
+        jXTitledSeparator1.setTitle(ShapefileResource.getString("shapefile_creation")); // NOI18N
         gui_jtf_name.setEditable(false);
 
 
-        gui_jtf_name.setText(NbBundle.getMessage(ShapeCreationTool.class, "default")); // NOI18N
-        gui_but_create.setText(NbBundle.getMessage(ShapeCreationTool.class, "create")); // NOI18N
+        gui_jtf_name.setText(ShapefileResource.getString("default")); // NOI18N
+        gui_but_create.setText(ShapefileResource.getString("create")); // NOI18N
         gui_but_create.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 gui_but_createActionPerformed(evt);
             }
         });
 
-        gui_but_file.setText(NbBundle.getMessage(ShapeCreationTool.class, "...")); // NOI18N
+        gui_but_file.setText(ShapefileResource.getString("...")); // NOI18N
         gui_but_file.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 gui_but_fileActionPerformed(evt);
             }
         });
 
-        jPanel2.setBorder(BorderFactory.createTitledBorder(NbBundle.getMessage(ShapeCreationTool.class, "attributs"))); // NOI18N
+        jPanel2.setBorder(BorderFactory.createTitledBorder(ShapefileResource.getString("attributs"))); // NOI18N
         gui_tab.setModel(model);
         jScrollPane1.setViewportView(gui_tab);
 
-        gui_but_add.setText(NbBundle.getMessage(ShapeCreationTool.class, "add")); // NOI18N
+        gui_but_add.setText(ShapefileResource.getString("add")); // NOI18N
         gui_but_add.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 gui_but_addActionPerformed(evt);
             }
         });
 
-        gui_but_up.setText(NbBundle.getMessage(ShapeCreationTool.class, "up")); // NOI18N
+        gui_but_up.setText(ShapefileResource.getString("up")); // NOI18N
         gui_but_up.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 gui_but_upActionPerformed(evt);
             }
         });
 
-        gui_but_down.setText(NbBundle.getMessage(ShapeCreationTool.class, "down")); // NOI18N
+        gui_but_down.setText(ShapefileResource.getString("down")); // NOI18N
         gui_but_down.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 gui_but_downActionPerformed(evt);
             }
         });
 
-        gui_but_delete.setText(NbBundle.getMessage(ShapeCreationTool.class, "delete")); // NOI18N
+        gui_but_delete.setText(ShapefileResource.getString("delete")); // NOI18N
         gui_but_delete.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 gui_but_deleteActionPerformed(evt);
@@ -229,7 +228,7 @@ public class ShapeCreationTool extends JPanel {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(Alignment.LEADING)
             .addGroup(Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE)
                 .addPreferredGap(ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(Alignment.LEADING)
                     .addComponent(gui_but_add)
@@ -251,14 +250,14 @@ public class ShapeCreationTool extends JPanel {
                 .addComponent(gui_but_up)
                 .addPreferredGap(ComponentPlacement.RELATED)
                 .addComponent(gui_but_down)
-                .addContainerGap(119, Short.MAX_VALUE))
-            .addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 287, Short.MAX_VALUE)
+                .addContainerGap(113, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE)
         );
 
-        jPanel1.setBorder(BorderFactory.createTitledBorder(NbBundle.getMessage(ShapeCreationTool.class, "geometry"))); // NOI18N
+        jPanel1.setBorder(BorderFactory.createTitledBorder(ShapefileResource.getString("geometry"))); // NOI18N
         grp_geom.add(gui_jrb_point);
         gui_jrb_point.setSelected(true);
-        gui_jrb_point.setText(NbBundle.getMessage(ShapeCreationTool.class, "point")); // NOI18N
+        gui_jrb_point.setText(ShapefileResource.getString("point")); // NOI18N
         gui_jrb_point.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 gui_jrb_pointActionPerformed(evt);
@@ -266,7 +265,7 @@ public class ShapeCreationTool extends JPanel {
         });
 
         grp_geom.add(gui_jrb_multipoint);
-        gui_jrb_multipoint.setText(NbBundle.getMessage(ShapeCreationTool.class, "multipoint")); // NOI18N
+        gui_jrb_multipoint.setText(ShapefileResource.getString("multipoint")); // NOI18N
         gui_jrb_multipoint.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 gui_jrb_multipointActionPerformed(evt);
@@ -274,7 +273,7 @@ public class ShapeCreationTool extends JPanel {
         });
 
         grp_geom.add(gui_jrb_multiline);
-        gui_jrb_multiline.setText(NbBundle.getMessage(ShapeCreationTool.class, "multiline")); // NOI18N
+        gui_jrb_multiline.setText(ShapefileResource.getString("multiline")); // NOI18N
         gui_jrb_multiline.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 gui_jrb_multilineActionPerformed(evt);
@@ -282,7 +281,7 @@ public class ShapeCreationTool extends JPanel {
         });
 
         grp_geom.add(gui_jrb_multipolygon);
-        gui_jrb_multipolygon.setText(NbBundle.getMessage(ShapeCreationTool.class, "multipolygon")); // NOI18N
+        gui_jrb_multipolygon.setText(ShapefileResource.getString("multipolygon")); // NOI18N
         gui_jrb_multipolygon.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 gui_jrb_multipolygonActionPerformed(evt);
@@ -316,14 +315,14 @@ public class ShapeCreationTool extends JPanel {
                 .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        gui_but_crs.setText(NbBundle.getMessage(ShapeCreationTool.class, "list")); // NOI18N
+        gui_but_crs.setText(ShapefileResource.getString("list")); // NOI18N
         gui_but_crs.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 gui_but_crsActionPerformed(evt);
             }
         });
 
-        jLabel2.setText(NbBundle.getMessage(ShapeCreationTool.class, "crs")); // NOI18N
+        jLabel2.setText(ShapefileResource.getString("crs")); // NOI18N
         gui_jtf_crs.setEditable(false);
         gui_jtf_crs.setText("EPSG:4326");
 
@@ -334,11 +333,11 @@ public class ShapeCreationTool extends JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(Alignment.LEADING)
-                    .addComponent(jXTitledSeparator1, GroupLayout.DEFAULT_SIZE, 551, Short.MAX_VALUE)
+                    .addComponent(jXTitledSeparator1, GroupLayout.DEFAULT_SIZE, 595, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(ComponentPlacement.RELATED)
-                        .addComponent(gui_jtf_name, GroupLayout.DEFAULT_SIZE, 461, Short.MAX_VALUE)
+                        .addComponent(gui_jtf_name, GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE)
                         .addPreferredGap(ComponentPlacement.RELATED)
                         .addComponent(gui_but_file))
                     .addGroup(Alignment.TRAILING, layout.createSequentialGroup()
@@ -350,7 +349,7 @@ public class ShapeCreationTool extends JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(ComponentPlacement.RELATED)
-                        .addComponent(gui_jtf_crs, GroupLayout.DEFAULT_SIZE, 445, Short.MAX_VALUE)
+                        .addComponent(gui_jtf_crs, GroupLayout.DEFAULT_SIZE, 505, Short.MAX_VALUE)
                         .addPreferredGap(ComponentPlacement.RELATED)
                         .addComponent(gui_but_crs)))
                 .addContainerGap())
@@ -374,7 +373,7 @@ public class ShapeCreationTool extends JPanel {
                 .addGroup(layout.createParallelGroup(Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(ComponentPlacement.RELATED, 162, Short.MAX_VALUE)
+                        .addPreferredGap(ComponentPlacement.RELATED, 172, Short.MAX_VALUE)
                         .addComponent(gui_but_create))
                     .addComponent(jPanel2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())

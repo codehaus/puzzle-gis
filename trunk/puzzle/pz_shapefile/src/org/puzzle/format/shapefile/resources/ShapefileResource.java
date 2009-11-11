@@ -14,7 +14,7 @@
  *    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  *    Lesser General Public License for more details.
  */
-package org.puzzle.core.resources;
+package org.puzzle.format.shapefile.resources;
 
 import java.util.ResourceBundle;
 
@@ -22,11 +22,11 @@ import java.util.ResourceBundle;
  * I18N for this package
  * @author Johann Sorel (Puzzle-GIS)
  */
-public final class MessageBundle {
+public final class ShapefileResource {
 
-    private static final ResourceBundle BUNDLE = ResourceBundle.getBundle("org/puzzle/core/resources/Bundle");
+    private static final ResourceBundle BUNDLE = ResourceBundle.getBundle("org/puzzle/format/shapefile/resources/Bundle");
 
-    private MessageBundle(){}
+    private ShapefileResource(){}
 
     public static final String getString(final String key){
         return BUNDLE.getString(key);

@@ -20,8 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.table.AbstractTableModel;
-import org.openide.util.NbBundle;
-
+import org.puzzle.format.shapefile.resources.ShapefileResource;
 
 /**
  * TableModel for fields edition in the shapefile creation tool.
@@ -54,9 +53,9 @@ class ShapeAttModel extends AbstractTableModel{
     @Override
     public String getColumnName(int columnIndex) {
         if(columnIndex == 0){
-            return NbBundle.getMessage(ShapeAttModel.class, "name");
+            return ShapefileResource.getString("name");
         }else{
-            return NbBundle.getMessage(ShapeAttModel.class, "type");
+            return ShapefileResource.getString("type");
         }
     }
 

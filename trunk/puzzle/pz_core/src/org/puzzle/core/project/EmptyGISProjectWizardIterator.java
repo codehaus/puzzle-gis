@@ -44,7 +44,7 @@ import org.openide.util.Exceptions;
 import org.openide.util.NbBundle;
 import org.openide.xml.XMLUtil;
 
-import org.puzzle.core.resources.MessageBundle;
+import org.puzzle.core.resources.CoreResource;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -76,7 +76,7 @@ public class EmptyGISProjectWizardIterator implements WizardDescriptor.Instantia
 
     private String[] createSteps() {
         return new String[]{
-                    MessageBundle.getString("createProjectStep")
+                    CoreResource.getString("createProjectStep")
                 };
     }
 

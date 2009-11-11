@@ -29,7 +29,7 @@ import org.openide.util.Lookup;
 import org.openide.util.actions.CookieAction;
 
 import org.puzzle.core.project.filetype.GISContextDataObject;
-import org.puzzle.core.resources.MessageBundle;
+import org.puzzle.core.resources.CoreResource;
 import org.puzzle.core.view.RendererChooser;
 import org.puzzle.core.view.RenderingService;
 
@@ -62,7 +62,7 @@ public final class ShowMapContext extends CookieAction {
                 final MapContext context = dataObject.getContext();
 
                 final ProgressHandle handle = ProgressHandleFactory.createHandle(
-                        MessageBundle.getString("createView") +" : " + context.getDescription().getTitle().toString());
+                        CoreResource.getString("createView") +" : " + context.getDescription().getTitle().toString());
                 handle.start(100);
                 handle.setInitialDelay(1);
                 handle.switchToIndeterminate();
@@ -124,7 +124,7 @@ public final class ShowMapContext extends CookieAction {
      */
     @Override
     public String getName() {
-        return MessageBundle.getString("showMap");
+        return CoreResource.getString("showMap");
     }
 
     /**

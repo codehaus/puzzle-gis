@@ -43,7 +43,7 @@ import org.netbeans.api.progress.ProgressHandleFactory;
 import org.openide.DialogDisplayer;
 import org.openide.WizardDescriptor;
 import org.openide.util.HelpCtx;
-import org.puzzle.core.resources.MessageBundle;
+import org.puzzle.core.resources.CoreResource;
 
 /**
  * @author Johann Sorel (Puzzle-GIS)
@@ -79,7 +79,7 @@ public class JLayerChooserWizard extends JPanel implements WizardDescriptor.Pane
 
     @Override
     public String getName() {
-        return MessageBundle.getString("chooselayer");
+        return CoreResource.getString("chooselayer");
     }
 
     public void setChooser(JComponent component){
@@ -110,7 +110,7 @@ public class JLayerChooserWizard extends JPanel implements WizardDescriptor.Pane
         toolbar.setRollover(true);
 
         jLabel1.setFont(jLabel1.getFont().deriveFont(jLabel1.getFont().getStyle() | Font.BOLD));
-        jLabel1.setText(MessageBundle.getString("map")); // NOI18N
+        jLabel1.setText(CoreResource.getString("map")); // NOI18N
         toolbar.add(jLabel1);
 
         guiContexts.setModel(new DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -139,7 +139,7 @@ public class JLayerChooserWizard extends JPanel implements WizardDescriptor.Pane
         final WizardDescriptor wizardDescriptor = new WizardDescriptor(chooser.getPanels());
         // {0} will be replaced by WizardDesriptor.Panel.getComponent().getName()
         wizardDescriptor.setTitleFormat(new MessageFormat("{0}"));
-        wizardDescriptor.setTitle(MessageBundle.getString("chooselayer"));
+        wizardDescriptor.setTitle(CoreResource.getString("chooselayer"));
         Dialog dialog = DialogDisplayer.getDefault().createDialog(wizardDescriptor);
         dialog.setVisible(true);
         dialog.toFront();
@@ -152,7 +152,7 @@ public class JLayerChooserWizard extends JPanel implements WizardDescriptor.Pane
                 public void run() {
 
                     final ProgressHandle handle = ProgressHandleFactory.createHandle(
-                            MessageBundle.getString("creatingLayers"));
+                            CoreResource.getString("creatingLayers"));
                     handle.start(100);
                     handle.setInitialDelay(1);
                     handle.switchToIndeterminate();

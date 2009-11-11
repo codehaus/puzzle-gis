@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.5" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+<Form version="1.5" maxVersion="1.5" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
   <NonVisualComponents>
     <Component class="javax.swing.ButtonGroup" name="grp_geom">
     </Component>
@@ -8,6 +8,7 @@
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_formBundle" type="java.lang.String" value="org/puzzle/format/shapefile/resources/Bundle"/>
     <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="false"/>
     <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
     <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
@@ -23,11 +24,11 @@
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jXTitledSeparator1" pref="551" max="32767" attributes="0"/>
+                  <Component id="jXTitledSeparator1" pref="595" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="gui_jtf_name" pref="476" max="32767" attributes="0"/>
+                      <Component id="gui_jtf_name" pref="520" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="gui_but_file" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -42,7 +43,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="gui_jtf_crs" pref="461" max="32767" attributes="0"/>
+                      <Component id="gui_jtf_crs" pref="505" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="gui_but_crs" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -86,14 +87,14 @@
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-          <ResourceString bundle="org/puzzle/format/shapefile/tool/Bundle.properties" key="file" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+          <ResourceString bundle="org/puzzle/format/shapefile/resources/Bundle.properties" key="file" replaceFormat="ShapefileResource.getString(&quot;{key}&quot;)"/>
         </Property>
       </Properties>
     </Component>
     <Component class="org.jdesktop.swingx.JXTitledSeparator" name="jXTitledSeparator1">
       <Properties>
         <Property name="title" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-          <ResourceString bundle="org/puzzle/format/shapefile/tool/Bundle.properties" key="shapefile_creation" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+          <ResourceString bundle="org/puzzle/format/shapefile/resources/Bundle.properties" key="shapefile_creation" replaceFormat="ShapefileResource.getString(&quot;{key}&quot;)"/>
         </Property>
       </Properties>
     </Component>
@@ -101,14 +102,14 @@
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-          <ResourceString bundle="org/puzzle/format/shapefile/tool/Bundle.properties" key="default" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+          <ResourceString bundle="org/puzzle/format/shapefile/resources/Bundle.properties" key="default" replaceFormat="ShapefileResource.getString(&quot;{key}&quot;)"/>
         </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="gui_but_create">
       <Properties>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-          <ResourceString bundle="org/puzzle/format/shapefile/tool/Bundle.properties" key="create" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+          <ResourceString bundle="org/puzzle/format/shapefile/resources/Bundle.properties" key="create" replaceFormat="ShapefileResource.getString(&quot;{key}&quot;)"/>
         </Property>
       </Properties>
       <Events>
@@ -118,7 +119,7 @@
     <Component class="javax.swing.JButton" name="gui_but_file">
       <Properties>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-          <ResourceString bundle="org/puzzle/format/shapefile/tool/Bundle.properties" key="..." replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+          <ResourceString bundle="org/puzzle/format/shapefile/resources/Bundle.properties" key="..." replaceFormat="ShapefileResource.getString(&quot;{key}&quot;)"/>
         </Property>
       </Properties>
       <Events>
@@ -130,7 +131,7 @@
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
             <TitledBorder title="Attributs">
-              <ResourceString PropertyName="titleX" bundle="org/puzzle/format/shapefile/tool/Bundle.properties" key="attributs" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+              <ResourceString PropertyName="titleX" bundle="org/puzzle/format/shapefile/resources/Bundle.properties" key="attributs" replaceFormat="ShapefileResource.getString(&quot;{key}&quot;)"/>
             </TitledBorder>
           </Border>
         </Property>
@@ -140,7 +141,7 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <Component id="jScrollPane1" pref="291" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" pref="335" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="gui_but_add" linkSize="1" min="-2" max="-2" attributes="0"/>
@@ -162,9 +163,9 @@
                   <Component id="gui_but_up" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="gui_but_down" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="115" max="32767" attributes="0"/>
+                  <EmptySpace pref="113" max="32767" attributes="0"/>
               </Group>
-              <Component id="jScrollPane1" alignment="0" pref="315" max="32767" attributes="0"/>
+              <Component id="jScrollPane1" alignment="0" pref="313" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
@@ -188,7 +189,7 @@
         <Component class="javax.swing.JButton" name="gui_but_add">
           <Properties>
             <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-              <ResourceString bundle="org/puzzle/format/shapefile/tool/Bundle.properties" key="add" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+              <ResourceString bundle="org/puzzle/format/shapefile/resources/Bundle.properties" key="add" replaceFormat="ShapefileResource.getString(&quot;{key}&quot;)"/>
             </Property>
           </Properties>
           <Events>
@@ -198,7 +199,7 @@
         <Component class="javax.swing.JButton" name="gui_but_up">
           <Properties>
             <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-              <ResourceString bundle="org/puzzle/format/shapefile/tool/Bundle.properties" key="up" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+              <ResourceString bundle="org/puzzle/format/shapefile/resources/Bundle.properties" key="up" replaceFormat="ShapefileResource.getString(&quot;{key}&quot;)"/>
             </Property>
           </Properties>
           <Events>
@@ -208,7 +209,7 @@
         <Component class="javax.swing.JButton" name="gui_but_down">
           <Properties>
             <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-              <ResourceString bundle="org/puzzle/format/shapefile/tool/Bundle.properties" key="down" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+              <ResourceString bundle="org/puzzle/format/shapefile/resources/Bundle.properties" key="down" replaceFormat="ShapefileResource.getString(&quot;{key}&quot;)"/>
             </Property>
           </Properties>
           <Events>
@@ -218,7 +219,7 @@
         <Component class="javax.swing.JButton" name="gui_but_delete">
           <Properties>
             <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-              <ResourceString bundle="org/puzzle/format/shapefile/tool/Bundle.properties" key="delete" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+              <ResourceString bundle="org/puzzle/format/shapefile/resources/Bundle.properties" key="delete" replaceFormat="ShapefileResource.getString(&quot;{key}&quot;)"/>
             </Property>
           </Properties>
           <Events>
@@ -232,7 +233,7 @@
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
             <TitledBorder title="Geometry">
-              <ResourceString PropertyName="titleX" bundle="org/puzzle/format/shapefile/tool/Bundle.properties" key="geometry" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+              <ResourceString PropertyName="titleX" bundle="org/puzzle/format/shapefile/resources/Bundle.properties" key="geometry" replaceFormat="ShapefileResource.getString(&quot;{key}&quot;)"/>
             </TitledBorder>
           </Border>
         </Property>
@@ -276,7 +277,7 @@
             </Property>
             <Property name="selected" type="boolean" value="true"/>
             <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-              <ResourceString bundle="org/puzzle/format/shapefile/tool/Bundle.properties" key="point" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+              <ResourceString bundle="org/puzzle/format/shapefile/resources/Bundle.properties" key="point" replaceFormat="ShapefileResource.getString(&quot;{key}&quot;)"/>
             </Property>
           </Properties>
           <Events>
@@ -289,7 +290,7 @@
               <ComponentRef name="grp_geom"/>
             </Property>
             <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-              <ResourceString bundle="org/puzzle/format/shapefile/tool/Bundle.properties" key="multipoint" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+              <ResourceString bundle="org/puzzle/format/shapefile/resources/Bundle.properties" key="multipoint" replaceFormat="ShapefileResource.getString(&quot;{key}&quot;)"/>
             </Property>
           </Properties>
           <Events>
@@ -302,7 +303,7 @@
               <ComponentRef name="grp_geom"/>
             </Property>
             <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-              <ResourceString bundle="org/puzzle/format/shapefile/tool/Bundle.properties" key="multiline" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+              <ResourceString bundle="org/puzzle/format/shapefile/resources/Bundle.properties" key="multiline" replaceFormat="ShapefileResource.getString(&quot;{key}&quot;)"/>
             </Property>
           </Properties>
           <Events>
@@ -315,7 +316,7 @@
               <ComponentRef name="grp_geom"/>
             </Property>
             <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-              <ResourceString bundle="org/puzzle/format/shapefile/tool/Bundle.properties" key="multipolygon" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+              <ResourceString bundle="org/puzzle/format/shapefile/resources/Bundle.properties" key="multipolygon" replaceFormat="ShapefileResource.getString(&quot;{key}&quot;)"/>
             </Property>
           </Properties>
           <Events>
@@ -327,7 +328,7 @@
     <Component class="javax.swing.JButton" name="gui_but_crs">
       <Properties>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-          <ResourceString bundle="org/puzzle/format/shapefile/tool/Bundle.properties" key="list" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+          <ResourceString bundle="org/puzzle/format/shapefile/resources/Bundle.properties" key="list" replaceFormat="ShapefileResource.getString(&quot;{key}&quot;)"/>
         </Property>
       </Properties>
       <Events>
@@ -337,7 +338,7 @@
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-          <ResourceString bundle="org/puzzle/format/shapefile/tool/Bundle.properties" key="crs" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+          <ResourceString bundle="org/puzzle/format/shapefile/resources/Bundle.properties" key="crs" replaceFormat="ShapefileResource.getString(&quot;{key}&quot;)"/>
         </Property>
       </Properties>
     </Component>

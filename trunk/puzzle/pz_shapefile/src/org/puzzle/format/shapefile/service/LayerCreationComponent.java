@@ -26,10 +26,10 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import org.geotoolkit.map.MapLayer;
 import org.geotoolkit.style.DefaultStyleFactory;
-import org.openide.util.NbBundle;
 import org.puzzle.core.project.source.capabilities.JLayerChooser;
 import org.puzzle.core.project.source.capabilities.LayerChooserMonitor;
 import org.puzzle.core.project.source.capabilities.LayerCreation;
+import org.puzzle.format.shapefile.resources.ShapefileResource;
 
 /**
  *
@@ -70,7 +70,7 @@ public class LayerCreationComponent extends JLayerChooser {
         guiTitle = new JTextField();
 
         jLabel2.setFont(jLabel2.getFont().deriveFont(jLabel2.getFont().getStyle() | Font.BOLD));
-        jLabel2.setText(NbBundle.getMessage(LayerCreationComponent.class, "LayerCreationComponent.jLabel2.text")); // NOI18N
+        jLabel2.setText(ShapefileResource.getString("LayerCreationComponent.jLabel2.text")); // NOI18N
         GroupLayout layout = new GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -79,7 +79,7 @@ public class LayerCreationComponent extends JLayerChooser {
                 .addContainerGap()
                 .addComponent(jLabel2)
                 .addPreferredGap(ComponentPlacement.RELATED)
-                .addComponent(guiTitle, GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
+                .addComponent(guiTitle, GroupLayout.DEFAULT_SIZE, 610, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(

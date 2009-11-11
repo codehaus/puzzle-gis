@@ -72,7 +72,7 @@ public class LayerFeatureItem extends AbstractTreePopupItem{
                     public void run() {
 
                         final ProgressHandle handle = ProgressHandleFactory.createHandle(
-                                org.puzzle.core.resources.MessageBundle.getString("openSource") +" : " + layer.getName());
+                                org.puzzle.core.resources.CoreResource.getString("openSource") +" : " + layer.getName());
                         handle.start(100);
                         handle.setInitialDelay(1);
                         handle.switchToIndeterminate();

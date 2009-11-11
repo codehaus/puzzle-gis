@@ -26,7 +26,7 @@ import org.openide.WizardDescriptor;
 import org.openide.WizardValidationException;
 import org.openide.util.HelpCtx;
 import org.openide.util.NbBundle;
-import org.puzzle.core.resources.MessageBundle;
+import org.puzzle.core.resources.CoreResource;
 
 /**
  * Panel just asking for basic info.
@@ -46,7 +46,7 @@ public class EmptyGISProjectWizardPanel implements WizardDescriptor.Panel,
     public Component getComponent() {
         if (component == null) {
             component = new EmptyGISProjectPanelVisual(this);
-            component.setName(MessageBundle.getString("createProjectStep"));
+            component.setName(CoreResource.getString("createProjectStep"));
         }
         return component;
     }

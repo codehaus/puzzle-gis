@@ -39,7 +39,7 @@ import org.openide.WizardDescriptor;
 import org.openide.WizardValidationException;
 import org.openide.awt.Mnemonics;
 import org.openide.filesystems.FileUtil;
-import org.puzzle.core.resources.MessageBundle;
+import org.puzzle.core.resources.CoreResource;
 
 /**
  * Swing panel to create a GIS project.
@@ -84,11 +84,11 @@ public class EmptyGISProjectPanelVisual extends JPanel implements DocumentListen
         projectNameLabel.setFont(projectNameLabel.getFont().deriveFont(projectNameLabel.getFont().getStyle() | Font.BOLD));
         projectNameLabel.setLabelFor(projectNameTextField);
 
-        Mnemonics.setLocalizedText(projectNameLabel, MessageBundle.getString("projectName")); // NOI18N
+        Mnemonics.setLocalizedText(projectNameLabel, CoreResource.getString("projectName")); // NOI18N
         projectLocationLabel.setLabelFor(projectLocationTextField);
 
-        Mnemonics.setLocalizedText(projectLocationLabel, MessageBundle.getString("projectLocation")); // NOI18N
-        Mnemonics.setLocalizedText(browseButton, MessageBundle.getString("browse"));
+        Mnemonics.setLocalizedText(projectLocationLabel, CoreResource.getString("projectLocation")); // NOI18N
+        Mnemonics.setLocalizedText(browseButton, CoreResource.getString("browse"));
         browseButton.setActionCommand("BROWSE");
         browseButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
@@ -98,7 +98,7 @@ public class EmptyGISProjectPanelVisual extends JPanel implements DocumentListen
 
         createdFolderLabel.setLabelFor(createdFolderTextField);
 
-        Mnemonics.setLocalizedText(createdFolderLabel, MessageBundle.getString("projectFolder")); // NOI18N
+        Mnemonics.setLocalizedText(createdFolderLabel, CoreResource.getString("projectFolder")); // NOI18N
         createdFolderTextField.setEditable(false);
 
 

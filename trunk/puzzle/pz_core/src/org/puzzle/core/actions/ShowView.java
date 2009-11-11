@@ -25,7 +25,7 @@ import org.openide.util.Exceptions;
 import org.openide.util.HelpCtx;
 import org.openide.util.actions.CookieAction;
 import org.puzzle.core.project.view.GISView;
-import org.puzzle.core.resources.MessageBundle;
+import org.puzzle.core.resources.CoreResource;
 import org.puzzle.core.view.ViewComponent;
 
 /**
@@ -60,7 +60,7 @@ public class ShowView extends CookieAction{
             @Override
             public void run() {
 
-                final ProgressHandle handle = ProgressHandleFactory.createHandle(MessageBundle.getString("openView") + " : " + view.getTitle());
+                final ProgressHandle handle = ProgressHandleFactory.createHandle(CoreResource.getString("openView") + " : " + view.getTitle());
                 handle.start(100);
                 handle.setInitialDelay(1);
                 handle.switchToIndeterminate();
@@ -93,7 +93,7 @@ public class ShowView extends CookieAction{
 
     @Override
     public String getName() {
-        return MessageBundle.getString("showView");
+        return CoreResource.getString("showView");
     }
 
     @Override

@@ -21,7 +21,7 @@ import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
 import org.openide.util.ImageUtilities;
 import org.openide.windows.TopComponent;
-import org.puzzle.core.resources.MessageBundle;
+import org.puzzle.core.resources.CoreResource;
 
 /**
  * Action which shows ContextTree component.
@@ -30,7 +30,7 @@ import org.puzzle.core.resources.MessageBundle;
 public class ContextTreeAction extends AbstractAction {
 
     public ContextTreeAction() {
-        super(MessageBundle.getString("contextTree"));
+        super(CoreResource.getString("contextTree"));
         putValue(SMALL_ICON, new ImageIcon(ImageUtilities.loadImage("org/puzzle/core/resources/map.png", true)));
     }
 

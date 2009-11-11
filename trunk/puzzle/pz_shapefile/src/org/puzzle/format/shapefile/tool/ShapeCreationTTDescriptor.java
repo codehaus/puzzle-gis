@@ -18,10 +18,9 @@ package org.puzzle.format.shapefile.tool;
 
 import java.awt.Component;
 
-import org.openide.util.NbBundle;
-
 import org.puzzle.core.windows.toolbox.tree.ToolTreeConstants;
 import org.puzzle.core.tool.AbstractToolDescriptor;
+import org.puzzle.format.shapefile.resources.ShapefileResource;
 
 
 /**
@@ -33,7 +32,7 @@ public class ShapeCreationTTDescriptor extends AbstractToolDescriptor{
     
     private final String[] path = ToolTreeConstants.getInstance().FILE_CREATE.getPath();
     
-    private String title = NbBundle.getMessage(ShapeCreationTTDescriptor.class, "shapefile_creation");
+    private String title = ShapefileResource.getString("shapefile_creation");
        
     /**
      * {@inheritDoc }
