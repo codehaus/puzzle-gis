@@ -22,11 +22,11 @@ import java.util.ResourceBundle;
  * I18N for this package
  * @author Johann Sorel (Puzzle-GIS)
  */
-public final class MessageBundle {
+public final class AnalyzeResource {
 
     private static final ResourceBundle BUNDLE = ResourceBundle.getBundle("org/puzzle/analyze/resources/Bundle");
 
-    private MessageBundle(){}
+    private AnalyzeResource(){}
 
     public static final String getString(final String key){
         return BUNDLE.getString(key);
