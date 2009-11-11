@@ -1,6 +1,18 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ *    Puzzle GIS - Desktop GIS Platform
+ *    http://puzzle-gis.codehaus.org
+ *
+ *    (C) 2009, Johann Sorel
+ *
+ *    This library is free software; you can redistribute it and/or
+ *    modify it under the terms of the GNU Lesser General Public
+ *    License as published by the Free Software Foundation;
+ *    version 3 of the License.
+ *
+ *    This library is distributed in the hope that it will be useful,
+ *    but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ *    Lesser General Public License for more details.
  */
 
 package org.puzzle.analyze.metadata;
@@ -8,7 +20,7 @@ package org.puzzle.analyze.metadata;
 import java.awt.Component;
 import java.awt.Image;
 import org.geotoolkit.gui.swing.image.ImageFileChooser;
-import org.puzzle.analyze.resources.MessageBundle;
+import org.puzzle.analyze.resources.AnalyzeResource;
 import org.puzzle.core.tool.AbstractToolDescriptor;
 import org.puzzle.core.windows.toolbox.tree.ToolTreeConstants;
 
@@ -20,19 +32,27 @@ public class ImageMetaDataToolDescriptor extends AbstractToolDescriptor{
 
     private final String[] path = ToolTreeConstants.getInstance().FILE.getPath();
 
-    private String title = MessageBundle.getString("image_metadata");
+    private String title = AnalyzeResource.getString("image_metadata");
 
-
+    /**
+     * {@inheritDoc }
+     */
     @Override
     public String getTitle() {
         return title;
     }
 
+    /**
+     * {@inheritDoc }
+     */
     @Override
     public String[] getPath() {
         return path;
     }
 
+    /**
+     * {@inheritDoc }
+     */
     @Override
     public Component getComponent() {
         ImageFileChooser chooser = new ImageFileChooser("", true);
@@ -40,6 +60,9 @@ public class ImageMetaDataToolDescriptor extends AbstractToolDescriptor{
         return null;
     }
 
+    /**
+     * {@inheritDoc }
+     */
     @Override
     public Image getIcon(int iconType) {
         return null;
