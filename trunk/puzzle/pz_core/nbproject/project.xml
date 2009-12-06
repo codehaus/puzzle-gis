@@ -171,6 +171,7 @@
                 <package>org.puzzle.core.project.source</package>
                 <package>org.puzzle.core.project.source.capabilities</package>
                 <package>org.puzzle.core.project.view</package>
+                <package>org.puzzle.core.resources</package>
                 <package>org.puzzle.core.tool</package>
                 <package>org.puzzle.core.view</package>
                 <package>org.puzzle.core.windows.mapdetail</package>

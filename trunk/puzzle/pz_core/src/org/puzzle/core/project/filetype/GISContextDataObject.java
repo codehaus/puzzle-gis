@@ -24,18 +24,21 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
-
 import javax.swing.SwingUtilities;
+
+import org.geotoolkit.factory.FactoryFinder;
 import org.geotoolkit.map.ContextListener;
+import org.geotoolkit.map.MapBuilder;
 import org.geotoolkit.map.MapContext;
 import org.geotoolkit.map.MapLayer;
+import org.geotoolkit.referencing.crs.DefaultGeographicCRS;
 import org.geotoolkit.style.CollectionChangeEvent;
+import org.geotoolkit.util.SimpleInternationalString;
 
 import org.netbeans.api.progress.ProgressHandle;
 import org.netbeans.api.progress.ProgressHandleFactory;
 import org.netbeans.api.project.FileOwnerQuery;
 
-import org.openide.filesystems.FileAlreadyLockedException;
 import org.openide.filesystems.FileLock;
 import org.openide.filesystems.FileObject;
 import org.openide.loaders.DataObjectExistsException;
@@ -81,6 +84,16 @@ public class GISContextDataObject extends XMLDataObject {
     private final InstanceContent content = new InstanceContent();
     private final Lookup lookup = new AbstractLookup(content);
 
+    private final PropertyChangeListener viewListener = new PropertyChangeListener() {
+
+        @Override
+        public void propertyChange(PropertyChangeEvent evt) {
+            if(evt.getSource() instanceof GISView){
+                setNeedViewSave(true);
+            }
+        }
+    };
+
     private MapContext context = null;
     private boolean needDataSave = false;
     private boolean needViewSave = false;
@@ -102,10 +115,14 @@ public class GISContextDataObject extends XMLDataObject {
         CookieSet cookies = getCookieSet();
         cookies.add((org.openide.nodes.Node.Cookie) DataEditorSupport.create(this, getPrimaryEntry(), cookies));
 
-        List<GISViewInfo> infos = Encoder.parseViews(getDOM());
-
-        for(GISViewInfo info : infos){
-            createView(info, false);
+        try{
+            for(GISViewInfo info : Encoder.parseViews(getDocument())){
+                createView(info, false);
+            }
+        }catch(IOException ex){
+            Exceptions.printStackTrace(ex);
+        }catch(SAXException ex){
+            Exceptions.printStackTrace(ex);
         }
 
     }
@@ -145,16 +162,28 @@ public class GISContextDataObject extends XMLDataObject {
             handle.start(100);
             handle.setInitialDelay(1);
             handle.switchToIndeterminate();
+
+            final String name = getPrimaryFile().getName().replaceAll(".xml", "");
+
             try{
                 // at this point the task is finished and removed from status bar
                 // it's not realy necessary to count all the way to the limit, finish can be called earlier.
                 // however it has to be called at the end of the processing.
-
-                context = Encoder.parseContext(getDOM(),getPrimaryFile().getName().replaceAll(".xml", ""),getGISSources());
+                context = Encoder.parseContext(getDocument(),getGISSources());
                 context.addContextListener(contextListener);
+            }catch(IOException ex){
+                context = MapBuilder.createContext(DefaultGeographicCRS.WGS84);
+                Exceptions.printStackTrace(ex);
+            }catch(SAXException ex){
+                context = MapBuilder.createContext(DefaultGeographicCRS.WGS84);
+                Exceptions.printStackTrace(ex);
             }finally{
                 handle.finish();
             }
+
+            context.setDescription(FactoryFinder.getStyleFactory(null).description(
+                    new SimpleInternationalString(name),
+                    new SimpleInternationalString(name)));
             
             setState(GISContextState.LOADED);
         }
@@ -174,13 +203,7 @@ public class GISContextDataObject extends XMLDataObject {
 
     private void createView(GISViewInfo info, boolean open){
         final GISView view = new GISView(this, info);
-
-        info.addPropertyChangeListener(new PropertyChangeListener() {
-            @Override
-            public void propertyChange(PropertyChangeEvent evt) {
-                setNeedViewSave(true);
-            }
-        });
+        info.addPropertyChangeListener(viewListener);
 
         content.add(view);
 
@@ -190,7 +213,7 @@ public class GISContextDataObject extends XMLDataObject {
         }
     }
 
-    public void removeView(GISView view){
+    public synchronized void removeView(GISView view){
         if(view.isDisplayed()){
             final ViewComponent comp = view.getComponent(false);
             if(comp != null){
@@ -216,18 +239,6 @@ public class GISContextDataObject extends XMLDataObject {
         return new ProxyLookup(getCookieSet().getLookup(),lookup);
     }
 
-    private Document getDOM() {
-        Document doc = null;
-        try {
-            doc = getDocument();
-        } catch (IOException ex) {
-            Exceptions.printStackTrace(ex);
-        } catch (SAXException ex) {
-            Exceptions.printStackTrace(ex);
-        }
-        return doc;
-    }
-
     private Collection<? extends GISSource> getGISSources() {
         GISProject prj = (GISProject) FileOwnerQuery.getOwner(getPrimaryFile());
         return prj.getGISSources();
@@ -239,25 +250,11 @@ public class GISContextDataObject extends XMLDataObject {
         @Override
         public void propertyChange(PropertyChangeEvent evt) {
             setNeedDataSave(true);
-//            DOMencodeLayers();
         }
 
         @Override
         public void layerChange(CollectionChangeEvent<MapLayer> evt) {
             setNeedDataSave(true);
-//            switch(evt.getType()){
-//                case CollectionChangeEvent.ITEM_ADDED :
-//                    DOMencodeLayers();
-//                    break;
-//                case CollectionChangeEvent.ITEM_CHANGED :
-//                    //assume there is only one layer change
-//                    DOMupdateLayer(evt.getItems().iterator().next(), (int)evt.getRange().getMinimum(),evt.getChangeEvent() );
-//                    break;
-//                case CollectionChangeEvent.ITEM_REMOVED :
-//                    //assume there is only one layer added
-//                    DOMremoveLayer( (int)evt.getRange().getMinimum() );
-//                    break;
-//            }
         }
     }
 
@@ -285,20 +282,6 @@ public class GISContextDataObject extends XMLDataObject {
         return needViewSave;
     }
 
-
-    private void DOMsave(Document doc) {
-        try {
-            final OutputStream output = getPrimaryFile().getOutputStream(FileLock.NONE);
-            XMLUtil.write(doc, output, "UTF-8");
-            output.flush();
-            output.close();
-        } catch (FileAlreadyLockedException ex) {
-            Exceptions.printStackTrace(ex);
-        } catch (IOException ex) {
-            Exceptions.printStackTrace(ex);
-        }
-    }
-
     private class SavingThread extends Thread {
 
         private boolean dispose = false;
@@ -313,31 +296,39 @@ public class GISContextDataObject extends XMLDataObject {
 
             while (!dispose) {
                 while (needDataSaving() || needViewSaving()) {
-                    final Document dom = getDOM();
+                    try{
+                        final Document dom = getDocument();
 
-                    if(needDataSaving()){
-                        setNeedDataSave(false);
+                        if(needDataSaving()){
+                            setNeedDataSave(false);
 
-                        Encoder.encodeLayers(dom, getContext());
-                    }
-
-                    if(needViewSaving()){
-                        setNeedViewSave(false);
-
-                        final Collection<? extends GISView> views = getLookup().lookupAll(GISView.class);
-                        final List<GISViewInfo> infos = new ArrayList<GISViewInfo>();
-                        for(GISView view : views){
-                            infos.add(view.getInfo());
+                            Encoder.encodeLayers(dom, getContext());
                         }
-                        Encoder.encodeViews(dom,infos);
-                    }
 
-                    
-                    DOMsave(dom);
-                    try {
+                        if(needViewSaving()){
+                            setNeedViewSave(false);
+
+                            final Collection<? extends GISView> views = getLookup().lookupAll(GISView.class);
+                            final List<GISViewInfo> infos = new ArrayList<GISViewInfo>();
+                            for(GISView view : views){
+                                infos.add(view.getInfo());
+                            }
+                            Encoder.encodeViews(dom,infos);
+                        }
+
+
+                        final OutputStream output = getPrimaryFile().getOutputStream(FileLock.NONE);
+                        XMLUtil.write(dom, output, "UTF-8");
+                        output.flush();
+                        output.close();
+
                         //wait at least 30seconds before making a new save.
                         //this avoid consuming to much cpu while the user is making many changes
-                        sleep(30000);
+                        sleep(15000);
+                    } catch (IOException ex) {
+                        Exceptions.printStackTrace(ex);
+                    } catch (SAXException ex) {
+                        Exceptions.printStackTrace(ex);
                     } catch (InterruptedException ex) {
                         Exceptions.printStackTrace(ex);
                     }

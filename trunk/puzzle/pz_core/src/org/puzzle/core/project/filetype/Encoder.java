@@ -75,9 +75,10 @@ public class Encoder {
     private static final String TAG_VIEW = "View";
     private static final String TAG_VIEW_SERVICE = "Service";
 
-    public static MapContext parseContext(Document gisDoc,String name, Collection<? extends GISSource> sources) {
+    private Encoder(){}
+
+    public static MapContext parseContext(Document gisDoc, Collection<? extends GISSource> sources) {
         MapContext context = MapBuilder.createContext(DefaultGeographicCRS.WGS84);
-        context.setDescription(new DefaultStyleFactory().description(name, ""));
 
         if (gisDoc != null) {
 

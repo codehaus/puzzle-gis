@@ -35,14 +35,14 @@ import org.openide.nodes.Node;
 import org.openide.util.Lookup;
 import org.openide.text.DataEditorSupport;
 import org.openide.util.Exceptions;
-
 import org.openide.util.lookup.ProxyLookup;
+
 import org.puzzle.core.project.GISProject;
 import org.puzzle.core.project.source.GISSource;
 import org.puzzle.core.project.source.GISSourceInfo;
 import org.puzzle.core.project.source.GISSourceService;
-
 import org.puzzle.core.resources.CoreResource;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -86,7 +86,7 @@ public class GISSourceDataObject extends XMLDataObject {
      * document.
      * @return  The {@code MapContext} associated.
      */
-    public GISSource getSource(){
+    public synchronized GISSource getSource(){
 
         if(source == null){
 
@@ -155,7 +155,6 @@ public class GISSourceDataObject extends XMLDataObject {
         }
 
         return source;
-
     }
 
     @Override

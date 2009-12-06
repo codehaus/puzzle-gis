@@ -20,27 +20,22 @@ import java.awt.Image;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.IOException;
-
 import java.util.List;
 import javax.swing.Action;
+
 import org.geotoolkit.data.DataStore;
-import org.openide.filesystems.FileObject;
-import org.openide.loaders.DataFolder;
+
 import org.openide.loaders.DataNode;
-import org.openide.loaders.DataObject;
 import org.openide.nodes.AbstractNode;
-import org.openide.nodes.BeanNode;
 import org.openide.nodes.ChildFactory;
 import org.openide.nodes.Children;
 import org.openide.nodes.Node;
 import org.openide.util.Exceptions;
-import org.openide.util.HelpCtx;
 import org.openide.util.ImageUtilities;
 import org.openide.util.Lookup;
 import org.openide.util.actions.SystemAction;
-import org.openide.util.lookup.AbstractLookup;
-import org.openide.util.lookup.InstanceContent;
 import org.openide.util.lookup.Lookups;
+
 import org.puzzle.core.project.source.GISSource;
 import org.puzzle.core.project.source.GISSourceState;
 
