@@ -26,7 +26,7 @@ import java.util.List;
 import java.util.Map;
 import javax.xml.bind.JAXBException;
 
-import org.geotoolkit.data.query.DefaultQuery;
+import org.geotoolkit.data.query.QueryBuilder;
 import org.geotoolkit.map.FeatureMapLayer;
 import org.geotoolkit.map.MapBuilder;
 import org.geotoolkit.map.MapContext;
@@ -34,11 +34,11 @@ import org.geotoolkit.map.MapLayer;
 import org.geotoolkit.referencing.crs.DefaultGeographicCRS;
 import org.geotoolkit.style.MutableStyle;
 import org.geotoolkit.style.DefaultStyleFactory;
-import org.geotoolkit.sld.xml.Specification.Filter;
 import org.geotoolkit.sld.xml.Specification.StyledLayerDescriptor;
 import org.geotoolkit.sld.xml.Specification.SymbologyEncoding;
 import org.geotoolkit.sld.xml.XMLUtilities;
 
+import org.opengis.filter.Filter;
 import org.openide.util.Exceptions;
 
 import org.puzzle.core.project.source.GISLayerSource;
@@ -118,7 +118,7 @@ public class Encoder {
         Map<String, String> params = null;
         String title = "";
         MutableStyle style = new DefaultStyleFactory().style();
-        DefaultQuery query = new DefaultQuery();
+        Filter filter = null;
         boolean visible = true;
 
         final NodeList elements = node.getChildNodes();
@@ -141,7 +141,7 @@ public class Encoder {
                 visible = Boolean.parseBoolean(elementNode.getTextContent());
             } else if (TAG_LAYER_QUERY.equals(elementName)) {
                 try {
-                    query.setFilter(new XMLUtilities().readFilter(elementNode, Filter.V_1_1_0));
+                    filter = new XMLUtilities().readFilter(elementNode, org.geotoolkit.sld.xml.Specification.Filter.V_1_1_0);
                 } catch (JAXBException ex) {
                     Exceptions.printStackTrace(ex);
                 }
@@ -158,7 +158,10 @@ public class Encoder {
                     layer.setStyle(style);
                     layer.setVisible(visible);
                     if(layer instanceof FeatureMapLayer){
-                        ((FeatureMapLayer)layer).setQuery(query);
+                        FeatureMapLayer fml = (FeatureMapLayer) layer;
+                        if(filter != null){
+                            ((FeatureMapLayer)layer).setQuery(QueryBuilder.filtered(fml.getFeatureSource().getSchema().getName(), filter));
+                        }
                     }
                 }
             }
@@ -294,7 +297,7 @@ public class Encoder {
                     if (!filter.equals(org.opengis.filter.Filter.INCLUDE) &&
                             !filter.equals(org.opengis.filter.Filter.EXCLUDE)) {
                         try {
-                            new XMLUtilities().writeFilter(layerNode, fml.getQuery().getFilter(), Filter.V_1_1_0);
+                            new XMLUtilities().writeFilter(layerNode, fml.getQuery().getFilter(), org.geotoolkit.sld.xml.Specification.Filter.V_1_1_0);
                         } catch (JAXBException ex) {
                             Exceptions.printStackTrace(ex);
                         }
