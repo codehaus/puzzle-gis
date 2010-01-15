@@ -31,6 +31,8 @@ import javax.swing.JSplitPane;
 import javax.swing.event.ChangeListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
+import org.geotoolkit.data.memory.mapping.DefaultFeatureMapper;
+import org.geotoolkit.data.memory.mapping.FeatureMapper;
 
 import org.jdesktop.swingx.JXTable;
 import org.jdesktop.swingx.decorator.Highlighter;
@@ -39,6 +41,7 @@ import org.jdesktop.swingx.decorator.HighlighterFactory;
 import org.opengis.feature.simple.SimpleFeatureType;
 import org.opengis.feature.type.AttributeDescriptor;
 import org.opengis.feature.type.GeometryDescriptor;
+import org.opengis.feature.type.PropertyDescriptor;
 import org.openide.DialogDisplayer;
 import org.openide.WizardDescriptor;
 import org.openide.util.HelpCtx;
@@ -103,19 +106,19 @@ public class MappingChooser implements WizardDescriptor.Panel {
     public FeatureMapper getMapper(){
         
         if(flagok){
-            final Map<AttributeDescriptor,Object> defaults = new HashMap<AttributeDescriptor, Object>();
+            final Map<PropertyDescriptor,Object> defaults = new HashMap<PropertyDescriptor, Object>();
 
             for(int i=0, n=model.getRowCount(); i<n; i++){
                 String attName = model.getValueAt(i, 0).toString();
                 Object value = model.getValueAt(i, 1);
 
-                AttributeDescriptor desc = graph.getTargetType().getDescriptor(attName);
+                PropertyDescriptor desc = graph.getTargetType().getDescriptor(attName);
                 if(desc != null){
                     defaults.put(desc, value);
                 }
             }
 
-            final Map<AttributeDescriptor,List<AttributeDescriptor>> mapping = graph.getMapping();
+            final Map<PropertyDescriptor,List<PropertyDescriptor>> mapping = graph.getMapping();
             return new DefaultFeatureMapper(graph.getSourceType(), graph.getTargetType(), mapping, defaults);
         }
         
