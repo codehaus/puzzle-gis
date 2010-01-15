@@ -41,7 +41,7 @@ import org.netbeans.api.visual.widget.LayerWidget;
 import org.netbeans.api.visual.widget.Scene;
 import org.netbeans.api.visual.widget.Widget;
 import org.opengis.feature.simple.SimpleFeatureType;
-import org.opengis.feature.type.AttributeDescriptor;
+import org.opengis.feature.type.PropertyDescriptor;
 
 /**
  *
@@ -86,9 +86,9 @@ public class TypeGraph extends VMDGraphScene{
         return targetType;
     }
 
-    public Map<AttributeDescriptor,List<AttributeDescriptor>> getMapping(){
-        final Map<AttributeDescriptor,List<AttributeDescriptor>> mapping =
-                new HashMap<AttributeDescriptor, List<AttributeDescriptor>>();
+    public Map<PropertyDescriptor,List<PropertyDescriptor>> getMapping(){
+        final Map<PropertyDescriptor,List<PropertyDescriptor>> mapping =
+                new HashMap<PropertyDescriptor, List<PropertyDescriptor>>();
 
         final String typeName1 = sourceType.getTypeName();
         final String typeName2 = targetType.getTypeName();
@@ -100,8 +100,8 @@ public class TypeGraph extends VMDGraphScene{
             String att1 = (String) findObject(w1);
             String att2 = (String) findObject(w2);
 
-            final AttributeDescriptor desc1;
-            final AttributeDescriptor desc2;
+            final PropertyDescriptor desc1;
+            final PropertyDescriptor desc2;
             if(att1.startsWith(typeName1)){
                 att1 = att1.replaceAll(typeName1, "");
                 att2 = att2.replaceAll(typeName2, "");
@@ -116,9 +116,9 @@ public class TypeGraph extends VMDGraphScene{
                 continue;
             }
 
-            List<AttributeDescriptor> descs = mapping.get(desc1);
+            List<PropertyDescriptor> descs = mapping.get(desc1);
             if(descs == null){
-                descs = new ArrayList<AttributeDescriptor>();
+                descs = new ArrayList<PropertyDescriptor>();
                 mapping.put(desc1, descs);
             }
             descs.add(desc2);
@@ -131,8 +131,8 @@ public class TypeGraph extends VMDGraphScene{
         final String typeName = sft.getTypeName();
         String mobile = createNode (this, 100, 100, null, typeName, "Type", null);
 
-        for(final AttributeDescriptor desc : sft.getAttributeDescriptors()){
-            final String attName = desc.getLocalName();
+        for(final PropertyDescriptor desc : sft.getDescriptors()){
+            final String attName = desc.getName().getLocalPart();
             createPin(this, mobile, typeName+attName, null, attName, "Element");
         }
     }
@@ -192,13 +192,13 @@ public class TypeGraph extends VMDGraphScene{
                 attSource = attSource.substring(typeSource.length(), attSource.length());
                 attTarget = attTarget.substring(typeTarget.length(), attTarget.length());
 
-                final Map<AttributeDescriptor,List<AttributeDescriptor>> mapping = getMapping();
+                final Map<PropertyDescriptor,List<PropertyDescriptor>> mapping = getMapping();
                 if(typeSource.equals(sourceType.getName().getLocalPart())){
                     //pin1 is the source, can be match to several attributs
                     //check that the link doesnt exist already
-                    for(final List<AttributeDescriptor> lst : mapping.values()){
-                        for(final AttributeDescriptor desc : lst){
-                            if(desc.getLocalName().equals(attTarget)){
+                    for(final List<PropertyDescriptor> lst : mapping.values()){
+                        for(final PropertyDescriptor desc : lst){
+                            if(desc.getName().getLocalPart().equals(attTarget)){
                                 return ConnectorState.REJECT;
                             }
                         }
@@ -206,9 +206,9 @@ public class TypeGraph extends VMDGraphScene{
                 }else{
                     //pin1 is the target, can be match to only one attributs
                     //check that the link doesnt exist already
-                    for(final List<AttributeDescriptor> lst : mapping.values()){
-                        for(final AttributeDescriptor desc : lst){
-                            if(desc.getLocalName().equals(attSource)){
+                    for(final List<PropertyDescriptor> lst : mapping.values()){
+                        for(final PropertyDescriptor desc : lst){
+                            if(desc.getName().getLocalPart().equals(attSource)){
                                 return ConnectorState.REJECT;
                             }
                         }

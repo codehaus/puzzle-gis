@@ -20,10 +20,8 @@ package org.puzzle.core.attributetable;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.util.Iterator;
-import java.util.NoSuchElementException;
-import org.geotoolkit.data.FeatureReader;
 import org.geotoolkit.data.FeatureCollection;
+import org.geotoolkit.data.memory.mapping.FeatureMapper;
 import org.geotoolkit.gui.swing.propertyedit.LayerFeaturePropertyPanel;
 import org.geotoolkit.map.FeatureMapLayer;
 import org.netbeans.api.progress.ProgressHandle;
@@ -32,7 +30,6 @@ import org.opengis.feature.simple.SimpleFeature;
 import org.opengis.feature.simple.SimpleFeatureType;
 import org.opengis.filter.Filter;
 import org.openide.util.Exceptions;
-import org.puzzle.core.attributetable.typemapping.FeatureMapper;
 import org.puzzle.core.attributetable.typemapping.MappingChooser;
 import org.puzzle.core.resources.CoreResource;
 
@@ -93,8 +90,8 @@ public class PasteAction extends AbstractDataBufferAction{
 //                    }else{
 //                        //schema may not fit, we display a dialog to choose matching properties
 //                        final MappingChooser chooser = new MappingChooser(
-//                                bufferLayer.getFeatureSource().getSchema(),
-//                                currentLayer.getFeatureSource().getSchema());
+//                                bufferLayer.getCollection().getFeatureType(),
+//                                currentLayer.getCollection().getFeatureType());
 //                        chooser.showChooserDialog();
 //                        final FeatureMapper mapper = chooser.getMapper();
 //
@@ -108,7 +105,7 @@ public class PasteAction extends AbstractDataBufferAction{
 //                                    handle.setInitialDelay(1);
 //                                    handle.switchToIndeterminate();
 //                                    try {
-//                                        FeatureCollection<SimpleFeatureType, SimpleFeature> features = bufferLayer.getFeatureSource().getFeatures(bufferFilter);
+//                                        FeatureCollection<SimpleFeature> features = bufferLayer.getFeatureSource().getFeatures(bufferFilter);
 //                                        store.addFeatures(new TransformReader(features, mapper));
 //                                        //refresh the data table
 //                                        panel.reset();
@@ -132,38 +129,5 @@ public class PasteAction extends AbstractDataBufferAction{
 
     }
 
-//    private static class TransformReader implements FeatureReader<SimpleFeatureType,SimpleFeature>{
-//
-//        private final FeatureCollection<SimpleFeatureType,SimpleFeature> col;
-//        private final Iterator<SimpleFeature> ite;
-//        private final FeatureMapper mapper;
-//
-//        TransformReader(FeatureCollection<SimpleFeatureType,SimpleFeature> col, FeatureMapper mapper){
-//            this.col = col;
-//            this.ite = col.iterator();
-//            this.mapper = mapper;
-//        }
-//
-//        @Override
-//        public SimpleFeatureType getFeatureType() {
-//            return col.getSchema();
-//        }
-//
-//        @Override
-//        public SimpleFeature next() throws IOException, IllegalArgumentException, NoSuchElementException {
-//            return mapper.transform(ite.next());
-//        }
-//
-//        @Override
-//        public boolean hasNext() throws IOException {
-//            return ite.hasNext();
-//        }
-//
-//        @Override
-//        public void close() throws IOException {
-//            col.close(ite);
-//        }
-//
-//    }
 
 }
