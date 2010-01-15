@@ -23,8 +23,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.geotoolkit.data.DataStore;
+import org.geotoolkit.data.DataStoreException;
 import org.geotoolkit.data.DataStoreFinder;
-import org.geotoolkit.data.FeatureSource;
+import org.geotoolkit.data.FeatureCollection;
+import org.geotoolkit.data.query.QueryBuilder;
 import org.geotoolkit.map.MapBuilder;
 import org.geotoolkit.map.MapLayer;
 import org.geotoolkit.style.DefaultStyleFactory;
@@ -33,6 +35,7 @@ import org.geotoolkit.util.RandomStyleFactory;
 
 import org.opengis.feature.simple.SimpleFeature;
 import org.opengis.feature.simple.SimpleFeatureType;
+import org.opengis.feature.type.Name;
 import org.openide.util.Exceptions;
 import org.openide.util.ImageUtilities;
 
@@ -93,7 +96,7 @@ public class PostGISSource extends GISSource{
 
         try {
             store = DataStoreFinder.getDataStore(params);
-        } catch (IOException ex) {
+        } catch (DataStoreException ex) {
             setState(GISSourceState.LOADING_ERROR);
             Exceptions.printStackTrace(ex);
             return;
@@ -117,10 +120,11 @@ public class PostGISSource extends GISSource{
             MapLayer layer;
             if(store != null){
                 try{
-                    final FeatureSource<SimpleFeatureType,SimpleFeature> featureSource = store.getFeatureSource(featureName);
+                    final Name name = store.getFeatureType(featureName).getName();
+                    final FeatureCollection<SimpleFeature> featureSource = store.createSession(true).getFeatureCollection(QueryBuilder.all(name));
                     final MutableStyle style = RandomStyleFactory.createRandomVectorStyle(featureSource);
                     layer = MapBuilder.createFeatureLayer(featureSource, style);
-                }catch(IOException ex){
+                }catch(DataStoreException ex){
                     layer = MapBuilder.createEmptyMapLayer();
                     Exceptions.printStackTrace(ex);
                 }

@@ -25,6 +25,7 @@ import javax.swing.Action;
 
 import org.geotoolkit.data.DataStore;
 
+import org.geotoolkit.data.DataStoreException;
 import org.openide.loaders.DataNode;
 import org.openide.nodes.AbstractNode;
 import org.openide.nodes.ChildFactory;
@@ -153,7 +154,7 @@ public class GISSourceDataNode extends DataNode {
                         keys.add(typeNames[i]);
                     }
 
-                } catch (IOException ex) {
+                } catch (DataStoreException ex) {
                     Exceptions.printStackTrace(ex);
                 }
             }

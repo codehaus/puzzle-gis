@@ -40,6 +40,7 @@ import javax.swing.SwingConstants;
 import static org.geotoolkit.jdbc.JDBCDataStoreFactory.*;
 
 import org.geotoolkit.data.DataStore;
+import org.geotoolkit.data.DataStoreException;
 import org.geotoolkit.data.DataStoreFinder;
 import org.jdesktop.swingx.JXTitledPanel;
 
@@ -107,7 +108,7 @@ public class JPostGISDataPanel extends SourceCreationPane {
         if (store != null) {
             try {
                 guiLayerList.setModel(new DefaultComboBoxModel(store.getTypeNames()));
-            } catch (IOException ex) {
+            } catch (DataStoreException ex) {
                 System.out.println(ex);
             }
         }
@@ -263,7 +264,7 @@ public class JPostGISDataPanel extends SourceCreationPane {
                 try {
                     store = DataStoreFinder.getDataStore(params);
                     refreshTable();
-                } catch (IOException ex) {
+                } catch (DataStoreException ex) {
                     Exceptions.printStackTrace(ex);
                     store = null;
                 }

@@ -40,6 +40,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import org.geotoolkit.data.DataStore;
+import org.geotoolkit.data.DataStoreException;
 import org.geotoolkit.gui.swing.resource.IconBundle;
 import org.geotoolkit.map.MapLayer;
 import org.geotoolkit.style.DefaultStyleFactory;
@@ -72,7 +73,7 @@ public class LayerCreationComponent extends JLayerChooser {
         try {
             guiLayerList.setModel(new DefaultComboBoxModel(store.getTypeNames()));
             guiLayerList.revalidate();
-        } catch (IOException ex) {
+        } catch (DataStoreException ex) {
             System.out.println(ex);
         }
 
@@ -186,7 +187,7 @@ public class LayerCreationComponent extends JLayerChooser {
 
             if(value instanceof String){
                 try {
-                    final SimpleFeatureType sft = (SimpleFeatureType) store.getSchema(value.toString());
+                    final SimpleFeatureType sft = (SimpleFeatureType) store.getFeatureType(value.toString());
                     final GeometryDescriptor desc = sft.getGeometryDescriptor();
                     if(desc == null){
                         //geometryless table

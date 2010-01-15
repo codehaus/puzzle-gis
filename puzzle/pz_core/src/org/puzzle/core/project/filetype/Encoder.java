@@ -39,6 +39,7 @@ import org.geotoolkit.sld.xml.Specification.SymbologyEncoding;
 import org.geotoolkit.sld.xml.XMLUtilities;
 
 import org.opengis.filter.Filter;
+import org.opengis.referencing.FactoryException;
 import org.openide.util.Exceptions;
 
 import org.puzzle.core.project.source.GISLayerSource;
@@ -136,6 +137,8 @@ public class Encoder {
                     style = new XMLUtilities().readStyle(elementNode, SymbologyEncoding.V_1_1_0);
                 } catch (JAXBException ex) {
                     Exceptions.printStackTrace(ex);
+                } catch (FactoryException ex) {
+                    Exceptions.printStackTrace(ex);
                 }
             } else if (TAG_LAYER_VISIBLE.equals(elementName)) {
                 visible = Boolean.parseBoolean(elementNode.getTextContent());
@@ -143,6 +146,8 @@ public class Encoder {
                 try {
                     filter = new XMLUtilities().readFilter(elementNode, org.geotoolkit.sld.xml.Specification.Filter.V_1_1_0);
                 } catch (JAXBException ex) {
+                    Exceptions.printStackTrace(ex);
+                } catch (FactoryException ex) {
                     Exceptions.printStackTrace(ex);
                 }
             }
@@ -160,7 +165,7 @@ public class Encoder {
                     if(layer instanceof FeatureMapLayer){
                         FeatureMapLayer fml = (FeatureMapLayer) layer;
                         if(filter != null){
-                            ((FeatureMapLayer)layer).setQuery(QueryBuilder.filtered(fml.getFeatureSource().getSchema().getName(), filter));
+                            ((FeatureMapLayer)layer).setQuery(QueryBuilder.filtered(fml.getCollection().getFeatureType().getName(), filter));
                         }
                     }
                 }
