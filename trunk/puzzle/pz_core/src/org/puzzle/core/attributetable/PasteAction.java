@@ -23,8 +23,7 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 import org.geotoolkit.data.FeatureReader;
-import org.geotoolkit.data.FeatureStore;
-import org.geotoolkit.data.collection.FeatureCollection;
+import org.geotoolkit.data.FeatureCollection;
 import org.geotoolkit.gui.swing.propertyedit.LayerFeaturePropertyPanel;
 import org.geotoolkit.map.FeatureMapLayer;
 import org.netbeans.api.progress.ProgressHandle;
@@ -50,121 +49,121 @@ public class PasteAction extends AbstractDataBufferAction{
 
             @Override
             public void actionPerformed(ActionEvent arg0) {
-                final LayerFeaturePropertyPanel panel = getFeaturePanel();
-                if(panel == null) return;
-                final FeatureMapLayer currentLayer = panel.getTarget();
-                if(currentLayer == null) return;
-
-                final FeatureMapLayer bufferLayer = getLayer();
-                final Filter bufferFilter = getFilter();
-
-                if(bufferLayer == null || bufferFilter == null) return;
-
-                //we have everything needed for pasting datas
-
-                if(currentLayer.getFeatureSource() instanceof FeatureStore){
-                    final FeatureStore<SimpleFeatureType,SimpleFeature> store =
-                        (FeatureStore<SimpleFeatureType, SimpleFeature>) currentLayer.getFeatureSource();
-
-                    if(currentLayer == bufferLayer){
-                        //we are copying datas in the same datasource
-                        //no need to check feature types
-
-                        new Thread(){
-                            @Override
-                            public void run() {
-                                final ProgressHandle handle = ProgressHandleFactory.createHandle(
-                                CoreResource.getString("copyingDatas"));
-                                handle.start(100);
-                                handle.setInitialDelay(1);
-                                handle.switchToIndeterminate();
-                                try {
-                                    FeatureCollection<SimpleFeatureType, SimpleFeature> features = bufferLayer.getFeatureSource().getFeatures(bufferFilter);
-                                    store.addFeatures(features);
-                                    //refresh the data table
-                                    panel.reset();
-                                } catch (IOException ex) {
-                                    Exceptions.printStackTrace(ex);
-                                }finally{
-                                    handle.finish();
-                                }
-                            }
-                        }.start();
-
-                    }else{
-                        //schema may not fit, we display a dialog to choose matching properties
-                        final MappingChooser chooser = new MappingChooser(
-                                bufferLayer.getFeatureSource().getSchema(),
-                                currentLayer.getFeatureSource().getSchema());
-                        chooser.showChooserDialog();
-                        final FeatureMapper mapper = chooser.getMapper();
-
-                        if(mapper != null){
-                            new Thread(){
-                                @Override
-                                public void run() {
-                                    final ProgressHandle handle = ProgressHandleFactory.createHandle(
-                                    CoreResource.getString("copyingDatas"));
-                                    handle.start(100);
-                                    handle.setInitialDelay(1);
-                                    handle.switchToIndeterminate();
-                                    try {
-                                        FeatureCollection<SimpleFeatureType, SimpleFeature> features = bufferLayer.getFeatureSource().getFeatures(bufferFilter);
-                                        store.addFeatures(new TransformReader(features, mapper));
-                                        //refresh the data table
-                                        panel.reset();
-                                    } catch (IOException ex) {
-                                        Exceptions.printStackTrace(ex);
-                                    }finally{
-                                        handle.finish();
-                                    }
-                                }
-                            }.start();
-                            
-                        }
-
-                    }
-                    //refresh the data table
-                    panel.reset();
-                }
+//                final LayerFeaturePropertyPanel panel = getFeaturePanel();
+//                if(panel == null) return;
+//                final FeatureMapLayer currentLayer = panel.getTarget();
+//                if(currentLayer == null) return;
+//
+//                final FeatureMapLayer bufferLayer = getLayer();
+//                final Filter bufferFilter = getFilter();
+//
+//                if(bufferLayer == null || bufferFilter == null) return;
+//
+//                //we have everything needed for pasting datas
+//
+//                if(currentLayer.getCollection().isWritable()){
+//                    final FeatureStore<SimpleFeatureType,SimpleFeature> store =
+//                        (FeatureStore<SimpleFeatureType, SimpleFeature>) currentLayer.getFeatureSource();
+//
+//                    if(currentLayer == bufferLayer){
+//                        //we are copying datas in the same datasource
+//                        //no need to check feature types
+//
+//                        new Thread(){
+//                            @Override
+//                            public void run() {
+//                                final ProgressHandle handle = ProgressHandleFactory.createHandle(
+//                                CoreResource.getString("copyingDatas"));
+//                                handle.start(100);
+//                                handle.setInitialDelay(1);
+//                                handle.switchToIndeterminate();
+//                                try {
+//                                    FeatureCollection<SimpleFeatureType, SimpleFeature> features = bufferLayer.getFeatureSource().getFeatures(bufferFilter);
+//                                    store.addFeatures(features);
+//                                    //refresh the data table
+//                                    panel.reset();
+//                                } catch (IOException ex) {
+//                                    Exceptions.printStackTrace(ex);
+//                                }finally{
+//                                    handle.finish();
+//                                }
+//                            }
+//                        }.start();
+//
+//                    }else{
+//                        //schema may not fit, we display a dialog to choose matching properties
+//                        final MappingChooser chooser = new MappingChooser(
+//                                bufferLayer.getFeatureSource().getSchema(),
+//                                currentLayer.getFeatureSource().getSchema());
+//                        chooser.showChooserDialog();
+//                        final FeatureMapper mapper = chooser.getMapper();
+//
+//                        if(mapper != null){
+//                            new Thread(){
+//                                @Override
+//                                public void run() {
+//                                    final ProgressHandle handle = ProgressHandleFactory.createHandle(
+//                                    CoreResource.getString("copyingDatas"));
+//                                    handle.start(100);
+//                                    handle.setInitialDelay(1);
+//                                    handle.switchToIndeterminate();
+//                                    try {
+//                                        FeatureCollection<SimpleFeatureType, SimpleFeature> features = bufferLayer.getFeatureSource().getFeatures(bufferFilter);
+//                                        store.addFeatures(new TransformReader(features, mapper));
+//                                        //refresh the data table
+//                                        panel.reset();
+//                                    } catch (IOException ex) {
+//                                        Exceptions.printStackTrace(ex);
+//                                    }finally{
+//                                        handle.finish();
+//                                    }
+//                                }
+//                            }.start();
+//
+//                        }
+//
+//                    }
+//                    //refresh the data table
+//                    panel.reset();
+//                }
 
             }
         });
 
     }
 
-    private static class TransformReader implements FeatureReader<SimpleFeatureType,SimpleFeature>{
-
-        private final FeatureCollection<SimpleFeatureType,SimpleFeature> col;
-        private final Iterator<SimpleFeature> ite;
-        private final FeatureMapper mapper;
-
-        TransformReader(FeatureCollection<SimpleFeatureType,SimpleFeature> col, FeatureMapper mapper){
-            this.col = col;
-            this.ite = col.iterator();
-            this.mapper = mapper;
-        }
-
-        @Override
-        public SimpleFeatureType getFeatureType() {
-            return col.getSchema();
-        }
-
-        @Override
-        public SimpleFeature next() throws IOException, IllegalArgumentException, NoSuchElementException {
-            return mapper.transform(ite.next());
-        }
-
-        @Override
-        public boolean hasNext() throws IOException {
-            return ite.hasNext();
-        }
-
-        @Override
-        public void close() throws IOException {
-            col.close(ite);
-        }
-
-    }
+//    private static class TransformReader implements FeatureReader<SimpleFeatureType,SimpleFeature>{
+//
+//        private final FeatureCollection<SimpleFeatureType,SimpleFeature> col;
+//        private final Iterator<SimpleFeature> ite;
+//        private final FeatureMapper mapper;
+//
+//        TransformReader(FeatureCollection<SimpleFeatureType,SimpleFeature> col, FeatureMapper mapper){
+//            this.col = col;
+//            this.ite = col.iterator();
+//            this.mapper = mapper;
+//        }
+//
+//        @Override
+//        public SimpleFeatureType getFeatureType() {
+//            return col.getSchema();
+//        }
+//
+//        @Override
+//        public SimpleFeature next() throws IOException, IllegalArgumentException, NoSuchElementException {
+//            return mapper.transform(ite.next());
+//        }
+//
+//        @Override
+//        public boolean hasNext() throws IOException {
+//            return ite.hasNext();
+//        }
+//
+//        @Override
+//        public void close() throws IOException {
+//            col.close(ite);
+//        }
+//
+//    }
 
 }

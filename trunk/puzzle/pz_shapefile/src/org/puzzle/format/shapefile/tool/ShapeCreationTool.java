@@ -40,6 +40,7 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SwingConstants;
 
+import org.geotoolkit.data.DataStoreException;
 import org.geotoolkit.data.FileDataStoreFactory;
 import org.geotoolkit.data.shapefile.ShapefileDataStore;
 import org.geotoolkit.data.shapefile.ShapefileDataStoreFactory;
@@ -126,13 +127,13 @@ public class ShapeCreationTool extends JPanel {
             SimpleFeatureType featureType = FeatureTypeUtilities.createType(name, buffer.toString());
 
             // Create the Shapefile (empty at this point)
-            myData.createSchema(featureType);
+            myData.createSchema(featureType.getName(),featureType);
 
             // Tell the DataStore what type of Coordinate Reference System (CRS) to use
-            myData.forceSchemaCRS(crs);
+            //myData.forceSchemaCRS(crs);
 
             myData.dispose();
-        } catch (IOException e) {
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Incorrect File : " + e.getMessage());
         }
 

@@ -25,7 +25,8 @@ import java.util.Map;
 
 import org.geotoolkit.data.DataStore;
 import org.geotoolkit.data.DataStoreFinder;
-import org.geotoolkit.data.FeatureSource;
+import org.geotoolkit.data.FeatureCollection;
+import org.geotoolkit.data.query.QueryBuilder;
 import org.geotoolkit.map.MapLayer;
 import org.geotoolkit.map.MapBuilder;
 import org.geotoolkit.style.DefaultStyleFactory;
@@ -35,6 +36,7 @@ import org.geotoolkit.util.RandomStyleFactory;
 import org.opengis.feature.simple.SimpleFeature;
 import org.opengis.feature.simple.SimpleFeatureType;
 
+import org.opengis.feature.type.Name;
 import org.openide.util.Exceptions;
 import org.openide.util.ImageUtilities;
 
@@ -55,7 +57,7 @@ public class ShapeFileSource extends GISSource{
 
     private String name;
     private final File shapefile;
-    private FeatureSource<SimpleFeatureType,SimpleFeature> featureSource = null;
+    private FeatureCollection<SimpleFeature> featureSource = null;
     
     
     ShapeFileSource(final GISSourceInfo info, final File shapefile){
@@ -102,7 +104,8 @@ public class ShapeFileSource extends GISSource{
         content.add(store);
 
         try {
-            featureSource = store.getFeatureSource(store.getTypeNames()[0]);
+            Name name = store.getNames().iterator().next();
+            featureSource = store.createSession(true).getFeatureCollection(QueryBuilder.all(name));
         } catch (Exception ex) {
             //we can not trust the underlying datastore, they sometime throw nullpointer errors
             setState(GISSourceState.LOADING_ERROR);

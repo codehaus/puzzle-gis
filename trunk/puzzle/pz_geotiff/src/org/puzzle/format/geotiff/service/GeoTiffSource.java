@@ -21,10 +21,10 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.Map;
+
 import org.geotoolkit.coverage.geotiff.GeoTIFFactory;
 import org.geotoolkit.coverage.grid.GridCoverage2D;
 import org.geotoolkit.coverage.io.CoverageReader;
-import org.geotoolkit.data.DataSourceException;
 import org.geotoolkit.map.MapLayer;
 import org.geotoolkit.map.MapBuilder;
 import org.geotoolkit.style.DefaultStyleFactory;
@@ -110,10 +110,6 @@ public class GeoTiffSource extends GISSource{
                 } catch (TransformException ex) {
                     Exceptions.printStackTrace(ex);
                 }
-            } catch (DataSourceException ex) {
-                setState(GISSourceState.LOADING_ERROR);
-                Exceptions.printStackTrace(ex);
-                return;
             } catch (IOException ex) {
                 setState(GISSourceState.LOADING_ERROR);
                 Exceptions.printStackTrace(ex);

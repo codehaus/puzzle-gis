@@ -21,7 +21,9 @@ import javax.swing.JComponent;
 
 import javax.swing.SwingUtilities;
 import org.geotoolkit.data.DataStore;
-import org.geotoolkit.data.FeatureSource;
+import org.geotoolkit.data.FeatureCollection;
+import org.geotoolkit.data.query.QueryBuilder;
+import org.geotoolkit.feature.DefaultName;
 import org.geotoolkit.gui.swing.propertyedit.LayerFeaturePropertyPanel;
 import org.geotoolkit.map.FeatureMapLayer;
 import org.geotoolkit.map.MapBuilder;
@@ -76,7 +78,7 @@ public class ShowTypeSource extends CookieAction{
                 handle.switchToIndeterminate();
 
                 try{
-                    final FeatureSource<SimpleFeatureType,SimpleFeature> fs = store.getFeatureSource(typeName);
+                    final FeatureCollection<SimpleFeature> fs = store.createSession(false).getFeatureCollection(QueryBuilder.all(new DefaultName(null, typeName)));
 
                     final FeatureMapLayer layer = MapBuilder.createFeatureLayer(fs, RandomStyleFactory.createPolygonStyle());
                     if(layer == null) return;
