@@ -32,6 +32,7 @@ import org.netbeans.api.progress.ProgressHandle;
 import org.netbeans.api.progress.ProgressHandleFactory;
 import org.opengis.feature.simple.SimpleFeature;
 import org.opengis.feature.simple.SimpleFeatureType;
+import org.opengis.feature.type.Name;
 import org.openide.nodes.Node;
 import org.openide.util.Exceptions;
 import org.openide.util.HelpCtx;
@@ -62,8 +63,8 @@ public class ShowTypeSource extends CookieAction{
         if(activatedNodes.length == 0 ) return ;
 
         final String typeName = activatedNodes[0].getName();
-
         final DataStore store = activatedNodes[0].getParentNode().getLookup().lookup(DataStore.class);
+
 
         if(store == null) return;
 
@@ -78,7 +79,8 @@ public class ShowTypeSource extends CookieAction{
                 handle.switchToIndeterminate();
 
                 try{
-                    final FeatureCollection<SimpleFeature> fs = store.createSession(false).getFeatureCollection(QueryBuilder.all(new DefaultName(null, typeName)));
+                    final Name name = store.getFeatureType(typeName).getName();
+                    final FeatureCollection<SimpleFeature> fs = store.createSession(false).getFeatureCollection(QueryBuilder.all(name));
 
                     final FeatureMapLayer layer = MapBuilder.createFeatureLayer(fs, RandomStyleFactory.createPolygonStyle());
                     if(layer == null) return;
