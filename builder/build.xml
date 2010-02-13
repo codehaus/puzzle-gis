@@ -66,6 +66,7 @@
             <include name="commons-pool.jar"/>
             <include name="derby.jar"/>
             <include name="fop.jar"/>
+            <include name="filters.jar"/>
             <include name="geotk-coverage.jar"/>
             <include name="geotk-coverageio.jar"/>
             <include name="geotk-coverageio-pending.jar"/>
@@ -110,6 +111,7 @@
             <include name="jfreechart.jar"/>
             <include name="jlfgr.jar"/>
             <include name="jts.jar"/>
+            <include name="jxlayer.jar"/>
             <include name="org-netbeans-swing-outline.jar"/>
             <include name="postgresql.jar"/>
             <include name="swingx.jar"/>
@@ -172,6 +174,7 @@
     <cleanMetaInf jar="${GEOTK_BINARY}/commons-pool.jar"/>
     <cleanMetaInf jar="${GEOTK_BINARY}/derby.jar"/>
     <cleanMetaInf jar="${GEOTK_BINARY}/fop.jar"/>
+    <cleanMetaInf jar="${GEOTK_BINARY}/filters.jar"/>
     <cleanMetaInf jar="${GEOTK_BINARY}/geotk-coverage.jar"/>
     <cleanMetaInf jar="${GEOTK_BINARY}/geotk-coverageio.jar"/>
     <cleanMetaInf jar="${GEOTK_BINARY}/geotk-display.jar"/>
@@ -212,6 +215,7 @@
     <cleanMetaInf jar="${GEOTK_BINARY}/jfreechart.jar"/>
     <cleanMetaInf jar="${GEOTK_BINARY}/jlfgr.jar"/>
     <cleanMetaInf jar="${GEOTK_BINARY}/jts.jar"/>
+    <cleanMetaInf jar="${GEOTK_BINARY}/jxlayer.jar"/>
     <cleanMetaInf jar="${GEOTK_BINARY}/org-netbeans-swing-outline.jar"/>
     <cleanMetaInf jar="${GEOTK_BINARY}/postgresql.jar"/>
     <cleanMetaInf jar="${GEOTK_BINARY}/swingx.jar"/>
