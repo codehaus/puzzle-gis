@@ -40,6 +40,10 @@
                 </dependency>
             </module-dependencies>
             <public-packages>
+                <package>com.jhlabs.composite</package>
+                <package>com.jhlabs.image</package>
+                <package>com.jhlabs.math</package>
+                <package>com.jhlabs.vecmath</package>
                 <package>com.keypoint</package>
                 <package>com.lowagie.text</package>
                 <package>com.lowagie.text.factories</package>
@@ -623,23 +627,19 @@
                 <package>org.geotoolkit.coverage.processing.operation</package>
                 <package>org.geotoolkit.coverage.wi</package>
                 <package>org.geotoolkit.data</package>
-                <package>org.geotoolkit.data.collection</package>
-                <package>org.geotoolkit.data.concurrent</package>
-                <package>org.geotoolkit.data.crs</package>
                 <package>org.geotoolkit.data.jdbc</package>
                 <package>org.geotoolkit.data.jdbc.datasource</package>
                 <package>org.geotoolkit.data.jdbc.fidmapper</package>
                 <package>org.geotoolkit.data.memory</package>
+                <package>org.geotoolkit.data.memory.mapping</package>
                 <package>org.geotoolkit.data.postgis</package>
                 <package>org.geotoolkit.data.query</package>
+                <package>org.geotoolkit.data.session</package>
                 <package>org.geotoolkit.data.shapefile</package>
                 <package>org.geotoolkit.data.shapefile.dbf</package>
                 <package>org.geotoolkit.data.shapefile.indexed</package>
-                <package>org.geotoolkit.data.shapefile.indexed.attribute</package>
                 <package>org.geotoolkit.data.shapefile.shp</package>
-                <package>org.geotoolkit.data.shapefile.shp.xml</package>
-                <package>org.geotoolkit.data.store</package>
-                <package>org.geotoolkit.data.view</package>
+                <package>org.geotoolkit.data.shapefile.xml</package>
                 <package>org.geotoolkit.display.axis</package>
                 <package>org.geotoolkit.display.canvas</package>
                 <package>org.geotoolkit.display.canvas.control</package>
@@ -660,8 +660,10 @@
                 <package>org.geotoolkit.display2d.ext.grid</package>
                 <package>org.geotoolkit.display2d.ext.image</package>
                 <package>org.geotoolkit.display2d.ext.isoline</package>
+                <package>org.geotoolkit.display2d.ext.labeling</package>
                 <package>org.geotoolkit.display2d.ext.legend</package>
                 <package>org.geotoolkit.display2d.ext.northarrow</package>
+                <package>org.geotoolkit.display2d.ext.pattern</package>
                 <package>org.geotoolkit.display2d.ext.scalebar</package>
                 <package>org.geotoolkit.display2d.ext.text</package>
                 <package>org.geotoolkit.display2d.ext.vectorfield</package>
@@ -672,11 +674,12 @@
                 <package>org.geotoolkit.display2d.style</package>
                 <package>org.geotoolkit.display2d.style.j2d</package>
                 <package>org.geotoolkit.display2d.style.labeling</package>
+                <package>org.geotoolkit.display2d.style.labeling.candidate</package>
+                <package>org.geotoolkit.display2d.style.labeling.decimate</package>
                 <package>org.geotoolkit.display2d.style.raster</package>
                 <package>org.geotoolkit.display2d.style.renderer</package>
                 <package>org.geotoolkit.factory</package>
                 <package>org.geotoolkit.feature</package>
-                <package>org.geotoolkit.feature.collection</package>
                 <package>org.geotoolkit.feature.simple</package>
                 <package>org.geotoolkit.feature.type</package>
                 <package>org.geotoolkit.filter</package>
@@ -732,6 +735,7 @@
                 <package>org.geotoolkit.gui.swing.go2.extractor</package>
                 <package>org.geotoolkit.gui.swing.image</package>
                 <package>org.geotoolkit.gui.swing.misc</package>
+                <package>org.geotoolkit.gui.swing.navigator</package>
                 <package>org.geotoolkit.gui.swing.propertyedit</package>
                 <package>org.geotoolkit.gui.swing.propertyedit.filterproperty</package>
                 <package>org.geotoolkit.gui.swing.propertyedit.model</package>
@@ -746,6 +750,7 @@
                 <package>org.geotoolkit.image.io</package>
                 <package>org.geotoolkit.image.io.metadata</package>
                 <package>org.geotoolkit.image.io.mosaic</package>
+                <package>org.geotoolkit.image.io.plugin</package>
                 <package>org.geotoolkit.image.io.stream</package>
                 <package>org.geotoolkit.image.io.text</package>
                 <package>org.geotoolkit.image.jai</package>
@@ -754,8 +759,6 @@
                 <package>org.geotoolkit.index.quadtree.fs</package>
                 <package>org.geotoolkit.index.rtree</package>
                 <package>org.geotoolkit.index.rtree.cachefs</package>
-                <package>org.geotoolkit.index.rtree.database</package>
-                <package>org.geotoolkit.index.rtree.database.mysql</package>
                 <package>org.geotoolkit.index.rtree.fs</package>
                 <package>org.geotoolkit.index.rtree.memory</package>
                 <package>org.geotoolkit.internal</package>
@@ -778,11 +781,14 @@
                 <package>org.geotoolkit.internal.setup</package>
                 <package>org.geotoolkit.internal.sql</package>
                 <package>org.geotoolkit.internal.swing</package>
+                <package>org.geotoolkit.internal.swing.table</package>
                 <package>org.geotoolkit.internal.wizard</package>
                 <package>org.geotoolkit.io</package>
                 <package>org.geotoolkit.io.wkb</package>
                 <package>org.geotoolkit.io.wkt</package>
                 <package>org.geotoolkit.jdbc</package>
+                <package>org.geotoolkit.jdbc.dialect</package>
+                <package>org.geotoolkit.jdbc.fid</package>
                 <package>org.geotoolkit.lang</package>
                 <package>org.geotoolkit.legacy.array</package>
                 <package>org.geotoolkit.legacy.geom</package>
@@ -834,12 +840,14 @@
                 <package>org.geotoolkit.report.simple.string</package>
                 <package>org.geotoolkit.resources</package>
                 <package>org.geotoolkit.se.xml.v110</package>
+                <package>org.geotoolkit.se.xml.vext</package>
                 <package>org.geotoolkit.sld</package>
                 <package>org.geotoolkit.sld.xml</package>
                 <package>org.geotoolkit.sld.xml.v100</package>
                 <package>org.geotoolkit.sld.xml.v110</package>
                 <package>org.geotoolkit.sql</package>
                 <package>org.geotoolkit.style</package>
+                <package>org.geotoolkit.style.bank</package>
                 <package>org.geotoolkit.style.category</package>
                 <package>org.geotoolkit.style.function</package>
                 <package>org.geotoolkit.style.interval</package>
@@ -860,6 +868,10 @@
                 <package>org.jdesktop.animation.timing.interpolation</package>
                 <package>org.jdesktop.animation.timing.triggers</package>
                 <package>org.jdesktop.beans</package>
+                <package>org.jdesktop.jxlayer</package>
+                <package>org.jdesktop.jxlayer.plaf</package>
+                <package>org.jdesktop.jxlayer.plaf.effect</package>
+                <package>org.jdesktop.jxlayer.plaf.ext</package>
                 <package>org.jdesktop.swingx</package>
                 <package>org.jdesktop.swingx.action</package>
                 <package>org.jdesktop.swingx.auth</package>
@@ -883,16 +895,19 @@
                 <package>org.jdesktop.swingx.painter.effects</package>
                 <package>org.jdesktop.swingx.plaf</package>
                 <package>org.jdesktop.swingx.plaf.basic</package>
+                <package>org.jdesktop.swingx.plaf.basic.core</package>
                 <package>org.jdesktop.swingx.plaf.linux</package>
                 <package>org.jdesktop.swingx.plaf.macosx</package>
                 <package>org.jdesktop.swingx.plaf.metal</package>
                 <package>org.jdesktop.swingx.plaf.misc</package>
                 <package>org.jdesktop.swingx.plaf.motif</package>
                 <package>org.jdesktop.swingx.plaf.nimbus</package>
+                <package>org.jdesktop.swingx.plaf.synth</package>
                 <package>org.jdesktop.swingx.plaf.windows</package>
                 <package>org.jdesktop.swingx.renderer</package>
                 <package>org.jdesktop.swingx.rollover</package>
                 <package>org.jdesktop.swingx.search</package>
+                <package>org.jdesktop.swingx.sort</package>
                 <package>org.jdesktop.swingx.table</package>
                 <package>org.jdesktop.swingx.tips</package>
                 <package>org.jdesktop.swingx.tree</package>
@@ -1113,6 +1128,10 @@
                 <binary-origin>release/modules/ext/fop.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
+                <runtime-relative-path>ext/filters.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/filters.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
                 <runtime-relative-path>ext/geotk-coverage.jar</runtime-relative-path>
                 <binary-origin>release/modules/ext/geotk-coverage.jar</binary-origin>
             </class-path-extension>
@@ -1183,6 +1202,10 @@
             <class-path-extension>
                 <runtime-relative-path>ext/geotk-jtswrapper.jar</runtime-relative-path>
                 <binary-origin>release/modules/ext/geotk-jtswrapper.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/jxlayer.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/jxlayer.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
                 <runtime-relative-path>ext/geotk-metadata.jar</runtime-relative-path>
