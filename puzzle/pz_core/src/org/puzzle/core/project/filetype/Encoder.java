@@ -39,6 +39,7 @@ import org.geotoolkit.sld.xml.Specification.SymbologyEncoding;
 import org.geotoolkit.sld.xml.XMLUtilities;
 
 import org.opengis.filter.Filter;
+import org.opengis.geometry.Envelope;
 import org.opengis.referencing.FactoryException;
 import org.openide.util.Exceptions;
 
@@ -88,7 +89,10 @@ public class Encoder {
                 final MapLayer layer = parseLayer(layerNodes.item(i),sources);
                 if(layer != null){
                     context.layers().add(layer);
-                    context.setCoordinateReferenceSystem(layer.getBounds().getCoordinateReferenceSystem());
+                    Envelope env = layer.getBounds();
+                    if(env != null && env.getCoordinateReferenceSystem() != null){
+                        context.setCoordinateReferenceSystem(env.getCoordinateReferenceSystem());
+                    }
                 }
 
             }
