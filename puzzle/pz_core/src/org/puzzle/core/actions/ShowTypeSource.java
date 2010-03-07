@@ -80,7 +80,7 @@ public class ShowTypeSource extends CookieAction{
 
                 try{
                     final Name name = store.getFeatureType(typeName).getName();
-                    final FeatureCollection<SimpleFeature> fs = store.createSession(false).getFeatureCollection(QueryBuilder.all(name));
+                    final FeatureCollection<SimpleFeature> fs = store.createSession(true).getFeatureCollection(QueryBuilder.all(name));
 
                     final FeatureMapLayer layer = MapBuilder.createFeatureLayer(fs, RandomStyleFactory.createPolygonStyle());
                     if(layer == null) return;

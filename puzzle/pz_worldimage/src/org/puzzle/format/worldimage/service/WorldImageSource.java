@@ -21,15 +21,14 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Map;
 
-import org.geotoolkit.coverage.io.CoverageReader;
-import org.geotoolkit.coverage.wi.WorldImageFactory;
+import org.geotoolkit.coverage.WorldImageReaderUtilities;
+import org.geotoolkit.coverage.io.CoverageStoreException;
+import org.geotoolkit.coverage.io.GridCoverageReader;
 import org.geotoolkit.map.MapLayer;
 import org.geotoolkit.map.MapBuilder;
 import org.geotoolkit.style.DefaultStyleFactory;
 import org.geotoolkit.style.MutableStyle;
 import org.geotoolkit.util.RandomStyleFactory;
-
-import org.opengis.referencing.operation.NoninvertibleTransformException;
 
 import org.openide.util.Exceptions;
 import org.openide.util.ImageUtilities;
@@ -66,7 +65,7 @@ public class WorldImageSource extends GISSource{
 
     private final File worldImage;
     private final String name;
-    private CoverageReader reader = null;
+    private GridCoverageReader reader = null;
 
     /**
      * Constructor.
@@ -107,17 +106,23 @@ public class WorldImageSource extends GISSource{
     public void load() {
         if(reader != null) return;
 
-        final WorldImageFactory factory = new WorldImageFactory();
         final File cache = new File(CACHE_FOLDER.getAbsolutePath() + File.separator + name);
         cache.mkdirs();
 
         try {
-            reader = factory.createMosaicReader(worldImage, 512, cache);
+            reader = WorldImageReaderUtilities.createSimpleReader(worldImage);
+            //reader = WorldImageReaderUtilities.createMosaicReader(worldImage, 512, cache);
         } catch (IOException ex) {
             setState(GISSourceState.LOADING_ERROR);
             Exceptions.printStackTrace(ex);
             return;
-        } catch (NoninvertibleTransformException ex) {
+        }
+//        catch (NoninvertibleTransformException ex) {
+//            setState(GISSourceState.LOADING_ERROR);
+//            Exceptions.printStackTrace(ex);
+//            return;
+//        }
+        catch (CoverageStoreException ex) {
             setState(GISSourceState.LOADING_ERROR);
             Exceptions.printStackTrace(ex);
             return;

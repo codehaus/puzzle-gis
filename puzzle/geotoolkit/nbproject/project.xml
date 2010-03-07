@@ -625,7 +625,6 @@
                 <package>org.geotoolkit.coverage.io</package>
                 <package>org.geotoolkit.coverage.processing</package>
                 <package>org.geotoolkit.coverage.processing.operation</package>
-                <package>org.geotoolkit.coverage.wi</package>
                 <package>org.geotoolkit.data</package>
                 <package>org.geotoolkit.data.jdbc</package>
                 <package>org.geotoolkit.data.jdbc.datasource</package>
@@ -820,6 +819,7 @@
                 <package>org.geotoolkit.referencing.factory</package>
                 <package>org.geotoolkit.referencing.factory.epsg</package>
                 <package>org.geotoolkit.referencing.factory.web</package>
+                <package>org.geotoolkit.referencing.factory.wkt</package>
                 <package>org.geotoolkit.referencing.operation</package>
                 <package>org.geotoolkit.referencing.operation.builder</package>
                 <package>org.geotoolkit.referencing.operation.matrix</package>
@@ -1254,10 +1254,6 @@
             <class-path-extension>
                 <runtime-relative-path>ext/geotk-wms.jar</runtime-relative-path>
                 <binary-origin>release/modules/ext/geotk-wms.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/geotk-world-image.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/geotk-world-image.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
                 <runtime-relative-path>ext/geotk-xml-gml.jar</runtime-relative-path>
