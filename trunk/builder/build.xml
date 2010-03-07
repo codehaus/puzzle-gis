@@ -2,7 +2,7 @@
 <project name="org.puzzle.collect" basedir=".">
 
     <!-- clean the jar from annoying signing or maven dependency informations -->
-    <macrodef name="cleanMetaInf">
+    <!--macrodef name="cleanMetaInf">
         <attribute name="jar"/>
 
         <sequential>
@@ -23,7 +23,7 @@
             <jar destfile="@{jar}" basedir="${temp.file}" includes="**"/>
             <delete dir="${temp.file}" failonerror="true"/>
         </sequential>
-    </macrodef>
+    </macrodef-->
 
 <!-- //////////////////// PROPERTIES //////////////////////// -->
     <property name="GEOTK_BINARY" value="./lib" />
@@ -97,7 +97,6 @@
             <include name="geotk-widgets-swing-pending.jar"/>
             <include name="geotk-wizards-swing.jar"/>
             <include name="geotk-wms.jar"/>
-            <include name="geotk-world-image.jar"/>
             <include name="geotk-xml-gml.jar"/>
             <include name="geotk-xml-ogc.jar"/>
             <include name="geotk-xml-se.jar"/>
@@ -132,8 +131,8 @@
     </delete>
     <echo>=&gt; Copying new jars</echo>
 
-    <cleanMetaInf jar="${GEOTK_BINARY}/geoapi-pending.jar"/>
-    <cleanMetaInf jar="${GEOTK_BINARY}/jsr-275.jar"/>
+    <!--cleanMetaInf jar="${GEOTK_BINARY}/geoapi-pending.jar"/>
+    <cleanMetaInf jar="${GEOTK_BINARY}/jsr-275.jar"/-->
 
     <copy todir="${PUZZLE_GEOAPI_MODULE}">
         <fileset refid="geoapi"/>
@@ -147,7 +146,7 @@
     </delete>
     <echo>=&gt; Copying new jars</echo>
 
-    <cleanMetaInf jar="${GEOTK_BINARY}/avalon-framework-api.jar"/>
+    <!--cleanMetaInf jar="${GEOTK_BINARY}/avalon-framework-api.jar"/>
     <cleanMetaInf jar="${GEOTK_BINARY}/avalon-framework-impl.jar"/>
     <cleanMetaInf jar="${GEOTK_BINARY}/batik-anim.jar"/>
     <cleanMetaInf jar="${GEOTK_BINARY}/batik-awt-util.jar"/>
@@ -201,7 +200,6 @@
     <cleanMetaInf jar="${GEOTK_BINARY}/geotk-widgets-swing.jar"/>
     <cleanMetaInf jar="${GEOTK_BINARY}/geotk-widgets-swing-pending.jar"/>
     <cleanMetaInf jar="${GEOTK_BINARY}/geotk-wms.jar"/>
-    <cleanMetaInf jar="${GEOTK_BINARY}/geotk-world-image.jar"/>
     <cleanMetaInf jar="${GEOTK_BINARY}/geotk-xml-gml.jar"/>
     <cleanMetaInf jar="${GEOTK_BINARY}/geotk-xml-ogc.jar"/>
     <cleanMetaInf jar="${GEOTK_BINARY}/geotk-xml-se.jar"/>
@@ -226,7 +224,7 @@
     <cleanMetaInf jar="${GEOTK_BINARY}/xml-apis-ext.jar"/>
     <cleanMetaInf jar="${GEOTK_BINARY}/xmlgraphics-commons.jar"/>
     <cleanMetaInf jar="${GEOTK_BINARY}/geotk-coverageio-pending.jar"/>
-    <cleanMetaInf jar="${GEOTK_BINARY}/geotk-cql.jar"/>
+    <cleanMetaInf jar="${GEOTK_BINARY}/geotk-cql.jar"/-->
 
     <copy todir="${PUZZLE_GEOTK_MODULE}">
         <fileset refid="geotoolkit"/>

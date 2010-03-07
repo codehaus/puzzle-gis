@@ -19,6 +19,9 @@ package org.geotoolkit;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.geotoolkit.factory.Hints;
+import org.geotoolkit.image.io.plugin.WorldFileImageReader;
+import org.geotoolkit.image.io.plugin.WorldFileImageWriter;
 import org.geotoolkit.referencing.CRS;
 import org.opengis.referencing.FactoryException;
 import org.opengis.referencing.NoSuchAuthorityCodeException;
@@ -33,6 +36,11 @@ public class Installer extends ModuleInstall {
 
     @Override
     public void restored() {
+
+        WorldFileImageReader.Spi.registerDefaults(null);
+        WorldFileImageWriter.Spi.registerDefaults(null);
+
+        Hints.putSystemDefault(Hints.LENIENT_DATUM_SHIFT, Boolean.TRUE);
 
         //force netbeans platform classloader to load the derby and postgres driver
         //often use for EPSG databases
