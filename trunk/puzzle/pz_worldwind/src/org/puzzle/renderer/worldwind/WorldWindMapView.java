@@ -16,14 +16,6 @@
  */
 package org.puzzle.renderer.worldwind;
 
-import com.vividsolutions.jts.geom.Coordinate;
-import com.vividsolutions.jts.geom.Geometry;
-import com.vividsolutions.jts.geom.LineString;
-import com.vividsolutions.jts.geom.MultiLineString;
-import com.vividsolutions.jts.geom.MultiPoint;
-import com.vividsolutions.jts.geom.MultiPolygon;
-import com.vividsolutions.jts.geom.Point;
-import com.vividsolutions.jts.geom.Polygon;
 
 import gov.nasa.worldwind.Model;
 import gov.nasa.worldwind.WorldWind;
@@ -31,51 +23,33 @@ import gov.nasa.worldwind.avlist.AVKey;
 import gov.nasa.worldwind.avlist.AVList;
 import gov.nasa.worldwind.avlist.AVListImpl;
 import gov.nasa.worldwind.awt.WorldWindowGLCanvas;
-import gov.nasa.worldwind.geom.Angle;
-import gov.nasa.worldwind.geom.LatLon;
-import gov.nasa.worldwind.geom.Position;
 import gov.nasa.worldwind.geom.Sector;
 import gov.nasa.worldwind.layers.Layer;
 import gov.nasa.worldwind.layers.RenderableLayer;
 import gov.nasa.worldwind.layers.WMSLayerFactory;
-import gov.nasa.worldwind.render.Polyline;
-import gov.nasa.worldwind.render.Renderable;
 import gov.nasa.worldwind.wms.Capabilities;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.beans.PropertyChangeEvent;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-import org.geotoolkit.data.FeatureCollection;
-import org.geotoolkit.data.FeatureIterator;
-import org.geotoolkit.geometry.jts.JTS;
 import org.geotoolkit.map.ContextListener;
+import org.geotoolkit.map.CoverageMapLayer;
 import org.geotoolkit.map.FeatureMapLayer;
 import org.geotoolkit.map.MapContext;
 import org.geotoolkit.map.MapLayer;
-import org.geotoolkit.referencing.CRS;
 import org.geotoolkit.style.CollectionChangeEvent;
 import org.geotoolkit.wms.WebMapServer;
 import org.geotoolkit.wms.map.WMSMapLayer;
-import org.opengis.feature.Feature;
 
-import org.opengis.feature.simple.SimpleFeature;
-import org.opengis.feature.simple.SimpleFeatureType;
-import org.opengis.geometry.MismatchedDimensionException;
-import org.opengis.referencing.crs.CoordinateReferenceSystem;
-import org.opengis.referencing.operation.MathTransform;
-import org.opengis.referencing.operation.TransformException;
 
 import org.openide.util.Exceptions;
 
 import org.puzzle.core.view.ViewComponent;
 
 /**
- * Map view using the GO3 Rendering engine.
+ * Map view using the World Wind Rendering engine.
  *
  * @author Johann Sorel (Puzzle-GIS)
  */
@@ -123,7 +97,7 @@ public class WorldWindMapView extends ViewComponent implements ContextListener {
             }else if(layer instanceof FeatureMapLayer){
                 FeatureMapLayer fl = (FeatureMapLayer) layer;
                 try {
-                    Layer candidate = toWWJLayer(fl);
+                    Layer candidate = new FeatureLayerWWJ(fl);
                     if(!fl.isVisible()){
                         candidate.setEnabled(false);
                     }
@@ -158,6 +132,18 @@ public class WorldWindMapView extends ViewComponent implements ContextListener {
                     }
                 }else if(layer instanceof FeatureMapLayer){
                     FeatureMapLayer fl = (FeatureMapLayer) layer;
+                    try {
+                        Layer candidate = new FeatureLayerWWJ(fl);
+                        if(!fl.isVisible()){
+                            candidate.setEnabled(false);
+                        }
+                        links.put(fl, candidate);
+                        model.getLayers().add(candidate);
+                    } catch (Exception ex) {
+                        Exceptions.printStackTrace(ex);
+                    }
+                }else if(layer instanceof CoverageMapLayer){
+                    CoverageMapLayer fl = (CoverageMapLayer) layer;
                     try {
                         Layer candidate = toWWJLayer(fl);
                         if(!fl.isVisible()){
@@ -215,100 +201,14 @@ public class WorldWindMapView extends ViewComponent implements ContextListener {
         return candidate;
     }
 
-    private Layer toWWJLayer(FeatureMapLayer featureLayer) throws Exception {
+    private Layer toWWJLayer(CoverageMapLayer coverageLayer) throws Exception {        
         final RenderableLayer wwj = new RenderableLayer();
-
-        final FeatureCollection<? extends Feature> col = featureLayer.getCollection();
-
-        final CoordinateReferenceSystem dataCrs = col.getFeatureType().getGeometryDescriptor().getCoordinateReferenceSystem();
-        final MathTransform trs = CRS.findMathTransform(dataCrs, CRS.decode("EPSG:4326"),true);
-
-        final FeatureIterator<? extends Feature> features = col.iterator();
-
-        try{
-            int i =0;
-            while(features.hasNext()){
-                i++;
-                final SimpleFeature sf = (SimpleFeature) features.next();
-                Renderable r = toRenderable((Geometry)sf.getDefaultGeometry(),trs);
-                if(r != null){
-                    wwj.addRenderable(r);
-                }
-
-                if(i > 500){
-                    break;
-                }
-
-            }
-        }finally{
-            features.close();
-        }
-
         return wwj;
     }
 
 
-    private Renderable toRenderable(Geometry geom, MathTransform trs) throws MismatchedDimensionException, TransformException{
 
-        if(geom instanceof Point){
-
-        }else if(geom instanceof MultiPoint){
-
-        }else if(geom instanceof LineString){
-
-        }else if(geom instanceof MultiLineString){
-            return toRenderable((MultiLineString)geom,trs);
-        }else if(geom instanceof Polygon){
-
-        }else if(geom instanceof MultiPolygon){
-            return toRenderable((MultiPolygon)geom,trs);
-
-        }
-
-        return null;
-    }
-
-    private Renderable toRenderable(MultiLineString line, MathTransform trs) throws MismatchedDimensionException, TransformException{
-        final Geometry geoEPSGWGS84 = JTS.transform(line, trs);
-        final Coordinate[] coords = geoEPSGWGS84.getCoordinates();
-
-        List<Position> positions = new ArrayList<Position>();
-        for (int i = 0; i < coords.length; i++) {
-            positions.add(new Position(Angle.fromDegreesLatitude(coords[i].x), Angle.fromDegreesLongitude(coords[i].y), coords[i].z));
-        }
-
-        Polyline wwjLine = new Polyline(); 
-        wwjLine.setPositions(positions);
-        wwjLine.setFollowTerrain(true);
-        wwjLine.setLineWidth(1);
-        wwjLine.setColor(Color.RED);
-
-        return wwjLine;
-    }
-
-    private Renderable toRenderable(MultiPolygon polygon, MathTransform trs) throws MismatchedDimensionException, TransformException{
-        final Geometry geoEPSGWGS84 = JTS.transform(polygon, trs);
-        final Coordinate[] coords = geoEPSGWGS84.getCoordinates();
-
-        List<LatLon> latlons = new ArrayList<LatLon>();
-        for (int i = 0; i < coords.length; i++) {
-            latlons.add(new LatLon(Angle.fromDegreesLatitude(coords[i].x), Angle.fromDegreesLongitude(coords[i].y)));
-        }
-
-        gov.nasa.worldwind.render.airspaces.Polygon wwjLine = new gov.nasa.worldwind.render.airspaces.Polygon();
-        wwjLine.setLocations(latlons);
-        wwjLine.setTerrainConforming(true);
-        wwjLine.setAltitudes(5, 30);
-        wwjLine.setEnableCaps(false);
-        //wwjLine.setEnableCaps(false);
-        wwjLine.setEnableLevelOfDetail(false);
-//        wwjLine.setPositions(positions);
-//        wwjLine.setFollowTerrain(true);
-//        wwjLine.setLineWidth(1);
-//        wwjLine.setColor(Color.RED);
-
-        return wwjLine;
-    }
+    
 
 
 }
