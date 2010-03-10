@@ -97,7 +97,7 @@ public class WorldWindMapView extends ViewComponent implements ContextListener {
             }else if(layer instanceof FeatureMapLayer){
                 FeatureMapLayer fl = (FeatureMapLayer) layer;
                 try {
-                    Layer candidate = new FeatureLayerWWJ(fl);
+                    Layer candidate = new FeatureLayerWWJ(fl,model.getGlobe());
                     if(!fl.isVisible()){
                         candidate.setEnabled(false);
                     }
@@ -133,7 +133,7 @@ public class WorldWindMapView extends ViewComponent implements ContextListener {
                 }else if(layer instanceof FeatureMapLayer){
                     FeatureMapLayer fl = (FeatureMapLayer) layer;
                     try {
-                        Layer candidate = new FeatureLayerWWJ(fl);
+                        Layer candidate = new FeatureLayerWWJ(fl,model.getGlobe());
                         if(!fl.isVisible()){
                             candidate.setEnabled(false);
                         }
