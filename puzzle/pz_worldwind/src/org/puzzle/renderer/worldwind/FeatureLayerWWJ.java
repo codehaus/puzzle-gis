@@ -18,6 +18,7 @@
 package org.puzzle.renderer.worldwind;
 
 import com.vividsolutions.jts.geom.Geometry;
+import gov.nasa.worldwind.globes.Globe;
 
 import gov.nasa.worldwind.layers.RenderableLayer;
 import gov.nasa.worldwind.render.Renderable;
@@ -60,19 +61,39 @@ public class FeatureLayerWWJ extends RenderableLayer{
 
     private static final FilterFactory2 FF = (FilterFactory2) FactoryFinder.getFilterFactory(null);
 
+    private final Globe globe;
     private final FeatureMapLayer layer;
     private final Updater updater = new Updater();
     private final List<Renderable> currentRenderedFeatures = new ArrayList<Renderable>();
 
-    public FeatureLayerWWJ(FeatureMapLayer featureLayer){
+    public FeatureLayerWWJ(FeatureMapLayer featureLayer, Globe globe){
         this.layer = featureLayer;
+        this.globe = globe;
         addRenderable(new BoundsListenerGL() {
             @Override
             public void boundsChange(Envelope env) {
                 updater.updateEnvelope(env);
             }
         });
-        updater.start();
+        //updater.start();
+
+        GeneralEnvelope max = new GeneralEnvelope(WorldWindConstants.EPSG_4326);
+        max.setRange(0, -90, 90);
+        max.setRange(1, -180, 180);
+
+        updater.currentEnv.add(max);
+        try {
+            updater.refresh();
+        } catch (MismatchedDimensionException ex) {
+            Exceptions.printStackTrace(ex);
+        } catch (FactoryException ex) {
+            Exceptions.printStackTrace(ex);
+        } catch (TransformException ex) {
+            Exceptions.printStackTrace(ex);
+        } catch (DataStoreException ex) {
+            Exceptions.printStackTrace(ex);
+        }
+
     }
 
     private class Updater extends Thread{
@@ -81,13 +102,13 @@ public class FeatureLayerWWJ extends RenderableLayer{
         private final GeneralEnvelope currentEnv = new GeneralEnvelope(WorldWindConstants.EPSG_4326);
 
         public void updateEnvelope(Envelope newEnv){
-            synchronized(lastEnv){
-                lastEnv.setRange(0, newEnv.getMinimum(0), newEnv.getMaximum(0));
-                lastEnv.setRange(1, newEnv.getMinimum(1), newEnv.getMaximum(1));
-            }
-            synchronized(Updater.this){
-                Updater.this.notify();
-            }
+//            synchronized(lastEnv){
+//                lastEnv.setRange(0, newEnv.getMinimum(0), newEnv.getMaximum(0));
+//                lastEnv.setRange(1, newEnv.getMinimum(1), newEnv.getMaximum(1));
+//            }
+//            synchronized(Updater.this){
+//                Updater.this.notify();
+//            }
         }
 
         @Override
@@ -134,14 +155,14 @@ public class FeatureLayerWWJ extends RenderableLayer{
                 while(features.hasNext()){
                     i++;
                     final SimpleFeature sf = (SimpleFeature) features.next();
-                    Renderable r = WorldWindUtils.toRenderable((Geometry)sf.getDefaultGeometry(),trs);
+                    Renderable r = WorldWindUtils.toRenderable((Geometry)sf.getDefaultGeometry(),trs,globe);
                     if(r != null){
                         toAdd.add(r);
                     }
 
-                    if(i > 20){
-                        break;
-                    }
+//                    if(i > 10000){
+//                        break;
+//                    }
 
                 }
             }finally{
