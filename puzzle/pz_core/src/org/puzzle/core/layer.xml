@@ -304,17 +304,21 @@
         </folder>
         <folder name="ContextTree">
             <folder name="Actions">
+                <file name="org-puzzle-core-contexttree-ZoomToLayerItem.instance">
+                    <attr name="instanceCreate" newvalue="org.puzzle.core.contexttree.ZoomToLayerItem"/>
+                    <attr name="position" intvalue="100"/>
+                </file>
                 <file name="org-puzzle-core-contexttree-LayerFeatureItem.instance">
                     <attr name="instanceCreate" newvalue="org.puzzle.core.contexttree.LayerFeatureItem"/>
-                    <attr name="position" intvalue="100"/>
+                    <attr name="position" intvalue="200"/>
                 </file>
                 <file name="org-puzzle-core-contexttree-SeparatorItem.instance">
                     <attr name="instanceCreate" newvalue="org.puzzle.core.contexttree.SeparatorItem"/>
-                    <attr name="position" intvalue="200"/>
+                    <attr name="position" intvalue="300"/>
                 </file>
                 <file name="org-puzzle-core-contexttree-DeleteItem.instance">
                     <attr name="instanceCreate" newvalue="org.puzzle.core.contexttree.DeleteItem"/>
-                    <attr name="position" intvalue="300"/>
+                    <attr name="position" intvalue="400"/>
                 </file>
             </folder>
             <folder name="PropertyPanels">

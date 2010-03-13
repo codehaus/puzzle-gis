@@ -26,6 +26,7 @@ import javax.swing.JToolBar;
 import javax.swing.SwingUtilities;
 
 import org.geotoolkit.gui.swing.go2.JMap2D;
+import org.geotoolkit.gui.swing.go2.Map2D;
 import org.geotoolkit.gui.swing.go2.control.JConfigBar;
 import org.geotoolkit.gui.swing.go2.control.JCoordinateBar;
 import org.geotoolkit.gui.swing.go2.control.JInformationBar;
@@ -129,13 +130,14 @@ public class Go2MapView extends ViewComponent{
 
     }
 
-    public JMap2D getMap() {
+    @Override
+    public JMap2D getMapView() {
         return map;
     }
 
     @Override
     public MapContext getContext() {
-        return getMap().getContainer().getContext();
+        return getMapView().getContainer().getContext();
     }
 
     @Override

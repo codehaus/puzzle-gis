@@ -16,6 +16,7 @@
  */
 package org.puzzle.core.view;
 
+import org.geotoolkit.gui.swing.go2.Map2D;
 import org.geotoolkit.map.MapContext;
 import org.openide.util.lookup.Lookups;
 import org.openide.windows.TopComponent;
@@ -40,6 +41,10 @@ public abstract class ViewComponent extends TopComponent {
      * @return MapContext
      */
     public abstract MapContext getContext();
+
+    public Map2D getMapView(){
+        return null;
+    }
 
     /**
      * {@inheritDoc }

@@ -90,9 +90,9 @@ public final class ExportJasper extends CookieAction{
 //                    Image img = viewcomp.getMap().getCanvas().getSnapShot();
 
                     try {
-                        Shape shap = ((Go2MapView)view.getComponent(true)).getMap().getCanvas().getObjectiveBounds();
+                        Shape shap = ((Go2MapView)view.getComponent(true)).getMapView().getCanvas().getObjectiveBounds();
                         GeneralEnvelope env = new GeneralEnvelope(shap.getBounds2D());
-                        env.setCoordinateReferenceSystem(((Go2MapView)view.getComponent(true)).getMap().getCanvas().getObjectiveCRS());
+                        env.setCoordinateReferenceSystem(((Go2MapView)view.getComponent(true)).getMapView().getCanvas().getObjectiveCRS());
                         JJasperDialog dia = new JJasperDialog(jasperFiles,view.getContext().getContext(),env);
                     } catch (Exception ex) {
                         Exceptions.printStackTrace(ex);

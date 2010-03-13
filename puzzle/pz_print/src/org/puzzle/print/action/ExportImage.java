@@ -66,7 +66,7 @@ public final class ExportImage extends CookieAction{
                 final ViewComponent viewcomp = view.getComponent(false);
 
                 if(viewcomp != null && viewcomp instanceof Go2MapView){
-                    Image img = ((Go2MapView)viewcomp).getMap().getCanvas().getSnapShot();
+                    Image img = ((Go2MapView)viewcomp).getMapView().getCanvas().getSnapShot();
                     final BufferedImage bi = new BufferedImage(img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_ARGB);
                     final Graphics g = bi.getGraphics();
                     g.drawImage(img, 0, 0, null);
