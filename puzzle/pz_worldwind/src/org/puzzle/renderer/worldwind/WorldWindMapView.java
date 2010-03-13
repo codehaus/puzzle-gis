@@ -26,8 +26,8 @@ import gov.nasa.worldwind.awt.WorldWindowGLCanvas;
 import gov.nasa.worldwind.geom.Sector;
 import gov.nasa.worldwind.layers.Layer;
 import gov.nasa.worldwind.layers.RenderableLayer;
-import gov.nasa.worldwind.layers.WMSLayerFactory;
 import gov.nasa.worldwind.wms.Capabilities;
+import gov.nasa.worldwind.wms.WMSTiledImageLayer;
 
 import java.awt.BorderLayout;
 import java.beans.PropertyChangeEvent;
@@ -197,7 +197,7 @@ public class WorldWindMapView extends ViewComponent implements ContextListener {
 //                    params.setValue(AVKey.NUM_EMPTY_LEVELS, 4);
 //                    params.setValue(AVKey.LEVEL_ZERO_TILE_DELTA, new LatLon(Angle.fromDegrees(36d), Angle.fromDegrees(36d)));
         params.setValue(AVKey.SECTOR, Sector.FULL_SPHERE);
-        Layer candidate = WMSLayerFactory.newLayer(cap, params);
+        Layer candidate = new WMSTiledImageLayer(cap, params);
         return candidate;
     }
 
