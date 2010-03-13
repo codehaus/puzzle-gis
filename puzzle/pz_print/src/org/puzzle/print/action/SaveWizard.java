@@ -44,9 +44,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.EventListenerList;
-
-import org.geotoolkit.gui.swing.misc.FileFilterFactory;
-import org.geotoolkit.gui.swing.misc.FileFilterFactory.FORMAT;
+import org.geotoolkit.gui.swing.misc.FileFormat;
 
 import org.openide.DialogDisplayer;
 import org.openide.WizardDescriptor;
@@ -79,7 +77,7 @@ public class SaveWizard extends javax.swing.JPanel implements WizardDescriptor.P
         ComboBoxModel model = new DefaultComboBoxModel(lstViews.toArray());
         guiView.setModel(model);
         guiFileChooser.setMultiSelectionEnabled(false);
-        guiFileChooser.addChoosableFileFilter(FileFilterFactory.createFileFilter(FORMAT.PORTABLE_NETWORK_GRAPHICS));
+        guiFileChooser.addChoosableFileFilter(FileFormat.PORTABLE_NETWORK_GRAPHICS.getFileFilter());
         
         guiFileChooser.addActionListener(new ActionListener() {
 

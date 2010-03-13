@@ -23,8 +23,7 @@ import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.filechooser.FileFilter;
-
-import org.geotoolkit.gui.swing.misc.FileFilterFactory;
+import org.geotoolkit.gui.swing.misc.FileFormat;
 
 import org.openide.util.Exceptions;
 
@@ -86,7 +85,7 @@ public class WorldImageSourceService extends AbstractGISSourceService implements
     /** {@inheritDoc} */
     @Override
     public FileFilter createFilter() {
-        return FileFilterFactory.createFileFilter(FileFilterFactory.FORMAT.WORLD_IMAGE);
+        return FileFormat.WORLD_IMAGE.getFileFilter();
     }
 
     /** {@inheritDoc} */
