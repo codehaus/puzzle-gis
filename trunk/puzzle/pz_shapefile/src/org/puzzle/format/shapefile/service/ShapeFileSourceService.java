@@ -23,8 +23,8 @@ import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.filechooser.FileFilter;
+import org.geotoolkit.gui.swing.misc.FileFormat;
 
-import org.geotoolkit.gui.swing.misc.FileFilterFactory;
 
 import org.puzzle.core.project.source.AbstractGISSourceService;
 import org.puzzle.core.project.source.capabilities.FileSourceCreation;
@@ -68,7 +68,7 @@ public class ShapeFileSourceService extends AbstractGISSourceService implements 
 
     @Override
     public FileFilter createFilter() {
-        return FileFilterFactory.createFileFilter(FileFilterFactory.FORMAT.ESRI_SHAPEFILE);
+        return FileFormat.ESRI_SHAPEFILE.getFileFilter();
     }
 
     @Override

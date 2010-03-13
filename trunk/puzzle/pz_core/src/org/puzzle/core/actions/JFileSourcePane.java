@@ -17,12 +17,17 @@
 package org.puzzle.core.actions;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileFilter;
 
 import org.openide.util.Lookup;
 
@@ -36,7 +41,10 @@ import org.puzzle.core.project.source.GISSourceService;
  * @author Johann Sorel (Puzzle-GIS)
  */
 final class JFileSourcePane extends javax.swing.JPanel {
-    
+
+    private static volatile File lastPath = null;
+    private static volatile FileFilter lastFilter = null;
+
     private final Collection<? extends GISSourceService> services;
     
     JFileSourcePane() {
@@ -48,19 +56,44 @@ final class JFileSourcePane extends javax.swing.JPanel {
      * @param openPath : default path to open
      */
     JFileSourcePane(final File openPath) {
-        initComponents();
-                
+        initComponents();                
         services = Lookup.getDefault().lookupAll(GISSourceService.class);
-        
+
+        final List<FileFilter> filters = new ArrayList<FileFilter>();
+
         for(final GISSourceService service : services){
 
             final FileSourceCreation fileService = service.getLookup().lookup(FileSourceCreation.class);
-            if(fileService != null)
-                gui_choose.addChoosableFileFilter( fileService.createFilter());
+            if(fileService != null){
+                filters.add(fileService.createFilter());
+            }
         }
-        
+
+        Collections.sort(filters, new Comparator<FileFilter>(){
+            @Override
+            public int compare(FileFilter o1, FileFilter o2) {
+                return o1.getDescription().compareTo(o2.getDescription());
+            }
+        });
+
+        for(FileFilter ff : filters){
+            gui_choose.addChoosableFileFilter(ff);
+        }
+
+        final FileFilter lastf = lastFilter;
+        if(lastf != null){
+            gui_choose.setFileFilter(lastf);
+        }
+
+
         if(openPath != null){
             gui_choose.setCurrentDirectory(openPath);
+            lastPath = openPath;
+        }else{
+            final File lastp = lastPath;
+            if(lastp != null){
+                gui_choose.setCurrentDirectory(lastp);
+            }
         }
         gui_choose.setMultiSelectionEnabled(true);
     }
@@ -139,6 +172,9 @@ final class JFileSourcePane extends javax.swing.JPanel {
             }
         }
         
+        lastFilter = gui_choose.getFileFilter();
+        lastPath = gui_choose.getCurrentDirectory();
+
         return sources;
     }
     
