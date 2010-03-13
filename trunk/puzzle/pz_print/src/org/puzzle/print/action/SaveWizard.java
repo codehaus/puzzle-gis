@@ -102,7 +102,7 @@ public class SaveWizard extends javax.swing.JPanel implements WizardDescriptor.P
         if(index != -1 && file != null){
             List<ViewComponent> lst = new ArrayList<ViewComponent>(views);
             ViewComponent view = lst.get(index);
-            Image img = ((Go2MapView)view).getMap().getCanvas().getSnapShot();
+            Image img = ((Go2MapView)view).getMapView().getCanvas().getSnapShot();
             final BufferedImage bi = new BufferedImage(img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_ARGB);
             final Graphics g = bi.getGraphics();
             g.drawImage(img, 0, 0, null);

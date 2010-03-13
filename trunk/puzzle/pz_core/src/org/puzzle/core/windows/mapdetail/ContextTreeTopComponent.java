@@ -30,6 +30,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import org.geotoolkit.gui.swing.contexttree.JContextTree;
 import org.geotoolkit.gui.swing.contexttree.TreePopupItem;
 import org.geotoolkit.gui.swing.contexttree.menu.SeparatorItem;
+import org.geotoolkit.gui.swing.go2.Map2D;
 import org.geotoolkit.gui.swing.propertyedit.PropertyPane;
 import org.geotoolkit.map.MapContext;
 
@@ -103,6 +104,13 @@ final class ContextTreeTopComponent extends TopComponent{
                             final Iterator ite = c.iterator();
                             while (ite.hasNext()) {
                                 final ViewComponent da = (ViewComponent) ite.next();
+                                final Map2D map = da.getMapView();
+
+                                for(TreePopupItem tpi : getContextTree().controls()){
+                                    System.out.println(tpi);
+                                    tpi.setMapView(map);
+                                }
+
                                 final MapContext candidate = da.getContext();
                                 updateName(candidate);
                             }
@@ -157,7 +165,7 @@ final class ContextTreeTopComponent extends TopComponent{
         });
     }
 
-    private JContextTree tree = null;
+    private static JContextTree tree = null;
     private static ContextTreeTopComponent instance;
     private static final String PREFERRED_ID = "ContextTreeTopComponent";
 
@@ -169,7 +177,7 @@ final class ContextTreeTopComponent extends TopComponent{
 
     }
 
-    public synchronized JContextTree getContextTree() {
+    public static synchronized JContextTree getContextTree() {
         if(tree == null){
             final JContextTree tree = new JContextTree();
 
@@ -216,7 +224,7 @@ final class ContextTreeTopComponent extends TopComponent{
 
             tree.revalidate();
             tree.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-            this.tree = tree;
+            ContextTreeTopComponent.tree = tree;
         }
         return tree;
     }
