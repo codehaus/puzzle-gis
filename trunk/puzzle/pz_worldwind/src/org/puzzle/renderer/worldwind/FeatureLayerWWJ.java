@@ -23,6 +23,7 @@ import gov.nasa.worldwind.globes.Globe;
 import gov.nasa.worldwind.layers.RenderableLayer;
 import gov.nasa.worldwind.render.Renderable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import org.geotoolkit.data.DataStoreException;
@@ -75,24 +76,7 @@ public class FeatureLayerWWJ extends RenderableLayer{
                 updater.updateEnvelope(env);
             }
         });
-        //updater.start();
-
-        GeneralEnvelope max = new GeneralEnvelope(WorldWindConstants.EPSG_4326);
-        max.setRange(0, -90, 90);
-        max.setRange(1, -180, 180);
-
-        updater.currentEnv.add(max);
-        try {
-            updater.refresh();
-        } catch (MismatchedDimensionException ex) {
-            Exceptions.printStackTrace(ex);
-        } catch (FactoryException ex) {
-            Exceptions.printStackTrace(ex);
-        } catch (TransformException ex) {
-            Exceptions.printStackTrace(ex);
-        } catch (DataStoreException ex) {
-            Exceptions.printStackTrace(ex);
-        }
+        updater.start();
 
     }
 
@@ -102,13 +86,13 @@ public class FeatureLayerWWJ extends RenderableLayer{
         private final GeneralEnvelope currentEnv = new GeneralEnvelope(WorldWindConstants.EPSG_4326);
 
         public void updateEnvelope(Envelope newEnv){
-//            synchronized(lastEnv){
-//                lastEnv.setRange(0, newEnv.getMinimum(0), newEnv.getMaximum(0));
-//                lastEnv.setRange(1, newEnv.getMinimum(1), newEnv.getMaximum(1));
-//            }
-//            synchronized(Updater.this){
-//                Updater.this.notify();
-//            }
+            synchronized(lastEnv){
+                lastEnv.setRange(0, newEnv.getMinimum(0), newEnv.getMaximum(0));
+                lastEnv.setRange(1, newEnv.getMinimum(1), newEnv.getMaximum(1));
+            }
+            synchronized(Updater.this){
+                Updater.this.notify();
+            }
         }
 
         @Override
@@ -142,6 +126,17 @@ public class FeatureLayerWWJ extends RenderableLayer{
 
         private void refresh() throws MismatchedDimensionException, FactoryException, TransformException, DataStoreException{
 
+            //we render only if the bbox is small enough, envelope is always in degree
+            if(currentEnv.getSpan(0) > 1 && currentEnv.getSpan(1) > 1){
+                System.out.println("BBox to large to display features.");
+                //remove features
+                for(Renderable r : currentRenderedFeatures){
+                    removeRenderable(r);
+                }
+                currentRenderedFeatures.clear();
+                return;
+            }
+
             final FeatureCollection<? extends Feature> col = layer.getCollection()
                     .subCollection(prepareQuery(new DefaultBoundingBox(currentEnv), layer));
 
@@ -155,14 +150,15 @@ public class FeatureLayerWWJ extends RenderableLayer{
                 while(features.hasNext()){
                     i++;
                     final SimpleFeature sf = (SimpleFeature) features.next();
-                    Renderable r = WorldWindUtils.toRenderable((Geometry)sf.getDefaultGeometry(),trs,globe);
+                    Collection<? extends Renderable> r = WorldWindUtils.toRenderable((Geometry)sf.getDefaultGeometry(),trs,globe);
                     if(r != null){
-                        toAdd.add(r);
+                        toAdd.addAll(r);
                     }
 
-//                    if(i > 10000){
-//                        break;
-//                    }
+                    if(i > 5000){
+                        //we dont display over 5000 features
+                        break;
+                    }
 
                 }
             }finally{
