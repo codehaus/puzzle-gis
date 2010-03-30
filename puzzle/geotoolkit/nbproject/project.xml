@@ -67,6 +67,9 @@
                 <package>com.vividsolutions.jts.algorithm</package>
                 <package>com.vividsolutions.jts.algorithm.distance</package>
                 <package>com.vividsolutions.jts.algorithm.locate</package>
+                <package>com.vividsolutions.jts.algorithm.match</package>
+                <package>com.vividsolutions.jts.awt</package>
+                <package>com.vividsolutions.jts.densify</package>
                 <package>com.vividsolutions.jts.geom</package>
                 <package>com.vividsolutions.jts.geom.impl</package>
                 <package>com.vividsolutions.jts.geom.prep</package>
@@ -77,6 +80,7 @@
                 <package>com.vividsolutions.jts.index.bintree</package>
                 <package>com.vividsolutions.jts.index.chain</package>
                 <package>com.vividsolutions.jts.index.intervalrtree</package>
+                <package>com.vividsolutions.jts.index.kdtree</package>
                 <package>com.vividsolutions.jts.index.quadtree</package>
                 <package>com.vividsolutions.jts.index.strtree</package>
                 <package>com.vividsolutions.jts.index.sweepline</package>
@@ -102,7 +106,18 @@
                 <package>com.vividsolutions.jts.planargraph.algorithm</package>
                 <package>com.vividsolutions.jts.precision</package>
                 <package>com.vividsolutions.jts.simplify</package>
+                <package>com.vividsolutions.jts.triangulate</package>
+                <package>com.vividsolutions.jts.triangulate.quadedge</package>
                 <package>com.vividsolutions.jts.util</package>
+                <package>com.vividsolutions.jtsexample.geom</package>
+                <package>com.vividsolutions.jtsexample.geom.prep</package>
+                <package>com.vividsolutions.jtsexample.io.gml2</package>
+                <package>com.vividsolutions.jtsexample.linearref</package>
+                <package>com.vividsolutions.jtsexample.operation.distance</package>
+                <package>com.vividsolutions.jtsexample.operation.linemerge</package>
+                <package>com.vividsolutions.jtsexample.operation.polygonize</package>
+                <package>com.vividsolutions.jtsexample.precision</package>
+                <package>com.vividsolutions.jtsexample.technique</package>
                 <package>java_cup.runtime</package>
                 <package>javax.vecmath</package>
                 <package>javax.xml</package>
@@ -639,6 +654,9 @@
                 <package>org.geotoolkit.data.shapefile.indexed</package>
                 <package>org.geotoolkit.data.shapefile.shp</package>
                 <package>org.geotoolkit.data.shapefile.xml</package>
+                <package>org.geotoolkit.data.wfs</package>
+                <package>org.geotoolkit.data.wfs.v110</package>
+                <package>org.geotoolkit.data.wfs.xml</package>
                 <package>org.geotoolkit.display.axis</package>
                 <package>org.geotoolkit.display.canvas</package>
                 <package>org.geotoolkit.display.canvas.control</package>
@@ -681,6 +699,9 @@
                 <package>org.geotoolkit.feature</package>
                 <package>org.geotoolkit.feature.simple</package>
                 <package>org.geotoolkit.feature.type</package>
+                <package>org.geotoolkit.feature.xml</package>
+                <package>org.geotoolkit.feature.xml.jaxb</package>
+                <package>org.geotoolkit.feature.xml.jaxp</package>
                 <package>org.geotoolkit.filter</package>
                 <package>org.geotoolkit.filter.accessor</package>
                 <package>org.geotoolkit.filter.adapter</package>
@@ -846,6 +867,7 @@
                 <package>org.geotoolkit.sld.xml.v100</package>
                 <package>org.geotoolkit.sld.xml.v110</package>
                 <package>org.geotoolkit.sql</package>
+                <package>org.geotoolkit.storage</package>
                 <package>org.geotoolkit.style</package>
                 <package>org.geotoolkit.style.bank</package>
                 <package>org.geotoolkit.style.category</package>
@@ -856,6 +878,8 @@
                 <package>org.geotoolkit.util.collection</package>
                 <package>org.geotoolkit.util.converter</package>
                 <package>org.geotoolkit.util.logging</package>
+                <package>org.geotoolkit.wfs.xml</package>
+                <package>org.geotoolkit.wfs.xml.v110</package>
                 <package>org.geotoolkit.wms</package>
                 <package>org.geotoolkit.wms.map</package>
                 <package>org.geotoolkit.wms.v111</package>
@@ -980,6 +1004,7 @@
                 <package>org.netbeans.swing.etable</package>
                 <package>org.netbeans.swing.outline</package>
                 <package>org.postgresql</package>
+                <package>org.postgresql.copy</package>
                 <package>org.postgresql.core</package>
                 <package>org.postgresql.core.types</package>
                 <package>org.postgresql.core.v2</package>
@@ -990,9 +1015,11 @@
                 <package>org.postgresql.ds.jdbc4</package>
                 <package>org.postgresql.fastpath</package>
                 <package>org.postgresql.geometric</package>
+                <package>org.postgresql.gss</package>
                 <package>org.postgresql.jdbc2</package>
                 <package>org.postgresql.jdbc2.optional</package>
                 <package>org.postgresql.jdbc3</package>
+                <package>org.postgresql.jdbc3g</package>
                 <package>org.postgresql.jdbc4</package>
                 <package>org.postgresql.largeobject</package>
                 <package>org.postgresql.ssl</package>
@@ -1132,6 +1159,18 @@
                 <binary-origin>release/modules/ext/filters.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
+                <runtime-relative-path>ext/geotk-clients-core.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/geotk-clients-core.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/geotk-client-wfs.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/geotk-client-wfs.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/geotk-client-wms.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/geotk-client-wms.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
                 <runtime-relative-path>ext/geotk-coverage.jar</runtime-relative-path>
                 <binary-origin>release/modules/ext/geotk-coverage.jar</binary-origin>
             </class-path-extension>
@@ -1184,8 +1223,20 @@
                 <binary-origin>release/modules/ext/geotk-go2-style-extension.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
+                <runtime-relative-path>ext/geotk-storage.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/geotk-storage.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
                 <runtime-relative-path>ext/geotk-go2.jar</runtime-relative-path>
                 <binary-origin>release/modules/ext/geotk-go2.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/geotk-jaxp-core.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/geotk-jaxp-core.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/geotk-jaxp-gml.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/geotk-jaxp-gml.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
                 <runtime-relative-path>ext/geotk-jasperreport.jar</runtime-relative-path>
@@ -1202,10 +1253,6 @@
             <class-path-extension>
                 <runtime-relative-path>ext/geotk-jtswrapper.jar</runtime-relative-path>
                 <binary-origin>release/modules/ext/geotk-jtswrapper.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
-                <runtime-relative-path>ext/jxlayer.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/jxlayer.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
                 <runtime-relative-path>ext/geotk-metadata.jar</runtime-relative-path>
@@ -1252,10 +1299,6 @@
                 <binary-origin>release/modules/ext/geotk-wizards-swing.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/geotk-wms.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/geotk-wms.jar</binary-origin>
-            </class-path-extension>
-            <class-path-extension>
                 <runtime-relative-path>ext/geotk-xml-gml.jar</runtime-relative-path>
                 <binary-origin>release/modules/ext/geotk-xml-gml.jar</binary-origin>
             </class-path-extension>
@@ -1270,6 +1313,10 @@
             <class-path-extension>
                 <runtime-relative-path>ext/geotk-xml-sld.jar</runtime-relative-path>
                 <binary-origin>release/modules/ext/geotk-xml-sld.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/geotk-xml-wfs.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/geotk-xml-wfs.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
                 <runtime-relative-path>ext/geotk-xml-wms.jar</runtime-relative-path>
@@ -1306,6 +1353,10 @@
             <class-path-extension>
                 <runtime-relative-path>ext/jts.jar</runtime-relative-path>
                 <binary-origin>release/modules/ext/jts.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/jxlayer.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/jxlayer.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
                 <runtime-relative-path>ext/org-netbeans-swing-outline.jar</runtime-relative-path>

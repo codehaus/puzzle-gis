@@ -40,7 +40,7 @@ import javax.swing.SwingConstants;
 import static org.geotoolkit.jdbc.JDBCDataStoreFactory.*;
 
 import org.geotoolkit.data.DataStore;
-import org.geotoolkit.data.DataStoreException;
+import org.geotoolkit.storage.DataStoreException;
 import org.geotoolkit.data.DataStoreFinder;
 import org.jdesktop.swingx.JXTitledPanel;
 

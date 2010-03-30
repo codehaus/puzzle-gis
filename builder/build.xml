@@ -82,6 +82,8 @@
             <include name="geotk-go2-style-extension.jar"/>
             <include name="geotk-geotiff.jar"/>
             <include name="geotk-jasperreport.jar"/>
+            <include name="geotk-jaxp-core.jar"/>
+            <include name="geotk-jaxp-gml.jar"/>
             <include name="geotk-jtswrapper.jar"/>
             <include name="geotk-jdbc-postgis.jar"/>
             <include name="geotk-jdbc-core.jar"/>
@@ -89,6 +91,7 @@
             <include name="geotk-referencing.jar"/>
             <include name="geotk-render.jar"/>
             <include name="geotk-setup.jar"/>
+            <include name="geotk-storage.jar"/>
             <include name="geotk-style.jar"/>
             <include name="geotk-shapefile.jar"/>
             <include name="geotk-utility.jar"/>
@@ -96,11 +99,14 @@
             <include name="geotk-widgets-swing.jar"/>
             <include name="geotk-widgets-swing-pending.jar"/>
             <include name="geotk-wizards-swing.jar"/>
-            <include name="geotk-wms.jar"/>
+            <include name="geotk-clients-core.jar"/>
+            <include name="geotk-client-wfs.jar"/>
+            <include name="geotk-client-wms.jar"/>
             <include name="geotk-xml-gml.jar"/>
             <include name="geotk-xml-ogc.jar"/>
             <include name="geotk-xml-se.jar"/>
             <include name="geotk-xml-sld.jar"/>
+            <include name="geotk-xml-wfs.jar"/>
             <include name="geotk-xml-wms.jar"/>
             <include name="itext.jar"/>
             <include name="jasperreports.jar"/>

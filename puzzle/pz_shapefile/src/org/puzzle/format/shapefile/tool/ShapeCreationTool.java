@@ -40,7 +40,6 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SwingConstants;
 
-import org.geotoolkit.data.DataStoreException;
 import org.geotoolkit.data.FileDataStoreFactory;
 import org.geotoolkit.data.shapefile.ShapefileDataStore;
 import org.geotoolkit.data.shapefile.ShapefileDataStoreFactory;
