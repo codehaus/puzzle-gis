@@ -2,7 +2,7 @@
  *    Puzzle GIS - Desktop GIS Platform
  *    http://puzzle-gis.codehaus.org
  *
- *    (C) 2007-2009, Johann Sorel
+ *    (C) 2010, Johann Sorel
  *
  *    This library is free software; you can redistribute it and/or
  *    modify it under the terms of the GNU Lesser General Public
@@ -14,7 +14,7 @@
  *    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  *    Lesser General Public License for more details.
  */
-package org.puzzle.format.postgis.service;
+package org.puzzle.format.wfs.service;
 
 import com.vividsolutions.jts.geom.LineString;
 import com.vividsolutions.jts.geom.MultiLineString;
@@ -50,7 +50,7 @@ import org.openide.util.Exceptions;
 import org.puzzle.core.project.source.capabilities.JLayerChooser;
 import org.puzzle.core.project.source.capabilities.LayerChooserMonitor;
 import org.puzzle.core.project.source.capabilities.LayerCreation;
-import org.puzzle.format.postgis.resources.PostgisResource;
+import org.puzzle.format.wfs.resources.WFSResource;
 
 /**
  *
@@ -59,10 +59,10 @@ import org.puzzle.format.postgis.resources.PostgisResource;
 public class LayerCreationComponent extends JLayerChooser {
 
     private final DataStore store;
-    private final PostGISSource source;
+    private final WFSSource source;
 
     /** Creates new form LayerCreationComponent */
-    LayerCreationComponent(final LayerChooserMonitor monitor, DataStore store, PostGISSource source) {
+    LayerCreationComponent(final LayerChooserMonitor monitor, DataStore store, WFSSource source) {
         super(monitor);
         this.store = store;
         this.source = source;
@@ -112,14 +112,14 @@ public class LayerCreationComponent extends JLayerChooser {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-
         jLabel2 = new JLabel();
         guiTitle = new JTextField();
         jsp = new JScrollPane();
         guiLayerList = new JList();
 
         jLabel2.setFont(jLabel2.getFont().deriveFont(jLabel2.getFont().getStyle() | Font.BOLD));
-        jLabel2.setText(PostgisResource.getString("title")); // NOI18N
+        jLabel2.setText(WFSResource.getString("title")); // NOI18N
+
         jsp.setViewportView(guiLayerList);
 
         GroupLayout layout = new GroupLayout(this);
@@ -129,11 +129,11 @@ public class LayerCreationComponent extends JLayerChooser {
             .addGroup(Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(Alignment.TRAILING)
-                    .addComponent(jsp, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE)
+                    .addComponent(jsp, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 333, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(ComponentPlacement.RELATED)
-                        .addComponent(guiTitle, GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)))
+                        .addComponent(guiTitle, GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -157,7 +157,7 @@ public class LayerCreationComponent extends JLayerChooser {
         String title = guiTitle.getText();
         String type = getType();
         if(type != null){
-            MapLayer layer = source.getLookup().lookup(LayerCreation.class).createLayer(Collections.singletonMap(PostGISSource.FEATURETYPENAME_PROP, type));
+            MapLayer layer = source.getLookup().lookup(LayerCreation.class).createLayer(Collections.singletonMap(WFSSource.FEATURETYPENAME_PROP, type));
             layer.setDescription(new DefaultStyleFactory().description(title,"") );
             return new MapLayer[]{layer};
         }

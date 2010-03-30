@@ -150,7 +150,12 @@
         </dependency>
         <dependency>
             <groupId>org.geotoolkit.pending</groupId>
-            <artifactId>geotk-wms</artifactId>
+            <artifactId>geotk-client-wms</artifactId>
+            <version>${geotoolkit.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.geotoolkit.pending</groupId>
+            <artifactId>geotk-client-wfs</artifactId>
             <version>${geotoolkit.version}</version>
         </dependency>
         <dependency>

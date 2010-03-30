@@ -25,7 +25,7 @@ import javax.swing.Action;
 
 import org.geotoolkit.data.DataStore;
 
-import org.geotoolkit.data.DataStoreException;
+import org.geotoolkit.storage.DataStoreException;
 import org.openide.loaders.DataNode;
 import org.openide.nodes.AbstractNode;
 import org.openide.nodes.ChildFactory;

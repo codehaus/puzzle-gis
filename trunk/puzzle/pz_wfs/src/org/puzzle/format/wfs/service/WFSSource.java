@@ -2,7 +2,7 @@
  *    Puzzle GIS - Desktop GIS Platform
  *    http://puzzle-gis.codehaus.org
  *
- *    (C) 2007-2009, Johann Sorel
+ *    (C) 2010, Johann Sorel
  *
  *    This library is free software; you can redistribute it and/or
  *    modify it under the terms of the GNU Lesser General Public
@@ -14,7 +14,7 @@
  *    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  *    Lesser General Public License for more details.
  */
-package org.puzzle.format.postgis.service;
+package org.puzzle.format.wfs.service;
 
 import java.awt.Image;
 import java.io.IOException;
@@ -27,6 +27,7 @@ import org.geotoolkit.storage.DataStoreException;
 import org.geotoolkit.data.DataStoreFinder;
 import org.geotoolkit.data.FeatureCollection;
 import org.geotoolkit.data.query.QueryBuilder;
+import org.geotoolkit.data.wfs.WebFeatureServer;
 import org.geotoolkit.map.MapBuilder;
 import org.geotoolkit.map.MapLayer;
 import org.geotoolkit.style.DefaultStyleFactory;
@@ -54,13 +55,13 @@ import static org.geotoolkit.jdbc.JDBCDataStoreFactory.*;
  *
  * @author Johann Sorel (Puzzle-GIS)
  */
-public class PostGISSource extends GISSource{
+public class WFSSource extends GISSource{
 
     public static final String FEATURETYPENAME_PROP = "featuretype";
 
     private DataStore store = null;
     
-    PostGISSource(final GISSourceInfo info){
+    WFSSource(final GISSourceInfo info){
         super(info);
         content.add(new PostGISLayerCreation());
     }
@@ -132,7 +133,7 @@ public class PostGISSource extends GISSource{
                 layer = MapBuilder.createEmptyMapLayer();
             }
 
-            final GISLayerSource source = new GISLayerSource(getInfo().getID(), parameters,PostGISSource.this);
+            final GISLayerSource source = new GISLayerSource(getInfo().getID(), parameters,WFSSource.this);
             layer.setUserPropertie(GISLayerSource.KEY_LAYER_INFO, source);
             layer.setDescription(new DefaultStyleFactory().description(featureName,"") );
 
@@ -145,7 +146,7 @@ public class PostGISSource extends GISSource{
         @Override
         public JLayerChooser createChooser(LayerChooserMonitor monitor) {
             load();
-            return new LayerCreationComponent(monitor, store, PostGISSource.this);
+            return new LayerCreationComponent(monitor, store, WFSSource.this);
         }
     }
 
