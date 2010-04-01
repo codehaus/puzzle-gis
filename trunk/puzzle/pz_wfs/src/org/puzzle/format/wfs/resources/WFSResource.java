@@ -24,7 +24,7 @@ import java.util.ResourceBundle;
  */
 public final class WFSResource {
 
-    private static final ResourceBundle BUNDLE = ResourceBundle.getBundle("org/puzzle/format/wms/resources/Bundle");
+    private static final ResourceBundle BUNDLE = ResourceBundle.getBundle("org/puzzle/format/wfs/resources/Bundle");
 
     private WFSResource(){}
 

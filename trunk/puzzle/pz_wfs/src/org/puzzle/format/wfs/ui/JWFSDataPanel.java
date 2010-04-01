@@ -34,8 +34,8 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 
-import org.geotoolkit.wms.WebMapServer;
-import org.geotoolkit.wms.xml.AbstractWMSCapabilities;
+import org.geotoolkit.data.wfs.WebFeatureServer;
+import org.geotoolkit.wfs.xml.v110.WFSCapabilitiesType;
 
 import org.jdesktop.swingx.JXTree;
 import org.openide.util.Exceptions;
@@ -46,13 +46,13 @@ import org.puzzle.format.wfs.resources.WFSResource;
 import org.puzzle.format.wfs.service.WFSSourceService;
 
 /**
- * WMS Chooser
+ * WFS Chooser
  * 
  * @author Johann Sorel (Puzzle-GIS)
  */
 public class JWFSDataPanel extends SourceCreationPane {
 
-    private WebMapServer server;
+    private WebFeatureServer server;
     private final Map<String,Object> params = new HashMap<String, Object>();
 
     /** Creates new form DefaultShapeTypeChooser */
@@ -93,17 +93,7 @@ public class JWFSDataPanel extends SourceCreationPane {
 
         if (server != null) {
             try {
-                final AbstractWMSCapabilities capa = server.getCapabilities();
-
-                if(capa instanceof org.geotoolkit.wms.xml.v130.WMSCapabilities){
-                    final org.geotoolkit.wms.xml.v130.WMSCapabilities cp13 =
-                            (org.geotoolkit.wms.xml.v130.WMSCapabilities) capa;
-                    root = explore(cp13.getCapability().getLayer(), null);
-                }else if(capa instanceof org.geotoolkit.wms.xml.v111.WMT_MS_Capabilities){
-                    final org.geotoolkit.wms.xml.v111.WMT_MS_Capabilities cp11 =
-                            (org.geotoolkit.wms.xml.v111.WMT_MS_Capabilities) capa;
-                    root = explore(cp11.getCapability().getLayer(), root);
-                }
+                final WFSCapabilitiesType capa = server.getCapabilities();
 
             } catch (Exception ex) {
                 Exceptions.printStackTrace(ex);
@@ -115,36 +105,6 @@ public class JWFSDataPanel extends SourceCreationPane {
         guiLayerList.setRootVisible(false);
         guiLayerList.expandAll();
         guiLayerList.revalidate();
-    }
-
-    private DefaultMutableTreeNode explore(org.geotoolkit.wms.xml.v130.Layer layer, DefaultMutableTreeNode parent){
-        final DefaultMutableTreeNode node = new DefaultMutableTreeNode(layer);
-        
-        for (org.geotoolkit.wms.xml.v130.Layer child : layer.getLayer()) {
-            explore(child, node);
-        }
-
-        if(parent != null){
-            parent.add(node);
-            return parent;
-        }else{
-            return node;
-        }
-    }
-
-    private DefaultMutableTreeNode explore(org.geotoolkit.wms.xml.v111.Layer layer, DefaultMutableTreeNode parent){
-        final DefaultMutableTreeNode node = new DefaultMutableTreeNode(layer);
-
-        for (org.geotoolkit.wms.xml.v111.Layer child : layer.getLayer()) {
-            explore(child, node);
-        }
-
-        if(parent != null){
-            parent.add(node);
-            return parent;
-        }else{
-            return node;
-        }
     }
     
     /** This method is called from within the constructor to
@@ -158,13 +118,12 @@ public class JWFSDataPanel extends SourceCreationPane {
         but_refresh = new JButton();
         jScrollPane1 = new JScrollPane();
         guiLayerList = new JXTree();
-        jPanel1 = new JPanel();
-        jtf_name = new JTextField();
         jLabel1 = new JLabel();
         jtf_url = new JTextField();
-        jLabel2 = new JLabel();
         jtf_version = new JTextField();
+        jLabel2 = new JLabel();
         jLabel3 = new JLabel();
+        jtf_name = new JTextField();
 
         but_refresh.setText(WFSResource.getString("test")); // NOI18N
         but_refresh.addActionListener(new ActionListener() {
@@ -178,59 +137,32 @@ public class JWFSDataPanel extends SourceCreationPane {
 
 
 
-
-        jPanel1.setBorder(BorderFactory.createTitledBorder(WFSResource.getString("wfsTitle"))); // NOI18N
         jLabel1.setText(WFSResource.getString("url")); // NOI18N
         jLabel2.setText(WFSResource.getString("version")); // NOI18N
         jLabel3.setText(WFSResource.getString("name")); // NOI18N
-        GroupLayout jPanel1Layout = new GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(ComponentPlacement.RELATED)
-                        .addComponent(jtf_url, GroupLayout.DEFAULT_SIZE, 377, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(ComponentPlacement.RELATED)
-                        .addComponent(jtf_version, GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(ComponentPlacement.RELATED)
-                        .addComponent(jtf_name, GroupLayout.DEFAULT_SIZE, 363, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(Alignment.LEADING)
-            .addGroup(Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jtf_url, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jtf_version, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jtf_name, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-        );
-
         GroupLayout layout = new GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(ComponentPlacement.RELATED)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(Alignment.LEADING)
-                    .addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
-                    .addComponent(but_refresh, GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(ComponentPlacement.RELATED)
+                        .addComponent(jtf_url, GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(ComponentPlacement.RELATED)
+                        .addComponent(jtf_version, GroupLayout.DEFAULT_SIZE, 289, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(ComponentPlacement.RELATED)
+                        .addComponent(jtf_name, GroupLayout.DEFAULT_SIZE, 298, Short.MAX_VALUE)))
+                .addPreferredGap(ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(Alignment.TRAILING)
+                    .addComponent(but_refresh, GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 147, GroupLayout.PREFERRED_SIZE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(Alignment.LEADING)
@@ -239,8 +171,20 @@ public class JWFSDataPanel extends SourceCreationPane {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(but_refresh)
                         .addPreferredGap(ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE))
-                    .addComponent(jPanel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(jtf_url, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(jtf_version, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(jtf_name, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -256,7 +200,7 @@ public class JWFSDataPanel extends SourceCreationPane {
             @Override
             public void run() {
                 try {
-                    server = new WebMapServer(new URL(jtf_url.getText()),jtf_version.getText());
+                    server = new WebFeatureServer(new URL(jtf_url.getText()),jtf_version.getText());
                     refreshTable();
                 } catch (Exception ex) {
                     Exceptions.printStackTrace(ex);
@@ -275,13 +219,13 @@ public class JWFSDataPanel extends SourceCreationPane {
     private JLabel jLabel1;
     private JLabel jLabel2;
     private JLabel jLabel3;
-    private JPanel jPanel1;
     private JScrollPane jScrollPane1;
     private JTextField jtf_name;
     private JTextField jtf_url;
     private JTextField jtf_version;
     // End of variables declaration//GEN-END:variables
     
+    @Override
     public Map<String,GISSourceInfo> createSources() {
         final Map<String,Serializable> params = new HashMap<String,Serializable>();
         params.put(WFSSourceService.URL_PROP, jtf_url.getText());
