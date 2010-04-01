@@ -128,7 +128,7 @@ public abstract class AbstractDataStoreSource extends GISSource{
         @Override
         public JLayerChooser createChooser(LayerChooserMonitor monitor) {
             load();
-            return new DataStoreLayerCreationComponent(monitor, store, AbstractDataStoreSource.this);
+            return new DataStoreLayerChooser(monitor, store, AbstractDataStoreSource.this);
         }
     }
 
