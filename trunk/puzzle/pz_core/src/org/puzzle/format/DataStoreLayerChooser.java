@@ -60,12 +60,12 @@ import org.puzzle.core.resources.CoreResource;
  *
  * @author Johann Sorel (Puzzle-GIS)
  */
-public class DataStoreLayerCreationComponent extends JLayerChooser {
+public class DataStoreLayerChooser extends JLayerChooser {
 
     private final DataStore store;
     private final AbstractDataStoreSource source;
 
-    DataStoreLayerCreationComponent(final LayerChooserMonitor monitor, DataStore store, AbstractDataStoreSource source) {
+    DataStoreLayerChooser(final LayerChooserMonitor monitor, DataStore store, AbstractDataStoreSource source) {
         super(monitor);
         this.store = store;
         this.source = source;

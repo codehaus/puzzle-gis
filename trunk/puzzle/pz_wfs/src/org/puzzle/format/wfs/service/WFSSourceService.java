@@ -16,13 +16,13 @@
  */
 package org.puzzle.format.wfs.service;
 
+import org.geotoolkit.data.wfs.WFSDataStoreFactory;
 import org.puzzle.core.project.source.AbstractGISSourceService;
 import org.puzzle.core.project.source.capabilities.SourceCreationPane;
 import org.puzzle.core.project.source.capabilities.DistantSourceCreation;
 import org.puzzle.core.project.source.GISSource;
 import org.puzzle.core.project.source.GISSourceInfo;
 import org.puzzle.format.wfs.resources.WFSResource;
-import org.puzzle.format.wfs.ui.JWFSDataPanel;
 
 /**
  * WFS source service.
@@ -32,8 +32,7 @@ import org.puzzle.format.wfs.ui.JWFSDataPanel;
 public class WFSSourceService extends AbstractGISSourceService implements DistantSourceCreation{
 
     public static final String SERVICE_ID = "WebFeatureServer";
-    public static final String URL_PROP = "url";
-    public static final String VERSION_PROP = "version";
+    public static final String URL_PROP = WFSDataStoreFactory.SERVER_URI.getName().getCode();
 
     /**
      * {@inheritDoc }
@@ -64,6 +63,6 @@ public class WFSSourceService extends AbstractGISSourceService implements Distan
      */
     @Override
     public SourceCreationPane createPanel() {
-        return new JWFSDataPanel();
+        return new WFSCreationPane();
     }
 }
