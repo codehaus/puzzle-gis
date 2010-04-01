@@ -18,6 +18,8 @@ package org.puzzle.core.actions;
 
 import java.util.Collection;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.TreeMap;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -43,15 +45,18 @@ final class JDistantSourcePane extends javax.swing.JPanel {
         initComponents();
 
         services = Lookup.getDefault().lookupAll(GISSourceService.class);
+        final Map<String,SourceCreationPane> ordered = new TreeMap<String, SourceCreationPane>();
 
         for (final GISSourceService service : services) {
-
-            DistantSourceCreation distant = service.getLookup().lookup(DistantSourceCreation.class);
-
+            final DistantSourceCreation distant = service.getLookup().lookup(DistantSourceCreation.class);
             if (distant != null) {
-                final SourceCreationPane panel = distant.createPanel();
-                guiTabPane.add(service.getTitle(), panel);
+                ordered.put(service.getTitle(), distant.createPanel());
             }
+        }
+
+        //preserve name order
+        for(Entry<String,SourceCreationPane> entry : ordered.entrySet()){
+            guiTabPane.add(entry.getKey(), entry.getValue());
         }
     }
     
