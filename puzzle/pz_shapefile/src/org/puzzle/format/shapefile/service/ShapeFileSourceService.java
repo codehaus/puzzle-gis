@@ -55,15 +55,7 @@ public class ShapeFileSourceService extends AbstractGISSourceService implements 
         
         if(strURI == null) throw new IllegalArgumentException("missing parameter uri");
         
-        URI uri = null;
-        try {
-           uri = new URI(strURI);
-        } catch (URISyntaxException ex) {
-            throw new IllegalArgumentException("Invalide parameter uri");
-        }
-        final File shapeFile = new File(uri);
-
-        return new ShapeFileSource(info,shapeFile);
+        return new ShapeFileSource(info);
     }
 
     @Override

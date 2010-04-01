@@ -177,6 +177,7 @@
                 <package>org.puzzle.core.windows.mapdetail</package>
                 <package>org.puzzle.core.windows.toolbox</package>
                 <package>org.puzzle.core.windows.toolbox.tree</package>
+                <package>org.puzzle.format</package>
             </public-packages>
         </data>
     </configuration>
