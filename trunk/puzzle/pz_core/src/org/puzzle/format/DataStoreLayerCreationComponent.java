@@ -2,7 +2,7 @@
  *    Puzzle GIS - Desktop GIS Platform
  *    http://puzzle-gis.codehaus.org
  *
- *    (C) 2007-2009, Johann Sorel
+ *    (C) 2010, Johann Sorel
  *
  *    This library is free software; you can redistribute it and/or
  *    modify it under the terms of the GNU Lesser General Public
@@ -14,7 +14,7 @@
  *    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  *    Lesser General Public License for more details.
  */
-package org.puzzle.format.postgis.service;
+package org.puzzle.format;
 
 import com.vividsolutions.jts.geom.LineString;
 import com.vividsolutions.jts.geom.MultiLineString;
@@ -22,9 +22,9 @@ import com.vividsolutions.jts.geom.MultiPoint;
 import com.vividsolutions.jts.geom.MultiPolygon;
 import com.vividsolutions.jts.geom.Point;
 import com.vividsolutions.jts.geom.Polygon;
+
 import java.awt.Component;
 import java.awt.Font;
-import java.io.IOException;
 import java.util.Collections;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListCellRenderer;
@@ -39,30 +39,33 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+
 import org.geotoolkit.data.DataStore;
 import org.geotoolkit.storage.DataStoreException;
 import org.geotoolkit.gui.swing.resource.IconBundle;
 import org.geotoolkit.map.MapLayer;
 import org.geotoolkit.style.DefaultStyleFactory;
+
 import org.opengis.feature.simple.SimpleFeatureType;
 import org.opengis.feature.type.GeometryDescriptor;
 import org.openide.util.Exceptions;
+
 import org.puzzle.core.project.source.capabilities.JLayerChooser;
 import org.puzzle.core.project.source.capabilities.LayerChooserMonitor;
 import org.puzzle.core.project.source.capabilities.LayerCreation;
-import org.puzzle.format.postgis.resources.PostgisResource;
+import org.puzzle.core.resources.CoreResource;
 
 /**
+ * Panel to create map layer from any kind of datastore.
  *
  * @author Johann Sorel (Puzzle-GIS)
  */
-public class LayerCreationComponent extends JLayerChooser {
+public class DataStoreLayerCreationComponent extends JLayerChooser {
 
     private final DataStore store;
-    private final PostGISSource source;
+    private final AbstractDataStoreSource source;
 
-    /** Creates new form LayerCreationComponent */
-    LayerCreationComponent(final LayerChooserMonitor monitor, DataStore store, PostGISSource source) {
+    DataStoreLayerCreationComponent(final LayerChooserMonitor monitor, DataStore store, AbstractDataStoreSource source) {
         super(monitor);
         this.store = store;
         this.source = source;
@@ -112,14 +115,14 @@ public class LayerCreationComponent extends JLayerChooser {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-
         jLabel2 = new JLabel();
         guiTitle = new JTextField();
         jsp = new JScrollPane();
         guiLayerList = new JList();
 
         jLabel2.setFont(jLabel2.getFont().deriveFont(jLabel2.getFont().getStyle() | Font.BOLD));
-        jLabel2.setText(PostgisResource.getString("title")); // NOI18N
+        jLabel2.setText(CoreResource.getString("title")); // NOI18N
+
         jsp.setViewportView(guiLayerList);
 
         GroupLayout layout = new GroupLayout(this);
@@ -129,11 +132,11 @@ public class LayerCreationComponent extends JLayerChooser {
             .addGroup(Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(Alignment.TRAILING)
-                    .addComponent(jsp, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE)
+                    .addComponent(jsp, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 343, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(ComponentPlacement.RELATED)
-                        .addComponent(guiTitle, GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)))
+                        .addComponent(guiTitle, GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -154,10 +157,11 @@ public class LayerCreationComponent extends JLayerChooser {
      */
     @Override
     public MapLayer[] getLayers() {
-        String title = guiTitle.getText();
-        String type = getType();
+        final String title = guiTitle.getText();
+        final String type = getType();
         if(type != null){
-            MapLayer layer = source.getLookup().lookup(LayerCreation.class).createLayer(Collections.singletonMap(PostGISSource.FEATURETYPENAME_PROP, type));
+            final MapLayer layer = source.getLookup().lookup(LayerCreation.class).createLayer(
+                    Collections.singletonMap(AbstractDataStoreSource.FEATURETYPENAME_PROP, type));
             layer.setDescription(new DefaultStyleFactory().description(title,"") );
             return new MapLayer[]{layer};
         }
@@ -183,7 +187,7 @@ public class LayerCreationComponent extends JLayerChooser {
 
         @Override
         public Component getListCellRendererComponent(JList arg0, Object value, int arg2, boolean arg3, boolean arg4) {
-            JLabel lbl = (JLabel) super.getListCellRendererComponent(arg0, value, arg2, arg3, arg4);
+            final JLabel lbl = (JLabel) super.getListCellRendererComponent(arg0, value, arg2, arg3, arg4);
 
             if(value instanceof String){
                 try {
@@ -217,8 +221,6 @@ public class LayerCreationComponent extends JLayerChooser {
 
             return lbl;
         }
-
-
 
     }
 

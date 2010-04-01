@@ -18,59 +18,31 @@
 package org.puzzle.format.shapefile.service;
 
 import java.awt.Image;
-import java.io.File;
 import java.io.Serializable;
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.Collections;
-import java.util.Map;
 
 import org.geotoolkit.data.DataStore;
 import org.geotoolkit.data.DataStoreFinder;
-import org.geotoolkit.data.FeatureCollection;
-import org.geotoolkit.data.query.QueryBuilder;
-import org.geotoolkit.map.MapLayer;
-import org.geotoolkit.map.MapBuilder;
-import org.geotoolkit.style.DefaultStyleFactory;
-import org.geotoolkit.style.MutableStyle;
-import org.geotoolkit.util.RandomStyleFactory;
+import org.geotoolkit.storage.DataStoreException;
 
-import org.opengis.feature.simple.SimpleFeature;
-import org.opengis.feature.simple.SimpleFeatureType;
-
-import org.opengis.feature.type.Name;
-import org.openide.util.Exceptions;
 import org.openide.util.ImageUtilities;
 
-import org.puzzle.core.project.source.capabilities.JLayerChooser;
-import org.puzzle.core.project.source.capabilities.LayerChooserMonitor;
-import org.puzzle.core.project.source.GISLayerSource;
-import org.puzzle.core.project.source.GISSource;
 import org.puzzle.core.project.source.GISSourceInfo;
-import org.puzzle.core.project.source.GISSourceState;
-import org.puzzle.core.project.source.capabilities.LayerCreation;
+import org.puzzle.format.AbstractDataStoreSource;
 
 /**
  * Shapefile source object.
  *
  * @author Johann Sorel (Puzzle-GIS)
  */
-public class ShapeFileSource extends GISSource{
+public class ShapeFileSource extends AbstractDataStoreSource{
 
-    private String name;
-    private final File shapefile;
-    private FeatureCollection<SimpleFeature> featureSource = null;
-    
-    
-    ShapeFileSource(final GISSourceInfo info, final File shapefile){
+    ShapeFileSource(final GISSourceInfo info){
         super(info);
-        this.shapefile = shapefile;
-        this.name = shapefile.getName();
-
-        if(name.endsWith(".shp") || name.endsWith(".SHP")){
-            name = name.substring(0, name.length()-4);
-        }
-
-        content.add(new ShapeFileLayerCreation());
-
     }
 
     /**
@@ -82,75 +54,21 @@ public class ShapeFileSource extends GISSource{
     }
 
     @Override
-    public void unload() {
-        featureSource = null;
-        setState(GISSourceState.UNLOADED);
-    }
+    protected DataStore createDataStore(GISSourceInfo info) throws DataStoreException {
+        final String strURI = info.getParameters().get("uri").toString();
 
-    @Override
-    public void load() {
-        if(featureSource != null) return;
+        if(strURI == null) throw new DataStoreException("missing parameter uri");
 
-        DataStore store = null;
+        URL url = null;
         try {
-            store = DataStoreFinder.getDataStore(Collections.singletonMap("url",(Serializable)shapefile.toURI().toURL()));
-        } catch (Exception ex) {
-            //we can not trust the underlying datastore, they sometime throw nullpointer errors
-            setState(GISSourceState.LOADING_ERROR);
-            Exceptions.printStackTrace(ex);
-            return;
+           url = new URI(strURI).toURL();
+        } catch (URISyntaxException ex) {
+            throw new DataStoreException("Invalide parameter uri");
+        } catch (MalformedURLException ex) {
+            throw new DataStoreException("Invalide parameter uri");
         }
 
-        content.add(store);
-
-        try {
-            Name name = store.getNames().iterator().next();
-            featureSource = store.createSession(true).getFeatureCollection(QueryBuilder.all(name));
-        } catch (Exception ex) {
-            //we can not trust the underlying datastore, they sometime throw nullpointer errors
-            setState(GISSourceState.LOADING_ERROR);
-            Exceptions.printStackTrace(ex);
-            return;
-        }
-
-        setState(GISSourceState.LOADED);
+        return DataStoreFinder.getDataStore(Collections.singletonMap("url",(Serializable)url));
     }
-
-    private class ShapeFileLayerCreation implements LayerCreation{
-
-        /**
-         * {@inheritDoc }
-         */
-        @Override
-        public MapLayer createLayer(Map<String, String> parameters) {
-            if(parameters == null) parameters = Collections.emptyMap();
-            load();
-
-            final MapLayer layer;
-
-            if(featureSource != null){
-                final MutableStyle style = RandomStyleFactory.createRandomVectorStyle(featureSource);
-                layer = MapBuilder.createFeatureLayer(featureSource, style);
-            }else{
-                layer = MapBuilder.createEmptyMapLayer();
-            }
-
-            final GISLayerSource source = new GISLayerSource(getInfo().getID(), parameters,ShapeFileSource.this);
-            layer.setUserPropertie(GISLayerSource.KEY_LAYER_INFO, source);
-            layer.setDescription(new DefaultStyleFactory().description(name,"") );
-
-            return layer;
-        }
-
-        /**
-         * {@inheritDoc }
-         */
-        @Override
-        public JLayerChooser createChooser(LayerChooserMonitor monitor) {
-            load();
-            return new LayerCreationComponent(monitor, ShapeFileSource.this, name);
-        }
-    }
-
 
 }
