@@ -18,15 +18,15 @@
 package org.puzzle.renderer.worldwind;
 
 import com.vividsolutions.jts.geom.Geometry;
-import gov.nasa.worldwind.globes.Globe;
 
+import gov.nasa.worldwind.globes.Globe;
 import gov.nasa.worldwind.layers.RenderableLayer;
 import gov.nasa.worldwind.render.Renderable;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import org.geotoolkit.data.DataStoreException;
 import org.geotoolkit.data.FeatureCollection;
 import org.geotoolkit.data.FeatureIterator;
 import org.geotoolkit.data.query.Query;
@@ -37,6 +37,7 @@ import org.geotoolkit.geometry.Envelope2D;
 import org.geotoolkit.geometry.GeneralEnvelope;
 import org.geotoolkit.map.FeatureMapLayer;
 import org.geotoolkit.referencing.CRS;
+import org.geotoolkit.storage.DataStoreException;
 
 import org.opengis.feature.Feature;
 import org.opengis.feature.simple.SimpleFeature;
