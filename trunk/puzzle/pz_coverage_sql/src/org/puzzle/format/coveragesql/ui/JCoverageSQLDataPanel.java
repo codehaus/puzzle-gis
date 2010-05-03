@@ -21,10 +21,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Properties;
+import javax.sql.DataSource;
 
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
@@ -38,16 +43,21 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
+import org.geotoolkit.coverage.sql.CoverageDatabase;
 
 import org.geotoolkit.data.DataStore;
 import org.geotoolkit.storage.DataStoreException;
 import org.geotoolkit.data.DataStoreFinder;
+import org.geotoolkit.sql.WrappedDataSource;
+import org.jdesktop.swingx.combobox.ListComboBoxModel;
 
 import org.openide.util.Exceptions;
+import org.postgresql.ds.PGConnectionPoolDataSource;
 
 import org.puzzle.core.project.source.capabilities.SourceCreationPane;
 import org.puzzle.core.project.source.GISSourceInfo;
 import org.puzzle.format.coveragesql.resources.CoverageSQLResource;
+import org.puzzle.format.coveragesql.service.CoverageSQLSource;
 import org.puzzle.format.coveragesql.service.CoverageSQLSourceService;
 
 import static org.puzzle.format.coveragesql.service.CoverageSQLSource.*;
@@ -59,7 +69,8 @@ import static org.puzzle.format.coveragesql.service.CoverageSQLSource.*;
  */
 public class JCoverageSQLDataPanel extends SourceCreationPane {
 
-    private DataStore store;
+    private CoverageDatabase database = null;
+
     private final Map<String,Serializable> params = new HashMap<String, Serializable>();
 
     /** Creates new form DefaultShapeTypeChooser */
@@ -104,9 +115,10 @@ public class JCoverageSQLDataPanel extends SourceCreationPane {
 
     private void refreshTable() {
 
-        if (store != null) {
+        if (database != null) {
             try {
-                guiLayerList.setModel(new DefaultComboBoxModel(store.getTypeNames()));
+                List<String> vals = new ArrayList<String>(database.getLayers().result());
+                guiLayerList.setModel(new ListComboBoxModel(vals));
             } catch (DataStoreException ex) {
                 System.out.println(ex);
             }
@@ -271,15 +283,31 @@ public class JCoverageSQLDataPanel extends SourceCreationPane {
 
             @Override
             public void run() {
-                try {
-                    store = DataStoreFinder.getDataStore(params);
-                    refreshTable();
-                } catch (DataStoreException ex) {
-                    Exceptions.printStackTrace(ex);
-                    store = null;
-                }
+                final Map<String,Serializable> infosParams = params;
 
-            but_refresh.setEnabled(true);
+                final Properties properties = new Properties();
+                properties.put(KEY_SERVER, infosParams.get(KEY_SERVER));
+                properties.put(KEY_PORT, infosParams.get(KEY_PORT));
+                properties.put(KEY_DATABASE, infosParams.get(KEY_DATABASE));
+                properties.put(KEY_SCHEMA, infosParams.get(KEY_SCHEMA));
+                properties.put(KEY_USER, infosParams.get(KEY_USER));
+                properties.put(KEY_PASSWORD, infosParams.get(KEY_PASSWORD));
+                properties.put(KEY_ROOT_DIRECTORY, infosParams.get(KEY_ROOT_DIRECTORY));
+
+                final PGConnectionPoolDataSource pool = new PGConnectionPoolDataSource();
+                pool.setServerName(infosParams.get(KEY_SERVER).toString());
+                pool.setPortNumber(Integer.valueOf(infosParams.get(KEY_PORT).toString()));
+                pool.setDatabaseName(infosParams.get(KEY_DATABASE).toString());
+                pool.setUser(infosParams.get(KEY_USER).toString());
+                pool.setPassword(infosParams.get(KEY_PASSWORD).toString());
+                //pool.setLoginTimeout(5);
+
+                final DataSource dataSource = new WrappedDataSource(pool);
+
+                database = new CoverageDatabase(dataSource, properties);
+
+                refreshTable();
+                but_refresh.setEnabled(true);
             }
         }.start();
         
