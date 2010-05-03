@@ -118,6 +118,8 @@
                 <package>com.vividsolutions.jtsexample.operation.polygonize</package>
                 <package>com.vividsolutions.jtsexample.precision</package>
                 <package>com.vividsolutions.jtsexample.technique</package>
+                <package>gnu.getopt</package>
+                <package>gnu.regexp</package>
                 <package>java_cup.runtime</package>
                 <package>javax.vecmath</package>
                 <package>javax.xml</package>
@@ -130,6 +132,7 @@
                 <package>javax.xml.transform.stream</package>
                 <package>javax.xml.validation</package>
                 <package>javax.xml.xpath</package>
+                <package>net.jcip.annotations</package>
                 <package>net.sf.jasperreports.ant</package>
                 <package>net.sf.jasperreports.charts</package>
                 <package>net.sf.jasperreports.charts.base</package>
@@ -175,6 +178,21 @@
                 <package>net.sf.jasperreports.swing</package>
                 <package>net.sf.jasperreports.view</package>
                 <package>net.sf.jasperreports.view.save</package>
+                <package>opendap</package>
+                <package>opendap.dap</package>
+                <package>opendap.dap.Server</package>
+                <package>opendap.dap.XMLparser</package>
+                <package>opendap.dap.functions</package>
+                <package>opendap.dap.parser</package>
+                <package>opendap.dap.test</package>
+                <package>opendap.servers.ascii</package>
+                <package>opendap.servers.test</package>
+                <package>opendap.servers.www</package>
+                <package>opendap.servlet</package>
+                <package>opendap.util</package>
+                <package>opendap.util.geturl</package>
+                <package>opendap.util.geturl.gui</package>
+                <package>opendap.util.gui</package>
                 <package>org.apache.avalon.framework</package>
                 <package>org.apache.avalon.framework.activity</package>
                 <package>org.apache.avalon.framework.availability</package>
@@ -258,6 +276,11 @@
                 <package>org.apache.commons.beanutils.converters</package>
                 <package>org.apache.commons.beanutils.locale</package>
                 <package>org.apache.commons.beanutils.locale.converters</package>
+                <package>org.apache.commons.codec</package>
+                <package>org.apache.commons.codec.binary</package>
+                <package>org.apache.commons.codec.digest</package>
+                <package>org.apache.commons.codec.language</package>
+                <package>org.apache.commons.codec.net</package>
                 <package>org.apache.commons.collections</package>
                 <package>org.apache.commons.collections.bag</package>
                 <package>org.apache.commons.collections.bidimap</package>
@@ -279,6 +302,14 @@
                 <package>org.apache.commons.digester.plugins.strategies</package>
                 <package>org.apache.commons.digester.substitution</package>
                 <package>org.apache.commons.digester.xmlrules</package>
+                <package>org.apache.commons.httpclient</package>
+                <package>org.apache.commons.httpclient.auth</package>
+                <package>org.apache.commons.httpclient.cookie</package>
+                <package>org.apache.commons.httpclient.methods</package>
+                <package>org.apache.commons.httpclient.methods.multipart</package>
+                <package>org.apache.commons.httpclient.params</package>
+                <package>org.apache.commons.httpclient.protocol</package>
+                <package>org.apache.commons.httpclient.util</package>
                 <package>org.apache.commons.io</package>
                 <package>org.apache.commons.io.filefilter</package>
                 <package>org.apache.commons.io.input</package>
@@ -1032,6 +1063,10 @@
                 <package>org.postgresql.translation</package>
                 <package>org.postgresql.util</package>
                 <package>org.postgresql.xa</package>
+                <package>org.slf4j</package>
+                <package>org.slf4j.helpers</package>
+                <package>org.slf4j.impl</package>
+                <package>org.slf4j.spi</package>
                 <package>org.w3c.css.sac</package>
                 <package>org.w3c.css.sac.helpers</package>
                 <package>org.w3c.dom</package>
@@ -1051,6 +1086,98 @@
                 <package>org.xml.sax</package>
                 <package>org.xml.sax.ext</package>
                 <package>org.xml.sax.helpers</package>
+                <package>thredds.catalog</package>
+                <package>thredds.catalog.crawl</package>
+                <package>thredds.catalog.dl</package>
+                <package>thredds.catalog.parser.jdom</package>
+                <package>thredds.catalog.query</package>
+                <package>thredds.catalog.util</package>
+                <package>thredds.cataloggen</package>
+                <package>thredds.cataloggen.catalogrefexpander</package>
+                <package>thredds.cataloggen.config</package>
+                <package>thredds.cataloggen.datasetenhancer</package>
+                <package>thredds.cataloggen.inserter</package>
+                <package>thredds.crawlabledataset</package>
+                <package>thredds.crawlabledataset.filter</package>
+                <package>thredds.crawlabledataset.sorter</package>
+                <package>thredds.filesystem</package>
+                <package>thredds.inventory</package>
+                <package>thredds.inventory.filter</package>
+                <package>thredds.util</package>
+                <package>thredds.wcs</package>
+                <package>thredds.wcs.v1_0_0_1</package>
+                <package>thredds.wcs.v1_0_0_Plus</package>
+                <package>thredds.wcs.v1_1_0</package>
+                <package>ucar.atd.dorade</package>
+                <package>ucar.ma2</package>
+                <package>ucar.nc2</package>
+                <package>ucar.nc2.constants</package>
+                <package>ucar.nc2.dataset</package>
+                <package>ucar.nc2.dataset.conv</package>
+                <package>ucar.nc2.dataset.transform</package>
+                <package>ucar.nc2.dods</package>
+                <package>ucar.nc2.dt</package>
+                <package>ucar.nc2.dt.fmr</package>
+                <package>ucar.nc2.dt.fmrc</package>
+                <package>ucar.nc2.dt.grid</package>
+                <package>ucar.nc2.dt.image</package>
+                <package>ucar.nc2.dt.point</package>
+                <package>ucar.nc2.dt.point.decode</package>
+                <package>ucar.nc2.dt.radial</package>
+                <package>ucar.nc2.dt.trajectory</package>
+                <package>ucar.nc2.ft</package>
+                <package>ucar.nc2.ft.coordsys</package>
+                <package>ucar.nc2.ft.grid</package>
+                <package>ucar.nc2.ft.point</package>
+                <package>ucar.nc2.ft.point.collection</package>
+                <package>ucar.nc2.ft.point.remote</package>
+                <package>ucar.nc2.ft.point.standard</package>
+                <package>ucar.nc2.ft.point.standard.plug</package>
+                <package>ucar.nc2.ft.point.writer</package>
+                <package>ucar.nc2.ft.radial</package>
+                <package>ucar.nc2.ft.scan</package>
+                <package>ucar.nc2.geotiff</package>
+                <package>ucar.nc2.iosp</package>
+                <package>ucar.nc2.iosp.adde</package>
+                <package>ucar.nc2.iosp.bufr</package>
+                <package>ucar.nc2.iosp.bufr.tables</package>
+                <package>ucar.nc2.iosp.bufr.writer</package>
+                <package>ucar.nc2.iosp.cinrad</package>
+                <package>ucar.nc2.iosp.dmsp</package>
+                <package>ucar.nc2.iosp.dorade</package>
+                <package>ucar.nc2.iosp.fysat</package>
+                <package>ucar.nc2.iosp.fysat.util</package>
+                <package>ucar.nc2.iosp.gempak</package>
+                <package>ucar.nc2.iosp.gini</package>
+                <package>ucar.nc2.iosp.grib</package>
+                <package>ucar.nc2.iosp.grid</package>
+                <package>ucar.nc2.iosp.hdf4</package>
+                <package>ucar.nc2.iosp.hdf5</package>
+                <package>ucar.nc2.iosp.mcidas</package>
+                <package>ucar.nc2.iosp.misc</package>
+                <package>ucar.nc2.iosp.netcdf3</package>
+                <package>ucar.nc2.iosp.nexrad2</package>
+                <package>ucar.nc2.iosp.nids</package>
+                <package>ucar.nc2.iosp.uamiv</package>
+                <package>ucar.nc2.iosp.uf</package>
+                <package>ucar.nc2.ncml</package>
+                <package>ucar.nc2.stream</package>
+                <package>ucar.nc2.thredds</package>
+                <package>ucar.nc2.units</package>
+                <package>ucar.nc2.util</package>
+                <package>ucar.nc2.util.cache</package>
+                <package>ucar.nc2.util.net</package>
+                <package>ucar.nc2.util.xml</package>
+                <package>ucar.unidata.geoloc</package>
+                <package>ucar.unidata.geoloc.ogc</package>
+                <package>ucar.unidata.geoloc.projection</package>
+                <package>ucar.unidata.geoloc.projection.proj4</package>
+                <package>ucar.unidata.geoloc.vertical</package>
+                <package>ucar.unidata.io</package>
+                <package>ucar.unidata.io.bzip2</package>
+                <package>ucar.unidata.io.http</package>
+                <package>ucar.unidata.util</package>
+                <package>ucar.units</package>
             </public-packages>
             <class-path-extension>
                 <runtime-relative-path>ext/avalon-framework-api.jar</runtime-relative-path>
@@ -1071,6 +1198,10 @@
             <class-path-extension>
                 <runtime-relative-path>ext/batik-bridge.jar</runtime-relative-path>
                 <binary-origin>release/modules/ext/batik-bridge.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/bufrTables.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/bufrTables.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
                 <runtime-relative-path>ext/batik-css.jar</runtime-relative-path>
@@ -1137,8 +1268,16 @@
                 <binary-origin>release/modules/ext/commons-dbcp.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
+                <runtime-relative-path>ext/commons-codec.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/commons-codec.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
                 <runtime-relative-path>ext/commons-digester.jar</runtime-relative-path>
                 <binary-origin>release/modules/ext/commons-digester.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/commons-httpclient.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/commons-httpclient.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
                 <runtime-relative-path>ext/commons-io.jar</runtime-relative-path>
@@ -1179,6 +1318,10 @@
             <class-path-extension>
                 <runtime-relative-path>ext/geotk-coverage.jar</runtime-relative-path>
                 <binary-origin>release/modules/ext/geotk-coverage.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/geotk-coverage-netcdf.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/geotk-coverage-netcdf.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
                 <runtime-relative-path>ext/geotk-coverage-sql.jar</runtime-relative-path>
@@ -1387,6 +1530,22 @@
             <class-path-extension>
                 <runtime-relative-path>ext/swingx.jar</runtime-relative-path>
                 <binary-origin>release/modules/ext/swingx.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/netcdf.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/netcdf.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/opendap.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/opendap.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/slf4j-api.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/slf4j-api.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/slf4j-jdk14.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/slf4j-jdk14.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
                 <runtime-relative-path>ext/timingframework.jar</runtime-relative-path>
