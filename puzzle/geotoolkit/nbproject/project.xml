@@ -871,6 +871,7 @@
                 <package>org.geotoolkit.ogc.xml.v110</package>
                 <package>org.geotoolkit.parameter</package>
                 <package>org.geotoolkit.referencing</package>
+                <package>org.geotoolkit.referencing.adapters</package>
                 <package>org.geotoolkit.referencing.crs</package>
                 <package>org.geotoolkit.referencing.cs</package>
                 <package>org.geotoolkit.referencing.datum</package>
@@ -1320,8 +1321,8 @@
                 <binary-origin>release/modules/ext/geotk-coverage.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
-                <runtime-relative-path>ext/geotk-coverage-netcdf.jar</runtime-relative-path>
-                <binary-origin>release/modules/ext/geotk-coverage-netcdf.jar</binary-origin>
+                <runtime-relative-path>ext/geotk-coverageio-netcdf.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/geotk-coverageio-netcdf.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
                 <runtime-relative-path>ext/geotk-coverage-sql.jar</runtime-relative-path>

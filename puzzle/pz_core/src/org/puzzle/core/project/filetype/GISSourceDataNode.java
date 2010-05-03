@@ -143,19 +143,22 @@ public class GISSourceDataNode extends DataNode {
         @Override
         protected boolean createKeys(List<String> keys) {
 
-            obj.getSource().load();
-            final DataStore store = obj.getSource().getLookup().lookup(DataStore.class);
+            final GISSource source = obj.getSource();
 
-            if(store != null){
-                try {
-                    typeNames = store.getTypeNames();
+            if(source != null){
+                final DataStore store = source.getLookup().lookup(DataStore.class);
 
-                    for(int i=0; i<typeNames.length; i++){
-                        keys.add(typeNames[i]);
+                if(store != null){
+                    try {
+                        typeNames = store.getTypeNames();
+
+                        for(int i=0; i<typeNames.length; i++){
+                            keys.add(typeNames[i]);
+                        }
+
+                    } catch (DataStoreException ex) {
+                        Exceptions.printStackTrace(ex);
                     }
-
-                } catch (DataStoreException ex) {
-                    Exceptions.printStackTrace(ex);
                 }
             }
 
