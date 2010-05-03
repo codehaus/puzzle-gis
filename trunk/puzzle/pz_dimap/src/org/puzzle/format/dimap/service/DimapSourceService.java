@@ -23,9 +23,8 @@ import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.filechooser.FileFilter;
+
 import org.geotoolkit.gui.swing.misc.FileFormat;
-import org.geotoolkit.image.io.plugin.DimapImageReader;
-import org.geotoolkit.image.jai.Registry;
 
 import org.openide.util.Exceptions;
 
@@ -44,11 +43,6 @@ import org.puzzle.format.dimap.resources.DimapResource;
  */
 public class DimapSourceService extends AbstractGISSourceService implements FileSourceCreation{
     private static final String SERVICE_ID = "SingleDimap";
-
-    static {
-        Registry.setDefaultCodecPreferences();
-        DimapImageReader.Spi.registerDefaults(null);
-    }
 
     /** {@inheritDoc} */
     @Override
