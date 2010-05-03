@@ -32,6 +32,7 @@ import org.openide.util.Exceptions;
 
 import org.openide.util.ImageUtilities;
 import org.postgresql.ds.PGConnectionPoolDataSource;
+import org.puzzle.core.project.source.GISLayerSource;
 import org.puzzle.core.project.source.GISSource;
 import org.puzzle.core.project.source.GISSourceInfo;
 import org.puzzle.core.project.source.capabilities.JLayerChooser;
@@ -126,6 +127,10 @@ public class CoverageSQLSource extends GISSource{
             try {
                 final LayerCoverageReader coverageReader = database.createGridCoverageReader(coverageName);
                 final MapLayer layer = MapBuilder.createCoverageLayer(coverageReader, RandomStyleFactory.createRasterStyle(), coverageName);
+
+                final GISLayerSource source = new GISLayerSource(getInfo().getID(), parameters,CoverageSQLSource.this);
+                layer.setUserPropertie(GISLayerSource.KEY_LAYER_INFO, source);
+
                 return layer;
             } catch (CoverageStoreException ex) {
                 Exceptions.printStackTrace(ex);
