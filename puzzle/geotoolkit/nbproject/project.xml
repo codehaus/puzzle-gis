@@ -820,6 +820,7 @@
                 <package>org.geotoolkit.math</package>
                 <package>org.geotoolkit.measure</package>
                 <package>org.geotoolkit.metadata</package>
+                <package>org.geotoolkit.metadata.dimap</package>
                 <package>org.geotoolkit.metadata.iso</package>
                 <package>org.geotoolkit.metadata.iso.acquisition</package>
                 <package>org.geotoolkit.metadata.iso.citation</package>
@@ -1190,6 +1191,10 @@
             <class-path-extension>
                 <runtime-relative-path>ext/geotk-coverageio.jar</runtime-relative-path>
                 <binary-origin>release/modules/ext/geotk-coverageio.jar</binary-origin>
+            </class-path-extension>
+            <class-path-extension>
+                <runtime-relative-path>ext/geotk-coverageio-dimap.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/geotk-coverageio-dimap.jar</binary-origin>
             </class-path-extension>
             <class-path-extension>
                 <runtime-relative-path>ext/geotk-cql.jar</runtime-relative-path>
