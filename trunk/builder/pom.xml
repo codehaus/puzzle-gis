@@ -130,6 +130,11 @@
         </dependency>
         <dependency>
             <groupId>org.geotoolkit.pending</groupId>
+            <artifactId>geotk-coverageio-dimap</artifactId>
+            <version>${geotoolkit.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.geotoolkit.pending</groupId>
             <artifactId>geotk-jdbc-postgis</artifactId>
             <version>${geotoolkit.version}</version>
         </dependency>
