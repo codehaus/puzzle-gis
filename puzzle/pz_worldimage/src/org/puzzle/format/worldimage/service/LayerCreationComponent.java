@@ -17,6 +17,7 @@
 package org.puzzle.format.worldimage.service;
 
 import java.awt.Font;
+import java.awt.Graphics;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
@@ -44,8 +45,13 @@ public class LayerCreationComponent extends JLayerChooser {
         super(monitor);
         this.source = source;
         initComponents();
-        monitor.setReady(true);
         guiTitle.setText(name);
+    }
+
+    @Override
+    public void paint(Graphics g) {
+        super.paint(g);
+        getMonitor().setReady(true);
     }
 
     /** This method is called from within the constructor to

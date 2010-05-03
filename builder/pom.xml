@@ -57,6 +57,11 @@
         </dependency>
         <dependency>
             <groupId>org.geotoolkit</groupId>
+            <artifactId>geotk-coverage-sql</artifactId>
+            <version>${geotoolkit.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.geotoolkit</groupId>
             <artifactId>geotk-coverageio</artifactId>
             <version>${geotoolkit.version}</version>
         </dependency>
