@@ -25,7 +25,9 @@
                 <package>gov.nasa.worldwind.event</package>
                 <package>gov.nasa.worldwind.examples</package>
                 <package>gov.nasa.worldwind.examples.Hawaii</package>
+                <package>gov.nasa.worldwind.examples.analytics</package>
                 <package>gov.nasa.worldwind.examples.elevations</package>
+                <package>gov.nasa.worldwind.examples.multiwindow</package>
                 <package>gov.nasa.worldwind.examples.sunlight</package>
                 <package>gov.nasa.worldwind.examples.util</package>
                 <package>gov.nasa.worldwind.examples.util.cachecleaner</package>
@@ -39,7 +41,7 @@
                 <package>gov.nasa.worldwind.formats.nitfs</package>
                 <package>gov.nasa.worldwind.formats.nmea</package>
                 <package>gov.nasa.worldwind.formats.rpf</package>
-                <package>gov.nasa.worldwind.formats.shp</package>
+                <package>gov.nasa.worldwind.formats.shapefile</package>
                 <package>gov.nasa.worldwind.formats.tab</package>
                 <package>gov.nasa.worldwind.formats.tiff</package>
                 <package>gov.nasa.worldwind.formats.vpf</package>
@@ -48,7 +50,6 @@
                 <package>gov.nasa.worldwind.geom</package>
                 <package>gov.nasa.worldwind.geom.coords</package>
                 <package>gov.nasa.worldwind.globes</package>
-                <package>gov.nasa.worldwind.issues</package>
                 <package>gov.nasa.worldwind.layers</package>
                 <package>gov.nasa.worldwind.layers.Earth</package>
                 <package>gov.nasa.worldwind.layers.Mars</package>
@@ -72,6 +73,7 @@
                 <package>gov.nasa.worldwind.util.dashboard</package>
                 <package>gov.nasa.worldwind.util.measure</package>
                 <package>gov.nasa.worldwind.util.wizard</package>
+                <package>gov.nasa.worldwind.util.xml</package>
                 <package>gov.nasa.worldwind.view</package>
                 <package>gov.nasa.worldwind.view.firstperson</package>
                 <package>gov.nasa.worldwind.view.orbit</package>

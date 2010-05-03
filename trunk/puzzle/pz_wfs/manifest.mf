@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 OpenIDE-Module: org.puzzle.format.wfs
+OpenIDE-Module-Implementation-Version: 0
 OpenIDE-Module-Layer: org/puzzle/format/wfs/layer.xml
 OpenIDE-Module-Localizing-Bundle: org/puzzle/format/wfs/Bundle.properties
-OpenIDE-Module-Specification-Version: 1.0
 
