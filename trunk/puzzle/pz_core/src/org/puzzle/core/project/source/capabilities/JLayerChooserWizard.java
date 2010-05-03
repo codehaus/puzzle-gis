@@ -19,18 +19,20 @@ package org.puzzle.core.project.source.capabilities;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dialog;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.text.MessageFormat;
 import java.util.Collection;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListCellRenderer;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
-import javax.swing.JToolBar;
+import javax.swing.JSeparator;
+import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.EventListenerList;
@@ -57,7 +59,6 @@ public class JLayerChooserWizard extends JPanel implements WizardDescriptor.Pane
     JLayerChooserWizard(Collection<MapContext> contexts) {
         this.contexts = contexts;
         initComponents();
-        toolbar.setLayout(new FlowLayout());
 
         guiContexts.setModel( new DefaultComboBoxModel(contexts.toArray()) );
         guiContexts.setRenderer(new DefaultListCellRenderer() {
@@ -100,30 +101,52 @@ public class JLayerChooserWizard extends JPanel implements WizardDescriptor.Pane
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        toolbar = new JToolBar();
+
+        jPanel1 = new JPanel();
         jLabel1 = new JLabel();
         guiContexts = new JComboBox();
+        jSeparator1 = new JSeparator();
 
         setLayout(new BorderLayout());
 
-        toolbar.setFloatable(false);
-        toolbar.setRollover(true);
-
         jLabel1.setFont(jLabel1.getFont().deriveFont(jLabel1.getFont().getStyle() | Font.BOLD));
         jLabel1.setText(CoreResource.getString("map")); // NOI18N
-        toolbar.add(jLabel1);
-
         guiContexts.setModel(new DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        toolbar.add(guiContexts);
 
-        add(toolbar, BorderLayout.NORTH);
+        GroupLayout jPanel1Layout = new GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(ComponentPlacement.RELATED)
+                        .addComponent(guiContexts, 0, 335, Short.MAX_VALUE))
+                    .addComponent(jSeparator1, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 379, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(Alignment.BASELINE)
+                    .addComponent(guiContexts, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addPreferredGap(ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, GroupLayout.PREFERRED_SIZE, 11, GroupLayout.PREFERRED_SIZE))
+        );
+
+        add(jPanel1, BorderLayout.NORTH);
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private JComboBox guiContexts;
     private JLabel jLabel1;
-    private JToolBar toolbar;
+    private JPanel jPanel1;
+    private JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
 
 

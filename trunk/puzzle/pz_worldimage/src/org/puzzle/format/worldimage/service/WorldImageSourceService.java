@@ -91,11 +91,10 @@ public class WorldImageSourceService extends AbstractGISSourceService implements
     /** {@inheritDoc} */
     @Override
     public boolean isValidFile(File file) {
-        String name = file.getName().toLowerCase();
-        if(name.endsWith("png") || 
-           name.endsWith("jpg") ||
-           name.endsWith("jpeg")||
-           name.endsWith("bmp")) return true;
-        else return false;
+        final String name = file.getName().toLowerCase();
+        return name.endsWith("png") ||
+               name.endsWith("jpg") ||
+               name.endsWith("jpeg")||
+               name.endsWith("bmp");
     }
 }

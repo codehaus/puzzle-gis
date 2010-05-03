@@ -68,6 +68,7 @@
             <include name="fop.jar"/>
             <include name="filters.jar"/>
             <include name="geotk-coverage.jar"/>
+            <include name="geotk-coverage-sql.jar"/>
             <include name="geotk-coverageio.jar"/>
             <include name="geotk-coverageio-pending.jar"/>
             <include name="geotk-cql.jar"/>
@@ -88,6 +89,7 @@
             <include name="geotk-jdbc-postgis.jar"/>
             <include name="geotk-jdbc-core.jar"/>
             <include name="geotk-metadata.jar"/>
+            <include name="geotk-metadata-sql.jar"/>
             <include name="geotk-referencing.jar"/>
             <include name="geotk-render.jar"/>
             <include name="geotk-setup.jar"/>

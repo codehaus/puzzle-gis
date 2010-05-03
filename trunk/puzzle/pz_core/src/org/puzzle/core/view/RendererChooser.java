@@ -2,7 +2,7 @@
  *    Puzzle GIS - Desktop GIS Platform
  *    http://puzzle-gis.codehaus.org
  *
- *    (C) 2007-2009, Johann Sorel
+ *    (C) 2007-2010, Johann Sorel
  *
  *    This library is free software; you can redistribute it and/or
  *    modify it under the terms of the GNU Lesser General Public
@@ -16,24 +16,22 @@
  */
 package org.puzzle.core.view;
 
-import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dialog;
-import java.awt.GridLayout;
+import java.awt.Image;
 import java.text.MessageFormat;
 import java.util.Collection;
 import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
-import javax.swing.ButtonGroup;
+import javax.swing.DefaultListCellRenderer;
+import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JRadioButton;
+import javax.swing.JList;
+import javax.swing.JScrollPane;
+import javax.swing.ListSelectionModel;
 import javax.swing.event.ChangeListener;
 
 import org.openide.DialogDisplayer;
@@ -51,14 +49,11 @@ import org.puzzle.core.resources.CoreResource;
 public class RendererChooser implements WizardDescriptor.Panel {
 
     private final Collection<? extends RenderingService> services = Lookup.getDefault().lookupAll(RenderingService.class);
-    private final ButtonGroup group = new ButtonGroup();
-    private final Map<JRadioButton,RenderingService> link = new HashMap<JRadioButton, RenderingService>();
-    private final JPanel component = new JPanel();
+    private final JList lst = new JList();
     private boolean flagok = false;
     
     
     public RendererChooser(){
-        component.setLayout(new GridLayout(services.size(),1));
 
         SortedSet<RenderingService> set = new TreeSet<RenderingService>(new Comparator<RenderingService>() {
             @Override
@@ -68,37 +63,20 @@ public class RendererChooser implements WizardDescriptor.Panel {
         });
         set.addAll(services);
 
-        for(final RenderingService service : set){
-            component.add(createServicePane(service));
+        final DefaultListModel model = new DefaultListModel();
+        for(RenderingService serv : set){
+            model.addElement(serv);
         }
-
-        component.setName(CoreResource.getString("chooseRenderer"));
+        lst.setModel(model);
+        lst.setCellRenderer(new ServiceRenderer());
+        lst.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        lst.setSelectedIndex(0);
     }
-    
-    private JPanel createServicePane(RenderingService service){
-        JPanel pane = new JPanel(new BorderLayout());
-        JLabel label = new JLabel(new ImageIcon(service.getIcon()));
-        JRadioButton radio = new JRadioButton(service.getTitle(),true);
-        group.add(radio);
-        pane.add(BorderLayout.WEST,label);
-        pane.add(BorderLayout.CENTER,radio);
-        link.put(radio, service);
-        radio.setSelected(true);
-        return pane;        
-    }    
-    
-    public RenderingService getSelectedService(){
         
+    public RenderingService getSelectedService(){        
         if(flagok){
-            Set<JRadioButton> radios = link.keySet();
-
-            for(JRadioButton radio : radios){
-                if(radio.isSelected()){
-                    return link.get(radio);
-                }
-            }
+            return (RenderingService) lst.getSelectedValue();
         }
-        
         return null;
     }
     
@@ -125,9 +103,7 @@ public class RendererChooser implements WizardDescriptor.Panel {
         
     }
         
-    
     private WizardDescriptor.Panel[] panels;
-
 
     /**
      * Initialize panels representing individual wizard's steps and sets
@@ -166,6 +142,8 @@ public class RendererChooser implements WizardDescriptor.Panel {
      */
     @Override
     public Component getComponent() {
+        final JScrollPane component = new JScrollPane(lst);
+        component.setName(CoreResource.getString("chooseRenderer"));
         return component;
     }
 
@@ -174,10 +152,7 @@ public class RendererChooser implements WizardDescriptor.Panel {
      */
     @Override
     public HelpCtx getHelp() {
-        // Show no Help button for this panel:
         return HelpCtx.DEFAULT_HELP;
-        // If you have context help:
-        // return new HelpCtx(SampleWizardPanel1.class);
     }
 
     /**
@@ -185,13 +160,7 @@ public class RendererChooser implements WizardDescriptor.Panel {
      */
     @Override
     public boolean isValid() {
-        // If it is always OK to press Next or Finish, then:
         return true;
-        // If it depends on some condition (form filled out...), then:
-        // return someCondition();
-        // and when this condition changes (last form field filled in...) then:
-        // fireChangeEvent();
-        // and uncomment the complicated stuff below.
     }
 
     /**
@@ -221,6 +190,23 @@ public class RendererChooser implements WizardDescriptor.Panel {
     @Override
     public void storeSettings(Object settings) {
     }
-    
+
+    private static class ServiceRenderer extends DefaultListCellRenderer{
+
+        @Override
+        public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+            final JLabel lbl = (JLabel) super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+
+            if(value instanceof RenderingService){
+                final RenderingService serv = (RenderingService) value;
+                final Image img = serv.getIcon();
+                lbl.setIcon(img==null?null:new ImageIcon(img));
+                lbl.setText(serv.getTitle());
+            }
+
+            return lbl;
+        }
+
+    }
     
 }
