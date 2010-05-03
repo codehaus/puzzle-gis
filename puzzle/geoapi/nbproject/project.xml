@@ -20,6 +20,7 @@
                 <package>javax.measure.converter</package>
                 <package>javax.measure.quantity</package>
                 <package>javax.measure.unit</package>
+                <package>javax.measure.unit.format</package>
                 <package>org.opengis.annotation</package>
                 <package>org.opengis.coverage</package>
                 <package>org.opengis.coverage.grid</package>
