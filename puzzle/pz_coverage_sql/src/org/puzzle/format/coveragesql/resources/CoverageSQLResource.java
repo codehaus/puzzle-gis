@@ -2,7 +2,7 @@
  *    Puzzle GIS - Desktop GIS Platform
  *    http://puzzle-gis.codehaus.org
  *
- *    (C) 2007-2009, Johann Sorel
+ *    (C) 2010, Geomatys
  *
  *    This library is free software; you can redistribute it and/or
  *    modify it under the terms of the GNU Lesser General Public
@@ -20,7 +20,7 @@ import java.util.ResourceBundle;
 
 /**
  * I18N for this package
- * @author Johann Sorel (Puzzle-GIS)
+ * @author Johann Sorel
  */
 public final class CoverageSQLResource {
 

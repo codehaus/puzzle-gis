@@ -2,7 +2,7 @@
  *    Puzzle GIS - Desktop GIS Platform
  *    http://puzzle-gis.codehaus.org
  *
- *    (C) 2007-2009, Johann Sorel
+ *    (C) 2007-2010, Johann Sorel
  *
  *    This library is free software; you can redistribute it and/or
  *    modify it under the terms of the GNU Lesser General Public
@@ -19,7 +19,6 @@ package org.puzzle.format.coveragesql.ui;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,9 +26,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import javax.sql.DataSource;
-
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.DefaultListModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
@@ -43,27 +39,24 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
-import org.geotoolkit.coverage.sql.CoverageDatabase;
 
-import org.geotoolkit.data.DataStore;
+import org.geotoolkit.coverage.sql.CoverageDatabase;
 import org.geotoolkit.storage.DataStoreException;
-import org.geotoolkit.data.DataStoreFinder;
 import org.geotoolkit.sql.WrappedDataSource;
+
 import org.jdesktop.swingx.combobox.ListComboBoxModel;
 
-import org.openide.util.Exceptions;
 import org.postgresql.ds.PGConnectionPoolDataSource;
 
 import org.puzzle.core.project.source.capabilities.SourceCreationPane;
 import org.puzzle.core.project.source.GISSourceInfo;
 import org.puzzle.format.coveragesql.resources.CoverageSQLResource;
-import org.puzzle.format.coveragesql.service.CoverageSQLSource;
 import org.puzzle.format.coveragesql.service.CoverageSQLSourceService;
 
 import static org.puzzle.format.coveragesql.service.CoverageSQLSource.*;
 
 /**
- * PostGIS databaseChooser
+ * Coverage-SQL databaseChooser
  * 
  * @author Johann Sorel
  */
@@ -334,6 +327,7 @@ public class JCoverageSQLDataPanel extends SourceCreationPane {
     private JTextField jtf_user;
     // End of variables declaration//GEN-END:variables
     
+    @Override
     public Map<String,GISSourceInfo> createSources() {
         final Map<String,Serializable> params = new HashMap<String,Serializable>();
         params.put(KEY_SERVER, jtf_host.getText());

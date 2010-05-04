@@ -2,7 +2,7 @@
  *    Puzzle GIS - Desktop GIS Platform
  *    http://puzzle-gis.codehaus.org
  *
- *    (C) 2007-2009, Johann Sorel
+ *    (C) 2010, Geomatys
  *
  *    This library is free software; you can redistribute it and/or
  *    modify it under the terms of the GNU Lesser General Public
@@ -25,9 +25,9 @@ import org.puzzle.format.coveragesql.resources.CoverageSQLResource;
 import org.puzzle.format.coveragesql.ui.JCoverageSQLDataPanel;
 
 /**
- * PostGIS source service.
+ * Coverage-SQL source service.
  * 
- * @author Johann Sorel (Puzzle-GIS)
+ * @author Johann Sorel
  */
 public class CoverageSQLSourceService extends AbstractGISSourceService implements DistantSourceCreation{
 
