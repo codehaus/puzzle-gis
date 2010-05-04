@@ -101,6 +101,7 @@
             <include name="geotk-storage.jar"/>
             <include name="geotk-style.jar"/>
             <include name="geotk-shapefile.jar"/>
+            <include name="geotk-svg.jar"/>
             <include name="geotk-utility.jar"/>
             <include name="geotk-utility-pending.jar"/>
             <include name="geotk-widgets-swing.jar"/>
