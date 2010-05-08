@@ -36,6 +36,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.EventListenerList;
+import org.geotoolkit.map.FeatureMapLayer;
 
 import org.geotoolkit.map.MapContext;
 import org.geotoolkit.map.MapLayer;
@@ -172,6 +173,7 @@ public class JLayerChooserWizard extends JPanel implements WizardDescriptor.Pane
 
             new Thread() {
 
+                @Override
                 public void run() {
 
                     final ProgressHandle handle = ProgressHandleFactory.createHandle(
@@ -181,9 +183,8 @@ public class JLayerChooserWizard extends JPanel implements WizardDescriptor.Pane
                     handle.switchToIndeterminate();
 
                     try {
-                        MapLayer[] layers = comp.getLayers();
-
-                        for (MapLayer layer : layers) {
+                        for (MapLayer layer : comp.getLayers()) {
+                            layer.setSelectable(layer instanceof FeatureMapLayer);
                             context.layers().add(layer);
                         }
                     } finally {
@@ -191,8 +192,6 @@ public class JLayerChooserWizard extends JPanel implements WizardDescriptor.Pane
                     }
                 }
             }.start();
-
-
 
         }
 

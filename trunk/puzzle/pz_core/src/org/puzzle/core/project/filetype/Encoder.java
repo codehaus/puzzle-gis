@@ -69,6 +69,7 @@ public class Encoder {
     private static final String TAG_LAYER = "Layer";
     private static final String TAG_LAYER_SOURCE = "Source";
     private static final String TAG_LAYER_STYLE = "sld:UserStyle";
+    private static final String TAG_LAYER_SELECTABLE = "selectable";
     private static final String TAG_LAYER_VISIBLE = "visible";
     private static final String TAG_LAYER_QUERY = "filter";
 
@@ -125,6 +126,7 @@ public class Encoder {
         MutableStyle style = new DefaultStyleFactory().style();
         Filter filter = null;
         boolean visible = true;
+        boolean selectable = true;
 
         final NodeList elements = node.getChildNodes();
         for (int j = 0, m = elements.getLength(); j < m; j++) {
@@ -146,6 +148,8 @@ public class Encoder {
                 }
             } else if (TAG_LAYER_VISIBLE.equals(elementName)) {
                 visible = Boolean.parseBoolean(elementNode.getTextContent());
+            } else if (TAG_LAYER_SELECTABLE.equals(elementName)) {
+                selectable = Boolean.parseBoolean(elementNode.getTextContent());
             } else if (TAG_LAYER_QUERY.equals(elementName)) {
                 try {
                     filter = new XMLUtilities().readFilter(elementNode, org.geotoolkit.sld.xml.Specification.Filter.V_1_1_0);
@@ -166,6 +170,7 @@ public class Encoder {
                     layer.setDescription(new DefaultStyleFactory().description(title, ""));
                     layer.setStyle(style);
                     layer.setVisible(visible);
+                    layer.setSelectable(selectable);
                     if(layer instanceof FeatureMapLayer){
                         FeatureMapLayer fml = (FeatureMapLayer) layer;
                         if(filter != null){
@@ -284,6 +289,7 @@ public class Encoder {
             final Element sourceId = doc.createElement(TAG_ID);
             final Element sourceParams = doc.createElement(TAG_PARAMETERS);
             final Element visibleNode = doc.createElement(TAG_LAYER_VISIBLE);
+            final Element selectableNode = doc.createElement(TAG_LAYER_SELECTABLE);
             sourceId.setTextContent(String.valueOf(id));
             final Iterator<String> keys = params.keySet().iterator();
             while (keys.hasNext()) {
@@ -292,11 +298,13 @@ public class Encoder {
                 aParam.setTextContent(params.get(key));
                 sourceParams.appendChild(aParam);
             }
-            visibleNode.setTextContent(Boolean.valueOf(layer.isVisible()).toString());
+            visibleNode.setTextContent(Boolean.toString(layer.isVisible()));
+            selectableNode.setTextContent(Boolean.toString(layer.isSelectable()));
             layerSource.appendChild(sourceId);
             layerSource.appendChild(sourceParams);
             layerNode.appendChild(layerSource);
             layerNode.appendChild(visibleNode);
+            layerNode.appendChild(selectableNode);
 
             //store features filter
             if(layer instanceof FeatureMapLayer){
