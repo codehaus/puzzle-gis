@@ -194,7 +194,7 @@ public class GISContextDataObject extends XMLDataObject {
     public void createView(RenderingService service){
         if(service != null){
             //TODO replace the math random by a valid id finder
-            final GISViewInfo info = new GISViewInfo((int)(Math.random()*100000), service.getIdentifier(),"", new HashMap<String, String>());
+            final GISViewInfo info = new GISViewInfo((int)(Math.random()*Integer.MAX_VALUE), service.getIdentifier(),"", new HashMap<String, String>());
             info.setTitle(getContext().getDescription().getTitle().toString() + " - "+ service.getIdentifier());
             createView(info,true);
             setNeedViewSave(true);
@@ -210,6 +210,7 @@ public class GISContextDataObject extends XMLDataObject {
         if(open){
             ViewComponent comp = view.getComponent(true);
             if(comp != null && !comp.isOpened()) comp.open();
+            comp.requestActive();
         }
     }
 

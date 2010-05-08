@@ -22,6 +22,7 @@ import java.awt.Dialog;
 import java.awt.Font;
 import java.text.MessageFormat;
 import java.util.Collection;
+import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.GroupLayout;
@@ -40,6 +41,7 @@ import org.geotoolkit.map.FeatureMapLayer;
 
 import org.geotoolkit.map.MapContext;
 import org.geotoolkit.map.MapLayer;
+import org.jdesktop.swingx.combobox.ListComboBoxModel;
 
 import org.netbeans.api.progress.ProgressHandle;
 import org.netbeans.api.progress.ProgressHandleFactory;
@@ -57,11 +59,12 @@ public class JLayerChooserWizard extends JPanel implements WizardDescriptor.Pane
     private final Collection<? extends MapContext> contexts;
     private boolean valid = false;
 
-    JLayerChooserWizard(Collection<MapContext> contexts) {
+    JLayerChooserWizard(List<MapContext> contexts, int selectedContext) {
         this.contexts = contexts;
         initComponents();
 
-        guiContexts.setModel( new DefaultComboBoxModel(contexts.toArray()) );
+        guiContexts.setModel( new ListComboBoxModel(contexts) );
+        guiContexts.setSelectedIndex(selectedContext);
         guiContexts.setRenderer(new DefaultListCellRenderer() {
 
             @Override
@@ -74,9 +77,6 @@ public class JLayerChooserWizard extends JPanel implements WizardDescriptor.Pane
                 }
             }
         });
-
-        guiContexts.setSelectedItem(contexts.iterator().next());
-
     }
 
     @Override
@@ -156,8 +156,8 @@ public class JLayerChooserWizard extends JPanel implements WizardDescriptor.Pane
      * map view.
      * @return MapView or null if wizard was canceled.
      */
-    public static void showChooserDialog(final Collection<MapContext> contexts, final LayerCreation lc){
-        final JLayerChooserWizard chooser = new JLayerChooserWizard(contexts);
+    public static void showChooserDialog(final List<MapContext> contexts, final LayerCreation lc, int selectedContext){
+        final JLayerChooserWizard chooser = new JLayerChooserWizard(contexts,selectedContext);
         final JLayerChooser comp = lc.createChooser(chooser);
         chooser.setChooser(comp);
         final WizardDescriptor wizardDescriptor = new WizardDescriptor(chooser.getPanels());

@@ -54,7 +54,7 @@ import org.puzzle.core.view.ViewComponent;
  * 
  * @author : Johann Sorel (Puzzle-GIS)
  */
-final class ContextTreeTopComponent extends TopComponent{
+public final class ContextTreeTopComponent extends TopComponent{
 
     private static Lookup.Result resultContext = null;
     private static Lookup.Result resultViews = null;

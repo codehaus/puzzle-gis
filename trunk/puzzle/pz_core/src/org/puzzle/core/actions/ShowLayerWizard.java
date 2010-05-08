@@ -16,9 +16,10 @@
  */
 package org.puzzle.core.actions;
 
-import java.util.Collection;
-
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.SwingUtilities;
+
 import org.geotoolkit.map.MapContext;
 
 import org.netbeans.api.project.FileOwnerQuery;
@@ -34,6 +35,7 @@ import org.puzzle.core.project.GISProject;
 import org.puzzle.core.project.source.capabilities.JLayerChooserWizard;
 import org.puzzle.core.project.source.capabilities.LayerCreation;
 import org.puzzle.core.resources.CoreResource;
+import org.puzzle.core.windows.mapdetail.ContextTreeTopComponent;
 
 /**
  *  Action to show a layer creation wizard, this wizard will query the source
@@ -56,14 +58,18 @@ public final class ShowLayerWizard extends NodeAction {
             @Override
             public void run(){
                 final LayerCreation creation = activatedNodes[0].getLookup().lookup(LayerCreation.class);
-                final Collection<MapContext> contexts = prj.getContexts();
+                final List<MapContext> contexts = new ArrayList<MapContext>(prj.getContexts());
+
+                //search for the mapcontext displayed in the tree
+                final MapContext context = ContextTreeTopComponent.getContextTree().getContext();
+                final int favoriteContext = contexts.indexOf(context);
 
                 if(contexts.size() > 0 && prj != null){
                     SwingUtilities.invokeLater(new Runnable() {
 
                         @Override
                         public void run() {
-                            JLayerChooserWizard.showChooserDialog(contexts, creation);
+                            JLayerChooserWizard.showChooserDialog(contexts, creation,favoriteContext);
                         }
                     });
 
