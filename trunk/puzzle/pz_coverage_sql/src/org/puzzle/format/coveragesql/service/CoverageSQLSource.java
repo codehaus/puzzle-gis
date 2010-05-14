@@ -65,9 +65,11 @@ public class CoverageSQLSource extends GISSource{
     CoverageSQLSource(final GISSourceInfo info){
         super(info);
         content.add(new  DimapLayerCreation());
+        content.add(this);
     }
 
     public CoverageDatabase getDatabase() {
+        load();
         return database;
     }
 
