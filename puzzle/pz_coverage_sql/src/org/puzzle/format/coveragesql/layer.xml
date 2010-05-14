@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE filesystem PUBLIC "-//NetBeans//DTD Filesystem 1.1//EN" "http://www.netbeans.org/dtds/filesystem-1_1.dtd">
 <filesystem>
+    <folder name="Loaders">
+        <folder name="text">
+            <folder name="gissource+xml">
+                <folder name="Actions">
+                    <file name="org-puzzle-format-coveragesql-ui-DataBaseExplorer.instance">
+                        <attr name="position" intvalue="800"/>
+                    </file>
+                </folder>
+            </folder>
+        </folder>
+    </folder>
 </filesystem>
