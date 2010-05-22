@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+OpenIDE-Module: org.puzzle.format.coveragefile
+OpenIDE-Module-Layer: org/puzzle/format/coveragefile/layer.xml
+OpenIDE-Module-Localizing-Bundle: org/puzzle/format/coveragefile/Bundle.properties
+OpenIDE-Module-Specification-Version: 1.0
+
