@@ -41,8 +41,8 @@ public class JPropertyTree extends JXTree{
         public Component getTreeCellRendererComponent(JTree arg0, Object obj, boolean arg2, boolean arg3, boolean arg4, int arg5, boolean arg6) {
             super.getTreeCellRendererComponent(arg0, obj, arg2, arg3, arg4, arg5, arg6);
 
-            DefaultMutableTreeNode node = (DefaultMutableTreeNode) obj;
-            Object value = node.getUserObject();
+            final DefaultMutableTreeNode node = (DefaultMutableTreeNode) obj;
+            final Object value = node.getUserObject();
 
             if(node.isLeaf()){
                 PaneRenderer.this.setIcon(new ImageIcon(ImageUtilities.loadImage("org/puzzle/core/resources/bullet.png", true)));
@@ -51,9 +51,9 @@ public class JPropertyTree extends JXTree{
             }
 
             if(value instanceof PropertyPane){
-                PropertyPane pane = (PropertyPane) value;
+                final PropertyPane pane = (PropertyPane) value;
 
-                ImageIcon icon = pane.getIcon();
+                final ImageIcon icon = pane.getIcon();
                 if(icon != null){
                     PaneRenderer.this.setIcon(icon);
                 }

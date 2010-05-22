@@ -24,8 +24,9 @@ import org.puzzle.core.project.filetype.GISSourceDataObject;
 import org.puzzle.core.resources.CoreResource;
 
 /**
+ * Action to unload a source.
  *
- * @author eclesia
+ * @author Johann Sorel (Puzzle-GIS)
  */
 public class UnLoadSource extends NodeAction{
 
@@ -83,9 +84,8 @@ public class UnLoadSource extends NodeAction{
     protected boolean enable(Node[] activatedNodes) {
         if(activatedNodes == null || activatedNodes.length != 1) return false;
 
-        Lookup lk = activatedNodes[0].getLookup();
-
-        GISSourceDataObject obj = lk.lookup(GISSourceDataObject.class);
+        final Lookup lk = activatedNodes[0].getLookup();
+        final GISSourceDataObject obj = lk.lookup(GISSourceDataObject.class);
         return ( obj != null ) ;
     }
 

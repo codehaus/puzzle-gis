@@ -26,6 +26,7 @@ import org.opengis.filter.Id;
 import org.puzzle.core.resources.CoreResource;
 
 /**
+ * Feature Table action to copy the selected datas.
  *
  * @author Johann Sorel (Puzzle-GIS)
  */

@@ -18,21 +18,22 @@ package org.puzzle.core.actions;
 
 import java.awt.BorderLayout;
 import javax.swing.JComponent;
-
 import javax.swing.SwingUtilities;
+
 import org.geotoolkit.data.DataStore;
 import org.geotoolkit.data.FeatureCollection;
 import org.geotoolkit.data.query.QueryBuilder;
-import org.geotoolkit.feature.DefaultName;
 import org.geotoolkit.gui.swing.propertyedit.LayerFeaturePropertyPanel;
 import org.geotoolkit.map.FeatureMapLayer;
 import org.geotoolkit.map.MapBuilder;
 import org.geotoolkit.util.RandomStyleFactory;
+
 import org.netbeans.api.progress.ProgressHandle;
 import org.netbeans.api.progress.ProgressHandleFactory;
+
 import org.opengis.feature.simple.SimpleFeature;
-import org.opengis.feature.simple.SimpleFeatureType;
 import org.opengis.feature.type.Name;
+
 import org.openide.nodes.Node;
 import org.openide.util.Exceptions;
 import org.openide.util.HelpCtx;
@@ -42,6 +43,7 @@ import org.openide.util.lookup.Lookups;
 import org.openide.windows.Mode;
 import org.openide.windows.TopComponent;
 import org.openide.windows.WindowManager;
+
 import org.puzzle.core.resources.CoreResource;
 
 /**

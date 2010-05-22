@@ -93,10 +93,10 @@ public class RendererChooser implements WizardDescriptor.Panel {
         // {0} will be replaced by WizardDesriptor.Panel.getComponent().getName()
         wizardDescriptor.setTitleFormat(new MessageFormat("{0}"));
         wizardDescriptor.setTitle(CoreResource.getString("chooseRenderer"));
-        Dialog dialog = DialogDisplayer.getDefault().createDialog(wizardDescriptor);
+        final Dialog dialog = DialogDisplayer.getDefault().createDialog(wizardDescriptor);
         dialog.setVisible(true);
         dialog.toFront();
-        boolean cancelled = wizardDescriptor.getValue() != WizardDescriptor.FINISH_OPTION;
+        final boolean cancelled = wizardDescriptor.getValue() != WizardDescriptor.FINISH_OPTION;
         if (!cancelled) {
            this.flagok = true;
         }

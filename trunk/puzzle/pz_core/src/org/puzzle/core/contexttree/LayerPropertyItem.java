@@ -28,11 +28,11 @@ import org.geotoolkit.gui.swing.contexttree.AbstractTreePopupItem;
 import org.geotoolkit.gui.swing.propertyedit.JPropertyDialog;
 import org.geotoolkit.gui.swing.propertyedit.PropertyPane;
 import org.geotoolkit.map.MapLayer;
-import org.puzzle.core.windows.mapdetail.JPropertyTree;
 
 /**
+ * Display the properties of a layer.
  *
- * @author eclesia
+ * @author Johann Sorel (Puzzle-GIS)
  */
 public class LayerPropertyItem extends AbstractTreePopupItem {
 

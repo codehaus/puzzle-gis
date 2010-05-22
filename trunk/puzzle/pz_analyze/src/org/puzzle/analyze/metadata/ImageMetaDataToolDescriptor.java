@@ -25,8 +25,9 @@ import org.puzzle.core.tool.AbstractToolDescriptor;
 import org.puzzle.core.windows.toolbox.tree.ToolTreeConstants;
 
 /**
- *
- * @author eclesia
+ * Tool which display an explorer. This explorer allow visualisation
+ * of metadatas of coverags and a preview.
+ * @author Johann Sorel
  */
 public class ImageMetaDataToolDescriptor extends AbstractToolDescriptor{
 
@@ -55,7 +56,7 @@ public class ImageMetaDataToolDescriptor extends AbstractToolDescriptor{
      */
     @Override
     public Component getComponent() {
-        ImageFileChooser chooser = new ImageFileChooser("", true);
+        final ImageFileChooser chooser = new ImageFileChooser("", true);
         chooser.showDialog(null, null);
         return null;
     }

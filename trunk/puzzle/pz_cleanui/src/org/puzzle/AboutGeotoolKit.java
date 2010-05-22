@@ -29,7 +29,7 @@ public final class AboutGeotoolKit implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        About about = new About();
+        final About about = new About();
         about.showDialog(null);
     }
 }
