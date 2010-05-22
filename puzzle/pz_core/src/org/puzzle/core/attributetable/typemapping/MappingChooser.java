@@ -48,7 +48,7 @@ import org.openide.util.HelpCtx;
 import org.puzzle.core.resources.CoreResource;
 
 /**
- * Panel to choose the rendering engine.
+ * Panel to choose the feature type mapping between different sources.
  * It can used in a wizard.
  * 
  * @author Johann Sorel (Puzzle-GIS)
@@ -109,10 +109,10 @@ public class MappingChooser implements WizardDescriptor.Panel {
             final Map<PropertyDescriptor,Object> defaults = new HashMap<PropertyDescriptor, Object>();
 
             for(int i=0, n=model.getRowCount(); i<n; i++){
-                String attName = model.getValueAt(i, 0).toString();
-                Object value = model.getValueAt(i, 1);
+                final String attName = model.getValueAt(i, 0).toString();
+                final Object value = model.getValueAt(i, 1);
+                final PropertyDescriptor desc = graph.getTargetType().getDescriptor(attName);
 
-                PropertyDescriptor desc = graph.getTargetType().getDescriptor(attName);
                 if(desc != null){
                     defaults.put(desc, value);
                 }
@@ -132,15 +132,13 @@ public class MappingChooser implements WizardDescriptor.Panel {
      */
     public void showChooserDialog(){
 
-//        JOptionPane.showInputDialog(null, this, "gnagnagna", JOptionPane.OK_CANCEL_OPTION);
-
         final WizardDescriptor wizardDescriptor = new WizardDescriptor(this.getPanels());
         // {0} will be replaced by WizardDesriptor.Panel.getComponent().getName()
         wizardDescriptor.setTitleFormat(new MessageFormat("{0}"));
         wizardDescriptor.setTitle(CoreResource.getString("configure_mapping"));
         wizardDescriptor.putProperty(WizardDescriptor.PROP_CONTENT_DISPLAYED, false);
         wizardDescriptor.putProperty(WizardDescriptor.PROP_TITLE, false);
-        Dialog dialog = DialogDisplayer.getDefault().createDialog(wizardDescriptor);
+        final Dialog dialog = DialogDisplayer.getDefault().createDialog(wizardDescriptor);
         dialog.setVisible(true);
         dialog.toFront();
         boolean cancelled = wizardDescriptor.getValue() != WizardDescriptor.FINISH_OPTION;

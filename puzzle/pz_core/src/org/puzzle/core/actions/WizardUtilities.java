@@ -26,6 +26,8 @@ import org.openide.WizardDescriptor;
 import org.openide.util.HelpCtx;
 
 /**
+ * Utility clas to create a simple wizard with a single panel.
+ *
  * @author Johann Sorel (Puzzle-GIS)
  */
 public class WizardUtilities {
@@ -97,8 +99,8 @@ public class WizardUtilities {
         }
 
         protected final void fireChangeEvent() {
-            ChangeEvent ev = new ChangeEvent(this);
-            ChangeListener[] lst = listeners.getListeners(ChangeListener.class);
+            final ChangeEvent ev = new ChangeEvent(this);
+            final ChangeListener[] lst = listeners.getListeners(ChangeListener.class);
 
             for (ChangeListener cl : lst) {
                 cl.stateChanged(ev);

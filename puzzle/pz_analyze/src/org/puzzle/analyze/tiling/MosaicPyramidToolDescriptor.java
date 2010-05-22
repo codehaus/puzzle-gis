@@ -26,7 +26,7 @@ import org.puzzle.core.tool.AbstractToolDescriptor;
 import org.puzzle.core.windows.toolbox.tree.ToolTreeConstants;
 
 /**
- *
+ * Tool to create image mosaics and pyramid.
  * @author Johann Sorel (Puzzle-GIS)
  */
 public class MosaicPyramidToolDescriptor extends AbstractToolDescriptor{
@@ -57,8 +57,8 @@ public class MosaicPyramidToolDescriptor extends AbstractToolDescriptor{
     @Override
     public Component getComponent() {
         final MosaicWizard wizard = new MosaicWizard();
-            WizardDisplayer.showWizard(wizard.createWizard());
-            return null;
+        WizardDisplayer.showWizard(wizard.createWizard());
+        return null;
     }
 
     /**

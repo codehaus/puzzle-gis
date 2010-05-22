@@ -23,6 +23,7 @@ import org.geotoolkit.map.FeatureMapLayer;
 import org.opengis.filter.Filter;
 
 /**
+ * Acts as a buffer to copie datas from one source to another.
  *
  * @author Johann Sorel (Puzzle-GIS)
  */

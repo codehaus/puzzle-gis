@@ -16,24 +16,17 @@
  */
 package org.puzzle.core.actions;
 
-import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import javax.swing.AbstractAction;
 
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 import org.netbeans.api.progress.ProgressHandle;
 import org.netbeans.api.progress.ProgressHandleFactory;
 import org.netbeans.api.project.Project;
 import org.netbeans.api.project.ui.OpenProjects;
 
-import org.openide.DialogDescriptor;
 import org.openide.DialogDisplayer;
 import org.openide.NotifyDescriptor;
 import org.openide.WizardDescriptor;
@@ -43,7 +36,7 @@ import org.puzzle.core.project.source.GISSourceInfo;
 import org.puzzle.core.resources.CoreResource;
 
 /**
- * action to create new file sources.
+ * Action to create new file sources.
  *
  * @author Johann Sorel (Puzzle-GIS)
  */

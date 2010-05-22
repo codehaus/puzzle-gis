@@ -74,7 +74,7 @@ public final class NewMapContext extends AbstractAction {
         
         if(candidate != null && candidate instanceof GISProject) {
             final GISProject gis = (GISProject) candidate;
-            TemplateWizard tw = new TemplateWizard();
+            final TemplateWizard tw = new TemplateWizard();
             final Enumeration<DataObject> enu = tw.getTemplatesFolder().children();
             DataObject temp = null;
             while (enu.hasMoreElements()) {
@@ -85,7 +85,7 @@ public final class NewMapContext extends AbstractAction {
             }
 
             //System.out.println("templates Other folder = " + temp.getPrimaryFile().getPath());
-            FileObject[] templates = temp.getPrimaryFile().getChildren();
+            final FileObject[] templates = temp.getPrimaryFile().getChildren();
             for (FileObject fo : templates) {
                 if (fo.getName().equals("GISContextTemplate")) {
                     try {
@@ -101,7 +101,7 @@ public final class NewMapContext extends AbstractAction {
                 }
             }
         } else {
-            NotifyDescriptor d =  new NotifyDescriptor.Message(
+            final NotifyDescriptor d =  new NotifyDescriptor.Message(
                     CoreResource.getString("projectIsNotGIS"),
                     NotifyDescriptor.INFORMATION_MESSAGE);
             DialogDisplayer.getDefault().notify(d);

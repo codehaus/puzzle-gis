@@ -31,6 +31,7 @@ import org.openide.util.ImageUtilities;
 import org.puzzle.core.resources.CoreResource;
 
 /**
+ * Panel to export styles as SLD.
  *
  * @author Johann Sorel (Puzzle-GIS)
  */

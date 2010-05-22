@@ -38,7 +38,7 @@ public interface GISSourceService {
      */
     String getIdentifier();
 
-    public Lookup getLookup();
+    Lookup getLookup();
     
     /**
      * Rebuild the {@code GISSource} from the parameters of the XML file.

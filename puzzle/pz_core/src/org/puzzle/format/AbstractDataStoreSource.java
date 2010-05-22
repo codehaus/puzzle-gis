@@ -42,7 +42,8 @@ import org.puzzle.core.project.source.capabilities.LayerCreation;
 import org.puzzle.core.project.source.GISLayerSource;
 
 /**
- * Abstract Datastore source object.
+ * Abstract Datastore source object. It takes care to create
+ * the layer chooser and handle source loading and unloading.
  *
  * @author Johann Sorel (Puzzle-GIS)
  */

@@ -1,6 +1,18 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ *    Puzzle GIS - Desktop GIS Platform
+ *    http://puzzle-gis.codehaus.org
+ *
+ *    (C) 2010, Johann Sorel
+ *
+ *    This library is free software; you can redistribute it and/or
+ *    modify it under the terms of the GNU Lesser General Public
+ *    License as published by the Free Software Foundation;
+ *    version 3 of the License.
+ *
+ *    This library is distributed in the hope that it will be useful,
+ *    but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ *    Lesser General Public License for more details.
  */
 
 package org.puzzle.core.actions;
@@ -21,12 +33,17 @@ import org.puzzle.core.resources.CoreResource;
 
 /**
  *
- * @author eclesia
+ * @author Johann Sorel
  */
 public final class ActionUtils {
 
     private ActionUtils(){}
 
+    /**
+     * Check all present projects and potentialy display a wizard to the user
+     * to make him choose a GIS project.
+     * @return GISProject
+     */
     public static GISProject forceChoosingProject(){
         GISProject candidate = null;
         final Project[] projects = OpenProjects.getDefault().getOpenProjects();

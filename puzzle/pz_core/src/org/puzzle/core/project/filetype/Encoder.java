@@ -81,10 +81,9 @@ public class Encoder {
     private Encoder(){}
 
     public static MapContext parseContext(Document gisDoc, Collection<? extends GISSource> sources) {
-        MapContext context = MapBuilder.createContext(DefaultGeographicCRS.WGS84);
+        final MapContext context = MapBuilder.createContext(DefaultGeographicCRS.WGS84);
 
         if (gisDoc != null) {
-
             final NodeList layerNodes = gisDoc.getElementsByTagName(TAG_LAYER);
             for (int i = 0, n = layerNodes.getLength(); i < n; i++) {
                 final MapLayer layer = parseLayer(layerNodes.item(i),sources);
@@ -186,10 +185,10 @@ public class Encoder {
 
     private static int parseId(Node sourceNode) {
         int id = 0;
-        NodeList elements = sourceNode.getChildNodes();
+        final NodeList elements = sourceNode.getChildNodes();
         for (int i = 0, n = elements.getLength(); i < n; i++) {
-            Node elementNode = elements.item(i);
-            String elementName = elementNode.getNodeName();
+            final Node elementNode = elements.item(i);
+            final String elementName = elementNode.getNodeName();
 
             if (TAG_ID.equals(elementName)) {
                 id = Integer.valueOf(elementNode.getTextContent());
@@ -201,17 +200,17 @@ public class Encoder {
     }
 
     private static Map<String, String> parseParameters(Node sourceNode) {
-        Map<String, String> parameters = new HashMap<String, String>();
-        NodeList elements = sourceNode.getChildNodes();
+        final Map<String, String> parameters = new HashMap<String, String>();
+        final NodeList elements = sourceNode.getChildNodes();
         if(elements == null) return parameters;
         for (int i = 0, n = elements.getLength(); i < n; i++) {
-            Node elementNode = elements.item(i);
-            String elementName = elementNode.getNodeName();
+            final Node elementNode = elements.item(i);
+            final String elementName = elementNode.getNodeName();
 
             if (TAG_PARAMETERS.equals(elementName)) {
-                NodeList params = elementNode.getChildNodes();
+                final NodeList params = elementNode.getChildNodes();
                 for (int j = 0, m = params.getLength(); j < m; j++) {
-                    Node paramNode = params.item(j);
+                    final Node paramNode = params.item(j);
                     if (paramNode instanceof Element) {
                         parameters.put(paramNode.getNodeName(), paramNode.getTextContent());
                     }
@@ -308,7 +307,7 @@ public class Encoder {
 
             //store features filter
             if(layer instanceof FeatureMapLayer){
-                FeatureMapLayer fml = (FeatureMapLayer) layer;
+                final FeatureMapLayer fml = (FeatureMapLayer) layer;
                 if (fml.getQuery() != null && fml.getQuery().getFilter() != null) {
                     final org.opengis.filter.Filter filter = fml.getQuery().getFilter();
                     if (!filter.equals(org.opengis.filter.Filter.INCLUDE) &&

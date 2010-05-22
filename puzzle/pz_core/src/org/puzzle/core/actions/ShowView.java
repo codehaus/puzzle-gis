@@ -18,19 +18,23 @@ package org.puzzle.core.actions;
 
 import java.lang.reflect.InvocationTargetException;
 import javax.swing.SwingUtilities;
+
 import org.netbeans.api.progress.ProgressHandle;
 import org.netbeans.api.progress.ProgressHandleFactory;
+
 import org.openide.nodes.Node;
 import org.openide.util.Exceptions;
 import org.openide.util.HelpCtx;
 import org.openide.util.actions.CookieAction;
+
 import org.puzzle.core.project.view.GISView;
 import org.puzzle.core.resources.CoreResource;
 import org.puzzle.core.view.ViewComponent;
 
 /**
+ *Action to display a view. It has no effect if the view is already opened
  *
- * @author eclesia
+ * @author Johann Sorel (Puzzle-gis)
  */
 public class ShowView extends CookieAction{
 

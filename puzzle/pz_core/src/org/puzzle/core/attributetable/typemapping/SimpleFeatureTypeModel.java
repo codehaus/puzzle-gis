@@ -24,6 +24,7 @@ import org.opengis.feature.simple.SimpleFeatureType;
 import org.opengis.feature.type.AttributeDescriptor;
 
 /**
+ * Table model for a simple feature type.
  *
  * @author Johann Sorel (Puzzle-GIS)
  */

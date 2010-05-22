@@ -30,7 +30,7 @@ public interface LayerCreation {
      * @param   parameters A set of parameters used to create the layer.
      * @return  A new {@code PuzzleLayerConstants}.
      */
-    public abstract MapLayer createLayer(Map<String,String> parameters);
+    MapLayer createLayer(Map<String,String> parameters);
     
     /**
      * Create a swing component that will be used to create layers from this source.
@@ -38,6 +38,6 @@ public interface LayerCreation {
      * @param monitor
      * @return JLayerChooser
      */
-    public abstract JLayerChooser createChooser(LayerChooserMonitor monitor);
+    JLayerChooser createChooser(LayerChooserMonitor monitor);
 
 }
