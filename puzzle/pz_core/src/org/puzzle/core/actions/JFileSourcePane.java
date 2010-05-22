@@ -155,11 +155,10 @@ final class JFileSourcePane extends javax.swing.JPanel {
                 final FileSourceCreation fileService = service.getLookup().lookup(FileSourceCreation.class);
                 if(fileService == null) continue;
 
-                if( ! (service instanceof FileSourceCreation)) continue;
                 GISSourceInfo source = null;
                 
                 try{
-                    if(fileService.isValidFile(f)){
+                    if(fileService.createFilter().accept(f)){
                         source = fileService.createSourceInfo(f);
                     }
                 }catch(IllegalArgumentException ex){
