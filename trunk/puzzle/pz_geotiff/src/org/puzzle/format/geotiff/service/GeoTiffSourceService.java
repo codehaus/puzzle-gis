@@ -83,14 +83,7 @@ public class GeoTiffSourceService extends AbstractGISSourceService implements Fi
         params.put("uri", uri);
         return new GISSourceInfo(GISSourceInfo.UNREGISTERED_ID, SERVICE_ID, params);
     }
-    
-    /** {@inheritDoc} */
-    @Override
-    public boolean isValidFile(File file) {
-        final String name = file.getName().toLowerCase();
-        return (name.endsWith("tiff") || name.endsWith("tif"));
-    }
-    
+        
     /** {@inheritDoc} */
     @Override
     public String getTitle(){

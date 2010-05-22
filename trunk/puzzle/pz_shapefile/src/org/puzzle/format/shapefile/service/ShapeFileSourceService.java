@@ -18,13 +18,11 @@ package org.puzzle.format.shapefile.service;
 
 import java.io.File;
 import java.io.Serializable;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.filechooser.FileFilter;
-import org.geotoolkit.gui.swing.misc.FileFormat;
 
+import org.geotoolkit.gui.swing.misc.FileFormat;
 
 import org.puzzle.core.project.source.AbstractGISSourceService;
 import org.puzzle.core.project.source.capabilities.FileSourceCreation;
@@ -69,13 +67,6 @@ public class ShapeFileSourceService extends AbstractGISSourceService implements 
         final Map<String,Serializable> params = new HashMap<String, Serializable>();
         params.put("uri", uri);
         return new GISSourceInfo(GISSourceInfo.UNREGISTERED_ID, SERVICE_ID, params);
-    }
-
-    @Override
-    public boolean isValidFile(File file) {
-        final String name = file.getName().toLowerCase();
-        if(name.endsWith("shp")) return true;
-        else return false;
     }
     
     @Override
