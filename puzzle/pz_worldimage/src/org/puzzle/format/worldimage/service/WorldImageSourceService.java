@@ -88,13 +88,4 @@ public class WorldImageSourceService extends AbstractGISSourceService implements
         return FileFormat.WORLD_IMAGE.getFileFilter();
     }
 
-    /** {@inheritDoc} */
-    @Override
-    public boolean isValidFile(File file) {
-        final String name = file.getName().toLowerCase();
-        return name.endsWith("png") ||
-               name.endsWith("jpg") ||
-               name.endsWith("jpeg")||
-               name.endsWith("bmp");
-    }
 }

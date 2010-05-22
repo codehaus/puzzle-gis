@@ -88,12 +88,4 @@ public class DimapSourceService extends AbstractGISSourceService implements File
         return FileFormat.DIMAP.getFileFilter();
     }
 
-    /** {@inheritDoc} */
-    @Override
-    public boolean isValidFile(File file) {
-
-        final String name = file.getName().toLowerCase();
-        return name.endsWith("tif") ||
-               name.endsWith("tiff");
-    }
 }

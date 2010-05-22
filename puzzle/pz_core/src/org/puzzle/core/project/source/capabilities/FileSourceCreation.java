@@ -43,16 +43,4 @@ public interface FileSourceCreation{
      */
     GISSourceInfo createSourceInfo(File file) throws IllegalArgumentException;
     
-    /**
-     * This method is used to know if a specific file can be handled by
-     * a specific {@code GISFileSourceService}. For instance, a service
-     * used to handle shapefiles will not be able to handle geotiff.
-     * @param   file    The file to handle.
-     * @return  A {@code boolean} :
-     * <ul>
-     *  <li>{@code true} : the file can be handled by this service,</li>
-     *  <li>{@code false}: the file can not ben handled by the service.</li>
-     * </ul>
-     */
-    boolean isValidFile(File file);
 }
