@@ -65,7 +65,7 @@ final class JFileSourcePane extends javax.swing.JPanel {
 
             final FileSourceCreation fileService = service.getLookup().lookup(FileSourceCreation.class);
             if(fileService != null){
-                filters.add(fileService.createFilter());
+                filters.addAll(fileService.createFilters());
             }
         }
 
@@ -158,8 +158,11 @@ final class JFileSourcePane extends javax.swing.JPanel {
                 GISSourceInfo source = null;
                 
                 try{
-                    if(fileService.createFilter().accept(f)){
-                        source = fileService.createSourceInfo(f);
+                    for(FileFilter ff : fileService.createFilters()){
+                        if(ff.accept(f)){
+                            source = fileService.createSourceInfo(f);
+                            break;
+                        }
                     }
                 }catch(IllegalArgumentException ex){
                     ex.printStackTrace();

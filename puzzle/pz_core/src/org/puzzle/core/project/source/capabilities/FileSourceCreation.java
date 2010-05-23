@@ -18,6 +18,7 @@ package org.puzzle.core.project.source.capabilities;
 
 import org.puzzle.core.project.source.*;
 import java.io.File;
+import java.util.Collection;
 import javax.swing.filechooser.FileFilter;
 
 /**
@@ -30,10 +31,11 @@ import javax.swing.filechooser.FileFilter;
  */
 public interface FileSourceCreation{
     /**
-     * Creates a {@code FileFilter} corresponding to the data file to handle.
-     * @return  A new {@code FileFilter}.
+     * Creates {@code FileFilter} corresponding to the data file to handle.
+     * Some source sercices may handle several file types.
+     * @return  Collection of {@code FileFilter}.
      */
-    FileFilter createFilter();
+    Collection<FileFilter> createFilters();
     
     /**
      * Creates the {@code GISSource} associated with the data {@code file}.

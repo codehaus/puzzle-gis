@@ -65,13 +65,13 @@ public class CoverageFileSource extends GISSource{
     /**
      * Constructor.
      * Initializes a {@code CoverageFileSource} from a file.
-     * @param worldImage    The image file.
+     * @param imageFile    The image file.
      * @param GISSourceInfo Details of the source.
      */
-    public CoverageFileSource(final GISSourceInfo info, final File worldImage) {
+    public CoverageFileSource(final GISSourceInfo info, final File imageFile) {
         super(info);
-        this.imageFile = worldImage;
-        this.name = worldImage.getName();
+        this.imageFile = imageFile;
+        this.name = imageFile.getName();
         content.add(new  CoverageFileLayerCreation());
     }
 

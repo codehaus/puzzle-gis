@@ -20,6 +20,8 @@ import java.io.File;
 import java.io.Serializable;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.filechooser.FileFilter;
@@ -84,8 +86,8 @@ public class DimapSourceService extends AbstractGISSourceService implements File
     
     /** {@inheritDoc} */
     @Override
-    public FileFilter createFilter() {
-        return FileFormat.DIMAP.getFileFilter();
+    public Collection<FileFilter> createFilters() {
+        return Collections.singleton(FileFormat.DIMAP.getFileFilter());
     }
 
 }
