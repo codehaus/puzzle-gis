@@ -18,6 +18,8 @@ package org.puzzle.format.shapefile.service;
 
 import java.io.File;
 import java.io.Serializable;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.filechooser.FileFilter;
@@ -57,8 +59,8 @@ public class ShapeFileSourceService extends AbstractGISSourceService implements 
     }
 
     @Override
-    public FileFilter createFilter() {
-        return FileFormat.ESRI_SHAPEFILE.getFileFilter();
+    public Collection<FileFilter> createFilters() {
+        return Collections.singleton(FileFormat.ESRI_SHAPEFILE.getFileFilter());
     }
 
     @Override
