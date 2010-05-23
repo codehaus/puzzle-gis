@@ -5,9 +5,9 @@
         <folder name="text">
             <folder name="gissource+xml">
                 <folder name="Actions">
-                    <file name="org-puzzle-format-coveragesql-ui-DataBaseExplorer.instance">
+                    <!--file name="org-puzzle-format-coveragesql-ui-DataBaseExplorer.instance">
                         <attr name="position" intvalue="800"/>
-                    </file>
+                    </file-->
                 </folder>
             </folder>
         </folder>

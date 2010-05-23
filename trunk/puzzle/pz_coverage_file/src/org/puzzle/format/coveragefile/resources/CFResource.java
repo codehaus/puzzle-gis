@@ -24,7 +24,7 @@ import java.util.ResourceBundle;
  */
 public final class CFResource {
 
-    private static final ResourceBundle BUNDLE = ResourceBundle.getBundle("org/puzzle/format/worldimage/resources/Bundle");
+    private static final ResourceBundle BUNDLE = ResourceBundle.getBundle("org/puzzle/format/coveragefile/resources/Bundle");
 
     private CFResource(){}
 
