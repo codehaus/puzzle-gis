@@ -34,11 +34,6 @@ import javax.imageio.spi.ImageReaderSpi;
 import javax.imageio.spi.ImageReaderWriterSpi;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import org.geotoolkit.coverage.WorldImageReaderUtilities;
-import org.geotoolkit.image.io.plugin.AsciiGridReader;
-import org.geotoolkit.image.io.plugin.DimapImageReader;
-import org.geotoolkit.image.io.plugin.NetcdfImageReader;
-import org.geotoolkit.image.io.plugin.WorldFileImageReader;
 
 import org.openide.util.Exceptions;
 
@@ -77,14 +72,14 @@ public class CoverageFileSourceService extends AbstractGISSourceService implemen
         
         if(strURI == null) throw new IllegalArgumentException("missing parameter uri");
 
-        File worldImage = null;
+        File imageFile = null;
         try{
-            worldImage = new File(new URI(strURI));
+            imageFile = new File(new URI(strURI));
         }catch(URISyntaxException urise){
             Exceptions.printStackTrace(urise);
         }
 
-        return new CoverageFileSource(info,worldImage);
+        return new CoverageFileSource(info,imageFile);
     }
 
     /** {@inheritDoc} */
