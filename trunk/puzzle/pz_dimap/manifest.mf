@@ -1,6 +1,0 @@
-Manifest-Version: 1.0
-OpenIDE-Module: org.puzzle.format.dimap
-OpenIDE-Module-Implementation-Version: 0
-OpenIDE-Module-Layer: org/puzzle/format/dimap/layer.xml
-OpenIDE-Module-Localizing-Bundle: org/puzzle/format/dimap/Bundle.properties
-
